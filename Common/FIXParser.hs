@@ -13,16 +13,22 @@ import Control.Applicative ( (<$>) )
 -- Lookup the parser for a given FIX tag.
 tagParser :: Parser FIXValue
 tagParser = do l <- to_tag 	
-	       p <- getParser $ toEnum l
-               return p
-    -- TODO: complete mapping to parsers
-    where getParser :: FixTag -> Parser FIXValue
-          getParser t =
-	        case t of 
-		     FIX_VERSION -> toFIXString
-		     FIX_MSG_LENGTH -> toFIXInt
-		     FIX_CHECKSUM -> toFIXInt
-		     _ -> undefined
+	       v <- getParser $ toEnum l
+               return v
+               
+tagParser' :: Parser (FixTag, FIXValue)
+tagParser' = do l <- to_tag 	
+	        v <- getParser $ toEnum l
+                return (toEnum l,v)
+
+-- TODO: complete mapping to parsers
+getParser :: FixTag -> Parser FIXValue
+getParser t =
+	case t of 
+		FIX_VERSION -> toFIXString
+		FIX_MSG_LENGTH -> toFIXInt
+		FIX_CHECKSUM -> toFIXInt
+		_ -> undefined
 
 -- Parse header and return checksum and length.
 -- A header always starts with the version tag (8)  
@@ -53,6 +59,13 @@ messageParser = do (hchecksum, len) <- headerParser
 -- messagesParser :: Parser [PayLoad]
 -- messagesParser = 
 
+-- FIXME: loop not lazy
+bodyParser :: Parser [(FixTag, FIXValue)]
+bodyParser = do 
+  x <- tagParser'
+  xs <- bodyParser
+  return (x:xs)
+  
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int
