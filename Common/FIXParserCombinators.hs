@@ -10,7 +10,8 @@ import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>), (<|>), (*>) )
 import System.Time
 
-data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString
+-- FIXME: explicit imports
+import Common.FIXMessage
 
 fix_delimiter :: Char
 -- fix_delimiter = '\0'
