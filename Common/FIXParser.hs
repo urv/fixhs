@@ -6,7 +6,7 @@ import Common.FIXMessage
 import Common.FIXParserCombinators
 import Data.Attoparsec hiding ( takeWhile1 )
 import Data.Char
-import Data.ByteString hiding ( pack, putStrLn, take )
+import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>) )
 
@@ -28,7 +28,9 @@ getParser t =
 		FIX_VERSION -> toFIXString
 		FIX_MSG_LENGTH -> toFIXInt
 		FIX_CHECKSUM -> toFIXInt
-		_ -> undefined
+		NA34 -> toFIXString
+		NA35 -> toFIXString
+		_ -> toFIXString -- FIXME: implement all mappings 
 
 -- Parse header and return checksum and length.
 -- A header always starts with the version tag (8)  
@@ -56,16 +58,9 @@ messageParser = do (hchecksum, len) <- headerParser
 			FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i then return msg else messageParser -- FIXME: error message instead of continuation
                         _ -> undefined
 
--- messagesParser :: Parser [PayLoad]
--- messagesParser = 
-
--- FIXME: loop not lazy
+-- parse tags in the FIX body
 bodyParser :: Parser [(FixTag, FIXValue)]
-bodyParser = do 
-  x <- tagParser'
-  xs <- bodyParser
-  return (x:xs)
-  
+bodyParser = many tagParser'
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int

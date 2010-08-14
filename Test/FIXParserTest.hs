@@ -23,4 +23,7 @@ process = do case parse messageParser input3 of
                Done m r -> parseMessageBody r
                _ -> undefined
 
-parseMessageBody = parse bodyParser 
+-- here
+parseMessageBody r = do case parse bodyParser r of
+                          Partial f -> f empty
+                          _ -> undefined
