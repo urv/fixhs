@@ -50,12 +50,6 @@ parse_int_till c = do
     char8 c
     return i
 
-parse_int_till' :: Char -> Parser FIXValue
-parse_int_till' c = do
-    i <- signed' decimal
-    char8 c
-    return $ FIXInt i
-
 toInteger' :: ByteString -> Int
 toInteger' b = helper 0 b
                where 
@@ -68,7 +62,7 @@ to_int :: Parser Int
 to_int = parse_int_till fix_delimiter
 
 toFIXInt :: Parser FIXValue
-toFIXInt = parse_int_till' fix_delimiter
+toFIXInt = FIXInt <$> to_int
 
 to_char :: Parser Char
 to_char = do
@@ -84,22 +78,21 @@ to_string = do
         where not_fix_delimiter w = w /= fix_delimiter
 
 toFIXString :: Parser FIXValue
-toFIXString = do 
-    str <- takeWhile1 not_fix_delimiter
-    skip_fix_delimiter
-    return $ FIXString str
-        where not_fix_delimiter w = w /= fix_delimiter
+toFIXString = FIXString <$> to_string
 
 to_tag :: Parser Int
 to_tag = parse_int_till '='
     
-to_bool :: Parser FIXValue
+to_bool :: Parser Bool
 to_bool = do
     c <- (char 'Y' <|> char 'N')
     skip_fix_delimiter
     case c of
-        'Y' -> return $ FIXBool True
-        'N' -> return $ FIXBool False
+        'Y' -> return True
+        'N' -> return False
+
+toFIXBool :: Parser FIXValue
+toFIXBool = FIXBool <$> to_bool
 
 to_sec_millis :: Parser (Int, Int)
 to_sec_millis = do
