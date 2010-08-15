@@ -215,9 +215,11 @@ data FixTag = NA0
 	| NA205 
 	| NA206 
 	| NA207 
-	deriving (Show, Eq, Enum)
+	deriving (Show, Eq, Enum, Ord)
                  
                  
 type FIXBody = HashTable FixTag FIXValue
 
 data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
+
+type FIXMessage = (FixTag, FIXValue)

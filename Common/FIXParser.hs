@@ -10,6 +10,8 @@ import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>) )
 
+import qualified Data.Map as M 
+
 -- Lookup the parser for a given FIX tag.
 tagParser :: Parser FIXValue
 tagParser = do l <- to_tag 	
@@ -21,16 +23,14 @@ tagParser' = do l <- to_tag
 	        v <- getParser $ toEnum l
                 return (toEnum l,v)
 
--- TODO: complete mapping to parsers
 getParser :: FixTag -> Parser FIXValue
-getParser t =
-	case t of 
-		FIX_VERSION -> toFIXString
-		FIX_MSG_LENGTH -> toFIXInt
-		FIX_CHECKSUM -> toFIXInt
-		NA34 -> toFIXString
-		NA35 -> toFIXString
-		_ -> toFIXString -- FIXME: implement all mappings 
+getParser t = M.findWithDefault toFIXString t parserMap
+
+parserMap :: M.Map FixTag (Parser FIXValue)
+parserMap = M.fromList 
+                [(FIX_VERSION, toFIXString), 
+                 (FIX_MSG_LENGTH, toFIXInt),                  
+                 (FIX_CHECKSUM, toFIXInt)] -- FIXME: complete map
 
 -- Parse header and return checksum and length.
 -- A header always starts with the version tag (8)  
@@ -66,3 +66,4 @@ bodyParser = many tagParser'
 checksum :: ByteString -> Int
 checksum b | null b = 0
            | otherwise = (fromIntegral (head b) + checksum (tail b)) `mod` 256       
+
