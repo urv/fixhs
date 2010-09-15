@@ -18,15 +18,15 @@ tagParser = do l <- to_tag
 	       v <- getParser $ toEnum l
                return v
                
-tagParser' :: Parser (FixTag, FIXValue)
+tagParser' :: Parser (FIXTag, FIXValue)
 tagParser' = do l <- to_tag 	
 	        v <- getParser $ toEnum l
                 return (toEnum l,v)
 
-getParser :: FixTag -> Parser FIXValue
+getParser :: FIXTag -> Parser FIXValue
 getParser t = M.findWithDefault toFIXString t parserMap
 
-parserMap :: M.Map FixTag (Parser FIXValue)
+parserMap :: M.Map FIXTag (Parser FIXValue)
 parserMap = M.fromList 
                 [(FIX_VERSION, toFIXString), 
                  (FIX_MSG_LENGTH, toFIXInt),                  
@@ -59,7 +59,7 @@ messageParser = do (hchecksum, len) <- headerParser
                         _ -> undefined
 
 -- parse tags in the FIX body
-bodyParser :: Parser [(FixTag, FIXValue)]
+bodyParser :: Parser [FIXMessage]
 bodyParser = many tagParser'
 
 -- FIX checksum is simply the sum of bytes modulo 256

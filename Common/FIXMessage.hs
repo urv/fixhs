@@ -7,7 +7,7 @@ import Data.ByteString
 --  TODO: add missing fields
 --  probably generate the complete list
 --  or try something with FIXML...?
-data FixTag = NA0
+data FIXTag = NA0
 	| NA1
 	| NA2
 	| NA3
@@ -218,8 +218,8 @@ data FixTag = NA0
 	deriving (Show, Eq, Enum, Ord)
                  
                  
-type FIXBody = HashTable FixTag FIXValue
+type FIXBody = HashTable FIXTag FIXValue
 
 data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
 
-type FIXMessage = (FixTag, FIXValue)
+type FIXMessage = (FIXTag, FIXValue)
