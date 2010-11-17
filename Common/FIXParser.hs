@@ -62,8 +62,3 @@ messageParser = do (hchecksum, len) <- headerParser
 bodyParser :: Parser [FIXMessage]
 bodyParser = many tagParser'
 
--- FIX checksum is simply the sum of bytes modulo 256
-checksum :: ByteString -> Int
-checksum b | null b = 0
-           | otherwise = (fromIntegral (head b) + checksum (tail b)) `mod` 256       
-

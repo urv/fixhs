@@ -1,8 +1,9 @@
 module Common.FIXMessage 
 	where
 
+import Prelude hiding ( take, null, head, tail )
 import Data.HashTable
-import Data.ByteString
+import Data.ByteString 
 
 --  TODO: add missing fields
 --  probably generate the complete list
@@ -219,7 +220,11 @@ data FIXTag = NA0
                  
                  
 type FIXBody = HashTable FIXTag FIXValue
-
 data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
-
 type FIXMessage = (FIXTag, FIXValue)
+
+
+-- FIX checksum is simply the sum of bytes modulo 256
+checksum :: ByteString -> Int
+checksum b | null b = 0
+           | otherwise = (fromIntegral (head b) + checksum (tail b)) `mod` 256       
