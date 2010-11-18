@@ -22,15 +22,20 @@ externalizeFIXValue (FIXBool b) = C.pack $ show b
 externalizeFIXValue (FIXString s) = s
 
 body :: [FIXMessage] -> ByteString
-body l = intercalate (C.pack "|") (P.map externalize l)
+-- body l = intercalate (C.pack fix_delimiter) (P.map (cons fix_delimiter . externalize) l)
+body l = B.concat $ P.map ((C.cons fix_delimiter) . externalize) l
 
 header :: ByteString
 header = C.pack "8=FIX.4.1|"
 
+toString :: FIXTag -> ByteString
+toString = B.pack . show . fromEnum
+                 
 coparse :: [FIXMessage] -> ByteString
 -- coparse l = B.concat $ P.map externalize l
 coparse l = header `append` checksum' `append` body'
 	where 
 		-- FIXME: use ByteString directly
-		checksum' = C.pack $ "9=" ++ show (checksum body') ++ "|"
+		-- checksum' = C.pack $ "9=" ++ show (checksum body') 
+		checksum' = C.pack $ toString FIX_CHECKSUM ++ "=" ++ show (checksum body')
 		body' = body l

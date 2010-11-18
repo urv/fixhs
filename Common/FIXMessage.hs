@@ -217,12 +217,14 @@ data FIXTag = NA0
 	| NA206 
 	| NA207 
 	deriving (Show, Eq, Enum, Ord)
-                 
-                 
+
 type FIXBody = HashTable FIXTag FIXValue
 data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
 type FIXMessage = (FIXTag, FIXValue)
 
+fix_delimiter :: Char
+-- fix_delimiter = '\0'
+fix_delimiter = '|'
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int

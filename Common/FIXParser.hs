@@ -62,3 +62,12 @@ messageParser = do (hchecksum, len) <- headerParser
 bodyParser :: Parser [FIXMessage]
 bodyParser = many tagParser'
 
+parseMessageBody :: ByteString -> Result [FIXMessage]
+parseMessageBody r = case parse bodyParser r of
+                          Partial f -> f empty
+                          _ -> undefined
+
+parseMessage :: ByteString -> Result [FIXMessage]
+parseMessage i = case parse messageParser i of 
+	         Done m r -> parseMessageBody r
+                 _ -> undefined
