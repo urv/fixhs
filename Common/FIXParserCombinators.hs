@@ -13,9 +13,6 @@ import System.Time
 -- FIXME: explicit imports
 import Common.FIXMessage
 
-fix_delimiter :: Char
--- fix_delimiter = '\0'
-fix_delimiter = '|'
 
 signed' :: Num a => Parser a -> Parser a
 signed' p = (negate <$> (char8 '-' *> p))
