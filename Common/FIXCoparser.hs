@@ -14,7 +14,7 @@ externalize (t,v) = tag `append` del `append` val
 	where
 		val = externalizeFIXValue v
 		tag = C.pack $ show (fromEnum t)
-		del = C.pack "="
+		del = C.singleton '='
 
 externalizeFIXValue :: FIXValue -> ByteString
 externalizeFIXValue (FIXInt i) = C.pack $ show i 
@@ -29,7 +29,13 @@ header :: ByteString
 header = C.pack "8=FIX.4.1|"
 
 toString :: FIXTag -> ByteString
-toString = B.pack . show . fromEnum
+toString = C.pack . show . fromEnum
+
+checksumTag :: ByteString
+checksumTag = toString FIX_CHECKSUM
+
+equals :: ByteString
+equals = C.singleton '='
                  
 coparse :: [FIXMessage] -> ByteString
 -- coparse l = B.concat $ P.map externalize l
@@ -37,5 +43,5 @@ coparse l = header `append` checksum' `append` body'
 	where 
 		-- FIXME: use ByteString directly
 		-- checksum' = C.pack $ "9=" ++ show (checksum body') 
-		checksum' = C.pack $ toString FIX_CHECKSUM ++ "=" ++ show (checksum body')
+		checksum' = checksumTag `append` equals `append` C.pack (show (checksum body'))
 		body' = body l
