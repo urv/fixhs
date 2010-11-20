@@ -1,5 +1,10 @@
 module Common.FIXParser 
-	where
+	(
+	-- TODO: cleanup public api
+ 	  messageParser
+	, parseMessageBody
+	, parseMessage
+	) where
 
 import Prelude hiding ( take, null, head, tail )
 import Common.FIXMessage

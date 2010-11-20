@@ -1,5 +1,8 @@
 module Common.FIXCoparser 
-	where
+	(
+	-- 
+	coparse
+	) where
 
 import Prelude as P
 import Common.FIXMessage 
