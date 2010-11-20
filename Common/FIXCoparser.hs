@@ -9,6 +9,10 @@ import Data.ByteString.Char8 as C
 -- implementation is not efficient 
 -- this is just meant for testing 
 -- and needs a lot of cleanup
+--
+-- maybe use some kind of Monoid, resp. Writer, Builder to put together
+-- the ByteString. See also blazer-builder - which was started at ZüriHac :-)
+
 externalize :: FIXMessage -> ByteString
 externalize (t,v) = tag `append` del `append` val 
 	where
