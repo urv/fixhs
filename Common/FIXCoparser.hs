@@ -10,8 +10,12 @@ import Data.ByteString.Char8 as C
 -- this is just meant for testing 
 -- and needs a lot of cleanup
 --
--- maybe use some kind of Monoid, resp. Writer, Builder to put together
--- the ByteString. See also blazer-builder - which was started at ZüriHac :-)
+-- ideas:
+-- - maybe use some kind of Monoid, resp. Writer, Builder to put together
+--   the ByteString. See also blazer-builder - which was started at ZüriHac :-)
+-- - lazy vs. strict ByteString?
+-- - as for parsing we use a Monad, can we use the dual, a Comonad, here?
+-- - implement Binary for FIXMessage, then call encode to get the ByteString
 
 externalize :: FIXMessage -> ByteString
 externalize (t,v) = tag `append` del `append` val 
@@ -24,6 +28,11 @@ externalizeFIXValue :: FIXValue -> ByteString
 externalizeFIXValue (FIXInt i) = C.pack $ show i 
 externalizeFIXValue (FIXBool b) = C.pack $ show b  
 externalizeFIXValue (FIXString s) = s
+
+-- TODO: would this be useful...?
+-- instance Binary FIXMessage where
+-- 	put (t, v) = put (fromEnum t) >> putWord8 '=' >> put v
+-- 	get        = undefined
 
 body :: [FIXMessage] -> ByteString
 -- body l = intercalate (C.pack fix_delimiter) (P.map (cons fix_delimiter . externalize) l)
