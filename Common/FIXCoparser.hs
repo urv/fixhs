@@ -16,6 +16,7 @@ import Data.ByteString.Char8 as C
 -- ideas:
 -- - maybe use some kind of Monoid, resp. Writer, Builder to put together
 --   the ByteString. See also blazer-builder - which was started at ZüriHac :-)
+--   --> use Data.Text.Lazy.Builder Monoid 
 -- - lazy vs. strict ByteString?
 -- - as for parsing we use a Monad, can we use the dual, a Comonad, here?
 -- - implement Binary for FIXMessage, then call encode to get the ByteString
