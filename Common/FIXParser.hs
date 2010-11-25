@@ -10,7 +10,7 @@ import Prelude hiding ( take, null, head, tail )
 import Common.FIXMessage
 import Common.FIXParserCombinators
 import Data.Attoparsec hiding ( takeWhile1 )
-import Data.Char
+import Data.Char 
 import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>) )
@@ -39,14 +39,14 @@ parserMap = M.fromList
 
 -- Parse header and return checksum and length.
 -- A header always starts with the version tag (8)  
--- followed by the length tag (9). Note: these 2 tage
+-- followed by the length tag (9). Note: these 2 tags
 -- are included int the checksum
 headerParser :: Parser (Int, Int)
 headerParser = do c1 <- checksum <$> (string $ pack "8=")
                   c2 <- checksum <$> to_string 
                   c3 <- checksum <$> (string $ pack "9=")
 	          l <- to_string
-                  let c4 = checksum l
+                  let c4 = checksum l 
                   let c = (c1+c2+c3+c4) `mod` 256
 		  return (c, toInteger' l)
 

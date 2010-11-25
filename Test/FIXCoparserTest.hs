@@ -3,5 +3,5 @@ import Common.FIXMessage
 import Data.ByteString.Char8 as C
 
 input :: [FIXMessage]
-input = [(FIX_VERSION, FIXString (C.pack "FIX.4.1")), (FIX_VERSION, FIXString (C.pack "FIX.4.1"))]
+input = [(NA49, FIXString (C.pack "xyz")), (NA49, FIXString (C.pack "abc"))]
 test = coparse input
