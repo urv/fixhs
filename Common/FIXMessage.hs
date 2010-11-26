@@ -1,7 +1,7 @@
 module Common.FIXMessage 
 	where
 
-import Prelude hiding ( take, null, head, tail )
+import Prelude hiding ( take, null, head, tail, length )
 import Data.HashTable
 import Data.ByteString 
 
@@ -229,3 +229,8 @@ fix_delimiter = '\SOH'
 checksum :: ByteString -> Int
 checksum b | null b = 0
            | otherwise = (fromIntegral (head b) + checksum (tail b)) `mod` 256       
+
+-- FIX length
+flength :: ByteString -> Int
+flength b | null b = 0
+          | otherwise = length b

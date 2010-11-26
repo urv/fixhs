@@ -74,6 +74,12 @@ to_string = do
     return str
         where not_fix_delimiter w = w /= fix_delimiter
 
+to_string_ :: Parser ByteString
+to_string_ = do 
+    str <- takeWhile1 not_fix_delimiter
+    return str
+        where not_fix_delimiter w = w /= fix_delimiter
+
 toFIXString :: Parser FIXValue
 toFIXString = FIXString <$> to_string
 
