@@ -223,8 +223,7 @@ data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show,
 type FIXMessage = (FIXTag, FIXValue)
 
 fix_delimiter :: Char
--- fix_delimiter = '\0'
-fix_delimiter = '|'
+fix_delimiter = '\SOH'
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int

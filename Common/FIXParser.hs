@@ -47,7 +47,7 @@ headerParser = do c1 <- checksum <$> (string $ pack "8=")
                   c3 <- checksum <$> (string $ pack "9=")
 	          l <- to_string
                   let c4 = checksum l
-                  let c = (c1+c2+c3+c4) `mod` 256
+                  let c = (c1 + c2 + c3 + c4 + 2*ord(fix_delimiter)) `mod` 256
 		  return (c, toInteger' l)
 
 -- Parse a FIX message. The parser continues with the next
@@ -57,7 +57,7 @@ type PayLoad = ByteString
 
 messageParser :: Parser PayLoad
 messageParser = do (hchecksum, len) <- headerParser
-		   msg <- take $ len + 1 -- FIXME: why +1?
+		   msg <- take $ len 
                    c <- tagParser
                    case c of
 			FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i then return msg else messageParser -- FIXME: error message instead of continuation
