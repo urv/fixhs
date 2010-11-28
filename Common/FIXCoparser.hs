@@ -24,7 +24,8 @@ import Data.ByteString.Char8 as C
 
 -- FIX header
 header :: ByteString
-header = C.pack "8=FIX.4.2|"
+-- header = C.pack "8=FIX.4.2\SOH"
+header = C.snoc fix_version fix_delimiter
 
 checksumTag :: ByteString
 checksumTag = toString FIX_CHECKSUM

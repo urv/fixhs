@@ -4,6 +4,7 @@ module Common.FIXMessage
 import Prelude hiding ( take, null, head, tail, length )
 import Data.HashTable
 import Data.ByteString 
+import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
 
 --  TODO: add missing fields
 --  probably generate the complete list
@@ -224,6 +225,10 @@ type FIXMessage = (FIXTag, FIXValue)
 
 fix_delimiter :: Char
 fix_delimiter = '\SOH'
+
+fix_version :: ByteString
+fix_version = C.pack "8=FIX.4.2"
+
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int
