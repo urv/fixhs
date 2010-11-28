@@ -19,14 +19,16 @@ import qualified Data.Map as M
 
 -- Lookup the parser for a given FIX tag.
 tagParser :: Parser FIXValue
-tagParser = do l <- to_tag 	
-	       v <- getParser $ toEnum l
-               return v
+tagParser = do 
+    l <- to_tag
+    v <- getParser $ toEnum l
+    return v
                
 tagParser' :: Parser (FIXTag, FIXValue)
-tagParser' = do l <- to_tag 	
-	        v <- getParser $ toEnum l
-                return (toEnum l,v)
+tagParser' = do 
+    l <- to_tag
+    v <- getParser $ toEnum l
+    return (toEnum l,v)
 
 getParser :: FIXTag -> Parser FIXValue
 getParser t = M.findWithDefault toFIXString t parserMap
@@ -42,13 +44,14 @@ parserMap = M.fromList
 -- followed by the length tag (9). Note: these 2 tags
 -- are included int the checksum
 headerParser :: Parser (Int, Int)
-headerParser = do c1 <- checksum <$> (string $ pack "8=")
-                  c2 <- checksum <$> to_string 
-                  c3 <- checksum <$> (string $ pack "9=")
-	          l <- to_string
-                  let c4 = checksum l
-                  let c = (c1 + c2 + c3 + c4 + 2*ord(fix_delimiter)) `mod` 256
-		  return (c, toInteger' l)
+headerParser = do 
+    c1 <- (checksum <$> (string $ pack "8="))
+    c2 <- (checksum <$> to_string)
+    c3 <- (checksum <$> (string $ pack "9="))
+    l <- to_string
+    let c4 = checksum l
+        c = (c1 + c2 + c3 + c4 + 2 * ord(fix_delimiter)) `mod` 256
+    return (c, toInteger' l)
 
 -- Parse a FIX message. The parser continues with the next
 -- message when the checksum validation fails.
@@ -56,12 +59,15 @@ headerParser = do c1 <- checksum <$> (string $ pack "8=")
 type PayLoad = ByteString
 
 messageParser :: Parser PayLoad
-messageParser = do (hchecksum, len) <- headerParser
-		   msg <- take $ len 
-                   c <- tagParser
-                   case c of
-			FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i then return msg else messageParser -- FIXME: error message instead of continuation
-                        _ -> undefined
+messageParser = do 
+    (hchecksum, len) <- headerParser
+    msg <- take $ len 
+    c <- tagParser
+    case c of
+        FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i 
+            then return msg 
+            else messageParser -- FIXME: error message instead of continuation
+        _        -> undefined
 
 -- parse tags in the FIX body
 bodyParser :: Parser [FIXMessage]
@@ -70,9 +76,9 @@ bodyParser = many tagParser'
 parseMessageBody :: ByteString -> Result [FIXMessage]
 parseMessageBody r = case parse bodyParser r of
                           Partial f -> f empty
-                          _ -> undefined
+                          _         -> undefined
 
 parseMessage :: ByteString -> Result [FIXMessage]
 parseMessage i = case parse messageParser i of 
-	         Done m r -> parseMessageBody r
-                 _ -> undefined
+                      Done m r -> parseMessageBody r
+                      _        -> undefined
