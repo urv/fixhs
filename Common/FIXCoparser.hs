@@ -59,10 +59,9 @@ equals = C.singleton '='
                  
 -- externalize the FIXMessage
 coparse :: [FIXMessage] -> ByteString
-coparse l = message' `append` checksum'
+coparse l = message' `append` checksum' `C.snoc` fix_delimiter
 	where 
-		message' = header `append` length' `C.snoc` fix_delimiter `append` body' `C.snoc` fix_delimiter
-		checksum' = checksumTag `append` equals `append` C.pack (show (checksum body''))
-		length' = lengthTag `append` equals `append` C.pack (show (flength body'))
-		body'' = C.filter (not . (==fix_delimiter)) body'
-		body' = body l
+		message' = header `append` length' `C.snoc` fix_delimiter `append` body'
+		checksum' = checksumTag `append` equals `append` (padded_checksum message')
+		length' = lengthTag `append` equals `append` C.pack (show $ C.length body')
+		body' = body l `C.snoc` fix_delimiter

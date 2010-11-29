@@ -229,6 +229,8 @@ fix_delimiter = '\SOH'
 fix_version :: ByteString
 fix_version = C.pack "8=FIX.4.2"
 
+padded_checksum :: ByteString -> ByteString
+padded_checksum = checksum' . checksum
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int
@@ -236,6 +238,8 @@ checksum b | null b = 0
            | otherwise = (fromIntegral (head b) + checksum (tail b)) `mod` 256       
 
 -- FIX length
-flength :: ByteString -> Int
-flength b | null b = 0
-          | otherwise = length b
+checksum' :: Int -> ByteString
+checksum' b | b < 10 = C.pack "00" `append` num
+            | b < 100 = C.cons '0' num
+	    | otherwise = num
+	    where num = C.pack (show b)
