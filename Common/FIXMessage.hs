@@ -221,7 +221,7 @@ data FIXTag = NA0
 
 type FIXBody = HashTable FIXTag FIXValue
 data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
-type FIXMessage = (FIXTag, FIXValue)
+type FIXMessage = [(FIXTag, FIXValue)]
 
 fix_delimiter :: Char
 fix_delimiter = '\SOH'

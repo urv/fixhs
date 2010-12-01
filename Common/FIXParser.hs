@@ -18,14 +18,8 @@ import Control.Applicative ( (<$>) )
 import qualified Data.Map as M 
 
 -- Lookup the parser for a given FIX tag.
-tagParser :: Parser FIXValue
+tagParser :: Parser (FIXTag, FIXValue)
 tagParser = do 
-    l <- to_tag
-    v <- getParser $ toEnum l
-    return v
-               
-tagParser' :: Parser (FIXTag, FIXValue)
-tagParser' = do 
     l <- to_tag
     v <- getParser $ toEnum l
     return (toEnum l,v)
@@ -63,22 +57,22 @@ messageParser = do
     (hchecksum, len) <- headerParser
     msg <- take $ len 
     c <- tagParser
-    case c of
+    case snd c of
         FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i 
             then return msg 
             else messageParser -- FIXME: error message instead of continuation
         _        -> undefined
 
 -- parse tags in the FIX body
-bodyParser :: Parser [FIXMessage]
-bodyParser = many tagParser'
+bodyParser :: Parser FIXMessage
+bodyParser = many tagParser
 
-parseMessageBody :: ByteString -> Result [FIXMessage]
+parseMessageBody :: ByteString -> Result FIXMessage
 parseMessageBody r = case parse bodyParser r of
                           Partial f -> f empty
                           _         -> undefined
 
-parseMessage :: ByteString -> Result [FIXMessage]
+parseMessage :: ByteString -> Result FIXMessage
 parseMessage i = case parse messageParser i of 
                       Done m r -> parseMessageBody r
                       _        -> undefined

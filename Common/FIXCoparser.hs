@@ -34,7 +34,7 @@ lengthTag :: ByteString
 lengthTag = toString FIX_MSG_LENGTH
 
 -- FIX body
-externalize :: FIXMessage -> ByteString
+externalize :: (FIXTag, FIXValue) -> ByteString
 externalize (t,v) = tag `append` del `append` val 
 	where
 		val = externalize' v
@@ -46,7 +46,7 @@ externalize' (FIXInt i) = C.pack $ show i
 externalize' (FIXBool b) = C.pack $ show b  
 externalize' (FIXString s) = s
 
-body :: [FIXMessage] -> ByteString
+body :: FIXMessage -> ByteString
 -- body l = B.concat $ P.map ((C.cons fix_delimiter) . externalize) l
 -- body l = B.intercalate (C.pack fix_delimiter) (externalize l)
 body l = B.intercalate (C.singleton fix_delimiter) (P.map externalize l)
@@ -58,7 +58,7 @@ equals :: ByteString
 equals = C.singleton '='
                  
 -- externalize the FIXMessage
-coparse :: [FIXMessage] -> ByteString
+coparse :: FIXMessage -> ByteString
 coparse l = message' `append` checksum' `C.snoc` fix_delimiter
 	where 
 		message' = header `append` length' `C.snoc` fix_delimiter `append` body'
