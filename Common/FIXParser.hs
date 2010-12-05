@@ -35,7 +35,7 @@ parserMap = M.fromList
 -- Parse header and return checksum and length.
 -- A header always starts with the version tag (8)  
 -- followed by the length tag (9). Note: these 2 tags
--- are included int the checksum
+-- are included in the checksum
 headerParser :: Parser (Int, Int)
 headerParser = do 
     c1 <- (checksum <$> (string $ pack "8="))
@@ -46,8 +46,8 @@ headerParser = do
         c = (c1 + c2 + c3 + c4 + 2 * ord(fix_delimiter)) `mod` 256
     return (c, toInteger' l)
 
--- Parse a FIX message. The parser continues with the next
--- message when the checksum validation fails.
+-- Parse a FIX message. The parser fails when the checksum 
+-- validation fails.
 messageParser :: Parser ByteString
 messageParser = do 
     (hchecksum, len) <- headerParser
@@ -59,6 +59,7 @@ messageParser = do
             else fail "checksum not valid"
         _        -> fail "illegal state"
 
--- parse tags in the FIX body
+-- Parse tags in the FIX body
+-- FIXME: why does it return Partial? 
 bodyParser :: Parser FIXMessage
 bodyParser = many tagParser
