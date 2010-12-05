@@ -14,6 +14,8 @@ hylo input = case parseMessage input of
          	Done m r -> case r of
 	 		Done n s -> coparse s
 
+parseMessage i = fmap (\x -> feed (parse bodyParser x) empty) (parse messageParser i) 
+
 -- test 1: parse sample fix message and externalize it again
 input1 = pack "8=FIX.4.2\SOH9=65\SOH35=A\SOH49=SERVER\SOH56=CLIENT\SOH34=177\SOH52=20090107-18:15:16\SOH98=0\SOH108=30\SOH10=062\SOH"
 output1 = hylo input1
