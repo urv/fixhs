@@ -1,10 +1,7 @@
 module Common.FIXParser 
 	(
-	-- TODO: rename to parse
 	messageParser
 	, bodyParser
-	, parseMessage
-	, parseMessageBody
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -51,7 +48,6 @@ headerParser = do
 
 -- Parse a FIX message. The parser continues with the next
 -- message when the checksum validation fails.
-
 messageParser :: Parser ByteString
 messageParser = do 
     (hchecksum, len) <- headerParser
@@ -66,15 +62,3 @@ messageParser = do
 -- parse tags in the FIX body
 bodyParser :: Parser FIXMessage
 bodyParser = many tagParser
-
--- lift into Parser
-mp1 = parse bodyParser <$> messageParser
--- or fmap into Result
-parseMessage i = fmap (\x -> feed (parse bodyParser x) empty) (parse messageParser i) 
-
---messagesParser :: Parser [ByteString]
---messagesParser = many messageParser
-
-parseMessageBody i = case parse bodyParser i of
-			Partial f -> f empty
-
