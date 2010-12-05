@@ -1,9 +1,10 @@
 module Common.FIXParser 
 	(
-	-- TODO: cleanup public api
- 	  messageParser
-	, parseMessageBody
+	-- TODO: rename to parse
+	messageParser
+	, bodyParser
 	, parseMessage
+	, parseMessageBody
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -13,7 +14,8 @@ import Data.Attoparsec hiding ( takeWhile1 )
 import Data.Char 
 import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack, readInt )
-import Control.Applicative ( (<$>) )
+import Control.Applicative ( (<$>), (<*>) )
+import Control.Monad (MonadPlus(..))
 
 import qualified Data.Map as M 
 
@@ -50,9 +52,7 @@ headerParser = do
 -- Parse a FIX message. The parser continues with the next
 -- message when the checksum validation fails.
 
-type PayLoad = ByteString
-
-messageParser :: Parser PayLoad
+messageParser :: Parser ByteString
 messageParser = do 
     (hchecksum, len) <- headerParser
     msg <- take $ len 
@@ -60,19 +60,21 @@ messageParser = do
     case snd c of
         FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i 
             then return msg 
-            else messageParser -- FIXME: error message instead of continuation
-        _        -> undefined
+            else fail "checksum not valid"
+        _        -> fail "illegal state"
 
 -- parse tags in the FIX body
 bodyParser :: Parser FIXMessage
 bodyParser = many tagParser
 
-parseMessageBody :: ByteString -> Result FIXMessage
-parseMessageBody r = case parse bodyParser r of
-                          Partial f -> f empty
-                          _         -> undefined
+-- lift into Parser
+mp1 = parse bodyParser <$> messageParser
+-- or fmap into Result
+parseMessage i = fmap (\x -> feed (parse bodyParser x) empty) (parse messageParser i) 
 
-parseMessage :: ByteString -> Result FIXMessage
-parseMessage i = case parse messageParser i of 
-                      Done m r -> parseMessageBody r
-                      _        -> undefined
+--messagesParser :: Parser [ByteString]
+--messagesParser = many messageParser
+
+parseMessageBody i = case parse bodyParser i of
+			Partial f -> f empty
+
