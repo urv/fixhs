@@ -14,15 +14,15 @@ import Data.ByteString hiding ( head )
 import Network.Socket hiding ( recv )
 import Network.Socket.ByteString
 
-server :: String
-server = "127.0.0.1"
+data Configuration = Configuration {
+          server :: String
+        , port :: Int
+	} deriving (Show, Eq)
 
-port :: Int
-port = 3000
-                                          
-client :: (IO ByteString -> ByteString -> IO ByteString) -> IO ()
-client process = withSocketsDo $
-     do addrinfos <- getAddrInfo Nothing (Just server) (Just $ show port)
+-- TODO: use scatter/gather io for sending
+client :: Configuration -> (IO ByteString -> ByteString -> IO ByteString) -> IO ()
+client config process = withSocketsDo $
+     do addrinfos <- getAddrInfo Nothing (Just $ server config) (Just $ show (port config))
         let serveraddr = head addrinfos
         sock <- socket (addrFamily serveraddr) Stream defaultProtocol
         connect sock (addrAddress serveraddr)
