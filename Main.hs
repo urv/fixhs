@@ -1,22 +1,32 @@
-import Socket.ClientSocket
+import Socket.ClientSocket as C
+import Socket.Enumerator as E
 import Common.FIXParser
 import Data.Attoparsec 
 import Data.ByteString hiding (putStr)
 import qualified Data.ByteString as B hiding ( putStr )
 import qualified Data.ByteString.Char8 as C
-import Control.Monad.Trans
+-- import Control.Monad.Trans
 import Control.Concurrent
 import Common.FIXParser
 
+
 main :: IO ()
+main = let config = E.Configuration "127.0.0.1" 3000 in 
+	E.client config messageParser
+
+
+main2 :: IO ()
 -- main = client (mapM_ print) >> putStr "done"
-main = do c <- newChan
-          cs <- getChanContents c
-          forkIO (process cs)
-	  client (parse' c)
-	  where process = (mapM_ $ print . parseMessageBody)
-	        parseMessageBody i = case parse bodyParser i of
-					Partial f -> f empty
+-- TODO: instead of writing to a channel, consider writing to 
+-- a Writer Monad
+main2 = do c <- newChan
+           cs <- getChanContents c
+           forkIO (process cs)
+	   C.client config (parse' c)
+	   where process = (mapM_ $ print . parseMessageBody)
+	         parseMessageBody i = case parse bodyParser i of
+					 Partial f -> f empty
+		 config = C.Configuration "127.0.0.1" 3000
                                           
 -- TODO: do partial parsing, i.e, combine chunks if they exceed the buffer size 
 -- Use attoparsec-iteratee, see also:
