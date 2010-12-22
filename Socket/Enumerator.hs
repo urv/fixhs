@@ -41,12 +41,12 @@ client config parser = withSocketsDo $
         connect sock (addrAddress serveraddr)
         parse sock empty >>= consume sock
         sClose sock
-        where parse sock rest = runIteratee (enumBS rest $$ enumSocket sock $$ iterParser parser)
+        -- where parse sock rest = runIteratee (enumBS rest $$ enumSocket sock $$ iterParser parser)
+        where parse sock rest = runIteratee (enumSocket sock $$ enumBS rest $$ iterParser parser)
 	      consume sock step = case step of
 	    			    Error err -> putStrLn $ "Error: " ++ show err
 				    Yield msg rest -> putStrLn (show msg) >> case rest of 
 				    						Chunks [m] -> parse sock m >>= consume sock
-										-- FIXME: what's the correct pattern...?
-				    						Chunks (x:xs) -> putStrLn (show x) >> parse sock x >>= consume sock
+										Chunks [] -> putStrLn "No Chunks left"
 										EOF -> putStrLn "Done"
 	    			    Continue _ -> putStrLn $ "Continue: not expected"
