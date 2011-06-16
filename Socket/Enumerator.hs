@@ -10,7 +10,7 @@ import Network.Socket.ByteString
 import Data.Monoid ( mappend )
 
 import Data.Enumerator hiding ( head, length )
-import Data.Enumerator.IO
+import Data.Enumerator.Binary hiding (head)
 import Data.Attoparsec
 import Data.Attoparsec.Enumerator
 
