@@ -38,12 +38,12 @@ parserMap = M.fromList
 -- are included in the checksum
 headerParser :: Parser (Int, Int)
 headerParser = do 
-    c1 <- (checksum <$> (string $ pack "8="))
+    c1 <- (checksum <$> string (pack "8="))
     c2 <- (checksum <$> to_string)
-    c3 <- (checksum <$> (string $ pack "9="))
+    c3 <- (checksum <$> string (pack "9="))
     l <- to_string
     let c4 = checksum l
-        c = (c1 + c2 + c3 + c4 + 2 * ord(fix_delimiter)) `mod` 256
+        c = (c1 + c2 + c3 + c4 + 2 * ord fix_delimiter) `mod` 256
     return (c, toInteger' l)
 
 -- Parse a FIX message. The parser fails when the checksum 
@@ -51,7 +51,7 @@ headerParser = do
 messageParser :: Parser ByteString
 messageParser = do 
     (hchecksum, len) <- headerParser
-    msg <- take $ len 
+    msg <- take len 
     c <- tagParser
     case snd c of
         FIXInt i -> if (hchecksum + checksum msg) `mod` 256 == i 
