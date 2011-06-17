@@ -20,13 +20,11 @@ signed' p = (negate <$> (char8 '-' *> p))
        <|> p
 
 skipFixDelimiter :: Parser ()
-skipFixDelimiter = do
-    char8 fixDelimiter
-    return ()
+skipFixDelimiter = char8 fixDelimiter >> return ()
 
 toFloat :: Parser Float 
 toFloat = do 
-    a <- signed' decimal
+    a <- signed' decimal :: Parser Integer
     (m, e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
     skipFixDelimiter
     if a < 0 
@@ -44,16 +42,16 @@ toFloat = do
 parseIntTill :: Char -> Parser Int
 parseIntTill c = do
     i <- signed' decimal
-    char8 c
+    _ <- char8 c
     return i
 
 toInteger' :: ByteString -> Int
 toInteger' b = helper 0 b
                where 
-                helper i b 
-                    | null b    = i
+                helper i j 
+                    | null j    = i
                     | otherwise =   
-                        helper (10 * i + fromIntegral (head b) - ord '0') (tail b)
+                        helper (10 * i + fromIntegral (head j) - ord '0') (tail b)
                     
 toInt :: Parser Int
 toInt = parseIntTill fixDelimiter
@@ -91,6 +89,7 @@ toBool = do
     case c of
         'Y' -> return True
         'N' -> return False
+        _ -> error "wrong boolean FIX value"
 
 toFIXBool :: Parser FIXValue
 toFIXBool = FIXBool <$> toBool
@@ -118,7 +117,7 @@ toUTCTimestamp = do
    let day   = rest `mod` 100
    hours   <- parseIntTill ':'
    minutes <- parseIntTill ':'
-   (sec, millis) <- toSecMillis
+   (sec, _) <- toSecMillis
    return CalendarTime {
        ctYear  = year
      , ctMonth = toEnum $ month - 1
@@ -138,7 +137,7 @@ toUTCTimeOnly :: Parser CalendarTime
 toUTCTimeOnly = do
    hours   <- parseIntTill ':'
    minutes <- parseIntTill ':'
-   (sec, millis) <- toSecMillis
+   (sec, _) <- toSecMillis
    return CalendarTime {
        ctYear  = 0
      , ctMonth = toEnum 0
