@@ -25,7 +25,7 @@ import Data.ByteString.Char8 as C
 -- FIX header
 header :: ByteString
 -- header = C.pack "8=FIX.4.2\SOH"
-header = C.snoc fix_version fix_delimiter
+header = C.snoc fixVersion fixDelimiter
 
 checksumTag :: ByteString
 checksumTag = toString FIX_CHECKSUM
@@ -47,9 +47,9 @@ externalize' (FIXBool b) = C.pack $ show b
 externalize' (FIXString s) = s
 
 body :: FIXMessage -> ByteString
--- body l = B.concat $ P.map ((C.cons fix_delimiter) . externalize) l
--- body l = B.intercalate (C.pack fix_delimiter) (externalize l)
-body l = B.intercalate (C.singleton fix_delimiter) (P.map externalize l)
+-- body l = B.concat $ P.map ((C.cons fixDelimiter) . externalize) l
+-- body l = B.intercalate (C.pack fixDelimiter) (externalize l)
+body l = B.intercalate (C.singleton fixDelimiter) (P.map externalize l)
 
 toString :: FIXTag -> ByteString
 toString = C.pack . show . fromEnum
@@ -59,9 +59,9 @@ equals = C.singleton '='
                  
 -- externalize the FIXMessage
 coparse :: FIXMessage -> ByteString
-coparse l = message' `append` checksum' `C.snoc` fix_delimiter
+coparse l = message' `append` checksum' `C.snoc` fixDelimiter
 	where 
-		message' = header `append` length' `C.snoc` fix_delimiter `append` body'
-		checksum' = checksumTag `append` equals `append` (padded_checksum message')
+		message' = header `append` length' `C.snoc` fixDelimiter `append` body'
+		checksum' = checksumTag `append` equals `append` paddedChecksum message'
 		length' = lengthTag `append` equals `append` C.pack (show $ C.length body')
-		body' = body l `C.snoc` fix_delimiter
+		body' = body l `C.snoc` fixDelimiter

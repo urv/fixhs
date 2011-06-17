@@ -19,16 +19,16 @@ signed' p = (negate <$> (char8 '-' *> p))
        <|> (char8 '+' *> p)
        <|> p
 
-skip_fix_delimiter :: Parser ()
-skip_fix_delimiter = do
-    char8 fix_delimiter
+skipFixDelimiter :: Parser ()
+skipFixDelimiter = do
+    char8 fixDelimiter
     return ()
 
-to_float :: Parser Float 
-to_float = do 
+toFloat :: Parser Float 
+toFloat = do 
     a <- signed' decimal
-    (m, e) <- (char '.' *> (extract_decimals <$> to_string)) <|> return (0, 1)
-    skip_fix_delimiter
+    (m, e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
+    skipFixDelimiter
     if a < 0 
         then return $ fromIntegral a - fromIntegral m / fromIntegral e
         else return $ fromIntegral a + fromIntegral m / fromIntegral e
@@ -41,8 +41,8 @@ to_float = do
                  in
                 (m' * 10 + fromIntegral (head b) - ord '0', 10 * e')
 
-parse_int_till :: Char -> Parser Int
-parse_int_till c = do
+parseIntTill :: Char -> Parser Int
+parseIntTill c = do
     i <- signed' decimal
     char8 c
     return i
@@ -55,51 +55,49 @@ toInteger' b = helper 0 b
                     | otherwise =   
                         helper (10 * i + fromIntegral (head b) - ord '0') (tail b)
                     
-to_int :: Parser Int
-to_int = parse_int_till fix_delimiter
+toInt :: Parser Int
+toInt = parseIntTill fixDelimiter
 
 toFIXInt :: Parser FIXValue
-toFIXInt = FIXInt <$> to_int
+toFIXInt = FIXInt <$> toInt
 
-to_char :: Parser Char
-to_char = do
+toChar :: Parser Char
+toChar = do
     c <- anyChar
-    skip_fix_delimiter
+    skipFixDelimiter
     return c
 
-to_string :: Parser ByteString
-to_string = do 
+toString :: Parser ByteString
+toString = do 
     str <- takeWhile1 not_fix_delimiter
-    skip_fix_delimiter
+    skipFixDelimiter
     return str
-        where not_fix_delimiter w = w /= fix_delimiter
+        where not_fix_delimiter w = w /= fixDelimiter
 
-to_string_ :: Parser ByteString
-to_string_ = do 
-    str <- takeWhile1 not_fix_delimiter
-    return str
-        where not_fix_delimiter w = w /= fix_delimiter
+toString_ :: Parser ByteString
+toString_ = takeWhile1 not_fix_delimiter
+        where not_fix_delimiter w = w /= fixDelimiter
 
 toFIXString :: Parser FIXValue
-toFIXString = FIXString <$> to_string
+toFIXString = FIXString <$> toString
 
-to_tag :: Parser Int
-to_tag = parse_int_till '='
+toTag :: Parser Int
+toTag = parseIntTill '='
     
-to_bool :: Parser Bool
-to_bool = do
+toBool :: Parser Bool
+toBool = do
     c <- (char 'Y' <|> char 'N')
-    skip_fix_delimiter
+    skipFixDelimiter
     case c of
         'Y' -> return True
         'N' -> return False
 
 toFIXBool :: Parser FIXValue
-toFIXBool = FIXBool <$> to_bool
+toFIXBool = FIXBool <$> toBool
 
-to_sec_millis :: Parser (Int, Int)
-to_sec_millis = do
-   (sec, mil) <- (to_int >>= only_seconds) <|> read_sec_millis
+toSecMillis :: Parser (Int, Int)
+toSecMillis = do
+   (sec, mil) <- (toInt >>= only_seconds) <|> read_sec_millis
    return (sec, mil)
    where
         only_seconds :: Int -> Parser (Int, Int)
@@ -107,20 +105,20 @@ to_sec_millis = do
 
         read_sec_millis :: Parser (Int, Int)
         read_sec_millis = do
-            sec' <- parse_int_till '.'
-            mil' <- to_int
+            sec' <- parseIntTill '.'
+            mil' <- toInt
             return (sec', mil')
 
-to_UTCTimestamp :: Parser CalendarTime
-to_UTCTimestamp = do
-   i <- parse_int_till '-'
+toUTCTimestamp :: Parser CalendarTime
+toUTCTimestamp = do
+   i <- parseIntTill '-'
    let year  = i `div` 10000
    let rest  = i `mod` 10000
    let month = rest `div` 100
    let day   = rest `mod` 100
-   hours   <- parse_int_till ':'
-   minutes <- parse_int_till ':'
-   (sec, millis) <- to_sec_millis
+   hours   <- parseIntTill ':'
+   minutes <- parseIntTill ':'
+   (sec, millis) <- toSecMillis
    return CalendarTime {
        ctYear  = year
      , ctMonth = toEnum $ month - 1
@@ -136,14 +134,14 @@ to_UTCTimestamp = do
      , ctIsDST = True
    }
 
-to_UTCTimeOnly :: Parser CalendarTime
-to_UTCTimeOnly = do
-   hours   <- parse_int_till ':'
-   minutes <- parse_int_till ':'
-   (sec, millis) <- to_sec_millis
+toUTCTimeOnly :: Parser CalendarTime
+toUTCTimeOnly = do
+   hours   <- parseIntTill ':'
+   minutes <- parseIntTill ':'
+   (sec, millis) <- toSecMillis
    return CalendarTime {
        ctYear  = 0
-     , ctMonth = toEnum $ 0
+     , ctMonth = toEnum 0
      , ctDay   = 0
      , ctHour  = hours
      , ctMin   = minutes
@@ -156,9 +154,9 @@ to_UTCTimeOnly = do
      , ctIsDST = True
    }
 
-to_LocalMktDate :: Parser CalendarTime
-to_LocalMktDate = do
-   i <- parse_int_till '-'
+toLocalMktDate :: Parser CalendarTime
+toLocalMktDate = do
+   i <- parseIntTill '-'
    let year  = i `div` 10000
    let rest  = i `mod` 10000
    let month = rest `div` 100
@@ -178,11 +176,11 @@ to_LocalMktDate = do
      , ctIsDST = True
    }
 
-to_UTCDate :: Parser CalendarTime
-to_UTCDate = to_LocalMktDate
+toUTCDate :: Parser CalendarTime
+toUTCDate = toLocalMktDate
 
-to_time :: Parser CalendarTime
-to_time = to_UTCTimestamp 
-          <|> to_UTCTimeOnly 
-          <|> to_UTCDate 
-          <|> to_LocalMktDate
+toTime :: Parser CalendarTime
+toTime = toUTCTimestamp 
+          <|> toUTCTimeOnly 
+          <|> toUTCDate 
+          <|> toLocalMktDate

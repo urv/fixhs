@@ -19,7 +19,7 @@ import qualified Data.Map as M
 -- Lookup the parser for a given FIX tag.
 tagParser :: Parser (FIXTag, FIXValue)
 tagParser = do 
-    l <- to_tag
+    l <- toTag
     v <- getParser $ toEnum l
     return (toEnum l,v)
 
@@ -39,11 +39,11 @@ parserMap = M.fromList
 headerParser :: Parser (Int, Int)
 headerParser = do 
     c1 <- (checksum <$> string (pack "8="))
-    c2 <- (checksum <$> to_string)
+    c2 <- (checksum <$> toString)
     c3 <- (checksum <$> string (pack "9="))
-    l <- to_string
+    l <- toString
     let c4 = checksum l
-        c = (c1 + c2 + c3 + c4 + 2 * ord fix_delimiter) `mod` 256
+        c = (c1 + c2 + c3 + c4 + 2 * ord fixDelimiter) `mod` 256
     return (c, toInteger' l)
 
 -- Parse a FIX message. The parser fails when the checksum 

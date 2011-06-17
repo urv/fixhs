@@ -20,7 +20,7 @@ parseMessage i = fmap (\x -> feed (parse bodyParser x) empty) (parse messagePars
 input1 = pack "8=FIX.4.2\SOH9=65\SOH35=A\SOH49=SERVER\SOH56=CLIENT\SOH34=177\SOH52=20090107-18:15:16\SOH98=0\SOH108=30\SOH10=062\SOH"
 output1 = hylo input1
 
-test1 = (show input1) == (show output1)
+test1 = show input1 == show output1
 
 -- test 2: wrong checksum
 input2 = pack "8=FIX.4.2\SOH9=65\SOH35=A\SOH49=SERVER\SOH56=CLIENT\SOH34=177\SOH52=20090107-18:15:16\SOH98=0\SOH108=30\SOH10=063\SOH8=FIX.4.2\SOH9=65\SOH35=A\SOH49=SERVER\SOH56=CLIENT\SOH34=177\SOH52=20090107-18:15:16\SOH98=0\SOH108=30\SOH10=062\SOH"
@@ -35,7 +35,7 @@ input3 a b = coparse (input3' a b)
 output3 a b = hylo (input3 a b)
 
 test3 = quickCheck test3''
-	where test3' x y = (show $ input3 x y) == (show $ output3 x y)
+	where test3' x y = show (input3 x y) == show (output3 x y)
 	      test3'' x y = isF x && isF y ==> test3' x y
 	      isF x = isA x && isS x
 	      isA = Prelude.any isAscii

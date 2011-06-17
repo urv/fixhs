@@ -45,8 +45,8 @@ client config parser = withSocketsDo $
         where parse sock rest = runIteratee (enumSocket sock $$ enumBS rest $$ iterParser parser)
 	      consume sock step = case step of
 	    			    Error err -> putStrLn $ "Error: " ++ show err
-				    Yield msg rest -> putStrLn (show msg) >> case rest of 
+				    Yield msg rest -> print msg >> case rest of 
 				    						Chunks [m] -> parse sock m >>= consume sock
 										Chunks [] -> putStrLn "No Chunks left"
 										EOF -> putStrLn "Done"
-	    			    Continue _ -> putStrLn $ "Continue: not expected"
+	    			    Continue _ -> putStrLn "Continue: not expected"

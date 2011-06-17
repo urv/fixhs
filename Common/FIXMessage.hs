@@ -223,14 +223,14 @@ type FIXBody = HashTable FIXTag FIXValue
 data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
 type FIXMessage = [(FIXTag, FIXValue)]
 
-fix_delimiter :: Char
-fix_delimiter = '\SOH'
+fixDelimiter :: Char
+fixDelimiter = '\SOH'
 
-fix_version :: ByteString
-fix_version = C.pack "8=FIX.4.2"
+fixVersion :: ByteString
+fixVersion = C.pack "8=FIX.4.2"
 
-padded_checksum :: ByteString -> ByteString
-padded_checksum = checksum' . checksum
+paddedChecksum :: ByteString -> ByteString
+paddedChecksum = checksum' . checksum
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int
