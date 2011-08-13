@@ -10,7 +10,7 @@ Cabal-Version:       >=1.8
 Library 
   Build-Depends:     base >= 3 && < 5, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network
 
-  Exposed-modules:   Common.FIXParser Common.FIXCoparser Common.FIXMessage
+  Exposed-modules:   Common.FIXParser Common.FIXCoparser Common.FIXMessage Data.LookupTable
   ghc-options:       -Wall
 
 Executable fix-parser
