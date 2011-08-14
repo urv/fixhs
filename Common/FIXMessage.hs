@@ -1,10 +1,14 @@
+{-# Language ExistentialQuantification, FlexibleContexts #-}
+
 module Common.FIXMessage 
 	where
 
+import System.Time ( CalendarTime )
 import Prelude hiding ( take, null, head, tail, length )
 import Data.HashTable
 import Data.ByteString 
 import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
+import Data.LookupTable 
 
 --  TODO: add missing fields
 --  probably generate the complete list
@@ -219,8 +223,32 @@ data FIXTag = NA0
 	| NA207 
 	deriving (Show, Eq, Enum, Ord)
 
-type FIXBody = HashTable FIXTag FIXValue
-data FIXValue = FIXInt Int | FIXBool Bool | FIXString ByteString deriving (Show, Eq)
+data ListOfFIXTokens = forall t . LookupTable Int FIXValue t => LT t
+type FIXBody = ListOfFIXTokens
+type FIXHeader = ListOfFIXTokens
+data FIXValue = FIXInt Int 
+              | FIXDayOfMonth Int
+              | FIXFloat Float
+              | FIXQuantity Float
+              | FIXPrice Float
+              | FIXPriceOffset Float
+              | FIXAmt Float
+              | FIXChar Char 
+              | FIXBool Bool 
+              | FIXString ByteString 
+              | FIXMultipleValueString ByteString 
+              | FIXCurrency ByteString 
+              | FIXExchange ByteString 
+              | FIXUTCTimestamp CalendarTime
+              | FIXUTCTimeOnly CalendarTime
+              | FIXLocalMktDate CalendarTime
+              | FIXUTCDate CalendarTime
+              | FIXMonthYear CalendarTime
+              | FIXData { dataLen :: Int, dataChunk :: ByteString }
+              | FIXGroup FIXMessage
+
+              deriving (Show, Eq)
+
 type FIXMessage = [(FIXTag, FIXValue)]
 
 fixDelimiter :: Char
@@ -241,5 +269,5 @@ checksum b | null b = 0
 checksum' :: Int -> ByteString
 checksum' b | b < 10 = C.pack "00" `append` num
             | b < 100 = C.cons '0' num
-	    | otherwise = num
-	    where num = C.pack (show b)
+	        | otherwise = num
+            where num = C.pack (show b)
