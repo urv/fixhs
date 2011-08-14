@@ -51,7 +51,7 @@ toInt' b = helper 0 b
                 helper i j 
                     | null j    = i
                     | otherwise =   
-                        helper (10 * i + fromIntegral (head j) - ord '0') (tail b)
+                        helper (10 * i + fromIntegral (head j) - ord '0') (tail j)
                     
 toInt :: Parser Int
 toInt = parseIntTill fixDelimiter
