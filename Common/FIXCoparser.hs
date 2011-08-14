@@ -28,17 +28,17 @@ header :: ByteString
 header = C.snoc fixVersion fixDelimiter
 
 checksumTag :: ByteString
-checksumTag = toString FIX_CHECKSUM
+checksumTag = undefined -- toString FIX_CHECKSUM
 
 lengthTag :: ByteString
-lengthTag = toString FIX_MSG_LENGTH
+lengthTag = undefined -- toString FIX_MSG_LENGTH
 
 -- FIX body
 externalize :: (FIXTag, FIXValue) -> ByteString
 externalize (t,v) = tag `append` del `append` val 
 	where
 		val = externalize' v
-		tag = C.pack $ show (fromEnum t)
+		tag = C.pack $ show t
 		del = C.singleton '='
 
 externalize' :: FIXValue -> ByteString
@@ -52,7 +52,7 @@ body :: FIXMessage -> ByteString
 body l = B.intercalate (C.singleton fixDelimiter) (P.map externalize l)
 
 toString :: FIXTag -> ByteString
-toString = C.pack . show . fromEnum
+toString = C.pack . show 
 
 equals :: ByteString
 equals = C.singleton '='

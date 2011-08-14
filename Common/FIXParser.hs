@@ -14,6 +14,7 @@ import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>), (<*>) )
 import Control.Monad (liftM, MonadPlus(..))
+import Common.FIXTag
 
 import qualified Data.Map as M 
 
@@ -21,18 +22,8 @@ import qualified Data.Map as M
 tagParser :: Parser (FIXTag, FIXValue)
 tagParser = do 
     l <- toTag
-    {-v <- getParser $ toEnum l-}
-    v <- liftM FIXString toString
-    return (toEnum l, v )
-
-getParser :: FIXTag -> Parser FIXValue
-getParser t = M.findWithDefault toFIXString t parserMap
-
-parserMap :: M.Map FIXTag (Parser FIXValue)
-parserMap = M.fromList 
-                [(FIX_VERSION, toFIXString), 
-                 (FIX_MSG_LENGTH, toFIXInt),                  
-                 (FIX_CHECKSUM, toFIXInt)] -- FIXME: complete map
+    v <- tparser $ toFIXTag l
+    return (toFIXTag l, v )
 
 -- Parse header and return checksum and length.
 -- A header always starts with the version tag (8)  
