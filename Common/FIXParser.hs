@@ -1,6 +1,5 @@
 module Common.FIXParser 
-	(
-	messageParser
+	( messageParser
 	, bodyParser
 	) where
 
@@ -44,7 +43,7 @@ headerParser = do
     l <- toString
     let c4 = checksum l
         c = (c1 + c2 + c3 + c4 + 2 * ord fixDelimiter) `mod` 256
-    return (c, toInteger' l)
+    return (c, toInt' l)
 
 -- Parse a FIX message. The parser fails when the checksum 
 -- validation fails.

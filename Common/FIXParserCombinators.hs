@@ -19,14 +19,14 @@ signed' p = (negate <$> (char8 '-' *> p))
        <|> (char8 '+' *> p)
        <|> p
 
-skipFixDelimiter :: Parser ()
-skipFixDelimiter = char8 fixDelimiter >> return ()
+skipFIXDelimiter :: Parser ()
+skipFIXDelimiter = char8 fixDelimiter >> return ()
 
 toFloat :: Parser Float 
 toFloat = do 
     a <- signed' decimal :: Parser Integer
     (m, e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
-    skipFixDelimiter
+    skipFIXDelimiter
     if a < 0 
         then return $ fromIntegral a - fromIntegral m / fromIntegral e
         else return $ fromIntegral a + fromIntegral m / fromIntegral e
@@ -45,9 +45,9 @@ parseIntTill c = do
     _ <- char8 c
     return i
 
-toInteger' :: ByteString -> Int
-toInteger' b = helper 0 b
-               where 
+toInt' :: ByteString -> Int
+toInt' b = helper 0 b
+           where 
                 helper i j 
                     | null j    = i
                     | otherwise =   
@@ -62,19 +62,14 @@ toFIXInt = FIXInt <$> toInt
 toChar :: Parser Char
 toChar = do
     c <- anyChar
-    skipFixDelimiter
+    skipFIXDelimiter
     return c
 
 toString :: Parser ByteString
 toString = do 
-    str <- takeWhile1 not_fix_delimiter
-    skipFixDelimiter
+    str <- takeWhile1 (\w -> w /= fixDelimiter)
+    skipFIXDelimiter
     return str
-        where not_fix_delimiter w = w /= fixDelimiter
-
-toString_ :: Parser ByteString
-toString_ = takeWhile1 not_fix_delimiter
-        where not_fix_delimiter w = w /= fixDelimiter
 
 toFIXString :: Parser FIXValue
 toFIXString = FIXString <$> toString
@@ -85,7 +80,7 @@ toTag = parseIntTill '='
 toBool :: Parser Bool
 toBool = do
     c <- (char 'Y' <|> char 'N')
-    skipFixDelimiter
+    skipFIXDelimiter
     case c of
         'Y' -> return True
         'N' -> return False
@@ -108,6 +103,10 @@ toSecMillis = do
             mil' <- toInt
             return (sec', mil')
 
+-- one milli seconds is 10^9 picoseconds 
+picosPerMilli :: Int
+picosPerMilli = 1000000000
+
 toUTCTimestamp :: Parser CalendarTime
 toUTCTimestamp = do
    i <- parseIntTill '-'
@@ -117,7 +116,7 @@ toUTCTimestamp = do
    let day   = rest `mod` 100
    hours   <- parseIntTill ':'
    minutes <- parseIntTill ':'
-   (sec, _) <- toSecMillis
+   (sec, milli) <- toSecMillis
    return CalendarTime {
        ctYear  = year
      , ctMonth = toEnum $ month - 1
@@ -125,8 +124,8 @@ toUTCTimestamp = do
      , ctHour  = hours
      , ctMin   = minutes
      , ctSec   = sec
-     , ctPicosec = 0
-     , ctWDay  = Monday
+     , ctPicosec = toInteger $ milli * picosPerMilli
+     , ctWDay  = undefined 
      , ctYDay  = 0
      , ctTZName = "UTC"
      , ctTZ    = 0
@@ -137,7 +136,7 @@ toUTCTimeOnly :: Parser CalendarTime
 toUTCTimeOnly = do
    hours   <- parseIntTill ':'
    minutes <- parseIntTill ':'
-   (sec, _) <- toSecMillis
+   (sec, milli) <- toSecMillis
    return CalendarTime {
        ctYear  = 0
      , ctMonth = toEnum 0
@@ -145,9 +144,9 @@ toUTCTimeOnly = do
      , ctHour  = hours
      , ctMin   = minutes
      , ctSec   = sec
-     , ctPicosec = 0
-     , ctWDay  = Monday
-     , ctYDay  = 0
+     , ctPicosec = toInteger $ milli * picosPerMilli
+     , ctWDay  = undefined
+     , ctYDay  = undefined
      , ctTZName = "UTC"
      , ctTZ    = 0
      , ctIsDST = True
@@ -168,8 +167,8 @@ toLocalMktDate = do
      , ctMin   = 0 
      , ctSec   = 0
      , ctPicosec = 0
-     , ctWDay  = Monday
-     , ctYDay  = 0
+     , ctWDay  = undefined
+     , ctYDay  = undefined
      , ctTZName = "UTC"
      , ctTZ    = 0
      , ctIsDST = True
