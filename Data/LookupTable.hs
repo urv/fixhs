@@ -1,13 +1,21 @@
 {-# LANGUAGE FunctionalDependencies, ExistentialQuantification, MultiParamTypeClasses, FlexibleInstances #-}
 
-module Data.LookupTable ( LookupTable, new, lookup, insert, toList, fromList ) where
+module Data.LookupTable 
+    ( LookupTable
+    , new
+    , lookup
+    , insert
+    , toList
+    , fromList 
+    ) where
+
+import Prelude hiding (lookup)
 
 import Data.Map (Map)
 import qualified Data.Map as Map
 import qualified Data.List as List
 import Data.IntMap (IntMap)
 import qualified Data.IntMap as IntMap
-import Prelude hiding (lookup)
 
 class Ord k => LookupTable k v t 
         | t -> k
