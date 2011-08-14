@@ -1,6 +1,8 @@
 module Common.FIXParser 
 	( messageParser
 	, bodyParser
+    , headerParser
+    , tagParser
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -11,7 +13,7 @@ import Data.Char
 import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>), (<*>) )
-import Control.Monad (MonadPlus(..))
+import Control.Monad (liftM, MonadPlus(..))
 
 import qualified Data.Map as M 
 
@@ -19,8 +21,9 @@ import qualified Data.Map as M
 tagParser :: Parser (FIXTag, FIXValue)
 tagParser = do 
     l <- toTag
-    v <- getParser $ toEnum l
-    return (toEnum l,v)
+    {-v <- getParser $ toEnum l-}
+    v <- liftM FIXString toString
+    return (toEnum l, v )
 
 getParser :: FIXTag -> Parser FIXValue
 getParser t = M.findWithDefault toFIXString t parserMap
@@ -59,6 +62,8 @@ messageParser = do
         _        -> fail "illegal state"
 
 -- Parse tags in the FIX body
--- FIXME: why does it return Partial? 
+-- Why does it return Partial? 
+--  since the parser doesn't know if there is any input coming to consume
+--  you have to use parseOnly instead.
 bodyParser :: Parser FIXMessage
 bodyParser = many tagParser
