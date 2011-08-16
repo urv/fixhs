@@ -5,7 +5,6 @@ module Common.FIXMessage
 
 import System.Time ( CalendarTime )
 import Prelude hiding ( take, null, head, tail, length )
-import Data.HashTable
 import Data.ByteString 
 import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
 import Data.LookupTable 

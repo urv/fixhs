@@ -5,7 +5,7 @@ module Common.FIXCoparser
 	) where
 
 import Prelude as P
-import Common.FIXMessage 
+import Common.FIXMessage hiding ( checksum' )
 import Data.ByteString as B
 import Data.ByteString.Char8 as C
 
@@ -45,14 +45,15 @@ externalize' :: FIXValue -> ByteString
 externalize' (FIXInt i) = C.pack $ show i 
 externalize' (FIXBool b) = C.pack $ show b  
 externalize' (FIXString s) = s
+externalize' _ = undefined
 
 body :: FIXMessage -> ByteString
 -- body l = B.concat $ P.map ((C.cons fixDelimiter) . externalize) l
 -- body l = B.intercalate (C.pack fixDelimiter) (externalize l)
 body l = B.intercalate (C.singleton fixDelimiter) (P.map externalize l)
 
-toString :: FIXTag -> ByteString
-toString = C.pack . show 
+{-toString :: FIXTag -> ByteString-}
+{-toString = C.pack . show -}
 
 equals :: ByteString
 equals = C.singleton '='

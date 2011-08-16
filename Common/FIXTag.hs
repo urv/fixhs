@@ -4,10 +4,10 @@ import Common.FIXMessage ( FIXTag(..) )
 import Common.FIXParserCombinators
 import qualified Data.LookupTable as LT
 import Data.IntMap (IntMap)
-import qualified Data.IntMap as IntMap
 import Data.Maybe (fromMaybe)
 
-dummyTag        = FIXTag 12 toFIXString
+dummyTag :: FIXTag
+dummyTag = FIXTag 12 toFIXString
 
 tagLookupTable :: IntMap FIXTag
 tagLookupTable = LT.insert 8 (FIXTag 8  toFIXString) $ 

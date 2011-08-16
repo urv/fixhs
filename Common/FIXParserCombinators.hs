@@ -6,7 +6,6 @@ import Data.Attoparsec hiding ( takeWhile1 )
 import Data.Attoparsec.Char8 
 import Data.Char
 import Data.ByteString hiding ( pack, putStrLn )
-import Data.ByteString.Char8 ( pack, readInt )
 import Control.Applicative ( (<$>), (<|>), (*>) )
 import System.Time
 

@@ -11,12 +11,9 @@ import Common.FIXParserCombinators
 import Data.Attoparsec hiding ( takeWhile1 )
 import Data.Char 
 import Data.ByteString hiding ( pack, take )
-import Data.ByteString.Char8 ( pack, readInt )
-import Control.Applicative ( (<$>), (<*>) )
-import Control.Monad (liftM, MonadPlus(..))
+import Data.ByteString.Char8 ( pack )
+import Control.Applicative ( (<$>) )
 import Common.FIXTag
-
-import qualified Data.Map as M 
 
 -- Lookup the parser for a given FIX tag.
 tagParser :: Parser (FIXTag, FIXValue)
