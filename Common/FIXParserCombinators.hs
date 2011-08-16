@@ -67,7 +67,7 @@ toChar = do
 
 toString :: Parser ByteString
 toString = do 
-    str <- takeWhile1 (\w -> w /= fixDelimiter)
+    str <- takeWhile1 (/= fixDelimiter)
     skipFIXDelimiter
     return str
 
