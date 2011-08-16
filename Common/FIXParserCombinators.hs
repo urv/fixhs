@@ -14,6 +14,52 @@ import System.Time
 import Common.FIXMessage
 
 
+toFIXInt :: Parser FIXValue
+toFIXInt = FIXInt <$> toInt
+
+toFIXDayOfMonth :: Parser FIXValue
+toFIXDayOfMonth = FIXDayOfMonth <$> toInt
+
+toFIXFloat :: Parser FIXValue
+toFIXFloat = FIXFloat <$> toFloat
+
+toFIXQuantity :: Parser FIXValue
+toFIXQuantity = FIXQuantity <$> toFloat
+
+toFIXPrice :: Parser FIXValue
+toFIXPrice = FIXPrice <$> toFloat
+
+toFIXPriceOffset :: Parser FIXValue
+toFIXPriceOffset = FIXPriceOffset <$> toFloat
+
+toFIXAmt :: Parser FIXValue
+toFIXAmt = FIXAmt <$> toFloat
+
+toFIXBool :: Parser FIXValue
+toFIXBool = FIXBool <$> toBool
+
+toFIXString :: Parser FIXValue
+toFIXString = FIXString <$> toString
+
+toFIXMultipleValueString :: Parser FIXValue
+toFIXMultipleValueString = FIXMultipleValueString <$> toString
+
+toFIXCurrency :: Parser FIXValue
+toFIXCurrency = FIXCurrency <$> toString
+
+toFIXExchange :: Parser FIXValue
+toFIXExchange = FIXExchange <$> toString
+
+toFIXUTCTimestamp :: Parser FIXValue
+toFIXUTCTimestamp = FIXUTCTimestamp <$> toUTCTimestamp
+
+toFIXUTCTimeOnly :: Parser FIXValue
+toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
+
+toFIXLocalMktDate :: Parser FIXValue
+toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
+
+
 signed' :: Num a => Parser a -> Parser a
 signed' p = (negate <$> (char8 '-' *> p))
        <|> (char8 '+' *> p)
@@ -56,8 +102,6 @@ toInt' b = helper 0 b
 toInt :: Parser Int
 toInt = parseIntTill fixDelimiter
 
-toFIXInt :: Parser FIXValue
-toFIXInt = FIXInt <$> toInt
 
 toChar :: Parser Char
 toChar = do
@@ -71,8 +115,6 @@ toString = do
     skipFIXDelimiter
     return str
 
-toFIXString :: Parser FIXValue
-toFIXString = FIXString <$> toString
 
 toTag :: Parser Int
 toTag = parseIntTill '='
@@ -85,9 +127,6 @@ toBool = do
         'Y' -> return True
         'N' -> return False
         _ -> error "wrong boolean FIX value"
-
-toFIXBool :: Parser FIXValue
-toFIXBool = FIXBool <$> toBool
 
 toSecMillis :: Parser (Int, Int)
 toSecMillis = do
