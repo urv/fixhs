@@ -8,6 +8,7 @@ import Prelude as P
 import Common.FIXMessage hiding ( checksum' )
 import Data.ByteString as B
 import Data.ByteString.Char8 as C
+import qualified Data.LookupTable as LT
 
 -- implementation is not efficient 
 -- this is just meant for testing 
@@ -34,7 +35,7 @@ lengthTag :: ByteString
 lengthTag = undefined -- toString FIX_MSG_LENGTH
 
 -- FIX body
-externalize :: (FIXTag, FIXValue) -> ByteString
+externalize :: (Int, FIXValue) -> ByteString
 externalize (t,v) = tag `append` del `append` val 
 	where
 		val = externalize' v
@@ -50,7 +51,8 @@ externalize' _ = undefined
 body :: FIXMessage -> ByteString
 -- body l = B.concat $ P.map ((C.cons fixDelimiter) . externalize) l
 -- body l = B.intercalate (C.pack fixDelimiter) (externalize l)
-body l = B.intercalate (C.singleton fixDelimiter) (P.map externalize l)
+body (Tokens l) = let ts = LT.toList l in 
+    B.intercalate (C.singleton fixDelimiter) (P.map externalize ts)
 
 {-toString :: FIXTag -> ByteString-}
 {-toString = C.pack . show -}

@@ -12,14 +12,15 @@ import Data.Char
 import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack )
 import Control.Applicative ( (<$>) )
+import Control.Monad ( liftM )
 import Common.FIXTag
 
 -- Lookup the parser for a given FIX tag.
-parseFIXTag :: Parser (FIXTag, FIXValue)
+parseFIXTag :: Parser (Int, FIXValue)
 parseFIXTag = do 
     l <- toTag
     v <- tparser $ toFIXTag l
-    return (toFIXTag l, v )
+    return (l, v )
 
 
 -- Parse a FIX message. The parser fails when the checksum 
@@ -54,7 +55,8 @@ messageParser = do
 --  since the parser doesn't know if there is any input coming to consume
 --  you have to use parseOnly instead.
 bodyParser :: Parser FIXMessage
-bodyParser = many parseFIXTag
+bodyParser = liftM Tokens $ many parseFIXTag
+
 
 
  -- Parse a FIX message out of the stream

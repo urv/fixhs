@@ -17,7 +17,7 @@ instance Show FIXTag where
 instance Eq FIXTag where
     s == t = tnum s == tnum t
 
-data ListOfFIXTokens = forall t . LookupTable Int FIXValue t => LT t
+data ListOfFIXTokens = forall t . LookupTable Int FIXValue t => Tokens t
 type FIXBody = ListOfFIXTokens
 type FIXHeader = ListOfFIXTokens
 data FIXValue = FIXInt Int 
@@ -40,9 +40,8 @@ data FIXValue = FIXInt Int
               | FIXMonthYear CalendarTime
               | FIXData { dataLen :: Int, dataChunk :: ByteString }
               | FIXGroup FIXMessage
-              deriving (Show, Eq)
 
-type FIXMessage = [(FIXTag, FIXValue)]
+type FIXMessage = ListOfFIXTokens
 
 fixDelimiter :: Char
 fixDelimiter = '\SOH'
