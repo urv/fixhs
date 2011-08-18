@@ -2,6 +2,21 @@ module Common.FIXParser
 	( messageParser
 	, bodyParser
     , nextFIXMessage
+    , toFIXInt
+    , toFIXString
+    , toFIXDayOfMonth
+    , toFIXFloat
+    , toFIXQuantity
+    , toFIXPrice
+    , toFIXPriceOffset
+    , toFIXAmt
+    , toFIXBool
+    , toFIXMultipleValueString
+    , toFIXCurrency
+    , toFIXExchange
+    , toFIXUTCTimestamp
+    , toFIXUTCTimeOnly
+    , toFIXLocalMktDate
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -11,9 +26,11 @@ import Data.Attoparsec hiding ( takeWhile1 )
 import Data.Char 
 import Data.ByteString hiding ( pack, take )
 import Data.ByteString.Char8 ( pack )
+import Data.IntMap ( IntMap )
+import Data.Maybe ( fromMaybe )
+import qualified Data.LookupTable as LT
 import Control.Applicative ( (<$>) )
 import Control.Monad ( liftM )
-import Common.FIXTag
 
 -- Lookup the parser for a given FIX tag.
 parseFIXTag :: Parser (Int, FIXValue)
@@ -68,3 +85,59 @@ nextFIXMessage = do
         Left err -> fail err
 
 
+toFIXInt :: Parser FIXValue
+toFIXInt = FIXInt <$> toInt
+
+toFIXDayOfMonth :: Parser FIXValue
+toFIXDayOfMonth = FIXDayOfMonth <$> toInt
+
+toFIXFloat :: Parser FIXValue
+toFIXFloat = FIXFloat <$> toFloat
+
+toFIXQuantity :: Parser FIXValue
+toFIXQuantity = FIXQuantity <$> toFloat
+
+toFIXPrice :: Parser FIXValue
+toFIXPrice = FIXPrice <$> toFloat
+
+toFIXPriceOffset :: Parser FIXValue
+toFIXPriceOffset = FIXPriceOffset <$> toFloat
+
+toFIXAmt :: Parser FIXValue
+toFIXAmt = FIXAmt <$> toFloat
+
+toFIXBool :: Parser FIXValue
+toFIXBool = FIXBool <$> toBool
+
+toFIXString :: Parser FIXValue
+toFIXString = FIXString <$> toString
+
+toFIXMultipleValueString :: Parser FIXValue
+toFIXMultipleValueString = FIXMultipleValueString <$> toString
+
+toFIXCurrency :: Parser FIXValue
+toFIXCurrency = FIXCurrency <$> toString
+
+toFIXExchange :: Parser FIXValue
+toFIXExchange = FIXExchange <$> toString
+
+toFIXUTCTimestamp :: Parser FIXValue
+toFIXUTCTimestamp = FIXUTCTimestamp <$> toUTCTimestamp
+
+toFIXUTCTimeOnly :: Parser FIXValue
+toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
+
+toFIXLocalMktDate :: Parser FIXValue
+toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
+
+dummyTag :: FIXTag
+dummyTag = FIXTag 12 toFIXString
+
+tagLookupTable :: IntMap FIXTag
+tagLookupTable = LT.insert 8 (FIXTag 8  toFIXString) $ 
+                 LT.insert 9 (FIXTag 9  toFIXInt) $ 
+                 LT.insert 52 (FIXTag 52  toFIXUTCTimestamp) $ 
+                 LT.insert 10 (FIXTag 10 toFIXInt) LT.new     
+
+toFIXTag :: Int -> FIXTag
+toFIXTag i = fromMaybe dummyTag (LT.lookup i tagLookupTable)

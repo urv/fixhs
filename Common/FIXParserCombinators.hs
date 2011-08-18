@@ -1,5 +1,17 @@
 module Common.FIXParserCombinators 
-	where
+    ( toTag
+    , toString
+    , toInt'
+    , toInt
+    , toFloat
+    , toBool
+    , toUTCTimestamp
+    , toUTCTimeOnly
+    , toLocalMktDate
+    , toChar
+    , toUTCDate
+    , toTime
+	) where
 
 import Prelude hiding ( null, tail, head )
 import Data.Attoparsec hiding ( takeWhile1 )
@@ -12,51 +24,6 @@ import System.Time
 -- FIXME: explicit imports
 import Common.FIXMessage
 
-
-toFIXInt :: Parser FIXValue
-toFIXInt = FIXInt <$> toInt
-
-toFIXDayOfMonth :: Parser FIXValue
-toFIXDayOfMonth = FIXDayOfMonth <$> toInt
-
-toFIXFloat :: Parser FIXValue
-toFIXFloat = FIXFloat <$> toFloat
-
-toFIXQuantity :: Parser FIXValue
-toFIXQuantity = FIXQuantity <$> toFloat
-
-toFIXPrice :: Parser FIXValue
-toFIXPrice = FIXPrice <$> toFloat
-
-toFIXPriceOffset :: Parser FIXValue
-toFIXPriceOffset = FIXPriceOffset <$> toFloat
-
-toFIXAmt :: Parser FIXValue
-toFIXAmt = FIXAmt <$> toFloat
-
-toFIXBool :: Parser FIXValue
-toFIXBool = FIXBool <$> toBool
-
-toFIXString :: Parser FIXValue
-toFIXString = FIXString <$> toString
-
-toFIXMultipleValueString :: Parser FIXValue
-toFIXMultipleValueString = FIXMultipleValueString <$> toString
-
-toFIXCurrency :: Parser FIXValue
-toFIXCurrency = FIXCurrency <$> toString
-
-toFIXExchange :: Parser FIXValue
-toFIXExchange = FIXExchange <$> toString
-
-toFIXUTCTimestamp :: Parser FIXValue
-toFIXUTCTimestamp = FIXUTCTimestamp <$> toUTCTimestamp
-
-toFIXUTCTimeOnly :: Parser FIXValue
-toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
-
-toFIXLocalMktDate :: Parser FIXValue
-toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
 
 
 signed' :: Num a => Parser a -> Parser a
@@ -80,9 +47,8 @@ toFloat = do
         extract_decimals b 
             | null b    = (0, 1)
             | otherwise = 
-                let (m', e') = extract_decimals $ tail b
-                 in
-                (m' * 10 + fromIntegral (head b) - ord '0', 10 * e')
+                let (m', e') = extract_decimals $ tail b in
+                   (m' * 10 + fromIntegral (head b) - ord '0', 10 * e')
 
 parseIntTill :: Char -> Parser Int
 parseIntTill c = do
