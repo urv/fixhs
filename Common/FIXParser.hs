@@ -72,7 +72,7 @@ messageParser = do
 --  since the parser doesn't know if there is any input coming to consume
 --  you have to use parseOnly instead.
 bodyParser :: Parser FIXMessage
-bodyParser = liftM Tokens $ many parseFIXTag
+bodyParser = liftM LT.fromList $ many parseFIXTag
 
 
 

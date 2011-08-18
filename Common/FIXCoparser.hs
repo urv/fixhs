@@ -51,7 +51,7 @@ externalize' _ = undefined
 body :: FIXMessage -> ByteString
 -- body l = B.concat $ P.map ((C.cons fixDelimiter) . externalize) l
 -- body l = B.intercalate (C.pack fixDelimiter) (externalize l)
-body (Tokens l) = let ts = LT.toList l in 
+body l = let ts = LT.toList l in 
     B.intercalate (C.singleton fixDelimiter) (P.map externalize ts)
 
 {-toString :: FIXTag -> ByteString-}

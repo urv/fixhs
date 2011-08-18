@@ -1,4 +1,4 @@
-{-# Language ExistentialQuantification, FlexibleContexts #-}
+{-# Language MultiParamTypeClasses, ExistentialQuantification, FlexibleContexts #-}
 
 module Common.FIXMessage 
 	where
@@ -6,8 +6,8 @@ module Common.FIXMessage
 import System.Time ( CalendarTime )
 import Prelude hiding ( take, null, head, tail, length )
 import Data.ByteString 
+import Data.IntMap ( IntMap )
 import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
-import Data.LookupTable 
 import Data.Attoparsec ( Parser )
 
 data FIXTag = FIXTag { tnum :: Int, tparser :: Parser FIXValue } 
@@ -17,9 +17,9 @@ instance Show FIXTag where
 instance Eq FIXTag where
     s == t = tnum s == tnum t
 
-data ListOfFIXTokens = forall t . LookupTable Int FIXValue t => Tokens t
-type FIXBody = ListOfFIXTokens
-type FIXHeader = ListOfFIXTokens
+--- should be alias of type in the typeclass LookupTable
+type ListOfFIXTokens = IntMap FIXValue
+
 data FIXValue = FIXInt Int 
               | FIXDayOfMonth Int
               | FIXFloat Float
@@ -40,6 +40,7 @@ data FIXValue = FIXInt Int
               | FIXMonthYear CalendarTime
               | FIXData { dataLen :: Int, dataChunk :: ByteString }
               | FIXGroup FIXMessage
+              deriving (Show)
 
 type FIXMessage = ListOfFIXTokens
 
