@@ -5,7 +5,8 @@ module Common.FIXCoparser
 	) where
 
 import Prelude as P
-import Common.FIXMessage hiding ( checksum' )
+import Common.FIXMessage ( FIXMessage, FIXValue (..), fixVersion )
+import qualified Common.FIXMessage as FIX ( delimiter, paddedChecksum )
 import Data.ByteString as B
 import Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT
@@ -26,7 +27,7 @@ import qualified Data.LookupTable as LT
 -- FIX header
 header :: ByteString
 -- header = C.pack "8=FIX.4.2\SOH"
-header = C.snoc fixVersion fixDelimiter
+header = C.snoc fixVersion FIX.delimiter
 
 checksumTag :: ByteString
 checksumTag = undefined -- toString FIX_CHECKSUM
@@ -49,10 +50,10 @@ externalize' (FIXString s) = s
 externalize' _ = undefined
 
 body :: FIXMessage -> ByteString
--- body l = B.concat $ P.map ((C.cons fixDelimiter) . externalize) l
--- body l = B.intercalate (C.pack fixDelimiter) (externalize l)
+-- body l = B.concat $ P.map ((C.cons FIX.delimiter) . externalize) l
+-- body l = B.intercalate (C.pack FIX.delimiter) (externalize l)
 body l = let ts = LT.toList l in 
-    B.intercalate (C.singleton fixDelimiter) (P.map externalize ts)
+    B.intercalate (C.singleton FIX.delimiter) (P.map externalize ts)
 
 {-toString :: FIXTag -> ByteString-}
 {-toString = C.pack . show -}
@@ -62,9 +63,9 @@ equals = C.singleton '='
                  
 -- externalize the FIXMessage
 coparse :: FIXMessage -> ByteString
-coparse l = message' `append` checksum' `C.snoc` fixDelimiter
+coparse l = message' `append` checksum' `C.snoc` FIX.delimiter
 	where 
-		message' = header `append` length' `C.snoc` fixDelimiter `append` body'
-		checksum' = checksumTag `append` equals `append` paddedChecksum message'
+		message' = header `append` length' `C.snoc` FIX.delimiter `append` body'
+		checksum' = checksumTag `append` equals `append` FIX.paddedChecksum message'
 		length' = lengthTag `append` equals `append` C.pack (show $ C.length body')
-		body' = body l `C.snoc` fixDelimiter
+		body' = body l `C.snoc` FIX.delimiter

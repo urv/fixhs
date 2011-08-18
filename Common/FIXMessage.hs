@@ -1,5 +1,13 @@
 module Common.FIXMessage 
-	where
+    ( delimiter
+    , FIXValue (..)
+    , FIXTag (..)
+    , fixVersion
+    , FIXMessage
+    , paddedChecksum
+    , checksum
+    , checksum'
+	) where
 
 import System.Time ( CalendarTime )
 import Prelude hiding ( take, null, head, tail, length )
@@ -42,8 +50,8 @@ data FIXValue = FIXInt Int
 
 type FIXMessage = ListOfFIXTokens
 
-fixDelimiter :: Char
-fixDelimiter = '\SOH'
+delimiter :: Char
+delimiter = '\SOH'
 
 fixVersion :: ByteString
 fixVersion = C.pack "8=FIX.4.2"

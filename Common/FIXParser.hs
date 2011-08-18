@@ -20,7 +20,8 @@ module Common.FIXParser
 	) where
 
 import Prelude hiding ( take, null, head, tail )
-import Common.FIXMessage
+import Common.FIXMessage ( FIXMessage, FIXTag(..), FIXValue(..) )
+import qualified Common.FIXMessage as FIX ( delimiter, checksum )
 import Common.FIXParserCombinators
 import Data.Attoparsec hiding ( takeWhile1 )
 import Data.Char 
@@ -47,7 +48,7 @@ messageParser = do
     (hchksum, len) <- parseFIXHeader
     msg <- take len 
     (_, c) <- parseFIXTag
-    let chksum = (hchksum + checksum msg) `mod` 256 
+    let chksum = (hchksum + FIX.checksum msg) `mod` 256 
     case c of 
         FIXInt i -> if chksum == i then return msg else fail "checksum not valid"
         _        -> fail "illegal state"
@@ -59,12 +60,12 @@ messageParser = do
         -- are included in the checksum
         parseFIXHeader :: Parser (Int, Int)
         parseFIXHeader = do 
-            c1 <- (checksum <$> string (pack "8="))
-            c2 <- (checksum <$> toString)
-            c3 <- (checksum <$> string (pack "9="))
+            c1 <- (FIX.checksum <$> string (pack "8="))
+            c2 <- (FIX.checksum <$> toString)
+            c3 <- (FIX.checksum <$> string (pack "9="))
             l <- toString
-            let c4 = checksum l
-                c = (c1 + c2 + c3 + c4 + 2 * ord fixDelimiter) `mod` 256
+            let c4 = FIX.checksum l
+                c = (c1 + c2 + c3 + c4 + 2 * ord FIX.delimiter) `mod` 256
             return (c, toInt' l)
 
 -- Parse tags in the FIX body

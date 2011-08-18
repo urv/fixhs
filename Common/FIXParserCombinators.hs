@@ -22,7 +22,7 @@ import Control.Applicative ( (<$>), (<|>), (*>) )
 import System.Time
 
 -- FIXME: explicit imports
-import Common.FIXMessage
+import qualified Common.FIXMessage as FIX ( delimiter )
 
 
 
@@ -32,7 +32,7 @@ signed' p = (negate <$> (char8 '-' *> p))
        <|> p
 
 skipFIXDelimiter :: Parser ()
-skipFIXDelimiter = char8 fixDelimiter >> return ()
+skipFIXDelimiter = char8 FIX.delimiter >> return ()
 
 toFloat :: Parser Float 
 toFloat = do 
@@ -65,7 +65,7 @@ toInt' b = helper 0 b
                         helper (10 * i + fromIntegral (head j) - ord '0') (tail j)
                     
 toInt :: Parser Int
-toInt = parseIntTill fixDelimiter
+toInt = parseIntTill FIX.delimiter
 
 
 toChar :: Parser Char
@@ -76,7 +76,7 @@ toChar = do
 
 toString :: Parser ByteString
 toString = do 
-    str <- takeWhile1 (/= fixDelimiter)
+    str <- takeWhile1 (/= FIX.delimiter)
     skipFIXDelimiter
     return str
 
