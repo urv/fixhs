@@ -1,5 +1,3 @@
-{-# Language MultiParamTypeClasses, ExistentialQuantification, FlexibleContexts #-}
-
 module Common.FIXMessage 
 	where
 
