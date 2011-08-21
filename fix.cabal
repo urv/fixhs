@@ -8,7 +8,7 @@ Build-Type:          Simple
 Cabal-Version:       >=1.8
 
 Library 
-  Build-Depends:     base >= 3 && < 5, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network
+  Build-Depends:     base >= 3 && < 5, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml
 
   Exposed-modules:   Common.FIXParser Common.FIXCoparser Common.FIXMessage Data.LookupTable
   ghc-options:       -Wall
@@ -16,4 +16,8 @@ Library
 Executable fix-parser
   Main-is:           Main.hs
   Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network
+
+Executable fix-generator
+  Main-is:           Utils/Generator.hs
+  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml
 

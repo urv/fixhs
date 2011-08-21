@@ -16,7 +16,10 @@ import Data.IntMap ( IntMap )
 import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
 import Data.Attoparsec ( Parser )
 
-data FIXTag = FIXTag { tnum :: Int, tparser :: Parser FIXValue } 
+data FIXTag = FIXTag 
+    { tnum :: Int
+    , tparser :: Parser FIXValue } 
+
 instance Show FIXTag where
     show = show . tnum 
 
@@ -44,7 +47,9 @@ data FIXValue = FIXInt Int
               | FIXLocalMktDate CalendarTime
               | FIXUTCDate CalendarTime
               | FIXMonthYear CalendarTime
-              | FIXData { dataLen :: Int, dataChunk :: ByteString }
+              | FIXData 
+                { dataLen :: Int
+                , dataChunk :: ByteString }
               | FIXGroup FIXMessage
               deriving (Show)
 
