@@ -3,6 +3,7 @@ module Common.FIXParser
 	, bodyParser
     , nextFIXMessage
     , toFIXInt
+    , toFIXChar
     , toFIXString
     , toFIXDayOfMonth
     , toFIXFloat
@@ -130,6 +131,9 @@ toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
 
 toFIXLocalMktDate :: Parser FIXValue
 toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
+
+toFIXChar :: Parser FIXValue
+toFIXChar = FIXChar <$> toChar
 
 dummyTag :: FIXTag
 dummyTag = FIXTag 12 toFIXString
