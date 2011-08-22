@@ -16,7 +16,7 @@ attributes (Elem _ as _) = as
 
 getFIXSpec :: Document a -> Maybe (Element a)
 getFIXSpec d = case d of
-    Document _ _ (es@(Elem (n) _ _)) _ 
+    Document _ _ (es@(Elem (N n) _ _)) _ 
         -> if n == "fix" then Just es else Nothing
     _   -> Nothing 
 
@@ -28,7 +28,7 @@ getFieldSpec d = do
             (CElem es _):_ -> return es
             _ -> Nothing
     where
-        isFields (CElem (Elem n _ _) _ ) = n == "fields"
+        isFields (CElem (Elem (N n) _ _) _ ) = n == "fields"
         isFields _ = False
 
 fromAttributes :: LT.LookupTable String String AttrLookupTable 
@@ -36,11 +36,11 @@ fromAttributes :: LT.LookupTable String String AttrLookupTable
 fromAttributes = foldr _insert LT.new 
     where 
         _insert :: Attribute -> AttrLookupTable -> AttrLookupTable
-        _insert (k, AttValue ((Left v):_)) = LT.insert k v 
-        _insert (k, _) = LT.insert k ""
+        _insert (N k, AttValue ((Left v):_)) = LT.insert k v 
+        _insert (N k, _) = LT.insert k ""
 
 toParser :: String -> String
-toParser x = fromMaybe "toString" (LT.lookup x parserLT)
+toParser x = fromMaybe "toFIXString" (LT.lookup x parserLT)
     where
         parserLT :: ParserLookupTable
         parserLT = LT.insert "INT" "toFIXInt" $
@@ -81,4 +81,4 @@ main = do
     xmlContent <- readFile $ xmlFile args
     let xmlDoc = xmlParse "/dev/null" xmlContent
         Just fields = getFieldSpec xmlDoc in 
-        print (concat $ map genField (content fields))
+        putStr (concat $ map genField (content fields))
