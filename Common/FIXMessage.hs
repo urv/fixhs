@@ -4,6 +4,7 @@ module Common.FIXMessage
     , FIXTag (..)
     , fixVersion
     , FIXMessage
+    , FIXMessageSpec (..)
     , paddedChecksum
     , checksum
     , checksum'
@@ -25,9 +26,6 @@ instance Show FIXTag where
 
 instance Eq FIXTag where
     s == t = tnum s == tnum t
-
---- should be alias of type in the typeclass LookupTable
-type ListOfFIXTokens = IntMap FIXValue
 
 data FIXValue = FIXInt Int 
               | FIXDayOfMonth Int
@@ -53,7 +51,14 @@ data FIXValue = FIXInt Int
               | FIXGroup FIXMessage
               deriving (Show)
 
-type FIXMessage = ListOfFIXTokens
+--- should be alias of type in the typeclass LookupTable
+type FIXValues = IntMap FIXValue
+type FIXMessage = FIXValues
+
+type FIXTags = IntMap FIXTag
+data FIXMessageSpec = FMSpec 
+                      { mType :: ByteString
+                      , mTags :: FIXTags }
 
 delimiter :: Char
 delimiter = '\SOH'
