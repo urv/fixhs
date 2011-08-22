@@ -4,6 +4,7 @@ import System.Environment ( getArgs )
 import qualified Data.LookupTable as LT
 import Data.Map ( Map )
 import Data.Maybe ( fromMaybe )
+import Control.Monad ( liftM )
 
 type AttrLookupTable = Map String String
 type ParserLookupTable = Map String String
@@ -21,19 +22,19 @@ getFIXSpec d = case d of
     _   -> Nothing 
 
 
+_matchName :: String -> Content a -> Bool
+_matchName name (CElem (Elem (N n) _ _) _) = n == name
+_matchName name _ = False
+
 getSpec :: String -> Document a -> Maybe (Element a)
 getSpec name d = do 
     fix <- getFIXSpec d 
-    let specs = filter matchName (content fix) in
+    let specs = filter (_matchName name) (content fix) in
         case specs of 
             CElem es _ : _ -> return es
             _ -> Nothing
-    where
-        matchName (CElem (Elem (N n) _ _) _) = n == name
-        matchName _ = False
 
 getFieldSpec = getSpec "fields"
-getMessagesSpec = getSpec "messages"
 
 getAttr :: String -> Element a -> Maybe String
 getAttr name e = LT.lookup name $ fromAttributes (attributes e)
@@ -83,13 +84,37 @@ genField _ = ""
 
 
 genMessages :: Document a -> String
-genMessages d = undefined
+genMessages d = concatMap genMessage messages
     where
         getHeaderSpec = getSpec "header"
         getTrailerSpec = getSpec "trailer"
+        getMessagesSpec = getSpec "messages"
+
+        messages = let all = fromMaybe undefined $ getMessagesSpec d in
+                       filter (_matchName "message") (content all) 
 
         mHeader  = let Just h = getHeaderSpec d in getFields (content h)
         mTrailer = let Just h = getTrailerSpec d in getFields (content h)
+
+        genMessage :: Content a -> String
+        genMessage (CElem e _) = 
+            let Just mName = getNameAttr e 
+                Just mType = getMsgTypeAttr e 
+                mExprName = 'm' : mName
+                allFields = mHeader ++ getFields (content e) ++ mTrailer
+                allTags px = concatMap _insertTag allFields
+                    where 
+                        _insertTag n = 
+                            let tName = 't' : n in 
+                                px ++ "LT.insert (tnum " ++ tName ++ ") " ++ tName ++ " $\n"
+            in 
+                mExprName ++ " :: FIXMessageSpec\n" ++
+                mExprName ++ " = FMSpec { mType = (C.pack \"" ++ mType ++ "\"), mTags = "
+                    ++ mExprName ++ "Tags }\n" ++
+                "   where\n" ++
+                "      " ++ mExprName ++ "Tags = \n" ++ 
+                allTags "          " ++ 
+                "          LT.new\n\n"
 
         getNameAttr = getAttr "name"
         getMsgTypeAttr = getAttr "msgtype"
@@ -113,4 +138,5 @@ main = do
     xmlContent <- readFile $ xmlFile args
     let xmlDoc = xmlParse "/dev/null" xmlContent
         Just fields = getFieldSpec xmlDoc in 
-        putStr (concatMap genField (content fields))
+        do putStr (concatMap genField (content fields))
+           putStr $ genMessages xmlDoc
