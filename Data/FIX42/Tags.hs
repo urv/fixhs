@@ -1,6 +1,3 @@
-module Data.FIX42.Tags where
-import Common.FIXMessage (FIXTag(..))
-import Common.FIXParser 
 
 tAccount = FIXTag { tnum = 1, tparser = toFIXString }
 tAdvId = FIXTag { tnum = 2, tparser = toFIXString }
@@ -955,3 +952,4956 @@ tNested3PartySubID = FIXTag { tnum = 953, tparser = toFIXString }
 tNested3PartySubIDType = FIXTag { tnum = 954, tparser = toFIXInt }
 tLegContractSettlMonth = FIXTag { tnum = 955, tparser = toFIXString }
 tLegInterestAccrualDate = FIXTag { tnum = 956, tparser = toFIXLocalMktDate }
+mHeartbeat :: FIXMessageSpec
+mHeartbeat = FMSpec { mType = (C.pack "0"), mTags = mHeartbeatTags }
+   where
+      mHeartbeatTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTestReqID) tTestReqID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTestRequest :: FIXMessageSpec
+mTestRequest = FMSpec { mType = (C.pack "1"), mTags = mTestRequestTags }
+   where
+      mTestRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTestReqID) tTestReqID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mResendRequest :: FIXMessageSpec
+mResendRequest = FMSpec { mType = (C.pack "2"), mTags = mResendRequestTags }
+   where
+      mResendRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
+          LT.insert (tnum tEndSeqNo) tEndSeqNo $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mReject :: FIXMessageSpec
+mReject = FMSpec { mType = (C.pack "3"), mTags = mRejectTags }
+   where
+      mRejectTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tRefSeqNum) tRefSeqNum $
+          LT.insert (tnum tRefTagID) tRefTagID $
+          LT.insert (tnum tRefMsgType) tRefMsgType $
+          LT.insert (tnum tSessionRejectReason) tSessionRejectReason $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSequenceReset :: FIXMessageSpec
+mSequenceReset = FMSpec { mType = (C.pack "4"), mTags = mSequenceResetTags }
+   where
+      mSequenceResetTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tGapFillFlag) tGapFillFlag $
+          LT.insert (tnum tNewSeqNo) tNewSeqNo $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mLogout :: FIXMessageSpec
+mLogout = FMSpec { mType = (C.pack "5"), mTags = mLogoutTags }
+   where
+      mLogoutTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mIOI :: FIXMessageSpec
+mIOI = FMSpec { mType = (C.pack "6"), mTags = mIOITags }
+   where
+      mIOITags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tIOITransType) tIOITransType $
+          LT.insert (tnum tIOIRefID) tIOIRefID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tIOIQty) tIOIQty $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tValidUntilTime) tValidUntilTime $
+          LT.insert (tnum tIOIQltyInd) tIOIQltyInd $
+          LT.insert (tnum tIOINaturalFlag) tIOINaturalFlag $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tURLLink) tURLLink $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mAdvertisement :: FIXMessageSpec
+mAdvertisement = FMSpec { mType = (C.pack "7"), mTags = mAdvertisementTags }
+   where
+      mAdvertisementTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tAdvId) tAdvId $
+          LT.insert (tnum tAdvTransType) tAdvTransType $
+          LT.insert (tnum tAdvRefID) tAdvRefID $
+          LT.insert (tnum tAdvSide) tAdvSide $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tURLLink) tURLLink $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mExecutionReport :: FIXMessageSpec
+mExecutionReport = FMSpec { mType = (C.pack "8"), mTags = mExecutionReportTags }
+   where
+      mExecutionReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tQuoteRespID) tQuoteRespID $
+          LT.insert (tnum tOrdStatusReqID) tOrdStatusReqID $
+          LT.insert (tnum tMassStatusReqID) tMassStatusReqID $
+          LT.insert (tnum tTotNumReports) tTotNumReports $
+          LT.insert (tnum tLastRptRequested) tLastRptRequested $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tCrossID) tCrossID $
+          LT.insert (tnum tOrigCrossID) tOrigCrossID $
+          LT.insert (tnum tCrossType) tCrossType $
+          LT.insert (tnum tExecID) tExecID $
+          LT.insert (tnum tExecRefID) tExecRefID $
+          LT.insert (tnum tExecType) tExecType $
+          LT.insert (tnum tOrdStatus) tOrdStatus $
+          LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
+          LT.insert (tnum tOrdRejReason) tOrdRejReason $
+          LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tDayBookingInst) tDayBookingInst $
+          LT.insert (tnum tBookingUnit) tBookingUnit $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tCashMargin) tCashMargin $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tPeggedPrice) tPeggedPrice $
+          LT.insert (tnum tDiscretionPrice) tDiscretionPrice $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tTargetStrategyPerformance) tTargetStrategyPerformance $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tLastQty) tLastQty $
+          LT.insert (tnum tUnderlyingLastQty) tUnderlyingLastQty $
+          LT.insert (tnum tLastPx) tLastPx $
+          LT.insert (tnum tUnderlyingLastPx) tUnderlyingLastPx $
+          LT.insert (tnum tLastParPx) tLastParPx $
+          LT.insert (tnum tLastSpotRate) tLastSpotRate $
+          LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tTimeBracket) tTimeBracket $
+          LT.insert (tnum tLastCapacity) tLastCapacity $
+          LT.insert (tnum tLeavesQty) tLeavesQty $
+          LT.insert (tnum tCumQty) tCumQty $
+          LT.insert (tnum tAvgPx) tAvgPx $
+          LT.insert (tnum tDayOrderQty) tDayOrderQty $
+          LT.insert (tnum tDayCumQty) tDayCumQty $
+          LT.insert (tnum tDayAvgPx) tDayAvgPx $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tReportToExch) tReportToExch $
+          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+          LT.insert (tnum tExDate) tExDate $
+          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tInterestAtMaturity) tInterestAtMaturity $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tTradedFlatSwitch) tTradedFlatSwitch $
+          LT.insert (tnum tBasisFeatureDate) tBasisFeatureDate $
+          LT.insert (tnum tBasisFeaturePrice) tBasisFeaturePrice $
+          LT.insert (tnum tConcession) tConcession $
+          LT.insert (tnum tTotalTakedown) tTotalTakedown $
+          LT.insert (tnum tNetMoney) tNetMoney $
+          LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
+          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tLastForwardPoints2) tLastForwardPoints2 $
+          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tTransBkdTime) tTransBkdTime $
+          LT.insert (tnum tExecValuationPoint) tExecValuationPoint $
+          LT.insert (tnum tExecPriceType) tExecPriceType $
+          LT.insert (tnum tExecPriceAdjustment) tExecPriceAdjustment $
+          LT.insert (tnum tPriorityIndicator) tPriorityIndicator $
+          LT.insert (tnum tPriceImprovement) tPriceImprovement $
+          LT.insert (tnum tLastLiquidityInd) tLastLiquidityInd $
+          LT.insert (tnum tCopyMsgIndicator) tCopyMsgIndicator $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderCancelReject :: FIXMessageSpec
+mOrderCancelReject = FMSpec { mType = (C.pack "9"), mTags = mOrderCancelRejectTags }
+   where
+      mOrderCancelRejectTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+          LT.insert (tnum tOrdStatus) tOrdStatus $
+          LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
+          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tCxlRejResponseTo) tCxlRejResponseTo $
+          LT.insert (tnum tCxlRejReason) tCxlRejReason $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mLogon :: FIXMessageSpec
+mLogon = FMSpec { mType = (C.pack "A"), mTags = mLogonTags }
+   where
+      mLogonTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tEncryptMethod) tEncryptMethod $
+          LT.insert (tnum tHeartBtInt) tHeartBtInt $
+          LT.insert (tnum tRawDataLength) tRawDataLength $
+          LT.insert (tnum tRawData) tRawData $
+          LT.insert (tnum tResetSeqNumFlag) tResetSeqNumFlag $
+          LT.insert (tnum tNextExpectedMsgSeqNum) tNextExpectedMsgSeqNum $
+          LT.insert (tnum tMaxMessageSize) tMaxMessageSize $
+          LT.insert (tnum tTestMessageIndicator) tTestMessageIndicator $
+          LT.insert (tnum tUsername) tUsername $
+          LT.insert (tnum tPassword) tPassword $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNews :: FIXMessageSpec
+mNews = FMSpec { mType = (C.pack "B"), mTags = mNewsTags }
+   where
+      mNewsTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrigTime) tOrigTime $
+          LT.insert (tnum tUrgency) tUrgency $
+          LT.insert (tnum tHeadline) tHeadline $
+          LT.insert (tnum tEncodedHeadlineLen) tEncodedHeadlineLen $
+          LT.insert (tnum tEncodedHeadline) tEncodedHeadline $
+          LT.insert (tnum tURLLink) tURLLink $
+          LT.insert (tnum tRawDataLength) tRawDataLength $
+          LT.insert (tnum tRawData) tRawData $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mEmail :: FIXMessageSpec
+mEmail = FMSpec { mType = (C.pack "C"), mTags = mEmailTags }
+   where
+      mEmailTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tEmailThreadID) tEmailThreadID $
+          LT.insert (tnum tEmailType) tEmailType $
+          LT.insert (tnum tOrigTime) tOrigTime $
+          LT.insert (tnum tSubject) tSubject $
+          LT.insert (tnum tEncodedSubjectLen) tEncodedSubjectLen $
+          LT.insert (tnum tEncodedSubject) tEncodedSubject $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tRawDataLength) tRawDataLength $
+          LT.insert (tnum tRawData) tRawData $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNewOrderSingle :: FIXMessageSpec
+mNewOrderSingle = FMSpec { mType = (C.pack "D"), mTags = mNewOrderSingleTags }
+   where
+      mNewOrderSingleTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tDayBookingInst) tDayBookingInst $
+          LT.insert (tnum tBookingUnit) tBookingUnit $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tCashMargin) tCashMargin $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tPrevClosePx) tPrevClosePx $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tForexReq) tForexReq $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tPrice2) tPrice2 $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNewOrderList :: FIXMessageSpec
+mNewOrderList = FMSpec { mType = (C.pack "E"), mTags = mNewOrderListTags }
+   where
+      mNewOrderListTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tBidID) tBidID $
+          LT.insert (tnum tClientBidID) tClientBidID $
+          LT.insert (tnum tProgRptReqs) tProgRptReqs $
+          LT.insert (tnum tBidType) tBidType $
+          LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tListExecInstType) tListExecInstType $
+          LT.insert (tnum tListExecInst) tListExecInst $
+          LT.insert (tnum tEncodedListExecInstLen) tEncodedListExecInstLen $
+          LT.insert (tnum tEncodedListExecInst) tEncodedListExecInst $
+          LT.insert (tnum tAllowableOneSidednessPct) tAllowableOneSidednessPct $
+          LT.insert (tnum tAllowableOneSidednessValue) tAllowableOneSidednessValue $
+          LT.insert (tnum tAllowableOneSidednessCurr) tAllowableOneSidednessCurr $
+          LT.insert (tnum tTotNoOrders) tTotNoOrders $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderCancelRequest :: FIXMessageSpec
+mOrderCancelRequest = FMSpec { mType = (C.pack "F"), mTags = mOrderCancelRequestTags }
+   where
+      mOrderCancelRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderCancelReplaceRequest :: FIXMessageSpec
+mOrderCancelReplaceRequest = FMSpec { mType = (C.pack "G"), mTags = mOrderCancelReplaceRequestTags }
+   where
+      mOrderCancelReplaceRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tDayBookingInst) tDayBookingInst $
+          LT.insert (tnum tBookingUnit) tBookingUnit $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tCashMargin) tCashMargin $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tForexReq) tForexReq $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tPrice2) tPrice2 $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderStatusRequest :: FIXMessageSpec
+mOrderStatusRequest = FMSpec { mType = (C.pack "H"), mTags = mOrderStatusRequestTags }
+   where
+      mOrderStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tOrdStatusReqID) tOrdStatusReqID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mAllocationInstruction :: FIXMessageSpec
+mAllocationInstruction = FMSpec { mType = (C.pack "J"), mTags = mAllocationInstructionTags }
+   where
+      mAllocationInstructionTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tAllocTransType) tAllocTransType $
+          LT.insert (tnum tAllocType) tAllocType $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tRefAllocID) tRefAllocID $
+          LT.insert (tnum tAllocCancReplaceReason) tAllocCancReplaceReason $
+          LT.insert (tnum tAllocIntermedReqType) tAllocIntermedReqType $
+          LT.insert (tnum tAllocLinkID) tAllocLinkID $
+          LT.insert (tnum tAllocLinkType) tAllocLinkType $
+          LT.insert (tnum tBookingRefID) tBookingRefID $
+          LT.insert (tnum tAllocNoOrdersType) tAllocNoOrdersType $
+          LT.insert (tnum tPreviouslyReported) tPreviouslyReported $
+          LT.insert (tnum tReversalIndicator) tReversalIndicator $
+          LT.insert (tnum tMatchType) tMatchType $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAvgPx) tAvgPx $
+          LT.insert (tnum tAvgParPx) tAvgParPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tAvgPxPrecision) tAvgPxPrecision $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+          LT.insert (tnum tConcession) tConcession $
+          LT.insert (tnum tTotalTakedown) tTotalTakedown $
+          LT.insert (tnum tNetMoney) tNetMoney $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tAutoAcceptIndicator) tAutoAcceptIndicator $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tTotalAccruedInterestAmt) tTotalAccruedInterestAmt $
+          LT.insert (tnum tInterestAtMaturity) tInterestAtMaturity $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tLegalConfirm) tLegalConfirm $
+          LT.insert (tnum tTotNoAllocs) tTotNoAllocs $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mListCancelRequest :: FIXMessageSpec
+mListCancelRequest = FMSpec { mType = (C.pack "K"), mTags = mListCancelRequestTags }
+   where
+      mListCancelRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mListExecute :: FIXMessageSpec
+mListExecute = FMSpec { mType = (C.pack "L"), mTags = mListExecuteTags }
+   where
+      mListExecuteTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tClientBidID) tClientBidID $
+          LT.insert (tnum tBidID) tBidID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mListStatusRequest :: FIXMessageSpec
+mListStatusRequest = FMSpec { mType = (C.pack "M"), mTags = mListStatusRequestTags }
+   where
+      mListStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mListStatus :: FIXMessageSpec
+mListStatus = FMSpec { mType = (C.pack "N"), mTags = mListStatusTags }
+   where
+      mListStatusTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tListStatusType) tListStatusType $
+          LT.insert (tnum tNoRpts) tNoRpts $
+          LT.insert (tnum tListOrderStatus) tListOrderStatus $
+          LT.insert (tnum tRptSeq) tRptSeq $
+          LT.insert (tnum tListStatusText) tListStatusText $
+          LT.insert (tnum tEncodedListStatusTextLen) tEncodedListStatusTextLen $
+          LT.insert (tnum tEncodedListStatusText) tEncodedListStatusText $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tTotNoOrders) tTotNoOrders $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mAllocationInstructionAck :: FIXMessageSpec
+mAllocationInstructionAck = FMSpec { mType = (C.pack "P"), mTags = mAllocationInstructionAckTags }
+   where
+      mAllocationInstructionAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAllocStatus) tAllocStatus $
+          LT.insert (tnum tAllocRejCode) tAllocRejCode $
+          LT.insert (tnum tAllocType) tAllocType $
+          LT.insert (tnum tAllocIntermedReqType) tAllocIntermedReqType $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tProduct) tProduct $
+          LT.insert (tnum tSecurityType) tSecurityType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mDontKnowTrade :: FIXMessageSpec
+mDontKnowTrade = FMSpec { mType = (C.pack "Q"), mTags = mDontKnowTradeTags }
+   where
+      mDontKnowTradeTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tExecID) tExecID $
+          LT.insert (tnum tDKReason) tDKReason $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tLastQty) tLastQty $
+          LT.insert (tnum tLastPx) tLastPx $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuoteRequest :: FIXMessageSpec
+mQuoteRequest = FMSpec { mType = (C.pack "R"), mTags = mQuoteRequestTags }
+   where
+      mQuoteRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tRFQReqID) tRFQReqID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuote :: FIXMessageSpec
+mQuote = FMSpec { mType = (C.pack "S"), mTags = mQuoteTags }
+   where
+      mQuoteTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tQuoteRespID) tQuoteRespID $
+          LT.insert (tnum tQuoteType) tQuoteType $
+          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tBidPx) tBidPx $
+          LT.insert (tnum tOfferPx) tOfferPx $
+          LT.insert (tnum tMktBidPx) tMktBidPx $
+          LT.insert (tnum tMktOfferPx) tMktOfferPx $
+          LT.insert (tnum tMinBidSize) tMinBidSize $
+          LT.insert (tnum tBidSize) tBidSize $
+          LT.insert (tnum tMinOfferSize) tMinOfferSize $
+          LT.insert (tnum tOfferSize) tOfferSize $
+          LT.insert (tnum tValidUntilTime) tValidUntilTime $
+          LT.insert (tnum tBidSpotRate) tBidSpotRate $
+          LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
+          LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
+          LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
+          LT.insert (tnum tMidPx) tMidPx $
+          LT.insert (tnum tBidYield) tBidYield $
+          LT.insert (tnum tMidYield) tMidYield $
+          LT.insert (tnum tOfferYield) tOfferYield $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
+          LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
+          LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
+          LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
+          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+          LT.insert (tnum tCommType) tCommType $
+          LT.insert (tnum tCommission) tCommission $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSettlementInstructions :: FIXMessageSpec
+mSettlementInstructions = FMSpec { mType = (C.pack "T"), mTags = mSettlementInstructionsTags }
+   where
+      mSettlementInstructionsTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSettlInstMsgID) tSettlInstMsgID $
+          LT.insert (tnum tSettlInstReqID) tSettlInstReqID $
+          LT.insert (tnum tSettlInstMode) tSettlInstMode $
+          LT.insert (tnum tSettlInstReqRejCode) tSettlInstReqRejCode $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMarketDataRequest :: FIXMessageSpec
+mMarketDataRequest = FMSpec { mType = (C.pack "V"), mTags = mMarketDataRequestTags }
+   where
+      mMarketDataRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tMDReqID) tMDReqID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tMarketDepth) tMarketDepth $
+          LT.insert (tnum tMDUpdateType) tMDUpdateType $
+          LT.insert (tnum tAggregatedBook) tAggregatedBook $
+          LT.insert (tnum tOpenCloseSettlFlag) tOpenCloseSettlFlag $
+          LT.insert (tnum tScope) tScope $
+          LT.insert (tnum tMDImplicitDelete) tMDImplicitDelete $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMarketDataSnapshotFullRefresh :: FIXMessageSpec
+mMarketDataSnapshotFullRefresh = FMSpec { mType = (C.pack "W"), mTags = mMarketDataSnapshotFullRefreshTags }
+   where
+      mMarketDataSnapshotFullRefreshTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tMDReqID) tMDReqID $
+          LT.insert (tnum tFinancialStatus) tFinancialStatus $
+          LT.insert (tnum tCorporateAction) tCorporateAction $
+          LT.insert (tnum tNetChgPrevDay) tNetChgPrevDay $
+          LT.insert (tnum tApplQueueDepth) tApplQueueDepth $
+          LT.insert (tnum tApplQueueResolution) tApplQueueResolution $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMarketDataIncrementalRefresh :: FIXMessageSpec
+mMarketDataIncrementalRefresh = FMSpec { mType = (C.pack "X"), mTags = mMarketDataIncrementalRefreshTags }
+   where
+      mMarketDataIncrementalRefreshTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tMDReqID) tMDReqID $
+          LT.insert (tnum tApplQueueDepth) tApplQueueDepth $
+          LT.insert (tnum tApplQueueResolution) tApplQueueResolution $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMarketDataRequestReject :: FIXMessageSpec
+mMarketDataRequestReject = FMSpec { mType = (C.pack "Y"), mTags = mMarketDataRequestRejectTags }
+   where
+      mMarketDataRequestRejectTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tMDReqID) tMDReqID $
+          LT.insert (tnum tMDReqRejReason) tMDReqRejReason $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuoteCancel :: FIXMessageSpec
+mQuoteCancel = FMSpec { mType = (C.pack "Z"), mTags = mQuoteCancelTags }
+   where
+      mQuoteCancelTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tQuoteCancelType) tQuoteCancelType $
+          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuoteStatusRequest :: FIXMessageSpec
+mQuoteStatusRequest = FMSpec { mType = (C.pack "a"), mTags = mQuoteStatusRequestTags }
+   where
+      mQuoteStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMassQuoteAcknowledgement :: FIXMessageSpec
+mMassQuoteAcknowledgement = FMSpec { mType = (C.pack "b"), mTags = mMassQuoteAcknowledgementTags }
+   where
+      mMassQuoteAcknowledgementTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tQuoteStatus) tQuoteStatus $
+          LT.insert (tnum tQuoteRejectReason) tQuoteRejectReason $
+          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+          LT.insert (tnum tQuoteType) tQuoteType $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityDefinitionRequest :: FIXMessageSpec
+mSecurityDefinitionRequest = FMSpec { mType = (C.pack "c"), mTags = mSecurityDefinitionRequestTags }
+   where
+      mSecurityDefinitionRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityRequestType) tSecurityRequestType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tExpirationCycle) tExpirationCycle $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityDefinition :: FIXMessageSpec
+mSecurityDefinition = FMSpec { mType = (C.pack "d"), mTags = mSecurityDefinitionTags }
+   where
+      mSecurityDefinitionTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+          LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tExpirationCycle) tExpirationCycle $
+          LT.insert (tnum tRoundLot) tRoundLot $
+          LT.insert (tnum tMinTradeVol) tMinTradeVol $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityStatusRequest :: FIXMessageSpec
+mSecurityStatusRequest = FMSpec { mType = (C.pack "e"), mTags = mSecurityStatusRequestTags }
+   where
+      mSecurityStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityStatus :: FIXMessageSpec
+mSecurityStatus = FMSpec { mType = (C.pack "f"), mTags = mSecurityStatusTags }
+   where
+      mSecurityStatusTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+          LT.insert (tnum tSecurityTradingStatus) tSecurityTradingStatus $
+          LT.insert (tnum tFinancialStatus) tFinancialStatus $
+          LT.insert (tnum tCorporateAction) tCorporateAction $
+          LT.insert (tnum tHaltReasonChar) tHaltReasonChar $
+          LT.insert (tnum tInViewOfCommon) tInViewOfCommon $
+          LT.insert (tnum tDueToRelated) tDueToRelated $
+          LT.insert (tnum tBuyVolume) tBuyVolume $
+          LT.insert (tnum tSellVolume) tSellVolume $
+          LT.insert (tnum tHighPx) tHighPx $
+          LT.insert (tnum tLowPx) tLowPx $
+          LT.insert (tnum tLastPx) tLastPx $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAdjustment) tAdjustment $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTradingSessionStatusRequest :: FIXMessageSpec
+mTradingSessionStatusRequest = FMSpec { mType = (C.pack "g"), mTags = mTradingSessionStatusRequestTags }
+   where
+      mTradingSessionStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTradSesReqID) tTradSesReqID $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tTradSesMethod) tTradSesMethod $
+          LT.insert (tnum tTradSesMode) tTradSesMode $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTradingSessionStatus :: FIXMessageSpec
+mTradingSessionStatus = FMSpec { mType = (C.pack "h"), mTags = mTradingSessionStatusTags }
+   where
+      mTradingSessionStatusTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTradSesReqID) tTradSesReqID $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tTradSesMethod) tTradSesMethod $
+          LT.insert (tnum tTradSesMode) tTradSesMode $
+          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+          LT.insert (tnum tTradSesStatus) tTradSesStatus $
+          LT.insert (tnum tTradSesStatusRejReason) tTradSesStatusRejReason $
+          LT.insert (tnum tTradSesStartTime) tTradSesStartTime $
+          LT.insert (tnum tTradSesOpenTime) tTradSesOpenTime $
+          LT.insert (tnum tTradSesPreCloseTime) tTradSesPreCloseTime $
+          LT.insert (tnum tTradSesCloseTime) tTradSesCloseTime $
+          LT.insert (tnum tTradSesEndTime) tTradSesEndTime $
+          LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMassQuote :: FIXMessageSpec
+mMassQuote = FMSpec { mType = (C.pack "i"), mTags = mMassQuoteTags }
+   where
+      mMassQuoteTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tQuoteType) tQuoteType $
+          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tDefBidSize) tDefBidSize $
+          LT.insert (tnum tDefOfferSize) tDefOfferSize $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mBusinessMessageReject :: FIXMessageSpec
+mBusinessMessageReject = FMSpec { mType = (C.pack "j"), mTags = mBusinessMessageRejectTags }
+   where
+      mBusinessMessageRejectTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tRefSeqNum) tRefSeqNum $
+          LT.insert (tnum tRefMsgType) tRefMsgType $
+          LT.insert (tnum tBusinessRejectRefID) tBusinessRejectRefID $
+          LT.insert (tnum tBusinessRejectReason) tBusinessRejectReason $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mBidRequest :: FIXMessageSpec
+mBidRequest = FMSpec { mType = (C.pack "k"), mTags = mBidRequestTags }
+   where
+      mBidRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tBidID) tBidID $
+          LT.insert (tnum tClientBidID) tClientBidID $
+          LT.insert (tnum tBidRequestTransType) tBidRequestTransType $
+          LT.insert (tnum tListName) tListName $
+          LT.insert (tnum tTotNoRelatedSym) tTotNoRelatedSym $
+          LT.insert (tnum tBidType) tBidType $
+          LT.insert (tnum tNumTickets) tNumTickets $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tSideValue1) tSideValue1 $
+          LT.insert (tnum tSideValue2) tSideValue2 $
+          LT.insert (tnum tLiquidityIndType) tLiquidityIndType $
+          LT.insert (tnum tWtAverageLiquidity) tWtAverageLiquidity $
+          LT.insert (tnum tExchangeForPhysical) tExchangeForPhysical $
+          LT.insert (tnum tOutMainCntryUIndex) tOutMainCntryUIndex $
+          LT.insert (tnum tCrossPercent) tCrossPercent $
+          LT.insert (tnum tProgRptReqs) tProgRptReqs $
+          LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
+          LT.insert (tnum tIncTaxInd) tIncTaxInd $
+          LT.insert (tnum tForexReq) tForexReq $
+          LT.insert (tnum tNumBidders) tNumBidders $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tBidTradeType) tBidTradeType $
+          LT.insert (tnum tBasisPxType) tBasisPxType $
+          LT.insert (tnum tStrikeTime) tStrikeTime $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mBidResponse :: FIXMessageSpec
+mBidResponse = FMSpec { mType = (C.pack "l"), mTags = mBidResponseTags }
+   where
+      mBidResponseTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tBidID) tBidID $
+          LT.insert (tnum tClientBidID) tClientBidID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mListStrikePrice :: FIXMessageSpec
+mListStrikePrice = FMSpec { mType = (C.pack "m"), mTags = mListStrikePriceTags }
+   where
+      mListStrikePriceTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tTotNoStrikes) tTotNoStrikes $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mRegistrationInstructions :: FIXMessageSpec
+mRegistrationInstructions = FMSpec { mType = (C.pack "o"), mTags = mRegistrationInstructionsTags }
+   where
+      mRegistrationInstructionsTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tRegistTransType) tRegistTransType $
+          LT.insert (tnum tRegistRefID) tRegistRefID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tRegistAcctType) tRegistAcctType $
+          LT.insert (tnum tTaxAdvantageType) tTaxAdvantageType $
+          LT.insert (tnum tOwnershipType) tOwnershipType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mRegistrationInstructionsResponse :: FIXMessageSpec
+mRegistrationInstructionsResponse = FMSpec { mType = (C.pack "p"), mTags = mRegistrationInstructionsResponseTags }
+   where
+      mRegistrationInstructionsResponseTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tRegistTransType) tRegistTransType $
+          LT.insert (tnum tRegistRefID) tRegistRefID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tRegistStatus) tRegistStatus $
+          LT.insert (tnum tRegistRejReasonCode) tRegistRejReasonCode $
+          LT.insert (tnum tRegistRejReasonText) tRegistRejReasonText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderMassCancelRequest :: FIXMessageSpec
+mOrderMassCancelRequest = FMSpec { mType = (C.pack "q"), mTags = mOrderMassCancelRequestTags }
+   where
+      mOrderMassCancelRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderMassCancelReport :: FIXMessageSpec
+mOrderMassCancelReport = FMSpec { mType = (C.pack "r"), mTags = mOrderMassCancelReportTags }
+   where
+      mOrderMassCancelReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
+          LT.insert (tnum tMassCancelResponse) tMassCancelResponse $
+          LT.insert (tnum tMassCancelRejectReason) tMassCancelRejectReason $
+          LT.insert (tnum tTotalAffectedOrders) tTotalAffectedOrders $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNewOrderCross :: FIXMessageSpec
+mNewOrderCross = FMSpec { mType = (C.pack "s"), mTags = mNewOrderCrossTags }
+   where
+      mNewOrderCrossTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCrossID) tCrossID $
+          LT.insert (tnum tCrossType) tCrossType $
+          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tPrevClosePx) tPrevClosePx $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCrossOrderCancelReplaceRequest :: FIXMessageSpec
+mCrossOrderCancelReplaceRequest = FMSpec { mType = (C.pack "t"), mTags = mCrossOrderCancelReplaceRequestTags }
+   where
+      mCrossOrderCancelReplaceRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tCrossID) tCrossID $
+          LT.insert (tnum tOrigCrossID) tOrigCrossID $
+          LT.insert (tnum tCrossType) tCrossType $
+          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tPrevClosePx) tPrevClosePx $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCrossOrderCancelRequest :: FIXMessageSpec
+mCrossOrderCancelRequest = FMSpec { mType = (C.pack "u"), mTags = mCrossOrderCancelRequestTags }
+   where
+      mCrossOrderCancelRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tCrossID) tCrossID $
+          LT.insert (tnum tOrigCrossID) tOrigCrossID $
+          LT.insert (tnum tCrossType) tCrossType $
+          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityTypeRequest :: FIXMessageSpec
+mSecurityTypeRequest = FMSpec { mType = (C.pack "v"), mTags = mSecurityTypeRequestTags }
+   where
+      mSecurityTypeRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tProduct) tProduct $
+          LT.insert (tnum tSecurityType) tSecurityType $
+          LT.insert (tnum tSecuritySubType) tSecuritySubType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityTypes :: FIXMessageSpec
+mSecurityTypes = FMSpec { mType = (C.pack "w"), mTags = mSecurityTypesTags }
+   where
+      mSecurityTypesTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+          LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
+          LT.insert (tnum tTotNoSecurityTypes) tTotNoSecurityTypes $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityListRequest :: FIXMessageSpec
+mSecurityListRequest = FMSpec { mType = (C.pack "x"), mTags = mSecurityListRequestTags }
+   where
+      mSecurityListRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSecurityList :: FIXMessageSpec
+mSecurityList = FMSpec { mType = (C.pack "y"), mTags = mSecurityListTags }
+   where
+      mSecurityListTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+          LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
+          LT.insert (tnum tTotNoRelatedSym) tTotNoRelatedSym $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mDerivativeSecurityListRequest :: FIXMessageSpec
+mDerivativeSecurityListRequest = FMSpec { mType = (C.pack "z"), mTags = mDerivativeSecurityListRequestTags }
+   where
+      mDerivativeSecurityListRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
+          LT.insert (tnum tSecuritySubType) tSecuritySubType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mDerivativeSecurityList :: FIXMessageSpec
+mDerivativeSecurityList = FMSpec { mType = (C.pack "AA"), mTags = mDerivativeSecurityListTags }
+   where
+      mDerivativeSecurityListTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+          LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
+          LT.insert (tnum tTotNoRelatedSym) tTotNoRelatedSym $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNewOrderMultileg :: FIXMessageSpec
+mNewOrderMultileg = FMSpec { mType = (C.pack "AB"), mTags = mNewOrderMultilegTags }
+   where
+      mNewOrderMultilegTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tDayBookingInst) tDayBookingInst $
+          LT.insert (tnum tBookingUnit) tBookingUnit $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tCashMargin) tCashMargin $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrevClosePx) tPrevClosePx $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tForexReq) tForexReq $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mMultilegOrderCancelReplace :: FIXMessageSpec
+mMultilegOrderCancelReplace = FMSpec { mType = (C.pack "AC"), mTags = mMultilegOrderCancelReplaceTags }
+   where
+      mMultilegOrderCancelReplaceTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tDayBookingInst) tDayBookingInst $
+          LT.insert (tnum tBookingUnit) tBookingUnit $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tCashMargin) tCashMargin $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrevClosePx) tPrevClosePx $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tForexReq) tForexReq $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTradeCaptureReportRequest :: FIXMessageSpec
+mTradeCaptureReportRequest = FMSpec { mType = (C.pack "AD"), mTags = mTradeCaptureReportRequestTags }
+   where
+      mTradeCaptureReportRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTradeRequestID) tTradeRequestID $
+          LT.insert (tnum tTradeRequestType) tTradeRequestType $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tTradeReportID) tTradeReportID $
+          LT.insert (tnum tSecondaryTradeReportID) tSecondaryTradeReportID $
+          LT.insert (tnum tExecID) tExecID $
+          LT.insert (tnum tExecType) tExecType $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tTrdType) tTrdType $
+          LT.insert (tnum tTrdSubType) tTrdSubType $
+          LT.insert (tnum tTransferReason) tTransferReason $
+          LT.insert (tnum tSecondaryTrdType) tSecondaryTrdType $
+          LT.insert (tnum tTradeLinkID) tTradeLinkID $
+          LT.insert (tnum tTrdMatchID) tTrdMatchID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tTimeBracket) tTimeBracket $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+          LT.insert (tnum tTradeInputSource) tTradeInputSource $
+          LT.insert (tnum tTradeInputDevice) tTradeInputDevice $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTradeCaptureReport :: FIXMessageSpec
+mTradeCaptureReport = FMSpec { mType = (C.pack "AE"), mTags = mTradeCaptureReportTags }
+   where
+      mTradeCaptureReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTradeReportID) tTradeReportID $
+          LT.insert (tnum tTradeReportTransType) tTradeReportTransType $
+          LT.insert (tnum tTradeReportType) tTradeReportType $
+          LT.insert (tnum tTradeRequestID) tTradeRequestID $
+          LT.insert (tnum tTrdType) tTrdType $
+          LT.insert (tnum tTrdSubType) tTrdSubType $
+          LT.insert (tnum tSecondaryTrdType) tSecondaryTrdType $
+          LT.insert (tnum tTransferReason) tTransferReason $
+          LT.insert (tnum tExecType) tExecType $
+          LT.insert (tnum tTotNumTradeReports) tTotNumTradeReports $
+          LT.insert (tnum tLastRptRequested) tLastRptRequested $
+          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tTradeReportRefID) tTradeReportRefID $
+          LT.insert (tnum tSecondaryTradeReportRefID) tSecondaryTradeReportRefID $
+          LT.insert (tnum tSecondaryTradeReportID) tSecondaryTradeReportID $
+          LT.insert (tnum tTradeLinkID) tTradeLinkID $
+          LT.insert (tnum tTrdMatchID) tTrdMatchID $
+          LT.insert (tnum tExecID) tExecID $
+          LT.insert (tnum tOrdStatus) tOrdStatus $
+          LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+          LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
+          LT.insert (tnum tPreviouslyReported) tPreviouslyReported $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tUnderlyingTradingSessionID) tUnderlyingTradingSessionID $
+          LT.insert (tnum tUnderlyingTradingSessionSubID) tUnderlyingTradingSessionSubID $
+          LT.insert (tnum tLastQty) tLastQty $
+          LT.insert (tnum tLastPx) tLastPx $
+          LT.insert (tnum tLastParPx) tLastParPx $
+          LT.insert (tnum tLastSpotRate) tLastSpotRate $
+          LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tAvgPx) tAvgPx $
+          LT.insert (tnum tAvgPxIndicator) tAvgPxIndicator $
+          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+          LT.insert (tnum tTradeLegRefID) tTradeLegRefID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tMatchType) tMatchType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mOrderMassStatusRequest :: FIXMessageSpec
+mOrderMassStatusRequest = FMSpec { mType = (C.pack "AF"), mTags = mOrderMassStatusRequestTags }
+   where
+      mOrderMassStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tMassStatusReqID) tMassStatusReqID $
+          LT.insert (tnum tMassStatusReqType) tMassStatusReqType $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuoteRequestReject :: FIXMessageSpec
+mQuoteRequestReject = FMSpec { mType = (C.pack "AG"), mTags = mQuoteRequestRejectTags }
+   where
+      mQuoteRequestRejectTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tRFQReqID) tRFQReqID $
+          LT.insert (tnum tQuoteRequestRejectReason) tQuoteRequestRejectReason $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mRFQRequest :: FIXMessageSpec
+mRFQRequest = FMSpec { mType = (C.pack "AH"), mTags = mRFQRequestTags }
+   where
+      mRFQRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tRFQReqID) tRFQReqID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuoteStatusReport :: FIXMessageSpec
+mQuoteStatusReport = FMSpec { mType = (C.pack "AI"), mTags = mQuoteStatusReportTags }
+   where
+      mQuoteStatusReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tQuoteRespID) tQuoteRespID $
+          LT.insert (tnum tQuoteType) tQuoteType $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tBidPx) tBidPx $
+          LT.insert (tnum tOfferPx) tOfferPx $
+          LT.insert (tnum tMktBidPx) tMktBidPx $
+          LT.insert (tnum tMktOfferPx) tMktOfferPx $
+          LT.insert (tnum tMinBidSize) tMinBidSize $
+          LT.insert (tnum tBidSize) tBidSize $
+          LT.insert (tnum tMinOfferSize) tMinOfferSize $
+          LT.insert (tnum tOfferSize) tOfferSize $
+          LT.insert (tnum tValidUntilTime) tValidUntilTime $
+          LT.insert (tnum tBidSpotRate) tBidSpotRate $
+          LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
+          LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
+          LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
+          LT.insert (tnum tMidPx) tMidPx $
+          LT.insert (tnum tBidYield) tBidYield $
+          LT.insert (tnum tMidYield) tMidYield $
+          LT.insert (tnum tOfferYield) tOfferYield $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
+          LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
+          LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
+          LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
+          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+          LT.insert (tnum tCommType) tCommType $
+          LT.insert (tnum tCommission) tCommission $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tQuoteStatus) tQuoteStatus $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mQuoteResponse :: FIXMessageSpec
+mQuoteResponse = FMSpec { mType = (C.pack "AJ"), mTags = mQuoteResponseTags }
+   where
+      mQuoteResponseTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tQuoteRespID) tQuoteRespID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tQuoteRespType) tQuoteRespType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tQuoteType) tQuoteType $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tBidPx) tBidPx $
+          LT.insert (tnum tOfferPx) tOfferPx $
+          LT.insert (tnum tMktBidPx) tMktBidPx $
+          LT.insert (tnum tMktOfferPx) tMktOfferPx $
+          LT.insert (tnum tMinBidSize) tMinBidSize $
+          LT.insert (tnum tBidSize) tBidSize $
+          LT.insert (tnum tMinOfferSize) tMinOfferSize $
+          LT.insert (tnum tOfferSize) tOfferSize $
+          LT.insert (tnum tValidUntilTime) tValidUntilTime $
+          LT.insert (tnum tBidSpotRate) tBidSpotRate $
+          LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
+          LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
+          LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
+          LT.insert (tnum tMidPx) tMidPx $
+          LT.insert (tnum tBidYield) tBidYield $
+          LT.insert (tnum tMidYield) tMidYield $
+          LT.insert (tnum tOfferYield) tOfferYield $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
+          LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
+          LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
+          LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
+          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+          LT.insert (tnum tCommission) tCommission $
+          LT.insert (tnum tCommType) tCommType $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mConfirmation :: FIXMessageSpec
+mConfirmation = FMSpec { mType = (C.pack "AK"), mTags = mConfirmationTags }
+   where
+      mConfirmationTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tConfirmID) tConfirmID $
+          LT.insert (tnum tConfirmRefID) tConfirmRefID $
+          LT.insert (tnum tConfirmReqID) tConfirmReqID $
+          LT.insert (tnum tConfirmTransType) tConfirmTransType $
+          LT.insert (tnum tConfirmType) tConfirmType $
+          LT.insert (tnum tCopyMsgIndicator) tCopyMsgIndicator $
+          LT.insert (tnum tLegalConfirm) tLegalConfirm $
+          LT.insert (tnum tConfirmStatus) tConfirmStatus $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tAllocQty) tAllocQty $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tAllocAccount) tAllocAccount $
+          LT.insert (tnum tAllocAcctIDSource) tAllocAcctIDSource $
+          LT.insert (tnum tAllocAccountType) tAllocAccountType $
+          LT.insert (tnum tAvgPx) tAvgPx $
+          LT.insert (tnum tAvgPxPrecision) tAvgPxPrecision $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAvgParPx) tAvgParPx $
+          LT.insert (tnum tReportedPx) tReportedPx $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+          LT.insert (tnum tExDate) tExDate $
+          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tInterestAtMaturity) tInterestAtMaturity $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tConcession) tConcession $
+          LT.insert (tnum tTotalTakedown) tTotalTakedown $
+          LT.insert (tnum tNetMoney) tNetMoney $
+          LT.insert (tnum tMaturityNetMoney) tMaturityNetMoney $
+          LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
+          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tSharedCommission) tSharedCommission $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mPositionMaintenanceRequest :: FIXMessageSpec
+mPositionMaintenanceRequest = FMSpec { mType = (C.pack "AL"), mTags = mPositionMaintenanceRequestTags }
+   where
+      mPositionMaintenanceRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tPosReqID) tPosReqID $
+          LT.insert (tnum tPosTransType) tPosTransType $
+          LT.insert (tnum tPosMaintAction) tPosMaintAction $
+          LT.insert (tnum tOrigPosReqRefID) tOrigPosReqRefID $
+          LT.insert (tnum tPosMaintRptRefID) tPosMaintRptRefID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAdjustmentType) tAdjustmentType $
+          LT.insert (tnum tContraryInstructionIndicator) tContraryInstructionIndicator $
+          LT.insert (tnum tPriorSpreadIndicator) tPriorSpreadIndicator $
+          LT.insert (tnum tThresholdAmount) tThresholdAmount $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mPositionMaintenanceReport :: FIXMessageSpec
+mPositionMaintenanceReport = FMSpec { mType = (C.pack "AM"), mTags = mPositionMaintenanceReportTags }
+   where
+      mPositionMaintenanceReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
+          LT.insert (tnum tPosTransType) tPosTransType $
+          LT.insert (tnum tPosReqID) tPosReqID $
+          LT.insert (tnum tPosMaintAction) tPosMaintAction $
+          LT.insert (tnum tOrigPosReqRefID) tOrigPosReqRefID $
+          LT.insert (tnum tPosMaintStatus) tPosMaintStatus $
+          LT.insert (tnum tPosMaintResult) tPosMaintResult $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAdjustmentType) tAdjustmentType $
+          LT.insert (tnum tThresholdAmount) tThresholdAmount $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mRequestForPositions :: FIXMessageSpec
+mRequestForPositions = FMSpec { mType = (C.pack "AN"), mTags = mRequestForPositionsTags }
+   where
+      mRequestForPositionsTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tPosReqID) tPosReqID $
+          LT.insert (tnum tPosReqType) tPosReqType $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mRequestForPositionsAck :: FIXMessageSpec
+mRequestForPositionsAck = FMSpec { mType = (C.pack "AO"), mTags = mRequestForPositionsAckTags }
+   where
+      mRequestForPositionsAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
+          LT.insert (tnum tPosReqID) tPosReqID $
+          LT.insert (tnum tTotalNumPosReports) tTotalNumPosReports $
+          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+          LT.insert (tnum tPosReqResult) tPosReqResult $
+          LT.insert (tnum tPosReqStatus) tPosReqStatus $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mPositionReport :: FIXMessageSpec
+mPositionReport = FMSpec { mType = (C.pack "AP"), mTags = mPositionReportTags }
+   where
+      mPositionReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
+          LT.insert (tnum tPosReqID) tPosReqID $
+          LT.insert (tnum tPosReqType) tPosReqType $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tTotalNumPosReports) tTotalNumPosReports $
+          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+          LT.insert (tnum tPosReqResult) tPosReqResult $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tSettlPrice) tSettlPrice $
+          LT.insert (tnum tSettlPriceType) tSettlPriceType $
+          LT.insert (tnum tPriorSettlPrice) tPriorSettlPrice $
+          LT.insert (tnum tRegistStatus) tRegistStatus $
+          LT.insert (tnum tDeliveryDate) tDeliveryDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTradeCaptureReportRequestAck :: FIXMessageSpec
+mTradeCaptureReportRequestAck = FMSpec { mType = (C.pack "AQ"), mTags = mTradeCaptureReportRequestAckTags }
+   where
+      mTradeCaptureReportRequestAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTradeRequestID) tTradeRequestID $
+          LT.insert (tnum tTradeRequestType) tTradeRequestType $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tTotNumTradeReports) tTotNumTradeReports $
+          LT.insert (tnum tTradeRequestResult) tTradeRequestResult $
+          LT.insert (tnum tTradeRequestStatus) tTradeRequestStatus $
+          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mTradeCaptureReportAck :: FIXMessageSpec
+mTradeCaptureReportAck = FMSpec { mType = (C.pack "AR"), mTags = mTradeCaptureReportAckTags }
+   where
+      mTradeCaptureReportAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tTradeReportID) tTradeReportID $
+          LT.insert (tnum tTradeReportTransType) tTradeReportTransType $
+          LT.insert (tnum tTradeReportType) tTradeReportType $
+          LT.insert (tnum tTrdType) tTrdType $
+          LT.insert (tnum tTrdSubType) tTrdSubType $
+          LT.insert (tnum tSecondaryTrdType) tSecondaryTrdType $
+          LT.insert (tnum tTransferReason) tTransferReason $
+          LT.insert (tnum tExecType) tExecType $
+          LT.insert (tnum tTradeReportRefID) tTradeReportRefID $
+          LT.insert (tnum tSecondaryTradeReportRefID) tSecondaryTradeReportRefID $
+          LT.insert (tnum tTrdRptStatus) tTrdRptStatus $
+          LT.insert (tnum tTradeReportRejectReason) tTradeReportRejectReason $
+          LT.insert (tnum tSecondaryTradeReportID) tSecondaryTradeReportID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tTradeLinkID) tTradeLinkID $
+          LT.insert (tnum tTrdMatchID) tTrdMatchID $
+          LT.insert (tnum tExecID) tExecID $
+          LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mAllocationReport :: FIXMessageSpec
+mAllocationReport = FMSpec { mType = (C.pack "AS"), mTags = mAllocationReportTags }
+   where
+      mAllocationReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tAllocReportID) tAllocReportID $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tAllocTransType) tAllocTransType $
+          LT.insert (tnum tAllocReportRefID) tAllocReportRefID $
+          LT.insert (tnum tAllocCancReplaceReason) tAllocCancReplaceReason $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tAllocReportType) tAllocReportType $
+          LT.insert (tnum tAllocStatus) tAllocStatus $
+          LT.insert (tnum tAllocRejCode) tAllocRejCode $
+          LT.insert (tnum tRefAllocID) tRefAllocID $
+          LT.insert (tnum tAllocIntermedReqType) tAllocIntermedReqType $
+          LT.insert (tnum tAllocLinkID) tAllocLinkID $
+          LT.insert (tnum tAllocLinkType) tAllocLinkType $
+          LT.insert (tnum tBookingRefID) tBookingRefID $
+          LT.insert (tnum tAllocNoOrdersType) tAllocNoOrdersType $
+          LT.insert (tnum tPreviouslyReported) tPreviouslyReported $
+          LT.insert (tnum tReversalIndicator) tReversalIndicator $
+          LT.insert (tnum tMatchType) tMatchType $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAvgPx) tAvgPx $
+          LT.insert (tnum tAvgParPx) tAvgParPx $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tAvgPxPrecision) tAvgPxPrecision $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+          LT.insert (tnum tConcession) tConcession $
+          LT.insert (tnum tTotalTakedown) tTotalTakedown $
+          LT.insert (tnum tNetMoney) tNetMoney $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tAutoAcceptIndicator) tAutoAcceptIndicator $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tTotalAccruedInterestAmt) tTotalAccruedInterestAmt $
+          LT.insert (tnum tInterestAtMaturity) tInterestAtMaturity $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tLegalConfirm) tLegalConfirm $
+          LT.insert (tnum tTotNoAllocs) tTotNoAllocs $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mAllocationReportAck :: FIXMessageSpec
+mAllocationReportAck = FMSpec { mType = (C.pack "AT"), mTags = mAllocationReportAckTags }
+   where
+      mAllocationReportAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tAllocReportID) tAllocReportID $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAllocStatus) tAllocStatus $
+          LT.insert (tnum tAllocRejCode) tAllocRejCode $
+          LT.insert (tnum tAllocReportType) tAllocReportType $
+          LT.insert (tnum tAllocIntermedReqType) tAllocIntermedReqType $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tProduct) tProduct $
+          LT.insert (tnum tSecurityType) tSecurityType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mConfirmationAck :: FIXMessageSpec
+mConfirmationAck = FMSpec { mType = (C.pack "AU"), mTags = mConfirmationAckTags }
+   where
+      mConfirmationAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tConfirmID) tConfirmID $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAffirmStatus) tAffirmStatus $
+          LT.insert (tnum tConfirmRejReason) tConfirmRejReason $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mSettlementInstructionRequest :: FIXMessageSpec
+mSettlementInstructionRequest = FMSpec { mType = (C.pack "AV"), mTags = mSettlementInstructionRequestTags }
+   where
+      mSettlementInstructionRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tSettlInstReqID) tSettlInstReqID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAllocAccount) tAllocAccount $
+          LT.insert (tnum tAllocAcctIDSource) tAllocAcctIDSource $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tProduct) tProduct $
+          LT.insert (tnum tSecurityType) tSecurityType $
+          LT.insert (tnum tCFICode) tCFICode $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tLastUpdateTime) tLastUpdateTime $
+          LT.insert (tnum tStandInstDbType) tStandInstDbType $
+          LT.insert (tnum tStandInstDbName) tStandInstDbName $
+          LT.insert (tnum tStandInstDbID) tStandInstDbID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mAssignmentReport :: FIXMessageSpec
+mAssignmentReport = FMSpec { mType = (C.pack "AW"), mTags = mAssignmentReportTags }
+   where
+      mAssignmentReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tAsgnRptID) tAsgnRptID $
+          LT.insert (tnum tTotNumAssignmentReports) tTotNumAssignmentReports $
+          LT.insert (tnum tLastRptRequested) tLastRptRequested $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tThresholdAmount) tThresholdAmount $
+          LT.insert (tnum tSettlPrice) tSettlPrice $
+          LT.insert (tnum tSettlPriceType) tSettlPriceType $
+          LT.insert (tnum tUnderlyingSettlPrice) tUnderlyingSettlPrice $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tAssignmentMethod) tAssignmentMethod $
+          LT.insert (tnum tAssignmentUnit) tAssignmentUnit $
+          LT.insert (tnum tOpenInterest) tOpenInterest $
+          LT.insert (tnum tExerciseMethod) tExerciseMethod $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCollateralRequest :: FIXMessageSpec
+mCollateralRequest = FMSpec { mType = (C.pack "AX"), mTags = mCollateralRequestTags }
+   where
+      mCollateralRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCollReqID) tCollReqID $
+          LT.insert (tnum tCollAsgnReason) tCollAsgnReason $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tMarginExcess) tMarginExcess $
+          LT.insert (tnum tTotalNetValue) tTotalNetValue $
+          LT.insert (tnum tCashOutstanding) tCashOutstanding $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCollateralAssignment :: FIXMessageSpec
+mCollateralAssignment = FMSpec { mType = (C.pack "AY"), mTags = mCollateralAssignmentTags }
+   where
+      mCollateralAssignmentTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCollAsgnID) tCollAsgnID $
+          LT.insert (tnum tCollReqID) tCollReqID $
+          LT.insert (tnum tCollAsgnReason) tCollAsgnReason $
+          LT.insert (tnum tCollAsgnTransType) tCollAsgnTransType $
+          LT.insert (tnum tCollAsgnRefID) tCollAsgnRefID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tMarginExcess) tMarginExcess $
+          LT.insert (tnum tTotalNetValue) tTotalNetValue $
+          LT.insert (tnum tCashOutstanding) tCashOutstanding $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCollateralResponse :: FIXMessageSpec
+mCollateralResponse = FMSpec { mType = (C.pack "AZ"), mTags = mCollateralResponseTags }
+   where
+      mCollateralResponseTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCollRespID) tCollRespID $
+          LT.insert (tnum tCollAsgnID) tCollAsgnID $
+          LT.insert (tnum tCollReqID) tCollReqID $
+          LT.insert (tnum tCollAsgnReason) tCollAsgnReason $
+          LT.insert (tnum tCollAsgnTransType) tCollAsgnTransType $
+          LT.insert (tnum tCollAsgnRespType) tCollAsgnRespType $
+          LT.insert (tnum tCollAsgnRejectReason) tCollAsgnRejectReason $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tMarginExcess) tMarginExcess $
+          LT.insert (tnum tTotalNetValue) tTotalNetValue $
+          LT.insert (tnum tCashOutstanding) tCashOutstanding $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCollateralReport :: FIXMessageSpec
+mCollateralReport = FMSpec { mType = (C.pack "BA"), mTags = mCollateralReportTags }
+   where
+      mCollateralReportTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCollRptID) tCollRptID $
+          LT.insert (tnum tCollInquiryID) tCollInquiryID $
+          LT.insert (tnum tCollStatus) tCollStatus $
+          LT.insert (tnum tTotNumReports) tTotNumReports $
+          LT.insert (tnum tLastRptRequested) tLastRptRequested $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tMarginExcess) tMarginExcess $
+          LT.insert (tnum tTotalNetValue) tTotalNetValue $
+          LT.insert (tnum tCashOutstanding) tCashOutstanding $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCollateralInquiry :: FIXMessageSpec
+mCollateralInquiry = FMSpec { mType = (C.pack "BB"), mTags = mCollateralInquiryTags }
+   where
+      mCollateralInquiryTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCollInquiryID) tCollInquiryID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tMarginExcess) tMarginExcess $
+          LT.insert (tnum tTotalNetValue) tTotalNetValue $
+          LT.insert (tnum tCashOutstanding) tCashOutstanding $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNetworkCounterpartySystemStatusRequest :: FIXMessageSpec
+mNetworkCounterpartySystemStatusRequest = FMSpec { mType = (C.pack "BC"), mTags = mNetworkCounterpartySystemStatusRequestTags }
+   where
+      mNetworkCounterpartySystemStatusRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tNetworkRequestType) tNetworkRequestType $
+          LT.insert (tnum tNetworkRequestID) tNetworkRequestID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mNetworkCounterpartySystemStatusResponse :: FIXMessageSpec
+mNetworkCounterpartySystemStatusResponse = FMSpec { mType = (C.pack "BD"), mTags = mNetworkCounterpartySystemStatusResponseTags }
+   where
+      mNetworkCounterpartySystemStatusResponseTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tNetworkStatusResponseType) tNetworkStatusResponseType $
+          LT.insert (tnum tNetworkRequestID) tNetworkRequestID $
+          LT.insert (tnum tNetworkResponseID) tNetworkResponseID $
+          LT.insert (tnum tLastNetworkResponseID) tLastNetworkResponseID $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mUserRequest :: FIXMessageSpec
+mUserRequest = FMSpec { mType = (C.pack "BE"), mTags = mUserRequestTags }
+   where
+      mUserRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tUserRequestID) tUserRequestID $
+          LT.insert (tnum tUserRequestType) tUserRequestType $
+          LT.insert (tnum tUsername) tUsername $
+          LT.insert (tnum tPassword) tPassword $
+          LT.insert (tnum tNewPassword) tNewPassword $
+          LT.insert (tnum tRawDataLength) tRawDataLength $
+          LT.insert (tnum tRawData) tRawData $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mUserResponse :: FIXMessageSpec
+mUserResponse = FMSpec { mType = (C.pack "BF"), mTags = mUserResponseTags }
+   where
+      mUserResponseTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tUserRequestID) tUserRequestID $
+          LT.insert (tnum tUsername) tUsername $
+          LT.insert (tnum tUserStatus) tUserStatus $
+          LT.insert (tnum tUserStatusText) tUserStatusText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mCollateralInquiryAck :: FIXMessageSpec
+mCollateralInquiryAck = FMSpec { mType = (C.pack "BG"), mTags = mCollateralInquiryAckTags }
+   where
+      mCollateralInquiryAckTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tCollInquiryID) tCollInquiryID $
+          LT.insert (tnum tCollInquiryStatus) tCollInquiryStatus $
+          LT.insert (tnum tCollInquiryResult) tCollInquiryResult $
+          LT.insert (tnum tTotNumReports) tTotNumReports $
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
+mConfirmationRequest :: FIXMessageSpec
+mConfirmationRequest = FMSpec { mType = (C.pack "BH"), mTags = mConfirmationRequestTags }
+   where
+      mConfirmationRequestTags = 
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tConfirmReqID) tConfirmReqID $
+          LT.insert (tnum tConfirmType) tConfirmType $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tAllocAccount) tAllocAccount $
+          LT.insert (tnum tAllocAcctIDSource) tAllocAcctIDSource $
+          LT.insert (tnum tAllocAccountType) tAllocAccountType $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.new
+
