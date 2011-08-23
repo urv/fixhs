@@ -1,10 +1,12 @@
 module Common.FIXMessage 
     ( delimiter
     , FIXValue (..)
+    , FIXTags
     , FIXTag (..)
     , fixVersion
     , FIXMessage
     , FIXMessageSpec (..)
+    , FIXSpec (..)
     , paddedChecksum
     , checksum
     , checksum'
@@ -12,10 +14,13 @@ module Common.FIXMessage
 
 import System.Time ( CalendarTime )
 import Prelude hiding ( take, null, head, tail, length )
-import Data.ByteString 
+import Data.Word ( Word8 )
+import Data.ByteString ( ByteString )
+import qualified Data.ByteString as B ( null, head, tail, foldr )
 import Data.IntMap ( IntMap )
+import Data.Map ( Map )
 import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
-import Data.Attoparsec ( Parser )
+import Data.Attoparsec ( Parser ) 
 
 data FIXTag = FIXTag 
     { tnum :: Int
@@ -58,7 +63,15 @@ type FIXMessage = FIXValues
 type FIXTags = IntMap FIXTag
 data FIXMessageSpec = FMSpec 
                       { mType :: ByteString
-                      , mTags :: FIXTags }
+                      , mHeader :: FIXTags
+                      , mBody :: FIXTags 
+                      , mTrailer :: FIXTags }
+
+type FIXMessages = Map ByteString FIXMessageSpec
+data FIXSpec = FSpec 
+               { fHeader :: FIXTags
+               , fTrailer :: FIXTags
+               , fMessages :: FIXMessages }
 
 delimiter :: Char
 delimiter = '\SOH'
@@ -71,9 +84,12 @@ paddedChecksum = checksum' . checksum
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int
-checksum b | null b = 0
-           | otherwise = (fromIntegral (head b) + checksum (tail b)) `mod` 256       
-
+checksum b | B.null b = 0
+           | otherwise = B.foldr _sumUp 0 b `mod` 256
+                where 
+                    _sumUp :: Word8 -> Int -> Int
+                    _sumUp c = (+) (fromIntegral c)
+           
 -- FIX length
 checksum' :: Int -> ByteString
 checksum' b | b < 10 = C.pack "00" `append` num

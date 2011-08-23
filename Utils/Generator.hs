@@ -6,6 +6,22 @@ import Data.Map ( Map )
 import Data.Maybe ( fromMaybe )
 import Control.Monad ( liftM )
 
+
+tName :: String -> String
+tName = (:) 't'
+
+mName :: String -> String
+mName = (:) 'm'
+
+fName :: String -> String
+fName = (:) 'f'
+
+headerName :: Document a -> String
+headerName d = "headerFIX" ++ versionFIX d
+
+trailerName :: Document a -> String
+trailerName d = "trailerFIX" ++ versionFIX d
+
 type AttrLookupTable = Map String String
 type ParserLookupTable = Map String String
 
@@ -21,6 +37,12 @@ getFIXSpec d = case d of
         -> if n == "fix" then Just es else Nothing
     _   -> Nothing 
 
+versionFIX :: Document a -> String
+versionFIX d = major ++ minor 
+               where 
+                  fix = fromMaybe undefined $ getFIXSpec d 
+                  major = fromMaybe undefined $ getAttr "major" fix
+                  minor = fromMaybe undefined $ getAttr "minor" fix
 
 _matchName :: String -> Content a -> Bool
 _matchName name (CElem (Elem (N n) _ _) _) = n == name
@@ -35,10 +57,14 @@ getSpec name d = do
             _ -> Nothing
 
 getFieldSpec = getSpec "fields"
+getHeaderSpec = getSpec "header"
+getTrailerSpec = getSpec "trailer"
+getMessagesSpec = getSpec "messages"
 
 getAttr :: String -> Element a -> Maybe String
 getAttr name e = LT.lookup name $ fromAttributes (attributes e)
 
+getNameAttr = getAttr "name"
 
 fromAttributes :: LT.LookupTable String String AttrLookupTable 
                      => [Attribute] -> AttrLookupTable
@@ -71,62 +97,72 @@ toParser x = fromMaybe "toFIXString" (LT.lookup x parserLT)
 
 genField :: Content a -> String
 genField (CElem e _) = 
-    let Just fname = LT.lookup "name" aLookup
-        Just fenum = LT.lookup "number" aLookup            
-        Just fparser = LT.lookup "type" aLookup
+    let fname = tName $ fromMaybe undefined (LT.lookup "name" aLookup)
+        fenum = fromMaybe undefined $ LT.lookup "number" aLookup            
+        fparser = fromMaybe undefined $ LT.lookup "type" aLookup
         tparser = toParser fparser
         in
-        "t" ++ fname ++ " = FIXTag { tnum = " ++ fenum ++ 
+        fname ++ " = FIXTag { tnum = " ++ fenum ++ 
             ", tparser = "  ++ tparser ++ " }\n"
     where
         aLookup = fromAttributes $ attributes e
 genField _ = ""
 
+getFields :: [Content a] -> [String]
+getFields [] = []
+getFields (CElem e@(Elem (N n) _ _) _ : cs) =
+    let rest = getFields cs 
+        eName = fromMaybe undefined (getNameAttr e)
+    in
+        (if n == "field" then (:) eName else id) rest
+getFields (_ : cs) = getFields cs
+
+allMessages :: Document a -> [Content a]
+allMessages d = let all = fromMaybe undefined $ getMessagesSpec d 
+                    in filter (_matchName "message") (content all) 
+
+allTags :: [String] -> [String]
+allTags fs = map _insertTag fs
+    where 
+        _insertTag n = let n' = tName n 
+                       in "LT.insert (tnum " ++ n' ++ ") " ++ n' ++ " $\n"
+
+genFIXHeader :: Document a -> String
+genFIXHeader d = let name = headerName d in
+    name ++ " :: FIXTags\n" ++
+    name ++ " = \n" ++ concatMap ((++) "    ") tags' ++ "    LT.new\n\n"
+    where   
+        tags' = let Just h = getHeaderSpec d 
+                in allTags $ getFields (content h)
+
+genFIXTrailer :: Document a -> String
+genFIXTrailer d = let name = trailerName d in 
+    name ++ " :: FIXTags\n" ++
+    name ++ " = \n" ++ concatMap ((++) "    ") tags' ++ "    LT.new\n\n"
+    where   
+        tags' = let Just h = getTrailerSpec d 
+                in allTags $ getFields (content h)
 
 genMessages :: Document a -> String
-genMessages d = concatMap genMessage messages
+genMessages d = concatMap genMessage $ allMessages d
     where
-        getHeaderSpec = getSpec "header"
-        getTrailerSpec = getSpec "trailer"
-        getMessagesSpec = getSpec "messages"
-
-        messages = let all = fromMaybe undefined $ getMessagesSpec d in
-                       filter (_matchName "message") (content all) 
-
-        mHeader  = let Just h = getHeaderSpec d in getFields (content h)
-        mTrailer = let Just h = getTrailerSpec d in getFields (content h)
-
         genMessage :: Content a -> String
         genMessage (CElem e _) = 
-            let Just mName = getNameAttr e 
-                Just mType = getMsgTypeAttr e 
-                mExprName = 'm' : mName
-                allFields = mHeader ++ getFields (content e) ++ mTrailer
-                allTags px = concatMap _insertTag allFields
-                    where 
-                        _insertTag n = 
-                            let tName = 't' : n in 
-                                px ++ "LT.insert (tnum " ++ tName ++ ") " ++ tName ++ " $\n"
+            let msg' = mName $ fromMaybe undefined (getNameAttr e)
+                msgBody' = msg' ++ "Body"
+                mType = fromMaybe undefined $ getMsgTypeAttr e 
+                tags' = allTags $ getFields (content e) 
             in 
-                mExprName ++ " :: FIXMessageSpec\n" ++
-                mExprName ++ " = FMSpec { mType = (C.pack \"" ++ mType ++ "\"), mTags = "
-                    ++ mExprName ++ "Tags }\n" ++
+                msg' ++ " :: FIXMessageSpec\n" ++
+                msg' ++ " = FMSpec { mType = (C.pack \"" 
+                    ++ mType ++ "\"), mBody = " ++ msgBody' ++ " }\n" ++
                 "   where\n" ++
-                "      " ++ mExprName ++ "Tags = \n" ++ 
-                allTags "          " ++ 
+                "      " ++ msgBody' ++ " = \n" ++ 
+                concatMap ((++) "          ") tags' ++ 
                 "          LT.new\n\n"
 
-        getNameAttr = getAttr "name"
         getMsgTypeAttr = getAttr "msgtype"
 
-        getFields :: [Content a] -> [String]
-        getFields [] = []
-        getFields (CElem e@(Elem (N n) _ _) _ : cs) =
-            let rest = getFields cs 
-                eName = fromMaybe undefined (getNameAttr e)
-            in
-                (if n == "field" then (:) eName else id) rest
-        getFields (_ : cs) = getFields cs
 
 
 
@@ -139,4 +175,6 @@ main = do
     let xmlDoc = xmlParse "/dev/null" xmlContent
         Just fields = getFieldSpec xmlDoc in 
         do putStr (concatMap genField (content fields))
-           putStr $ genMessages xmlDoc
+           putStr $ genFIXHeader xmlDoc
+           putStr $ genFIXTrailer xmlDoc
+           {-putStr $ genMessages xmlDoc-}

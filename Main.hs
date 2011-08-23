@@ -7,7 +7,7 @@ import qualified Data.ByteString as B hiding ( putStr )
 import qualified Data.ByteString.Char8 as C
 -- import Control.Monad.Trans
 import Control.Concurrent
-import Data.FIX42.Tags
+{-import Data.FIX42.Tags-}
 
 
 main :: IO ()
