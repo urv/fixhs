@@ -22,6 +22,9 @@ headerName d = "headerFIX" ++ versionFIX d
 trailerName :: Document a -> String
 trailerName d = "trailerFIX" ++ versionFIX d
 
+fixSpecName :: Document a -> String
+fixSpecName a = "fix" ++ versionFIX a
+
 type AttrLookupTable = Map String String
 type ParserLookupTable = Map String String
 
@@ -102,8 +105,9 @@ genField (CElem e _) =
         fparser = fromMaybe undefined $ LT.lookup "type" aLookup
         tparser = toParser fparser
         in
+        fname ++ " :: FIXTag\n" ++ 
         fname ++ " = FIXTag { tnum = " ++ fenum ++ 
-            ", tparser = "  ++ tparser ++ " }\n"
+            ", tparser = "  ++ tparser ++ " }\n\n"
     where
         aLookup = fromAttributes $ attributes e
 genField _ = ""
@@ -154,8 +158,11 @@ genMessages d = concatMap genMessage $ allMessages d
                 tags' = allTags $ getFields (content e) 
             in 
                 msg' ++ " :: FIXMessageSpec\n" ++
-                msg' ++ " = FMSpec { mType = (C.pack \"" 
-                    ++ mType ++ "\"), mBody = " ++ msgBody' ++ " }\n" ++
+                msg' ++ " = FMSpec\n" ++
+                "   { mType = C.pack \"" ++ mType ++ "\"\n" ++
+                "   , mHeader = " ++ headerName d ++ "\n" ++
+                "   , mBody = " ++ msgBody' ++  "\n" ++
+                "   , mTrailer = " ++ trailerName d ++ " }\n" ++
                 "   where\n" ++
                 "      " ++ msgBody' ++ " = \n" ++ 
                 concatMap ((++) "          ") tags' ++ 
@@ -164,17 +171,51 @@ genMessages d = concatMap genMessage $ allMessages d
         getMsgTypeAttr = getAttr "msgtype"
 
 
+genFIXSpec :: Document a -> String
+genFIXSpec d = let spec' = fixSpecName d 
+               in  
+                   spec' ++ " :: FIXSpec\n" ++
+                   spec' ++ " = FSpec\n" ++
+                   "   { fHeader = " ++ headerName d ++ "\n" ++
+                   "   , fTrailer = " ++ trailerName d ++ "\n" ++
+                   "   , fMessages = " ++ spec' ++ "Messages }\n" ++
+                   "   where\n" ++
+                   "      " ++ spec' ++ "Messages =\n" ++
+                       messageMap ++
+                   "          LT.new \n"
+               where
+                messageMap = concatMap _insertMsg $ allMessages d
+                _insertMsg (CElem e _) = 
+                    let msg' = mName $ fromMaybe undefined (getNameAttr e) in 
+                        "          LT.insert (mType " ++ msg' ++ ") " ++ 
+                        msg' ++ " $\n" 
+                _insertMsg _ = undefined
 
 
 xmlFile :: [String] -> String
 xmlFile = head 
 
+moduleName :: [String] -> String
+moduleName xs | length xs > 1 = head $ tail xs
+              | otherwise = "Dummy"
+
 main = do
     args <- getArgs
     xmlContent <- readFile $ xmlFile args
     let xmlDoc = xmlParse "/dev/null" xmlContent
-        Just fields = getFieldSpec xmlDoc in 
-        do putStr (concatMap genField (content fields))
+        modName = moduleName args
+        fields = fromMaybe undefined $ getFieldSpec xmlDoc in 
+        do putStr $ moduleHeader modName xmlDoc 
+           putStr "\n\n"
+           putStr $ concatMap genField (content fields)
            putStr $ genFIXHeader xmlDoc
            putStr $ genFIXTrailer xmlDoc
-           {-putStr $ genMessages xmlDoc-}
+           putStr $ genMessages xmlDoc
+           putStr $ genFIXSpec xmlDoc
+    where
+        moduleHeader mod' d = 
+            "module " ++ mod' ++ " where\n" ++
+            "import qualified Data.ByteString.Char8 as C\n" ++ 
+            "import qualified Data.LookupTable as LT ( new, insert )\n" ++
+            "import Common.FIXMessage\n" ++ 
+            "import Common.FIXParser\n" 
