@@ -17,10 +17,10 @@ import System.Time ( CalendarTime )
 import Prelude hiding ( take, null, head, tail, length )
 import Data.Word ( Word8 )
 import Data.ByteString ( ByteString )
-import qualified Data.ByteString as B ( null, head, tail, foldr )
+import qualified Data.ByteString as B ( null, foldr )
 import Data.IntMap ( IntMap )
 import Data.Map ( Map )
-import Data.ByteString.Char8 as C hiding ( take, null, head, tail, length )
+import Data.ByteString.Char8 as C ( pack, cons, append )
 import Data.Attoparsec ( Parser ) 
 
 data FIXTag = FIXTag 
