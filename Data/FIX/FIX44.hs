@@ -1,4 +1,4 @@
-module Data.FIX42.Tags where
+module Data.FIX.FIX44 where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )
 import Common.FIXMessage
@@ -15,7 +15,7 @@ tAdvRefID :: FIXTag
 tAdvRefID = FIXTag { tnum = 3, tparser = toFIXString }
 
 tAdvSide :: FIXTag
-tAdvSide = FIXTag { tnum = 4, tparser = toFIXString }
+tAdvSide = FIXTag { tnum = 4, tparser = toFIXChar }
 
 tAdvTransType :: FIXTag
 tAdvTransType = FIXTag { tnum = 5, tparser = toFIXString }
@@ -42,10 +42,10 @@ tCommission :: FIXTag
 tCommission = FIXTag { tnum = 12, tparser = toFIXAmt }
 
 tCommType :: FIXTag
-tCommType = FIXTag { tnum = 13, tparser = toFIXString }
+tCommType = FIXTag { tnum = 13, tparser = toFIXChar }
 
 tCumQty :: FIXTag
-tCumQty = FIXTag { tnum = 14, tparser = toFIXString }
+tCumQty = FIXTag { tnum = 14, tparser = toFIXQuantity }
 
 tCurrency :: FIXTag
 tCurrency = FIXTag { tnum = 15, tparser = toFIXCurrency }
@@ -63,10 +63,10 @@ tExecRefID :: FIXTag
 tExecRefID = FIXTag { tnum = 19, tparser = toFIXString }
 
 tExecTransType :: FIXTag
-tExecTransType = FIXTag { tnum = 20, tparser = toFIXString }
+tExecTransType = FIXTag { tnum = 20, tparser = toFIXChar }
 
 tHandlInst :: FIXTag
-tHandlInst = FIXTag { tnum = 21, tparser = toFIXString }
+tHandlInst = FIXTag { tnum = 21, tparser = toFIXChar }
 
 tSecurityIDSource :: FIXTag
 tSecurityIDSource = FIXTag { tnum = 22, tparser = toFIXString }
@@ -75,10 +75,10 @@ tIOIID :: FIXTag
 tIOIID = FIXTag { tnum = 23, tparser = toFIXString }
 
 tIOIOthSvc :: FIXTag
-tIOIOthSvc = FIXTag { tnum = 24, tparser = toFIXString }
+tIOIOthSvc = FIXTag { tnum = 24, tparser = toFIXChar }
 
 tIOIQltyInd :: FIXTag
-tIOIQltyInd = FIXTag { tnum = 25, tparser = toFIXString }
+tIOIQltyInd = FIXTag { tnum = 25, tparser = toFIXChar }
 
 tIOIRefID :: FIXTag
 tIOIRefID = FIXTag { tnum = 26, tparser = toFIXString }
@@ -87,10 +87,10 @@ tIOIQty :: FIXTag
 tIOIQty = FIXTag { tnum = 27, tparser = toFIXString }
 
 tIOITransType :: FIXTag
-tIOITransType = FIXTag { tnum = 28, tparser = toFIXString }
+tIOITransType = FIXTag { tnum = 28, tparser = toFIXChar }
 
 tLastCapacity :: FIXTag
-tLastCapacity = FIXTag { tnum = 29, tparser = toFIXString }
+tLastCapacity = FIXTag { tnum = 29, tparser = toFIXChar }
 
 tLastMkt :: FIXTag
 tLastMkt = FIXTag { tnum = 30, tparser = toFIXExchange }
@@ -99,7 +99,7 @@ tLastPx :: FIXTag
 tLastPx = FIXTag { tnum = 31, tparser = toFIXPrice }
 
 tLastQty :: FIXTag
-tLastQty = FIXTag { tnum = 32, tparser = toFIXString }
+tLastQty = FIXTag { tnum = 32, tparser = toFIXQuantity }
 
 tNoLinesOfText :: FIXTag
 tNoLinesOfText = FIXTag { tnum = 33, tparser = toFIXString }
@@ -117,13 +117,13 @@ tOrderID :: FIXTag
 tOrderID = FIXTag { tnum = 37, tparser = toFIXString }
 
 tOrderQty :: FIXTag
-tOrderQty = FIXTag { tnum = 38, tparser = toFIXString }
+tOrderQty = FIXTag { tnum = 38, tparser = toFIXQuantity }
 
 tOrdStatus :: FIXTag
-tOrdStatus = FIXTag { tnum = 39, tparser = toFIXString }
+tOrdStatus = FIXTag { tnum = 39, tparser = toFIXChar }
 
 tOrdType :: FIXTag
-tOrdType = FIXTag { tnum = 40, tparser = toFIXString }
+tOrdType = FIXTag { tnum = 40, tparser = toFIXChar }
 
 tOrigClOrdID :: FIXTag
 tOrigClOrdID = FIXTag { tnum = 41, tparser = toFIXString }
@@ -132,7 +132,7 @@ tOrigTime :: FIXTag
 tOrigTime = FIXTag { tnum = 42, tparser = toFIXUTCTimestamp }
 
 tPossDupFlag :: FIXTag
-tPossDupFlag = FIXTag { tnum = 43, tparser = toFIXString }
+tPossDupFlag = FIXTag { tnum = 43, tparser = toFIXBool }
 
 tPrice :: FIXTag
 tPrice = FIXTag { tnum = 44, tparser = toFIXPrice }
@@ -144,7 +144,7 @@ tRelatdSym :: FIXTag
 tRelatdSym = FIXTag { tnum = 46, tparser = toFIXString }
 
 tRule80A :: FIXTag
-tRule80A = FIXTag { tnum = 47, tparser = toFIXString }
+tRule80A = FIXTag { tnum = 47, tparser = toFIXChar }
 
 tSecurityID :: FIXTag
 tSecurityID = FIXTag { tnum = 48, tparser = toFIXString }
@@ -162,10 +162,10 @@ tSendingTime :: FIXTag
 tSendingTime = FIXTag { tnum = 52, tparser = toFIXUTCTimestamp }
 
 tQuantity :: FIXTag
-tQuantity = FIXTag { tnum = 53, tparser = toFIXString }
+tQuantity = FIXTag { tnum = 53, tparser = toFIXQuantity }
 
 tSide :: FIXTag
-tSide = FIXTag { tnum = 54, tparser = toFIXString }
+tSide = FIXTag { tnum = 54, tparser = toFIXChar }
 
 tSymbol :: FIXTag
 tSymbol = FIXTag { tnum = 55, tparser = toFIXString }
@@ -180,19 +180,19 @@ tText :: FIXTag
 tText = FIXTag { tnum = 58, tparser = toFIXString }
 
 tTimeInForce :: FIXTag
-tTimeInForce = FIXTag { tnum = 59, tparser = toFIXString }
+tTimeInForce = FIXTag { tnum = 59, tparser = toFIXChar }
 
 tTransactTime :: FIXTag
 tTransactTime = FIXTag { tnum = 60, tparser = toFIXUTCTimestamp }
 
 tUrgency :: FIXTag
-tUrgency = FIXTag { tnum = 61, tparser = toFIXString }
+tUrgency = FIXTag { tnum = 61, tparser = toFIXChar }
 
 tValidUntilTime :: FIXTag
 tValidUntilTime = FIXTag { tnum = 62, tparser = toFIXUTCTimestamp }
 
 tSettlType :: FIXTag
-tSettlType = FIXTag { tnum = 63, tparser = toFIXString }
+tSettlType = FIXTag { tnum = 63, tparser = toFIXChar }
 
 tSettlDate :: FIXTag
 tSettlDate = FIXTag { tnum = 64, tparser = toFIXLocalMktDate }
@@ -216,7 +216,7 @@ tAllocID :: FIXTag
 tAllocID = FIXTag { tnum = 70, tparser = toFIXString }
 
 tAllocTransType :: FIXTag
-tAllocTransType = FIXTag { tnum = 71, tparser = toFIXString }
+tAllocTransType = FIXTag { tnum = 71, tparser = toFIXChar }
 
 tRefAllocID :: FIXTag
 tRefAllocID = FIXTag { tnum = 72, tparser = toFIXString }
@@ -234,7 +234,7 @@ tExecBroker :: FIXTag
 tExecBroker = FIXTag { tnum = 76, tparser = toFIXString }
 
 tPositionEffect :: FIXTag
-tPositionEffect = FIXTag { tnum = 77, tparser = toFIXString }
+tPositionEffect = FIXTag { tnum = 77, tparser = toFIXChar }
 
 tNoAllocs :: FIXTag
 tNoAllocs = FIXTag { tnum = 78, tparser = toFIXString }
@@ -243,10 +243,10 @@ tAllocAccount :: FIXTag
 tAllocAccount = FIXTag { tnum = 79, tparser = toFIXString }
 
 tAllocQty :: FIXTag
-tAllocQty = FIXTag { tnum = 80, tparser = toFIXString }
+tAllocQty = FIXTag { tnum = 80, tparser = toFIXQuantity }
 
 tProcessCode :: FIXTag
-tProcessCode = FIXTag { tnum = 81, tparser = toFIXString }
+tProcessCode = FIXTag { tnum = 81, tparser = toFIXChar }
 
 tNoRpts :: FIXTag
 tNoRpts = FIXTag { tnum = 82, tparser = toFIXInt }
@@ -255,7 +255,7 @@ tRptSeq :: FIXTag
 tRptSeq = FIXTag { tnum = 83, tparser = toFIXInt }
 
 tCxlQty :: FIXTag
-tCxlQty = FIXTag { tnum = 84, tparser = toFIXString }
+tCxlQty = FIXTag { tnum = 84, tparser = toFIXQuantity }
 
 tNoDlvyInst :: FIXTag
 tNoDlvyInst = FIXTag { tnum = 85, tparser = toFIXString }
@@ -285,7 +285,7 @@ tSignatureLength :: FIXTag
 tSignatureLength = FIXTag { tnum = 93, tparser = toFIXString }
 
 tEmailType :: FIXTag
-tEmailType = FIXTag { tnum = 94, tparser = toFIXString }
+tEmailType = FIXTag { tnum = 94, tparser = toFIXChar }
 
 tRawDataLength :: FIXTag
 tRawDataLength = FIXTag { tnum = 95, tparser = toFIXString }
@@ -294,7 +294,7 @@ tRawData :: FIXTag
 tRawData = FIXTag { tnum = 96, tparser = toFIXString }
 
 tPossResend :: FIXTag
-tPossResend = FIXTag { tnum = 97, tparser = toFIXString }
+tPossResend = FIXTag { tnum = 97, tparser = toFIXBool }
 
 tEncryptMethod :: FIXTag
 tEncryptMethod = FIXTag { tnum = 98, tparser = toFIXInt }
@@ -312,7 +312,7 @@ tOrdRejReason :: FIXTag
 tOrdRejReason = FIXTag { tnum = 103, tparser = toFIXInt }
 
 tIOIQualifier :: FIXTag
-tIOIQualifier = FIXTag { tnum = 104, tparser = toFIXString }
+tIOIQualifier = FIXTag { tnum = 104, tparser = toFIXChar }
 
 tWaveNo :: FIXTag
 tWaveNo = FIXTag { tnum = 105, tparser = toFIXString }
@@ -330,19 +330,19 @@ tClientID :: FIXTag
 tClientID = FIXTag { tnum = 109, tparser = toFIXString }
 
 tMinQty :: FIXTag
-tMinQty = FIXTag { tnum = 110, tparser = toFIXString }
+tMinQty = FIXTag { tnum = 110, tparser = toFIXQuantity }
 
 tMaxFloor :: FIXTag
-tMaxFloor = FIXTag { tnum = 111, tparser = toFIXString }
+tMaxFloor = FIXTag { tnum = 111, tparser = toFIXQuantity }
 
 tTestReqID :: FIXTag
 tTestReqID = FIXTag { tnum = 112, tparser = toFIXString }
 
 tReportToExch :: FIXTag
-tReportToExch = FIXTag { tnum = 113, tparser = toFIXString }
+tReportToExch = FIXTag { tnum = 113, tparser = toFIXBool }
 
 tLocateReqd :: FIXTag
-tLocateReqd = FIXTag { tnum = 114, tparser = toFIXString }
+tLocateReqd = FIXTag { tnum = 114, tparser = toFIXBool }
 
 tOnBehalfOfCompID :: FIXTag
 tOnBehalfOfCompID = FIXTag { tnum = 115, tparser = toFIXString }
@@ -363,25 +363,25 @@ tSettlCurrency :: FIXTag
 tSettlCurrency = FIXTag { tnum = 120, tparser = toFIXCurrency }
 
 tForexReq :: FIXTag
-tForexReq = FIXTag { tnum = 121, tparser = toFIXString }
+tForexReq = FIXTag { tnum = 121, tparser = toFIXBool }
 
 tOrigSendingTime :: FIXTag
 tOrigSendingTime = FIXTag { tnum = 122, tparser = toFIXUTCTimestamp }
 
 tGapFillFlag :: FIXTag
-tGapFillFlag = FIXTag { tnum = 123, tparser = toFIXString }
+tGapFillFlag = FIXTag { tnum = 123, tparser = toFIXBool }
 
 tNoExecs :: FIXTag
 tNoExecs = FIXTag { tnum = 124, tparser = toFIXString }
 
 tCxlType :: FIXTag
-tCxlType = FIXTag { tnum = 125, tparser = toFIXString }
+tCxlType = FIXTag { tnum = 125, tparser = toFIXChar }
 
 tExpireTime :: FIXTag
 tExpireTime = FIXTag { tnum = 126, tparser = toFIXUTCTimestamp }
 
 tDKReason :: FIXTag
-tDKReason = FIXTag { tnum = 127, tparser = toFIXString }
+tDKReason = FIXTag { tnum = 127, tparser = toFIXChar }
 
 tDeliverToCompID :: FIXTag
 tDeliverToCompID = FIXTag { tnum = 128, tparser = toFIXString }
@@ -390,7 +390,7 @@ tDeliverToSubID :: FIXTag
 tDeliverToSubID = FIXTag { tnum = 129, tparser = toFIXString }
 
 tIOINaturalFlag :: FIXTag
-tIOINaturalFlag = FIXTag { tnum = 130, tparser = toFIXString }
+tIOINaturalFlag = FIXTag { tnum = 130, tparser = toFIXBool }
 
 tQuoteReqID :: FIXTag
 tQuoteReqID = FIXTag { tnum = 131, tparser = toFIXString }
@@ -402,10 +402,10 @@ tOfferPx :: FIXTag
 tOfferPx = FIXTag { tnum = 133, tparser = toFIXPrice }
 
 tBidSize :: FIXTag
-tBidSize = FIXTag { tnum = 134, tparser = toFIXString }
+tBidSize = FIXTag { tnum = 134, tparser = toFIXQuantity }
 
 tOfferSize :: FIXTag
-tOfferSize = FIXTag { tnum = 135, tparser = toFIXString }
+tOfferSize = FIXTag { tnum = 135, tparser = toFIXQuantity }
 
 tNoMiscFees :: FIXTag
 tNoMiscFees = FIXTag { tnum = 136, tparser = toFIXString }
@@ -417,13 +417,13 @@ tMiscFeeCurr :: FIXTag
 tMiscFeeCurr = FIXTag { tnum = 138, tparser = toFIXCurrency }
 
 tMiscFeeType :: FIXTag
-tMiscFeeType = FIXTag { tnum = 139, tparser = toFIXString }
+tMiscFeeType = FIXTag { tnum = 139, tparser = toFIXChar }
 
 tPrevClosePx :: FIXTag
 tPrevClosePx = FIXTag { tnum = 140, tparser = toFIXPrice }
 
 tResetSeqNumFlag :: FIXTag
-tResetSeqNumFlag = FIXTag { tnum = 141, tparser = toFIXString }
+tResetSeqNumFlag = FIXTag { tnum = 141, tparser = toFIXBool }
 
 tSenderLocationID :: FIXTag
 tSenderLocationID = FIXTag { tnum = 142, tparser = toFIXString }
@@ -450,13 +450,13 @@ tURLLink :: FIXTag
 tURLLink = FIXTag { tnum = 149, tparser = toFIXString }
 
 tExecType :: FIXTag
-tExecType = FIXTag { tnum = 150, tparser = toFIXString }
+tExecType = FIXTag { tnum = 150, tparser = toFIXChar }
 
 tLeavesQty :: FIXTag
-tLeavesQty = FIXTag { tnum = 151, tparser = toFIXString }
+tLeavesQty = FIXTag { tnum = 151, tparser = toFIXQuantity }
 
 tCashOrderQty :: FIXTag
-tCashOrderQty = FIXTag { tnum = 152, tparser = toFIXString }
+tCashOrderQty = FIXTag { tnum = 152, tparser = toFIXQuantity }
 
 tAllocAvgPx :: FIXTag
 tAllocAvgPx = FIXTag { tnum = 153, tparser = toFIXPrice }
@@ -468,7 +468,7 @@ tSettlCurrFxRate :: FIXTag
 tSettlCurrFxRate = FIXTag { tnum = 155, tparser = toFIXFloat }
 
 tSettlCurrFxRateCalc :: FIXTag
-tSettlCurrFxRateCalc = FIXTag { tnum = 156, tparser = toFIXString }
+tSettlCurrFxRateCalc = FIXTag { tnum = 156, tparser = toFIXChar }
 
 tNumDaysInterest :: FIXTag
 tNumDaysInterest = FIXTag { tnum = 157, tparser = toFIXInt }
@@ -480,7 +480,7 @@ tAccruedInterestAmt :: FIXTag
 tAccruedInterestAmt = FIXTag { tnum = 159, tparser = toFIXAmt }
 
 tSettlInstMode :: FIXTag
-tSettlInstMode = FIXTag { tnum = 160, tparser = toFIXString }
+tSettlInstMode = FIXTag { tnum = 160, tparser = toFIXChar }
 
 tAllocText :: FIXTag
 tAllocText = FIXTag { tnum = 161, tparser = toFIXString }
@@ -489,13 +489,13 @@ tSettlInstID :: FIXTag
 tSettlInstID = FIXTag { tnum = 162, tparser = toFIXString }
 
 tSettlInstTransType :: FIXTag
-tSettlInstTransType = FIXTag { tnum = 163, tparser = toFIXString }
+tSettlInstTransType = FIXTag { tnum = 163, tparser = toFIXChar }
 
 tEmailThreadID :: FIXTag
 tEmailThreadID = FIXTag { tnum = 164, tparser = toFIXString }
 
 tSettlInstSource :: FIXTag
-tSettlInstSource = FIXTag { tnum = 165, tparser = toFIXString }
+tSettlInstSource = FIXTag { tnum = 165, tparser = toFIXChar }
 
 tSettlLocation :: FIXTag
 tSettlLocation = FIXTag { tnum = 166, tparser = toFIXString }
@@ -576,7 +576,7 @@ tOfferForwardPoints :: FIXTag
 tOfferForwardPoints = FIXTag { tnum = 191, tparser = toFIXPriceOffset }
 
 tOrderQty2 :: FIXTag
-tOrderQty2 = FIXTag { tnum = 192, tparser = toFIXString }
+tOrderQty2 = FIXTag { tnum = 192, tparser = toFIXQuantity }
 
 tSettlDate2 :: FIXTag
 tSettlDate2 = FIXTag { tnum = 193, tparser = toFIXLocalMktDate }
@@ -618,19 +618,19 @@ tMaturityDay :: FIXTag
 tMaturityDay = FIXTag { tnum = 205, tparser = toFIXDayOfMonth }
 
 tOptAttribute :: FIXTag
-tOptAttribute = FIXTag { tnum = 206, tparser = toFIXString }
+tOptAttribute = FIXTag { tnum = 206, tparser = toFIXChar }
 
 tSecurityExchange :: FIXTag
 tSecurityExchange = FIXTag { tnum = 207, tparser = toFIXExchange }
 
 tNotifyBrokerOfCredit :: FIXTag
-tNotifyBrokerOfCredit = FIXTag { tnum = 208, tparser = toFIXString }
+tNotifyBrokerOfCredit = FIXTag { tnum = 208, tparser = toFIXBool }
 
 tAllocHandlInst :: FIXTag
 tAllocHandlInst = FIXTag { tnum = 209, tparser = toFIXInt }
 
 tMaxShow :: FIXTag
-tMaxShow = FIXTag { tnum = 210, tparser = toFIXString }
+tMaxShow = FIXTag { tnum = 210, tparser = toFIXQuantity }
 
 tPegOffsetValue :: FIXTag
 tPegOffsetValue = FIXTag { tnum = 211, tparser = toFIXFloat }
@@ -657,7 +657,7 @@ tSpread :: FIXTag
 tSpread = FIXTag { tnum = 218, tparser = toFIXPriceOffset }
 
 tBenchmark :: FIXTag
-tBenchmark = FIXTag { tnum = 219, tparser = toFIXString }
+tBenchmark = FIXTag { tnum = 219, tparser = toFIXChar }
 
 tBenchmarkCurveCurrency :: FIXTag
 tBenchmarkCurveCurrency = FIXTag { tnum = 220, tparser = toFIXCurrency }
@@ -774,7 +774,7 @@ tLegCreditRating :: FIXTag
 tLegCreditRating = FIXTag { tnum = 257, tparser = toFIXString }
 
 tTradedFlatSwitch :: FIXTag
-tTradedFlatSwitch = FIXTag { tnum = 258, tparser = toFIXString }
+tTradedFlatSwitch = FIXTag { tnum = 258, tparser = toFIXBool }
 
 tBasisFeatureDate :: FIXTag
 tBasisFeatureDate = FIXTag { tnum = 259, tparser = toFIXLocalMktDate }
@@ -786,7 +786,7 @@ tMDReqID :: FIXTag
 tMDReqID = FIXTag { tnum = 262, tparser = toFIXString }
 
 tSubscriptionRequestType :: FIXTag
-tSubscriptionRequestType = FIXTag { tnum = 263, tparser = toFIXString }
+tSubscriptionRequestType = FIXTag { tnum = 263, tparser = toFIXChar }
 
 tMarketDepth :: FIXTag
 tMarketDepth = FIXTag { tnum = 264, tparser = toFIXInt }
@@ -795,7 +795,7 @@ tMDUpdateType :: FIXTag
 tMDUpdateType = FIXTag { tnum = 265, tparser = toFIXInt }
 
 tAggregatedBook :: FIXTag
-tAggregatedBook = FIXTag { tnum = 266, tparser = toFIXString }
+tAggregatedBook = FIXTag { tnum = 266, tparser = toFIXBool }
 
 tNoMDEntryTypes :: FIXTag
 tNoMDEntryTypes = FIXTag { tnum = 267, tparser = toFIXString }
@@ -804,13 +804,13 @@ tNoMDEntries :: FIXTag
 tNoMDEntries = FIXTag { tnum = 268, tparser = toFIXString }
 
 tMDEntryType :: FIXTag
-tMDEntryType = FIXTag { tnum = 269, tparser = toFIXString }
+tMDEntryType = FIXTag { tnum = 269, tparser = toFIXChar }
 
 tMDEntryPx :: FIXTag
 tMDEntryPx = FIXTag { tnum = 270, tparser = toFIXPrice }
 
 tMDEntrySize :: FIXTag
-tMDEntrySize = FIXTag { tnum = 271, tparser = toFIXString }
+tMDEntrySize = FIXTag { tnum = 271, tparser = toFIXQuantity }
 
 tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag { tnum = 272, tparser = toFIXString }
@@ -819,7 +819,7 @@ tMDEntryTime :: FIXTag
 tMDEntryTime = FIXTag { tnum = 273, tparser = toFIXUTCTimeOnly }
 
 tTickDirection :: FIXTag
-tTickDirection = FIXTag { tnum = 274, tparser = toFIXString }
+tTickDirection = FIXTag { tnum = 274, tparser = toFIXChar }
 
 tMDMkt :: FIXTag
 tMDMkt = FIXTag { tnum = 275, tparser = toFIXExchange }
@@ -834,13 +834,13 @@ tMDEntryID :: FIXTag
 tMDEntryID = FIXTag { tnum = 278, tparser = toFIXString }
 
 tMDUpdateAction :: FIXTag
-tMDUpdateAction = FIXTag { tnum = 279, tparser = toFIXString }
+tMDUpdateAction = FIXTag { tnum = 279, tparser = toFIXChar }
 
 tMDEntryRefID :: FIXTag
 tMDEntryRefID = FIXTag { tnum = 280, tparser = toFIXString }
 
 tMDReqRejReason :: FIXTag
-tMDReqRejReason = FIXTag { tnum = 281, tparser = toFIXString }
+tMDReqRejReason = FIXTag { tnum = 281, tparser = toFIXChar }
 
 tMDEntryOriginator :: FIXTag
 tMDEntryOriginator = FIXTag { tnum = 282, tparser = toFIXString }
@@ -852,7 +852,7 @@ tDeskID :: FIXTag
 tDeskID = FIXTag { tnum = 284, tparser = toFIXString }
 
 tDeleteReason :: FIXTag
-tDeleteReason = FIXTag { tnum = 285, tparser = toFIXString }
+tDeleteReason = FIXTag { tnum = 285, tparser = toFIXChar }
 
 tOpenCloseSettlFlag :: FIXTag
 tOpenCloseSettlFlag = FIXTag { tnum = 286, tparser = toFIXMultipleValueString }
@@ -876,10 +876,10 @@ tCorporateAction :: FIXTag
 tCorporateAction = FIXTag { tnum = 292, tparser = toFIXMultipleValueString }
 
 tDefBidSize :: FIXTag
-tDefBidSize = FIXTag { tnum = 293, tparser = toFIXString }
+tDefBidSize = FIXTag { tnum = 293, tparser = toFIXQuantity }
 
 tDefOfferSize :: FIXTag
-tDefOfferSize = FIXTag { tnum = 294, tparser = toFIXString }
+tDefOfferSize = FIXTag { tnum = 294, tparser = toFIXQuantity }
 
 tNoQuoteEntries :: FIXTag
 tNoQuoteEntries = FIXTag { tnum = 295, tparser = toFIXString }
@@ -948,13 +948,13 @@ tUnderlyingStrikePrice :: FIXTag
 tUnderlyingStrikePrice = FIXTag { tnum = 316, tparser = toFIXPrice }
 
 tUnderlyingOptAttribute :: FIXTag
-tUnderlyingOptAttribute = FIXTag { tnum = 317, tparser = toFIXString }
+tUnderlyingOptAttribute = FIXTag { tnum = 317, tparser = toFIXChar }
 
 tUnderlyingCurrency :: FIXTag
 tUnderlyingCurrency = FIXTag { tnum = 318, tparser = toFIXCurrency }
 
 tRatioQty :: FIXTag
-tRatioQty = FIXTag { tnum = 319, tparser = toFIXString }
+tRatioQty = FIXTag { tnum = 319, tparser = toFIXQuantity }
 
 tSecurityReqID :: FIXTag
 tSecurityReqID = FIXTag { tnum = 320, tparser = toFIXString }
@@ -972,25 +972,25 @@ tSecurityStatusReqID :: FIXTag
 tSecurityStatusReqID = FIXTag { tnum = 324, tparser = toFIXString }
 
 tUnsolicitedIndicator :: FIXTag
-tUnsolicitedIndicator = FIXTag { tnum = 325, tparser = toFIXString }
+tUnsolicitedIndicator = FIXTag { tnum = 325, tparser = toFIXBool }
 
 tSecurityTradingStatus :: FIXTag
 tSecurityTradingStatus = FIXTag { tnum = 326, tparser = toFIXInt }
 
 tHaltReasonChar :: FIXTag
-tHaltReasonChar = FIXTag { tnum = 327, tparser = toFIXString }
+tHaltReasonChar = FIXTag { tnum = 327, tparser = toFIXChar }
 
 tInViewOfCommon :: FIXTag
-tInViewOfCommon = FIXTag { tnum = 328, tparser = toFIXString }
+tInViewOfCommon = FIXTag { tnum = 328, tparser = toFIXBool }
 
 tDueToRelated :: FIXTag
-tDueToRelated = FIXTag { tnum = 329, tparser = toFIXString }
+tDueToRelated = FIXTag { tnum = 329, tparser = toFIXBool }
 
 tBuyVolume :: FIXTag
-tBuyVolume = FIXTag { tnum = 330, tparser = toFIXString }
+tBuyVolume = FIXTag { tnum = 330, tparser = toFIXQuantity }
 
 tSellVolume :: FIXTag
-tSellVolume = FIXTag { tnum = 331, tparser = toFIXString }
+tSellVolume = FIXTag { tnum = 331, tparser = toFIXQuantity }
 
 tHighPx :: FIXTag
 tHighPx = FIXTag { tnum = 332, tparser = toFIXPrice }
@@ -1119,7 +1119,7 @@ tSessionRejectReason :: FIXTag
 tSessionRejectReason = FIXTag { tnum = 373, tparser = toFIXInt }
 
 tBidRequestTransType :: FIXTag
-tBidRequestTransType = FIXTag { tnum = 374, tparser = toFIXString }
+tBidRequestTransType = FIXTag { tnum = 374, tparser = toFIXChar }
 
 tContraBroker :: FIXTag
 tContraBroker = FIXTag { tnum = 375, tparser = toFIXString }
@@ -1128,7 +1128,7 @@ tComplianceID :: FIXTag
 tComplianceID = FIXTag { tnum = 376, tparser = toFIXString }
 
 tSolicitedFlag :: FIXTag
-tSolicitedFlag = FIXTag { tnum = 377, tparser = toFIXString }
+tSolicitedFlag = FIXTag { tnum = 377, tparser = toFIXBool }
 
 tExecRestatementReason :: FIXTag
 tExecRestatementReason = FIXTag { tnum = 378, tparser = toFIXInt }
@@ -1152,16 +1152,16 @@ tNoMsgTypes :: FIXTag
 tNoMsgTypes = FIXTag { tnum = 384, tparser = toFIXString }
 
 tMsgDirection :: FIXTag
-tMsgDirection = FIXTag { tnum = 385, tparser = toFIXString }
+tMsgDirection = FIXTag { tnum = 385, tparser = toFIXChar }
 
 tNoTradingSessions :: FIXTag
 tNoTradingSessions = FIXTag { tnum = 386, tparser = toFIXString }
 
 tTotalVolumeTraded :: FIXTag
-tTotalVolumeTraded = FIXTag { tnum = 387, tparser = toFIXString }
+tTotalVolumeTraded = FIXTag { tnum = 387, tparser = toFIXQuantity }
 
 tDiscretionInst :: FIXTag
-tDiscretionInst = FIXTag { tnum = 388, tparser = toFIXString }
+tDiscretionInst = FIXTag { tnum = 388, tparser = toFIXChar }
 
 tDiscretionOffsetValue :: FIXTag
 tDiscretionOffsetValue = FIXTag { tnum = 389, tparser = toFIXFloat }
@@ -1230,7 +1230,7 @@ tWtAverageLiquidity :: FIXTag
 tWtAverageLiquidity = FIXTag { tnum = 410, tparser = toFIXString }
 
 tExchangeForPhysical :: FIXTag
-tExchangeForPhysical = FIXTag { tnum = 411, tparser = toFIXString }
+tExchangeForPhysical = FIXTag { tnum = 411, tparser = toFIXBool }
 
 tOutMainCntryUIndex :: FIXTag
 tOutMainCntryUIndex = FIXTag { tnum = 412, tparser = toFIXAmt }
@@ -1251,10 +1251,10 @@ tNumBidders :: FIXTag
 tNumBidders = FIXTag { tnum = 417, tparser = toFIXInt }
 
 tBidTradeType :: FIXTag
-tBidTradeType = FIXTag { tnum = 418, tparser = toFIXString }
+tBidTradeType = FIXTag { tnum = 418, tparser = toFIXChar }
 
 tBasisPxType :: FIXTag
-tBasisPxType = FIXTag { tnum = 419, tparser = toFIXString }
+tBasisPxType = FIXTag { tnum = 419, tparser = toFIXChar }
 
 tNoBidComponents :: FIXTag
 tNoBidComponents = FIXTag { tnum = 420, tparser = toFIXString }
@@ -1269,10 +1269,10 @@ tPriceType :: FIXTag
 tPriceType = FIXTag { tnum = 423, tparser = toFIXInt }
 
 tDayOrderQty :: FIXTag
-tDayOrderQty = FIXTag { tnum = 424, tparser = toFIXString }
+tDayOrderQty = FIXTag { tnum = 424, tparser = toFIXQuantity }
 
 tDayCumQty :: FIXTag
-tDayCumQty = FIXTag { tnum = 425, tparser = toFIXString }
+tDayCumQty = FIXTag { tnum = 425, tparser = toFIXQuantity }
 
 tDayAvgPx :: FIXTag
 tDayAvgPx = FIXTag { tnum = 426, tparser = toFIXPrice }
@@ -1296,10 +1296,10 @@ tExpireDate :: FIXTag
 tExpireDate = FIXTag { tnum = 432, tparser = toFIXLocalMktDate }
 
 tListExecInstType :: FIXTag
-tListExecInstType = FIXTag { tnum = 433, tparser = toFIXString }
+tListExecInstType = FIXTag { tnum = 433, tparser = toFIXChar }
 
 tCxlRejResponseTo :: FIXTag
-tCxlRejResponseTo = FIXTag { tnum = 434, tparser = toFIXString }
+tCxlRejResponseTo = FIXTag { tnum = 434, tparser = toFIXChar }
 
 tUnderlyingCouponRate :: FIXTag
 tUnderlyingCouponRate = FIXTag { tnum = 435, tparser = toFIXString }
@@ -1308,7 +1308,7 @@ tUnderlyingContractMultiplier :: FIXTag
 tUnderlyingContractMultiplier = FIXTag { tnum = 436, tparser = toFIXFloat }
 
 tContraTradeQty :: FIXTag
-tContraTradeQty = FIXTag { tnum = 437, tparser = toFIXString }
+tContraTradeQty = FIXTag { tnum = 437, tparser = toFIXQuantity }
 
 tContraTradeTime :: FIXTag
 tContraTradeTime = FIXTag { tnum = 438, tparser = toFIXUTCTimestamp }
@@ -1323,7 +1323,7 @@ tLiquidityNumSecurities :: FIXTag
 tLiquidityNumSecurities = FIXTag { tnum = 441, tparser = toFIXInt }
 
 tMultiLegReportingType :: FIXTag
-tMultiLegReportingType = FIXTag { tnum = 442, tparser = toFIXString }
+tMultiLegReportingType = FIXTag { tnum = 442, tparser = toFIXChar }
 
 tStrikeTime :: FIXTag
 tStrikeTime = FIXTag { tnum = 443, tparser = toFIXUTCTimestamp }
@@ -1338,7 +1338,7 @@ tEncodedListStatusText :: FIXTag
 tEncodedListStatusText = FIXTag { tnum = 446, tparser = toFIXString }
 
 tPartyIDSource :: FIXTag
-tPartyIDSource = FIXTag { tnum = 447, tparser = toFIXString }
+tPartyIDSource = FIXTag { tnum = 447, tparser = toFIXChar }
 
 tPartyID :: FIXTag
 tPartyID = FIXTag { tnum = 448, tparser = toFIXString }
@@ -1389,7 +1389,7 @@ tUnderlyingCFICode :: FIXTag
 tUnderlyingCFICode = FIXTag { tnum = 463, tparser = toFIXString }
 
 tTestMessageIndicator :: FIXTag
-tTestMessageIndicator = FIXTag { tnum = 464, tparser = toFIXString }
+tTestMessageIndicator = FIXTag { tnum = 464, tparser = toFIXBool }
 
 tQuantityType :: FIXTag
 tQuantityType = FIXTag { tnum = 465, tparser = toFIXInt }
@@ -1401,7 +1401,7 @@ tIndividualAllocID :: FIXTag
 tIndividualAllocID = FIXTag { tnum = 467, tparser = toFIXString }
 
 tRoundingDirection :: FIXTag
-tRoundingDirection = FIXTag { tnum = 468, tparser = toFIXString }
+tRoundingDirection = FIXTag { tnum = 468, tparser = toFIXChar }
 
 tRoundingModulus :: FIXTag
 tRoundingModulus = FIXTag { tnum = 469, tparser = toFIXFloat }
@@ -1437,10 +1437,10 @@ tCommCurrency :: FIXTag
 tCommCurrency = FIXTag { tnum = 479, tparser = toFIXCurrency }
 
 tCancellationRights :: FIXTag
-tCancellationRights = FIXTag { tnum = 480, tparser = toFIXString }
+tCancellationRights = FIXTag { tnum = 480, tparser = toFIXChar }
 
 tMoneyLaunderingStatus :: FIXTag
-tMoneyLaunderingStatus = FIXTag { tnum = 481, tparser = toFIXString }
+tMoneyLaunderingStatus = FIXTag { tnum = 481, tparser = toFIXChar }
 
 tMailingInst :: FIXTag
 tMailingInst = FIXTag { tnum = 482, tparser = toFIXString }
@@ -1449,7 +1449,7 @@ tTransBkdTime :: FIXTag
 tTransBkdTime = FIXTag { tnum = 483, tparser = toFIXUTCTimestamp }
 
 tExecPriceType :: FIXTag
-tExecPriceType = FIXTag { tnum = 484, tparser = toFIXString }
+tExecPriceType = FIXTag { tnum = 484, tparser = toFIXChar }
 
 tExecPriceAdjustment :: FIXTag
 tExecPriceAdjustment = FIXTag { tnum = 485, tparser = toFIXFloat }
@@ -1488,7 +1488,7 @@ tRegistRejReasonText :: FIXTag
 tRegistRejReasonText = FIXTag { tnum = 496, tparser = toFIXString }
 
 tFundRenewWaiv :: FIXTag
-tFundRenewWaiv = FIXTag { tnum = 497, tparser = toFIXString }
+tFundRenewWaiv = FIXTag { tnum = 497, tparser = toFIXChar }
 
 tCashDistribAgentName :: FIXTag
 tCashDistribAgentName = FIXTag { tnum = 498, tparser = toFIXString }
@@ -1515,7 +1515,7 @@ tPaymentRemitterID :: FIXTag
 tPaymentRemitterID = FIXTag { tnum = 505, tparser = toFIXString }
 
 tRegistStatus :: FIXTag
-tRegistStatus = FIXTag { tnum = 506, tparser = toFIXString }
+tRegistStatus = FIXTag { tnum = 506, tparser = toFIXChar }
 
 tRegistRejReasonCode :: FIXTag
 tRegistRejReasonCode = FIXTag { tnum = 507, tparser = toFIXInt }
@@ -1539,7 +1539,7 @@ tRegistID :: FIXTag
 tRegistID = FIXTag { tnum = 513, tparser = toFIXString }
 
 tRegistTransType :: FIXTag
-tRegistTransType = FIXTag { tnum = 514, tparser = toFIXString }
+tRegistTransType = FIXTag { tnum = 514, tparser = toFIXChar }
 
 tExecValuationPoint :: FIXTag
 tExecValuationPoint = FIXTag { tnum = 515, tparser = toFIXUTCTimestamp }
@@ -1548,7 +1548,7 @@ tOrderPercent :: FIXTag
 tOrderPercent = FIXTag { tnum = 516, tparser = toFIXString }
 
 tOwnershipType :: FIXTag
-tOwnershipType = FIXTag { tnum = 517, tparser = toFIXString }
+tOwnershipType = FIXTag { tnum = 517, tparser = toFIXChar }
 
 tNoContAmts :: FIXTag
 tNoContAmts = FIXTag { tnum = 518, tparser = toFIXString }
@@ -1572,7 +1572,7 @@ tNestedPartyID :: FIXTag
 tNestedPartyID = FIXTag { tnum = 524, tparser = toFIXString }
 
 tNestedPartyIDSource :: FIXTag
-tNestedPartyIDSource = FIXTag { tnum = 525, tparser = toFIXString }
+tNestedPartyIDSource = FIXTag { tnum = 525, tparser = toFIXChar }
 
 tSecondaryClOrdID :: FIXTag
 tSecondaryClOrdID = FIXTag { tnum = 526, tparser = toFIXString }
@@ -1581,19 +1581,19 @@ tSecondaryExecID :: FIXTag
 tSecondaryExecID = FIXTag { tnum = 527, tparser = toFIXString }
 
 tOrderCapacity :: FIXTag
-tOrderCapacity = FIXTag { tnum = 528, tparser = toFIXString }
+tOrderCapacity = FIXTag { tnum = 528, tparser = toFIXChar }
 
 tOrderRestrictions :: FIXTag
 tOrderRestrictions = FIXTag { tnum = 529, tparser = toFIXMultipleValueString }
 
 tMassCancelRequestType :: FIXTag
-tMassCancelRequestType = FIXTag { tnum = 530, tparser = toFIXString }
+tMassCancelRequestType = FIXTag { tnum = 530, tparser = toFIXChar }
 
 tMassCancelResponse :: FIXTag
-tMassCancelResponse = FIXTag { tnum = 531, tparser = toFIXString }
+tMassCancelResponse = FIXTag { tnum = 531, tparser = toFIXChar }
 
 tMassCancelRejectReason :: FIXTag
-tMassCancelRejectReason = FIXTag { tnum = 532, tparser = toFIXString }
+tMassCancelRejectReason = FIXTag { tnum = 532, tparser = toFIXChar }
 
 tTotalAffectedOrders :: FIXTag
 tTotalAffectedOrders = FIXTag { tnum = 533, tparser = toFIXInt }
@@ -1629,7 +1629,7 @@ tInstrRegistry :: FIXTag
 tInstrRegistry = FIXTag { tnum = 543, tparser = toFIXString }
 
 tCashMargin :: FIXTag
-tCashMargin = FIXTag { tnum = 544, tparser = toFIXString }
+tCashMargin = FIXTag { tnum = 544, tparser = toFIXChar }
 
 tNestedPartySubID :: FIXTag
 tNestedPartySubID = FIXTag { tnum = 545, tparser = toFIXString }
@@ -1638,7 +1638,7 @@ tScope :: FIXTag
 tScope = FIXTag { tnum = 546, tparser = toFIXMultipleValueString }
 
 tMDImplicitDelete :: FIXTag
-tMDImplicitDelete = FIXTag { tnum = 547, tparser = toFIXString }
+tMDImplicitDelete = FIXTag { tnum = 547, tparser = toFIXBool }
 
 tCrossID :: FIXTag
 tCrossID = FIXTag { tnum = 548, tparser = toFIXString }
@@ -1680,16 +1680,16 @@ tSecurityRequestResult :: FIXTag
 tSecurityRequestResult = FIXTag { tnum = 560, tparser = toFIXInt }
 
 tRoundLot :: FIXTag
-tRoundLot = FIXTag { tnum = 561, tparser = toFIXString }
+tRoundLot = FIXTag { tnum = 561, tparser = toFIXQuantity }
 
 tMinTradeVol :: FIXTag
-tMinTradeVol = FIXTag { tnum = 562, tparser = toFIXString }
+tMinTradeVol = FIXTag { tnum = 562, tparser = toFIXQuantity }
 
 tMultiLegRptTypeReq :: FIXTag
 tMultiLegRptTypeReq = FIXTag { tnum = 563, tparser = toFIXInt }
 
 tLegPositionEffect :: FIXTag
-tLegPositionEffect = FIXTag { tnum = 564, tparser = toFIXString }
+tLegPositionEffect = FIXTag { tnum = 564, tparser = toFIXChar }
 
 tLegCoveredOrUncovered :: FIXTag
 tLegCoveredOrUncovered = FIXTag { tnum = 565, tparser = toFIXInt }
@@ -1707,7 +1707,7 @@ tTradeRequestType :: FIXTag
 tTradeRequestType = FIXTag { tnum = 569, tparser = toFIXInt }
 
 tPreviouslyReported :: FIXTag
-tPreviouslyReported = FIXTag { tnum = 570, tparser = toFIXString }
+tPreviouslyReported = FIXTag { tnum = 570, tparser = toFIXBool }
 
 tTradeReportID :: FIXTag
 tTradeReportID = FIXTag { tnum = 571, tparser = toFIXString }
@@ -1716,13 +1716,13 @@ tTradeReportRefID :: FIXTag
 tTradeReportRefID = FIXTag { tnum = 572, tparser = toFIXString }
 
 tMatchStatus :: FIXTag
-tMatchStatus = FIXTag { tnum = 573, tparser = toFIXString }
+tMatchStatus = FIXTag { tnum = 573, tparser = toFIXChar }
 
 tMatchType :: FIXTag
 tMatchType = FIXTag { tnum = 574, tparser = toFIXString }
 
 tOddLot :: FIXTag
-tOddLot = FIXTag { tnum = 575, tparser = toFIXString }
+tOddLot = FIXTag { tnum = 575, tparser = toFIXBool }
 
 tNoClearingInstructions :: FIXTag
 tNoClearingInstructions = FIXTag { tnum = 576, tparser = toFIXString }
@@ -1758,19 +1758,19 @@ tOrigOrdModTime :: FIXTag
 tOrigOrdModTime = FIXTag { tnum = 586, tparser = toFIXUTCTimestamp }
 
 tLegSettlType :: FIXTag
-tLegSettlType = FIXTag { tnum = 587, tparser = toFIXString }
+tLegSettlType = FIXTag { tnum = 587, tparser = toFIXChar }
 
 tLegSettlDate :: FIXTag
 tLegSettlDate = FIXTag { tnum = 588, tparser = toFIXLocalMktDate }
 
 tDayBookingInst :: FIXTag
-tDayBookingInst = FIXTag { tnum = 589, tparser = toFIXString }
+tDayBookingInst = FIXTag { tnum = 589, tparser = toFIXChar }
 
 tBookingUnit :: FIXTag
-tBookingUnit = FIXTag { tnum = 590, tparser = toFIXString }
+tBookingUnit = FIXTag { tnum = 590, tparser = toFIXChar }
 
 tPreallocMethod :: FIXTag
-tPreallocMethod = FIXTag { tnum = 591, tparser = toFIXString }
+tPreallocMethod = FIXTag { tnum = 591, tparser = toFIXChar }
 
 tUnderlyingCountryOfIssue :: FIXTag
 tUnderlyingCountryOfIssue = FIXTag { tnum = 592, tparser = toFIXString }
@@ -1836,7 +1836,7 @@ tLegStrikePrice :: FIXTag
 tLegStrikePrice = FIXTag { tnum = 612, tparser = toFIXPrice }
 
 tLegOptAttribute :: FIXTag
-tLegOptAttribute = FIXTag { tnum = 613, tparser = toFIXString }
+tLegOptAttribute = FIXTag { tnum = 613, tparser = toFIXChar }
 
 tLegContractMultiplier :: FIXTag
 tLegContractMultiplier = FIXTag { tnum = 614, tparser = toFIXFloat }
@@ -1869,7 +1869,7 @@ tLegRatioQty :: FIXTag
 tLegRatioQty = FIXTag { tnum = 623, tparser = toFIXFloat }
 
 tLegSide :: FIXTag
-tLegSide = FIXTag { tnum = 624, tparser = toFIXString }
+tLegSide = FIXTag { tnum = 624, tparser = toFIXChar }
 
 tTradingSessionSubID :: FIXTag
 tTradingSessionSubID = FIXTag { tnum = 625, tparser = toFIXString }
@@ -1905,7 +1905,7 @@ tClearingFeeIndicator :: FIXTag
 tClearingFeeIndicator = FIXTag { tnum = 635, tparser = toFIXString }
 
 tWorkingIndicator :: FIXTag
-tWorkingIndicator = FIXTag { tnum = 636, tparser = toFIXString }
+tWorkingIndicator = FIXTag { tnum = 636, tparser = toFIXBool }
 
 tLegLastPx :: FIXTag
 tLegLastPx = FIXTag { tnum = 637, tparser = toFIXPrice }
@@ -1938,22 +1938,22 @@ tMktOfferPx :: FIXTag
 tMktOfferPx = FIXTag { tnum = 646, tparser = toFIXPrice }
 
 tMinBidSize :: FIXTag
-tMinBidSize = FIXTag { tnum = 647, tparser = toFIXString }
+tMinBidSize = FIXTag { tnum = 647, tparser = toFIXQuantity }
 
 tMinOfferSize :: FIXTag
-tMinOfferSize = FIXTag { tnum = 648, tparser = toFIXString }
+tMinOfferSize = FIXTag { tnum = 648, tparser = toFIXQuantity }
 
 tQuoteStatusReqID :: FIXTag
 tQuoteStatusReqID = FIXTag { tnum = 649, tparser = toFIXString }
 
 tLegalConfirm :: FIXTag
-tLegalConfirm = FIXTag { tnum = 650, tparser = toFIXString }
+tLegalConfirm = FIXTag { tnum = 650, tparser = toFIXBool }
 
 tUnderlyingLastPx :: FIXTag
 tUnderlyingLastPx = FIXTag { tnum = 651, tparser = toFIXPrice }
 
 tUnderlyingLastQty :: FIXTag
-tUnderlyingLastQty = FIXTag { tnum = 652, tparser = toFIXString }
+tUnderlyingLastQty = FIXTag { tnum = 652, tparser = toFIXQuantity }
 
 tSecDefStatus :: FIXTag
 tSecDefStatus = FIXTag { tnum = 653, tparser = toFIXInt }
@@ -2016,7 +2016,7 @@ tLegIndividualAllocID :: FIXTag
 tLegIndividualAllocID = FIXTag { tnum = 672, tparser = toFIXString }
 
 tLegAllocQty :: FIXTag
-tLegAllocQty = FIXTag { tnum = 673, tparser = toFIXString }
+tLegAllocQty = FIXTag { tnum = 673, tparser = toFIXQuantity }
 
 tLegAllocAcctIDSource :: FIXTag
 tLegAllocAcctIDSource = FIXTag { tnum = 674, tparser = toFIXString }
@@ -2052,13 +2052,13 @@ tLegOfferPx :: FIXTag
 tLegOfferPx = FIXTag { tnum = 684, tparser = toFIXPrice }
 
 tLegOrderQty :: FIXTag
-tLegOrderQty = FIXTag { tnum = 685, tparser = toFIXString }
+tLegOrderQty = FIXTag { tnum = 685, tparser = toFIXQuantity }
 
 tLegPriceType :: FIXTag
 tLegPriceType = FIXTag { tnum = 686, tparser = toFIXInt }
 
 tLegQty :: FIXTag
-tLegQty = FIXTag { tnum = 687, tparser = toFIXString }
+tLegQty = FIXTag { tnum = 687, tparser = toFIXQuantity }
 
 tLegStipulationType :: FIXTag
 tLegStipulationType = FIXTag { tnum = 688, tparser = toFIXString }
@@ -2082,7 +2082,7 @@ tQuoteRespType :: FIXTag
 tQuoteRespType = FIXTag { tnum = 694, tparser = toFIXInt }
 
 tQuoteQualifier :: FIXTag
-tQuoteQualifier = FIXTag { tnum = 695, tparser = toFIXString }
+tQuoteQualifier = FIXTag { tnum = 695, tparser = toFIXChar }
 
 tYieldRedemptionDate :: FIXTag
 tYieldRedemptionDate = FIXTag { tnum = 696, tparser = toFIXLocalMktDate }
@@ -2097,7 +2097,7 @@ tBenchmarkSecurityID :: FIXTag
 tBenchmarkSecurityID = FIXTag { tnum = 699, tparser = toFIXString }
 
 tReversalIndicator :: FIXTag
-tReversalIndicator = FIXTag { tnum = 700, tparser = toFIXString }
+tReversalIndicator = FIXTag { tnum = 700, tparser = toFIXBool }
 
 tYieldCalcDate :: FIXTag
 tYieldCalcDate = FIXTag { tnum = 701, tparser = toFIXLocalMktDate }
@@ -2109,10 +2109,10 @@ tPosType :: FIXTag
 tPosType = FIXTag { tnum = 703, tparser = toFIXString }
 
 tLongQty :: FIXTag
-tLongQty = FIXTag { tnum = 704, tparser = toFIXString }
+tLongQty = FIXTag { tnum = 704, tparser = toFIXQuantity }
 
 tShortQty :: FIXTag
-tShortQty = FIXTag { tnum = 705, tparser = toFIXString }
+tShortQty = FIXTag { tnum = 705, tparser = toFIXQuantity }
 
 tPosQtyStatus :: FIXTag
 tPosQtyStatus = FIXTag { tnum = 706, tparser = toFIXInt }
@@ -2154,10 +2154,10 @@ tAdjustmentType :: FIXTag
 tAdjustmentType = FIXTag { tnum = 718, tparser = toFIXInt }
 
 tContraryInstructionIndicator :: FIXTag
-tContraryInstructionIndicator = FIXTag { tnum = 719, tparser = toFIXString }
+tContraryInstructionIndicator = FIXTag { tnum = 719, tparser = toFIXBool }
 
 tPriorSpreadIndicator :: FIXTag
-tPriorSpreadIndicator = FIXTag { tnum = 720, tparser = toFIXString }
+tPriorSpreadIndicator = FIXTag { tnum = 720, tparser = toFIXBool }
 
 tPosMaintRptID :: FIXTag
 tPosMaintRptID = FIXTag { tnum = 721, tparser = toFIXString }
@@ -2229,16 +2229,16 @@ tDeliveryDate :: FIXTag
 tDeliveryDate = FIXTag { tnum = 743, tparser = toFIXLocalMktDate }
 
 tAssignmentMethod :: FIXTag
-tAssignmentMethod = FIXTag { tnum = 744, tparser = toFIXString }
+tAssignmentMethod = FIXTag { tnum = 744, tparser = toFIXChar }
 
 tAssignmentUnit :: FIXTag
-tAssignmentUnit = FIXTag { tnum = 745, tparser = toFIXString }
+tAssignmentUnit = FIXTag { tnum = 745, tparser = toFIXQuantity }
 
 tOpenInterest :: FIXTag
 tOpenInterest = FIXTag { tnum = 746, tparser = toFIXAmt }
 
 tExerciseMethod :: FIXTag
-tExerciseMethod = FIXTag { tnum = 747, tparser = toFIXString }
+tExerciseMethod = FIXTag { tnum = 747, tparser = toFIXChar }
 
 tTotNumTradeReports :: FIXTag
 tTotNumTradeReports = FIXTag { tnum = 748, tparser = toFIXInt }
@@ -2259,7 +2259,7 @@ tNoPosAmt :: FIXTag
 tNoPosAmt = FIXTag { tnum = 753, tparser = toFIXString }
 
 tAutoAcceptIndicator :: FIXTag
-tAutoAcceptIndicator = FIXTag { tnum = 754, tparser = toFIXString }
+tAutoAcceptIndicator = FIXTag { tnum = 754, tparser = toFIXBool }
 
 tAllocReportID :: FIXTag
 tAllocReportID = FIXTag { tnum = 755, tparser = toFIXString }
@@ -2271,7 +2271,7 @@ tNested2PartyID :: FIXTag
 tNested2PartyID = FIXTag { tnum = 757, tparser = toFIXString }
 
 tNested2PartyIDSource :: FIXTag
-tNested2PartyIDSource = FIXTag { tnum = 758, tparser = toFIXString }
+tNested2PartyIDSource = FIXTag { tnum = 758, tparser = toFIXChar }
 
 tNested2PartyRole :: FIXTag
 tNested2PartyRole = FIXTag { tnum = 759, tparser = toFIXInt }
@@ -2346,7 +2346,7 @@ tSettlPartyID :: FIXTag
 tSettlPartyID = FIXTag { tnum = 782, tparser = toFIXString }
 
 tSettlPartyIDSource :: FIXTag
-tSettlPartyIDSource = FIXTag { tnum = 783, tparser = toFIXString }
+tSettlPartyIDSource = FIXTag { tnum = 783, tparser = toFIXChar }
 
 tSettlPartyRole :: FIXTag
 tSettlPartyRole = FIXTag { tnum = 784, tparser = toFIXInt }
@@ -2358,7 +2358,7 @@ tSettlPartySubIDType :: FIXTag
 tSettlPartySubIDType = FIXTag { tnum = 786, tparser = toFIXInt }
 
 tDlvyInstType :: FIXTag
-tDlvyInstType = FIXTag { tnum = 787, tparser = toFIXString }
+tDlvyInstType = FIXTag { tnum = 787, tparser = toFIXChar }
 
 tTerminationType :: FIXTag
 tTerminationType = FIXTag { tnum = 788, tparser = toFIXInt }
@@ -2388,7 +2388,7 @@ tAllocCancReplaceReason :: FIXTag
 tAllocCancReplaceReason = FIXTag { tnum = 796, tparser = toFIXInt }
 
 tCopyMsgIndicator :: FIXTag
-tCopyMsgIndicator = FIXTag { tnum = 797, tparser = toFIXString }
+tCopyMsgIndicator = FIXTag { tnum = 797, tparser = toFIXBool }
 
 tAllocAccountType :: FIXTag
 tAllocAccountType = FIXTag { tnum = 798, tparser = toFIXInt }
@@ -2397,7 +2397,7 @@ tOrderAvgPx :: FIXTag
 tOrderAvgPx = FIXTag { tnum = 799, tparser = toFIXPrice }
 
 tOrderBookingQty :: FIXTag
-tOrderBookingQty = FIXTag { tnum = 800, tparser = toFIXString }
+tOrderBookingQty = FIXTag { tnum = 800, tparser = toFIXQuantity }
 
 tNoSettlPartySubIDs :: FIXTag
 tNoSettlPartySubIDs = FIXTag { tnum = 801, tparser = toFIXString }
@@ -2550,7 +2550,7 @@ tLastLiquidityInd :: FIXTag
 tLastLiquidityInd = FIXTag { tnum = 851, tparser = toFIXInt }
 
 tPublishTrdIndicator :: FIXTag
-tPublishTrdIndicator = FIXTag { tnum = 852, tparser = toFIXString }
+tPublishTrdIndicator = FIXTag { tnum = 852, tparser = toFIXBool }
 
 tShortSaleReason :: FIXTag
 tShortSaleReason = FIXTag { tnum = 853, tparser = toFIXInt }
@@ -2583,7 +2583,7 @@ tNoCapacities :: FIXTag
 tNoCapacities = FIXTag { tnum = 862, tparser = toFIXString }
 
 tOrderCapacityQty :: FIXTag
-tOrderCapacityQty = FIXTag { tnum = 863, tparser = toFIXString }
+tOrderCapacityQty = FIXTag { tnum = 863, tparser = toFIXQuantity }
 
 tNoEvents :: FIXTag
 tNoEvents = FIXTag { tnum = 864, tparser = toFIXString }
@@ -2631,7 +2631,7 @@ tUnderlyingCPRegType :: FIXTag
 tUnderlyingCPRegType = FIXTag { tnum = 878, tparser = toFIXString }
 
 tUnderlyingQty :: FIXTag
-tUnderlyingQty = FIXTag { tnum = 879, tparser = toFIXString }
+tUnderlyingQty = FIXTag { tnum = 879, tparser = toFIXQuantity }
 
 tTrdMatchID :: FIXTag
 tTrdMatchID = FIXTag { tnum = 880, tparser = toFIXString }
@@ -2673,7 +2673,7 @@ tTotNoAllocs :: FIXTag
 tTotNoAllocs = FIXTag { tnum = 892, tparser = toFIXInt }
 
 tLastFragment :: FIXTag
-tLastFragment = FIXTag { tnum = 893, tparser = toFIXString }
+tLastFragment = FIXTag { tnum = 893, tparser = toFIXBool }
 
 tCollReqID :: FIXTag
 tCollReqID = FIXTag { tnum = 894, tparser = toFIXString }
@@ -2730,7 +2730,7 @@ tTotNumReports :: FIXTag
 tTotNumReports = FIXTag { tnum = 911, tparser = toFIXInt }
 
 tLastRptRequested :: FIXTag
-tLastRptRequested = FIXTag { tnum = 912, tparser = toFIXString }
+tLastRptRequested = FIXTag { tnum = 912, tparser = toFIXBool }
 
 tAgreementDesc :: FIXTag
 tAgreementDesc = FIXTag { tnum = 913, tparser = toFIXString }
@@ -2844,7 +2844,7 @@ tNested3PartyID :: FIXTag
 tNested3PartyID = FIXTag { tnum = 949, tparser = toFIXString }
 
 tNested3PartyIDSource :: FIXTag
-tNested3PartyIDSource = FIXTag { tnum = 950, tparser = toFIXString }
+tNested3PartyIDSource = FIXTag { tnum = 950, tparser = toFIXChar }
 
 tNested3PartyRole :: FIXTag
 tNested3PartyRole = FIXTag { tnum = 951, tparser = toFIXInt }
@@ -2903,10 +2903,10 @@ trailerFIX44 =
 
 mHeartbeat :: FIXMessageSpec
 mHeartbeat = FMSpec
-   { mType = C.pack "0"
-   , mHeader = headerFIX44
-   , mBody = mHeartbeatBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "0"
+   , msHeader = headerFIX44
+   , msBody = mHeartbeatBody
+   , msTrailer = trailerFIX44 }
    where
       mHeartbeatBody = 
           LT.insert (tnum tTestReqID) tTestReqID $
@@ -2914,10 +2914,10 @@ mHeartbeat = FMSpec
 
 mTestRequest :: FIXMessageSpec
 mTestRequest = FMSpec
-   { mType = C.pack "1"
-   , mHeader = headerFIX44
-   , mBody = mTestRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "1"
+   , msHeader = headerFIX44
+   , msBody = mTestRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mTestRequestBody = 
           LT.insert (tnum tTestReqID) tTestReqID $
@@ -2925,10 +2925,10 @@ mTestRequest = FMSpec
 
 mResendRequest :: FIXMessageSpec
 mResendRequest = FMSpec
-   { mType = C.pack "2"
-   , mHeader = headerFIX44
-   , mBody = mResendRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "2"
+   , msHeader = headerFIX44
+   , msBody = mResendRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mResendRequestBody = 
           LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
@@ -2937,10 +2937,10 @@ mResendRequest = FMSpec
 
 mReject :: FIXMessageSpec
 mReject = FMSpec
-   { mType = C.pack "3"
-   , mHeader = headerFIX44
-   , mBody = mRejectBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "3"
+   , msHeader = headerFIX44
+   , msBody = mRejectBody
+   , msTrailer = trailerFIX44 }
    where
       mRejectBody = 
           LT.insert (tnum tRefSeqNum) tRefSeqNum $
@@ -2954,10 +2954,10 @@ mReject = FMSpec
 
 mSequenceReset :: FIXMessageSpec
 mSequenceReset = FMSpec
-   { mType = C.pack "4"
-   , mHeader = headerFIX44
-   , mBody = mSequenceResetBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "4"
+   , msHeader = headerFIX44
+   , msBody = mSequenceResetBody
+   , msTrailer = trailerFIX44 }
    where
       mSequenceResetBody = 
           LT.insert (tnum tGapFillFlag) tGapFillFlag $
@@ -2966,10 +2966,10 @@ mSequenceReset = FMSpec
 
 mLogout :: FIXMessageSpec
 mLogout = FMSpec
-   { mType = C.pack "5"
-   , mHeader = headerFIX44
-   , mBody = mLogoutBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "5"
+   , msHeader = headerFIX44
+   , msBody = mLogoutBody
+   , msTrailer = trailerFIX44 }
    where
       mLogoutBody = 
           LT.insert (tnum tText) tText $
@@ -2979,10 +2979,10 @@ mLogout = FMSpec
 
 mIOI :: FIXMessageSpec
 mIOI = FMSpec
-   { mType = C.pack "6"
-   , mHeader = headerFIX44
-   , mBody = mIOIBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "6"
+   , msHeader = headerFIX44
+   , msBody = mIOIBody
+   , msTrailer = trailerFIX44 }
    where
       mIOIBody = 
           LT.insert (tnum tIOIID) tIOIID $
@@ -3006,10 +3006,10 @@ mIOI = FMSpec
 
 mAdvertisement :: FIXMessageSpec
 mAdvertisement = FMSpec
-   { mType = C.pack "7"
-   , mHeader = headerFIX44
-   , mBody = mAdvertisementBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "7"
+   , msHeader = headerFIX44
+   , msBody = mAdvertisementBody
+   , msTrailer = trailerFIX44 }
    where
       mAdvertisementBody = 
           LT.insert (tnum tAdvId) tAdvId $
@@ -3033,10 +3033,10 @@ mAdvertisement = FMSpec
 
 mExecutionReport :: FIXMessageSpec
 mExecutionReport = FMSpec
-   { mType = C.pack "8"
-   , mHeader = headerFIX44
-   , mBody = mExecutionReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "8"
+   , msHeader = headerFIX44
+   , msBody = mExecutionReportBody
+   , msTrailer = trailerFIX44 }
    where
       mExecutionReportBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -3166,10 +3166,10 @@ mExecutionReport = FMSpec
 
 mOrderCancelReject :: FIXMessageSpec
 mOrderCancelReject = FMSpec
-   { mType = C.pack "9"
-   , mHeader = headerFIX44
-   , mBody = mOrderCancelRejectBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "9"
+   , msHeader = headerFIX44
+   , msBody = mOrderCancelRejectBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderCancelRejectBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -3197,10 +3197,10 @@ mOrderCancelReject = FMSpec
 
 mLogon :: FIXMessageSpec
 mLogon = FMSpec
-   { mType = C.pack "A"
-   , mHeader = headerFIX44
-   , mBody = mLogonBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "A"
+   , msHeader = headerFIX44
+   , msBody = mLogonBody
+   , msTrailer = trailerFIX44 }
    where
       mLogonBody = 
           LT.insert (tnum tEncryptMethod) tEncryptMethod $
@@ -3217,10 +3217,10 @@ mLogon = FMSpec
 
 mNews :: FIXMessageSpec
 mNews = FMSpec
-   { mType = C.pack "B"
-   , mHeader = headerFIX44
-   , mBody = mNewsBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "B"
+   , msHeader = headerFIX44
+   , msBody = mNewsBody
+   , msTrailer = trailerFIX44 }
    where
       mNewsBody = 
           LT.insert (tnum tOrigTime) tOrigTime $
@@ -3235,10 +3235,10 @@ mNews = FMSpec
 
 mEmail :: FIXMessageSpec
 mEmail = FMSpec
-   { mType = C.pack "C"
-   , mHeader = headerFIX44
-   , mBody = mEmailBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "C"
+   , msHeader = headerFIX44
+   , msBody = mEmailBody
+   , msTrailer = trailerFIX44 }
    where
       mEmailBody = 
           LT.insert (tnum tEmailThreadID) tEmailThreadID $
@@ -3255,10 +3255,10 @@ mEmail = FMSpec
 
 mNewOrderSingle :: FIXMessageSpec
 mNewOrderSingle = FMSpec
-   { mType = C.pack "D"
-   , mHeader = headerFIX44
-   , mBody = mNewOrderSingleBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "D"
+   , msHeader = headerFIX44
+   , msBody = mNewOrderSingleBody
+   , msTrailer = trailerFIX44 }
    where
       mNewOrderSingleBody = 
           LT.insert (tnum tClOrdID) tClOrdID $
@@ -3328,10 +3328,10 @@ mNewOrderSingle = FMSpec
 
 mNewOrderList :: FIXMessageSpec
 mNewOrderList = FMSpec
-   { mType = C.pack "E"
-   , mHeader = headerFIX44
-   , mBody = mNewOrderListBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "E"
+   , msHeader = headerFIX44
+   , msBody = mNewOrderListBody
+   , msTrailer = trailerFIX44 }
    where
       mNewOrderListBody = 
           LT.insert (tnum tListID) tListID $
@@ -3356,10 +3356,10 @@ mNewOrderList = FMSpec
 
 mOrderCancelRequest :: FIXMessageSpec
 mOrderCancelRequest = FMSpec
-   { mType = C.pack "F"
-   , mHeader = headerFIX44
-   , mBody = mOrderCancelRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "F"
+   , msHeader = headerFIX44
+   , msBody = mOrderCancelRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderCancelRequestBody = 
           LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
@@ -3382,10 +3382,10 @@ mOrderCancelRequest = FMSpec
 
 mOrderCancelReplaceRequest :: FIXMessageSpec
 mOrderCancelReplaceRequest = FMSpec
-   { mType = C.pack "G"
-   , mHeader = headerFIX44
-   , mBody = mOrderCancelReplaceRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "G"
+   , msHeader = headerFIX44
+   , msBody = mOrderCancelReplaceRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderCancelReplaceRequestBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -3455,10 +3455,10 @@ mOrderCancelReplaceRequest = FMSpec
 
 mOrderStatusRequest :: FIXMessageSpec
 mOrderStatusRequest = FMSpec
-   { mType = C.pack "H"
-   , mHeader = headerFIX44
-   , mBody = mOrderStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "H"
+   , msHeader = headerFIX44
+   , msBody = mOrderStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderStatusRequestBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -3473,10 +3473,10 @@ mOrderStatusRequest = FMSpec
 
 mAllocationInstruction :: FIXMessageSpec
 mAllocationInstruction = FMSpec
-   { mType = C.pack "J"
-   , mHeader = headerFIX44
-   , mBody = mAllocationInstructionBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "J"
+   , msHeader = headerFIX44
+   , msBody = mAllocationInstructionBody
+   , msTrailer = trailerFIX44 }
    where
       mAllocationInstructionBody = 
           LT.insert (tnum tAllocID) tAllocID $
@@ -3534,10 +3534,10 @@ mAllocationInstruction = FMSpec
 
 mListCancelRequest :: FIXMessageSpec
 mListCancelRequest = FMSpec
-   { mType = C.pack "K"
-   , mHeader = headerFIX44
-   , mBody = mListCancelRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "K"
+   , msHeader = headerFIX44
+   , msBody = mListCancelRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mListCancelRequestBody = 
           LT.insert (tnum tListID) tListID $
@@ -3551,10 +3551,10 @@ mListCancelRequest = FMSpec
 
 mListExecute :: FIXMessageSpec
 mListExecute = FMSpec
-   { mType = C.pack "L"
-   , mHeader = headerFIX44
-   , mBody = mListExecuteBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "L"
+   , msHeader = headerFIX44
+   , msBody = mListExecuteBody
+   , msTrailer = trailerFIX44 }
    where
       mListExecuteBody = 
           LT.insert (tnum tListID) tListID $
@@ -3568,10 +3568,10 @@ mListExecute = FMSpec
 
 mListStatusRequest :: FIXMessageSpec
 mListStatusRequest = FMSpec
-   { mType = C.pack "M"
-   , mHeader = headerFIX44
-   , mBody = mListStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "M"
+   , msHeader = headerFIX44
+   , msBody = mListStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mListStatusRequestBody = 
           LT.insert (tnum tListID) tListID $
@@ -3582,10 +3582,10 @@ mListStatusRequest = FMSpec
 
 mListStatus :: FIXMessageSpec
 mListStatus = FMSpec
-   { mType = C.pack "N"
-   , mHeader = headerFIX44
-   , mBody = mListStatusBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "N"
+   , msHeader = headerFIX44
+   , msBody = mListStatusBody
+   , msTrailer = trailerFIX44 }
    where
       mListStatusBody = 
           LT.insert (tnum tListID) tListID $
@@ -3603,10 +3603,10 @@ mListStatus = FMSpec
 
 mAllocationInstructionAck :: FIXMessageSpec
 mAllocationInstructionAck = FMSpec
-   { mType = C.pack "P"
-   , mHeader = headerFIX44
-   , mBody = mAllocationInstructionAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "P"
+   , msHeader = headerFIX44
+   , msBody = mAllocationInstructionAckBody
+   , msTrailer = trailerFIX44 }
    where
       mAllocationInstructionAckBody = 
           LT.insert (tnum tAllocID) tAllocID $
@@ -3627,10 +3627,10 @@ mAllocationInstructionAck = FMSpec
 
 mDontKnowTrade :: FIXMessageSpec
 mDontKnowTrade = FMSpec
-   { mType = C.pack "Q"
-   , mHeader = headerFIX44
-   , mBody = mDontKnowTradeBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "Q"
+   , msHeader = headerFIX44
+   , msBody = mDontKnowTradeBody
+   , msTrailer = trailerFIX44 }
    where
       mDontKnowTradeBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -3647,10 +3647,10 @@ mDontKnowTrade = FMSpec
 
 mQuoteRequest :: FIXMessageSpec
 mQuoteRequest = FMSpec
-   { mType = C.pack "R"
-   , mHeader = headerFIX44
-   , mBody = mQuoteRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "R"
+   , msHeader = headerFIX44
+   , msBody = mQuoteRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteRequestBody = 
           LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -3664,10 +3664,10 @@ mQuoteRequest = FMSpec
 
 mQuote :: FIXMessageSpec
 mQuote = FMSpec
-   { mType = C.pack "S"
-   , mHeader = headerFIX44
-   , mBody = mQuoteBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "S"
+   , msHeader = headerFIX44
+   , msBody = mQuoteBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteBody = 
           LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -3723,10 +3723,10 @@ mQuote = FMSpec
 
 mSettlementInstructions :: FIXMessageSpec
 mSettlementInstructions = FMSpec
-   { mType = C.pack "T"
-   , mHeader = headerFIX44
-   , mBody = mSettlementInstructionsBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "T"
+   , msHeader = headerFIX44
+   , msBody = mSettlementInstructionsBody
+   , msTrailer = trailerFIX44 }
    where
       mSettlementInstructionsBody = 
           LT.insert (tnum tSettlInstMsgID) tSettlInstMsgID $
@@ -3742,10 +3742,10 @@ mSettlementInstructions = FMSpec
 
 mMarketDataRequest :: FIXMessageSpec
 mMarketDataRequest = FMSpec
-   { mType = C.pack "V"
-   , mHeader = headerFIX44
-   , mBody = mMarketDataRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "V"
+   , msHeader = headerFIX44
+   , msBody = mMarketDataRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mMarketDataRequestBody = 
           LT.insert (tnum tMDReqID) tMDReqID $
@@ -3760,10 +3760,10 @@ mMarketDataRequest = FMSpec
 
 mMarketDataSnapshotFullRefresh :: FIXMessageSpec
 mMarketDataSnapshotFullRefresh = FMSpec
-   { mType = C.pack "W"
-   , mHeader = headerFIX44
-   , mBody = mMarketDataSnapshotFullRefreshBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "W"
+   , msHeader = headerFIX44
+   , msBody = mMarketDataSnapshotFullRefreshBody
+   , msTrailer = trailerFIX44 }
    where
       mMarketDataSnapshotFullRefreshBody = 
           LT.insert (tnum tMDReqID) tMDReqID $
@@ -3776,10 +3776,10 @@ mMarketDataSnapshotFullRefresh = FMSpec
 
 mMarketDataIncrementalRefresh :: FIXMessageSpec
 mMarketDataIncrementalRefresh = FMSpec
-   { mType = C.pack "X"
-   , mHeader = headerFIX44
-   , mBody = mMarketDataIncrementalRefreshBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "X"
+   , msHeader = headerFIX44
+   , msBody = mMarketDataIncrementalRefreshBody
+   , msTrailer = trailerFIX44 }
    where
       mMarketDataIncrementalRefreshBody = 
           LT.insert (tnum tMDReqID) tMDReqID $
@@ -3789,10 +3789,10 @@ mMarketDataIncrementalRefresh = FMSpec
 
 mMarketDataRequestReject :: FIXMessageSpec
 mMarketDataRequestReject = FMSpec
-   { mType = C.pack "Y"
-   , mHeader = headerFIX44
-   , mBody = mMarketDataRequestRejectBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "Y"
+   , msHeader = headerFIX44
+   , msBody = mMarketDataRequestRejectBody
+   , msTrailer = trailerFIX44 }
    where
       mMarketDataRequestRejectBody = 
           LT.insert (tnum tMDReqID) tMDReqID $
@@ -3804,10 +3804,10 @@ mMarketDataRequestReject = FMSpec
 
 mQuoteCancel :: FIXMessageSpec
 mQuoteCancel = FMSpec
-   { mType = C.pack "Z"
-   , mHeader = headerFIX44
-   , mBody = mQuoteCancelBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "Z"
+   , msHeader = headerFIX44
+   , msBody = mQuoteCancelBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteCancelBody = 
           LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -3823,10 +3823,10 @@ mQuoteCancel = FMSpec
 
 mQuoteStatusRequest :: FIXMessageSpec
 mQuoteStatusRequest = FMSpec
-   { mType = C.pack "a"
-   , mHeader = headerFIX44
-   , mBody = mQuoteStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "a"
+   , msHeader = headerFIX44
+   , msBody = mQuoteStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteStatusRequestBody = 
           LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
@@ -3841,10 +3841,10 @@ mQuoteStatusRequest = FMSpec
 
 mMassQuoteAcknowledgement :: FIXMessageSpec
 mMassQuoteAcknowledgement = FMSpec
-   { mType = C.pack "b"
-   , mHeader = headerFIX44
-   , mBody = mMassQuoteAcknowledgementBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "b"
+   , msHeader = headerFIX44
+   , msBody = mMassQuoteAcknowledgementBody
+   , msTrailer = trailerFIX44 }
    where
       mMassQuoteAcknowledgementBody = 
           LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -3863,10 +3863,10 @@ mMassQuoteAcknowledgement = FMSpec
 
 mSecurityDefinitionRequest :: FIXMessageSpec
 mSecurityDefinitionRequest = FMSpec
-   { mType = C.pack "c"
-   , mHeader = headerFIX44
-   , mBody = mSecurityDefinitionRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "c"
+   , msHeader = headerFIX44
+   , msBody = mSecurityDefinitionRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityDefinitionRequestBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -3883,10 +3883,10 @@ mSecurityDefinitionRequest = FMSpec
 
 mSecurityDefinition :: FIXMessageSpec
 mSecurityDefinition = FMSpec
-   { mType = C.pack "d"
-   , mHeader = headerFIX44
-   , mBody = mSecurityDefinitionBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "d"
+   , msHeader = headerFIX44
+   , msBody = mSecurityDefinitionBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityDefinitionBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -3905,10 +3905,10 @@ mSecurityDefinition = FMSpec
 
 mSecurityStatusRequest :: FIXMessageSpec
 mSecurityStatusRequest = FMSpec
-   { mType = C.pack "e"
-   , mHeader = headerFIX44
-   , mBody = mSecurityStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "e"
+   , msHeader = headerFIX44
+   , msBody = mSecurityStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityStatusRequestBody = 
           LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
@@ -3920,10 +3920,10 @@ mSecurityStatusRequest = FMSpec
 
 mSecurityStatus :: FIXMessageSpec
 mSecurityStatus = FMSpec
-   { mType = C.pack "f"
-   , mHeader = headerFIX44
-   , mBody = mSecurityStatusBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "f"
+   , msHeader = headerFIX44
+   , msBody = mSecurityStatusBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityStatusBody = 
           LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
@@ -3951,10 +3951,10 @@ mSecurityStatus = FMSpec
 
 mTradingSessionStatusRequest :: FIXMessageSpec
 mTradingSessionStatusRequest = FMSpec
-   { mType = C.pack "g"
-   , mHeader = headerFIX44
-   , mBody = mTradingSessionStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "g"
+   , msHeader = headerFIX44
+   , msBody = mTradingSessionStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mTradingSessionStatusRequestBody = 
           LT.insert (tnum tTradSesReqID) tTradSesReqID $
@@ -3967,10 +3967,10 @@ mTradingSessionStatusRequest = FMSpec
 
 mTradingSessionStatus :: FIXMessageSpec
 mTradingSessionStatus = FMSpec
-   { mType = C.pack "h"
-   , mHeader = headerFIX44
-   , mBody = mTradingSessionStatusBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "h"
+   , msHeader = headerFIX44
+   , msBody = mTradingSessionStatusBody
+   , msTrailer = trailerFIX44 }
    where
       mTradingSessionStatusBody = 
           LT.insert (tnum tTradSesReqID) tTradSesReqID $
@@ -3994,10 +3994,10 @@ mTradingSessionStatus = FMSpec
 
 mMassQuote :: FIXMessageSpec
 mMassQuote = FMSpec
-   { mType = C.pack "i"
-   , mHeader = headerFIX44
-   , mBody = mMassQuoteBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "i"
+   , msHeader = headerFIX44
+   , msBody = mMassQuoteBody
+   , msTrailer = trailerFIX44 }
    where
       mMassQuoteBody = 
           LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -4013,10 +4013,10 @@ mMassQuote = FMSpec
 
 mBusinessMessageReject :: FIXMessageSpec
 mBusinessMessageReject = FMSpec
-   { mType = C.pack "j"
-   , mHeader = headerFIX44
-   , mBody = mBusinessMessageRejectBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "j"
+   , msHeader = headerFIX44
+   , msBody = mBusinessMessageRejectBody
+   , msTrailer = trailerFIX44 }
    where
       mBusinessMessageRejectBody = 
           LT.insert (tnum tRefSeqNum) tRefSeqNum $
@@ -4030,10 +4030,10 @@ mBusinessMessageReject = FMSpec
 
 mBidRequest :: FIXMessageSpec
 mBidRequest = FMSpec
-   { mType = C.pack "k"
-   , mHeader = headerFIX44
-   , mBody = mBidRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "k"
+   , msHeader = headerFIX44
+   , msBody = mBidRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mBidRequestBody = 
           LT.insert (tnum tBidID) tBidID $
@@ -4067,10 +4067,10 @@ mBidRequest = FMSpec
 
 mBidResponse :: FIXMessageSpec
 mBidResponse = FMSpec
-   { mType = C.pack "l"
-   , mHeader = headerFIX44
-   , mBody = mBidResponseBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "l"
+   , msHeader = headerFIX44
+   , msBody = mBidResponseBody
+   , msTrailer = trailerFIX44 }
    where
       mBidResponseBody = 
           LT.insert (tnum tBidID) tBidID $
@@ -4079,10 +4079,10 @@ mBidResponse = FMSpec
 
 mListStrikePrice :: FIXMessageSpec
 mListStrikePrice = FMSpec
-   { mType = C.pack "m"
-   , mHeader = headerFIX44
-   , mBody = mListStrikePriceBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "m"
+   , msHeader = headerFIX44
+   , msBody = mListStrikePriceBody
+   , msTrailer = trailerFIX44 }
    where
       mListStrikePriceBody = 
           LT.insert (tnum tListID) tListID $
@@ -4092,10 +4092,10 @@ mListStrikePrice = FMSpec
 
 mRegistrationInstructions :: FIXMessageSpec
 mRegistrationInstructions = FMSpec
-   { mType = C.pack "o"
-   , mHeader = headerFIX44
-   , mBody = mRegistrationInstructionsBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "o"
+   , msHeader = headerFIX44
+   , msBody = mRegistrationInstructionsBody
+   , msTrailer = trailerFIX44 }
    where
       mRegistrationInstructionsBody = 
           LT.insert (tnum tRegistID) tRegistID $
@@ -4111,10 +4111,10 @@ mRegistrationInstructions = FMSpec
 
 mRegistrationInstructionsResponse :: FIXMessageSpec
 mRegistrationInstructionsResponse = FMSpec
-   { mType = C.pack "p"
-   , mHeader = headerFIX44
-   , mBody = mRegistrationInstructionsResponseBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "p"
+   , msHeader = headerFIX44
+   , msBody = mRegistrationInstructionsResponseBody
+   , msTrailer = trailerFIX44 }
    where
       mRegistrationInstructionsResponseBody = 
           LT.insert (tnum tRegistID) tRegistID $
@@ -4130,10 +4130,10 @@ mRegistrationInstructionsResponse = FMSpec
 
 mOrderMassCancelRequest :: FIXMessageSpec
 mOrderMassCancelRequest = FMSpec
-   { mType = C.pack "q"
-   , mHeader = headerFIX44
-   , mBody = mOrderMassCancelRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "q"
+   , msHeader = headerFIX44
+   , msBody = mOrderMassCancelRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderMassCancelRequestBody = 
           LT.insert (tnum tClOrdID) tClOrdID $
@@ -4150,10 +4150,10 @@ mOrderMassCancelRequest = FMSpec
 
 mOrderMassCancelReport :: FIXMessageSpec
 mOrderMassCancelReport = FMSpec
-   { mType = C.pack "r"
-   , mHeader = headerFIX44
-   , mBody = mOrderMassCancelReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "r"
+   , msHeader = headerFIX44
+   , msBody = mOrderMassCancelReportBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderMassCancelReportBody = 
           LT.insert (tnum tClOrdID) tClOrdID $
@@ -4175,10 +4175,10 @@ mOrderMassCancelReport = FMSpec
 
 mNewOrderCross :: FIXMessageSpec
 mNewOrderCross = FMSpec
-   { mType = C.pack "s"
-   , mHeader = headerFIX44
-   , mBody = mNewOrderCrossBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "s"
+   , msHeader = headerFIX44
+   , msBody = mNewOrderCrossBody
+   , msTrailer = trailerFIX44 }
    where
       mNewOrderCrossBody = 
           LT.insert (tnum tCrossID) tCrossID $
@@ -4220,10 +4220,10 @@ mNewOrderCross = FMSpec
 
 mCrossOrderCancelReplaceRequest :: FIXMessageSpec
 mCrossOrderCancelReplaceRequest = FMSpec
-   { mType = C.pack "t"
-   , mHeader = headerFIX44
-   , mBody = mCrossOrderCancelReplaceRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "t"
+   , msHeader = headerFIX44
+   , msBody = mCrossOrderCancelReplaceRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mCrossOrderCancelReplaceRequestBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -4267,10 +4267,10 @@ mCrossOrderCancelReplaceRequest = FMSpec
 
 mCrossOrderCancelRequest :: FIXMessageSpec
 mCrossOrderCancelRequest = FMSpec
-   { mType = C.pack "u"
-   , mHeader = headerFIX44
-   , mBody = mCrossOrderCancelRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "u"
+   , msHeader = headerFIX44
+   , msBody = mCrossOrderCancelRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mCrossOrderCancelRequestBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -4283,10 +4283,10 @@ mCrossOrderCancelRequest = FMSpec
 
 mSecurityTypeRequest :: FIXMessageSpec
 mSecurityTypeRequest = FMSpec
-   { mType = C.pack "v"
-   , mHeader = headerFIX44
-   , mBody = mSecurityTypeRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "v"
+   , msHeader = headerFIX44
+   , msBody = mSecurityTypeRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityTypeRequestBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -4302,10 +4302,10 @@ mSecurityTypeRequest = FMSpec
 
 mSecurityTypes :: FIXMessageSpec
 mSecurityTypes = FMSpec
-   { mType = C.pack "w"
-   , mHeader = headerFIX44
-   , mBody = mSecurityTypesBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "w"
+   , msHeader = headerFIX44
+   , msBody = mSecurityTypesBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityTypesBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -4323,10 +4323,10 @@ mSecurityTypes = FMSpec
 
 mSecurityListRequest :: FIXMessageSpec
 mSecurityListRequest = FMSpec
-   { mType = C.pack "x"
-   , mHeader = headerFIX44
-   , mBody = mSecurityListRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "x"
+   , msHeader = headerFIX44
+   , msBody = mSecurityListRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityListRequestBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -4342,10 +4342,10 @@ mSecurityListRequest = FMSpec
 
 mSecurityList :: FIXMessageSpec
 mSecurityList = FMSpec
-   { mType = C.pack "y"
-   , mHeader = headerFIX44
-   , mBody = mSecurityListBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "y"
+   , msHeader = headerFIX44
+   , msBody = mSecurityListBody
+   , msTrailer = trailerFIX44 }
    where
       mSecurityListBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -4357,10 +4357,10 @@ mSecurityList = FMSpec
 
 mDerivativeSecurityListRequest :: FIXMessageSpec
 mDerivativeSecurityListRequest = FMSpec
-   { mType = C.pack "z"
-   , mHeader = headerFIX44
-   , mBody = mDerivativeSecurityListRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "z"
+   , msHeader = headerFIX44
+   , msBody = mDerivativeSecurityListRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mDerivativeSecurityListRequestBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -4377,10 +4377,10 @@ mDerivativeSecurityListRequest = FMSpec
 
 mDerivativeSecurityList :: FIXMessageSpec
 mDerivativeSecurityList = FMSpec
-   { mType = C.pack "AA"
-   , mHeader = headerFIX44
-   , mBody = mDerivativeSecurityListBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AA"
+   , msHeader = headerFIX44
+   , msBody = mDerivativeSecurityListBody
+   , msTrailer = trailerFIX44 }
    where
       mDerivativeSecurityListBody = 
           LT.insert (tnum tSecurityReqID) tSecurityReqID $
@@ -4392,10 +4392,10 @@ mDerivativeSecurityList = FMSpec
 
 mNewOrderMultileg :: FIXMessageSpec
 mNewOrderMultileg = FMSpec
-   { mType = C.pack "AB"
-   , mHeader = headerFIX44
-   , mBody = mNewOrderMultilegBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AB"
+   , msHeader = headerFIX44
+   , msBody = mNewOrderMultilegBody
+   , msTrailer = trailerFIX44 }
    where
       mNewOrderMultilegBody = 
           LT.insert (tnum tClOrdID) tClOrdID $
@@ -4463,10 +4463,10 @@ mNewOrderMultileg = FMSpec
 
 mMultilegOrderCancelReplace :: FIXMessageSpec
 mMultilegOrderCancelReplace = FMSpec
-   { mType = C.pack "AC"
-   , mHeader = headerFIX44
-   , mBody = mMultilegOrderCancelReplaceBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AC"
+   , msHeader = headerFIX44
+   , msBody = mMultilegOrderCancelReplaceBody
+   , msTrailer = trailerFIX44 }
    where
       mMultilegOrderCancelReplaceBody = 
           LT.insert (tnum tOrderID) tOrderID $
@@ -4537,10 +4537,10 @@ mMultilegOrderCancelReplace = FMSpec
 
 mTradeCaptureReportRequest :: FIXMessageSpec
 mTradeCaptureReportRequest = FMSpec
-   { mType = C.pack "AD"
-   , mHeader = headerFIX44
-   , mBody = mTradeCaptureReportRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AD"
+   , msHeader = headerFIX44
+   , msBody = mTradeCaptureReportRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mTradeCaptureReportRequestBody = 
           LT.insert (tnum tTradeRequestID) tTradeRequestID $
@@ -4576,10 +4576,10 @@ mTradeCaptureReportRequest = FMSpec
 
 mTradeCaptureReport :: FIXMessageSpec
 mTradeCaptureReport = FMSpec
-   { mType = C.pack "AE"
-   , mHeader = headerFIX44
-   , mBody = mTradeCaptureReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AE"
+   , msHeader = headerFIX44
+   , msBody = mTradeCaptureReportBody
+   , msTrailer = trailerFIX44 }
    where
       mTradeCaptureReportBody = 
           LT.insert (tnum tTradeReportID) tTradeReportID $
@@ -4630,10 +4630,10 @@ mTradeCaptureReport = FMSpec
 
 mOrderMassStatusRequest :: FIXMessageSpec
 mOrderMassStatusRequest = FMSpec
-   { mType = C.pack "AF"
-   , mHeader = headerFIX44
-   , mBody = mOrderMassStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AF"
+   , msHeader = headerFIX44
+   , msBody = mOrderMassStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mOrderMassStatusRequestBody = 
           LT.insert (tnum tMassStatusReqID) tMassStatusReqID $
@@ -4647,10 +4647,10 @@ mOrderMassStatusRequest = FMSpec
 
 mQuoteRequestReject :: FIXMessageSpec
 mQuoteRequestReject = FMSpec
-   { mType = C.pack "AG"
-   , mHeader = headerFIX44
-   , mBody = mQuoteRequestRejectBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AG"
+   , msHeader = headerFIX44
+   , msBody = mQuoteRequestRejectBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteRequestRejectBody = 
           LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -4663,10 +4663,10 @@ mQuoteRequestReject = FMSpec
 
 mRFQRequest :: FIXMessageSpec
 mRFQRequest = FMSpec
-   { mType = C.pack "AH"
-   , mHeader = headerFIX44
-   , mBody = mRFQRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AH"
+   , msHeader = headerFIX44
+   , msBody = mRFQRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mRFQRequestBody = 
           LT.insert (tnum tRFQReqID) tRFQReqID $
@@ -4675,10 +4675,10 @@ mRFQRequest = FMSpec
 
 mQuoteStatusReport :: FIXMessageSpec
 mQuoteStatusReport = FMSpec
-   { mType = C.pack "AI"
-   , mHeader = headerFIX44
-   , mBody = mQuoteStatusReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AI"
+   , msHeader = headerFIX44
+   , msBody = mQuoteStatusReportBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteStatusReportBody = 
           LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
@@ -4736,10 +4736,10 @@ mQuoteStatusReport = FMSpec
 
 mQuoteResponse :: FIXMessageSpec
 mQuoteResponse = FMSpec
-   { mType = C.pack "AJ"
-   , mHeader = headerFIX44
-   , mBody = mQuoteResponseBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AJ"
+   , msHeader = headerFIX44
+   , msBody = mQuoteResponseBody
+   , msTrailer = trailerFIX44 }
    where
       mQuoteResponseBody = 
           LT.insert (tnum tQuoteRespID) tQuoteRespID $
@@ -4797,10 +4797,10 @@ mQuoteResponse = FMSpec
 
 mConfirmation :: FIXMessageSpec
 mConfirmation = FMSpec
-   { mType = C.pack "AK"
-   , mHeader = headerFIX44
-   , mBody = mConfirmationBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AK"
+   , msHeader = headerFIX44
+   , msBody = mConfirmationBody
+   , msTrailer = trailerFIX44 }
    where
       mConfirmationBody = 
           LT.insert (tnum tConfirmID) tConfirmID $
@@ -4857,10 +4857,10 @@ mConfirmation = FMSpec
 
 mPositionMaintenanceRequest :: FIXMessageSpec
 mPositionMaintenanceRequest = FMSpec
-   { mType = C.pack "AL"
-   , mHeader = headerFIX44
-   , mBody = mPositionMaintenanceRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AL"
+   , msHeader = headerFIX44
+   , msBody = mPositionMaintenanceRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mPositionMaintenanceRequestBody = 
           LT.insert (tnum tPosReqID) tPosReqID $
@@ -4887,10 +4887,10 @@ mPositionMaintenanceRequest = FMSpec
 
 mPositionMaintenanceReport :: FIXMessageSpec
 mPositionMaintenanceReport = FMSpec
-   { mType = C.pack "AM"
-   , mHeader = headerFIX44
-   , mBody = mPositionMaintenanceReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AM"
+   , msHeader = headerFIX44
+   , msBody = mPositionMaintenanceReportBody
+   , msTrailer = trailerFIX44 }
    where
       mPositionMaintenanceReportBody = 
           LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
@@ -4917,10 +4917,10 @@ mPositionMaintenanceReport = FMSpec
 
 mRequestForPositions :: FIXMessageSpec
 mRequestForPositions = FMSpec
-   { mType = C.pack "AN"
-   , mHeader = headerFIX44
-   , mBody = mRequestForPositionsBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AN"
+   , msHeader = headerFIX44
+   , msBody = mRequestForPositionsBody
+   , msTrailer = trailerFIX44 }
    where
       mRequestForPositionsBody = 
           LT.insert (tnum tPosReqID) tPosReqID $
@@ -4944,10 +4944,10 @@ mRequestForPositions = FMSpec
 
 mRequestForPositionsAck :: FIXMessageSpec
 mRequestForPositionsAck = FMSpec
-   { mType = C.pack "AO"
-   , mHeader = headerFIX44
-   , mBody = mRequestForPositionsAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AO"
+   , msHeader = headerFIX44
+   , msBody = mRequestForPositionsAckBody
+   , msTrailer = trailerFIX44 }
    where
       mRequestForPositionsAckBody = 
           LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
@@ -4969,10 +4969,10 @@ mRequestForPositionsAck = FMSpec
 
 mPositionReport :: FIXMessageSpec
 mPositionReport = FMSpec
-   { mType = C.pack "AP"
-   , mHeader = headerFIX44
-   , mBody = mPositionReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AP"
+   , msHeader = headerFIX44
+   , msBody = mPositionReportBody
+   , msTrailer = trailerFIX44 }
    where
       mPositionReportBody = 
           LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
@@ -5001,10 +5001,10 @@ mPositionReport = FMSpec
 
 mTradeCaptureReportRequestAck :: FIXMessageSpec
 mTradeCaptureReportRequestAck = FMSpec
-   { mType = C.pack "AQ"
-   , mHeader = headerFIX44
-   , mBody = mTradeCaptureReportRequestAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AQ"
+   , msHeader = headerFIX44
+   , msBody = mTradeCaptureReportRequestAckBody
+   , msTrailer = trailerFIX44 }
    where
       mTradeCaptureReportRequestAckBody = 
           LT.insert (tnum tTradeRequestID) tTradeRequestID $
@@ -5023,10 +5023,10 @@ mTradeCaptureReportRequestAck = FMSpec
 
 mTradeCaptureReportAck :: FIXMessageSpec
 mTradeCaptureReportAck = FMSpec
-   { mType = C.pack "AR"
-   , mHeader = headerFIX44
-   , mBody = mTradeCaptureReportAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AR"
+   , msHeader = headerFIX44
+   , msBody = mTradeCaptureReportAckBody
+   , msTrailer = trailerFIX44 }
    where
       mTradeCaptureReportAckBody = 
           LT.insert (tnum tTradeReportID) tTradeReportID $
@@ -5066,10 +5066,10 @@ mTradeCaptureReportAck = FMSpec
 
 mAllocationReport :: FIXMessageSpec
 mAllocationReport = FMSpec
-   { mType = C.pack "AS"
-   , mHeader = headerFIX44
-   , mBody = mAllocationReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AS"
+   , msHeader = headerFIX44
+   , msBody = mAllocationReportBody
+   , msTrailer = trailerFIX44 }
    where
       mAllocationReportBody = 
           LT.insert (tnum tAllocReportID) tAllocReportID $
@@ -5131,10 +5131,10 @@ mAllocationReport = FMSpec
 
 mAllocationReportAck :: FIXMessageSpec
 mAllocationReportAck = FMSpec
-   { mType = C.pack "AT"
-   , mHeader = headerFIX44
-   , mBody = mAllocationReportAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AT"
+   , msHeader = headerFIX44
+   , msBody = mAllocationReportAckBody
+   , msTrailer = trailerFIX44 }
    where
       mAllocationReportAckBody = 
           LT.insert (tnum tAllocReportID) tAllocReportID $
@@ -5156,10 +5156,10 @@ mAllocationReportAck = FMSpec
 
 mConfirmationAck :: FIXMessageSpec
 mConfirmationAck = FMSpec
-   { mType = C.pack "AU"
-   , mHeader = headerFIX44
-   , mBody = mConfirmationAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AU"
+   , msHeader = headerFIX44
+   , msBody = mConfirmationAckBody
+   , msTrailer = trailerFIX44 }
    where
       mConfirmationAckBody = 
           LT.insert (tnum tConfirmID) tConfirmID $
@@ -5175,10 +5175,10 @@ mConfirmationAck = FMSpec
 
 mSettlementInstructionRequest :: FIXMessageSpec
 mSettlementInstructionRequest = FMSpec
-   { mType = C.pack "AV"
-   , mHeader = headerFIX44
-   , mBody = mSettlementInstructionRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AV"
+   , msHeader = headerFIX44
+   , msBody = mSettlementInstructionRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mSettlementInstructionRequestBody = 
           LT.insert (tnum tSettlInstReqID) tSettlInstReqID $
@@ -5199,10 +5199,10 @@ mSettlementInstructionRequest = FMSpec
 
 mAssignmentReport :: FIXMessageSpec
 mAssignmentReport = FMSpec
-   { mType = C.pack "AW"
-   , mHeader = headerFIX44
-   , mBody = mAssignmentReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AW"
+   , msHeader = headerFIX44
+   , msBody = mAssignmentReportBody
+   , msTrailer = trailerFIX44 }
    where
       mAssignmentReportBody = 
           LT.insert (tnum tAsgnRptID) tAsgnRptID $
@@ -5230,10 +5230,10 @@ mAssignmentReport = FMSpec
 
 mCollateralRequest :: FIXMessageSpec
 mCollateralRequest = FMSpec
-   { mType = C.pack "AX"
-   , mHeader = headerFIX44
-   , mBody = mCollateralRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AX"
+   , msHeader = headerFIX44
+   , msBody = mCollateralRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mCollateralRequestBody = 
           LT.insert (tnum tCollReqID) tCollReqID $
@@ -5272,10 +5272,10 @@ mCollateralRequest = FMSpec
 
 mCollateralAssignment :: FIXMessageSpec
 mCollateralAssignment = FMSpec
-   { mType = C.pack "AY"
-   , mHeader = headerFIX44
-   , mBody = mCollateralAssignmentBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AY"
+   , msHeader = headerFIX44
+   , msBody = mCollateralAssignmentBody
+   , msTrailer = trailerFIX44 }
    where
       mCollateralAssignmentBody = 
           LT.insert (tnum tCollAsgnID) tCollAsgnID $
@@ -5317,10 +5317,10 @@ mCollateralAssignment = FMSpec
 
 mCollateralResponse :: FIXMessageSpec
 mCollateralResponse = FMSpec
-   { mType = C.pack "AZ"
-   , mHeader = headerFIX44
-   , mBody = mCollateralResponseBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "AZ"
+   , msHeader = headerFIX44
+   , msBody = mCollateralResponseBody
+   , msTrailer = trailerFIX44 }
    where
       mCollateralResponseBody = 
           LT.insert (tnum tCollRespID) tCollRespID $
@@ -5358,10 +5358,10 @@ mCollateralResponse = FMSpec
 
 mCollateralReport :: FIXMessageSpec
 mCollateralReport = FMSpec
-   { mType = C.pack "BA"
-   , mHeader = headerFIX44
-   , mBody = mCollateralReportBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BA"
+   , msHeader = headerFIX44
+   , msBody = mCollateralReportBody
+   , msTrailer = trailerFIX44 }
    where
       mCollateralReportBody = 
           LT.insert (tnum tCollRptID) tCollRptID $
@@ -5401,10 +5401,10 @@ mCollateralReport = FMSpec
 
 mCollateralInquiry :: FIXMessageSpec
 mCollateralInquiry = FMSpec
-   { mType = C.pack "BB"
-   , mHeader = headerFIX44
-   , mBody = mCollateralInquiryBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BB"
+   , msHeader = headerFIX44
+   , msBody = mCollateralInquiryBody
+   , msTrailer = trailerFIX44 }
    where
       mCollateralInquiryBody = 
           LT.insert (tnum tCollInquiryID) tCollInquiryID $
@@ -5443,10 +5443,10 @@ mCollateralInquiry = FMSpec
 
 mNetworkCounterpartySystemStatusRequest :: FIXMessageSpec
 mNetworkCounterpartySystemStatusRequest = FMSpec
-   { mType = C.pack "BC"
-   , mHeader = headerFIX44
-   , mBody = mNetworkCounterpartySystemStatusRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BC"
+   , msHeader = headerFIX44
+   , msBody = mNetworkCounterpartySystemStatusRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mNetworkCounterpartySystemStatusRequestBody = 
           LT.insert (tnum tNetworkRequestType) tNetworkRequestType $
@@ -5455,10 +5455,10 @@ mNetworkCounterpartySystemStatusRequest = FMSpec
 
 mNetworkCounterpartySystemStatusResponse :: FIXMessageSpec
 mNetworkCounterpartySystemStatusResponse = FMSpec
-   { mType = C.pack "BD"
-   , mHeader = headerFIX44
-   , mBody = mNetworkCounterpartySystemStatusResponseBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BD"
+   , msHeader = headerFIX44
+   , msBody = mNetworkCounterpartySystemStatusResponseBody
+   , msTrailer = trailerFIX44 }
    where
       mNetworkCounterpartySystemStatusResponseBody = 
           LT.insert (tnum tNetworkStatusResponseType) tNetworkStatusResponseType $
@@ -5469,10 +5469,10 @@ mNetworkCounterpartySystemStatusResponse = FMSpec
 
 mUserRequest :: FIXMessageSpec
 mUserRequest = FMSpec
-   { mType = C.pack "BE"
-   , mHeader = headerFIX44
-   , mBody = mUserRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BE"
+   , msHeader = headerFIX44
+   , msBody = mUserRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mUserRequestBody = 
           LT.insert (tnum tUserRequestID) tUserRequestID $
@@ -5486,10 +5486,10 @@ mUserRequest = FMSpec
 
 mUserResponse :: FIXMessageSpec
 mUserResponse = FMSpec
-   { mType = C.pack "BF"
-   , mHeader = headerFIX44
-   , mBody = mUserResponseBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BF"
+   , msHeader = headerFIX44
+   , msBody = mUserResponseBody
+   , msTrailer = trailerFIX44 }
    where
       mUserResponseBody = 
           LT.insert (tnum tUserRequestID) tUserRequestID $
@@ -5500,10 +5500,10 @@ mUserResponse = FMSpec
 
 mCollateralInquiryAck :: FIXMessageSpec
 mCollateralInquiryAck = FMSpec
-   { mType = C.pack "BG"
-   , mHeader = headerFIX44
-   , mBody = mCollateralInquiryAckBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BG"
+   , msHeader = headerFIX44
+   , msBody = mCollateralInquiryAckBody
+   , msTrailer = trailerFIX44 }
    where
       mCollateralInquiryAckBody = 
           LT.insert (tnum tCollInquiryID) tCollInquiryID $
@@ -5534,10 +5534,10 @@ mCollateralInquiryAck = FMSpec
 
 mConfirmationRequest :: FIXMessageSpec
 mConfirmationRequest = FMSpec
-   { mType = C.pack "BH"
-   , mHeader = headerFIX44
-   , mBody = mConfirmationRequestBody
-   , mTrailer = trailerFIX44 }
+   { msType = C.pack "BH"
+   , msHeader = headerFIX44
+   , msBody = mConfirmationRequestBody
+   , msTrailer = trailerFIX44 }
    where
       mConfirmationRequestBody = 
           LT.insert (tnum tConfirmReqID) tConfirmReqID $
@@ -5556,101 +5556,101 @@ mConfirmationRequest = FMSpec
 
 fix44 :: FIXSpec
 fix44 = FSpec
-   { fHeader = headerFIX44
-   , fTrailer = trailerFIX44
-   , fMessages = fix44Messages }
+   { fsHeader = headerFIX44
+   , fsTrailer = trailerFIX44
+   , fsMessages = fix44Messages }
    where
       fix44Messages =
-          LT.insert (mType mHeartbeat) mHeartbeat $
-          LT.insert (mType mTestRequest) mTestRequest $
-          LT.insert (mType mResendRequest) mResendRequest $
-          LT.insert (mType mReject) mReject $
-          LT.insert (mType mSequenceReset) mSequenceReset $
-          LT.insert (mType mLogout) mLogout $
-          LT.insert (mType mIOI) mIOI $
-          LT.insert (mType mAdvertisement) mAdvertisement $
-          LT.insert (mType mExecutionReport) mExecutionReport $
-          LT.insert (mType mOrderCancelReject) mOrderCancelReject $
-          LT.insert (mType mLogon) mLogon $
-          LT.insert (mType mNews) mNews $
-          LT.insert (mType mEmail) mEmail $
-          LT.insert (mType mNewOrderSingle) mNewOrderSingle $
-          LT.insert (mType mNewOrderList) mNewOrderList $
-          LT.insert (mType mOrderCancelRequest) mOrderCancelRequest $
-          LT.insert (mType mOrderCancelReplaceRequest) mOrderCancelReplaceRequest $
-          LT.insert (mType mOrderStatusRequest) mOrderStatusRequest $
-          LT.insert (mType mAllocationInstruction) mAllocationInstruction $
-          LT.insert (mType mListCancelRequest) mListCancelRequest $
-          LT.insert (mType mListExecute) mListExecute $
-          LT.insert (mType mListStatusRequest) mListStatusRequest $
-          LT.insert (mType mListStatus) mListStatus $
-          LT.insert (mType mAllocationInstructionAck) mAllocationInstructionAck $
-          LT.insert (mType mDontKnowTrade) mDontKnowTrade $
-          LT.insert (mType mQuoteRequest) mQuoteRequest $
-          LT.insert (mType mQuote) mQuote $
-          LT.insert (mType mSettlementInstructions) mSettlementInstructions $
-          LT.insert (mType mMarketDataRequest) mMarketDataRequest $
-          LT.insert (mType mMarketDataSnapshotFullRefresh) mMarketDataSnapshotFullRefresh $
-          LT.insert (mType mMarketDataIncrementalRefresh) mMarketDataIncrementalRefresh $
-          LT.insert (mType mMarketDataRequestReject) mMarketDataRequestReject $
-          LT.insert (mType mQuoteCancel) mQuoteCancel $
-          LT.insert (mType mQuoteStatusRequest) mQuoteStatusRequest $
-          LT.insert (mType mMassQuoteAcknowledgement) mMassQuoteAcknowledgement $
-          LT.insert (mType mSecurityDefinitionRequest) mSecurityDefinitionRequest $
-          LT.insert (mType mSecurityDefinition) mSecurityDefinition $
-          LT.insert (mType mSecurityStatusRequest) mSecurityStatusRequest $
-          LT.insert (mType mSecurityStatus) mSecurityStatus $
-          LT.insert (mType mTradingSessionStatusRequest) mTradingSessionStatusRequest $
-          LT.insert (mType mTradingSessionStatus) mTradingSessionStatus $
-          LT.insert (mType mMassQuote) mMassQuote $
-          LT.insert (mType mBusinessMessageReject) mBusinessMessageReject $
-          LT.insert (mType mBidRequest) mBidRequest $
-          LT.insert (mType mBidResponse) mBidResponse $
-          LT.insert (mType mListStrikePrice) mListStrikePrice $
-          LT.insert (mType mRegistrationInstructions) mRegistrationInstructions $
-          LT.insert (mType mRegistrationInstructionsResponse) mRegistrationInstructionsResponse $
-          LT.insert (mType mOrderMassCancelRequest) mOrderMassCancelRequest $
-          LT.insert (mType mOrderMassCancelReport) mOrderMassCancelReport $
-          LT.insert (mType mNewOrderCross) mNewOrderCross $
-          LT.insert (mType mCrossOrderCancelReplaceRequest) mCrossOrderCancelReplaceRequest $
-          LT.insert (mType mCrossOrderCancelRequest) mCrossOrderCancelRequest $
-          LT.insert (mType mSecurityTypeRequest) mSecurityTypeRequest $
-          LT.insert (mType mSecurityTypes) mSecurityTypes $
-          LT.insert (mType mSecurityListRequest) mSecurityListRequest $
-          LT.insert (mType mSecurityList) mSecurityList $
-          LT.insert (mType mDerivativeSecurityListRequest) mDerivativeSecurityListRequest $
-          LT.insert (mType mDerivativeSecurityList) mDerivativeSecurityList $
-          LT.insert (mType mNewOrderMultileg) mNewOrderMultileg $
-          LT.insert (mType mMultilegOrderCancelReplace) mMultilegOrderCancelReplace $
-          LT.insert (mType mTradeCaptureReportRequest) mTradeCaptureReportRequest $
-          LT.insert (mType mTradeCaptureReport) mTradeCaptureReport $
-          LT.insert (mType mOrderMassStatusRequest) mOrderMassStatusRequest $
-          LT.insert (mType mQuoteRequestReject) mQuoteRequestReject $
-          LT.insert (mType mRFQRequest) mRFQRequest $
-          LT.insert (mType mQuoteStatusReport) mQuoteStatusReport $
-          LT.insert (mType mQuoteResponse) mQuoteResponse $
-          LT.insert (mType mConfirmation) mConfirmation $
-          LT.insert (mType mPositionMaintenanceRequest) mPositionMaintenanceRequest $
-          LT.insert (mType mPositionMaintenanceReport) mPositionMaintenanceReport $
-          LT.insert (mType mRequestForPositions) mRequestForPositions $
-          LT.insert (mType mRequestForPositionsAck) mRequestForPositionsAck $
-          LT.insert (mType mPositionReport) mPositionReport $
-          LT.insert (mType mTradeCaptureReportRequestAck) mTradeCaptureReportRequestAck $
-          LT.insert (mType mTradeCaptureReportAck) mTradeCaptureReportAck $
-          LT.insert (mType mAllocationReport) mAllocationReport $
-          LT.insert (mType mAllocationReportAck) mAllocationReportAck $
-          LT.insert (mType mConfirmationAck) mConfirmationAck $
-          LT.insert (mType mSettlementInstructionRequest) mSettlementInstructionRequest $
-          LT.insert (mType mAssignmentReport) mAssignmentReport $
-          LT.insert (mType mCollateralRequest) mCollateralRequest $
-          LT.insert (mType mCollateralAssignment) mCollateralAssignment $
-          LT.insert (mType mCollateralResponse) mCollateralResponse $
-          LT.insert (mType mCollateralReport) mCollateralReport $
-          LT.insert (mType mCollateralInquiry) mCollateralInquiry $
-          LT.insert (mType mNetworkCounterpartySystemStatusRequest) mNetworkCounterpartySystemStatusRequest $
-          LT.insert (mType mNetworkCounterpartySystemStatusResponse) mNetworkCounterpartySystemStatusResponse $
-          LT.insert (mType mUserRequest) mUserRequest $
-          LT.insert (mType mUserResponse) mUserResponse $
-          LT.insert (mType mCollateralInquiryAck) mCollateralInquiryAck $
-          LT.insert (mType mConfirmationRequest) mConfirmationRequest $
+          LT.insert (msType mHeartbeat) mHeartbeat $
+          LT.insert (msType mTestRequest) mTestRequest $
+          LT.insert (msType mResendRequest) mResendRequest $
+          LT.insert (msType mReject) mReject $
+          LT.insert (msType mSequenceReset) mSequenceReset $
+          LT.insert (msType mLogout) mLogout $
+          LT.insert (msType mIOI) mIOI $
+          LT.insert (msType mAdvertisement) mAdvertisement $
+          LT.insert (msType mExecutionReport) mExecutionReport $
+          LT.insert (msType mOrderCancelReject) mOrderCancelReject $
+          LT.insert (msType mLogon) mLogon $
+          LT.insert (msType mNews) mNews $
+          LT.insert (msType mEmail) mEmail $
+          LT.insert (msType mNewOrderSingle) mNewOrderSingle $
+          LT.insert (msType mNewOrderList) mNewOrderList $
+          LT.insert (msType mOrderCancelRequest) mOrderCancelRequest $
+          LT.insert (msType mOrderCancelReplaceRequest) mOrderCancelReplaceRequest $
+          LT.insert (msType mOrderStatusRequest) mOrderStatusRequest $
+          LT.insert (msType mAllocationInstruction) mAllocationInstruction $
+          LT.insert (msType mListCancelRequest) mListCancelRequest $
+          LT.insert (msType mListExecute) mListExecute $
+          LT.insert (msType mListStatusRequest) mListStatusRequest $
+          LT.insert (msType mListStatus) mListStatus $
+          LT.insert (msType mAllocationInstructionAck) mAllocationInstructionAck $
+          LT.insert (msType mDontKnowTrade) mDontKnowTrade $
+          LT.insert (msType mQuoteRequest) mQuoteRequest $
+          LT.insert (msType mQuote) mQuote $
+          LT.insert (msType mSettlementInstructions) mSettlementInstructions $
+          LT.insert (msType mMarketDataRequest) mMarketDataRequest $
+          LT.insert (msType mMarketDataSnapshotFullRefresh) mMarketDataSnapshotFullRefresh $
+          LT.insert (msType mMarketDataIncrementalRefresh) mMarketDataIncrementalRefresh $
+          LT.insert (msType mMarketDataRequestReject) mMarketDataRequestReject $
+          LT.insert (msType mQuoteCancel) mQuoteCancel $
+          LT.insert (msType mQuoteStatusRequest) mQuoteStatusRequest $
+          LT.insert (msType mMassQuoteAcknowledgement) mMassQuoteAcknowledgement $
+          LT.insert (msType mSecurityDefinitionRequest) mSecurityDefinitionRequest $
+          LT.insert (msType mSecurityDefinition) mSecurityDefinition $
+          LT.insert (msType mSecurityStatusRequest) mSecurityStatusRequest $
+          LT.insert (msType mSecurityStatus) mSecurityStatus $
+          LT.insert (msType mTradingSessionStatusRequest) mTradingSessionStatusRequest $
+          LT.insert (msType mTradingSessionStatus) mTradingSessionStatus $
+          LT.insert (msType mMassQuote) mMassQuote $
+          LT.insert (msType mBusinessMessageReject) mBusinessMessageReject $
+          LT.insert (msType mBidRequest) mBidRequest $
+          LT.insert (msType mBidResponse) mBidResponse $
+          LT.insert (msType mListStrikePrice) mListStrikePrice $
+          LT.insert (msType mRegistrationInstructions) mRegistrationInstructions $
+          LT.insert (msType mRegistrationInstructionsResponse) mRegistrationInstructionsResponse $
+          LT.insert (msType mOrderMassCancelRequest) mOrderMassCancelRequest $
+          LT.insert (msType mOrderMassCancelReport) mOrderMassCancelReport $
+          LT.insert (msType mNewOrderCross) mNewOrderCross $
+          LT.insert (msType mCrossOrderCancelReplaceRequest) mCrossOrderCancelReplaceRequest $
+          LT.insert (msType mCrossOrderCancelRequest) mCrossOrderCancelRequest $
+          LT.insert (msType mSecurityTypeRequest) mSecurityTypeRequest $
+          LT.insert (msType mSecurityTypes) mSecurityTypes $
+          LT.insert (msType mSecurityListRequest) mSecurityListRequest $
+          LT.insert (msType mSecurityList) mSecurityList $
+          LT.insert (msType mDerivativeSecurityListRequest) mDerivativeSecurityListRequest $
+          LT.insert (msType mDerivativeSecurityList) mDerivativeSecurityList $
+          LT.insert (msType mNewOrderMultileg) mNewOrderMultileg $
+          LT.insert (msType mMultilegOrderCancelReplace) mMultilegOrderCancelReplace $
+          LT.insert (msType mTradeCaptureReportRequest) mTradeCaptureReportRequest $
+          LT.insert (msType mTradeCaptureReport) mTradeCaptureReport $
+          LT.insert (msType mOrderMassStatusRequest) mOrderMassStatusRequest $
+          LT.insert (msType mQuoteRequestReject) mQuoteRequestReject $
+          LT.insert (msType mRFQRequest) mRFQRequest $
+          LT.insert (msType mQuoteStatusReport) mQuoteStatusReport $
+          LT.insert (msType mQuoteResponse) mQuoteResponse $
+          LT.insert (msType mConfirmation) mConfirmation $
+          LT.insert (msType mPositionMaintenanceRequest) mPositionMaintenanceRequest $
+          LT.insert (msType mPositionMaintenanceReport) mPositionMaintenanceReport $
+          LT.insert (msType mRequestForPositions) mRequestForPositions $
+          LT.insert (msType mRequestForPositionsAck) mRequestForPositionsAck $
+          LT.insert (msType mPositionReport) mPositionReport $
+          LT.insert (msType mTradeCaptureReportRequestAck) mTradeCaptureReportRequestAck $
+          LT.insert (msType mTradeCaptureReportAck) mTradeCaptureReportAck $
+          LT.insert (msType mAllocationReport) mAllocationReport $
+          LT.insert (msType mAllocationReportAck) mAllocationReportAck $
+          LT.insert (msType mConfirmationAck) mConfirmationAck $
+          LT.insert (msType mSettlementInstructionRequest) mSettlementInstructionRequest $
+          LT.insert (msType mAssignmentReport) mAssignmentReport $
+          LT.insert (msType mCollateralRequest) mCollateralRequest $
+          LT.insert (msType mCollateralAssignment) mCollateralAssignment $
+          LT.insert (msType mCollateralResponse) mCollateralResponse $
+          LT.insert (msType mCollateralReport) mCollateralReport $
+          LT.insert (msType mCollateralInquiry) mCollateralInquiry $
+          LT.insert (msType mNetworkCounterpartySystemStatusRequest) mNetworkCounterpartySystemStatusRequest $
+          LT.insert (msType mNetworkCounterpartySystemStatusResponse) mNetworkCounterpartySystemStatusResponse $
+          LT.insert (msType mUserRequest) mUserRequest $
+          LT.insert (msType mUserResponse) mUserResponse $
+          LT.insert (msType mCollateralInquiryAck) mCollateralInquiryAck $
+          LT.insert (msType mConfirmationRequest) mConfirmationRequest $
           LT.new 

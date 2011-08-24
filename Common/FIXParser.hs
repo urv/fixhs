@@ -1,6 +1,5 @@
 module Common.FIXParser 
 	( messageParser
-	, bodyParser
     , nextFIXMessage
     , toFIXInt
     , toFIXChar
@@ -21,7 +20,8 @@ module Common.FIXParser
 	) where
 
 import Prelude hiding ( take, null, head, tail )
-import Common.FIXMessage ( FIXMessage, FIXTag(..), FIXValue(..) )
+import Common.FIXMessage ( FIXTags, FIXSpec (..), FIXMessage (..), 
+    FIXTag (..), FIXValue(..), FIXMessageSpec (..), FIXValues )
 import qualified Common.FIXMessage as FIX ( delimiter, checksum )
 import Common.FIXParserCombinators
 import Data.Attoparsec hiding ( takeWhile1 )
@@ -35,32 +35,31 @@ import Control.Applicative ( (<$>) )
 import Control.Monad ( liftM )
 
 -- Lookup the parser for a given FIX tag.
-parseFIXTag :: Parser (Int, FIXValue)
-parseFIXTag = do 
+parseFIXTag :: FIXTags -> Parser (Int, FIXValue)
+parseFIXTag tags = do 
     l <- toTag
-    v <- tparser $ toFIXTag l
-    return (l, v )
+    let tag' = LT.lookup l tags
+        parser' = fromMaybe (fail "") $ liftM tparser tag' 
+        in fmap ((,) l) parser' 
 
 
 -- Parse a FIX message. The parser fails when the checksum 
 -- validation fails.
 messageParser :: Parser ByteString
 messageParser = do 
-    (hchksum, len) <- parseFIXHeader
+    (hchksum, len) <- _getHeader
     msg <- take len 
-    (_, c) <- parseFIXTag
-    let chksum = (hchksum + FIX.checksum msg) `mod` 256 
-    case c of 
-        FIXInt i -> if chksum == i then return msg else fail "checksum not valid"
-        _        -> fail "illegal state"
+    c <- _getChecksum
+    let chksum = (hchksum + FIX.checksum msg) `mod` 256  in
+        if chksum == c then return msg else fail "checksum not valid"
 
     where
         -- Parse header and return checksum and length.
         -- A header always starts with the version tag (8)  
         -- followed by the length tag (9). Note: these 2 tags
         -- are included in the checksum
-        parseFIXHeader :: Parser (Int, Int)
-        parseFIXHeader = do 
+        _getHeader :: Parser (Int, Int)
+        _getHeader = do 
             c1 <- (FIX.checksum <$> string (pack "8="))
             c2 <- (FIX.checksum <$> toString)
             c3 <- (FIX.checksum <$> string (pack "9="))
@@ -69,22 +68,38 @@ messageParser = do
                 c = (c1 + c2 + c3 + c4 + 2 * ord FIX.delimiter) `mod` 256
             return (c, toInt' l)
 
+        _getChecksum :: Parser Int
+        _getChecksum = string (pack "10=") >> toInt
+
 -- Parse tags in the FIX body
 -- Why does it return Partial? 
 --  since the parser doesn't know if there is any input coming to consume
 --  you have to use parseOnly instead.
-bodyParser :: Parser FIXMessage
-bodyParser = liftM LT.fromList $ many parseFIXTag
-
-
+tagsP :: FIXTags -> Parser FIXValues
+tagsP ts = let tag' = parseFIXTag ts in 
+               liftM LT.fromList $ many tag'
 
  -- Parse a FIX message out of the stream
-nextFIXMessage :: Parser FIXMessage
-nextFIXMessage = do 
-    b <- messageParser -- extract the body of the FIX message
-    case parseOnly bodyParser b of
-        Right ts -> return ts
-        Left err -> fail err
+nextFIXMessage :: FIXSpec -> Parser FIXMessage
+nextFIXMessage spec = 
+    let headerP  = tagsP $ fsHeader spec 
+        trailerP = tagsP $ fsTrailer spec 
+        bodyP t = tagsP (msBody $ fromMaybe undefined (LT.lookup t (fsMessages spec)))
+    in do
+        h <- headerP
+        let mt' = fromMaybe undefined (LT.lookup 35 h) 
+            mt = case mt' of FIXString t -> t
+                             _ -> undefined
+        b <- bodyP mt
+        t <- trailerP 
+        return FIXMessage { mHeader = h, mBody = b, mTrailer = t }
+
+nm :: FIXSpec -> Parser FIXMessage
+nm spec = 
+    do msg <- messageParser -- extract the body of the FIX message
+       case parseOnly (nextFIXMessage spec) msg of
+            Right ts -> return ts
+            Left err -> fail err
 
 
 toFIXInt :: Parser FIXValue

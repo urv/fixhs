@@ -84,12 +84,13 @@ toParser x = fromMaybe "toFIXString" (LT.lookup x parserLT)
         parserLT = LT.insert "INT" "toFIXInt" $
                    LT.insert "STRING" "toFIXString" $
                    LT.insert "DAYOFMONTH" "toFIXDayOfMonth" $
+                   LT.insert "CHAR" "toFIXChar" $
                    LT.insert "FLOAT" "toFIXFloat" $
-                   LT.insert "QUANTITY" "toFIXQuantity" $
+                   LT.insert "QTY" "toFIXQuantity" $
                    LT.insert "PRICE" "toFIXPrice" $
                    LT.insert "PRICEOFFSET" "toFIXPriceOffset" $
                    LT.insert "AMT" "toFIXAmt" $
-                   LT.insert "BOOL" "toFIXBool" $
+                   LT.insert "BOOLEAN" "toFIXBool" $
                    LT.insert "MULTIPLEVALUESTRING" "toFIXMultipleValueString" $
                    LT.insert "CURRENCY" "toFIXCurrency" $
                    LT.insert "EXCHANGE" "toFIXExchange" $
@@ -134,7 +135,7 @@ allTags fs = map _insertTag fs
 genFIXHeader :: Document a -> String
 genFIXHeader d = let name = headerName d in
     name ++ " :: FIXTags\n" ++
-    name ++ " = \n" ++ concatMap ((++) "    ") tags' ++ "    LT.new\n\n"
+    name ++ " = \n" ++ concatMap ("    " ++) tags' ++ "    LT.new\n\n"
     where   
         tags' = let Just h = getHeaderSpec d 
                 in allTags $ getFields (content h)
@@ -142,7 +143,7 @@ genFIXHeader d = let name = headerName d in
 genFIXTrailer :: Document a -> String
 genFIXTrailer d = let name = trailerName d in 
     name ++ " :: FIXTags\n" ++
-    name ++ " = \n" ++ concatMap ((++) "    ") tags' ++ "    LT.new\n\n"
+    name ++ " = \n" ++ concatMap ("    " ++) tags' ++ "    LT.new\n\n"
     where   
         tags' = let Just h = getTrailerSpec d 
                 in allTags $ getFields (content h)
@@ -159,13 +160,13 @@ genMessages d = concatMap genMessage $ allMessages d
             in 
                 msg' ++ " :: FIXMessageSpec\n" ++
                 msg' ++ " = FMSpec\n" ++
-                "   { mType = C.pack \"" ++ mType ++ "\"\n" ++
-                "   , mHeader = " ++ headerName d ++ "\n" ++
-                "   , mBody = " ++ msgBody' ++  "\n" ++
-                "   , mTrailer = " ++ trailerName d ++ " }\n" ++
+                "   { msType = C.pack \"" ++ mType ++ "\"\n" ++
+                "   , msHeader = " ++ headerName d ++ "\n" ++
+                "   , msBody = " ++ msgBody' ++  "\n" ++
+                "   , msTrailer = " ++ trailerName d ++ " }\n" ++
                 "   where\n" ++
                 "      " ++ msgBody' ++ " = \n" ++ 
-                concatMap ((++) "          ") tags' ++ 
+                concatMap ( "          " ++ ) tags' ++ 
                 "          LT.new\n\n"
 
         getMsgTypeAttr = getAttr "msgtype"
@@ -176,9 +177,9 @@ genFIXSpec d = let spec' = fixSpecName d
                in  
                    spec' ++ " :: FIXSpec\n" ++
                    spec' ++ " = FSpec\n" ++
-                   "   { fHeader = " ++ headerName d ++ "\n" ++
-                   "   , fTrailer = " ++ trailerName d ++ "\n" ++
-                   "   , fMessages = " ++ spec' ++ "Messages }\n" ++
+                   "   { fsHeader = " ++ headerName d ++ "\n" ++
+                   "   , fsTrailer = " ++ trailerName d ++ "\n" ++
+                   "   , fsMessages = " ++ spec' ++ "Messages }\n" ++
                    "   where\n" ++
                    "      " ++ spec' ++ "Messages =\n" ++
                        messageMap ++
@@ -187,7 +188,7 @@ genFIXSpec d = let spec' = fixSpecName d
                 messageMap = concatMap _insertMsg $ allMessages d
                 _insertMsg (CElem e _) = 
                     let msg' = mName $ fromMaybe undefined (getNameAttr e) in 
-                        "          LT.insert (mType " ++ msg' ++ ") " ++ 
+                        "          LT.insert (msType " ++ msg' ++ ") " ++ 
                         msg' ++ " $\n" 
                 _insertMsg _ = undefined
 

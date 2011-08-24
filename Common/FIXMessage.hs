@@ -1,10 +1,11 @@
 module Common.FIXMessage 
     ( delimiter
     , FIXValue (..)
-    , FIXTags
+    , FIXValues
     , FIXTag (..)
+    , FIXTags
     , fixVersion
-    , FIXMessage
+    , FIXMessage (..)
     , FIXMessageSpec (..)
     , FIXSpec (..)
     , paddedChecksum
@@ -53,25 +54,29 @@ data FIXValue = FIXInt Int
               | FIXData 
                 { dataLen :: Int
                 , dataChunk :: ByteString }
-              | FIXGroup FIXMessage
+              | FIXGroup FIXValues
               deriving (Show)
 
 --- should be alias of type in the typeclass LookupTable
 type FIXValues = IntMap FIXValue
-type FIXMessage = FIXValues
+data FIXMessage = FIXMessage
+                  { mHeader :: FIXValues
+                  , mBody :: FIXValues
+                  , mTrailer :: FIXValues }
+                  deriving (Show)
 
 type FIXTags = IntMap FIXTag
 data FIXMessageSpec = FMSpec 
-                      { mType :: ByteString
-                      , mHeader :: FIXTags
-                      , mBody :: FIXTags 
-                      , mTrailer :: FIXTags }
+                      { msType :: ByteString
+                      , msHeader :: FIXTags
+                      , msBody :: FIXTags 
+                      , msTrailer :: FIXTags }
 
 type FIXMessages = Map ByteString FIXMessageSpec
 data FIXSpec = FSpec 
-               { fHeader :: FIXTags
-               , fTrailer :: FIXTags
-               , fMessages :: FIXMessages }
+               { fsHeader :: FIXTags
+               , fsTrailer :: FIXTags
+               , fsMessages :: FIXMessages }
 
 delimiter :: Char
 delimiter = '\SOH'
