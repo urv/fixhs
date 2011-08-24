@@ -1248,15 +1248,13 @@ headerFIX42 =
     LT.insert (tnum tXmlData) tXmlData $
     LT.insert (tnum tMessageEncoding) tMessageEncoding $
     LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
-    LT.insert (tnum tOnBehalfOfSendingTime) tOnBehalfOfSendingTime $
-    LT.new
+    LT.insert (tnum tOnBehalfOfSendingTime) tOnBehalfOfSendingTime LT.new
 
 trailerFIX42 :: FIXTags
 trailerFIX42 = 
     LT.insert (tnum tSignatureLength) tSignatureLength $
     LT.insert (tnum tSignature) tSignature $
-    LT.insert (tnum tCheckSum) tCheckSum $
-    LT.new
+    LT.insert (tnum tCheckSum) tCheckSum LT.new
 
 mHeartbeat :: FIXMessageSpec
 mHeartbeat = FMSpec
@@ -1266,8 +1264,7 @@ mHeartbeat = FMSpec
    , msTrailer = trailerFIX42 }
    where
       mHeartbeatBody = 
-          LT.insert (tnum tTestReqID) tTestReqID $
-          LT.new
+          LT.insert (tnum tTestReqID) tTestReqID LT.new
 
 mTestRequest :: FIXMessageSpec
 mTestRequest = FMSpec
@@ -1277,8 +1274,7 @@ mTestRequest = FMSpec
    , msTrailer = trailerFIX42 }
    where
       mTestRequestBody = 
-          LT.insert (tnum tTestReqID) tTestReqID $
-          LT.new
+          LT.insert (tnum tTestReqID) tTestReqID LT.new
 
 mResendRequest :: FIXMessageSpec
 mResendRequest = FMSpec
@@ -1289,8 +1285,7 @@ mResendRequest = FMSpec
    where
       mResendRequestBody = 
           LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
-          LT.insert (tnum tEndSeqNo) tEndSeqNo $
-          LT.new
+          LT.insert (tnum tEndSeqNo) tEndSeqNo LT.new
 
 mReject :: FIXMessageSpec
 mReject = FMSpec
@@ -1306,8 +1301,7 @@ mReject = FMSpec
           LT.insert (tnum tSessionRejectReason) tSessionRejectReason $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mSequenceReset :: FIXMessageSpec
 mSequenceReset = FMSpec
@@ -1318,8 +1312,7 @@ mSequenceReset = FMSpec
    where
       mSequenceResetBody = 
           LT.insert (tnum tGapFillFlag) tGapFillFlag $
-          LT.insert (tnum tNewSeqNo) tNewSeqNo $
-          LT.new
+          LT.insert (tnum tNewSeqNo) tNewSeqNo LT.new
 
 mLogout :: FIXMessageSpec
 mLogout = FMSpec
@@ -1331,8 +1324,7 @@ mLogout = FMSpec
       mLogoutBody = 
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mIndicationofInterest :: FIXMessageSpec
 mIndicationofInterest = FMSpec
@@ -1377,8 +1369,7 @@ mIndicationofInterest = FMSpec
           LT.insert (tnum tTransactTime) tTransactTime $
           LT.insert (tnum tURLLink) tURLLink $
           LT.insert (tnum tSpreadToBenchmark) tSpreadToBenchmark $
-          LT.insert (tnum tBenchmark) tBenchmark $
-          LT.new
+          LT.insert (tnum tBenchmark) tBenchmark LT.new
 
 mAdvertisement :: FIXMessageSpec
 mAdvertisement = FMSpec
@@ -1421,8 +1412,7 @@ mAdvertisement = FMSpec
           LT.insert (tnum tEncodedText) tEncodedText $
           LT.insert (tnum tURLLink) tURLLink $
           LT.insert (tnum tLastMkt) tLastMkt $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.new
+          LT.insert (tnum tTradingSessionID) tTradingSessionID LT.new
 
 mExecutionReport :: FIXMessageSpec
 mExecutionReport = FMSpec
@@ -1522,8 +1512,7 @@ mExecutionReport = FMSpec
           LT.insert (tnum tOrderQty2) tOrderQty2 $
           LT.insert (tnum tClearingFirm) tClearingFirm $
           LT.insert (tnum tClearingAccount) tClearingAccount $
-          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
-          LT.new
+          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType LT.new
 
 mOrderCancelReject :: FIXMessageSpec
 mOrderCancelReject = FMSpec
@@ -1547,8 +1536,7 @@ mOrderCancelReject = FMSpec
           LT.insert (tnum tCxlRejReason) tCxlRejReason $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mLogon :: FIXMessageSpec
 mLogon = FMSpec
@@ -1563,8 +1551,7 @@ mLogon = FMSpec
           LT.insert (tnum tRawDataLength) tRawDataLength $
           LT.insert (tnum tRawData) tRawData $
           LT.insert (tnum tResetSeqNumFlag) tResetSeqNumFlag $
-          LT.insert (tnum tMaxMessageSize) tMaxMessageSize $
-          LT.new
+          LT.insert (tnum tMaxMessageSize) tMaxMessageSize LT.new
 
 mNews :: FIXMessageSpec
 mNews = FMSpec
@@ -1581,8 +1568,7 @@ mNews = FMSpec
           LT.insert (tnum tEncodedHeadline) tEncodedHeadline $
           LT.insert (tnum tURLLink) tURLLink $
           LT.insert (tnum tRawDataLength) tRawDataLength $
-          LT.insert (tnum tRawData) tRawData $
-          LT.new
+          LT.insert (tnum tRawData) tRawData LT.new
 
 mEmail :: FIXMessageSpec
 mEmail = FMSpec
@@ -1601,8 +1587,7 @@ mEmail = FMSpec
           LT.insert (tnum tOrderID) tOrderID $
           LT.insert (tnum tClOrdID) tClOrdID $
           LT.insert (tnum tRawDataLength) tRawDataLength $
-          LT.insert (tnum tRawData) tRawData $
-          LT.new
+          LT.insert (tnum tRawData) tRawData LT.new
 
 mNewOrderSingle :: FIXMessageSpec
 mNewOrderSingle = FMSpec
@@ -1680,8 +1665,7 @@ mNewOrderSingle = FMSpec
           LT.insert (tnum tDiscretionInst) tDiscretionInst $
           LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
           LT.insert (tnum tClearingFirm) tClearingFirm $
-          LT.insert (tnum tClearingAccount) tClearingAccount $
-          LT.new
+          LT.insert (tnum tClearingAccount) tClearingAccount LT.new
 
 mNewOrderList :: FIXMessageSpec
 mNewOrderList = FMSpec
@@ -1701,8 +1685,7 @@ mNewOrderList = FMSpec
           LT.insert (tnum tListExecInst) tListExecInst $
           LT.insert (tnum tEncodedListExecInstLen) tEncodedListExecInstLen $
           LT.insert (tnum tEncodedListExecInst) tEncodedListExecInst $
-          LT.insert (tnum tTotNoOrders) tTotNoOrders $
-          LT.new
+          LT.insert (tnum tTotNoOrders) tTotNoOrders LT.new
 
 mOrderCancelRequest :: FIXMessageSpec
 mOrderCancelRequest = FMSpec
@@ -1746,8 +1729,7 @@ mOrderCancelRequest = FMSpec
           LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mOrderCancelReplaceRequest :: FIXMessageSpec
 mOrderCancelReplaceRequest = FMSpec
@@ -1824,8 +1806,7 @@ mOrderCancelReplaceRequest = FMSpec
           LT.insert (tnum tMaxShow) tMaxShow $
           LT.insert (tnum tLocateReqd) tLocateReqd $
           LT.insert (tnum tClearingFirm) tClearingFirm $
-          LT.insert (tnum tClearingAccount) tClearingAccount $
-          LT.new
+          LT.insert (tnum tClearingAccount) tClearingAccount LT.new
 
 mOrderStatusRequest :: FIXMessageSpec
 mOrderStatusRequest = FMSpec
@@ -1859,8 +1840,7 @@ mOrderStatusRequest = FMSpec
           LT.insert (tnum tSecurityDesc) tSecurityDesc $
           LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
           LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.new
+          LT.insert (tnum tSide) tSide LT.new
 
 mAllocation :: FIXMessageSpec
 mAllocation = FMSpec
@@ -1912,8 +1892,7 @@ mAllocation = FMSpec
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
           LT.insert (tnum tEncodedText) tEncodedText $
           LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.new
+          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate LT.new
 
 mListCancelRequest :: FIXMessageSpec
 mListCancelRequest = FMSpec
@@ -1927,8 +1906,7 @@ mListCancelRequest = FMSpec
           LT.insert (tnum tTransactTime) tTransactTime $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mListExecute :: FIXMessageSpec
 mListExecute = FMSpec
@@ -1944,8 +1922,7 @@ mListExecute = FMSpec
           LT.insert (tnum tTransactTime) tTransactTime $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mListStatusRequest :: FIXMessageSpec
 mListStatusRequest = FMSpec
@@ -1958,8 +1935,7 @@ mListStatusRequest = FMSpec
           LT.insert (tnum tListID) tListID $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mListStatus :: FIXMessageSpec
 mListStatus = FMSpec
@@ -1978,8 +1954,7 @@ mListStatus = FMSpec
           LT.insert (tnum tEncodedListStatusTextLen) tEncodedListStatusTextLen $
           LT.insert (tnum tEncodedListStatusText) tEncodedListStatusText $
           LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tTotNoOrders) tTotNoOrders $
-          LT.new
+          LT.insert (tnum tTotNoOrders) tTotNoOrders LT.new
 
 mAllocationACK :: FIXMessageSpec
 mAllocationACK = FMSpec
@@ -1998,8 +1973,7 @@ mAllocationACK = FMSpec
           LT.insert (tnum tAllocRejCode) tAllocRejCode $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mDontKnowTrade :: FIXMessageSpec
 mDontKnowTrade = FMSpec
@@ -2038,8 +2012,7 @@ mDontKnowTrade = FMSpec
           LT.insert (tnum tLastPx) tLastPx $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mQuoteRequest :: FIXMessageSpec
 mQuoteRequest = FMSpec
@@ -2049,8 +2022,7 @@ mQuoteRequest = FMSpec
    , msTrailer = trailerFIX42 }
    where
       mQuoteRequestBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.new
+          LT.insert (tnum tQuoteReqID) tQuoteReqID LT.new
 
 mQuote :: FIXMessageSpec
 mQuote = FMSpec
@@ -2097,8 +2069,7 @@ mQuote = FMSpec
           LT.insert (tnum tOrdType) tOrdType $
           LT.insert (tnum tFutSettDate2) tFutSettDate2 $
           LT.insert (tnum tOrderQty2) tOrderQty2 $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.new
+          LT.insert (tnum tCurrency) tCurrency LT.new
 
 mSettlementInstructions :: FIXMessageSpec
 mSettlementInstructions = FMSpec
@@ -2143,8 +2114,7 @@ mSettlementInstructions = FMSpec
           LT.insert (tnum tCashSettlAgentAcctNum) tCashSettlAgentAcctNum $
           LT.insert (tnum tCashSettlAgentAcctName) tCashSettlAgentAcctName $
           LT.insert (tnum tCashSettlAgentContactName) tCashSettlAgentContactName $
-          LT.insert (tnum tCashSettlAgentContactPhone) tCashSettlAgentContactPhone $
-          LT.new
+          LT.insert (tnum tCashSettlAgentContactPhone) tCashSettlAgentContactPhone LT.new
 
 mMarketDataRequest :: FIXMessageSpec
 mMarketDataRequest = FMSpec
@@ -2158,8 +2128,7 @@ mMarketDataRequest = FMSpec
           LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
           LT.insert (tnum tMarketDepth) tMarketDepth $
           LT.insert (tnum tMDUpdateType) tMDUpdateType $
-          LT.insert (tnum tAggregatedBook) tAggregatedBook $
-          LT.new
+          LT.insert (tnum tAggregatedBook) tAggregatedBook LT.new
 
 mMarketDataSnapshotFullRefresh :: FIXMessageSpec
 mMarketDataSnapshotFullRefresh = FMSpec
@@ -2191,8 +2160,7 @@ mMarketDataSnapshotFullRefresh = FMSpec
           LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
           LT.insert (tnum tFinancialStatus) tFinancialStatus $
           LT.insert (tnum tCorporateAction) tCorporateAction $
-          LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
-          LT.new
+          LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded LT.new
 
 mMarketDataIncrementalRefresh :: FIXMessageSpec
 mMarketDataIncrementalRefresh = FMSpec
@@ -2202,8 +2170,7 @@ mMarketDataIncrementalRefresh = FMSpec
    , msTrailer = trailerFIX42 }
    where
       mMarketDataIncrementalRefreshBody = 
-          LT.insert (tnum tMDReqID) tMDReqID $
-          LT.new
+          LT.insert (tnum tMDReqID) tMDReqID LT.new
 
 mMarketDataRequestReject :: FIXMessageSpec
 mMarketDataRequestReject = FMSpec
@@ -2217,8 +2184,7 @@ mMarketDataRequestReject = FMSpec
           LT.insert (tnum tMDReqRejReason) tMDReqRejReason $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mQuoteCancel :: FIXMessageSpec
 mQuoteCancel = FMSpec
@@ -2232,8 +2198,7 @@ mQuoteCancel = FMSpec
           LT.insert (tnum tQuoteID) tQuoteID $
           LT.insert (tnum tQuoteCancelType) tQuoteCancelType $
           LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.new
+          LT.insert (tnum tTradingSessionID) tTradingSessionID LT.new
 
 mQuoteStatusRequest :: FIXMessageSpec
 mQuoteStatusRequest = FMSpec
@@ -2264,8 +2229,7 @@ mQuoteStatusRequest = FMSpec
           LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
           LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
           LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.new
+          LT.insert (tnum tTradingSessionID) tTradingSessionID LT.new
 
 mQuoteAcknowledgement :: FIXMessageSpec
 mQuoteAcknowledgement = FMSpec
@@ -2281,8 +2245,7 @@ mQuoteAcknowledgement = FMSpec
           LT.insert (tnum tQuoteRejectReason) tQuoteRejectReason $
           LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
           LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tText) tText $
-          LT.new
+          LT.insert (tnum tText) tText LT.new
 
 mSecurityDefinitionRequest :: FIXMessageSpec
 mSecurityDefinitionRequest = FMSpec
@@ -2317,8 +2280,7 @@ mSecurityDefinitionRequest = FMSpec
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
           LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.new
+          LT.insert (tnum tTradingSessionID) tTradingSessionID LT.new
 
 mSecurityDefinition :: FIXMessageSpec
 mSecurityDefinition = FMSpec
@@ -2355,8 +2317,7 @@ mSecurityDefinition = FMSpec
           LT.insert (tnum tTradingSessionID) tTradingSessionID $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mSecurityStatusRequest :: FIXMessageSpec
 mSecurityStatusRequest = FMSpec
@@ -2388,8 +2349,7 @@ mSecurityStatusRequest = FMSpec
           LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
           LT.insert (tnum tCurrency) tCurrency $
           LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.new
+          LT.insert (tnum tTradingSessionID) tTradingSessionID LT.new
 
 mSecurityStatus :: FIXMessageSpec
 mSecurityStatus = FMSpec
@@ -2434,8 +2394,7 @@ mSecurityStatus = FMSpec
           LT.insert (tnum tLowPx) tLowPx $
           LT.insert (tnum tLastPx) tLastPx $
           LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tAdjustment) tAdjustment $
-          LT.new
+          LT.insert (tnum tAdjustment) tAdjustment LT.new
 
 mTradingSessionStatusRequest :: FIXMessageSpec
 mTradingSessionStatusRequest = FMSpec
@@ -2449,8 +2408,7 @@ mTradingSessionStatusRequest = FMSpec
           LT.insert (tnum tTradingSessionID) tTradingSessionID $
           LT.insert (tnum tTradSesMethod) tTradSesMethod $
           LT.insert (tnum tTradSesMode) tTradSesMode $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType LT.new
 
 mTradingSessionStatus :: FIXMessageSpec
 mTradingSessionStatus = FMSpec
@@ -2474,8 +2432,7 @@ mTradingSessionStatus = FMSpec
           LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mMassQuote :: FIXMessageSpec
 mMassQuote = FMSpec
@@ -2489,8 +2446,7 @@ mMassQuote = FMSpec
           LT.insert (tnum tQuoteID) tQuoteID $
           LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
           LT.insert (tnum tDefBidSize) tDefBidSize $
-          LT.insert (tnum tDefOfferSize) tDefOfferSize $
-          LT.new
+          LT.insert (tnum tDefOfferSize) tDefOfferSize LT.new
 
 mBusinessMessageReject :: FIXMessageSpec
 mBusinessMessageReject = FMSpec
@@ -2506,8 +2462,7 @@ mBusinessMessageReject = FMSpec
           LT.insert (tnum tBusinessRejectReason) tBusinessRejectReason $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mBidRequest :: FIXMessageSpec
 mBidRequest = FMSpec
@@ -2543,8 +2498,7 @@ mBidRequest = FMSpec
           LT.insert (tnum tStrikeTime) tStrikeTime $
           LT.insert (tnum tText) tText $
           LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+          LT.insert (tnum tEncodedText) tEncodedText LT.new
 
 mBidResponse :: FIXMessageSpec
 mBidResponse = FMSpec
@@ -2555,8 +2509,7 @@ mBidResponse = FMSpec
    where
       mBidResponseBody = 
           LT.insert (tnum tBidID) tBidID $
-          LT.insert (tnum tClientBidID) tClientBidID $
-          LT.new
+          LT.insert (tnum tClientBidID) tClientBidID LT.new
 
 mListStrikePrice :: FIXMessageSpec
 mListStrikePrice = FMSpec
@@ -2567,8 +2520,7 @@ mListStrikePrice = FMSpec
    where
       mListStrikePriceBody = 
           LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tTotNoStrikes) tTotNoStrikes $
-          LT.new
+          LT.insert (tnum tTotNoStrikes) tTotNoStrikes LT.new
 
 fix42 :: FIXSpec
 fix42 = FSpec
@@ -2622,5 +2574,4 @@ fix42 = FSpec
           LT.insert (msType mBusinessMessageReject) mBusinessMessageReject $
           LT.insert (msType mBidRequest) mBidRequest $
           LT.insert (msType mBidResponse) mBidResponse $
-          LT.insert (msType mListStrikePrice) mListStrikePrice $
-          LT.new 
+          LT.insert (msType mListStrikePrice) mListStrikePrice LT.new 
