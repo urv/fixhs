@@ -1,3 +1,5 @@
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+
 module Common.FIXMessage 
     ( delimiter
     , FIXValue (..)
@@ -5,6 +7,7 @@ module Common.FIXMessage
     , FIXTag (..)
     , FIXTags
     , fixVersion
+    , FIXMessages
     , FIXMessage (..)
     , FIXMessageSpec (..)
     , FIXSpec (..)
@@ -22,6 +25,7 @@ import Data.IntMap ( IntMap )
 import Data.Map ( Map )
 import Data.ByteString.Char8 as C ( pack, cons, append )
 import Data.Attoparsec ( Parser ) 
+import Data.LookupTable ( LookupTable )
 
 data FIXTag = FIXTag 
     { tnum :: Int
@@ -55,24 +59,31 @@ data FIXValue = FIXInt Int
                 { dataLen :: Int
                 , dataChunk :: ByteString }
               | FIXGroup FIXValues
-              deriving (Show)
 
 --- should be alias of type in the typeclass LookupTable
-type FIXValues = IntMap FIXValue
+newtype ListOfValues a = LV (IntMap a) 
+    deriving (LookupTable Int a)
+
+type FIXValues = ListOfValues FIXValue 
 data FIXMessage = FIXMessage
                   { mHeader :: FIXValues
                   , mBody :: FIXValues
                   , mTrailer :: FIXValues }
-                  deriving (Show)
 
-type FIXTags = IntMap FIXTag
+newtype ListOfTags a = LT (IntMap a)
+    deriving (LookupTable Int a)
+
+type FIXTags = ListOfTags FIXTag
 data FIXMessageSpec = FMSpec 
                       { msType :: ByteString
                       , msHeader :: FIXTags
                       , msBody :: FIXTags 
                       , msTrailer :: FIXTags }
 
-type FIXMessages = Map ByteString FIXMessageSpec
+newtype ListOfMessages a = LM (Map ByteString a)
+    deriving (LookupTable ByteString a)
+
+type FIXMessages = ListOfMessages FIXMessageSpec
 data FIXSpec = FSpec 
                { fsHeader :: FIXTags
                , fsTrailer :: FIXTags
