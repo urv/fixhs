@@ -26,6 +26,7 @@ import Data.Map ( Map )
 import Data.ByteString.Char8 as C ( pack, cons, append )
 import Data.Attoparsec ( Parser ) 
 import Data.LookupTable ( LookupTable )
+import qualified Data.LookupTable ( toList )
 
 data FIXTag = FIXTag 
     { tnum :: Int
@@ -60,15 +61,48 @@ data FIXValue = FIXInt Int
                 , dataChunk :: ByteString }
               | FIXGroup FIXValues
 
+instance Show FIXValue where
+    show (FIXInt a) = show a
+    show (FIXDayOfMonth a) = show a
+    show (FIXFloat a) = show a
+    show (FIXQuantity a) = show a
+    show (FIXPrice a) = show a
+    show (FIXPriceOffset a) = show a
+    show (FIXAmt a) = show a
+    show (FIXChar a) = show a
+    show (FIXBool a) = show a
+    show (FIXString a) = show a
+    show (FIXMultipleValueString a) = show a
+    show (FIXCurrency a) = show a
+    show (FIXExchange a) = show a
+    show (FIXUTCTimestamp _) = "time"
+    show (FIXUTCTimeOnly _) = "time"
+    show (FIXLocalMktDate _) = "time"
+    show (FIXUTCDate _) = "time"
+    show (FIXMonthYear _) = "time"
+    show (FIXData _ a) = show a
+    show (FIXGroup _) = "group"
+
 --- should be alias of type in the typeclass LookupTable
 newtype ListOfValues a = LV (IntMap a) 
     deriving (LookupTable Int a)
+
+instance Show a => Show (ListOfValues a) where
+    show a = concatMap printKV $ Data.LookupTable.toList a
+        where
+            printKV (k, v) = show k ++ " = " ++ show v ++ "\n"
 
 type FIXValues = ListOfValues FIXValue 
 data FIXMessage = FIXMessage
                   { mHeader :: FIXValues
                   , mBody :: FIXValues
                   , mTrailer :: FIXValues }
+
+instance Show FIXMessage where
+    show m = 
+        "Header:\n\n" ++ show (mHeader m) ++ "\n"
+        ++ "Body:\n\n" ++ show (mBody m) ++ "\n"
+        ++ "Trailer:\n\n" ++ show (mTrailer m) 
 
 newtype ListOfTags a = LT (IntMap a)
     deriving (LookupTable Int a)

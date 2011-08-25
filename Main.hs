@@ -18,9 +18,9 @@ main :: IO ()
 main = let config = E.Configuration "127.0.0.1" 3000 in 
 	E.client config (liftM p (nextFIXMessage fix42))
         where
-            p m = case fromMaybe undefined (LT.lookup 11 (mBody m)) of
-                    FIXString s -> s
-                    _ -> undefined
+            p m = C.pack $ show m
+                  
+                  
 
 
 {-main2 :: IO ()-}
