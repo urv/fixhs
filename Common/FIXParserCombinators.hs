@@ -11,19 +11,21 @@ module Common.FIXParserCombinators
     , toChar
     , toUTCDate
     , toTime
+
+    -- exporting Attoparsec
+    , Data.Attoparsec.Parser
+    , Data.Attoparsec.Zepto.parse
 	) where
 
 import Prelude hiding ( null, tail, head )
-import Data.Attoparsec hiding ( takeWhile1 )
-import Data.Attoparsec.Char8 
-import Data.Char
+import Data.Attoparsec ( Parser )
+import qualified Data.Attoparsec.Zepto ( parse )
+import Data.Attoparsec.Char8 ( char, char8, anyChar, takeWhile1, decimal )
+import Data.Char ( ord )
 import Data.ByteString hiding ( pack, putStrLn )
 import Control.Applicative ( (<$>), (<|>), (*>) )
-import System.Time
-
--- FIXME: explicit imports
+import System.Time ( CalendarTime (..) )
 import qualified Common.FIXMessage as FIX ( delimiter )
-
 
 
 signed' :: Num a => Parser a -> Parser a

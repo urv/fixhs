@@ -126,6 +126,9 @@ allMessages :: Document a -> [Content a]
 allMessages d = let all = fromMaybe undefined $ getMessagesSpec d 
                     in filter (_matchName "message") (content all) 
 
+allGroups :: [Content a] -> Map String String
+allGroups = undefined
+
 allTags :: [String] -> [String]
 allTags fs = map _insertTag fs
     where 

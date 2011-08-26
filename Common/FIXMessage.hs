@@ -10,6 +10,7 @@ module Common.FIXMessage
     , FIXMessages
     , FIXMessage (..)
     , FIXMessageSpec (..)
+    , FIXGroupSpec (..)
     , FIXSpec (..)
     , paddedChecksum
     , checksum
@@ -59,7 +60,7 @@ data FIXValue = FIXInt Int
               | FIXData 
                 { dataLen :: Int
                 , dataChunk :: ByteString }
-              | FIXGroup FIXValues
+              | FIXGroup Int [FIXValues]
 
 instance Show FIXValue where
     show (FIXInt a) = show a
@@ -81,7 +82,7 @@ instance Show FIXValue where
     show (FIXUTCDate _) = "time"
     show (FIXMonthYear _) = "time"
     show (FIXData _ a) = show a
-    show (FIXGroup _) = "group"
+    show (FIXGroup _ _) = "group"
 
 --- should be alias of type in the typeclass LookupTable
 newtype ListOfValues a = LV (IntMap a) 
@@ -122,6 +123,11 @@ data FIXSpec = FSpec
                { fsHeader :: FIXTags
                , fsTrailer :: FIXTags
                , fsMessages :: FIXMessages }
+
+data FIXGroupSpec = FGSpec
+                    { gsLength :: FIXTag
+                    , gsSeperator :: FIXTag 
+                    , gsBody :: FIXTags }
 
 delimiter :: Char
 delimiter = '\SOH'
