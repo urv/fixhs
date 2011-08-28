@@ -32,7 +32,7 @@ import Common.FIXParserCombinators
 import Data.Attoparsec ( count, many, string, take, parseOnly )
 import Data.Char ( ord )
 import Data.ByteString ( ByteString )
-import Data.ByteString.Char8 ( pack )
+import qualified Data.ByteString.Char8 as C ( pack ) 
 import Data.Maybe ( fromMaybe )
 import qualified Data.LookupTable as LT ( lookup, fromList, insert )
 import Control.Applicative ( (<$>) )
@@ -43,7 +43,7 @@ parseFIXTag :: FIXTags -> Parser (Int, FIXValue)
 parseFIXTag tags = do 
     l <- toTag
     let tag' = LT.lookup l tags
-        parser' = fromMaybe (fail "") $ liftM tparser tag' 
+        parser' = fromMaybe (fail $ "unknown tag " ++ show l) $ liftM tparser tag' 
         in fmap ((,) l) parser' 
 
 
@@ -70,15 +70,15 @@ groupP spec = let numTag = gsLength spec
                     let sepTag = gsSeperator spec
                         insertSep = LT.insert (tnum sepTag)
                     in do h <- tagP sepTag -- The head of the message
-                          (insertSep h) <$> (tagsP $ gsBody spec)
+                          insertSep h <$> tagsP (gsBody spec)
 
 -- Parse a FIX message. The parser fails when the checksum 
 -- validation fails.
 _nextP :: Parser ByteString
 _nextP = do 
-    (hchksum, len) <- _getHeader
+    (hchksum, len) <- _header'
     msg <- take len 
-    c <- _getChecksum
+    c <- _calcChksum'
     let chksum = (hchksum + FIX.checksum msg) `mod` 256  in
         if chksum == c then return msg else fail "checksum not valid"
 
@@ -87,18 +87,18 @@ _nextP = do
         -- A header always starts with the version tag (8)  
         -- followed by the length tag (9). Note: these 2 tags
         -- are included in the checksum
-        _getHeader :: Parser (Int, Int)
-        _getHeader = do 
-            c1 <- (FIX.checksum <$> string (pack "8="))
+        _header' :: Parser (Int, Int)
+        _header' = do 
+            c1 <- (FIX.checksum <$> string (C.pack "8="))
             c2 <- (FIX.checksum <$> toString)
-            c3 <- (FIX.checksum <$> string (pack "9="))
+            c3 <- (FIX.checksum <$> string (C.pack "9="))
             l <- toString
             let c4 = FIX.checksum l
                 c = (c1 + c2 + c3 + c4 + 2 * ord FIX.delimiter) `mod` 256
             return (c, toInt' l)
 
-        _getChecksum :: Parser Int
-        _getChecksum = string (pack "10=") >> toInt
+        _calcChksum' :: Parser Int
+        _calcChksum' = string (C.pack "10=") >> toInt
 
 -- Parse a FIX message. The parser fails when the checksum 
 -- validation fails.
@@ -111,8 +111,8 @@ _nextP' = do
         _numBytes = 
             let 
                 skipHeader = 
-                    string (pack "8=") >> toString >> 
-                    string (pack "9=") 
+                    string (C.pack "8=") >> toString >> 
+                    string (C.pack "9=") 
             in 
                 skipHeader >> toInt
 
@@ -124,8 +124,9 @@ messageP spec =
         bodyP mtype =                     -- parser for body
             let allSpecs = fsMessages spec
                 msgSpec = fromMaybe undefined $ LT.lookup mtype allSpecs
+                msgBodyTags = msBody msgSpec
             in 
-                tagsP $ msBody msgSpec 
+                tagsP msgBodyTags
     in do
         h <- headerP
         let mt' = fromMaybe undefined (LT.lookup 35 h) 

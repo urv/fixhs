@@ -1,4 +1,5 @@
-{-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleContexts #-}
+
 import Text.XML.HaXml
 import System.Environment ( getArgs )
 import qualified Data.LookupTable as LT
@@ -7,65 +8,68 @@ import Data.Maybe ( fromMaybe )
 import Control.Monad ( liftM )
 
 
-tName :: String -> String
-tName = (:) 't'
-
-mName :: String -> String
-mName = (:) 'm'
-
-fName :: String -> String
-fName = (:) 'f'
-
-headerName :: Document a -> String
-headerName d = "headerFIX" ++ versionFIX d
-
-trailerName :: Document a -> String
-trailerName d = "trailerFIX" ++ versionFIX d
-
-fixSpecName :: Document a -> String
-fixSpecName a = "fix" ++ versionFIX a
-
 type AttrLookupTable = Map String String
 type ParserLookupTable = Map String String
+
+newtype Groups a = G (Map String Bool)
+    deriving (LT.LookupTable String Bool)
+
+-- ?Name :: String -> String 
+tName = (:) 't'
+mName = (:) 'm'
+fName = (:) 'f'
+gName = (:) 'g'
+
+versionFIX :: Document a -> String
+versionFIX doc = major ++ minor 
+               where 
+                  fix = getFIXSpec doc 
+                  major = getAttr "major" fix
+                  minor = getAttr "minor" fix
+
+-- *Name :: Document a -> String 
+headerName  d = "headerFIX" ++ versionFIX d
+trailerName d = "trailerFIX" ++ versionFIX d
+fixSpecName a = "fix" ++ versionFIX a
 
 content :: Element a -> [Content a]
 content (Elem _ _ cs) = cs
 
+cElement :: Content a -> Element a
+cElement (CElem e _) = e
+cElement _ = undefined
+
 attributes :: Element a -> [Attribute]
 attributes (Elem _ as _) = as
 
-getFIXSpec :: Document a -> Maybe (Element a)
-getFIXSpec d = case d of
+getFIXSpec :: Document a -> Element a
+getFIXSpec doc = case doc of
     Document _ _ (es@(Elem (N n) _ _)) _ 
-        -> if n == "fix" then Just es else Nothing
-    _   -> Nothing 
+        -> if n == "fix" then es else error "no specification for fix" 
+    _   -> error "unknown error"
 
-versionFIX :: Document a -> String
-versionFIX d = major ++ minor 
-               where 
-                  fix = fromMaybe undefined $ getFIXSpec d 
-                  major = fromMaybe undefined $ getAttr "major" fix
-                  minor = fromMaybe undefined $ getAttr "minor" fix
 
 _matchName :: String -> Content a -> Bool
 _matchName name (CElem (Elem (N n) _ _) _) = n == name
 _matchName name _ = False
 
-getSpec :: String -> Document a -> Maybe (Element a)
-getSpec name d = do 
-    fix <- getFIXSpec d 
-    let specs = filter (_matchName name) (content fix) in
+getSpec :: String -> Document a -> Element a
+getSpec name doc = 
+    let fix = getFIXSpec doc 
+        specs = filter (_matchName name) (content fix) 
+    in
         case specs of 
-            CElem es _ : _ -> return es
-            _ -> Nothing
+            CElem es _ : _ -> es
+            _ -> error $ "no specification for " ++ name
 
 getFieldSpec = getSpec "fields"
 getHeaderSpec = getSpec "header"
 getTrailerSpec = getSpec "trailer"
 getMessagesSpec = getSpec "messages"
 
-getAttr :: String -> Element a -> Maybe String
-getAttr name e = LT.lookup name $ fromAttributes (attributes e)
+getAttr :: String -> Element a -> String
+getAttr name e = let l = LT.lookup name $ fromAttributes (attributes e) in
+                     fromMaybe undefined l 
 
 getNameAttr = getAttr "name"
 
@@ -77,120 +81,158 @@ fromAttributes = foldr _insert LT.new
         _insert (N k, AttValue (Left v : _)) = LT.insert k v 
         _insert (N k, _) = LT.insert k ""
 
-toParser :: String -> String
-toParser x = fromMaybe "toFIXString" (LT.lookup x parserLT)
-    where
-        parserLT :: ParserLookupTable
-        parserLT = LT.insert "INT" "toFIXInt" $
-                   LT.insert "STRING" "toFIXString" $
-                   LT.insert "DAYOFMONTH" "toFIXDayOfMonth" $
-                   LT.insert "CHAR" "toFIXChar" $
-                   LT.insert "FLOAT" "toFIXFloat" $
-                   LT.insert "QTY" "toFIXQuantity" $
-                   LT.insert "PRICE" "toFIXPrice" $
-                   LT.insert "PRICEOFFSET" "toFIXPriceOffset" $
-                   LT.insert "AMT" "toFIXAmt" $
-                   LT.insert "BOOLEAN" "toFIXBool" $
-                   LT.insert "MULTIPLEVALUESTRING" "toFIXMultipleValueString" $
-                   LT.insert "CURRENCY" "toFIXCurrency" $
-                   LT.insert "EXCHANGE" "toFIXExchange" $
-                   LT.insert "UTCTIMESTAMP" "toFIXUTCTimestamp" $
-                   LT.insert "UTCTIMEONLY" "toFIXUTCTimeOnly" $
-                   LT.insert "LOCALMKTDATE" "toFIXLocalMktDate" 
-                   LT.new
+genFIXFields :: Document a -> String
+genFIXFields doc = let 
+                     groups = groupsOf $ messagesOf doc
+                     fields = let flds = content $ getFieldSpec doc in 
+                                  filter withoutGroups flds
+                        where
+                            withoutGroups = 
+                                withoutGroups' . getNameAttr . cElement
+                            withoutGroups' n = fromMaybe False 
+                                (LT.lookup n groups)
+                   in 
+                     concatMap genField fields
+
 
 genField :: Content a -> String
 genField (CElem e _) = 
-    let fname = tName $ fromMaybe undefined (LT.lookup "name" aLookup)
+    let fname' = fromMaybe undefined (LT.lookup "name" aLookup)
+        fname = tName fname'
         fenum = fromMaybe undefined $ LT.lookup "number" aLookup            
-        fparser = fromMaybe undefined $ LT.lookup "type" aLookup
-        tparser = toParser fparser
-        in
+        ftype = fromMaybe undefined $ LT.lookup "type" aLookup
+        tparser = toParser ftype
+    in
         fname ++ " :: FIXTag\n" ++ 
         fname ++ " = FIXTag { tnum = " ++ fenum ++ 
             ", tparser = "  ++ tparser ++ " }\n\n"
     where
         aLookup = fromAttributes $ attributes e
+
+        toParser :: String -> String
+        toParser x = fromMaybe "toFIXString" (LT.lookup x valParsers) 
+            where
+                valParsers :: ParserLookupTable
+                valParsers = 
+                    LT.insert "INT" "toFIXInt" $
+                    LT.insert "STRING" "toFIXString" $
+                    LT.insert "DAYOFMONTH" "toFIXDayOfMonth" $
+                    LT.insert "CHAR" "toFIXChar" $
+                    LT.insert "FLOAT" "toFIXFloat" $
+                    LT.insert "QTY" "toFIXQuantity" $
+                    LT.insert "PRICE" "toFIXPrice" $
+                    LT.insert "PRICEOFFSET" "toFIXPriceOffset" $
+                    LT.insert "AMT" "toFIXAmt" $
+                    LT.insert "BOOLEAN" "toFIXBool" $
+                    LT.insert "MULTIPLEVALUESTRING" 
+                              "toFIXMultipleValueString" $
+                    LT.insert "CURRENCY" "toFIXCurrency" $
+                    LT.insert "EXCHANGE" "toFIXExchange" $
+                    LT.insert "UTCTIMESTAMP" "toFIXUTCTimestamp" $
+                    LT.insert "UTCTIMEONLY" "toFIXUTCTimeOnly" $
+                    LT.insert "LOCALMKTDATE" "toFIXLocalMktDate" 
+                    LT.new
+
 genField _ = ""
 
-getFields :: [Content a] -> [String]
-getFields [] = []
-getFields (CElem e@(Elem (N n) _ _) _ : cs) =
-    let rest = getFields cs 
-        eName = fromMaybe undefined (getNameAttr e)
-    in
-        (if n == "field" then (:) eName else id) rest
-getFields (_ : cs) = getFields cs
 
-allMessages :: Document a -> [Content a]
-allMessages d = let all = fromMaybe undefined $ getMessagesSpec d 
-                    in filter (_matchName "message") (content all) 
+messagesOf :: Document a -> [Content a]
+messagesOf doc = let all = getMessagesSpec doc in 
+                    filter (_matchName "message") (content all) 
 
-allGroups :: [Content a] -> Map String String
-allGroups = undefined
+fieldsOf :: [Content a] -> [String]
+fieldsOf [] = []
+fieldsOf (c:cs)
+    | _matchName "field" c = eName c : rest
+    | otherwise = rest
+        where 
+            rest = fieldsOf cs 
+            eName (CElem e _ )  = getNameAttr e
+fieldsOf (_ : cs) = fieldsOf cs
 
-allTags :: [String] -> [String]
-allTags fs = map _insertTag fs
+groupsOf :: [Content a] -> Groups a
+groupsOf cs = addGroups LT.new cs
+    where
+        addGroups :: Groups a -> [Content a] -> Groups a
+        addGroups t = foldr _insert t 
+            where 
+                _insert :: Content a -> Groups a -> Groups a
+                _insert c@(CElem e _) gs
+                          | _matchName "group" c = 
+                                let gname = getNameAttr e
+                                    gcontent = content e
+                                    gs' = addGroups gs gcontent
+                                in LT.insert gname True gs'
+                          | _matchName "message" c = 
+                                let mcontent = content e in 
+                                    addGroups gs mcontent 
+                          | otherwise = gs
+                _insert _ gs = gs 
+
+tagsOf :: Int -> [String] -> String
+tagsOf i fs = concatMap (indent ++) $ map _insertTag fs
     where 
+        indent = replicate i ' '
         _insertTag n = let n' = tName n 
-                       in "LT.insert (tnum " ++ n' ++ ") " ++ n' ++ " $\n"
+                       in "LT.insert (tnum " ++ n' ++ ")\n" ++ indent ++ 
+                          "          " ++ n' ++ " $\n"
 
 genFIXHeader :: Document a -> String
-genFIXHeader d = let name = headerName d in
+genFIXHeader doc = let name = headerName doc in
     name ++ " :: FIXTags\n" ++
-    name ++ " = \n" ++ concatMap ("    " ++) tags' ++ "    LT.new\n\n"
+    name ++ " = \n" ++ tags' ++ "    LT.new\n\n"
     where   
-        tags' = let Just h = getHeaderSpec d 
-                in allTags $ getFields (content h)
+        tags' = let h = getHeaderSpec doc 
+                in tagsOf 6 $ fieldsOf $ content h
 
 genFIXTrailer :: Document a -> String
-genFIXTrailer d = let name = trailerName d in 
+genFIXTrailer doc = let name = trailerName doc in 
     name ++ " :: FIXTags\n" ++
-    name ++ " = \n" ++ concatMap ("    " ++) tags' ++ "    LT.new\n\n"
+    name ++ " = \n" ++ tags' ++ "    LT.new\n\n"
     where   
-        tags' = let Just h = getTrailerSpec d 
-                in allTags $ getFields (content h)
+        tags' = let h = getTrailerSpec doc 
+                in tagsOf 6 $ fieldsOf $ content h
 
-genMessages :: Document a -> String
-genMessages d = concatMap genMessage $ allMessages d
+genFIXMessages :: Document a -> String
+genFIXMessages doc = concatMap (genMessage 0) $ messagesOf doc
     where
-        genMessage :: Content a -> String
-        genMessage (CElem e _) = 
-            let msg' = mName $ fromMaybe undefined (getNameAttr e)
+        genMessage :: Int -> Content a -> String
+        genMessage i (CElem e _) = 
+            let msg' = mName $ getNameAttr e
                 msgBody' = msg' ++ "Body"
-                mType = fromMaybe undefined $ getMsgTypeAttr e 
-                tags' = allTags $ getFields (content e) 
+                mType = getMsgTypeAttr e 
+                tags' = tagsOf (i + 10) $ fieldsOf $ content e
+                indent = replicate i ' '
             in 
                 msg' ++ " :: FIXMessageSpec\n" ++
                 msg' ++ " = FMSpec\n" ++
-                "   { msType = C.pack \"" ++ mType ++ "\"\n" ++
-                "   , msHeader = " ++ headerName d ++ "\n" ++
-                "   , msBody = " ++ msgBody' ++  "\n" ++
-                "   , msTrailer = " ++ trailerName d ++ " }\n" ++
-                "   where\n" ++
-                "      " ++ msgBody' ++ " = \n" ++ 
-                concatMap ( "          " ++ ) tags' ++ 
-                "          LT.new\n\n"
+                indent ++ "   { msType = C.pack \"" ++ mType ++ "\"\n" ++
+                indent ++ "   , msHeader = " ++ headerName doc ++ "\n" ++
+                indent ++ "   , msBody = " ++ msgBody' ++  "\n" ++
+                indent ++ "   , msTrailer = " ++ trailerName doc ++ " }\n" ++
+                indent ++ "   where\n" ++
+                indent ++ "      " ++ msgBody' ++ " = \n" ++ tags' ++ 
+                indent ++ "          LT.new\n\n"
 
         getMsgTypeAttr = getAttr "msgtype"
 
 
 genFIXSpec :: Document a -> String
-genFIXSpec d = let spec' = fixSpecName d 
+genFIXSpec doc = let spec' = fixSpecName doc 
                in  
                    spec' ++ " :: FIXSpec\n" ++
                    spec' ++ " = FSpec\n" ++
-                   "   { fsHeader = " ++ headerName d ++ "\n" ++
-                   "   , fsTrailer = " ++ trailerName d ++ "\n" ++
+                   "   { fsHeader = " ++ headerName doc ++ "\n" ++
+                   "   , fsTrailer = " ++ trailerName doc ++ "\n" ++
                    "   , fsMessages = " ++ spec' ++ "Messages }\n" ++
                    "   where\n" ++
                    "      " ++ spec' ++ "Messages =\n" ++
                        messageMap ++
                    "          LT.new \n"
                where
-                messageMap = concatMap _insertMsg $ allMessages d
+                messageMap = concatMap _insertMsg $ messagesOf doc
                 _insertMsg (CElem e _) = 
-                    let msg' = mName $ fromMaybe undefined (getNameAttr e) in 
+                    let msg' = mName $ getNameAttr e in 
                         "          LT.insert (msType " ++ msg' ++ ") " ++ 
                         msg' ++ " $\n" 
                 _insertMsg _ = undefined
@@ -201,23 +243,34 @@ xmlFile = head
 
 moduleName :: [String] -> String
 moduleName xs | length xs > 1 = head $ tail xs
-              | otherwise = "Dummy"
+              | otherwise = error 
+                    "you need to specify a name for the module"
 
 main = do
     args <- getArgs
     xmlContent <- readFile $ xmlFile args
     let xmlDoc = xmlParse "/dev/null" xmlContent
-        modName = moduleName args
-        fields = fromMaybe undefined $ getFieldSpec xmlDoc in 
-        do putStr $ moduleHeader modName xmlDoc 
+        modName = moduleName args in 
+        do --- print the module header with all the imports ---  
+           putStr $ moduleHeader modName xmlDoc 
            putStr "\n\n"
-           putStr $ concatMap genField (content fields)
+
+           --- declare all FIX Tags ---
+           putStr $ genFIXFields xmlDoc
+
+           --- declare the FIX header ---
            putStr $ genFIXHeader xmlDoc
+
+           --- declare the FIX trailer ---
            putStr $ genFIXTrailer xmlDoc
-           putStr $ genMessages xmlDoc
+
+           --- declare all FIX messages ---
+           putStr $ genFIXMessages xmlDoc
+
+           {-putStr $ genFIXGroups xmlDoc-}
            putStr $ genFIXSpec xmlDoc
     where
-        moduleHeader mod' d = 
+        moduleHeader mod' doc = 
             "module " ++ mod' ++ " where\n" ++
             "import qualified Data.ByteString.Char8 as C\n" ++ 
             "import qualified Data.LookupTable as LT ( new, insert )\n" ++
