@@ -158,19 +158,18 @@ _matchName name _ = False
 _lookup :: LookupTable k v t => k -> t -> v
 _lookup key t = fromMaybe undefined $ LT.lookup key t
 
-getSpec :: String -> Document a -> Element a
+getSpec :: String -> Document a -> Maybe (Element a)
 getSpec name doc = 
-    let fix = getFIXSpec doc 
-        specs = filter (_matchName name) (content fix) 
-    in
-        case specs of 
-            CElem es _ : _ -> es
-            _ -> error $ "no specification for " ++ name
+    let fix = getFIXSpec doc in
+        case filter (_matchName name) (content fix)  of 
+            CElem es _ : _ -> Just es
+            _ -> Nothing
 
-getFieldSpec = getSpec "fields"
-getHeaderSpec = getSpec "header"
-getTrailerSpec = getSpec "trailer"
-getMessagesSpec = getSpec "messages"
+getFieldSpec = fromMaybe (error "fields not defined") . getSpec "fields"
+getHeaderSpec = fromMaybe (error "header not defined") . getSpec "header"
+getTrailerSpec = fromMaybe (error "trailer not defined") . getSpec "trailer"
+getMessagesSpec = fromMaybe (error "messages not defined") . getSpec "messages"
+getComponentsSpec = fromMaybe (Elem (N "components") [] []) . getSpec "components"
 
 getAttr :: String -> Element a -> String
 getAttr name e = _lookup name $ fromAttributes $ attributes e 
@@ -224,10 +223,35 @@ fieldDef (CElem e _) =
                     LT.new
 fieldDef _ = ""
 
+type Components a = [(String, [Content a])]
+
+componentsOf :: Document a -> Components a
+componentsOf doc = let spec' = getComponentsSpec doc in
+    foldr _insert LT.new $ content spec'
+        where
+            _insert c t 
+                | _matchName "component" c = let elem = cElement c in
+                          LT.insert (getNameAttr elem) (content elem) t
+                | otherwise = t
+
+expandComp :: Components a -> Content a -> Content a
+expandComp comps c@(CElem (Elem n as cs) i) = 
+    (CElem (Elem n as (concatMap _expand cs)) i)
+    where
+        _expand c | _matchName "component" c = 
+                    let name = getNameAttr $ cElement c
+                        compCont = _lookup name comps 
+                    in
+                        concatMap _expand compCont
+                  | otherwise = [ expandComp comps c ]
+expandComp comps c = c
 
 messagesOf :: Document a -> [Content a]
-messagesOf doc = let all = getMessagesSpec doc in 
-                    filter (_matchName "message") (content all) 
+messagesOf doc = 
+    let all = getMessagesSpec doc 
+        msgOnly = filter (_matchName "message") (content all) 
+    in
+        map (expandComp (componentsOf doc)) msgOnly
 
 fieldsOf :: Int -> [Content a] -> String
 fieldsOf i cs = 
@@ -251,9 +275,12 @@ fieldsOf i cs =
             | otherwise = ""
         
         genGroups _ (_, _:[]) = error "group should have a sperator"
-        genGroups i (n, _:s:cs) = 
-            let sname = tName $ getNameAttr $ cElement s 
+        genGroups i (n, gcs') = 
+            let (s, gcs) = getSepAndCont gcs'
+                sname = tName $ getNameAttr $ cElement s 
                 gname = gName n
+                indent' = replicate i ' '
+                tags' = fieldsOf (i + 8) gcs
             in
                 indent' ++ gname ++ " = FIXTag\n" ++
                 indent' ++ "  { tnum = tnum " ++ tName n ++ "\n" ++
@@ -266,8 +293,9 @@ fieldsOf i cs =
                 indent' ++ "    " ++ gname ++ "Body = \n"  ++ tags' ++ "\n"
 
             where
-                indent' = replicate i ' '
-                tags' = fieldsOf (i + 8) cs
+                getSepAndCont [] = undefined
+                getSepAndCont (c@(CElem _ _):ds) = (c, ds)
+                getSepAndCont (_ : ds) = getSepAndCont ds
 
 groupsOf :: [Content a] -> Groups a
 groupsOf cs = addGroups LT.new cs

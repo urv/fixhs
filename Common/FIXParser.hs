@@ -43,7 +43,8 @@ parseFIXTag :: FIXTags -> Parser (Int, FIXValue)
 parseFIXTag tags = do 
     l <- toTag
     let tag' = LT.lookup l tags
-        parser' = fromMaybe (fail $ "unknown tag " ++ show l) $ liftM tparser tag' 
+        parser' = fromMaybe (fail $ "unknown tag " ++ show l) $ 
+                    liftM tparser tag' 
         in fmap ((,) l) parser' 
 
 
@@ -60,9 +61,9 @@ tagsP ts = let tag' = parseFIXTag ts in
 
 -- parse a value of type FIX group
 groupP :: FIXGroupSpec -> Parser FIXValue
-groupP spec = let numTag = gsLength spec
-              in do FIXInt n <- tagP numTag -- number of submessages
-                    b <- count n submsg -- parse the submessages
+groupP spec = let numTag = gsLength spec in 
+                 do FIXInt n <- tagP numTag -- number of submessages
+                    b <- count n submsg     -- parse the submessages
                     return $ FIXGroup n b
               where
                   submsg :: Parser FIXValues
@@ -100,8 +101,7 @@ _nextP = do
         _calcChksum' :: Parser Int
         _calcChksum' = string (C.pack "10=") >> toInt
 
--- Parse a FIX message. The parser fails when the checksum 
--- validation fails.
+-- Parse a FIX message. There is no validation of the FIX message done.
 _nextP' :: Parser ByteString
 _nextP' = do 
           msg <- take =<< _numBytes
@@ -119,20 +119,21 @@ _nextP' = do
  -- Parse a FIX message out of the stream
 messageP :: FIXSpec -> Parser FIXMessage
 messageP spec = 
-    let headerP  = tagsP $ fsHeader spec  -- parser for header
-        trailerP = tagsP $ fsTrailer spec -- parser for trailer
-        bodyP mtype =                     -- parser for body
+    let headerP  = tagsP $ fsHeader spec  -- parse header
+        trailerP = tagsP $ fsTrailer spec -- parse trailer
+        bodyP mtype =                     -- parse body
             let allSpecs = fsMessages spec
-                msgSpec = fromMaybe undefined $ LT.lookup mtype allSpecs
+                msgSpec = fromMaybe (error "no message") $
+                                LT.lookup mtype allSpecs
                 msgBodyTags = msBody msgSpec
             in 
                 tagsP msgBodyTags
     in do
         h <- headerP
-        let mt' = fromMaybe undefined (LT.lookup 35 h) 
+        let mt' = fromMaybe (error "next tag should be 35") (LT.lookup 35 h) 
             mt = case mt' of 
-                    FIXString t -> t
-                    _ -> undefined
+                      FIXString t -> t 
+                      _ -> undefined
         b <- bodyP mt
         t <- trailerP 
         return FIXMessage { mHeader = h, mBody = b, mTrailer = t }
@@ -141,7 +142,7 @@ nm :: FIXSpec -> Parser FIXMessage
 nm spec = do msg <- _nextP
              case parseOnly (messageP spec) msg of
                  Right ts -> return ts
-                 Left err -> fail err
+                 Left err -> fail err 
 
 -- FIX value parsers 
 toFIXInt = FIXInt <$> toInt
