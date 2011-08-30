@@ -15,8 +15,8 @@ import Common.FIXMessage (FIXValue(..), mBody)
 
 main :: IO ()
 main = let config = E.Configuration "127.0.0.1" 3000 in 
-    E.client config (liftM p (messageP fix42))
-    {-E.client config (liftM p _nextP)-}
+    {-E.client config (liftM p (messageP fix42))-}
+    E.client config (liftM p _nextP)
         where
             p m = C.pack $ show m
                   
