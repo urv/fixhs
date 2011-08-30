@@ -236,7 +236,7 @@ componentsOf doc = let spec' = getComponentsSpec doc in
 
 expandComp :: Components a -> Content a -> Content a
 expandComp comps c@(CElem (Elem n as cs) i) = 
-    (CElem (Elem n as (concatMap _expand cs)) i)
+    CElem (Elem n as (concatMap _expand cs)) i
     where
         _expand c | _matchName "component" c = 
                     let name = getNameAttr $ cElement c
@@ -259,7 +259,7 @@ fieldsOf i cs =
     in 
         concatMap _insertTag cs ++ 
         indent ++ "LT.new\n" ++
-            if length groups /= 0 then
+            if not (null groups) then
                indent ++ "where\n" ++ concatMap (genGroups (i+6)) groups
             else ""
                 
