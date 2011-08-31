@@ -195,7 +195,7 @@ fieldDef (CElem e _) =
         fname = tName name
         fenum = getAttr "number" e
         ftype = getAttr "type" e
-        tparser = toParser ftype
+        tparser = "to" ++ typeOfFIX ftype
     in
         fname ++ " :: FIXTag\n" ++ 
         fname ++ " = FIXTag \n" ++ 
@@ -204,28 +204,34 @@ fieldDef (CElem e _) =
             "   , tparser = "  ++ tparser ++ " }\n\n"
     where
 
-        toParser :: String -> String
-        toParser x = fromMaybe "toFIXString" (LT.lookup x valParsers) 
+        typeOfFIX :: String -> String
+        typeOfFIX x = fromMaybe (error $ "unknown type " ++ x) $ 
+                        LT.lookup x values' 
             where
-                valParsers :: Map String String
-                valParsers = 
-                    LT.insert "INT" "toFIXInt" $
-                    LT.insert "STRING" "toFIXString" $
-                    LT.insert "DAYOFMONTH" "toFIXDayOfMonth" $
-                    LT.insert "CHAR" "toFIXChar" $
-                    LT.insert "FLOAT" "toFIXFloat" $
-                    LT.insert "QTY" "toFIXQuantity" $
-                    LT.insert "PRICE" "toFIXPrice" $
-                    LT.insert "PRICEOFFSET" "toFIXPriceOffset" $
-                    LT.insert "AMT" "toFIXAmt" $
-                    LT.insert "BOOLEAN" "toFIXBool" $
+                values' :: Map String String
+                values' = 
+                    LT.insert "INT" "FIXInt" $
+                    LT.insert "STRING" "FIXString" $
+                    LT.insert "DAYOFMONTH" "FIXDayOfMonth" $
+                    LT.insert "CHAR" "FIXChar" $
+                    LT.insert "FLOAT" "FIXFloat" $
+                    LT.insert "QTY" "FIXQuantity" $
+                    LT.insert "PRICE" "FIXPrice" $
+                    LT.insert "QUANTITY" "FIXQuantity" $
+                    LT.insert "PRICEOFFSET" "FIXPriceOffset" $
+                    LT.insert "AMT" "FIXAmt" $
+                    LT.insert "BOOLEAN" "FIXBool" $
                     LT.insert "MULTIPLEVALUESTRING" 
-                              "toFIXMultipleValueString" $
-                    LT.insert "CURRENCY" "toFIXCurrency" $
-                    LT.insert "EXCHANGE" "toFIXExchange" $
-                    LT.insert "UTCTIMESTAMP" "toFIXUTCTimestamp" $
-                    LT.insert "UTCTIMEONLY" "toFIXUTCTimeOnly" $
-                    LT.insert "LOCALMKTDATE" "toFIXLocalMktDate" 
+                              "FIXMultipleValueString" $
+                    LT.insert "CURRENCY" "FIXCurrency" $
+                    LT.insert "EXCHANGE" "FIXExchange" $
+                    LT.insert "UTCTIMESTAMP" "FIXUTCTimestamp" $
+                    LT.insert "UTCTIMEONLY" "FIXUTCTimeOnly" $
+                    LT.insert "UTCDATE" "FIXUTCDate" $
+                    LT.insert "MONTHYEAR" "FIXMonthYear" $
+                    LT.insert "LOCALMKTDATE" "FIXLocalMktDate" $
+                    LT.insert "DATA" "Data" $
+                    LT.insert "LENGTH" "DataLen" 
                     LT.new
 fieldDef _ = ""
 

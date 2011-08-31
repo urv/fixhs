@@ -58,9 +58,8 @@ data FIXValue = FIXInt Int
               | FIXLocalMktDate CalendarTime
               | FIXUTCDate CalendarTime
               | FIXMonthYear CalendarTime
-              | FIXData 
-                { dataLen :: Int
-                , dataChunk :: ByteString }
+              | FIXData ByteString 
+              | FIXDataLen Int
               | FIXGroup Int [FIXValues]
 
 instance Show FIXValue where

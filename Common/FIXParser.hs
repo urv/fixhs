@@ -20,6 +20,8 @@ module Common.FIXParser
     , toFIXUTCTimestamp
     , toFIXUTCTimeOnly
     , toFIXLocalMktDate
+    , toFIXData
+    , toFIXDataLen
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -157,6 +159,8 @@ toFIXString = FIXString <$> toString
 toFIXMultipleValueString = FIXMultipleValueString <$> toString
 toFIXCurrency = FIXCurrency <$> toString
 toFIXExchange = FIXExchange <$> toString
+toFIXData = FIXData <$> toString
+toFIXDataLen = FIXDataLen <$> toInt
 toFIXUTCTimestamp = FIXUTCTimestamp <$> toUTCTimestamp
 toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
 toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
