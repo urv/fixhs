@@ -537,19 +537,19 @@ tSignature :: FIXTag
 tSignature = FIXTag 
    { tName = "Signature"
    , tnum = 89
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tSecureDataLen :: FIXTag
 tSecureDataLen = FIXTag 
    { tName = "SecureDataLen"
    , tnum = 90
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tSecureData :: FIXTag
 tSecureData = FIXTag 
    { tName = "SecureData"
    , tnum = 91
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tBrokerOfCredit :: FIXTag
 tBrokerOfCredit = FIXTag 
@@ -561,7 +561,7 @@ tSignatureLength :: FIXTag
 tSignatureLength = FIXTag 
    { tName = "SignatureLength"
    , tnum = 93
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEmailType :: FIXTag
 tEmailType = FIXTag 
@@ -573,13 +573,13 @@ tRawDataLength :: FIXTag
 tRawDataLength = FIXTag 
    { tName = "RawDataLength"
    , tnum = 95
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tRawData :: FIXTag
 tRawData = FIXTag 
    { tName = "RawData"
    , tnum = 96
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tPossResend :: FIXTag
 tPossResend = FIXTag 
@@ -747,7 +747,7 @@ tCxlType :: FIXTag
 tCxlType = FIXTag 
    { tName = "CxlType"
    , tnum = 125
-   , tparser = toFIXString }
+   , tparser = toFIXChar }
 
 tExpireTime :: FIXTag
 tExpireTime = FIXTag 
@@ -1197,7 +1197,7 @@ tMaturityMonthYear :: FIXTag
 tMaturityMonthYear = FIXTag 
    { tName = "MaturityMonthYear"
    , tnum = 200
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear }
 
 tPutOrCall :: FIXTag
 tPutOrCall = FIXTag 
@@ -1269,13 +1269,13 @@ tXmlDataLen :: FIXTag
 tXmlDataLen = FIXTag 
    { tName = "XmlDataLen"
    , tnum = 212
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tXmlData :: FIXTag
 tXmlData = FIXTag 
    { tName = "XmlData"
    , tnum = 213
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tSettlInstRefID :: FIXTag
 tSettlInstRefID = FIXTag 
@@ -1389,7 +1389,7 @@ tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
    { tName = "MDEntryDate"
    , tnum = 272
-   , tparser = toFIXString }
+   , tparser = toFIXUTCDate }
 
 tMDEntryTime :: FIXTag
 tMDEntryTime = FIXTag 
@@ -1635,7 +1635,7 @@ tUnderlyingMaturityMonthYear :: FIXTag
 tUnderlyingMaturityMonthYear = FIXTag 
    { tName = "UnderlyingMaturityMonthYear"
    , tnum = 313
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear }
 
 tUnderlyingMaturityDay :: FIXTag
 tUnderlyingMaturityDay = FIXTag 
@@ -1671,7 +1671,7 @@ tRatioQty :: FIXTag
 tRatioQty = FIXTag 
    { tName = "RatioQty"
    , tnum = 319
-   , tparser = toFIXString }
+   , tparser = toFIXQuantity }
 
 tSecurityReqID :: FIXTag
 tSecurityReqID = FIXTag 
@@ -1845,109 +1845,109 @@ tEncodedIssuerLen :: FIXTag
 tEncodedIssuerLen = FIXTag 
    { tName = "EncodedIssuerLen"
    , tnum = 348
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedIssuer :: FIXTag
 tEncodedIssuer = FIXTag 
    { tName = "EncodedIssuer"
    , tnum = 349
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedSecurityDescLen :: FIXTag
 tEncodedSecurityDescLen = FIXTag 
    { tName = "EncodedSecurityDescLen"
    , tnum = 350
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedSecurityDesc :: FIXTag
 tEncodedSecurityDesc = FIXTag 
    { tName = "EncodedSecurityDesc"
    , tnum = 351
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedListExecInstLen :: FIXTag
 tEncodedListExecInstLen = FIXTag 
    { tName = "EncodedListExecInstLen"
    , tnum = 352
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedListExecInst :: FIXTag
 tEncodedListExecInst = FIXTag 
    { tName = "EncodedListExecInst"
    , tnum = 353
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedTextLen :: FIXTag
 tEncodedTextLen = FIXTag 
    { tName = "EncodedTextLen"
    , tnum = 354
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedText :: FIXTag
 tEncodedText = FIXTag 
    { tName = "EncodedText"
    , tnum = 355
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedSubjectLen :: FIXTag
 tEncodedSubjectLen = FIXTag 
    { tName = "EncodedSubjectLen"
    , tnum = 356
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedSubject :: FIXTag
 tEncodedSubject = FIXTag 
    { tName = "EncodedSubject"
    , tnum = 357
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedHeadlineLen :: FIXTag
 tEncodedHeadlineLen = FIXTag 
    { tName = "EncodedHeadlineLen"
    , tnum = 358
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedHeadline :: FIXTag
 tEncodedHeadline = FIXTag 
    { tName = "EncodedHeadline"
    , tnum = 359
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedAllocTextLen :: FIXTag
 tEncodedAllocTextLen = FIXTag 
    { tName = "EncodedAllocTextLen"
    , tnum = 360
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedAllocText :: FIXTag
 tEncodedAllocText = FIXTag 
    { tName = "EncodedAllocText"
    , tnum = 361
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedUnderlyingIssuerLen :: FIXTag
 tEncodedUnderlyingIssuerLen = FIXTag 
    { tName = "EncodedUnderlyingIssuerLen"
    , tnum = 362
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedUnderlyingIssuer :: FIXTag
 tEncodedUnderlyingIssuer = FIXTag 
    { tName = "EncodedUnderlyingIssuer"
    , tnum = 363
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tEncodedUnderlyingSecurityDescLen :: FIXTag
 tEncodedUnderlyingSecurityDescLen = FIXTag 
    { tName = "EncodedUnderlyingSecurityDescLen"
    , tnum = 364
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedUnderlyingSecurityDesc :: FIXTag
 tEncodedUnderlyingSecurityDesc = FIXTag 
    { tName = "EncodedUnderlyingSecurityDesc"
    , tnum = 365
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 tAllocPrice :: FIXTag
 tAllocPrice = FIXTag 
@@ -2427,13 +2427,13 @@ tEncodedListStatusTextLen :: FIXTag
 tEncodedListStatusTextLen = FIXTag 
    { tName = "EncodedListStatusTextLen"
    , tnum = 445
-   , tparser = toFIXString }
+   , tparser = toFIXDataLen }
 
 tEncodedListStatusText :: FIXTag
 tEncodedListStatusText = FIXTag 
    { tName = "EncodedListStatusText"
    , tnum = 446
-   , tparser = toFIXString }
+   , tparser = toFIXData }
 
 headerFIX42 :: FIXTags
 headerFIX42 = 

@@ -22,6 +22,8 @@ module Common.FIXParser
     , toFIXLocalMktDate
     , toFIXData
     , toFIXDataLen
+    , toFIXUTCDate
+    , toFIXMonthYear
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -165,3 +167,5 @@ toFIXUTCTimestamp = FIXUTCTimestamp <$> toUTCTimestamp
 toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
 toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
 toFIXChar = FIXChar <$> toChar
+toFIXUTCDate = FIXUTCDate <$> toUTCDate
+toFIXMonthYear = FIXMonthYear <$> toMonthYear

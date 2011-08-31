@@ -230,8 +230,8 @@ fieldDef (CElem e _) =
                     LT.insert "UTCDATE" "FIXUTCDate" $
                     LT.insert "MONTHYEAR" "FIXMonthYear" $
                     LT.insert "LOCALMKTDATE" "FIXLocalMktDate" $
-                    LT.insert "DATA" "Data" $
-                    LT.insert "LENGTH" "DataLen" 
+                    LT.insert "DATA" "FIXData" $
+                    LT.insert "LENGTH" "FIXDataLen" 
                     LT.new
 fieldDef _ = ""
 

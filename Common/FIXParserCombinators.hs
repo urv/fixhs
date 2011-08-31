@@ -11,6 +11,7 @@ module Common.FIXParserCombinators
     , toChar
     , toUTCDate
     , toTime
+    , toMonthYear
 
     -- exporting Attoparsec
     , Data.Attoparsec.Parser
@@ -182,6 +183,27 @@ toLocalMktDate = do
 
 toUTCDate :: Parser CalendarTime
 toUTCDate = toLocalMktDate
+
+toMonthYear :: Parser CalendarTime
+toMonthYear = do
+   i <- toInt
+   let year  = i `div` 10000
+   let rest  = i `mod` 10000
+   let month = rest `div` 100
+   return CalendarTime {
+       ctYear  = year
+     , ctMonth = toEnum $ month - 1
+     , ctDay   = 0
+     , ctHour  = 0
+     , ctMin   = 0 
+     , ctSec   = 0
+     , ctPicosec = 0
+     , ctWDay  = undefined
+     , ctYDay  = undefined
+     , ctTZName = "UTC"
+     , ctTZ    = 0
+     , ctIsDST = True
+   }
 
 toTime :: Parser CalendarTime
 toTime = toUTCTimestamp 
