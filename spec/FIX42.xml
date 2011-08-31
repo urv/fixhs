@@ -2037,7 +2037,7 @@
    <value enum='Y' description='YES' />
   </field>
   <field number='124' name='NoExecs' type='INT' />
-  <field number='125' name='CxlType' type=' CHAR' />
+  <field number='125' name='CxlType' type='CHAR' />
   <field number='126' name='ExpireTime' type='UTCTIMESTAMP' />
   <field number='127' name='DKReason' type='CHAR'>
    <value enum='A' description='UNKNOWN_SYMBOL' />
@@ -2435,7 +2435,7 @@
   <field number='316' name='UnderlyingStrikePrice' type='PRICE' />
   <field number='317' name='UnderlyingOptAttribute' type='CHAR' />
   <field number='318' name='UnderlyingCurrency' type='CURRENCY' />
-  <field number='319' name='RatioQty' type='QUANTITY' />
+  <field number='319' name='RatioQty' type='QTY' />
   <field number='320' name='SecurityReqID' type='STRING' />
   <field number='321' name='SecurityRequestType' type='INT'>
    <value enum='0' description='REQUEST_SECURITY_IDENTITY_AND_SPECIFICATIONS' />
