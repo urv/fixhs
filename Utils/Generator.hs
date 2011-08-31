@@ -59,7 +59,7 @@ genFIXHeader doc = let name = headerName doc in
     name ++ " = \n" ++ tags' ++ "\n\n"
     where   
         tags' = let h = getHeaderSpec doc 
-                in fieldsOf 6 $ content h
+                in fieldsOf 1 $ content h
 
 genFIXTrailer :: Document a -> String
 genFIXTrailer doc = let name = trailerName doc in 
@@ -67,27 +67,29 @@ genFIXTrailer doc = let name = trailerName doc in
     name ++ " = \n" ++ tags' ++ "\n\n"
     where   
         tags' = let h = getTrailerSpec doc 
-                in fieldsOf 6 $ content h
+                in fieldsOf 1 $ content h
 
 genFIXMessages :: Document a -> String
-genFIXMessages doc = concatMap (genMessage 0) $ messagesOf doc
+genFIXMessages doc = concatMap genMessage $ messagesOf doc
     where
-        genMessage :: Int -> Content a -> String
-        genMessage i (CElem e _) = 
-            let msg' = mName $ getNameAttr e
-                msgBody' = msg' ++ "Body"
+        genMessage :: Content a -> String
+        genMessage (CElem e _) = 
+            let msg' = getNameAttr e
+                msg = mName msg'
+                msgBody' = msg ++ "Body"
                 mType = getMsgTypeAttr e 
-                tags' = fieldsOf (i + 10) $ content e
-                indent = replicate i ' '
+                tags' = fieldsOf 2 $ content e
+                indent = replicate 3 ' '
             in 
-                msg' ++ " :: FIXMessageSpec\n" ++
-                msg' ++ " = FMSpec\n" ++
-                indent ++ "   { msType = C.pack \"" ++ mType ++ "\"\n" ++
-                indent ++ "   , msHeader = " ++ headerName doc ++ "\n" ++
-                indent ++ "   , msBody = " ++ msgBody' ++  "\n" ++
-                indent ++ "   , msTrailer = " ++ trailerName doc ++ " }\n" ++
-                indent ++ "   where\n" ++
-                indent ++ "      " ++ msgBody' ++ " = \n" ++ tags' ++ "\n\n"
+                msg ++ " :: FIXMessageSpec\n" ++
+                msg ++ " = FMSpec\n" ++
+                indent ++ "{ msName = \"" ++ msg' ++ "\"\n" ++
+                indent ++ ", msType = C.pack \"" ++ mType ++ "\"\n" ++
+                indent ++ ", msHeader = " ++ headerName doc ++ "\n" ++
+                indent ++ ", msBody = " ++ msgBody' ++  "\n" ++
+                indent ++ ", msTrailer = " ++ trailerName doc ++ " }\n" ++
+                indent ++ "where\n" ++
+                indent ++ msgBody' ++ " = \n" ++ tags' ++ "\n\n"
 
         getMsgTypeAttr = getAttr "msgtype"
 
@@ -107,7 +109,9 @@ genFIXSpec doc = let spec' = fixSpecName doc
                        messageMap ++
                    "          LT.new \n"
                where
-                messageMap = concatMap _insertMsg $ messagesOf doc
+                rmLastNewline text | length text > 2 = init . init $ text
+                                   | otherwise = text
+                messageMap = rmLastNewline (concatMap _insertMsg $ messagesOf doc)
                 _insertMsg (CElem e _) = 
                     let msg' = mName $ getNameAttr e in 
                         "          LT.insert (msType " ++ msg' ++ ") " ++ 
@@ -187,16 +191,18 @@ fromAttributes = foldr _insert LT.new
 
 fieldDef :: Content a -> String
 fieldDef (CElem e _) = 
-    let fname = tName $ _lookup "name" attributeTable
-        fenum = _lookup "number" attributeTable            
-        ftype = _lookup "type" attributeTable
+    let name = getNameAttr e
+        fname = tName name
+        fenum = getAttr "number" e
+        ftype = getAttr "type" e
         tparser = toParser ftype
     in
         fname ++ " :: FIXTag\n" ++ 
-        fname ++ " = FIXTag { tnum = " ++ fenum ++ 
-            ", tparser = "  ++ tparser ++ " }\n\n"
+        fname ++ " = FIXTag \n" ++ 
+            "   { tName = \"" ++ name ++ "\"\n" ++
+            "   , tnum = " ++ fenum ++ "\n" ++
+            "   , tparser = "  ++ tparser ++ " }\n\n"
     where
-        attributeTable = fromAttributes $ attributes e
 
         toParser :: String -> String
         toParser x = fromMaybe "toFIXString" (LT.lookup x valParsers) 
@@ -254,43 +260,49 @@ messagesOf doc =
         map (expandComp (componentsOf doc)) msgOnly
 
 fieldsOf :: Int -> [Content a] -> String
-fieldsOf i cs = 
+fieldsOf l cs = 
     let groups = LT.toList $ groupsOf cs 
+        rmLastNewline text | length text > 2 = init . init $ text
+                           | otherwise = text
     in 
-        concatMap _insertTag cs ++ 
+        rmLastNewline (concatMap _insertTag cs) ++ 
         indent ++ "LT.new\n" ++
             if not (null groups) then
-               indent ++ "where\n" ++ concatMap (genGroups (i+6)) groups
+               indent ++ "where\n" ++ concatMap (genGroups (l + 1)) groups
             else ""
                 
     where 
-        indent = replicate i ' '
+        indent = replicate (l * 3)  ' '
+        suffix = replicate (l + 1) '\''
         _insertTag c
             | _matchName "field" c = 
                     let n' = tName $ getNameAttr $ cElement c
                     in indent ++ "LT.insert (tnum " ++ n' ++ ") " ++ n' ++ " $\n"
             | _matchName "group" c = 
                     let n = getNameAttr $ cElement c
-                    in indent ++ "LT.insert (tnum " ++ tName n ++ ") " ++ gName n ++ " $\n"
+                    in indent ++ "LT.insert (tnum " ++ tName n ++ ") " ++ gName n ++ suffix ++ " $\n"
             | otherwise = ""
         
         genGroups _ (_, _:[]) = error "group should have a sperator"
-        genGroups i (n, gcs') = 
+        genGroups l (n, gcs') = 
             let (s, gcs) = getSepAndCont gcs'
                 sname = tName $ getNameAttr $ cElement s 
                 gname = gName n
-                indent' = replicate i ' '
-                tags' = fieldsOf (i + 8) gcs
+                indent' = replicate (l * 3)  ' '
+                indent'' = replicate ((l + 1) * 3)  ' '
+                suffix' = replicate l '\''
+                tags' = fieldsOf (l + 2) gcs
             in
-                indent' ++ gname ++ " = FIXTag\n" ++
-                indent' ++ "  { tnum = tnum " ++ tName n ++ "\n" ++
-                indent' ++ "  , tparser = " ++ gname ++ "P }\n\n" ++
-                indent' ++ gname ++ "P = groupP $ FGSpec\n" ++
-                indent' ++ "  { gsLength = " ++ tName n ++ "\n" ++
-                indent' ++ "  , gsSeperator = " ++ sname ++ "\n" ++
-                indent' ++ "  , gsBody = " ++ gname ++ "Body }\n" ++
-                indent' ++ "    where\n" ++
-                indent' ++ "    " ++ gname ++ "Body = \n"  ++ tags' ++ "\n"
+                indent' ++ gname ++ suffix' ++ " = FIXTag\n" ++
+                indent'' ++ "{ tName = \"" ++ n ++ "\"\n" ++
+                indent'' ++ ", tnum = tnum " ++ tName n ++ "\n" ++
+                indent'' ++ ", tparser = " ++ gname ++ "P" ++ suffix' ++ " }\n\n" ++
+                indent' ++ gname ++ "P" ++ suffix' ++ " = groupP FGSpec\n" ++
+                indent'' ++ "{ gsLength = " ++ tName n ++ "\n" ++
+                indent'' ++ ", gsSeperator = " ++ sname ++ "\n" ++
+                indent'' ++ ", gsBody = " ++ gname ++ "Body" ++ suffix' ++ " }\n" ++
+                indent'' ++ "where\n" ++
+                indent'' ++ gname ++ "Body" ++ suffix' ++ " = \n"  ++ tags' ++ "\n"
 
             where
                 getSepAndCont [] = undefined
@@ -308,8 +320,7 @@ groupsOf cs = addGroups LT.new cs
                           | _matchName "group" c = 
                                 let gname = getNameAttr e
                                     gcontent = content e
-                                    gs' = addGroups gs gcontent
-                                in LT.insert gname gcontent gs'
+                                in LT.insert gname gcontent gs
                           | _matchName "message" c = 
                                 let mcontent = content e in 
                                     addGroups gs mcontent 

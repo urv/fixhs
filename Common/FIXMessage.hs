@@ -30,7 +30,8 @@ import Data.LookupTable ( LookupTable )
 import qualified Data.LookupTable ( toList )
 
 data FIXTag = FIXTag 
-    { tnum :: Int
+    { tName :: String
+    , tnum :: Int
     , tparser :: Parser FIXValue } 
 
 instance Show FIXTag where
@@ -110,7 +111,8 @@ newtype ListOfTags a = LT (IntMap a)
 
 type FIXTags = ListOfTags FIXTag
 data FIXMessageSpec = FMSpec 
-                      { msType :: ByteString
+                      { msName :: String
+                      , msType :: ByteString
                       , msHeader :: FIXTags
                       , msBody :: FIXTags 
                       , msTrailer :: FIXTags }

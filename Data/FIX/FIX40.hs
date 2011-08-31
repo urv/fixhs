@@ -1,4 +1,4 @@
-module Data.FIX.FIX41 where
+module Data.FIX.FIX40 where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )
 import Common.FIXMessage
@@ -15,13 +15,13 @@ tAdvId :: FIXTag
 tAdvId = FIXTag 
    { tName = "AdvId"
    , tnum = 2
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tAdvRefID :: FIXTag
 tAdvRefID = FIXTag 
    { tName = "AdvRefID"
    , tnum = 3
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tAdvSide :: FIXTag
 tAdvSide = FIXTag 
@@ -105,7 +105,7 @@ tExecID :: FIXTag
 tExecID = FIXTag 
    { tName = "ExecID"
    , tnum = 17
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tExecInst :: FIXTag
 tExecInst = FIXTag 
@@ -117,7 +117,7 @@ tExecRefID :: FIXTag
 tExecRefID = FIXTag 
    { tName = "ExecRefID"
    , tnum = 19
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tExecTransType :: FIXTag
 tExecTransType = FIXTag 
@@ -141,7 +141,7 @@ tIOIid :: FIXTag
 tIOIid = FIXTag 
    { tName = "IOIid"
    , tnum = 23
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tIOIOthSvc :: FIXTag
 tIOIOthSvc = FIXTag 
@@ -159,7 +159,7 @@ tIOIRefID :: FIXTag
 tIOIRefID = FIXTag 
    { tName = "IOIRefID"
    , tnum = 26
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tIOIShares :: FIXTag
 tIOIShares = FIXTag 
@@ -423,7 +423,7 @@ tAllocID :: FIXTag
 tAllocID = FIXTag 
    { tName = "AllocID"
    , tnum = 70
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tAllocTransType :: FIXTag
 tAllocTransType = FIXTag 
@@ -435,7 +435,7 @@ tRefAllocID :: FIXTag
 tRefAllocID = FIXTag 
    { tName = "RefAllocID"
    , tnum = 72
-   , tparser = toFIXChar }
+   , tparser = toFIXInt }
 
 tNoOrders :: FIXTag
 tNoOrders = FIXTag 
@@ -747,7 +747,7 @@ tCxlType :: FIXTag
 tCxlType = FIXTag 
    { tName = "CxlType"
    , tnum = 125
-   , tparser = toFIXString }
+   , tparser = toFIXChar }
 
 tExpireTime :: FIXTag
 tExpireTime = FIXTag 
@@ -839,434 +839,8 @@ tPrevClosePx = FIXTag
    , tnum = 140
    , tparser = toFIXFloat }
 
-tResetSeqNumFlag :: FIXTag
-tResetSeqNumFlag = FIXTag 
-   { tName = "ResetSeqNumFlag"
-   , tnum = 141
-   , tparser = toFIXChar }
-
-tSenderLocationID :: FIXTag
-tSenderLocationID = FIXTag 
-   { tName = "SenderLocationID"
-   , tnum = 142
-   , tparser = toFIXChar }
-
-tTargetLocationID :: FIXTag
-tTargetLocationID = FIXTag 
-   { tName = "TargetLocationID"
-   , tnum = 143
-   , tparser = toFIXChar }
-
-tOnBehalfOfLocationID :: FIXTag
-tOnBehalfOfLocationID = FIXTag 
-   { tName = "OnBehalfOfLocationID"
-   , tnum = 144
-   , tparser = toFIXChar }
-
-tDeliverToLocationID :: FIXTag
-tDeliverToLocationID = FIXTag 
-   { tName = "DeliverToLocationID"
-   , tnum = 145
-   , tparser = toFIXChar }
-
-tNoRelatedSym :: FIXTag
-tNoRelatedSym = FIXTag 
-   { tName = "NoRelatedSym"
-   , tnum = 146
-   , tparser = toFIXInt }
-
-tSubject :: FIXTag
-tSubject = FIXTag 
-   { tName = "Subject"
-   , tnum = 147
-   , tparser = toFIXChar }
-
-tHeadline :: FIXTag
-tHeadline = FIXTag 
-   { tName = "Headline"
-   , tnum = 148
-   , tparser = toFIXChar }
-
-tURLLink :: FIXTag
-tURLLink = FIXTag 
-   { tName = "URLLink"
-   , tnum = 149
-   , tparser = toFIXChar }
-
-tExecType :: FIXTag
-tExecType = FIXTag 
-   { tName = "ExecType"
-   , tnum = 150
-   , tparser = toFIXChar }
-
-tLeavesQty :: FIXTag
-tLeavesQty = FIXTag 
-   { tName = "LeavesQty"
-   , tnum = 151
-   , tparser = toFIXInt }
-
-tCashOrderQty :: FIXTag
-tCashOrderQty = FIXTag 
-   { tName = "CashOrderQty"
-   , tnum = 152
-   , tparser = toFIXFloat }
-
-tAllocAvgPx :: FIXTag
-tAllocAvgPx = FIXTag 
-   { tName = "AllocAvgPx"
-   , tnum = 153
-   , tparser = toFIXFloat }
-
-tAllocNetMoney :: FIXTag
-tAllocNetMoney = FIXTag 
-   { tName = "AllocNetMoney"
-   , tnum = 154
-   , tparser = toFIXFloat }
-
-tSettlCurrFxRate :: FIXTag
-tSettlCurrFxRate = FIXTag 
-   { tName = "SettlCurrFxRate"
-   , tnum = 155
-   , tparser = toFIXFloat }
-
-tSettlCurrFxRateCalc :: FIXTag
-tSettlCurrFxRateCalc = FIXTag 
-   { tName = "SettlCurrFxRateCalc"
-   , tnum = 156
-   , tparser = toFIXChar }
-
-tNumDaysInterest :: FIXTag
-tNumDaysInterest = FIXTag 
-   { tName = "NumDaysInterest"
-   , tnum = 157
-   , tparser = toFIXInt }
-
-tAccruedInterestRate :: FIXTag
-tAccruedInterestRate = FIXTag 
-   { tName = "AccruedInterestRate"
-   , tnum = 158
-   , tparser = toFIXFloat }
-
-tAccruedInterestAmt :: FIXTag
-tAccruedInterestAmt = FIXTag 
-   { tName = "AccruedInterestAmt"
-   , tnum = 159
-   , tparser = toFIXFloat }
-
-tSettlInstMode :: FIXTag
-tSettlInstMode = FIXTag 
-   { tName = "SettlInstMode"
-   , tnum = 160
-   , tparser = toFIXChar }
-
-tAllocText :: FIXTag
-tAllocText = FIXTag 
-   { tName = "AllocText"
-   , tnum = 161
-   , tparser = toFIXChar }
-
-tSettlInstID :: FIXTag
-tSettlInstID = FIXTag 
-   { tName = "SettlInstID"
-   , tnum = 162
-   , tparser = toFIXChar }
-
-tSettlInstTransType :: FIXTag
-tSettlInstTransType = FIXTag 
-   { tName = "SettlInstTransType"
-   , tnum = 163
-   , tparser = toFIXChar }
-
-tEmailThreadID :: FIXTag
-tEmailThreadID = FIXTag 
-   { tName = "EmailThreadID"
-   , tnum = 164
-   , tparser = toFIXChar }
-
-tSettlInstSource :: FIXTag
-tSettlInstSource = FIXTag 
-   { tName = "SettlInstSource"
-   , tnum = 165
-   , tparser = toFIXChar }
-
-tSettlLocation :: FIXTag
-tSettlLocation = FIXTag 
-   { tName = "SettlLocation"
-   , tnum = 166
-   , tparser = toFIXChar }
-
-tSecurityType :: FIXTag
-tSecurityType = FIXTag 
-   { tName = "SecurityType"
-   , tnum = 167
-   , tparser = toFIXChar }
-
-tEffectiveTime :: FIXTag
-tEffectiveTime = FIXTag 
-   { tName = "EffectiveTime"
-   , tnum = 168
-   , tparser = toFIXString }
-
-tStandInstDbType :: FIXTag
-tStandInstDbType = FIXTag 
-   { tName = "StandInstDbType"
-   , tnum = 169
-   , tparser = toFIXInt }
-
-tStandInstDbName :: FIXTag
-tStandInstDbName = FIXTag 
-   { tName = "StandInstDbName"
-   , tnum = 170
-   , tparser = toFIXChar }
-
-tStandInstDbID :: FIXTag
-tStandInstDbID = FIXTag 
-   { tName = "StandInstDbID"
-   , tnum = 171
-   , tparser = toFIXChar }
-
-tSettlDeliveryType :: FIXTag
-tSettlDeliveryType = FIXTag 
-   { tName = "SettlDeliveryType"
-   , tnum = 172
-   , tparser = toFIXInt }
-
-tSettlDepositoryCode :: FIXTag
-tSettlDepositoryCode = FIXTag 
-   { tName = "SettlDepositoryCode"
-   , tnum = 173
-   , tparser = toFIXChar }
-
-tSettlBrkrCode :: FIXTag
-tSettlBrkrCode = FIXTag 
-   { tName = "SettlBrkrCode"
-   , tnum = 174
-   , tparser = toFIXChar }
-
-tSettlInstCode :: FIXTag
-tSettlInstCode = FIXTag 
-   { tName = "SettlInstCode"
-   , tnum = 175
-   , tparser = toFIXChar }
-
-tSecuritySettlAgentName :: FIXTag
-tSecuritySettlAgentName = FIXTag 
-   { tName = "SecuritySettlAgentName"
-   , tnum = 176
-   , tparser = toFIXChar }
-
-tSecuritySettlAgentCode :: FIXTag
-tSecuritySettlAgentCode = FIXTag 
-   { tName = "SecuritySettlAgentCode"
-   , tnum = 177
-   , tparser = toFIXChar }
-
-tSecuritySettlAgentAcctNum :: FIXTag
-tSecuritySettlAgentAcctNum = FIXTag 
-   { tName = "SecuritySettlAgentAcctNum"
-   , tnum = 178
-   , tparser = toFIXChar }
-
-tSecuritySettlAgentAcctName :: FIXTag
-tSecuritySettlAgentAcctName = FIXTag 
-   { tName = "SecuritySettlAgentAcctName"
-   , tnum = 179
-   , tparser = toFIXChar }
-
-tSecuritySettlAgentContactName :: FIXTag
-tSecuritySettlAgentContactName = FIXTag 
-   { tName = "SecuritySettlAgentContactName"
-   , tnum = 180
-   , tparser = toFIXChar }
-
-tSecuritySettlAgentContactPhone :: FIXTag
-tSecuritySettlAgentContactPhone = FIXTag 
-   { tName = "SecuritySettlAgentContactPhone"
-   , tnum = 181
-   , tparser = toFIXChar }
-
-tCashSettlAgentName :: FIXTag
-tCashSettlAgentName = FIXTag 
-   { tName = "CashSettlAgentName"
-   , tnum = 182
-   , tparser = toFIXChar }
-
-tCashSettlAgentCode :: FIXTag
-tCashSettlAgentCode = FIXTag 
-   { tName = "CashSettlAgentCode"
-   , tnum = 183
-   , tparser = toFIXChar }
-
-tCashSettlAgentAcctNum :: FIXTag
-tCashSettlAgentAcctNum = FIXTag 
-   { tName = "CashSettlAgentAcctNum"
-   , tnum = 184
-   , tparser = toFIXChar }
-
-tCashSettlAgentAcctName :: FIXTag
-tCashSettlAgentAcctName = FIXTag 
-   { tName = "CashSettlAgentAcctName"
-   , tnum = 185
-   , tparser = toFIXChar }
-
-tCashSettlAgentContactName :: FIXTag
-tCashSettlAgentContactName = FIXTag 
-   { tName = "CashSettlAgentContactName"
-   , tnum = 186
-   , tparser = toFIXChar }
-
-tCashSettlAgentContactPhone :: FIXTag
-tCashSettlAgentContactPhone = FIXTag 
-   { tName = "CashSettlAgentContactPhone"
-   , tnum = 187
-   , tparser = toFIXChar }
-
-tBidSpotRate :: FIXTag
-tBidSpotRate = FIXTag 
-   { tName = "BidSpotRate"
-   , tnum = 188
-   , tparser = toFIXFloat }
-
-tBidForwardPoints :: FIXTag
-tBidForwardPoints = FIXTag 
-   { tName = "BidForwardPoints"
-   , tnum = 189
-   , tparser = toFIXFloat }
-
-tOfferSpotRate :: FIXTag
-tOfferSpotRate = FIXTag 
-   { tName = "OfferSpotRate"
-   , tnum = 190
-   , tparser = toFIXFloat }
-
-tOfferForwardPoints :: FIXTag
-tOfferForwardPoints = FIXTag 
-   { tName = "OfferForwardPoints"
-   , tnum = 191
-   , tparser = toFIXFloat }
-
-tOrderQty2 :: FIXTag
-tOrderQty2 = FIXTag 
-   { tName = "OrderQty2"
-   , tnum = 192
-   , tparser = toFIXFloat }
-
-tFutSettDate2 :: FIXTag
-tFutSettDate2 = FIXTag 
-   { tName = "FutSettDate2"
-   , tnum = 193
-   , tparser = toFIXString }
-
-tLastSpotRate :: FIXTag
-tLastSpotRate = FIXTag 
-   { tName = "LastSpotRate"
-   , tnum = 194
-   , tparser = toFIXFloat }
-
-tLastForwardPoints :: FIXTag
-tLastForwardPoints = FIXTag 
-   { tName = "LastForwardPoints"
-   , tnum = 195
-   , tparser = toFIXFloat }
-
-tAllocLinkID :: FIXTag
-tAllocLinkID = FIXTag 
-   { tName = "AllocLinkID"
-   , tnum = 196
-   , tparser = toFIXChar }
-
-tAllocLinkType :: FIXTag
-tAllocLinkType = FIXTag 
-   { tName = "AllocLinkType"
-   , tnum = 197
-   , tparser = toFIXInt }
-
-tSecondaryOrderID :: FIXTag
-tSecondaryOrderID = FIXTag 
-   { tName = "SecondaryOrderID"
-   , tnum = 198
-   , tparser = toFIXChar }
-
-tNoIOIQualifiers :: FIXTag
-tNoIOIQualifiers = FIXTag 
-   { tName = "NoIOIQualifiers"
-   , tnum = 199
-   , tparser = toFIXInt }
-
-tMaturityMonthYear :: FIXTag
-tMaturityMonthYear = FIXTag 
-   { tName = "MaturityMonthYear"
-   , tnum = 200
-   , tparser = toFIXString }
-
-tPutOrCall :: FIXTag
-tPutOrCall = FIXTag 
-   { tName = "PutOrCall"
-   , tnum = 201
-   , tparser = toFIXInt }
-
-tStrikePrice :: FIXTag
-tStrikePrice = FIXTag 
-   { tName = "StrikePrice"
-   , tnum = 202
-   , tparser = toFIXFloat }
-
-tCoveredOrUncovered :: FIXTag
-tCoveredOrUncovered = FIXTag 
-   { tName = "CoveredOrUncovered"
-   , tnum = 203
-   , tparser = toFIXInt }
-
-tCustomerOrFirm :: FIXTag
-tCustomerOrFirm = FIXTag 
-   { tName = "CustomerOrFirm"
-   , tnum = 204
-   , tparser = toFIXInt }
-
-tMaturityDay :: FIXTag
-tMaturityDay = FIXTag 
-   { tName = "MaturityDay"
-   , tnum = 205
-   , tparser = toFIXDayOfMonth }
-
-tOptAttribute :: FIXTag
-tOptAttribute = FIXTag 
-   { tName = "OptAttribute"
-   , tnum = 206
-   , tparser = toFIXChar }
-
-tSecurityExchange :: FIXTag
-tSecurityExchange = FIXTag 
-   { tName = "SecurityExchange"
-   , tnum = 207
-   , tparser = toFIXChar }
-
-tNotifyBrokerOfCredit :: FIXTag
-tNotifyBrokerOfCredit = FIXTag 
-   { tName = "NotifyBrokerOfCredit"
-   , tnum = 208
-   , tparser = toFIXChar }
-
-tAllocHandlInst :: FIXTag
-tAllocHandlInst = FIXTag 
-   { tName = "AllocHandlInst"
-   , tnum = 209
-   , tparser = toFIXInt }
-
-tMaxShow :: FIXTag
-tMaxShow = FIXTag 
-   { tName = "MaxShow"
-   , tnum = 210
-   , tparser = toFIXInt }
-
-tPegDifference :: FIXTag
-tPegDifference = FIXTag 
-   { tName = "PegDifference"
-   , tnum = 211
-   , tparser = toFIXFloat }
-
-headerFIX41 :: FIXTags
-headerFIX41 = 
+headerFIX40 :: FIXTags
+headerFIX40 = 
    LT.insert (tnum tBeginString) tBeginString $
    LT.insert (tnum tBodyLength) tBodyLength $
    LT.insert (tnum tMsgType) tMsgType $
@@ -1278,21 +852,17 @@ headerFIX41 =
    LT.insert (tnum tSecureData) tSecureData $
    LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
    LT.insert (tnum tSenderSubID) tSenderSubID $
-   LT.insert (tnum tSenderLocationID) tSenderLocationID $
    LT.insert (tnum tTargetSubID) tTargetSubID $
-   LT.insert (tnum tTargetLocationID) tTargetLocationID $
    LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
-   LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
    LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
-   LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
    LT.insert (tnum tPossDupFlag) tPossDupFlag $
    LT.insert (tnum tPossResend) tPossResend $
    LT.insert (tnum tSendingTime) tSendingTime $
    LT.insert (tnum tOrigSendingTime) tOrigSendingTime    LT.new
 
 
-trailerFIX41 :: FIXTags
-trailerFIX41 = 
+trailerFIX40 :: FIXTags
+trailerFIX40 = 
    LT.insert (tnum tSignatureLength) tSignatureLength $
    LT.insert (tnum tSignature) tSignature $
    LT.insert (tnum tCheckSum) tCheckSum    LT.new
@@ -1302,9 +872,9 @@ mHeartbeat :: FIXMessageSpec
 mHeartbeat = FMSpec
    { msName = "Heartbeat"
    , msType = C.pack "0"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mHeartbeatBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mHeartbeatBody = 
       LT.insert (tnum tTestReqID) tTestReqID       LT.new
@@ -1314,9 +884,9 @@ mTestRequest :: FIXMessageSpec
 mTestRequest = FMSpec
    { msName = "TestRequest"
    , msType = C.pack "1"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mTestRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mTestRequestBody = 
       LT.insert (tnum tTestReqID) tTestReqID       LT.new
@@ -1326,9 +896,9 @@ mResendRequest :: FIXMessageSpec
 mResendRequest = FMSpec
    { msName = "ResendRequest"
    , msType = C.pack "2"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mResendRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mResendRequestBody = 
       LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
@@ -1339,9 +909,9 @@ mReject :: FIXMessageSpec
 mReject = FMSpec
    { msName = "Reject"
    , msType = C.pack "3"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mRejectBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mRejectBody = 
       LT.insert (tnum tRefSeqNum) tRefSeqNum $
@@ -1352,9 +922,9 @@ mSequenceReset :: FIXMessageSpec
 mSequenceReset = FMSpec
    { msName = "SequenceReset"
    , msType = C.pack "4"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mSequenceResetBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mSequenceResetBody = 
       LT.insert (tnum tGapFillFlag) tGapFillFlag $
@@ -1365,9 +935,9 @@ mLogout :: FIXMessageSpec
 mLogout = FMSpec
    { msName = "Logout"
    , msType = C.pack "5"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mLogoutBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mLogoutBody = 
       LT.insert (tnum tText) tText       LT.new
@@ -1377,9 +947,9 @@ mIndicationofInterest :: FIXMessageSpec
 mIndicationofInterest = FMSpec
    { msName = "IndicationofInterest"
    , msType = C.pack "6"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mIndicationofInterestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mIndicationofInterestBody = 
       LT.insert (tnum tIOIid) tIOIid $
@@ -1389,13 +959,6 @@ mIndicationofInterest = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tSide) tSide $
@@ -1406,33 +969,17 @@ mIndicationofInterest = FMSpec
       LT.insert (tnum tIOIQltyInd) tIOIQltyInd $
       LT.insert (tnum tIOIOthSvc) tIOIOthSvc $
       LT.insert (tnum tIOINaturalFlag) tIOINaturalFlag $
-      LT.insert (tnum tNoIOIQualifiers) gNoIOIQualifiers''' $
-      LT.insert (tnum tText) tText $
-      LT.insert (tnum tTransactTime) tTransactTime $
-      LT.insert (tnum tURLLink) tURLLink       LT.new
-      where
-         gNoIOIQualifiers''' = FIXTag
-            { tName = "NoIOIQualifiers"
-            , tnum = tnum tNoIOIQualifiers
-            , tparser = gNoIOIQualifiersP''' }
-
-         gNoIOIQualifiersP''' = groupP FGSpec
-            { gsLength = tNoIOIQualifiers
-            , gsSeperator = tIOIQualifier
-            , gsBody = gNoIOIQualifiersBody''' }
-            where
-            gNoIOIQualifiersBody''' = 
-               LT.new
-
+      LT.insert (tnum tIOIQualifier) tIOIQualifier $
+      LT.insert (tnum tText) tText       LT.new
 
 
 mAdvertisement :: FIXMessageSpec
 mAdvertisement = FMSpec
    { msName = "Advertisement"
    , msType = C.pack "7"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mAdvertisementBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mAdvertisementBody = 
       LT.insert (tnum tAdvId) tAdvId $
@@ -1442,46 +989,33 @@ mAdvertisement = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tAdvSide) tAdvSide $
       LT.insert (tnum tShares) tShares $
       LT.insert (tnum tPrice) tPrice $
       LT.insert (tnum tCurrency) tCurrency $
-      LT.insert (tnum tTradeDate) tTradeDate $
       LT.insert (tnum tTransactTime) tTransactTime $
-      LT.insert (tnum tText) tText $
-      LT.insert (tnum tURLLink) tURLLink $
-      LT.insert (tnum tLastMkt) tLastMkt       LT.new
+      LT.insert (tnum tText) tText       LT.new
 
 
 mExecutionReport :: FIXMessageSpec
 mExecutionReport = FMSpec
    { msName = "ExecutionReport"
    , msType = C.pack "8"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mExecutionReportBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mExecutionReportBody = 
       LT.insert (tnum tOrderID) tOrderID $
-      LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
       LT.insert (tnum tClOrdID) tClOrdID $
-      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
       LT.insert (tnum tClientID) tClientID $
       LT.insert (tnum tExecBroker) tExecBroker $
       LT.insert (tnum tListID) tListID $
       LT.insert (tnum tExecID) tExecID $
       LT.insert (tnum tExecTransType) tExecTransType $
       LT.insert (tnum tExecRefID) tExecRefID $
-      LT.insert (tnum tExecType) tExecType $
       LT.insert (tnum tOrdStatus) tOrdStatus $
       LT.insert (tnum tOrdRejReason) tOrdRejReason $
       LT.insert (tnum tAccount) tAccount $
@@ -1491,13 +1025,6 @@ mExecutionReport = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tSide) tSide $
@@ -1505,7 +1032,6 @@ mExecutionReport = FMSpec
       LT.insert (tnum tOrdType) tOrdType $
       LT.insert (tnum tPrice) tPrice $
       LT.insert (tnum tStopPx) tStopPx $
-      LT.insert (tnum tPegDifference) tPegDifference $
       LT.insert (tnum tCurrency) tCurrency $
       LT.insert (tnum tTimeInForce) tTimeInForce $
       LT.insert (tnum tExpireTime) tExpireTime $
@@ -1513,11 +1039,8 @@ mExecutionReport = FMSpec
       LT.insert (tnum tRule80A) tRule80A $
       LT.insert (tnum tLastShares) tLastShares $
       LT.insert (tnum tLastPx) tLastPx $
-      LT.insert (tnum tLastSpotRate) tLastSpotRate $
-      LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
       LT.insert (tnum tLastMkt) tLastMkt $
       LT.insert (tnum tLastCapacity) tLastCapacity $
-      LT.insert (tnum tLeavesQty) tLeavesQty $
       LT.insert (tnum tCumQty) tCumQty $
       LT.insert (tnum tAvgPx) tAvgPx $
       LT.insert (tnum tTradeDate) tTradeDate $
@@ -1525,27 +1048,39 @@ mExecutionReport = FMSpec
       LT.insert (tnum tReportToExch) tReportToExch $
       LT.insert (tnum tCommission) tCommission $
       LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tNoMiscFees) gNoMiscFees''' $
+      LT.insert (tnum tNetMoney) tNetMoney $
       LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
       LT.insert (tnum tSettlCurrency) tSettlCurrency $
-      LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
-      LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
       LT.insert (tnum tText) tText       LT.new
+      where
+         gNoMiscFees''' = FIXTag
+            { tName = "NoMiscFees"
+            , tnum = tnum tNoMiscFees
+            , tparser = gNoMiscFeesP''' }
+
+         gNoMiscFeesP''' = groupP FGSpec
+            { gsLength = tNoMiscFees
+            , gsSeperator = tMiscFeeAmt
+            , gsBody = gNoMiscFeesBody''' }
+            where
+            gNoMiscFeesBody''' = 
+               LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
+               LT.insert (tnum tMiscFeeType) tMiscFeeType                LT.new
+
 
 
 mOrderCancelReject :: FIXMessageSpec
 mOrderCancelReject = FMSpec
    { msName = "OrderCancelReject"
    , msType = C.pack "9"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mOrderCancelRejectBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mOrderCancelRejectBody = 
       LT.insert (tnum tOrderID) tOrderID $
-      LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
       LT.insert (tnum tClOrdID) tClOrdID $
-      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-      LT.insert (tnum tOrdStatus) tOrdStatus $
       LT.insert (tnum tClientID) tClientID $
       LT.insert (tnum tExecBroker) tExecBroker $
       LT.insert (tnum tListID) tListID $
@@ -1557,141 +1092,62 @@ mLogon :: FIXMessageSpec
 mLogon = FMSpec
    { msName = "Logon"
    , msType = C.pack "A"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mLogonBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mLogonBody = 
       LT.insert (tnum tEncryptMethod) tEncryptMethod $
       LT.insert (tnum tHeartBtInt) tHeartBtInt $
       LT.insert (tnum tRawDataLength) tRawDataLength $
-      LT.insert (tnum tRawData) tRawData $
-      LT.insert (tnum tResetSeqNumFlag) tResetSeqNumFlag       LT.new
+      LT.insert (tnum tRawData) tRawData       LT.new
 
 
 mNews :: FIXMessageSpec
 mNews = FMSpec
    { msName = "News"
    , msType = C.pack "B"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mNewsBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mNewsBody = 
       LT.insert (tnum tOrigTime) tOrigTime $
       LT.insert (tnum tUrgency) tUrgency $
-      LT.insert (tnum tHeadline) tHeadline $
-      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
-      LT.insert (tnum tLinesOfText) gLinesOfText''' $
-      LT.insert (tnum tURLLink) tURLLink $
+      LT.insert (tnum tRelatdSym) tRelatdSym $
+      LT.insert (tnum tLinesOfText) tLinesOfText $
+      LT.insert (tnum tText) tText $
       LT.insert (tnum tRawDataLength) tRawDataLength $
       LT.insert (tnum tRawData) tRawData       LT.new
-      where
-         gLinesOfText''' = FIXTag
-            { tName = "LinesOfText"
-            , tnum = tnum tLinesOfText
-            , tparser = gLinesOfTextP''' }
-
-         gLinesOfTextP''' = groupP FGSpec
-            { gsLength = tLinesOfText
-            , gsSeperator = tText
-            , gsBody = gLinesOfTextBody''' }
-            where
-            gLinesOfTextBody''' = 
-               LT.new
-
-         gNoRelatedSym''' = FIXTag
-            { tName = "NoRelatedSym"
-            , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
-
-         gNoRelatedSymP''' = groupP FGSpec
-            { gsLength = tNoRelatedSym
-            , gsSeperator = tRelatdSym
-            , gsBody = gNoRelatedSymBody''' }
-            where
-            gNoRelatedSymBody''' = 
-               LT.insert (tnum tSymbolSfx) tSymbolSfx $
-               LT.insert (tnum tSecurityID) tSecurityID $
-               LT.insert (tnum tIDSource) tIDSource $
-               LT.insert (tnum tSecurityType) tSecurityType $
-               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-               LT.insert (tnum tMaturityDay) tMaturityDay $
-               LT.insert (tnum tPutOrCall) tPutOrCall $
-               LT.insert (tnum tStrikePrice) tStrikePrice $
-               LT.insert (tnum tOptAttribute) tOptAttribute $
-               LT.insert (tnum tSecurityExchange) tSecurityExchange $
-               LT.insert (tnum tIssuer) tIssuer $
-               LT.insert (tnum tSecurityDesc) tSecurityDesc                LT.new
-
 
 
 mEmail :: FIXMessageSpec
 mEmail = FMSpec
    { msName = "Email"
    , msType = C.pack "C"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mEmailBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mEmailBody = 
-      LT.insert (tnum tEmailThreadID) tEmailThreadID $
       LT.insert (tnum tEmailType) tEmailType $
       LT.insert (tnum tOrigTime) tOrigTime $
-      LT.insert (tnum tSubject) tSubject $
-      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tRelatdSym) tRelatdSym $
       LT.insert (tnum tOrderID) tOrderID $
       LT.insert (tnum tClOrdID) tClOrdID $
-      LT.insert (tnum tLinesOfText) gLinesOfText''' $
+      LT.insert (tnum tLinesOfText) tLinesOfText $
+      LT.insert (tnum tText) tText $
       LT.insert (tnum tRawDataLength) tRawDataLength $
       LT.insert (tnum tRawData) tRawData       LT.new
-      where
-         gLinesOfText''' = FIXTag
-            { tName = "LinesOfText"
-            , tnum = tnum tLinesOfText
-            , tparser = gLinesOfTextP''' }
-
-         gLinesOfTextP''' = groupP FGSpec
-            { gsLength = tLinesOfText
-            , gsSeperator = tText
-            , gsBody = gLinesOfTextBody''' }
-            where
-            gLinesOfTextBody''' = 
-               LT.new
-
-         gNoRelatedSym''' = FIXTag
-            { tName = "NoRelatedSym"
-            , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
-
-         gNoRelatedSymP''' = groupP FGSpec
-            { gsLength = tNoRelatedSym
-            , gsSeperator = tRelatdSym
-            , gsBody = gNoRelatedSymBody''' }
-            where
-            gNoRelatedSymBody''' = 
-               LT.insert (tnum tSymbolSfx) tSymbolSfx $
-               LT.insert (tnum tSecurityID) tSecurityID $
-               LT.insert (tnum tIDSource) tIDSource $
-               LT.insert (tnum tSecurityType) tSecurityType $
-               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-               LT.insert (tnum tMaturityDay) tMaturityDay $
-               LT.insert (tnum tPutOrCall) tPutOrCall $
-               LT.insert (tnum tStrikePrice) tStrikePrice $
-               LT.insert (tnum tOptAttribute) tOptAttribute $
-               LT.insert (tnum tSecurityExchange) tSecurityExchange $
-               LT.insert (tnum tIssuer) tIssuer $
-               LT.insert (tnum tSecurityDesc) tSecurityDesc                LT.new
-
 
 
 mNewOrderSingle :: FIXMessageSpec
 mNewOrderSingle = FMSpec
    { msName = "NewOrderSingle"
    , msType = C.pack "D"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mNewOrderSingleBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mNewOrderSingleBody = 
       LT.insert (tnum tClOrdID) tClOrdID $
@@ -1710,20 +1166,12 @@ mNewOrderSingle = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tPrevClosePx) tPrevClosePx $
       LT.insert (tnum tSide) tSide $
       LT.insert (tnum tLocateReqd) tLocateReqd $
       LT.insert (tnum tOrderQty) tOrderQty $
-      LT.insert (tnum tCashOrderQty) tCashOrderQty $
       LT.insert (tnum tOrdType) tOrdType $
       LT.insert (tnum tPrice) tPrice $
       LT.insert (tnum tStopPx) tStopPx $
@@ -1737,23 +1185,16 @@ mNewOrderSingle = FMSpec
       LT.insert (tnum tRule80A) tRule80A $
       LT.insert (tnum tForexReq) tForexReq $
       LT.insert (tnum tSettlCurrency) tSettlCurrency $
-      LT.insert (tnum tText) tText $
-      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-      LT.insert (tnum tOrderQty2) tOrderQty2 $
-      LT.insert (tnum tOpenClose) tOpenClose $
-      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-      LT.insert (tnum tCustomerOrFirm) tCustomerOrFirm $
-      LT.insert (tnum tMaxShow) tMaxShow $
-      LT.insert (tnum tPegDifference) tPegDifference       LT.new
+      LT.insert (tnum tText) tText       LT.new
 
 
 mNewOrderList :: FIXMessageSpec
 mNewOrderList = FMSpec
    { msName = "NewOrderList"
    , msType = C.pack "E"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mNewOrderListBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mNewOrderListBody = 
       LT.insert (tnum tListID) tListID $
@@ -1777,13 +1218,6 @@ mNewOrderList = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tPrevClosePx) tPrevClosePx $
@@ -1793,7 +1227,6 @@ mNewOrderList = FMSpec
       LT.insert (tnum tOrdType) tOrdType $
       LT.insert (tnum tPrice) tPrice $
       LT.insert (tnum tStopPx) tStopPx $
-      LT.insert (tnum tPegDifference) tPegDifference $
       LT.insert (tnum tCurrency) tCurrency $
       LT.insert (tnum tTimeInForce) tTimeInForce $
       LT.insert (tnum tExpireTime) tExpireTime $
@@ -1802,46 +1235,33 @@ mNewOrderList = FMSpec
       LT.insert (tnum tRule80A) tRule80A $
       LT.insert (tnum tForexReq) tForexReq $
       LT.insert (tnum tSettlCurrency) tSettlCurrency $
-      LT.insert (tnum tText) tText $
-      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-      LT.insert (tnum tOrderQty2) tOrderQty2 $
-      LT.insert (tnum tOpenClose) tOpenClose $
-      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-      LT.insert (tnum tCustomerOrFirm) tCustomerOrFirm $
-      LT.insert (tnum tMaxShow) tMaxShow       LT.new
+      LT.insert (tnum tText) tText       LT.new
 
 
 mOrderCancelRequest :: FIXMessageSpec
 mOrderCancelRequest = FMSpec
    { msName = "OrderCancelRequest"
    , msType = C.pack "F"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mOrderCancelRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mOrderCancelRequestBody = 
       LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
       LT.insert (tnum tOrderID) tOrderID $
       LT.insert (tnum tClOrdID) tClOrdID $
       LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tCxlType) tCxlType $
       LT.insert (tnum tClientID) tClientID $
       LT.insert (tnum tExecBroker) tExecBroker $
       LT.insert (tnum tSymbol) tSymbol $
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tSide) tSide $
       LT.insert (tnum tOrderQty) tOrderQty $
-      LT.insert (tnum tCashOrderQty) tCashOrderQty $
       LT.insert (tnum tText) tText       LT.new
 
 
@@ -1849,9 +1269,9 @@ mOrderCancelReplaceRequest :: FIXMessageSpec
 mOrderCancelReplaceRequest = FMSpec
    { msName = "OrderCancelReplaceRequest"
    , msType = C.pack "G"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mOrderCancelReplaceRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mOrderCancelReplaceRequestBody = 
       LT.insert (tnum tOrderID) tOrderID $
@@ -1872,22 +1292,13 @@ mOrderCancelReplaceRequest = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tSide) tSide $
       LT.insert (tnum tOrderQty) tOrderQty $
-      LT.insert (tnum tCashOrderQty) tCashOrderQty $
       LT.insert (tnum tOrdType) tOrdType $
       LT.insert (tnum tPrice) tPrice $
       LT.insert (tnum tStopPx) tStopPx $
-      LT.insert (tnum tPegDifference) tPegDifference $
       LT.insert (tnum tCurrency) tCurrency $
       LT.insert (tnum tTimeInForce) tTimeInForce $
       LT.insert (tnum tExpireTime) tExpireTime $
@@ -1896,23 +1307,16 @@ mOrderCancelReplaceRequest = FMSpec
       LT.insert (tnum tRule80A) tRule80A $
       LT.insert (tnum tForexReq) tForexReq $
       LT.insert (tnum tSettlCurrency) tSettlCurrency $
-      LT.insert (tnum tText) tText $
-      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-      LT.insert (tnum tOrderQty2) tOrderQty2 $
-      LT.insert (tnum tOpenClose) tOpenClose $
-      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-      LT.insert (tnum tCustomerOrFirm) tCustomerOrFirm $
-      LT.insert (tnum tMaxShow) tMaxShow $
-      LT.insert (tnum tLocateReqd) tLocateReqd       LT.new
+      LT.insert (tnum tText) tText       LT.new
 
 
 mOrderStatusRequest :: FIXMessageSpec
 mOrderStatusRequest = FMSpec
    { msName = "OrderStatusRequest"
    , msType = C.pack "H"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mOrderStatusRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mOrderStatusRequestBody = 
       LT.insert (tnum tOrderID) tOrderID $
@@ -1921,15 +1325,6 @@ mOrderStatusRequest = FMSpec
       LT.insert (tnum tExecBroker) tExecBroker $
       LT.insert (tnum tSymbol) tSymbol $
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
-      LT.insert (tnum tSecurityID) tSecurityID $
-      LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tSide) tSide       LT.new
@@ -1939,16 +1334,14 @@ mAllocation :: FIXMessageSpec
 mAllocation = FMSpec
    { msName = "Allocation"
    , msType = C.pack "J"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mAllocationBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mAllocationBody = 
       LT.insert (tnum tAllocID) tAllocID $
       LT.insert (tnum tAllocTransType) tAllocTransType $
       LT.insert (tnum tRefAllocID) tRefAllocID $
-      LT.insert (tnum tAllocLinkID) tAllocLinkID $
-      LT.insert (tnum tAllocLinkType) tAllocLinkType $
       LT.insert (tnum tNoOrders) gNoOrders''' $
       LT.insert (tnum tNoExecs) gNoExecs''' $
       LT.insert (tnum tSide) tSide $
@@ -1956,17 +1349,9 @@ mAllocation = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tShares) tShares $
-      LT.insert (tnum tLastMkt) tLastMkt $
       LT.insert (tnum tAvgPx) tAvgPx $
       LT.insert (tnum tCurrency) tCurrency $
       LT.insert (tnum tAvgPrxPrecision) tAvgPrxPrecision $
@@ -1975,10 +1360,11 @@ mAllocation = FMSpec
       LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
       LT.insert (tnum tFutSettDate) tFutSettDate $
       LT.insert (tnum tNetMoney) tNetMoney $
+      LT.insert (tnum tNoMiscFees) gNoMiscFees''' $
+      LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+      LT.insert (tnum tSettlCurrency) tSettlCurrency $
       LT.insert (tnum tOpenClose) tOpenClose $
       LT.insert (tnum tText) tText $
-      LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
-      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
       LT.insert (tnum tNoAllocs) gNoAllocs'''       LT.new
       where
          gNoAllocs''' = FIXTag
@@ -1994,38 +1380,13 @@ mAllocation = FMSpec
             gNoAllocsBody''' = 
                LT.insert (tnum tAllocShares) tAllocShares $
                LT.insert (tnum tProcessCode) tProcessCode $
-               LT.insert (tnum tBrokerOfCredit) tBrokerOfCredit $
-               LT.insert (tnum tNotifyBrokerOfCredit) tNotifyBrokerOfCredit $
-               LT.insert (tnum tAllocHandlInst) tAllocHandlInst $
-               LT.insert (tnum tAllocText) tAllocText $
                LT.insert (tnum tExecBroker) tExecBroker $
                LT.insert (tnum tClientID) tClientID $
                LT.insert (tnum tCommission) tCommission $
                LT.insert (tnum tCommType) tCommType $
-               LT.insert (tnum tAllocAvgPx) tAllocAvgPx $
-               LT.insert (tnum tAllocNetMoney) tAllocNetMoney $
-               LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
-               LT.insert (tnum tSettlCurrency) tSettlCurrency $
-               LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
-               LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
-               LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-               LT.insert (tnum tSettlInstMode) tSettlInstMode $
-               LT.insert (tnum tNoMiscFees) gNoMiscFees''''''                LT.new
-               where
-                  gNoMiscFees'''''' = FIXTag
-                     { tName = "NoMiscFees"
-                     , tnum = tnum tNoMiscFees
-                     , tparser = gNoMiscFeesP'''''' }
-
-                  gNoMiscFeesP'''''' = groupP FGSpec
-                     { gsLength = tNoMiscFees
-                     , gsSeperator = tMiscFeeAmt
-                     , gsBody = gNoMiscFeesBody'''''' }
-                     where
-                     gNoMiscFeesBody'''''' = 
-                        LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
-                        LT.insert (tnum tMiscFeeType) tMiscFeeType                         LT.new
-
+               LT.insert (tnum tNoDlvyInst) tNoDlvyInst $
+               LT.insert (tnum tBrokerOfCredit) tBrokerOfCredit $
+               LT.insert (tnum tDlvyInst) tDlvyInst                LT.new
 
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
@@ -2034,13 +1395,27 @@ mAllocation = FMSpec
 
          gNoExecsP''' = groupP FGSpec
             { gsLength = tNoExecs
-            , gsSeperator = tLastShares
+            , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
             where
             gNoExecsBody''' = 
-               LT.insert (tnum tExecID) tExecID $
+               LT.insert (tnum tLastShares) tLastShares $
                LT.insert (tnum tLastPx) tLastPx $
-               LT.insert (tnum tLastCapacity) tLastCapacity                LT.new
+               LT.insert (tnum tLastMkt) tLastMkt                LT.new
+
+         gNoMiscFees''' = FIXTag
+            { tName = "NoMiscFees"
+            , tnum = tnum tNoMiscFees
+            , tparser = gNoMiscFeesP''' }
+
+         gNoMiscFeesP''' = groupP FGSpec
+            { gsLength = tNoMiscFees
+            , gsSeperator = tMiscFeeAmt
+            , gsBody = gNoMiscFeesBody''' }
+            where
+            gNoMiscFeesBody''' = 
+               LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
+               LT.insert (tnum tMiscFeeType) tMiscFeeType                LT.new
 
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
@@ -2054,7 +1429,6 @@ mAllocation = FMSpec
             where
             gNoOrdersBody''' = 
                LT.insert (tnum tOrderID) tOrderID $
-               LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
                LT.insert (tnum tListID) tListID $
                LT.insert (tnum tWaveNo) tWaveNo                LT.new
 
@@ -2064,9 +1438,9 @@ mListCancelRequest :: FIXMessageSpec
 mListCancelRequest = FMSpec
    { msName = "ListCancelRequest"
    , msType = C.pack "K"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mListCancelRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mListCancelRequestBody = 
       LT.insert (tnum tListID) tListID $
@@ -2078,9 +1452,9 @@ mListExecute :: FIXMessageSpec
 mListExecute = FMSpec
    { msName = "ListExecute"
    , msType = C.pack "L"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mListExecuteBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mListExecuteBody = 
       LT.insert (tnum tListID) tListID $
@@ -2092,9 +1466,9 @@ mListStatusRequest :: FIXMessageSpec
 mListStatusRequest = FMSpec
    { msName = "ListStatusRequest"
    , msType = C.pack "M"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mListStatusRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mListStatusRequestBody = 
       LT.insert (tnum tListID) tListID $
@@ -2106,9 +1480,9 @@ mListStatus :: FIXMessageSpec
 mListStatus = FMSpec
    { msName = "ListStatus"
    , msType = C.pack "N"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mListStatusBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mListStatusBody = 
       LT.insert (tnum tListID) tListID $
@@ -2129,7 +1503,6 @@ mListStatus = FMSpec
             where
             gNoOrdersBody''' = 
                LT.insert (tnum tCumQty) tCumQty $
-               LT.insert (tnum tLeavesQty) tLeavesQty $
                LT.insert (tnum tCxlQty) tCxlQty $
                LT.insert (tnum tAvgPx) tAvgPx                LT.new
 
@@ -2139,9 +1512,9 @@ mAllocationACK :: FIXMessageSpec
 mAllocationACK = FMSpec
    { msName = "AllocationACK"
    , msType = C.pack "P"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mAllocationACKBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mAllocationACKBody = 
       LT.insert (tnum tClientID) tClientID $
@@ -2158,30 +1531,17 @@ mDontKnowTrade :: FIXMessageSpec
 mDontKnowTrade = FMSpec
    { msName = "DontKnowTrade"
    , msType = C.pack "Q"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mDontKnowTradeBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mDontKnowTradeBody = 
       LT.insert (tnum tOrderID) tOrderID $
       LT.insert (tnum tExecID) tExecID $
       LT.insert (tnum tDKReason) tDKReason $
       LT.insert (tnum tSymbol) tSymbol $
-      LT.insert (tnum tSymbolSfx) tSymbolSfx $
-      LT.insert (tnum tSecurityID) tSecurityID $
-      LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
-      LT.insert (tnum tIssuer) tIssuer $
-      LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tSide) tSide $
       LT.insert (tnum tOrderQty) tOrderQty $
-      LT.insert (tnum tCashOrderQty) tCashOrderQty $
       LT.insert (tnum tLastShares) tLastShares $
       LT.insert (tnum tLastPx) tLastPx $
       LT.insert (tnum tText) tText       LT.new
@@ -2191,9 +1551,9 @@ mQuoteRequest :: FIXMessageSpec
 mQuoteRequest = FMSpec
    { msName = "QuoteRequest"
    , msType = C.pack "R"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mQuoteRequestBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mQuoteRequestBody = 
       LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -2201,31 +1561,20 @@ mQuoteRequest = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tPrevClosePx) tPrevClosePx $
       LT.insert (tnum tSide) tSide $
-      LT.insert (tnum tOrderQty) tOrderQty $
-      LT.insert (tnum tFutSettDate) tFutSettDate $
-      LT.insert (tnum tOrdType) tOrdType $
-      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-      LT.insert (tnum tOrderQty2) tOrderQty2       LT.new
+      LT.insert (tnum tOrderQty) tOrderQty       LT.new
 
 
 mQuote :: FIXMessageSpec
 mQuote = FMSpec
    { msName = "Quote"
    , msType = C.pack "S"
-   , msHeader = headerFIX41
+   , msHeader = headerFIX40
    , msBody = mQuoteBody
-   , msTrailer = trailerFIX41 }
+   , msTrailer = trailerFIX40 }
    where
    mQuoteBody = 
       LT.insert (tnum tQuoteReqID) tQuoteReqID $
@@ -2234,83 +1583,22 @@ mQuote = FMSpec
       LT.insert (tnum tSymbolSfx) tSymbolSfx $
       LT.insert (tnum tSecurityID) tSecurityID $
       LT.insert (tnum tIDSource) tIDSource $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-      LT.insert (tnum tMaturityDay) tMaturityDay $
-      LT.insert (tnum tPutOrCall) tPutOrCall $
-      LT.insert (tnum tStrikePrice) tStrikePrice $
-      LT.insert (tnum tOptAttribute) tOptAttribute $
-      LT.insert (tnum tSecurityExchange) tSecurityExchange $
       LT.insert (tnum tIssuer) tIssuer $
       LT.insert (tnum tSecurityDesc) tSecurityDesc $
       LT.insert (tnum tBidPx) tBidPx $
       LT.insert (tnum tOfferPx) tOfferPx $
       LT.insert (tnum tBidSize) tBidSize $
       LT.insert (tnum tOfferSize) tOfferSize $
-      LT.insert (tnum tValidUntilTime) tValidUntilTime $
-      LT.insert (tnum tBidSpotRate) tBidSpotRate $
-      LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
-      LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
-      LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
-      LT.insert (tnum tTransactTime) tTransactTime $
-      LT.insert (tnum tFutSettDate) tFutSettDate $
-      LT.insert (tnum tOrdType) tOrdType $
-      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-      LT.insert (tnum tOrderQty2) tOrderQty2       LT.new
+      LT.insert (tnum tValidUntilTime) tValidUntilTime       LT.new
 
 
-mSettlementInstructions :: FIXMessageSpec
-mSettlementInstructions = FMSpec
-   { msName = "SettlementInstructions"
-   , msType = C.pack "T"
-   , msHeader = headerFIX41
-   , msBody = mSettlementInstructionsBody
-   , msTrailer = trailerFIX41 }
+fix40 :: FIXSpec
+fix40 = FSpec
+   { fsHeader = headerFIX40
+   , fsTrailer = trailerFIX40
+   , fsMessages = fix40Messages }
    where
-   mSettlementInstructionsBody = 
-      LT.insert (tnum tSettlInstID) tSettlInstID $
-      LT.insert (tnum tSettlInstTransType) tSettlInstTransType $
-      LT.insert (tnum tSettlInstMode) tSettlInstMode $
-      LT.insert (tnum tSettlInstSource) tSettlInstSource $
-      LT.insert (tnum tAllocAccount) tAllocAccount $
-      LT.insert (tnum tSettlLocation) tSettlLocation $
-      LT.insert (tnum tTradeDate) tTradeDate $
-      LT.insert (tnum tAllocID) tAllocID $
-      LT.insert (tnum tLastMkt) tLastMkt $
-      LT.insert (tnum tSide) tSide $
-      LT.insert (tnum tSecurityType) tSecurityType $
-      LT.insert (tnum tEffectiveTime) tEffectiveTime $
-      LT.insert (tnum tTransactTime) tTransactTime $
-      LT.insert (tnum tClientID) tClientID $
-      LT.insert (tnum tExecBroker) tExecBroker $
-      LT.insert (tnum tStandInstDbType) tStandInstDbType $
-      LT.insert (tnum tStandInstDbName) tStandInstDbName $
-      LT.insert (tnum tStandInstDbID) tStandInstDbID $
-      LT.insert (tnum tSettlDeliveryType) tSettlDeliveryType $
-      LT.insert (tnum tSettlDepositoryCode) tSettlDepositoryCode $
-      LT.insert (tnum tSettlBrkrCode) tSettlBrkrCode $
-      LT.insert (tnum tSettlInstCode) tSettlInstCode $
-      LT.insert (tnum tSecuritySettlAgentName) tSecuritySettlAgentName $
-      LT.insert (tnum tSecuritySettlAgentCode) tSecuritySettlAgentCode $
-      LT.insert (tnum tSecuritySettlAgentAcctNum) tSecuritySettlAgentAcctNum $
-      LT.insert (tnum tSecuritySettlAgentAcctName) tSecuritySettlAgentAcctName $
-      LT.insert (tnum tSecuritySettlAgentContactName) tSecuritySettlAgentContactName $
-      LT.insert (tnum tSecuritySettlAgentContactPhone) tSecuritySettlAgentContactPhone $
-      LT.insert (tnum tCashSettlAgentName) tCashSettlAgentName $
-      LT.insert (tnum tCashSettlAgentCode) tCashSettlAgentCode $
-      LT.insert (tnum tCashSettlAgentAcctNum) tCashSettlAgentAcctNum $
-      LT.insert (tnum tCashSettlAgentAcctName) tCashSettlAgentAcctName $
-      LT.insert (tnum tCashSettlAgentContactName) tCashSettlAgentContactName $
-      LT.insert (tnum tCashSettlAgentContactPhone) tCashSettlAgentContactPhone       LT.new
-
-
-fix41 :: FIXSpec
-fix41 = FSpec
-   { fsHeader = headerFIX41
-   , fsTrailer = trailerFIX41
-   , fsMessages = fix41Messages }
-   where
-      fix41Messages =
+      fix40Messages =
           LT.insert (msType mHeartbeat) mHeartbeat $
           LT.insert (msType mTestRequest) mTestRequest $
           LT.insert (msType mResendRequest) mResendRequest $
@@ -2337,5 +1625,4 @@ fix41 = FSpec
           LT.insert (msType mAllocationACK) mAllocationACK $
           LT.insert (msType mDontKnowTrade) mDontKnowTrade $
           LT.insert (msType mQuoteRequest) mQuoteRequest $
-          LT.insert (msType mQuote) mQuote $
-          LT.insert (msType mSettlementInstructions) mSettlementInstructions           LT.new 
+          LT.insert (msType mQuote) mQuote           LT.new 

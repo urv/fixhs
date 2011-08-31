@@ -6,5311 +6,7037 @@ import Common.FIXParser
 
 
 tAccount :: FIXTag
-tAccount = FIXTag { tnum = 1, tparser = toFIXString }
+tAccount = FIXTag 
+   { tName = "Account"
+   , tnum = 1
+   , tparser = toFIXString }
 
 tAdvId :: FIXTag
-tAdvId = FIXTag { tnum = 2, tparser = toFIXString }
+tAdvId = FIXTag 
+   { tName = "AdvId"
+   , tnum = 2
+   , tparser = toFIXString }
 
 tAdvRefID :: FIXTag
-tAdvRefID = FIXTag { tnum = 3, tparser = toFIXString }
+tAdvRefID = FIXTag 
+   { tName = "AdvRefID"
+   , tnum = 3
+   , tparser = toFIXString }
 
 tAdvSide :: FIXTag
-tAdvSide = FIXTag { tnum = 4, tparser = toFIXChar }
+tAdvSide = FIXTag 
+   { tName = "AdvSide"
+   , tnum = 4
+   , tparser = toFIXChar }
 
 tAdvTransType :: FIXTag
-tAdvTransType = FIXTag { tnum = 5, tparser = toFIXString }
+tAdvTransType = FIXTag 
+   { tName = "AdvTransType"
+   , tnum = 5
+   , tparser = toFIXString }
 
 tAvgPx :: FIXTag
-tAvgPx = FIXTag { tnum = 6, tparser = toFIXPrice }
+tAvgPx = FIXTag 
+   { tName = "AvgPx"
+   , tnum = 6
+   , tparser = toFIXPrice }
 
 tBeginSeqNo :: FIXTag
-tBeginSeqNo = FIXTag { tnum = 7, tparser = toFIXString }
+tBeginSeqNo = FIXTag 
+   { tName = "BeginSeqNo"
+   , tnum = 7
+   , tparser = toFIXString }
 
 tBeginString :: FIXTag
-tBeginString = FIXTag { tnum = 8, tparser = toFIXString }
+tBeginString = FIXTag 
+   { tName = "BeginString"
+   , tnum = 8
+   , tparser = toFIXString }
 
 tBodyLength :: FIXTag
-tBodyLength = FIXTag { tnum = 9, tparser = toFIXString }
+tBodyLength = FIXTag 
+   { tName = "BodyLength"
+   , tnum = 9
+   , tparser = toFIXString }
 
 tCheckSum :: FIXTag
-tCheckSum = FIXTag { tnum = 10, tparser = toFIXString }
+tCheckSum = FIXTag 
+   { tName = "CheckSum"
+   , tnum = 10
+   , tparser = toFIXString }
 
 tClOrdID :: FIXTag
-tClOrdID = FIXTag { tnum = 11, tparser = toFIXString }
+tClOrdID = FIXTag 
+   { tName = "ClOrdID"
+   , tnum = 11
+   , tparser = toFIXString }
 
 tCommission :: FIXTag
-tCommission = FIXTag { tnum = 12, tparser = toFIXAmt }
+tCommission = FIXTag 
+   { tName = "Commission"
+   , tnum = 12
+   , tparser = toFIXAmt }
 
 tCommType :: FIXTag
-tCommType = FIXTag { tnum = 13, tparser = toFIXChar }
+tCommType = FIXTag 
+   { tName = "CommType"
+   , tnum = 13
+   , tparser = toFIXChar }
 
 tCumQty :: FIXTag
-tCumQty = FIXTag { tnum = 14, tparser = toFIXQuantity }
+tCumQty = FIXTag 
+   { tName = "CumQty"
+   , tnum = 14
+   , tparser = toFIXQuantity }
 
 tCurrency :: FIXTag
-tCurrency = FIXTag { tnum = 15, tparser = toFIXCurrency }
+tCurrency = FIXTag 
+   { tName = "Currency"
+   , tnum = 15
+   , tparser = toFIXCurrency }
 
 tEndSeqNo :: FIXTag
-tEndSeqNo = FIXTag { tnum = 16, tparser = toFIXString }
+tEndSeqNo = FIXTag 
+   { tName = "EndSeqNo"
+   , tnum = 16
+   , tparser = toFIXString }
 
 tExecID :: FIXTag
-tExecID = FIXTag { tnum = 17, tparser = toFIXString }
+tExecID = FIXTag 
+   { tName = "ExecID"
+   , tnum = 17
+   , tparser = toFIXString }
 
 tExecInst :: FIXTag
-tExecInst = FIXTag { tnum = 18, tparser = toFIXMultipleValueString }
+tExecInst = FIXTag 
+   { tName = "ExecInst"
+   , tnum = 18
+   , tparser = toFIXMultipleValueString }
 
 tExecRefID :: FIXTag
-tExecRefID = FIXTag { tnum = 19, tparser = toFIXString }
+tExecRefID = FIXTag 
+   { tName = "ExecRefID"
+   , tnum = 19
+   , tparser = toFIXString }
 
 tExecTransType :: FIXTag
-tExecTransType = FIXTag { tnum = 20, tparser = toFIXChar }
+tExecTransType = FIXTag 
+   { tName = "ExecTransType"
+   , tnum = 20
+   , tparser = toFIXChar }
 
 tHandlInst :: FIXTag
-tHandlInst = FIXTag { tnum = 21, tparser = toFIXChar }
+tHandlInst = FIXTag 
+   { tName = "HandlInst"
+   , tnum = 21
+   , tparser = toFIXChar }
 
 tSecurityIDSource :: FIXTag
-tSecurityIDSource = FIXTag { tnum = 22, tparser = toFIXString }
+tSecurityIDSource = FIXTag 
+   { tName = "SecurityIDSource"
+   , tnum = 22
+   , tparser = toFIXString }
 
 tIOIid :: FIXTag
-tIOIid = FIXTag { tnum = 23, tparser = toFIXString }
+tIOIid = FIXTag 
+   { tName = "IOIid"
+   , tnum = 23
+   , tparser = toFIXString }
 
 tIOIOthSvc :: FIXTag
-tIOIOthSvc = FIXTag { tnum = 24, tparser = toFIXChar }
+tIOIOthSvc = FIXTag 
+   { tName = "IOIOthSvc"
+   , tnum = 24
+   , tparser = toFIXChar }
 
 tIOIQltyInd :: FIXTag
-tIOIQltyInd = FIXTag { tnum = 25, tparser = toFIXChar }
+tIOIQltyInd = FIXTag 
+   { tName = "IOIQltyInd"
+   , tnum = 25
+   , tparser = toFIXChar }
 
 tIOIRefID :: FIXTag
-tIOIRefID = FIXTag { tnum = 26, tparser = toFIXString }
+tIOIRefID = FIXTag 
+   { tName = "IOIRefID"
+   , tnum = 26
+   , tparser = toFIXString }
 
 tIOIQty :: FIXTag
-tIOIQty = FIXTag { tnum = 27, tparser = toFIXString }
+tIOIQty = FIXTag 
+   { tName = "IOIQty"
+   , tnum = 27
+   , tparser = toFIXString }
 
 tIOITransType :: FIXTag
-tIOITransType = FIXTag { tnum = 28, tparser = toFIXChar }
+tIOITransType = FIXTag 
+   { tName = "IOITransType"
+   , tnum = 28
+   , tparser = toFIXChar }
 
 tLastCapacity :: FIXTag
-tLastCapacity = FIXTag { tnum = 29, tparser = toFIXChar }
+tLastCapacity = FIXTag 
+   { tName = "LastCapacity"
+   , tnum = 29
+   , tparser = toFIXChar }
 
 tLastMkt :: FIXTag
-tLastMkt = FIXTag { tnum = 30, tparser = toFIXExchange }
+tLastMkt = FIXTag 
+   { tName = "LastMkt"
+   , tnum = 30
+   , tparser = toFIXExchange }
 
 tLastPx :: FIXTag
-tLastPx = FIXTag { tnum = 31, tparser = toFIXPrice }
+tLastPx = FIXTag 
+   { tName = "LastPx"
+   , tnum = 31
+   , tparser = toFIXPrice }
 
 tLastQty :: FIXTag
-tLastQty = FIXTag { tnum = 32, tparser = toFIXQuantity }
+tLastQty = FIXTag 
+   { tName = "LastQty"
+   , tnum = 32
+   , tparser = toFIXQuantity }
 
 tLinesOfText :: FIXTag
-tLinesOfText = FIXTag { tnum = 33, tparser = toFIXString }
+tLinesOfText = FIXTag 
+   { tName = "LinesOfText"
+   , tnum = 33
+   , tparser = toFIXString }
 
 tMsgSeqNum :: FIXTag
-tMsgSeqNum = FIXTag { tnum = 34, tparser = toFIXString }
+tMsgSeqNum = FIXTag 
+   { tName = "MsgSeqNum"
+   , tnum = 34
+   , tparser = toFIXString }
 
 tMsgType :: FIXTag
-tMsgType = FIXTag { tnum = 35, tparser = toFIXString }
+tMsgType = FIXTag 
+   { tName = "MsgType"
+   , tnum = 35
+   , tparser = toFIXString }
 
 tNewSeqNo :: FIXTag
-tNewSeqNo = FIXTag { tnum = 36, tparser = toFIXString }
+tNewSeqNo = FIXTag 
+   { tName = "NewSeqNo"
+   , tnum = 36
+   , tparser = toFIXString }
 
 tOrderID :: FIXTag
-tOrderID = FIXTag { tnum = 37, tparser = toFIXString }
+tOrderID = FIXTag 
+   { tName = "OrderID"
+   , tnum = 37
+   , tparser = toFIXString }
 
 tOrderQty :: FIXTag
-tOrderQty = FIXTag { tnum = 38, tparser = toFIXQuantity }
+tOrderQty = FIXTag 
+   { tName = "OrderQty"
+   , tnum = 38
+   , tparser = toFIXQuantity }
 
 tOrdStatus :: FIXTag
-tOrdStatus = FIXTag { tnum = 39, tparser = toFIXChar }
+tOrdStatus = FIXTag 
+   { tName = "OrdStatus"
+   , tnum = 39
+   , tparser = toFIXChar }
 
 tOrdType :: FIXTag
-tOrdType = FIXTag { tnum = 40, tparser = toFIXChar }
+tOrdType = FIXTag 
+   { tName = "OrdType"
+   , tnum = 40
+   , tparser = toFIXChar }
 
 tOrigClOrdID :: FIXTag
-tOrigClOrdID = FIXTag { tnum = 41, tparser = toFIXString }
+tOrigClOrdID = FIXTag 
+   { tName = "OrigClOrdID"
+   , tnum = 41
+   , tparser = toFIXString }
 
 tOrigTime :: FIXTag
-tOrigTime = FIXTag { tnum = 42, tparser = toFIXUTCTimestamp }
+tOrigTime = FIXTag 
+   { tName = "OrigTime"
+   , tnum = 42
+   , tparser = toFIXUTCTimestamp }
 
 tPossDupFlag :: FIXTag
-tPossDupFlag = FIXTag { tnum = 43, tparser = toFIXBool }
+tPossDupFlag = FIXTag 
+   { tName = "PossDupFlag"
+   , tnum = 43
+   , tparser = toFIXBool }
 
 tPrice :: FIXTag
-tPrice = FIXTag { tnum = 44, tparser = toFIXPrice }
+tPrice = FIXTag 
+   { tName = "Price"
+   , tnum = 44
+   , tparser = toFIXPrice }
 
 tRefSeqNum :: FIXTag
-tRefSeqNum = FIXTag { tnum = 45, tparser = toFIXString }
+tRefSeqNum = FIXTag 
+   { tName = "RefSeqNum"
+   , tnum = 45
+   , tparser = toFIXString }
 
 tRelatdSym :: FIXTag
-tRelatdSym = FIXTag { tnum = 46, tparser = toFIXString }
+tRelatdSym = FIXTag 
+   { tName = "RelatdSym"
+   , tnum = 46
+   , tparser = toFIXString }
 
 tRule80A :: FIXTag
-tRule80A = FIXTag { tnum = 47, tparser = toFIXChar }
+tRule80A = FIXTag 
+   { tName = "Rule80A"
+   , tnum = 47
+   , tparser = toFIXChar }
 
 tSecurityID :: FIXTag
-tSecurityID = FIXTag { tnum = 48, tparser = toFIXString }
+tSecurityID = FIXTag 
+   { tName = "SecurityID"
+   , tnum = 48
+   , tparser = toFIXString }
 
 tSenderCompID :: FIXTag
-tSenderCompID = FIXTag { tnum = 49, tparser = toFIXString }
+tSenderCompID = FIXTag 
+   { tName = "SenderCompID"
+   , tnum = 49
+   , tparser = toFIXString }
 
 tSenderSubID :: FIXTag
-tSenderSubID = FIXTag { tnum = 50, tparser = toFIXString }
+tSenderSubID = FIXTag 
+   { tName = "SenderSubID"
+   , tnum = 50
+   , tparser = toFIXString }
 
 tSendingDate :: FIXTag
-tSendingDate = FIXTag { tnum = 51, tparser = toFIXLocalMktDate }
+tSendingDate = FIXTag 
+   { tName = "SendingDate"
+   , tnum = 51
+   , tparser = toFIXLocalMktDate }
 
 tSendingTime :: FIXTag
-tSendingTime = FIXTag { tnum = 52, tparser = toFIXUTCTimestamp }
+tSendingTime = FIXTag 
+   { tName = "SendingTime"
+   , tnum = 52
+   , tparser = toFIXUTCTimestamp }
 
 tQuantity :: FIXTag
-tQuantity = FIXTag { tnum = 53, tparser = toFIXQuantity }
+tQuantity = FIXTag 
+   { tName = "Quantity"
+   , tnum = 53
+   , tparser = toFIXQuantity }
 
 tSide :: FIXTag
-tSide = FIXTag { tnum = 54, tparser = toFIXChar }
+tSide = FIXTag 
+   { tName = "Side"
+   , tnum = 54
+   , tparser = toFIXChar }
 
 tSymbol :: FIXTag
-tSymbol = FIXTag { tnum = 55, tparser = toFIXString }
+tSymbol = FIXTag 
+   { tName = "Symbol"
+   , tnum = 55
+   , tparser = toFIXString }
 
 tTargetCompID :: FIXTag
-tTargetCompID = FIXTag { tnum = 56, tparser = toFIXString }
+tTargetCompID = FIXTag 
+   { tName = "TargetCompID"
+   , tnum = 56
+   , tparser = toFIXString }
 
 tTargetSubID :: FIXTag
-tTargetSubID = FIXTag { tnum = 57, tparser = toFIXString }
+tTargetSubID = FIXTag 
+   { tName = "TargetSubID"
+   , tnum = 57
+   , tparser = toFIXString }
 
 tText :: FIXTag
-tText = FIXTag { tnum = 58, tparser = toFIXString }
+tText = FIXTag 
+   { tName = "Text"
+   , tnum = 58
+   , tparser = toFIXString }
 
 tTimeInForce :: FIXTag
-tTimeInForce = FIXTag { tnum = 59, tparser = toFIXChar }
+tTimeInForce = FIXTag 
+   { tName = "TimeInForce"
+   , tnum = 59
+   , tparser = toFIXChar }
 
 tTransactTime :: FIXTag
-tTransactTime = FIXTag { tnum = 60, tparser = toFIXUTCTimestamp }
+tTransactTime = FIXTag 
+   { tName = "TransactTime"
+   , tnum = 60
+   , tparser = toFIXUTCTimestamp }
 
 tUrgency :: FIXTag
-tUrgency = FIXTag { tnum = 61, tparser = toFIXChar }
+tUrgency = FIXTag 
+   { tName = "Urgency"
+   , tnum = 61
+   , tparser = toFIXChar }
 
 tValidUntilTime :: FIXTag
-tValidUntilTime = FIXTag { tnum = 62, tparser = toFIXUTCTimestamp }
+tValidUntilTime = FIXTag 
+   { tName = "ValidUntilTime"
+   , tnum = 62
+   , tparser = toFIXUTCTimestamp }
 
 tSettlmntTyp :: FIXTag
-tSettlmntTyp = FIXTag { tnum = 63, tparser = toFIXChar }
+tSettlmntTyp = FIXTag 
+   { tName = "SettlmntTyp"
+   , tnum = 63
+   , tparser = toFIXChar }
 
 tFutSettDate :: FIXTag
-tFutSettDate = FIXTag { tnum = 64, tparser = toFIXLocalMktDate }
+tFutSettDate = FIXTag 
+   { tName = "FutSettDate"
+   , tnum = 64
+   , tparser = toFIXLocalMktDate }
 
 tSymbolSfx :: FIXTag
-tSymbolSfx = FIXTag { tnum = 65, tparser = toFIXString }
+tSymbolSfx = FIXTag 
+   { tName = "SymbolSfx"
+   , tnum = 65
+   , tparser = toFIXString }
 
 tListID :: FIXTag
-tListID = FIXTag { tnum = 66, tparser = toFIXString }
+tListID = FIXTag 
+   { tName = "ListID"
+   , tnum = 66
+   , tparser = toFIXString }
 
 tListSeqNo :: FIXTag
-tListSeqNo = FIXTag { tnum = 67, tparser = toFIXInt }
+tListSeqNo = FIXTag 
+   { tName = "ListSeqNo"
+   , tnum = 67
+   , tparser = toFIXInt }
 
 tTotNoOrders :: FIXTag
-tTotNoOrders = FIXTag { tnum = 68, tparser = toFIXInt }
+tTotNoOrders = FIXTag 
+   { tName = "TotNoOrders"
+   , tnum = 68
+   , tparser = toFIXInt }
 
 tListExecInst :: FIXTag
-tListExecInst = FIXTag { tnum = 69, tparser = toFIXString }
+tListExecInst = FIXTag 
+   { tName = "ListExecInst"
+   , tnum = 69
+   , tparser = toFIXString }
 
 tAllocID :: FIXTag
-tAllocID = FIXTag { tnum = 70, tparser = toFIXString }
+tAllocID = FIXTag 
+   { tName = "AllocID"
+   , tnum = 70
+   , tparser = toFIXString }
 
 tAllocTransType :: FIXTag
-tAllocTransType = FIXTag { tnum = 71, tparser = toFIXChar }
+tAllocTransType = FIXTag 
+   { tName = "AllocTransType"
+   , tnum = 71
+   , tparser = toFIXChar }
 
 tRefAllocID :: FIXTag
-tRefAllocID = FIXTag { tnum = 72, tparser = toFIXString }
+tRefAllocID = FIXTag 
+   { tName = "RefAllocID"
+   , tnum = 72
+   , tparser = toFIXString }
 
 tNoOrders :: FIXTag
-tNoOrders = FIXTag { tnum = 73, tparser = toFIXString }
+tNoOrders = FIXTag 
+   { tName = "NoOrders"
+   , tnum = 73
+   , tparser = toFIXString }
 
 tAvgPrxPrecision :: FIXTag
-tAvgPrxPrecision = FIXTag { tnum = 74, tparser = toFIXInt }
+tAvgPrxPrecision = FIXTag 
+   { tName = "AvgPrxPrecision"
+   , tnum = 74
+   , tparser = toFIXInt }
 
 tTradeDate :: FIXTag
-tTradeDate = FIXTag { tnum = 75, tparser = toFIXLocalMktDate }
+tTradeDate = FIXTag 
+   { tName = "TradeDate"
+   , tnum = 75
+   , tparser = toFIXLocalMktDate }
 
 tExecBroker :: FIXTag
-tExecBroker = FIXTag { tnum = 76, tparser = toFIXString }
+tExecBroker = FIXTag 
+   { tName = "ExecBroker"
+   , tnum = 76
+   , tparser = toFIXString }
 
 tPositionEffect :: FIXTag
-tPositionEffect = FIXTag { tnum = 77, tparser = toFIXChar }
+tPositionEffect = FIXTag 
+   { tName = "PositionEffect"
+   , tnum = 77
+   , tparser = toFIXChar }
 
 tNoAllocs :: FIXTag
-tNoAllocs = FIXTag { tnum = 78, tparser = toFIXString }
+tNoAllocs = FIXTag 
+   { tName = "NoAllocs"
+   , tnum = 78
+   , tparser = toFIXString }
 
 tAllocAccount :: FIXTag
-tAllocAccount = FIXTag { tnum = 79, tparser = toFIXString }
+tAllocAccount = FIXTag 
+   { tName = "AllocAccount"
+   , tnum = 79
+   , tparser = toFIXString }
 
 tAllocQty :: FIXTag
-tAllocQty = FIXTag { tnum = 80, tparser = toFIXQuantity }
+tAllocQty = FIXTag 
+   { tName = "AllocQty"
+   , tnum = 80
+   , tparser = toFIXQuantity }
 
 tProcessCode :: FIXTag
-tProcessCode = FIXTag { tnum = 81, tparser = toFIXChar }
+tProcessCode = FIXTag 
+   { tName = "ProcessCode"
+   , tnum = 81
+   , tparser = toFIXChar }
 
 tNoRpts :: FIXTag
-tNoRpts = FIXTag { tnum = 82, tparser = toFIXString }
+tNoRpts = FIXTag 
+   { tName = "NoRpts"
+   , tnum = 82
+   , tparser = toFIXString }
 
 tRptSeq :: FIXTag
-tRptSeq = FIXTag { tnum = 83, tparser = toFIXInt }
+tRptSeq = FIXTag 
+   { tName = "RptSeq"
+   , tnum = 83
+   , tparser = toFIXInt }
 
 tCxlQty :: FIXTag
-tCxlQty = FIXTag { tnum = 84, tparser = toFIXQuantity }
+tCxlQty = FIXTag 
+   { tName = "CxlQty"
+   , tnum = 84
+   , tparser = toFIXQuantity }
 
 tNoDlvyInst :: FIXTag
-tNoDlvyInst = FIXTag { tnum = 85, tparser = toFIXInt }
+tNoDlvyInst = FIXTag 
+   { tName = "NoDlvyInst"
+   , tnum = 85
+   , tparser = toFIXInt }
 
 tDlvyInst :: FIXTag
-tDlvyInst = FIXTag { tnum = 86, tparser = toFIXString }
+tDlvyInst = FIXTag 
+   { tName = "DlvyInst"
+   , tnum = 86
+   , tparser = toFIXString }
 
 tAllocStatus :: FIXTag
-tAllocStatus = FIXTag { tnum = 87, tparser = toFIXInt }
+tAllocStatus = FIXTag 
+   { tName = "AllocStatus"
+   , tnum = 87
+   , tparser = toFIXInt }
 
 tAllocRejCode :: FIXTag
-tAllocRejCode = FIXTag { tnum = 88, tparser = toFIXInt }
+tAllocRejCode = FIXTag 
+   { tName = "AllocRejCode"
+   , tnum = 88
+   , tparser = toFIXInt }
 
 tSignature :: FIXTag
-tSignature = FIXTag { tnum = 89, tparser = toFIXString }
+tSignature = FIXTag 
+   { tName = "Signature"
+   , tnum = 89
+   , tparser = toFIXString }
 
 tSecureDataLen :: FIXTag
-tSecureDataLen = FIXTag { tnum = 90, tparser = toFIXString }
+tSecureDataLen = FIXTag 
+   { tName = "SecureDataLen"
+   , tnum = 90
+   , tparser = toFIXString }
 
 tSecureData :: FIXTag
-tSecureData = FIXTag { tnum = 91, tparser = toFIXString }
+tSecureData = FIXTag 
+   { tName = "SecureData"
+   , tnum = 91
+   , tparser = toFIXString }
 
 tBrokerOfCredit :: FIXTag
-tBrokerOfCredit = FIXTag { tnum = 92, tparser = toFIXString }
+tBrokerOfCredit = FIXTag 
+   { tName = "BrokerOfCredit"
+   , tnum = 92
+   , tparser = toFIXString }
 
 tSignatureLength :: FIXTag
-tSignatureLength = FIXTag { tnum = 93, tparser = toFIXString }
+tSignatureLength = FIXTag 
+   { tName = "SignatureLength"
+   , tnum = 93
+   , tparser = toFIXString }
 
 tEmailType :: FIXTag
-tEmailType = FIXTag { tnum = 94, tparser = toFIXChar }
+tEmailType = FIXTag 
+   { tName = "EmailType"
+   , tnum = 94
+   , tparser = toFIXChar }
 
 tRawDataLength :: FIXTag
-tRawDataLength = FIXTag { tnum = 95, tparser = toFIXString }
+tRawDataLength = FIXTag 
+   { tName = "RawDataLength"
+   , tnum = 95
+   , tparser = toFIXString }
 
 tRawData :: FIXTag
-tRawData = FIXTag { tnum = 96, tparser = toFIXString }
+tRawData = FIXTag 
+   { tName = "RawData"
+   , tnum = 96
+   , tparser = toFIXString }
 
 tPossResend :: FIXTag
-tPossResend = FIXTag { tnum = 97, tparser = toFIXBool }
+tPossResend = FIXTag 
+   { tName = "PossResend"
+   , tnum = 97
+   , tparser = toFIXBool }
 
 tEncryptMethod :: FIXTag
-tEncryptMethod = FIXTag { tnum = 98, tparser = toFIXInt }
+tEncryptMethod = FIXTag 
+   { tName = "EncryptMethod"
+   , tnum = 98
+   , tparser = toFIXInt }
 
 tStopPx :: FIXTag
-tStopPx = FIXTag { tnum = 99, tparser = toFIXPrice }
+tStopPx = FIXTag 
+   { tName = "StopPx"
+   , tnum = 99
+   , tparser = toFIXPrice }
 
 tExDestination :: FIXTag
-tExDestination = FIXTag { tnum = 100, tparser = toFIXExchange }
+tExDestination = FIXTag 
+   { tName = "ExDestination"
+   , tnum = 100
+   , tparser = toFIXExchange }
 
 tCxlRejReason :: FIXTag
-tCxlRejReason = FIXTag { tnum = 102, tparser = toFIXInt }
+tCxlRejReason = FIXTag 
+   { tName = "CxlRejReason"
+   , tnum = 102
+   , tparser = toFIXInt }
 
 tOrdRejReason :: FIXTag
-tOrdRejReason = FIXTag { tnum = 103, tparser = toFIXInt }
+tOrdRejReason = FIXTag 
+   { tName = "OrdRejReason"
+   , tnum = 103
+   , tparser = toFIXInt }
 
 tIOIQualifier :: FIXTag
-tIOIQualifier = FIXTag { tnum = 104, tparser = toFIXChar }
+tIOIQualifier = FIXTag 
+   { tName = "IOIQualifier"
+   , tnum = 104
+   , tparser = toFIXChar }
 
 tWaveNo :: FIXTag
-tWaveNo = FIXTag { tnum = 105, tparser = toFIXString }
+tWaveNo = FIXTag 
+   { tName = "WaveNo"
+   , tnum = 105
+   , tparser = toFIXString }
 
 tIssuer :: FIXTag
-tIssuer = FIXTag { tnum = 106, tparser = toFIXString }
+tIssuer = FIXTag 
+   { tName = "Issuer"
+   , tnum = 106
+   , tparser = toFIXString }
 
 tSecurityDesc :: FIXTag
-tSecurityDesc = FIXTag { tnum = 107, tparser = toFIXString }
+tSecurityDesc = FIXTag 
+   { tName = "SecurityDesc"
+   , tnum = 107
+   , tparser = toFIXString }
 
 tHeartBtInt :: FIXTag
-tHeartBtInt = FIXTag { tnum = 108, tparser = toFIXInt }
+tHeartBtInt = FIXTag 
+   { tName = "HeartBtInt"
+   , tnum = 108
+   , tparser = toFIXInt }
 
 tClientID :: FIXTag
-tClientID = FIXTag { tnum = 109, tparser = toFIXString }
+tClientID = FIXTag 
+   { tName = "ClientID"
+   , tnum = 109
+   , tparser = toFIXString }
 
 tMinQty :: FIXTag
-tMinQty = FIXTag { tnum = 110, tparser = toFIXQuantity }
+tMinQty = FIXTag 
+   { tName = "MinQty"
+   , tnum = 110
+   , tparser = toFIXQuantity }
 
 tMaxFloor :: FIXTag
-tMaxFloor = FIXTag { tnum = 111, tparser = toFIXQuantity }
+tMaxFloor = FIXTag 
+   { tName = "MaxFloor"
+   , tnum = 111
+   , tparser = toFIXQuantity }
 
 tTestReqID :: FIXTag
-tTestReqID = FIXTag { tnum = 112, tparser = toFIXString }
+tTestReqID = FIXTag 
+   { tName = "TestReqID"
+   , tnum = 112
+   , tparser = toFIXString }
 
 tReportToExch :: FIXTag
-tReportToExch = FIXTag { tnum = 113, tparser = toFIXBool }
+tReportToExch = FIXTag 
+   { tName = "ReportToExch"
+   , tnum = 113
+   , tparser = toFIXBool }
 
 tLocateReqd :: FIXTag
-tLocateReqd = FIXTag { tnum = 114, tparser = toFIXBool }
+tLocateReqd = FIXTag 
+   { tName = "LocateReqd"
+   , tnum = 114
+   , tparser = toFIXBool }
 
 tOnBehalfOfCompID :: FIXTag
-tOnBehalfOfCompID = FIXTag { tnum = 115, tparser = toFIXString }
+tOnBehalfOfCompID = FIXTag 
+   { tName = "OnBehalfOfCompID"
+   , tnum = 115
+   , tparser = toFIXString }
 
 tOnBehalfOfSubID :: FIXTag
-tOnBehalfOfSubID = FIXTag { tnum = 116, tparser = toFIXString }
+tOnBehalfOfSubID = FIXTag 
+   { tName = "OnBehalfOfSubID"
+   , tnum = 116
+   , tparser = toFIXString }
 
 tQuoteID :: FIXTag
-tQuoteID = FIXTag { tnum = 117, tparser = toFIXString }
+tQuoteID = FIXTag 
+   { tName = "QuoteID"
+   , tnum = 117
+   , tparser = toFIXString }
 
 tNetMoney :: FIXTag
-tNetMoney = FIXTag { tnum = 118, tparser = toFIXAmt }
+tNetMoney = FIXTag 
+   { tName = "NetMoney"
+   , tnum = 118
+   , tparser = toFIXAmt }
 
 tSettlCurrAmt :: FIXTag
-tSettlCurrAmt = FIXTag { tnum = 119, tparser = toFIXAmt }
+tSettlCurrAmt = FIXTag 
+   { tName = "SettlCurrAmt"
+   , tnum = 119
+   , tparser = toFIXAmt }
 
 tSettlCurrency :: FIXTag
-tSettlCurrency = FIXTag { tnum = 120, tparser = toFIXCurrency }
+tSettlCurrency = FIXTag 
+   { tName = "SettlCurrency"
+   , tnum = 120
+   , tparser = toFIXCurrency }
 
 tForexReq :: FIXTag
-tForexReq = FIXTag { tnum = 121, tparser = toFIXBool }
+tForexReq = FIXTag 
+   { tName = "ForexReq"
+   , tnum = 121
+   , tparser = toFIXBool }
 
 tOrigSendingTime :: FIXTag
-tOrigSendingTime = FIXTag { tnum = 122, tparser = toFIXUTCTimestamp }
+tOrigSendingTime = FIXTag 
+   { tName = "OrigSendingTime"
+   , tnum = 122
+   , tparser = toFIXUTCTimestamp }
 
 tGapFillFlag :: FIXTag
-tGapFillFlag = FIXTag { tnum = 123, tparser = toFIXBool }
+tGapFillFlag = FIXTag 
+   { tName = "GapFillFlag"
+   , tnum = 123
+   , tparser = toFIXBool }
 
 tNoExecs :: FIXTag
-tNoExecs = FIXTag { tnum = 124, tparser = toFIXString }
+tNoExecs = FIXTag 
+   { tName = "NoExecs"
+   , tnum = 124
+   , tparser = toFIXString }
 
 tCxlType :: FIXTag
-tCxlType = FIXTag { tnum = 125, tparser = toFIXChar }
+tCxlType = FIXTag 
+   { tName = "CxlType"
+   , tnum = 125
+   , tparser = toFIXChar }
 
 tExpireTime :: FIXTag
-tExpireTime = FIXTag { tnum = 126, tparser = toFIXUTCTimestamp }
+tExpireTime = FIXTag 
+   { tName = "ExpireTime"
+   , tnum = 126
+   , tparser = toFIXUTCTimestamp }
 
 tDKReason :: FIXTag
-tDKReason = FIXTag { tnum = 127, tparser = toFIXChar }
+tDKReason = FIXTag 
+   { tName = "DKReason"
+   , tnum = 127
+   , tparser = toFIXChar }
 
 tDeliverToCompID :: FIXTag
-tDeliverToCompID = FIXTag { tnum = 128, tparser = toFIXString }
+tDeliverToCompID = FIXTag 
+   { tName = "DeliverToCompID"
+   , tnum = 128
+   , tparser = toFIXString }
 
 tDeliverToSubID :: FIXTag
-tDeliverToSubID = FIXTag { tnum = 129, tparser = toFIXString }
+tDeliverToSubID = FIXTag 
+   { tName = "DeliverToSubID"
+   , tnum = 129
+   , tparser = toFIXString }
 
 tIOINaturalFlag :: FIXTag
-tIOINaturalFlag = FIXTag { tnum = 130, tparser = toFIXBool }
+tIOINaturalFlag = FIXTag 
+   { tName = "IOINaturalFlag"
+   , tnum = 130
+   , tparser = toFIXBool }
 
 tQuoteReqID :: FIXTag
-tQuoteReqID = FIXTag { tnum = 131, tparser = toFIXString }
+tQuoteReqID = FIXTag 
+   { tName = "QuoteReqID"
+   , tnum = 131
+   , tparser = toFIXString }
 
 tBidPx :: FIXTag
-tBidPx = FIXTag { tnum = 132, tparser = toFIXPrice }
+tBidPx = FIXTag 
+   { tName = "BidPx"
+   , tnum = 132
+   , tparser = toFIXPrice }
 
 tOfferPx :: FIXTag
-tOfferPx = FIXTag { tnum = 133, tparser = toFIXPrice }
+tOfferPx = FIXTag 
+   { tName = "OfferPx"
+   , tnum = 133
+   , tparser = toFIXPrice }
 
 tBidSize :: FIXTag
-tBidSize = FIXTag { tnum = 134, tparser = toFIXQuantity }
+tBidSize = FIXTag 
+   { tName = "BidSize"
+   , tnum = 134
+   , tparser = toFIXQuantity }
 
 tOfferSize :: FIXTag
-tOfferSize = FIXTag { tnum = 135, tparser = toFIXQuantity }
+tOfferSize = FIXTag 
+   { tName = "OfferSize"
+   , tnum = 135
+   , tparser = toFIXQuantity }
 
 tNoMiscFees :: FIXTag
-tNoMiscFees = FIXTag { tnum = 136, tparser = toFIXString }
+tNoMiscFees = FIXTag 
+   { tName = "NoMiscFees"
+   , tnum = 136
+   , tparser = toFIXString }
 
 tMiscFeeAmt :: FIXTag
-tMiscFeeAmt = FIXTag { tnum = 137, tparser = toFIXAmt }
+tMiscFeeAmt = FIXTag 
+   { tName = "MiscFeeAmt"
+   , tnum = 137
+   , tparser = toFIXAmt }
 
 tMiscFeeCurr :: FIXTag
-tMiscFeeCurr = FIXTag { tnum = 138, tparser = toFIXCurrency }
+tMiscFeeCurr = FIXTag 
+   { tName = "MiscFeeCurr"
+   , tnum = 138
+   , tparser = toFIXCurrency }
 
 tMiscFeeType :: FIXTag
-tMiscFeeType = FIXTag { tnum = 139, tparser = toFIXChar }
+tMiscFeeType = FIXTag 
+   { tName = "MiscFeeType"
+   , tnum = 139
+   , tparser = toFIXChar }
 
 tPrevClosePx :: FIXTag
-tPrevClosePx = FIXTag { tnum = 140, tparser = toFIXPrice }
+tPrevClosePx = FIXTag 
+   { tName = "PrevClosePx"
+   , tnum = 140
+   , tparser = toFIXPrice }
 
 tResetSeqNumFlag :: FIXTag
-tResetSeqNumFlag = FIXTag { tnum = 141, tparser = toFIXBool }
+tResetSeqNumFlag = FIXTag 
+   { tName = "ResetSeqNumFlag"
+   , tnum = 141
+   , tparser = toFIXBool }
 
 tSenderLocationID :: FIXTag
-tSenderLocationID = FIXTag { tnum = 142, tparser = toFIXString }
+tSenderLocationID = FIXTag 
+   { tName = "SenderLocationID"
+   , tnum = 142
+   , tparser = toFIXString }
 
 tTargetLocationID :: FIXTag
-tTargetLocationID = FIXTag { tnum = 143, tparser = toFIXString }
+tTargetLocationID = FIXTag 
+   { tName = "TargetLocationID"
+   , tnum = 143
+   , tparser = toFIXString }
 
 tOnBehalfOfLocationID :: FIXTag
-tOnBehalfOfLocationID = FIXTag { tnum = 144, tparser = toFIXString }
+tOnBehalfOfLocationID = FIXTag 
+   { tName = "OnBehalfOfLocationID"
+   , tnum = 144
+   , tparser = toFIXString }
 
 tDeliverToLocationID :: FIXTag
-tDeliverToLocationID = FIXTag { tnum = 145, tparser = toFIXString }
+tDeliverToLocationID = FIXTag 
+   { tName = "DeliverToLocationID"
+   , tnum = 145
+   , tparser = toFIXString }
 
 tNoRelatedSym :: FIXTag
-tNoRelatedSym = FIXTag { tnum = 146, tparser = toFIXString }
+tNoRelatedSym = FIXTag 
+   { tName = "NoRelatedSym"
+   , tnum = 146
+   , tparser = toFIXString }
 
 tSubject :: FIXTag
-tSubject = FIXTag { tnum = 147, tparser = toFIXString }
+tSubject = FIXTag 
+   { tName = "Subject"
+   , tnum = 147
+   , tparser = toFIXString }
 
 tHeadline :: FIXTag
-tHeadline = FIXTag { tnum = 148, tparser = toFIXString }
+tHeadline = FIXTag 
+   { tName = "Headline"
+   , tnum = 148
+   , tparser = toFIXString }
 
 tURLLink :: FIXTag
-tURLLink = FIXTag { tnum = 149, tparser = toFIXString }
+tURLLink = FIXTag 
+   { tName = "URLLink"
+   , tnum = 149
+   , tparser = toFIXString }
 
 tExecType :: FIXTag
-tExecType = FIXTag { tnum = 150, tparser = toFIXChar }
+tExecType = FIXTag 
+   { tName = "ExecType"
+   , tnum = 150
+   , tparser = toFIXChar }
 
 tLeavesQty :: FIXTag
-tLeavesQty = FIXTag { tnum = 151, tparser = toFIXQuantity }
+tLeavesQty = FIXTag 
+   { tName = "LeavesQty"
+   , tnum = 151
+   , tparser = toFIXQuantity }
 
 tCashOrderQty :: FIXTag
-tCashOrderQty = FIXTag { tnum = 152, tparser = toFIXQuantity }
+tCashOrderQty = FIXTag 
+   { tName = "CashOrderQty"
+   , tnum = 152
+   , tparser = toFIXQuantity }
 
 tAllocAvgPx :: FIXTag
-tAllocAvgPx = FIXTag { tnum = 153, tparser = toFIXPrice }
+tAllocAvgPx = FIXTag 
+   { tName = "AllocAvgPx"
+   , tnum = 153
+   , tparser = toFIXPrice }
 
 tAllocNetMoney :: FIXTag
-tAllocNetMoney = FIXTag { tnum = 154, tparser = toFIXAmt }
+tAllocNetMoney = FIXTag 
+   { tName = "AllocNetMoney"
+   , tnum = 154
+   , tparser = toFIXAmt }
 
 tSettlCurrFxRate :: FIXTag
-tSettlCurrFxRate = FIXTag { tnum = 155, tparser = toFIXFloat }
+tSettlCurrFxRate = FIXTag 
+   { tName = "SettlCurrFxRate"
+   , tnum = 155
+   , tparser = toFIXFloat }
 
 tSettlCurrFxRateCalc :: FIXTag
-tSettlCurrFxRateCalc = FIXTag { tnum = 156, tparser = toFIXChar }
+tSettlCurrFxRateCalc = FIXTag 
+   { tName = "SettlCurrFxRateCalc"
+   , tnum = 156
+   , tparser = toFIXChar }
 
 tNumDaysInterest :: FIXTag
-tNumDaysInterest = FIXTag { tnum = 157, tparser = toFIXInt }
+tNumDaysInterest = FIXTag 
+   { tName = "NumDaysInterest"
+   , tnum = 157
+   , tparser = toFIXInt }
 
 tAccruedInterestRate :: FIXTag
-tAccruedInterestRate = FIXTag { tnum = 158, tparser = toFIXString }
+tAccruedInterestRate = FIXTag 
+   { tName = "AccruedInterestRate"
+   , tnum = 158
+   , tparser = toFIXString }
 
 tAccruedInterestAmt :: FIXTag
-tAccruedInterestAmt = FIXTag { tnum = 159, tparser = toFIXAmt }
+tAccruedInterestAmt = FIXTag 
+   { tName = "AccruedInterestAmt"
+   , tnum = 159
+   , tparser = toFIXAmt }
 
 tSettlInstMode :: FIXTag
-tSettlInstMode = FIXTag { tnum = 160, tparser = toFIXChar }
+tSettlInstMode = FIXTag 
+   { tName = "SettlInstMode"
+   , tnum = 160
+   , tparser = toFIXChar }
 
 tAllocText :: FIXTag
-tAllocText = FIXTag { tnum = 161, tparser = toFIXString }
+tAllocText = FIXTag 
+   { tName = "AllocText"
+   , tnum = 161
+   , tparser = toFIXString }
 
 tSettlInstID :: FIXTag
-tSettlInstID = FIXTag { tnum = 162, tparser = toFIXString }
+tSettlInstID = FIXTag 
+   { tName = "SettlInstID"
+   , tnum = 162
+   , tparser = toFIXString }
 
 tSettlInstTransType :: FIXTag
-tSettlInstTransType = FIXTag { tnum = 163, tparser = toFIXChar }
+tSettlInstTransType = FIXTag 
+   { tName = "SettlInstTransType"
+   , tnum = 163
+   , tparser = toFIXChar }
 
 tEmailThreadID :: FIXTag
-tEmailThreadID = FIXTag { tnum = 164, tparser = toFIXString }
+tEmailThreadID = FIXTag 
+   { tName = "EmailThreadID"
+   , tnum = 164
+   , tparser = toFIXString }
 
 tSettlInstSource :: FIXTag
-tSettlInstSource = FIXTag { tnum = 165, tparser = toFIXChar }
+tSettlInstSource = FIXTag 
+   { tName = "SettlInstSource"
+   , tnum = 165
+   , tparser = toFIXChar }
 
 tSettlLocation :: FIXTag
-tSettlLocation = FIXTag { tnum = 166, tparser = toFIXString }
+tSettlLocation = FIXTag 
+   { tName = "SettlLocation"
+   , tnum = 166
+   , tparser = toFIXString }
 
 tSecurityType :: FIXTag
-tSecurityType = FIXTag { tnum = 167, tparser = toFIXString }
+tSecurityType = FIXTag 
+   { tName = "SecurityType"
+   , tnum = 167
+   , tparser = toFIXString }
 
 tEffectiveTime :: FIXTag
-tEffectiveTime = FIXTag { tnum = 168, tparser = toFIXUTCTimestamp }
+tEffectiveTime = FIXTag 
+   { tName = "EffectiveTime"
+   , tnum = 168
+   , tparser = toFIXUTCTimestamp }
 
 tStandInstDbType :: FIXTag
-tStandInstDbType = FIXTag { tnum = 169, tparser = toFIXInt }
+tStandInstDbType = FIXTag 
+   { tName = "StandInstDbType"
+   , tnum = 169
+   , tparser = toFIXInt }
 
 tStandInstDbName :: FIXTag
-tStandInstDbName = FIXTag { tnum = 170, tparser = toFIXString }
+tStandInstDbName = FIXTag 
+   { tName = "StandInstDbName"
+   , tnum = 170
+   , tparser = toFIXString }
 
 tStandInstDbID :: FIXTag
-tStandInstDbID = FIXTag { tnum = 171, tparser = toFIXString }
+tStandInstDbID = FIXTag 
+   { tName = "StandInstDbID"
+   , tnum = 171
+   , tparser = toFIXString }
 
 tSettlDeliveryType :: FIXTag
-tSettlDeliveryType = FIXTag { tnum = 172, tparser = toFIXInt }
+tSettlDeliveryType = FIXTag 
+   { tName = "SettlDeliveryType"
+   , tnum = 172
+   , tparser = toFIXInt }
 
 tSettlDepositoryCode :: FIXTag
-tSettlDepositoryCode = FIXTag { tnum = 173, tparser = toFIXString }
+tSettlDepositoryCode = FIXTag 
+   { tName = "SettlDepositoryCode"
+   , tnum = 173
+   , tparser = toFIXString }
 
 tSettlBrkrCode :: FIXTag
-tSettlBrkrCode = FIXTag { tnum = 174, tparser = toFIXString }
+tSettlBrkrCode = FIXTag 
+   { tName = "SettlBrkrCode"
+   , tnum = 174
+   , tparser = toFIXString }
 
 tSettlInstCode :: FIXTag
-tSettlInstCode = FIXTag { tnum = 175, tparser = toFIXString }
+tSettlInstCode = FIXTag 
+   { tName = "SettlInstCode"
+   , tnum = 175
+   , tparser = toFIXString }
 
 tSecuritySettlAgentName :: FIXTag
-tSecuritySettlAgentName = FIXTag { tnum = 176, tparser = toFIXString }
+tSecuritySettlAgentName = FIXTag 
+   { tName = "SecuritySettlAgentName"
+   , tnum = 176
+   , tparser = toFIXString }
 
 tSecuritySettlAgentCode :: FIXTag
-tSecuritySettlAgentCode = FIXTag { tnum = 177, tparser = toFIXString }
+tSecuritySettlAgentCode = FIXTag 
+   { tName = "SecuritySettlAgentCode"
+   , tnum = 177
+   , tparser = toFIXString }
 
 tSecuritySettlAgentAcctNum :: FIXTag
-tSecuritySettlAgentAcctNum = FIXTag { tnum = 178, tparser = toFIXString }
+tSecuritySettlAgentAcctNum = FIXTag 
+   { tName = "SecuritySettlAgentAcctNum"
+   , tnum = 178
+   , tparser = toFIXString }
 
 tSecuritySettlAgentAcctName :: FIXTag
-tSecuritySettlAgentAcctName = FIXTag { tnum = 179, tparser = toFIXString }
+tSecuritySettlAgentAcctName = FIXTag 
+   { tName = "SecuritySettlAgentAcctName"
+   , tnum = 179
+   , tparser = toFIXString }
 
 tSecuritySettlAgentContactName :: FIXTag
-tSecuritySettlAgentContactName = FIXTag { tnum = 180, tparser = toFIXString }
+tSecuritySettlAgentContactName = FIXTag 
+   { tName = "SecuritySettlAgentContactName"
+   , tnum = 180
+   , tparser = toFIXString }
 
 tSecuritySettlAgentContactPhone :: FIXTag
-tSecuritySettlAgentContactPhone = FIXTag { tnum = 181, tparser = toFIXString }
+tSecuritySettlAgentContactPhone = FIXTag 
+   { tName = "SecuritySettlAgentContactPhone"
+   , tnum = 181
+   , tparser = toFIXString }
 
 tCashSettlAgentName :: FIXTag
-tCashSettlAgentName = FIXTag { tnum = 182, tparser = toFIXString }
+tCashSettlAgentName = FIXTag 
+   { tName = "CashSettlAgentName"
+   , tnum = 182
+   , tparser = toFIXString }
 
 tCashSettlAgentCode :: FIXTag
-tCashSettlAgentCode = FIXTag { tnum = 183, tparser = toFIXString }
+tCashSettlAgentCode = FIXTag 
+   { tName = "CashSettlAgentCode"
+   , tnum = 183
+   , tparser = toFIXString }
 
 tCashSettlAgentAcctNum :: FIXTag
-tCashSettlAgentAcctNum = FIXTag { tnum = 184, tparser = toFIXString }
+tCashSettlAgentAcctNum = FIXTag 
+   { tName = "CashSettlAgentAcctNum"
+   , tnum = 184
+   , tparser = toFIXString }
 
 tCashSettlAgentAcctName :: FIXTag
-tCashSettlAgentAcctName = FIXTag { tnum = 185, tparser = toFIXString }
+tCashSettlAgentAcctName = FIXTag 
+   { tName = "CashSettlAgentAcctName"
+   , tnum = 185
+   , tparser = toFIXString }
 
 tCashSettlAgentContactName :: FIXTag
-tCashSettlAgentContactName = FIXTag { tnum = 186, tparser = toFIXString }
+tCashSettlAgentContactName = FIXTag 
+   { tName = "CashSettlAgentContactName"
+   , tnum = 186
+   , tparser = toFIXString }
 
 tCashSettlAgentContactPhone :: FIXTag
-tCashSettlAgentContactPhone = FIXTag { tnum = 187, tparser = toFIXString }
+tCashSettlAgentContactPhone = FIXTag 
+   { tName = "CashSettlAgentContactPhone"
+   , tnum = 187
+   , tparser = toFIXString }
 
 tBidSpotRate :: FIXTag
-tBidSpotRate = FIXTag { tnum = 188, tparser = toFIXPrice }
+tBidSpotRate = FIXTag 
+   { tName = "BidSpotRate"
+   , tnum = 188
+   , tparser = toFIXPrice }
 
 tBidForwardPoints :: FIXTag
-tBidForwardPoints = FIXTag { tnum = 189, tparser = toFIXPriceOffset }
+tBidForwardPoints = FIXTag 
+   { tName = "BidForwardPoints"
+   , tnum = 189
+   , tparser = toFIXPriceOffset }
 
 tOfferSpotRate :: FIXTag
-tOfferSpotRate = FIXTag { tnum = 190, tparser = toFIXPrice }
+tOfferSpotRate = FIXTag 
+   { tName = "OfferSpotRate"
+   , tnum = 190
+   , tparser = toFIXPrice }
 
 tOfferForwardPoints :: FIXTag
-tOfferForwardPoints = FIXTag { tnum = 191, tparser = toFIXPriceOffset }
+tOfferForwardPoints = FIXTag 
+   { tName = "OfferForwardPoints"
+   , tnum = 191
+   , tparser = toFIXPriceOffset }
 
 tOrderQty2 :: FIXTag
-tOrderQty2 = FIXTag { tnum = 192, tparser = toFIXQuantity }
+tOrderQty2 = FIXTag 
+   { tName = "OrderQty2"
+   , tnum = 192
+   , tparser = toFIXQuantity }
 
 tFutSettDate2 :: FIXTag
-tFutSettDate2 = FIXTag { tnum = 193, tparser = toFIXLocalMktDate }
+tFutSettDate2 = FIXTag 
+   { tName = "FutSettDate2"
+   , tnum = 193
+   , tparser = toFIXLocalMktDate }
 
 tLastSpotRate :: FIXTag
-tLastSpotRate = FIXTag { tnum = 194, tparser = toFIXPrice }
+tLastSpotRate = FIXTag 
+   { tName = "LastSpotRate"
+   , tnum = 194
+   , tparser = toFIXPrice }
 
 tLastForwardPoints :: FIXTag
-tLastForwardPoints = FIXTag { tnum = 195, tparser = toFIXPriceOffset }
+tLastForwardPoints = FIXTag 
+   { tName = "LastForwardPoints"
+   , tnum = 195
+   , tparser = toFIXPriceOffset }
 
 tAllocLinkID :: FIXTag
-tAllocLinkID = FIXTag { tnum = 196, tparser = toFIXString }
+tAllocLinkID = FIXTag 
+   { tName = "AllocLinkID"
+   , tnum = 196
+   , tparser = toFIXString }
 
 tAllocLinkType :: FIXTag
-tAllocLinkType = FIXTag { tnum = 197, tparser = toFIXInt }
+tAllocLinkType = FIXTag 
+   { tName = "AllocLinkType"
+   , tnum = 197
+   , tparser = toFIXInt }
 
 tSecondaryOrderID :: FIXTag
-tSecondaryOrderID = FIXTag { tnum = 198, tparser = toFIXString }
+tSecondaryOrderID = FIXTag 
+   { tName = "SecondaryOrderID"
+   , tnum = 198
+   , tparser = toFIXString }
 
 tNoIOIQualifiers :: FIXTag
-tNoIOIQualifiers = FIXTag { tnum = 199, tparser = toFIXString }
+tNoIOIQualifiers = FIXTag 
+   { tName = "NoIOIQualifiers"
+   , tnum = 199
+   , tparser = toFIXString }
 
 tMaturityMonthYear :: FIXTag
-tMaturityMonthYear = FIXTag { tnum = 200, tparser = toFIXString }
+tMaturityMonthYear = FIXTag 
+   { tName = "MaturityMonthYear"
+   , tnum = 200
+   , tparser = toFIXString }
 
 tPutOrCall :: FIXTag
-tPutOrCall = FIXTag { tnum = 201, tparser = toFIXInt }
+tPutOrCall = FIXTag 
+   { tName = "PutOrCall"
+   , tnum = 201
+   , tparser = toFIXInt }
 
 tStrikePrice :: FIXTag
-tStrikePrice = FIXTag { tnum = 202, tparser = toFIXPrice }
+tStrikePrice = FIXTag 
+   { tName = "StrikePrice"
+   , tnum = 202
+   , tparser = toFIXPrice }
 
 tCoveredOrUncovered :: FIXTag
-tCoveredOrUncovered = FIXTag { tnum = 203, tparser = toFIXInt }
+tCoveredOrUncovered = FIXTag 
+   { tName = "CoveredOrUncovered"
+   , tnum = 203
+   , tparser = toFIXInt }
 
 tCustomerOrFirm :: FIXTag
-tCustomerOrFirm = FIXTag { tnum = 204, tparser = toFIXInt }
+tCustomerOrFirm = FIXTag 
+   { tName = "CustomerOrFirm"
+   , tnum = 204
+   , tparser = toFIXInt }
 
 tMaturityDay :: FIXTag
-tMaturityDay = FIXTag { tnum = 205, tparser = toFIXDayOfMonth }
+tMaturityDay = FIXTag 
+   { tName = "MaturityDay"
+   , tnum = 205
+   , tparser = toFIXDayOfMonth }
 
 tOptAttribute :: FIXTag
-tOptAttribute = FIXTag { tnum = 206, tparser = toFIXChar }
+tOptAttribute = FIXTag 
+   { tName = "OptAttribute"
+   , tnum = 206
+   , tparser = toFIXChar }
 
 tSecurityExchange :: FIXTag
-tSecurityExchange = FIXTag { tnum = 207, tparser = toFIXExchange }
+tSecurityExchange = FIXTag 
+   { tName = "SecurityExchange"
+   , tnum = 207
+   , tparser = toFIXExchange }
 
 tNotifyBrokerOfCredit :: FIXTag
-tNotifyBrokerOfCredit = FIXTag { tnum = 208, tparser = toFIXBool }
+tNotifyBrokerOfCredit = FIXTag 
+   { tName = "NotifyBrokerOfCredit"
+   , tnum = 208
+   , tparser = toFIXBool }
 
 tAllocHandlInst :: FIXTag
-tAllocHandlInst = FIXTag { tnum = 209, tparser = toFIXInt }
+tAllocHandlInst = FIXTag 
+   { tName = "AllocHandlInst"
+   , tnum = 209
+   , tparser = toFIXInt }
 
 tMaxShow :: FIXTag
-tMaxShow = FIXTag { tnum = 210, tparser = toFIXQuantity }
+tMaxShow = FIXTag 
+   { tName = "MaxShow"
+   , tnum = 210
+   , tparser = toFIXQuantity }
 
 tPegDifference :: FIXTag
-tPegDifference = FIXTag { tnum = 211, tparser = toFIXPriceOffset }
+tPegDifference = FIXTag 
+   { tName = "PegDifference"
+   , tnum = 211
+   , tparser = toFIXPriceOffset }
 
 tXmlDataLen :: FIXTag
-tXmlDataLen = FIXTag { tnum = 212, tparser = toFIXString }
+tXmlDataLen = FIXTag 
+   { tName = "XmlDataLen"
+   , tnum = 212
+   , tparser = toFIXString }
 
 tXmlData :: FIXTag
-tXmlData = FIXTag { tnum = 213, tparser = toFIXString }
+tXmlData = FIXTag 
+   { tName = "XmlData"
+   , tnum = 213
+   , tparser = toFIXString }
 
 tSettlInstRefID :: FIXTag
-tSettlInstRefID = FIXTag { tnum = 214, tparser = toFIXString }
+tSettlInstRefID = FIXTag 
+   { tName = "SettlInstRefID"
+   , tnum = 214
+   , tparser = toFIXString }
 
 tNoRoutingIDs :: FIXTag
-tNoRoutingIDs = FIXTag { tnum = 215, tparser = toFIXString }
+tNoRoutingIDs = FIXTag 
+   { tName = "NoRoutingIDs"
+   , tnum = 215
+   , tparser = toFIXString }
 
 tRoutingType :: FIXTag
-tRoutingType = FIXTag { tnum = 216, tparser = toFIXInt }
+tRoutingType = FIXTag 
+   { tName = "RoutingType"
+   , tnum = 216
+   , tparser = toFIXInt }
 
 tRoutingID :: FIXTag
-tRoutingID = FIXTag { tnum = 217, tparser = toFIXString }
+tRoutingID = FIXTag 
+   { tName = "RoutingID"
+   , tnum = 217
+   , tparser = toFIXString }
 
 tSpread :: FIXTag
-tSpread = FIXTag { tnum = 218, tparser = toFIXPriceOffset }
+tSpread = FIXTag 
+   { tName = "Spread"
+   , tnum = 218
+   , tparser = toFIXPriceOffset }
 
 tBenchmark :: FIXTag
-tBenchmark = FIXTag { tnum = 219, tparser = toFIXChar }
+tBenchmark = FIXTag 
+   { tName = "Benchmark"
+   , tnum = 219
+   , tparser = toFIXChar }
 
 tBenchmarkCurveCurrency :: FIXTag
-tBenchmarkCurveCurrency = FIXTag { tnum = 220, tparser = toFIXCurrency }
+tBenchmarkCurveCurrency = FIXTag 
+   { tName = "BenchmarkCurveCurrency"
+   , tnum = 220
+   , tparser = toFIXCurrency }
 
 tBenchmarkCurveName :: FIXTag
-tBenchmarkCurveName = FIXTag { tnum = 221, tparser = toFIXString }
+tBenchmarkCurveName = FIXTag 
+   { tName = "BenchmarkCurveName"
+   , tnum = 221
+   , tparser = toFIXString }
 
 tBenchmarkCurvePoint :: FIXTag
-tBenchmarkCurvePoint = FIXTag { tnum = 222, tparser = toFIXString }
+tBenchmarkCurvePoint = FIXTag 
+   { tName = "BenchmarkCurvePoint"
+   , tnum = 222
+   , tparser = toFIXString }
 
 tCouponRate :: FIXTag
-tCouponRate = FIXTag { tnum = 223, tparser = toFIXString }
+tCouponRate = FIXTag 
+   { tName = "CouponRate"
+   , tnum = 223
+   , tparser = toFIXString }
 
 tCouponPaymentDate :: FIXTag
-tCouponPaymentDate = FIXTag { tnum = 224, tparser = toFIXString }
+tCouponPaymentDate = FIXTag 
+   { tName = "CouponPaymentDate"
+   , tnum = 224
+   , tparser = toFIXString }
 
 tIssueDate :: FIXTag
-tIssueDate = FIXTag { tnum = 225, tparser = toFIXString }
+tIssueDate = FIXTag 
+   { tName = "IssueDate"
+   , tnum = 225
+   , tparser = toFIXString }
 
 tRepurchaseTerm :: FIXTag
-tRepurchaseTerm = FIXTag { tnum = 226, tparser = toFIXInt }
+tRepurchaseTerm = FIXTag 
+   { tName = "RepurchaseTerm"
+   , tnum = 226
+   , tparser = toFIXInt }
 
 tRepurchaseRate :: FIXTag
-tRepurchaseRate = FIXTag { tnum = 227, tparser = toFIXString }
+tRepurchaseRate = FIXTag 
+   { tName = "RepurchaseRate"
+   , tnum = 227
+   , tparser = toFIXString }
 
 tFactor :: FIXTag
-tFactor = FIXTag { tnum = 228, tparser = toFIXFloat }
+tFactor = FIXTag 
+   { tName = "Factor"
+   , tnum = 228
+   , tparser = toFIXFloat }
 
 tTradeOriginationDate :: FIXTag
-tTradeOriginationDate = FIXTag { tnum = 229, tparser = toFIXString }
+tTradeOriginationDate = FIXTag 
+   { tName = "TradeOriginationDate"
+   , tnum = 229
+   , tparser = toFIXString }
 
 tExDate :: FIXTag
-tExDate = FIXTag { tnum = 230, tparser = toFIXString }
+tExDate = FIXTag 
+   { tName = "ExDate"
+   , tnum = 230
+   , tparser = toFIXString }
 
 tContractMultiplier :: FIXTag
-tContractMultiplier = FIXTag { tnum = 231, tparser = toFIXFloat }
+tContractMultiplier = FIXTag 
+   { tName = "ContractMultiplier"
+   , tnum = 231
+   , tparser = toFIXFloat }
 
 tNoStipulations :: FIXTag
-tNoStipulations = FIXTag { tnum = 232, tparser = toFIXString }
+tNoStipulations = FIXTag 
+   { tName = "NoStipulations"
+   , tnum = 232
+   , tparser = toFIXString }
 
 tStipulationType :: FIXTag
-tStipulationType = FIXTag { tnum = 233, tparser = toFIXString }
+tStipulationType = FIXTag 
+   { tName = "StipulationType"
+   , tnum = 233
+   , tparser = toFIXString }
 
 tStipulationValue :: FIXTag
-tStipulationValue = FIXTag { tnum = 234, tparser = toFIXString }
+tStipulationValue = FIXTag 
+   { tName = "StipulationValue"
+   , tnum = 234
+   , tparser = toFIXString }
 
 tYieldType :: FIXTag
-tYieldType = FIXTag { tnum = 235, tparser = toFIXString }
+tYieldType = FIXTag 
+   { tName = "YieldType"
+   , tnum = 235
+   , tparser = toFIXString }
 
 tYield :: FIXTag
-tYield = FIXTag { tnum = 236, tparser = toFIXString }
+tYield = FIXTag 
+   { tName = "Yield"
+   , tnum = 236
+   , tparser = toFIXString }
 
 tTotalTakedown :: FIXTag
-tTotalTakedown = FIXTag { tnum = 237, tparser = toFIXAmt }
+tTotalTakedown = FIXTag 
+   { tName = "TotalTakedown"
+   , tnum = 237
+   , tparser = toFIXAmt }
 
 tConcession :: FIXTag
-tConcession = FIXTag { tnum = 238, tparser = toFIXAmt }
+tConcession = FIXTag 
+   { tName = "Concession"
+   , tnum = 238
+   , tparser = toFIXAmt }
 
 tRepoCollateralSecurityType :: FIXTag
-tRepoCollateralSecurityType = FIXTag { tnum = 239, tparser = toFIXInt }
+tRepoCollateralSecurityType = FIXTag 
+   { tName = "RepoCollateralSecurityType"
+   , tnum = 239
+   , tparser = toFIXInt }
 
 tRedemptionDate :: FIXTag
-tRedemptionDate = FIXTag { tnum = 240, tparser = toFIXString }
+tRedemptionDate = FIXTag 
+   { tName = "RedemptionDate"
+   , tnum = 240
+   , tparser = toFIXString }
 
 tUnderlyingCouponPaymentDate :: FIXTag
-tUnderlyingCouponPaymentDate = FIXTag { tnum = 241, tparser = toFIXString }
+tUnderlyingCouponPaymentDate = FIXTag 
+   { tName = "UnderlyingCouponPaymentDate"
+   , tnum = 241
+   , tparser = toFIXString }
 
 tUnderlyingIssueDate :: FIXTag
-tUnderlyingIssueDate = FIXTag { tnum = 242, tparser = toFIXString }
+tUnderlyingIssueDate = FIXTag 
+   { tName = "UnderlyingIssueDate"
+   , tnum = 242
+   , tparser = toFIXString }
 
 tUnderlyingRepoCollateralSecurityType :: FIXTag
-tUnderlyingRepoCollateralSecurityType = FIXTag { tnum = 243, tparser = toFIXInt }
+tUnderlyingRepoCollateralSecurityType = FIXTag 
+   { tName = "UnderlyingRepoCollateralSecurityType"
+   , tnum = 243
+   , tparser = toFIXInt }
 
 tUnderlyingRepurchaseTerm :: FIXTag
-tUnderlyingRepurchaseTerm = FIXTag { tnum = 244, tparser = toFIXInt }
+tUnderlyingRepurchaseTerm = FIXTag 
+   { tName = "UnderlyingRepurchaseTerm"
+   , tnum = 244
+   , tparser = toFIXInt }
 
 tUnderlyingRepurchaseRate :: FIXTag
-tUnderlyingRepurchaseRate = FIXTag { tnum = 245, tparser = toFIXString }
+tUnderlyingRepurchaseRate = FIXTag 
+   { tName = "UnderlyingRepurchaseRate"
+   , tnum = 245
+   , tparser = toFIXString }
 
 tUnderlyingFactor :: FIXTag
-tUnderlyingFactor = FIXTag { tnum = 246, tparser = toFIXFloat }
+tUnderlyingFactor = FIXTag 
+   { tName = "UnderlyingFactor"
+   , tnum = 246
+   , tparser = toFIXFloat }
 
 tUnderlyingRedemptionDate :: FIXTag
-tUnderlyingRedemptionDate = FIXTag { tnum = 247, tparser = toFIXString }
+tUnderlyingRedemptionDate = FIXTag 
+   { tName = "UnderlyingRedemptionDate"
+   , tnum = 247
+   , tparser = toFIXString }
 
 tLegCouponPaymentDate :: FIXTag
-tLegCouponPaymentDate = FIXTag { tnum = 248, tparser = toFIXString }
+tLegCouponPaymentDate = FIXTag 
+   { tName = "LegCouponPaymentDate"
+   , tnum = 248
+   , tparser = toFIXString }
 
 tLegIssueDate :: FIXTag
-tLegIssueDate = FIXTag { tnum = 249, tparser = toFIXString }
+tLegIssueDate = FIXTag 
+   { tName = "LegIssueDate"
+   , tnum = 249
+   , tparser = toFIXString }
 
 tLegRepoCollateralSecurityType :: FIXTag
-tLegRepoCollateralSecurityType = FIXTag { tnum = 250, tparser = toFIXInt }
+tLegRepoCollateralSecurityType = FIXTag 
+   { tName = "LegRepoCollateralSecurityType"
+   , tnum = 250
+   , tparser = toFIXInt }
 
 tLegRepurchaseTerm :: FIXTag
-tLegRepurchaseTerm = FIXTag { tnum = 251, tparser = toFIXInt }
+tLegRepurchaseTerm = FIXTag 
+   { tName = "LegRepurchaseTerm"
+   , tnum = 251
+   , tparser = toFIXInt }
 
 tLegRepurchaseRate :: FIXTag
-tLegRepurchaseRate = FIXTag { tnum = 252, tparser = toFIXString }
+tLegRepurchaseRate = FIXTag 
+   { tName = "LegRepurchaseRate"
+   , tnum = 252
+   , tparser = toFIXString }
 
 tLegFactor :: FIXTag
-tLegFactor = FIXTag { tnum = 253, tparser = toFIXFloat }
+tLegFactor = FIXTag 
+   { tName = "LegFactor"
+   , tnum = 253
+   , tparser = toFIXFloat }
 
 tLegRedemptionDate :: FIXTag
-tLegRedemptionDate = FIXTag { tnum = 254, tparser = toFIXString }
+tLegRedemptionDate = FIXTag 
+   { tName = "LegRedemptionDate"
+   , tnum = 254
+   , tparser = toFIXString }
 
 tCreditRating :: FIXTag
-tCreditRating = FIXTag { tnum = 255, tparser = toFIXString }
+tCreditRating = FIXTag 
+   { tName = "CreditRating"
+   , tnum = 255
+   , tparser = toFIXString }
 
 tUnderlyingCreditRating :: FIXTag
-tUnderlyingCreditRating = FIXTag { tnum = 256, tparser = toFIXString }
+tUnderlyingCreditRating = FIXTag 
+   { tName = "UnderlyingCreditRating"
+   , tnum = 256
+   , tparser = toFIXString }
 
 tLegCreditRating :: FIXTag
-tLegCreditRating = FIXTag { tnum = 257, tparser = toFIXString }
+tLegCreditRating = FIXTag 
+   { tName = "LegCreditRating"
+   , tnum = 257
+   , tparser = toFIXString }
 
 tTradedFlatSwitch :: FIXTag
-tTradedFlatSwitch = FIXTag { tnum = 258, tparser = toFIXBool }
+tTradedFlatSwitch = FIXTag 
+   { tName = "TradedFlatSwitch"
+   , tnum = 258
+   , tparser = toFIXBool }
 
 tBasisFeatureDate :: FIXTag
-tBasisFeatureDate = FIXTag { tnum = 259, tparser = toFIXString }
+tBasisFeatureDate = FIXTag 
+   { tName = "BasisFeatureDate"
+   , tnum = 259
+   , tparser = toFIXString }
 
 tBasisFeaturePrice :: FIXTag
-tBasisFeaturePrice = FIXTag { tnum = 260, tparser = toFIXPrice }
+tBasisFeaturePrice = FIXTag 
+   { tName = "BasisFeaturePrice"
+   , tnum = 260
+   , tparser = toFIXPrice }
 
 tMDReqID :: FIXTag
-tMDReqID = FIXTag { tnum = 262, tparser = toFIXString }
+tMDReqID = FIXTag 
+   { tName = "MDReqID"
+   , tnum = 262
+   , tparser = toFIXString }
 
 tSubscriptionRequestType :: FIXTag
-tSubscriptionRequestType = FIXTag { tnum = 263, tparser = toFIXChar }
+tSubscriptionRequestType = FIXTag 
+   { tName = "SubscriptionRequestType"
+   , tnum = 263
+   , tparser = toFIXChar }
 
 tMarketDepth :: FIXTag
-tMarketDepth = FIXTag { tnum = 264, tparser = toFIXInt }
+tMarketDepth = FIXTag 
+   { tName = "MarketDepth"
+   , tnum = 264
+   , tparser = toFIXInt }
 
 tMDUpdateType :: FIXTag
-tMDUpdateType = FIXTag { tnum = 265, tparser = toFIXInt }
+tMDUpdateType = FIXTag 
+   { tName = "MDUpdateType"
+   , tnum = 265
+   , tparser = toFIXInt }
 
 tAggregatedBook :: FIXTag
-tAggregatedBook = FIXTag { tnum = 266, tparser = toFIXBool }
+tAggregatedBook = FIXTag 
+   { tName = "AggregatedBook"
+   , tnum = 266
+   , tparser = toFIXBool }
 
 tNoMDEntryTypes :: FIXTag
-tNoMDEntryTypes = FIXTag { tnum = 267, tparser = toFIXString }
+tNoMDEntryTypes = FIXTag 
+   { tName = "NoMDEntryTypes"
+   , tnum = 267
+   , tparser = toFIXString }
 
 tNoMDEntries :: FIXTag
-tNoMDEntries = FIXTag { tnum = 268, tparser = toFIXString }
+tNoMDEntries = FIXTag 
+   { tName = "NoMDEntries"
+   , tnum = 268
+   , tparser = toFIXString }
 
 tMDEntryType :: FIXTag
-tMDEntryType = FIXTag { tnum = 269, tparser = toFIXChar }
+tMDEntryType = FIXTag 
+   { tName = "MDEntryType"
+   , tnum = 269
+   , tparser = toFIXChar }
 
 tMDEntryPx :: FIXTag
-tMDEntryPx = FIXTag { tnum = 270, tparser = toFIXPrice }
+tMDEntryPx = FIXTag 
+   { tName = "MDEntryPx"
+   , tnum = 270
+   , tparser = toFIXPrice }
 
 tMDEntrySize :: FIXTag
-tMDEntrySize = FIXTag { tnum = 271, tparser = toFIXQuantity }
+tMDEntrySize = FIXTag 
+   { tName = "MDEntrySize"
+   , tnum = 271
+   , tparser = toFIXQuantity }
 
 tMDEntryDate :: FIXTag
-tMDEntryDate = FIXTag { tnum = 272, tparser = toFIXString }
+tMDEntryDate = FIXTag 
+   { tName = "MDEntryDate"
+   , tnum = 272
+   , tparser = toFIXString }
 
 tMDEntryTime :: FIXTag
-tMDEntryTime = FIXTag { tnum = 273, tparser = toFIXUTCTimeOnly }
+tMDEntryTime = FIXTag 
+   { tName = "MDEntryTime"
+   , tnum = 273
+   , tparser = toFIXUTCTimeOnly }
 
 tTickDirection :: FIXTag
-tTickDirection = FIXTag { tnum = 274, tparser = toFIXChar }
+tTickDirection = FIXTag 
+   { tName = "TickDirection"
+   , tnum = 274
+   , tparser = toFIXChar }
 
 tMDMkt :: FIXTag
-tMDMkt = FIXTag { tnum = 275, tparser = toFIXExchange }
+tMDMkt = FIXTag 
+   { tName = "MDMkt"
+   , tnum = 275
+   , tparser = toFIXExchange }
 
 tQuoteCondition :: FIXTag
-tQuoteCondition = FIXTag { tnum = 276, tparser = toFIXMultipleValueString }
+tQuoteCondition = FIXTag 
+   { tName = "QuoteCondition"
+   , tnum = 276
+   , tparser = toFIXMultipleValueString }
 
 tTradeCondition :: FIXTag
-tTradeCondition = FIXTag { tnum = 277, tparser = toFIXMultipleValueString }
+tTradeCondition = FIXTag 
+   { tName = "TradeCondition"
+   , tnum = 277
+   , tparser = toFIXMultipleValueString }
 
 tMDEntryID :: FIXTag
-tMDEntryID = FIXTag { tnum = 278, tparser = toFIXString }
+tMDEntryID = FIXTag 
+   { tName = "MDEntryID"
+   , tnum = 278
+   , tparser = toFIXString }
 
 tMDUpdateAction :: FIXTag
-tMDUpdateAction = FIXTag { tnum = 279, tparser = toFIXChar }
+tMDUpdateAction = FIXTag 
+   { tName = "MDUpdateAction"
+   , tnum = 279
+   , tparser = toFIXChar }
 
 tMDEntryRefID :: FIXTag
-tMDEntryRefID = FIXTag { tnum = 280, tparser = toFIXString }
+tMDEntryRefID = FIXTag 
+   { tName = "MDEntryRefID"
+   , tnum = 280
+   , tparser = toFIXString }
 
 tMDReqRejReason :: FIXTag
-tMDReqRejReason = FIXTag { tnum = 281, tparser = toFIXChar }
+tMDReqRejReason = FIXTag 
+   { tName = "MDReqRejReason"
+   , tnum = 281
+   , tparser = toFIXChar }
 
 tMDEntryOriginator :: FIXTag
-tMDEntryOriginator = FIXTag { tnum = 282, tparser = toFIXString }
+tMDEntryOriginator = FIXTag 
+   { tName = "MDEntryOriginator"
+   , tnum = 282
+   , tparser = toFIXString }
 
 tLocationID :: FIXTag
-tLocationID = FIXTag { tnum = 283, tparser = toFIXString }
+tLocationID = FIXTag 
+   { tName = "LocationID"
+   , tnum = 283
+   , tparser = toFIXString }
 
 tDeskID :: FIXTag
-tDeskID = FIXTag { tnum = 284, tparser = toFIXString }
+tDeskID = FIXTag 
+   { tName = "DeskID"
+   , tnum = 284
+   , tparser = toFIXString }
 
 tDeleteReason :: FIXTag
-tDeleteReason = FIXTag { tnum = 285, tparser = toFIXChar }
+tDeleteReason = FIXTag 
+   { tName = "DeleteReason"
+   , tnum = 285
+   , tparser = toFIXChar }
 
 tOpenCloseSettleFlag :: FIXTag
-tOpenCloseSettleFlag = FIXTag { tnum = 286, tparser = toFIXMultipleValueString }
+tOpenCloseSettleFlag = FIXTag 
+   { tName = "OpenCloseSettleFlag"
+   , tnum = 286
+   , tparser = toFIXMultipleValueString }
 
 tSellerDays :: FIXTag
-tSellerDays = FIXTag { tnum = 287, tparser = toFIXInt }
+tSellerDays = FIXTag 
+   { tName = "SellerDays"
+   , tnum = 287
+   , tparser = toFIXInt }
 
 tMDEntryBuyer :: FIXTag
-tMDEntryBuyer = FIXTag { tnum = 288, tparser = toFIXString }
+tMDEntryBuyer = FIXTag 
+   { tName = "MDEntryBuyer"
+   , tnum = 288
+   , tparser = toFIXString }
 
 tMDEntrySeller :: FIXTag
-tMDEntrySeller = FIXTag { tnum = 289, tparser = toFIXString }
+tMDEntrySeller = FIXTag 
+   { tName = "MDEntrySeller"
+   , tnum = 289
+   , tparser = toFIXString }
 
 tMDEntryPositionNo :: FIXTag
-tMDEntryPositionNo = FIXTag { tnum = 290, tparser = toFIXInt }
+tMDEntryPositionNo = FIXTag 
+   { tName = "MDEntryPositionNo"
+   , tnum = 290
+   , tparser = toFIXInt }
 
 tFinancialStatus :: FIXTag
-tFinancialStatus = FIXTag { tnum = 291, tparser = toFIXMultipleValueString }
+tFinancialStatus = FIXTag 
+   { tName = "FinancialStatus"
+   , tnum = 291
+   , tparser = toFIXMultipleValueString }
 
 tCorporateAction :: FIXTag
-tCorporateAction = FIXTag { tnum = 292, tparser = toFIXMultipleValueString }
+tCorporateAction = FIXTag 
+   { tName = "CorporateAction"
+   , tnum = 292
+   , tparser = toFIXMultipleValueString }
 
 tDefBidSize :: FIXTag
-tDefBidSize = FIXTag { tnum = 293, tparser = toFIXQuantity }
+tDefBidSize = FIXTag 
+   { tName = "DefBidSize"
+   , tnum = 293
+   , tparser = toFIXQuantity }
 
 tDefOfferSize :: FIXTag
-tDefOfferSize = FIXTag { tnum = 294, tparser = toFIXQuantity }
+tDefOfferSize = FIXTag 
+   { tName = "DefOfferSize"
+   , tnum = 294
+   , tparser = toFIXQuantity }
 
 tNoQuoteEntries :: FIXTag
-tNoQuoteEntries = FIXTag { tnum = 295, tparser = toFIXString }
+tNoQuoteEntries = FIXTag 
+   { tName = "NoQuoteEntries"
+   , tnum = 295
+   , tparser = toFIXString }
 
 tNoQuoteSets :: FIXTag
-tNoQuoteSets = FIXTag { tnum = 296, tparser = toFIXString }
+tNoQuoteSets = FIXTag 
+   { tName = "NoQuoteSets"
+   , tnum = 296
+   , tparser = toFIXString }
 
 tQuoteStatus :: FIXTag
-tQuoteStatus = FIXTag { tnum = 297, tparser = toFIXInt }
+tQuoteStatus = FIXTag 
+   { tName = "QuoteStatus"
+   , tnum = 297
+   , tparser = toFIXInt }
 
 tQuoteCancelType :: FIXTag
-tQuoteCancelType = FIXTag { tnum = 298, tparser = toFIXInt }
+tQuoteCancelType = FIXTag 
+   { tName = "QuoteCancelType"
+   , tnum = 298
+   , tparser = toFIXInt }
 
 tQuoteEntryID :: FIXTag
-tQuoteEntryID = FIXTag { tnum = 299, tparser = toFIXString }
+tQuoteEntryID = FIXTag 
+   { tName = "QuoteEntryID"
+   , tnum = 299
+   , tparser = toFIXString }
 
 tQuoteRejectReason :: FIXTag
-tQuoteRejectReason = FIXTag { tnum = 300, tparser = toFIXInt }
+tQuoteRejectReason = FIXTag 
+   { tName = "QuoteRejectReason"
+   , tnum = 300
+   , tparser = toFIXInt }
 
 tQuoteResponseLevel :: FIXTag
-tQuoteResponseLevel = FIXTag { tnum = 301, tparser = toFIXInt }
+tQuoteResponseLevel = FIXTag 
+   { tName = "QuoteResponseLevel"
+   , tnum = 301
+   , tparser = toFIXInt }
 
 tQuoteSetID :: FIXTag
-tQuoteSetID = FIXTag { tnum = 302, tparser = toFIXString }
+tQuoteSetID = FIXTag 
+   { tName = "QuoteSetID"
+   , tnum = 302
+   , tparser = toFIXString }
 
 tQuoteRequestType :: FIXTag
-tQuoteRequestType = FIXTag { tnum = 303, tparser = toFIXInt }
+tQuoteRequestType = FIXTag 
+   { tName = "QuoteRequestType"
+   , tnum = 303
+   , tparser = toFIXInt }
 
 tTotQuoteEntries :: FIXTag
-tTotQuoteEntries = FIXTag { tnum = 304, tparser = toFIXInt }
+tTotQuoteEntries = FIXTag 
+   { tName = "TotQuoteEntries"
+   , tnum = 304
+   , tparser = toFIXInt }
 
 tUnderlyingSecurityIDSource :: FIXTag
-tUnderlyingSecurityIDSource = FIXTag { tnum = 305, tparser = toFIXString }
+tUnderlyingSecurityIDSource = FIXTag 
+   { tName = "UnderlyingSecurityIDSource"
+   , tnum = 305
+   , tparser = toFIXString }
 
 tUnderlyingIssuer :: FIXTag
-tUnderlyingIssuer = FIXTag { tnum = 306, tparser = toFIXString }
+tUnderlyingIssuer = FIXTag 
+   { tName = "UnderlyingIssuer"
+   , tnum = 306
+   , tparser = toFIXString }
 
 tUnderlyingSecurityDesc :: FIXTag
-tUnderlyingSecurityDesc = FIXTag { tnum = 307, tparser = toFIXString }
+tUnderlyingSecurityDesc = FIXTag 
+   { tName = "UnderlyingSecurityDesc"
+   , tnum = 307
+   , tparser = toFIXString }
 
 tUnderlyingSecurityExchange :: FIXTag
-tUnderlyingSecurityExchange = FIXTag { tnum = 308, tparser = toFIXExchange }
+tUnderlyingSecurityExchange = FIXTag 
+   { tName = "UnderlyingSecurityExchange"
+   , tnum = 308
+   , tparser = toFIXExchange }
 
 tUnderlyingSecurityID :: FIXTag
-tUnderlyingSecurityID = FIXTag { tnum = 309, tparser = toFIXString }
+tUnderlyingSecurityID = FIXTag 
+   { tName = "UnderlyingSecurityID"
+   , tnum = 309
+   , tparser = toFIXString }
 
 tUnderlyingSecurityType :: FIXTag
-tUnderlyingSecurityType = FIXTag { tnum = 310, tparser = toFIXString }
+tUnderlyingSecurityType = FIXTag 
+   { tName = "UnderlyingSecurityType"
+   , tnum = 310
+   , tparser = toFIXString }
 
 tUnderlyingSymbol :: FIXTag
-tUnderlyingSymbol = FIXTag { tnum = 311, tparser = toFIXString }
+tUnderlyingSymbol = FIXTag 
+   { tName = "UnderlyingSymbol"
+   , tnum = 311
+   , tparser = toFIXString }
 
 tUnderlyingSymbolSfx :: FIXTag
-tUnderlyingSymbolSfx = FIXTag { tnum = 312, tparser = toFIXString }
+tUnderlyingSymbolSfx = FIXTag 
+   { tName = "UnderlyingSymbolSfx"
+   , tnum = 312
+   , tparser = toFIXString }
 
 tUnderlyingMaturityMonthYear :: FIXTag
-tUnderlyingMaturityMonthYear = FIXTag { tnum = 313, tparser = toFIXString }
+tUnderlyingMaturityMonthYear = FIXTag 
+   { tName = "UnderlyingMaturityMonthYear"
+   , tnum = 313
+   , tparser = toFIXString }
 
 tUnderlyingMaturityDay :: FIXTag
-tUnderlyingMaturityDay = FIXTag { tnum = 314, tparser = toFIXDayOfMonth }
+tUnderlyingMaturityDay = FIXTag 
+   { tName = "UnderlyingMaturityDay"
+   , tnum = 314
+   , tparser = toFIXDayOfMonth }
 
 tUnderlyingPutOrCall :: FIXTag
-tUnderlyingPutOrCall = FIXTag { tnum = 315, tparser = toFIXInt }
+tUnderlyingPutOrCall = FIXTag 
+   { tName = "UnderlyingPutOrCall"
+   , tnum = 315
+   , tparser = toFIXInt }
 
 tUnderlyingStrikePrice :: FIXTag
-tUnderlyingStrikePrice = FIXTag { tnum = 316, tparser = toFIXPrice }
+tUnderlyingStrikePrice = FIXTag 
+   { tName = "UnderlyingStrikePrice"
+   , tnum = 316
+   , tparser = toFIXPrice }
 
 tUnderlyingOptAttribute :: FIXTag
-tUnderlyingOptAttribute = FIXTag { tnum = 317, tparser = toFIXChar }
+tUnderlyingOptAttribute = FIXTag 
+   { tName = "UnderlyingOptAttribute"
+   , tnum = 317
+   , tparser = toFIXChar }
 
 tUnderlyingCurrency :: FIXTag
-tUnderlyingCurrency = FIXTag { tnum = 318, tparser = toFIXCurrency }
+tUnderlyingCurrency = FIXTag 
+   { tName = "UnderlyingCurrency"
+   , tnum = 318
+   , tparser = toFIXCurrency }
 
 tRatioQty :: FIXTag
-tRatioQty = FIXTag { tnum = 319, tparser = toFIXString }
+tRatioQty = FIXTag 
+   { tName = "RatioQty"
+   , tnum = 319
+   , tparser = toFIXString }
 
 tSecurityReqID :: FIXTag
-tSecurityReqID = FIXTag { tnum = 320, tparser = toFIXString }
+tSecurityReqID = FIXTag 
+   { tName = "SecurityReqID"
+   , tnum = 320
+   , tparser = toFIXString }
 
 tSecurityRequestType :: FIXTag
-tSecurityRequestType = FIXTag { tnum = 321, tparser = toFIXInt }
+tSecurityRequestType = FIXTag 
+   { tName = "SecurityRequestType"
+   , tnum = 321
+   , tparser = toFIXInt }
 
 tSecurityResponseID :: FIXTag
-tSecurityResponseID = FIXTag { tnum = 322, tparser = toFIXString }
+tSecurityResponseID = FIXTag 
+   { tName = "SecurityResponseID"
+   , tnum = 322
+   , tparser = toFIXString }
 
 tSecurityResponseType :: FIXTag
-tSecurityResponseType = FIXTag { tnum = 323, tparser = toFIXInt }
+tSecurityResponseType = FIXTag 
+   { tName = "SecurityResponseType"
+   , tnum = 323
+   , tparser = toFIXInt }
 
 tSecurityStatusReqID :: FIXTag
-tSecurityStatusReqID = FIXTag { tnum = 324, tparser = toFIXString }
+tSecurityStatusReqID = FIXTag 
+   { tName = "SecurityStatusReqID"
+   , tnum = 324
+   , tparser = toFIXString }
 
 tUnsolicitedIndicator :: FIXTag
-tUnsolicitedIndicator = FIXTag { tnum = 325, tparser = toFIXBool }
+tUnsolicitedIndicator = FIXTag 
+   { tName = "UnsolicitedIndicator"
+   , tnum = 325
+   , tparser = toFIXBool }
 
 tSecurityTradingStatus :: FIXTag
-tSecurityTradingStatus = FIXTag { tnum = 326, tparser = toFIXInt }
+tSecurityTradingStatus = FIXTag 
+   { tName = "SecurityTradingStatus"
+   , tnum = 326
+   , tparser = toFIXInt }
 
 tHaltReasonChar :: FIXTag
-tHaltReasonChar = FIXTag { tnum = 327, tparser = toFIXChar }
+tHaltReasonChar = FIXTag 
+   { tName = "HaltReasonChar"
+   , tnum = 327
+   , tparser = toFIXChar }
 
 tInViewOfCommon :: FIXTag
-tInViewOfCommon = FIXTag { tnum = 328, tparser = toFIXBool }
+tInViewOfCommon = FIXTag 
+   { tName = "InViewOfCommon"
+   , tnum = 328
+   , tparser = toFIXBool }
 
 tDueToRelated :: FIXTag
-tDueToRelated = FIXTag { tnum = 329, tparser = toFIXBool }
+tDueToRelated = FIXTag 
+   { tName = "DueToRelated"
+   , tnum = 329
+   , tparser = toFIXBool }
 
 tBuyVolume :: FIXTag
-tBuyVolume = FIXTag { tnum = 330, tparser = toFIXQuantity }
+tBuyVolume = FIXTag 
+   { tName = "BuyVolume"
+   , tnum = 330
+   , tparser = toFIXQuantity }
 
 tSellVolume :: FIXTag
-tSellVolume = FIXTag { tnum = 331, tparser = toFIXQuantity }
+tSellVolume = FIXTag 
+   { tName = "SellVolume"
+   , tnum = 331
+   , tparser = toFIXQuantity }
 
 tHighPx :: FIXTag
-tHighPx = FIXTag { tnum = 332, tparser = toFIXPrice }
+tHighPx = FIXTag 
+   { tName = "HighPx"
+   , tnum = 332
+   , tparser = toFIXPrice }
 
 tLowPx :: FIXTag
-tLowPx = FIXTag { tnum = 333, tparser = toFIXPrice }
+tLowPx = FIXTag 
+   { tName = "LowPx"
+   , tnum = 333
+   , tparser = toFIXPrice }
 
 tAdjustment :: FIXTag
-tAdjustment = FIXTag { tnum = 334, tparser = toFIXInt }
+tAdjustment = FIXTag 
+   { tName = "Adjustment"
+   , tnum = 334
+   , tparser = toFIXInt }
 
 tTradSesReqID :: FIXTag
-tTradSesReqID = FIXTag { tnum = 335, tparser = toFIXString }
+tTradSesReqID = FIXTag 
+   { tName = "TradSesReqID"
+   , tnum = 335
+   , tparser = toFIXString }
 
 tTradingSessionID :: FIXTag
-tTradingSessionID = FIXTag { tnum = 336, tparser = toFIXString }
+tTradingSessionID = FIXTag 
+   { tName = "TradingSessionID"
+   , tnum = 336
+   , tparser = toFIXString }
 
 tContraTrader :: FIXTag
-tContraTrader = FIXTag { tnum = 337, tparser = toFIXString }
+tContraTrader = FIXTag 
+   { tName = "ContraTrader"
+   , tnum = 337
+   , tparser = toFIXString }
 
 tTradSesMethod :: FIXTag
-tTradSesMethod = FIXTag { tnum = 338, tparser = toFIXInt }
+tTradSesMethod = FIXTag 
+   { tName = "TradSesMethod"
+   , tnum = 338
+   , tparser = toFIXInt }
 
 tTradSesMode :: FIXTag
-tTradSesMode = FIXTag { tnum = 339, tparser = toFIXInt }
+tTradSesMode = FIXTag 
+   { tName = "TradSesMode"
+   , tnum = 339
+   , tparser = toFIXInt }
 
 tTradSesStatus :: FIXTag
-tTradSesStatus = FIXTag { tnum = 340, tparser = toFIXInt }
+tTradSesStatus = FIXTag 
+   { tName = "TradSesStatus"
+   , tnum = 340
+   , tparser = toFIXInt }
 
 tTradSesStartTime :: FIXTag
-tTradSesStartTime = FIXTag { tnum = 341, tparser = toFIXUTCTimestamp }
+tTradSesStartTime = FIXTag 
+   { tName = "TradSesStartTime"
+   , tnum = 341
+   , tparser = toFIXUTCTimestamp }
 
 tTradSesOpenTime :: FIXTag
-tTradSesOpenTime = FIXTag { tnum = 342, tparser = toFIXUTCTimestamp }
+tTradSesOpenTime = FIXTag 
+   { tName = "TradSesOpenTime"
+   , tnum = 342
+   , tparser = toFIXUTCTimestamp }
 
 tTradSesPreCloseTime :: FIXTag
-tTradSesPreCloseTime = FIXTag { tnum = 343, tparser = toFIXUTCTimestamp }
+tTradSesPreCloseTime = FIXTag 
+   { tName = "TradSesPreCloseTime"
+   , tnum = 343
+   , tparser = toFIXUTCTimestamp }
 
 tTradSesCloseTime :: FIXTag
-tTradSesCloseTime = FIXTag { tnum = 344, tparser = toFIXUTCTimestamp }
+tTradSesCloseTime = FIXTag 
+   { tName = "TradSesCloseTime"
+   , tnum = 344
+   , tparser = toFIXUTCTimestamp }
 
 tTradSesEndTime :: FIXTag
-tTradSesEndTime = FIXTag { tnum = 345, tparser = toFIXUTCTimestamp }
+tTradSesEndTime = FIXTag 
+   { tName = "TradSesEndTime"
+   , tnum = 345
+   , tparser = toFIXUTCTimestamp }
 
 tNumberOfOrders :: FIXTag
-tNumberOfOrders = FIXTag { tnum = 346, tparser = toFIXInt }
+tNumberOfOrders = FIXTag 
+   { tName = "NumberOfOrders"
+   , tnum = 346
+   , tparser = toFIXInt }
 
 tMessageEncoding :: FIXTag
-tMessageEncoding = FIXTag { tnum = 347, tparser = toFIXString }
+tMessageEncoding = FIXTag 
+   { tName = "MessageEncoding"
+   , tnum = 347
+   , tparser = toFIXString }
 
 tEncodedIssuerLen :: FIXTag
-tEncodedIssuerLen = FIXTag { tnum = 348, tparser = toFIXString }
+tEncodedIssuerLen = FIXTag 
+   { tName = "EncodedIssuerLen"
+   , tnum = 348
+   , tparser = toFIXString }
 
 tEncodedIssuer :: FIXTag
-tEncodedIssuer = FIXTag { tnum = 349, tparser = toFIXString }
+tEncodedIssuer = FIXTag 
+   { tName = "EncodedIssuer"
+   , tnum = 349
+   , tparser = toFIXString }
 
 tEncodedSecurityDescLen :: FIXTag
-tEncodedSecurityDescLen = FIXTag { tnum = 350, tparser = toFIXString }
+tEncodedSecurityDescLen = FIXTag 
+   { tName = "EncodedSecurityDescLen"
+   , tnum = 350
+   , tparser = toFIXString }
 
 tEncodedSecurityDesc :: FIXTag
-tEncodedSecurityDesc = FIXTag { tnum = 351, tparser = toFIXString }
+tEncodedSecurityDesc = FIXTag 
+   { tName = "EncodedSecurityDesc"
+   , tnum = 351
+   , tparser = toFIXString }
 
 tEncodedListExecInstLen :: FIXTag
-tEncodedListExecInstLen = FIXTag { tnum = 352, tparser = toFIXString }
+tEncodedListExecInstLen = FIXTag 
+   { tName = "EncodedListExecInstLen"
+   , tnum = 352
+   , tparser = toFIXString }
 
 tEncodedListExecInst :: FIXTag
-tEncodedListExecInst = FIXTag { tnum = 353, tparser = toFIXString }
+tEncodedListExecInst = FIXTag 
+   { tName = "EncodedListExecInst"
+   , tnum = 353
+   , tparser = toFIXString }
 
 tEncodedTextLen :: FIXTag
-tEncodedTextLen = FIXTag { tnum = 354, tparser = toFIXString }
+tEncodedTextLen = FIXTag 
+   { tName = "EncodedTextLen"
+   , tnum = 354
+   , tparser = toFIXString }
 
 tEncodedText :: FIXTag
-tEncodedText = FIXTag { tnum = 355, tparser = toFIXString }
+tEncodedText = FIXTag 
+   { tName = "EncodedText"
+   , tnum = 355
+   , tparser = toFIXString }
 
 tEncodedSubjectLen :: FIXTag
-tEncodedSubjectLen = FIXTag { tnum = 356, tparser = toFIXString }
+tEncodedSubjectLen = FIXTag 
+   { tName = "EncodedSubjectLen"
+   , tnum = 356
+   , tparser = toFIXString }
 
 tEncodedSubject :: FIXTag
-tEncodedSubject = FIXTag { tnum = 357, tparser = toFIXString }
+tEncodedSubject = FIXTag 
+   { tName = "EncodedSubject"
+   , tnum = 357
+   , tparser = toFIXString }
 
 tEncodedHeadlineLen :: FIXTag
-tEncodedHeadlineLen = FIXTag { tnum = 358, tparser = toFIXString }
+tEncodedHeadlineLen = FIXTag 
+   { tName = "EncodedHeadlineLen"
+   , tnum = 358
+   , tparser = toFIXString }
 
 tEncodedHeadline :: FIXTag
-tEncodedHeadline = FIXTag { tnum = 359, tparser = toFIXString }
+tEncodedHeadline = FIXTag 
+   { tName = "EncodedHeadline"
+   , tnum = 359
+   , tparser = toFIXString }
 
 tEncodedAllocTextLen :: FIXTag
-tEncodedAllocTextLen = FIXTag { tnum = 360, tparser = toFIXString }
+tEncodedAllocTextLen = FIXTag 
+   { tName = "EncodedAllocTextLen"
+   , tnum = 360
+   , tparser = toFIXString }
 
 tEncodedAllocText :: FIXTag
-tEncodedAllocText = FIXTag { tnum = 361, tparser = toFIXString }
+tEncodedAllocText = FIXTag 
+   { tName = "EncodedAllocText"
+   , tnum = 361
+   , tparser = toFIXString }
 
 tEncodedUnderlyingIssuerLen :: FIXTag
-tEncodedUnderlyingIssuerLen = FIXTag { tnum = 362, tparser = toFIXString }
+tEncodedUnderlyingIssuerLen = FIXTag 
+   { tName = "EncodedUnderlyingIssuerLen"
+   , tnum = 362
+   , tparser = toFIXString }
 
 tEncodedUnderlyingIssuer :: FIXTag
-tEncodedUnderlyingIssuer = FIXTag { tnum = 363, tparser = toFIXString }
+tEncodedUnderlyingIssuer = FIXTag 
+   { tName = "EncodedUnderlyingIssuer"
+   , tnum = 363
+   , tparser = toFIXString }
 
 tEncodedUnderlyingSecurityDescLen :: FIXTag
-tEncodedUnderlyingSecurityDescLen = FIXTag { tnum = 364, tparser = toFIXString }
+tEncodedUnderlyingSecurityDescLen = FIXTag 
+   { tName = "EncodedUnderlyingSecurityDescLen"
+   , tnum = 364
+   , tparser = toFIXString }
 
 tEncodedUnderlyingSecurityDesc :: FIXTag
-tEncodedUnderlyingSecurityDesc = FIXTag { tnum = 365, tparser = toFIXString }
+tEncodedUnderlyingSecurityDesc = FIXTag 
+   { tName = "EncodedUnderlyingSecurityDesc"
+   , tnum = 365
+   , tparser = toFIXString }
 
 tAllocPrice :: FIXTag
-tAllocPrice = FIXTag { tnum = 366, tparser = toFIXPrice }
+tAllocPrice = FIXTag 
+   { tName = "AllocPrice"
+   , tnum = 366
+   , tparser = toFIXPrice }
 
 tQuoteSetValidUntilTime :: FIXTag
-tQuoteSetValidUntilTime = FIXTag { tnum = 367, tparser = toFIXUTCTimestamp }
+tQuoteSetValidUntilTime = FIXTag 
+   { tName = "QuoteSetValidUntilTime"
+   , tnum = 367
+   , tparser = toFIXUTCTimestamp }
 
 tQuoteEntryRejectReason :: FIXTag
-tQuoteEntryRejectReason = FIXTag { tnum = 368, tparser = toFIXInt }
+tQuoteEntryRejectReason = FIXTag 
+   { tName = "QuoteEntryRejectReason"
+   , tnum = 368
+   , tparser = toFIXInt }
 
 tLastMsgSeqNumProcessed :: FIXTag
-tLastMsgSeqNumProcessed = FIXTag { tnum = 369, tparser = toFIXString }
+tLastMsgSeqNumProcessed = FIXTag 
+   { tName = "LastMsgSeqNumProcessed"
+   , tnum = 369
+   , tparser = toFIXString }
 
 tOnBehalfOfSendingTime :: FIXTag
-tOnBehalfOfSendingTime = FIXTag { tnum = 370, tparser = toFIXUTCTimestamp }
+tOnBehalfOfSendingTime = FIXTag 
+   { tName = "OnBehalfOfSendingTime"
+   , tnum = 370
+   , tparser = toFIXUTCTimestamp }
 
 tRefTagID :: FIXTag
-tRefTagID = FIXTag { tnum = 371, tparser = toFIXInt }
+tRefTagID = FIXTag 
+   { tName = "RefTagID"
+   , tnum = 371
+   , tparser = toFIXInt }
 
 tRefMsgType :: FIXTag
-tRefMsgType = FIXTag { tnum = 372, tparser = toFIXString }
+tRefMsgType = FIXTag 
+   { tName = "RefMsgType"
+   , tnum = 372
+   , tparser = toFIXString }
 
 tSessionRejectReason :: FIXTag
-tSessionRejectReason = FIXTag { tnum = 373, tparser = toFIXInt }
+tSessionRejectReason = FIXTag 
+   { tName = "SessionRejectReason"
+   , tnum = 373
+   , tparser = toFIXInt }
 
 tBidRequestTransType :: FIXTag
-tBidRequestTransType = FIXTag { tnum = 374, tparser = toFIXChar }
+tBidRequestTransType = FIXTag 
+   { tName = "BidRequestTransType"
+   , tnum = 374
+   , tparser = toFIXChar }
 
 tContraBroker :: FIXTag
-tContraBroker = FIXTag { tnum = 375, tparser = toFIXString }
+tContraBroker = FIXTag 
+   { tName = "ContraBroker"
+   , tnum = 375
+   , tparser = toFIXString }
 
 tComplianceID :: FIXTag
-tComplianceID = FIXTag { tnum = 376, tparser = toFIXString }
+tComplianceID = FIXTag 
+   { tName = "ComplianceID"
+   , tnum = 376
+   , tparser = toFIXString }
 
 tSolicitedFlag :: FIXTag
-tSolicitedFlag = FIXTag { tnum = 377, tparser = toFIXBool }
+tSolicitedFlag = FIXTag 
+   { tName = "SolicitedFlag"
+   , tnum = 377
+   , tparser = toFIXBool }
 
 tExecRestatementReason :: FIXTag
-tExecRestatementReason = FIXTag { tnum = 378, tparser = toFIXInt }
+tExecRestatementReason = FIXTag 
+   { tName = "ExecRestatementReason"
+   , tnum = 378
+   , tparser = toFIXInt }
 
 tBusinessRejectRefID :: FIXTag
-tBusinessRejectRefID = FIXTag { tnum = 379, tparser = toFIXString }
+tBusinessRejectRefID = FIXTag 
+   { tName = "BusinessRejectRefID"
+   , tnum = 379
+   , tparser = toFIXString }
 
 tBusinessRejectReason :: FIXTag
-tBusinessRejectReason = FIXTag { tnum = 380, tparser = toFIXInt }
+tBusinessRejectReason = FIXTag 
+   { tName = "BusinessRejectReason"
+   , tnum = 380
+   , tparser = toFIXInt }
 
 tGrossTradeAmt :: FIXTag
-tGrossTradeAmt = FIXTag { tnum = 381, tparser = toFIXAmt }
+tGrossTradeAmt = FIXTag 
+   { tName = "GrossTradeAmt"
+   , tnum = 381
+   , tparser = toFIXAmt }
 
 tNoContraBrokers :: FIXTag
-tNoContraBrokers = FIXTag { tnum = 382, tparser = toFIXString }
+tNoContraBrokers = FIXTag 
+   { tName = "NoContraBrokers"
+   , tnum = 382
+   , tparser = toFIXString }
 
 tMaxMessageSize :: FIXTag
-tMaxMessageSize = FIXTag { tnum = 383, tparser = toFIXString }
+tMaxMessageSize = FIXTag 
+   { tName = "MaxMessageSize"
+   , tnum = 383
+   , tparser = toFIXString }
 
 tNoMsgTypes :: FIXTag
-tNoMsgTypes = FIXTag { tnum = 384, tparser = toFIXString }
+tNoMsgTypes = FIXTag 
+   { tName = "NoMsgTypes"
+   , tnum = 384
+   , tparser = toFIXString }
 
 tMsgDirection :: FIXTag
-tMsgDirection = FIXTag { tnum = 385, tparser = toFIXChar }
+tMsgDirection = FIXTag 
+   { tName = "MsgDirection"
+   , tnum = 385
+   , tparser = toFIXChar }
 
 tNoTradingSessions :: FIXTag
-tNoTradingSessions = FIXTag { tnum = 386, tparser = toFIXString }
+tNoTradingSessions = FIXTag 
+   { tName = "NoTradingSessions"
+   , tnum = 386
+   , tparser = toFIXString }
 
 tTotalVolumeTraded :: FIXTag
-tTotalVolumeTraded = FIXTag { tnum = 387, tparser = toFIXQuantity }
+tTotalVolumeTraded = FIXTag 
+   { tName = "TotalVolumeTraded"
+   , tnum = 387
+   , tparser = toFIXQuantity }
 
 tDiscretionInst :: FIXTag
-tDiscretionInst = FIXTag { tnum = 388, tparser = toFIXChar }
+tDiscretionInst = FIXTag 
+   { tName = "DiscretionInst"
+   , tnum = 388
+   , tparser = toFIXChar }
 
 tDiscretionOffset :: FIXTag
-tDiscretionOffset = FIXTag { tnum = 389, tparser = toFIXPriceOffset }
+tDiscretionOffset = FIXTag 
+   { tName = "DiscretionOffset"
+   , tnum = 389
+   , tparser = toFIXPriceOffset }
 
 tBidID :: FIXTag
-tBidID = FIXTag { tnum = 390, tparser = toFIXString }
+tBidID = FIXTag 
+   { tName = "BidID"
+   , tnum = 390
+   , tparser = toFIXString }
 
 tClientBidID :: FIXTag
-tClientBidID = FIXTag { tnum = 391, tparser = toFIXString }
+tClientBidID = FIXTag 
+   { tName = "ClientBidID"
+   , tnum = 391
+   , tparser = toFIXString }
 
 tListName :: FIXTag
-tListName = FIXTag { tnum = 392, tparser = toFIXString }
+tListName = FIXTag 
+   { tName = "ListName"
+   , tnum = 392
+   , tparser = toFIXString }
 
 tTotalNumSecurities :: FIXTag
-tTotalNumSecurities = FIXTag { tnum = 393, tparser = toFIXInt }
+tTotalNumSecurities = FIXTag 
+   { tName = "TotalNumSecurities"
+   , tnum = 393
+   , tparser = toFIXInt }
 
 tBidType :: FIXTag
-tBidType = FIXTag { tnum = 394, tparser = toFIXInt }
+tBidType = FIXTag 
+   { tName = "BidType"
+   , tnum = 394
+   , tparser = toFIXInt }
 
 tNumTickets :: FIXTag
-tNumTickets = FIXTag { tnum = 395, tparser = toFIXInt }
+tNumTickets = FIXTag 
+   { tName = "NumTickets"
+   , tnum = 395
+   , tparser = toFIXInt }
 
 tSideValue1 :: FIXTag
-tSideValue1 = FIXTag { tnum = 396, tparser = toFIXAmt }
+tSideValue1 = FIXTag 
+   { tName = "SideValue1"
+   , tnum = 396
+   , tparser = toFIXAmt }
 
 tSideValue2 :: FIXTag
-tSideValue2 = FIXTag { tnum = 397, tparser = toFIXAmt }
+tSideValue2 = FIXTag 
+   { tName = "SideValue2"
+   , tnum = 397
+   , tparser = toFIXAmt }
 
 tNoBidDescriptors :: FIXTag
-tNoBidDescriptors = FIXTag { tnum = 398, tparser = toFIXString }
+tNoBidDescriptors = FIXTag 
+   { tName = "NoBidDescriptors"
+   , tnum = 398
+   , tparser = toFIXString }
 
 tBidDescriptorType :: FIXTag
-tBidDescriptorType = FIXTag { tnum = 399, tparser = toFIXInt }
+tBidDescriptorType = FIXTag 
+   { tName = "BidDescriptorType"
+   , tnum = 399
+   , tparser = toFIXInt }
 
 tBidDescriptor :: FIXTag
-tBidDescriptor = FIXTag { tnum = 400, tparser = toFIXString }
+tBidDescriptor = FIXTag 
+   { tName = "BidDescriptor"
+   , tnum = 400
+   , tparser = toFIXString }
 
 tSideValueInd :: FIXTag
-tSideValueInd = FIXTag { tnum = 401, tparser = toFIXInt }
+tSideValueInd = FIXTag 
+   { tName = "SideValueInd"
+   , tnum = 401
+   , tparser = toFIXInt }
 
 tLiquidityPctLow :: FIXTag
-tLiquidityPctLow = FIXTag { tnum = 402, tparser = toFIXString }
+tLiquidityPctLow = FIXTag 
+   { tName = "LiquidityPctLow"
+   , tnum = 402
+   , tparser = toFIXString }
 
 tLiquidityPctHigh :: FIXTag
-tLiquidityPctHigh = FIXTag { tnum = 403, tparser = toFIXString }
+tLiquidityPctHigh = FIXTag 
+   { tName = "LiquidityPctHigh"
+   , tnum = 403
+   , tparser = toFIXString }
 
 tLiquidityValue :: FIXTag
-tLiquidityValue = FIXTag { tnum = 404, tparser = toFIXAmt }
+tLiquidityValue = FIXTag 
+   { tName = "LiquidityValue"
+   , tnum = 404
+   , tparser = toFIXAmt }
 
 tEFPTrackingError :: FIXTag
-tEFPTrackingError = FIXTag { tnum = 405, tparser = toFIXString }
+tEFPTrackingError = FIXTag 
+   { tName = "EFPTrackingError"
+   , tnum = 405
+   , tparser = toFIXString }
 
 tFairValue :: FIXTag
-tFairValue = FIXTag { tnum = 406, tparser = toFIXAmt }
+tFairValue = FIXTag 
+   { tName = "FairValue"
+   , tnum = 406
+   , tparser = toFIXAmt }
 
 tOutsideIndexPct :: FIXTag
-tOutsideIndexPct = FIXTag { tnum = 407, tparser = toFIXString }
+tOutsideIndexPct = FIXTag 
+   { tName = "OutsideIndexPct"
+   , tnum = 407
+   , tparser = toFIXString }
 
 tValueOfFutures :: FIXTag
-tValueOfFutures = FIXTag { tnum = 408, tparser = toFIXAmt }
+tValueOfFutures = FIXTag 
+   { tName = "ValueOfFutures"
+   , tnum = 408
+   , tparser = toFIXAmt }
 
 tLiquidityIndType :: FIXTag
-tLiquidityIndType = FIXTag { tnum = 409, tparser = toFIXInt }
+tLiquidityIndType = FIXTag 
+   { tName = "LiquidityIndType"
+   , tnum = 409
+   , tparser = toFIXInt }
 
 tWtAverageLiquidity :: FIXTag
-tWtAverageLiquidity = FIXTag { tnum = 410, tparser = toFIXString }
+tWtAverageLiquidity = FIXTag 
+   { tName = "WtAverageLiquidity"
+   , tnum = 410
+   , tparser = toFIXString }
 
 tExchangeForPhysical :: FIXTag
-tExchangeForPhysical = FIXTag { tnum = 411, tparser = toFIXBool }
+tExchangeForPhysical = FIXTag 
+   { tName = "ExchangeForPhysical"
+   , tnum = 411
+   , tparser = toFIXBool }
 
 tOutMainCntryUIndex :: FIXTag
-tOutMainCntryUIndex = FIXTag { tnum = 412, tparser = toFIXAmt }
+tOutMainCntryUIndex = FIXTag 
+   { tName = "OutMainCntryUIndex"
+   , tnum = 412
+   , tparser = toFIXAmt }
 
 tCrossPercent :: FIXTag
-tCrossPercent = FIXTag { tnum = 413, tparser = toFIXString }
+tCrossPercent = FIXTag 
+   { tName = "CrossPercent"
+   , tnum = 413
+   , tparser = toFIXString }
 
 tProgRptReqs :: FIXTag
-tProgRptReqs = FIXTag { tnum = 414, tparser = toFIXInt }
+tProgRptReqs = FIXTag 
+   { tName = "ProgRptReqs"
+   , tnum = 414
+   , tparser = toFIXInt }
 
 tProgPeriodInterval :: FIXTag
-tProgPeriodInterval = FIXTag { tnum = 415, tparser = toFIXInt }
+tProgPeriodInterval = FIXTag 
+   { tName = "ProgPeriodInterval"
+   , tnum = 415
+   , tparser = toFIXInt }
 
 tIncTaxInd :: FIXTag
-tIncTaxInd = FIXTag { tnum = 416, tparser = toFIXInt }
+tIncTaxInd = FIXTag 
+   { tName = "IncTaxInd"
+   , tnum = 416
+   , tparser = toFIXInt }
 
 tNumBidders :: FIXTag
-tNumBidders = FIXTag { tnum = 417, tparser = toFIXInt }
+tNumBidders = FIXTag 
+   { tName = "NumBidders"
+   , tnum = 417
+   , tparser = toFIXInt }
 
 tTradeType :: FIXTag
-tTradeType = FIXTag { tnum = 418, tparser = toFIXChar }
+tTradeType = FIXTag 
+   { tName = "TradeType"
+   , tnum = 418
+   , tparser = toFIXChar }
 
 tBasisPxType :: FIXTag
-tBasisPxType = FIXTag { tnum = 419, tparser = toFIXChar }
+tBasisPxType = FIXTag 
+   { tName = "BasisPxType"
+   , tnum = 419
+   , tparser = toFIXChar }
 
 tNoBidComponents :: FIXTag
-tNoBidComponents = FIXTag { tnum = 420, tparser = toFIXString }
+tNoBidComponents = FIXTag 
+   { tName = "NoBidComponents"
+   , tnum = 420
+   , tparser = toFIXString }
 
 tCountry :: FIXTag
-tCountry = FIXTag { tnum = 421, tparser = toFIXString }
+tCountry = FIXTag 
+   { tName = "Country"
+   , tnum = 421
+   , tparser = toFIXString }
 
 tTotNoStrikes :: FIXTag
-tTotNoStrikes = FIXTag { tnum = 422, tparser = toFIXInt }
+tTotNoStrikes = FIXTag 
+   { tName = "TotNoStrikes"
+   , tnum = 422
+   , tparser = toFIXInt }
 
 tPriceType :: FIXTag
-tPriceType = FIXTag { tnum = 423, tparser = toFIXInt }
+tPriceType = FIXTag 
+   { tName = "PriceType"
+   , tnum = 423
+   , tparser = toFIXInt }
 
 tDayOrderQty :: FIXTag
-tDayOrderQty = FIXTag { tnum = 424, tparser = toFIXQuantity }
+tDayOrderQty = FIXTag 
+   { tName = "DayOrderQty"
+   , tnum = 424
+   , tparser = toFIXQuantity }
 
 tDayCumQty :: FIXTag
-tDayCumQty = FIXTag { tnum = 425, tparser = toFIXQuantity }
+tDayCumQty = FIXTag 
+   { tName = "DayCumQty"
+   , tnum = 425
+   , tparser = toFIXQuantity }
 
 tDayAvgPx :: FIXTag
-tDayAvgPx = FIXTag { tnum = 426, tparser = toFIXPrice }
+tDayAvgPx = FIXTag 
+   { tName = "DayAvgPx"
+   , tnum = 426
+   , tparser = toFIXPrice }
 
 tGTBookingInst :: FIXTag
-tGTBookingInst = FIXTag { tnum = 427, tparser = toFIXInt }
+tGTBookingInst = FIXTag 
+   { tName = "GTBookingInst"
+   , tnum = 427
+   , tparser = toFIXInt }
 
 tNoStrikes :: FIXTag
-tNoStrikes = FIXTag { tnum = 428, tparser = toFIXString }
+tNoStrikes = FIXTag 
+   { tName = "NoStrikes"
+   , tnum = 428
+   , tparser = toFIXString }
 
 tListStatusType :: FIXTag
-tListStatusType = FIXTag { tnum = 429, tparser = toFIXInt }
+tListStatusType = FIXTag 
+   { tName = "ListStatusType"
+   , tnum = 429
+   , tparser = toFIXInt }
 
 tNetGrossInd :: FIXTag
-tNetGrossInd = FIXTag { tnum = 430, tparser = toFIXInt }
+tNetGrossInd = FIXTag 
+   { tName = "NetGrossInd"
+   , tnum = 430
+   , tparser = toFIXInt }
 
 tListOrderStatus :: FIXTag
-tListOrderStatus = FIXTag { tnum = 431, tparser = toFIXInt }
+tListOrderStatus = FIXTag 
+   { tName = "ListOrderStatus"
+   , tnum = 431
+   , tparser = toFIXInt }
 
 tExpireDate :: FIXTag
-tExpireDate = FIXTag { tnum = 432, tparser = toFIXLocalMktDate }
+tExpireDate = FIXTag 
+   { tName = "ExpireDate"
+   , tnum = 432
+   , tparser = toFIXLocalMktDate }
 
 tListExecInstType :: FIXTag
-tListExecInstType = FIXTag { tnum = 433, tparser = toFIXChar }
+tListExecInstType = FIXTag 
+   { tName = "ListExecInstType"
+   , tnum = 433
+   , tparser = toFIXChar }
 
 tCxlRejResponseTo :: FIXTag
-tCxlRejResponseTo = FIXTag { tnum = 434, tparser = toFIXChar }
+tCxlRejResponseTo = FIXTag 
+   { tName = "CxlRejResponseTo"
+   , tnum = 434
+   , tparser = toFIXChar }
 
 tUnderlyingCouponRate :: FIXTag
-tUnderlyingCouponRate = FIXTag { tnum = 435, tparser = toFIXString }
+tUnderlyingCouponRate = FIXTag 
+   { tName = "UnderlyingCouponRate"
+   , tnum = 435
+   , tparser = toFIXString }
 
 tUnderlyingContractMultiplier :: FIXTag
-tUnderlyingContractMultiplier = FIXTag { tnum = 436, tparser = toFIXFloat }
+tUnderlyingContractMultiplier = FIXTag 
+   { tName = "UnderlyingContractMultiplier"
+   , tnum = 436
+   , tparser = toFIXFloat }
 
 tContraTradeQty :: FIXTag
-tContraTradeQty = FIXTag { tnum = 437, tparser = toFIXQuantity }
+tContraTradeQty = FIXTag 
+   { tName = "ContraTradeQty"
+   , tnum = 437
+   , tparser = toFIXQuantity }
 
 tContraTradeTime :: FIXTag
-tContraTradeTime = FIXTag { tnum = 438, tparser = toFIXUTCTimestamp }
+tContraTradeTime = FIXTag 
+   { tName = "ContraTradeTime"
+   , tnum = 438
+   , tparser = toFIXUTCTimestamp }
 
 tClearingFirm :: FIXTag
-tClearingFirm = FIXTag { tnum = 439, tparser = toFIXString }
+tClearingFirm = FIXTag 
+   { tName = "ClearingFirm"
+   , tnum = 439
+   , tparser = toFIXString }
 
 tClearingAccount :: FIXTag
-tClearingAccount = FIXTag { tnum = 440, tparser = toFIXString }
+tClearingAccount = FIXTag 
+   { tName = "ClearingAccount"
+   , tnum = 440
+   , tparser = toFIXString }
 
 tLiquidityNumSecurities :: FIXTag
-tLiquidityNumSecurities = FIXTag { tnum = 441, tparser = toFIXInt }
+tLiquidityNumSecurities = FIXTag 
+   { tName = "LiquidityNumSecurities"
+   , tnum = 441
+   , tparser = toFIXInt }
 
 tMultiLegReportingType :: FIXTag
-tMultiLegReportingType = FIXTag { tnum = 442, tparser = toFIXChar }
+tMultiLegReportingType = FIXTag 
+   { tName = "MultiLegReportingType"
+   , tnum = 442
+   , tparser = toFIXChar }
 
 tStrikeTime :: FIXTag
-tStrikeTime = FIXTag { tnum = 443, tparser = toFIXUTCTimestamp }
+tStrikeTime = FIXTag 
+   { tName = "StrikeTime"
+   , tnum = 443
+   , tparser = toFIXUTCTimestamp }
 
 tListStatusText :: FIXTag
-tListStatusText = FIXTag { tnum = 444, tparser = toFIXString }
+tListStatusText = FIXTag 
+   { tName = "ListStatusText"
+   , tnum = 444
+   , tparser = toFIXString }
 
 tEncodedListStatusTextLen :: FIXTag
-tEncodedListStatusTextLen = FIXTag { tnum = 445, tparser = toFIXString }
+tEncodedListStatusTextLen = FIXTag 
+   { tName = "EncodedListStatusTextLen"
+   , tnum = 445
+   , tparser = toFIXString }
 
 tEncodedListStatusText :: FIXTag
-tEncodedListStatusText = FIXTag { tnum = 446, tparser = toFIXString }
+tEncodedListStatusText = FIXTag 
+   { tName = "EncodedListStatusText"
+   , tnum = 446
+   , tparser = toFIXString }
 
 tPartyIDSource :: FIXTag
-tPartyIDSource = FIXTag { tnum = 447, tparser = toFIXChar }
+tPartyIDSource = FIXTag 
+   { tName = "PartyIDSource"
+   , tnum = 447
+   , tparser = toFIXChar }
 
 tPartyID :: FIXTag
-tPartyID = FIXTag { tnum = 448, tparser = toFIXString }
+tPartyID = FIXTag 
+   { tName = "PartyID"
+   , tnum = 448
+   , tparser = toFIXString }
 
 tTotalVolumeTradedDate :: FIXTag
-tTotalVolumeTradedDate = FIXTag { tnum = 449, tparser = toFIXString }
+tTotalVolumeTradedDate = FIXTag 
+   { tName = "TotalVolumeTradedDate"
+   , tnum = 449
+   , tparser = toFIXString }
 
 tTotalVolumeTradedTime :: FIXTag
-tTotalVolumeTradedTime = FIXTag { tnum = 450, tparser = toFIXUTCTimeOnly }
+tTotalVolumeTradedTime = FIXTag 
+   { tName = "TotalVolumeTradedTime"
+   , tnum = 450
+   , tparser = toFIXUTCTimeOnly }
 
 tNetChgPrevDay :: FIXTag
-tNetChgPrevDay = FIXTag { tnum = 451, tparser = toFIXPriceOffset }
+tNetChgPrevDay = FIXTag 
+   { tName = "NetChgPrevDay"
+   , tnum = 451
+   , tparser = toFIXPriceOffset }
 
 tPartyRole :: FIXTag
-tPartyRole = FIXTag { tnum = 452, tparser = toFIXInt }
+tPartyRole = FIXTag 
+   { tName = "PartyRole"
+   , tnum = 452
+   , tparser = toFIXInt }
 
 tNoPartyIDs :: FIXTag
-tNoPartyIDs = FIXTag { tnum = 453, tparser = toFIXString }
+tNoPartyIDs = FIXTag 
+   { tName = "NoPartyIDs"
+   , tnum = 453
+   , tparser = toFIXString }
 
 tNoSecurityAltID :: FIXTag
-tNoSecurityAltID = FIXTag { tnum = 454, tparser = toFIXString }
+tNoSecurityAltID = FIXTag 
+   { tName = "NoSecurityAltID"
+   , tnum = 454
+   , tparser = toFIXString }
 
 tSecurityAltID :: FIXTag
-tSecurityAltID = FIXTag { tnum = 455, tparser = toFIXString }
+tSecurityAltID = FIXTag 
+   { tName = "SecurityAltID"
+   , tnum = 455
+   , tparser = toFIXString }
 
 tSecurityAltIDSource :: FIXTag
-tSecurityAltIDSource = FIXTag { tnum = 456, tparser = toFIXString }
+tSecurityAltIDSource = FIXTag 
+   { tName = "SecurityAltIDSource"
+   , tnum = 456
+   , tparser = toFIXString }
 
 tNoUnderlyingSecurityAltID :: FIXTag
-tNoUnderlyingSecurityAltID = FIXTag { tnum = 457, tparser = toFIXString }
+tNoUnderlyingSecurityAltID = FIXTag 
+   { tName = "NoUnderlyingSecurityAltID"
+   , tnum = 457
+   , tparser = toFIXString }
 
 tUnderlyingSecurityAltID :: FIXTag
-tUnderlyingSecurityAltID = FIXTag { tnum = 458, tparser = toFIXString }
+tUnderlyingSecurityAltID = FIXTag 
+   { tName = "UnderlyingSecurityAltID"
+   , tnum = 458
+   , tparser = toFIXString }
 
 tUnderlyingSecurityAltIDSource :: FIXTag
-tUnderlyingSecurityAltIDSource = FIXTag { tnum = 459, tparser = toFIXString }
+tUnderlyingSecurityAltIDSource = FIXTag 
+   { tName = "UnderlyingSecurityAltIDSource"
+   , tnum = 459
+   , tparser = toFIXString }
 
 tProduct :: FIXTag
-tProduct = FIXTag { tnum = 460, tparser = toFIXString }
+tProduct = FIXTag 
+   { tName = "Product"
+   , tnum = 460
+   , tparser = toFIXString }
 
 tCFICode :: FIXTag
-tCFICode = FIXTag { tnum = 461, tparser = toFIXString }
+tCFICode = FIXTag 
+   { tName = "CFICode"
+   , tnum = 461
+   , tparser = toFIXString }
 
 tUnderlyingProduct :: FIXTag
-tUnderlyingProduct = FIXTag { tnum = 462, tparser = toFIXInt }
+tUnderlyingProduct = FIXTag 
+   { tName = "UnderlyingProduct"
+   , tnum = 462
+   , tparser = toFIXInt }
 
 tUnderlyingCFICode :: FIXTag
-tUnderlyingCFICode = FIXTag { tnum = 463, tparser = toFIXString }
+tUnderlyingCFICode = FIXTag 
+   { tName = "UnderlyingCFICode"
+   , tnum = 463
+   , tparser = toFIXString }
 
 tTestMessageIndicator :: FIXTag
-tTestMessageIndicator = FIXTag { tnum = 464, tparser = toFIXBool }
+tTestMessageIndicator = FIXTag 
+   { tName = "TestMessageIndicator"
+   , tnum = 464
+   , tparser = toFIXBool }
 
 tQuantityType :: FIXTag
-tQuantityType = FIXTag { tnum = 465, tparser = toFIXInt }
+tQuantityType = FIXTag 
+   { tName = "QuantityType"
+   , tnum = 465
+   , tparser = toFIXInt }
 
 tBookingRefID :: FIXTag
-tBookingRefID = FIXTag { tnum = 466, tparser = toFIXString }
+tBookingRefID = FIXTag 
+   { tName = "BookingRefID"
+   , tnum = 466
+   , tparser = toFIXString }
 
 tIndividualAllocID :: FIXTag
-tIndividualAllocID = FIXTag { tnum = 467, tparser = toFIXString }
+tIndividualAllocID = FIXTag 
+   { tName = "IndividualAllocID"
+   , tnum = 467
+   , tparser = toFIXString }
 
 tRoundingDirection :: FIXTag
-tRoundingDirection = FIXTag { tnum = 468, tparser = toFIXChar }
+tRoundingDirection = FIXTag 
+   { tName = "RoundingDirection"
+   , tnum = 468
+   , tparser = toFIXChar }
 
 tRoundingModulus :: FIXTag
-tRoundingModulus = FIXTag { tnum = 469, tparser = toFIXFloat }
+tRoundingModulus = FIXTag 
+   { tName = "RoundingModulus"
+   , tnum = 469
+   , tparser = toFIXFloat }
 
 tCountryOfIssue :: FIXTag
-tCountryOfIssue = FIXTag { tnum = 470, tparser = toFIXString }
+tCountryOfIssue = FIXTag 
+   { tName = "CountryOfIssue"
+   , tnum = 470
+   , tparser = toFIXString }
 
 tStateOrProvinceOfIssue :: FIXTag
-tStateOrProvinceOfIssue = FIXTag { tnum = 471, tparser = toFIXString }
+tStateOrProvinceOfIssue = FIXTag 
+   { tName = "StateOrProvinceOfIssue"
+   , tnum = 471
+   , tparser = toFIXString }
 
 tLocaleOfIssue :: FIXTag
-tLocaleOfIssue = FIXTag { tnum = 472, tparser = toFIXString }
+tLocaleOfIssue = FIXTag 
+   { tName = "LocaleOfIssue"
+   , tnum = 472
+   , tparser = toFIXString }
 
 tNoRegistDtls :: FIXTag
-tNoRegistDtls = FIXTag { tnum = 473, tparser = toFIXString }
+tNoRegistDtls = FIXTag 
+   { tName = "NoRegistDtls"
+   , tnum = 473
+   , tparser = toFIXString }
 
 tMailingDtls :: FIXTag
-tMailingDtls = FIXTag { tnum = 474, tparser = toFIXString }
+tMailingDtls = FIXTag 
+   { tName = "MailingDtls"
+   , tnum = 474
+   , tparser = toFIXString }
 
 tInvestorCountryOfResidence :: FIXTag
-tInvestorCountryOfResidence = FIXTag { tnum = 475, tparser = toFIXString }
+tInvestorCountryOfResidence = FIXTag 
+   { tName = "InvestorCountryOfResidence"
+   , tnum = 475
+   , tparser = toFIXString }
 
 tPaymentRef :: FIXTag
-tPaymentRef = FIXTag { tnum = 476, tparser = toFIXString }
+tPaymentRef = FIXTag 
+   { tName = "PaymentRef"
+   , tnum = 476
+   , tparser = toFIXString }
 
 tDistribPaymentMethod :: FIXTag
-tDistribPaymentMethod = FIXTag { tnum = 477, tparser = toFIXInt }
+tDistribPaymentMethod = FIXTag 
+   { tName = "DistribPaymentMethod"
+   , tnum = 477
+   , tparser = toFIXInt }
 
 tCashDistribCurr :: FIXTag
-tCashDistribCurr = FIXTag { tnum = 478, tparser = toFIXCurrency }
+tCashDistribCurr = FIXTag 
+   { tName = "CashDistribCurr"
+   , tnum = 478
+   , tparser = toFIXCurrency }
 
 tCommCurrency :: FIXTag
-tCommCurrency = FIXTag { tnum = 479, tparser = toFIXCurrency }
+tCommCurrency = FIXTag 
+   { tName = "CommCurrency"
+   , tnum = 479
+   , tparser = toFIXCurrency }
 
 tCancellationRights :: FIXTag
-tCancellationRights = FIXTag { tnum = 480, tparser = toFIXChar }
+tCancellationRights = FIXTag 
+   { tName = "CancellationRights"
+   , tnum = 480
+   , tparser = toFIXChar }
 
 tMoneyLaunderingStatus :: FIXTag
-tMoneyLaunderingStatus = FIXTag { tnum = 481, tparser = toFIXChar }
+tMoneyLaunderingStatus = FIXTag 
+   { tName = "MoneyLaunderingStatus"
+   , tnum = 481
+   , tparser = toFIXChar }
 
 tMailingInst :: FIXTag
-tMailingInst = FIXTag { tnum = 482, tparser = toFIXString }
+tMailingInst = FIXTag 
+   { tName = "MailingInst"
+   , tnum = 482
+   , tparser = toFIXString }
 
 tTransBkdTime :: FIXTag
-tTransBkdTime = FIXTag { tnum = 483, tparser = toFIXUTCTimestamp }
+tTransBkdTime = FIXTag 
+   { tName = "TransBkdTime"
+   , tnum = 483
+   , tparser = toFIXUTCTimestamp }
 
 tExecPriceType :: FIXTag
-tExecPriceType = FIXTag { tnum = 484, tparser = toFIXChar }
+tExecPriceType = FIXTag 
+   { tName = "ExecPriceType"
+   , tnum = 484
+   , tparser = toFIXChar }
 
 tExecPriceAdjustment :: FIXTag
-tExecPriceAdjustment = FIXTag { tnum = 485, tparser = toFIXFloat }
+tExecPriceAdjustment = FIXTag 
+   { tName = "ExecPriceAdjustment"
+   , tnum = 485
+   , tparser = toFIXFloat }
 
 tDateOfBirth :: FIXTag
-tDateOfBirth = FIXTag { tnum = 486, tparser = toFIXLocalMktDate }
+tDateOfBirth = FIXTag 
+   { tName = "DateOfBirth"
+   , tnum = 486
+   , tparser = toFIXLocalMktDate }
 
 tTradeReportTransType :: FIXTag
-tTradeReportTransType = FIXTag { tnum = 487, tparser = toFIXChar }
+tTradeReportTransType = FIXTag 
+   { tName = "TradeReportTransType"
+   , tnum = 487
+   , tparser = toFIXChar }
 
 tCardHolderName :: FIXTag
-tCardHolderName = FIXTag { tnum = 488, tparser = toFIXString }
+tCardHolderName = FIXTag 
+   { tName = "CardHolderName"
+   , tnum = 488
+   , tparser = toFIXString }
 
 tCardNumber :: FIXTag
-tCardNumber = FIXTag { tnum = 489, tparser = toFIXString }
+tCardNumber = FIXTag 
+   { tName = "CardNumber"
+   , tnum = 489
+   , tparser = toFIXString }
 
 tCardExpDate :: FIXTag
-tCardExpDate = FIXTag { tnum = 490, tparser = toFIXLocalMktDate }
+tCardExpDate = FIXTag 
+   { tName = "CardExpDate"
+   , tnum = 490
+   , tparser = toFIXLocalMktDate }
 
 tCardIssNo :: FIXTag
-tCardIssNo = FIXTag { tnum = 491, tparser = toFIXString }
+tCardIssNo = FIXTag 
+   { tName = "CardIssNo"
+   , tnum = 491
+   , tparser = toFIXString }
 
 tPaymentMethod :: FIXTag
-tPaymentMethod = FIXTag { tnum = 492, tparser = toFIXInt }
+tPaymentMethod = FIXTag 
+   { tName = "PaymentMethod"
+   , tnum = 492
+   , tparser = toFIXInt }
 
 tRegistAcctType :: FIXTag
-tRegistAcctType = FIXTag { tnum = 493, tparser = toFIXString }
+tRegistAcctType = FIXTag 
+   { tName = "RegistAcctType"
+   , tnum = 493
+   , tparser = toFIXString }
 
 tDesignation :: FIXTag
-tDesignation = FIXTag { tnum = 494, tparser = toFIXString }
+tDesignation = FIXTag 
+   { tName = "Designation"
+   , tnum = 494
+   , tparser = toFIXString }
 
 tTaxAdvantageType :: FIXTag
-tTaxAdvantageType = FIXTag { tnum = 495, tparser = toFIXInt }
+tTaxAdvantageType = FIXTag 
+   { tName = "TaxAdvantageType"
+   , tnum = 495
+   , tparser = toFIXInt }
 
 tRegistRejReasonText :: FIXTag
-tRegistRejReasonText = FIXTag { tnum = 496, tparser = toFIXString }
+tRegistRejReasonText = FIXTag 
+   { tName = "RegistRejReasonText"
+   , tnum = 496
+   , tparser = toFIXString }
 
 tFundRenewWaiv :: FIXTag
-tFundRenewWaiv = FIXTag { tnum = 497, tparser = toFIXChar }
+tFundRenewWaiv = FIXTag 
+   { tName = "FundRenewWaiv"
+   , tnum = 497
+   , tparser = toFIXChar }
 
 tCashDistribAgentName :: FIXTag
-tCashDistribAgentName = FIXTag { tnum = 498, tparser = toFIXString }
+tCashDistribAgentName = FIXTag 
+   { tName = "CashDistribAgentName"
+   , tnum = 498
+   , tparser = toFIXString }
 
 tCashDistribAgentCode :: FIXTag
-tCashDistribAgentCode = FIXTag { tnum = 499, tparser = toFIXString }
+tCashDistribAgentCode = FIXTag 
+   { tName = "CashDistribAgentCode"
+   , tnum = 499
+   , tparser = toFIXString }
 
 tCashDistribAgentAcctNumber :: FIXTag
-tCashDistribAgentAcctNumber = FIXTag { tnum = 500, tparser = toFIXString }
+tCashDistribAgentAcctNumber = FIXTag 
+   { tName = "CashDistribAgentAcctNumber"
+   , tnum = 500
+   , tparser = toFIXString }
 
 tCashDistribPayRef :: FIXTag
-tCashDistribPayRef = FIXTag { tnum = 501, tparser = toFIXString }
+tCashDistribPayRef = FIXTag 
+   { tName = "CashDistribPayRef"
+   , tnum = 501
+   , tparser = toFIXString }
 
 tCashDistribAgentAcctName :: FIXTag
-tCashDistribAgentAcctName = FIXTag { tnum = 502, tparser = toFIXString }
+tCashDistribAgentAcctName = FIXTag 
+   { tName = "CashDistribAgentAcctName"
+   , tnum = 502
+   , tparser = toFIXString }
 
 tCardStartDate :: FIXTag
-tCardStartDate = FIXTag { tnum = 503, tparser = toFIXLocalMktDate }
+tCardStartDate = FIXTag 
+   { tName = "CardStartDate"
+   , tnum = 503
+   , tparser = toFIXLocalMktDate }
 
 tPaymentDate :: FIXTag
-tPaymentDate = FIXTag { tnum = 504, tparser = toFIXLocalMktDate }
+tPaymentDate = FIXTag 
+   { tName = "PaymentDate"
+   , tnum = 504
+   , tparser = toFIXLocalMktDate }
 
 tPaymentRemitterID :: FIXTag
-tPaymentRemitterID = FIXTag { tnum = 505, tparser = toFIXString }
+tPaymentRemitterID = FIXTag 
+   { tName = "PaymentRemitterID"
+   , tnum = 505
+   , tparser = toFIXString }
 
 tRegistStatus :: FIXTag
-tRegistStatus = FIXTag { tnum = 506, tparser = toFIXChar }
+tRegistStatus = FIXTag 
+   { tName = "RegistStatus"
+   , tnum = 506
+   , tparser = toFIXChar }
 
 tRegistRejReasonCode :: FIXTag
-tRegistRejReasonCode = FIXTag { tnum = 507, tparser = toFIXInt }
+tRegistRejReasonCode = FIXTag 
+   { tName = "RegistRejReasonCode"
+   , tnum = 507
+   , tparser = toFIXInt }
 
 tRegistRefID :: FIXTag
-tRegistRefID = FIXTag { tnum = 508, tparser = toFIXString }
+tRegistRefID = FIXTag 
+   { tName = "RegistRefID"
+   , tnum = 508
+   , tparser = toFIXString }
 
 tRegistDetls :: FIXTag
-tRegistDetls = FIXTag { tnum = 509, tparser = toFIXString }
+tRegistDetls = FIXTag 
+   { tName = "RegistDetls"
+   , tnum = 509
+   , tparser = toFIXString }
 
 tNoDistribInsts :: FIXTag
-tNoDistribInsts = FIXTag { tnum = 510, tparser = toFIXString }
+tNoDistribInsts = FIXTag 
+   { tName = "NoDistribInsts"
+   , tnum = 510
+   , tparser = toFIXString }
 
 tRegistEmail :: FIXTag
-tRegistEmail = FIXTag { tnum = 511, tparser = toFIXString }
+tRegistEmail = FIXTag 
+   { tName = "RegistEmail"
+   , tnum = 511
+   , tparser = toFIXString }
 
 tDistribPercentage :: FIXTag
-tDistribPercentage = FIXTag { tnum = 512, tparser = toFIXString }
+tDistribPercentage = FIXTag 
+   { tName = "DistribPercentage"
+   , tnum = 512
+   , tparser = toFIXString }
 
 tRegistID :: FIXTag
-tRegistID = FIXTag { tnum = 513, tparser = toFIXString }
+tRegistID = FIXTag 
+   { tName = "RegistID"
+   , tnum = 513
+   , tparser = toFIXString }
 
 tRegistTransType :: FIXTag
-tRegistTransType = FIXTag { tnum = 514, tparser = toFIXChar }
+tRegistTransType = FIXTag 
+   { tName = "RegistTransType"
+   , tnum = 514
+   , tparser = toFIXChar }
 
 tExecValuationPoint :: FIXTag
-tExecValuationPoint = FIXTag { tnum = 515, tparser = toFIXUTCTimestamp }
+tExecValuationPoint = FIXTag 
+   { tName = "ExecValuationPoint"
+   , tnum = 515
+   , tparser = toFIXUTCTimestamp }
 
 tOrderPercent :: FIXTag
-tOrderPercent = FIXTag { tnum = 516, tparser = toFIXString }
+tOrderPercent = FIXTag 
+   { tName = "OrderPercent"
+   , tnum = 516
+   , tparser = toFIXString }
 
 tOwnershipType :: FIXTag
-tOwnershipType = FIXTag { tnum = 517, tparser = toFIXChar }
+tOwnershipType = FIXTag 
+   { tName = "OwnershipType"
+   , tnum = 517
+   , tparser = toFIXChar }
 
 tNoContAmts :: FIXTag
-tNoContAmts = FIXTag { tnum = 518, tparser = toFIXString }
+tNoContAmts = FIXTag 
+   { tName = "NoContAmts"
+   , tnum = 518
+   , tparser = toFIXString }
 
 tContAmtType :: FIXTag
-tContAmtType = FIXTag { tnum = 519, tparser = toFIXInt }
+tContAmtType = FIXTag 
+   { tName = "ContAmtType"
+   , tnum = 519
+   , tparser = toFIXInt }
 
 tContAmtValue :: FIXTag
-tContAmtValue = FIXTag { tnum = 520, tparser = toFIXFloat }
+tContAmtValue = FIXTag 
+   { tName = "ContAmtValue"
+   , tnum = 520
+   , tparser = toFIXFloat }
 
 tContAmtCurr :: FIXTag
-tContAmtCurr = FIXTag { tnum = 521, tparser = toFIXCurrency }
+tContAmtCurr = FIXTag 
+   { tName = "ContAmtCurr"
+   , tnum = 521
+   , tparser = toFIXCurrency }
 
 tOwnerType :: FIXTag
-tOwnerType = FIXTag { tnum = 522, tparser = toFIXInt }
+tOwnerType = FIXTag 
+   { tName = "OwnerType"
+   , tnum = 522
+   , tparser = toFIXInt }
 
 tPartySubID :: FIXTag
-tPartySubID = FIXTag { tnum = 523, tparser = toFIXString }
+tPartySubID = FIXTag 
+   { tName = "PartySubID"
+   , tnum = 523
+   , tparser = toFIXString }
 
 tNestedPartyID :: FIXTag
-tNestedPartyID = FIXTag { tnum = 524, tparser = toFIXString }
+tNestedPartyID = FIXTag 
+   { tName = "NestedPartyID"
+   , tnum = 524
+   , tparser = toFIXString }
 
 tNestedPartyIDSource :: FIXTag
-tNestedPartyIDSource = FIXTag { tnum = 525, tparser = toFIXChar }
+tNestedPartyIDSource = FIXTag 
+   { tName = "NestedPartyIDSource"
+   , tnum = 525
+   , tparser = toFIXChar }
 
 tSecondaryClOrdID :: FIXTag
-tSecondaryClOrdID = FIXTag { tnum = 526, tparser = toFIXString }
+tSecondaryClOrdID = FIXTag 
+   { tName = "SecondaryClOrdID"
+   , tnum = 526
+   , tparser = toFIXString }
 
 tSecondaryExecID :: FIXTag
-tSecondaryExecID = FIXTag { tnum = 527, tparser = toFIXString }
+tSecondaryExecID = FIXTag 
+   { tName = "SecondaryExecID"
+   , tnum = 527
+   , tparser = toFIXString }
 
 tOrderCapacity :: FIXTag
-tOrderCapacity = FIXTag { tnum = 528, tparser = toFIXChar }
+tOrderCapacity = FIXTag 
+   { tName = "OrderCapacity"
+   , tnum = 528
+   , tparser = toFIXChar }
 
 tOrderRestrictions :: FIXTag
-tOrderRestrictions = FIXTag { tnum = 529, tparser = toFIXMultipleValueString }
+tOrderRestrictions = FIXTag 
+   { tName = "OrderRestrictions"
+   , tnum = 529
+   , tparser = toFIXMultipleValueString }
 
 tMassCancelRequestType :: FIXTag
-tMassCancelRequestType = FIXTag { tnum = 530, tparser = toFIXChar }
+tMassCancelRequestType = FIXTag 
+   { tName = "MassCancelRequestType"
+   , tnum = 530
+   , tparser = toFIXChar }
 
 tMassCancelResponse :: FIXTag
-tMassCancelResponse = FIXTag { tnum = 531, tparser = toFIXChar }
+tMassCancelResponse = FIXTag 
+   { tName = "MassCancelResponse"
+   , tnum = 531
+   , tparser = toFIXChar }
 
 tMassCancelRejectReason :: FIXTag
-tMassCancelRejectReason = FIXTag { tnum = 532, tparser = toFIXChar }
+tMassCancelRejectReason = FIXTag 
+   { tName = "MassCancelRejectReason"
+   , tnum = 532
+   , tparser = toFIXChar }
 
 tTotalAffectedOrders :: FIXTag
-tTotalAffectedOrders = FIXTag { tnum = 533, tparser = toFIXInt }
+tTotalAffectedOrders = FIXTag 
+   { tName = "TotalAffectedOrders"
+   , tnum = 533
+   , tparser = toFIXInt }
 
 tNoAffectedOrders :: FIXTag
-tNoAffectedOrders = FIXTag { tnum = 534, tparser = toFIXInt }
+tNoAffectedOrders = FIXTag 
+   { tName = "NoAffectedOrders"
+   , tnum = 534
+   , tparser = toFIXInt }
 
 tAffectedOrderID :: FIXTag
-tAffectedOrderID = FIXTag { tnum = 535, tparser = toFIXString }
+tAffectedOrderID = FIXTag 
+   { tName = "AffectedOrderID"
+   , tnum = 535
+   , tparser = toFIXString }
 
 tAffectedSecondaryOrderID :: FIXTag
-tAffectedSecondaryOrderID = FIXTag { tnum = 536, tparser = toFIXString }
+tAffectedSecondaryOrderID = FIXTag 
+   { tName = "AffectedSecondaryOrderID"
+   , tnum = 536
+   , tparser = toFIXString }
 
 tQuoteType :: FIXTag
-tQuoteType = FIXTag { tnum = 537, tparser = toFIXInt }
+tQuoteType = FIXTag 
+   { tName = "QuoteType"
+   , tnum = 537
+   , tparser = toFIXInt }
 
 tNestedPartyRole :: FIXTag
-tNestedPartyRole = FIXTag { tnum = 538, tparser = toFIXInt }
+tNestedPartyRole = FIXTag 
+   { tName = "NestedPartyRole"
+   , tnum = 538
+   , tparser = toFIXInt }
 
 tNoNestedPartyIDs :: FIXTag
-tNoNestedPartyIDs = FIXTag { tnum = 539, tparser = toFIXString }
+tNoNestedPartyIDs = FIXTag 
+   { tName = "NoNestedPartyIDs"
+   , tnum = 539
+   , tparser = toFIXString }
 
 tTotalAccruedInterestAmt :: FIXTag
-tTotalAccruedInterestAmt = FIXTag { tnum = 540, tparser = toFIXAmt }
+tTotalAccruedInterestAmt = FIXTag 
+   { tName = "TotalAccruedInterestAmt"
+   , tnum = 540
+   , tparser = toFIXAmt }
 
 tMaturityDate :: FIXTag
-tMaturityDate = FIXTag { tnum = 541, tparser = toFIXLocalMktDate }
+tMaturityDate = FIXTag 
+   { tName = "MaturityDate"
+   , tnum = 541
+   , tparser = toFIXLocalMktDate }
 
 tUnderlyingMaturityDate :: FIXTag
-tUnderlyingMaturityDate = FIXTag { tnum = 542, tparser = toFIXLocalMktDate }
+tUnderlyingMaturityDate = FIXTag 
+   { tName = "UnderlyingMaturityDate"
+   , tnum = 542
+   , tparser = toFIXLocalMktDate }
 
 tInstrRegistry :: FIXTag
-tInstrRegistry = FIXTag { tnum = 543, tparser = toFIXString }
+tInstrRegistry = FIXTag 
+   { tName = "InstrRegistry"
+   , tnum = 543
+   , tparser = toFIXString }
 
 tCashMargin :: FIXTag
-tCashMargin = FIXTag { tnum = 544, tparser = toFIXChar }
+tCashMargin = FIXTag 
+   { tName = "CashMargin"
+   , tnum = 544
+   , tparser = toFIXChar }
 
 tNestedPartySubID :: FIXTag
-tNestedPartySubID = FIXTag { tnum = 545, tparser = toFIXString }
+tNestedPartySubID = FIXTag 
+   { tName = "NestedPartySubID"
+   , tnum = 545
+   , tparser = toFIXString }
 
 tScope :: FIXTag
-tScope = FIXTag { tnum = 546, tparser = toFIXMultipleValueString }
+tScope = FIXTag 
+   { tName = "Scope"
+   , tnum = 546
+   , tparser = toFIXMultipleValueString }
 
 tMDImplicitDelete :: FIXTag
-tMDImplicitDelete = FIXTag { tnum = 547, tparser = toFIXBool }
+tMDImplicitDelete = FIXTag 
+   { tName = "MDImplicitDelete"
+   , tnum = 547
+   , tparser = toFIXBool }
 
 tCrossID :: FIXTag
-tCrossID = FIXTag { tnum = 548, tparser = toFIXString }
+tCrossID = FIXTag 
+   { tName = "CrossID"
+   , tnum = 548
+   , tparser = toFIXString }
 
 tCrossType :: FIXTag
-tCrossType = FIXTag { tnum = 549, tparser = toFIXInt }
+tCrossType = FIXTag 
+   { tName = "CrossType"
+   , tnum = 549
+   , tparser = toFIXInt }
 
 tCrossPrioritization :: FIXTag
-tCrossPrioritization = FIXTag { tnum = 550, tparser = toFIXInt }
+tCrossPrioritization = FIXTag 
+   { tName = "CrossPrioritization"
+   , tnum = 550
+   , tparser = toFIXInt }
 
 tOrigCrossID :: FIXTag
-tOrigCrossID = FIXTag { tnum = 551, tparser = toFIXString }
+tOrigCrossID = FIXTag 
+   { tName = "OrigCrossID"
+   , tnum = 551
+   , tparser = toFIXString }
 
 tNoSides :: FIXTag
-tNoSides = FIXTag { tnum = 552, tparser = toFIXString }
+tNoSides = FIXTag 
+   { tName = "NoSides"
+   , tnum = 552
+   , tparser = toFIXString }
 
 tUsername :: FIXTag
-tUsername = FIXTag { tnum = 553, tparser = toFIXString }
+tUsername = FIXTag 
+   { tName = "Username"
+   , tnum = 553
+   , tparser = toFIXString }
 
 tPassword :: FIXTag
-tPassword = FIXTag { tnum = 554, tparser = toFIXString }
+tPassword = FIXTag 
+   { tName = "Password"
+   , tnum = 554
+   , tparser = toFIXString }
 
 tNoLegs :: FIXTag
-tNoLegs = FIXTag { tnum = 555, tparser = toFIXString }
+tNoLegs = FIXTag 
+   { tName = "NoLegs"
+   , tnum = 555
+   , tparser = toFIXString }
 
 tLegCurrency :: FIXTag
-tLegCurrency = FIXTag { tnum = 556, tparser = toFIXCurrency }
+tLegCurrency = FIXTag 
+   { tName = "LegCurrency"
+   , tnum = 556
+   , tparser = toFIXCurrency }
 
 tTotalNumSecurityTypes :: FIXTag
-tTotalNumSecurityTypes = FIXTag { tnum = 557, tparser = toFIXInt }
+tTotalNumSecurityTypes = FIXTag 
+   { tName = "TotalNumSecurityTypes"
+   , tnum = 557
+   , tparser = toFIXInt }
 
 tNoSecurityTypes :: FIXTag
-tNoSecurityTypes = FIXTag { tnum = 558, tparser = toFIXString }
+tNoSecurityTypes = FIXTag 
+   { tName = "NoSecurityTypes"
+   , tnum = 558
+   , tparser = toFIXString }
 
 tSecurityListRequestType :: FIXTag
-tSecurityListRequestType = FIXTag { tnum = 559, tparser = toFIXInt }
+tSecurityListRequestType = FIXTag 
+   { tName = "SecurityListRequestType"
+   , tnum = 559
+   , tparser = toFIXInt }
 
 tSecurityRequestResult :: FIXTag
-tSecurityRequestResult = FIXTag { tnum = 560, tparser = toFIXInt }
+tSecurityRequestResult = FIXTag 
+   { tName = "SecurityRequestResult"
+   , tnum = 560
+   , tparser = toFIXInt }
 
 tRoundLot :: FIXTag
-tRoundLot = FIXTag { tnum = 561, tparser = toFIXQuantity }
+tRoundLot = FIXTag 
+   { tName = "RoundLot"
+   , tnum = 561
+   , tparser = toFIXQuantity }
 
 tMinTradeVol :: FIXTag
-tMinTradeVol = FIXTag { tnum = 562, tparser = toFIXQuantity }
+tMinTradeVol = FIXTag 
+   { tName = "MinTradeVol"
+   , tnum = 562
+   , tparser = toFIXQuantity }
 
 tMultiLegRptTypeReq :: FIXTag
-tMultiLegRptTypeReq = FIXTag { tnum = 563, tparser = toFIXInt }
+tMultiLegRptTypeReq = FIXTag 
+   { tName = "MultiLegRptTypeReq"
+   , tnum = 563
+   , tparser = toFIXInt }
 
 tLegPositionEffect :: FIXTag
-tLegPositionEffect = FIXTag { tnum = 564, tparser = toFIXChar }
+tLegPositionEffect = FIXTag 
+   { tName = "LegPositionEffect"
+   , tnum = 564
+   , tparser = toFIXChar }
 
 tLegCoveredOrUncovered :: FIXTag
-tLegCoveredOrUncovered = FIXTag { tnum = 565, tparser = toFIXInt }
+tLegCoveredOrUncovered = FIXTag 
+   { tName = "LegCoveredOrUncovered"
+   , tnum = 565
+   , tparser = toFIXInt }
 
 tLegPrice :: FIXTag
-tLegPrice = FIXTag { tnum = 566, tparser = toFIXPrice }
+tLegPrice = FIXTag 
+   { tName = "LegPrice"
+   , tnum = 566
+   , tparser = toFIXPrice }
 
 tTradSesStatusRejReason :: FIXTag
-tTradSesStatusRejReason = FIXTag { tnum = 567, tparser = toFIXInt }
+tTradSesStatusRejReason = FIXTag 
+   { tName = "TradSesStatusRejReason"
+   , tnum = 567
+   , tparser = toFIXInt }
 
 tTradeRequestID :: FIXTag
-tTradeRequestID = FIXTag { tnum = 568, tparser = toFIXString }
+tTradeRequestID = FIXTag 
+   { tName = "TradeRequestID"
+   , tnum = 568
+   , tparser = toFIXString }
 
 tTradeRequestType :: FIXTag
-tTradeRequestType = FIXTag { tnum = 569, tparser = toFIXInt }
+tTradeRequestType = FIXTag 
+   { tName = "TradeRequestType"
+   , tnum = 569
+   , tparser = toFIXInt }
 
 tPreviouslyReported :: FIXTag
-tPreviouslyReported = FIXTag { tnum = 570, tparser = toFIXBool }
+tPreviouslyReported = FIXTag 
+   { tName = "PreviouslyReported"
+   , tnum = 570
+   , tparser = toFIXBool }
 
 tTradeReportID :: FIXTag
-tTradeReportID = FIXTag { tnum = 571, tparser = toFIXString }
+tTradeReportID = FIXTag 
+   { tName = "TradeReportID"
+   , tnum = 571
+   , tparser = toFIXString }
 
 tTradeReportRefID :: FIXTag
-tTradeReportRefID = FIXTag { tnum = 572, tparser = toFIXString }
+tTradeReportRefID = FIXTag 
+   { tName = "TradeReportRefID"
+   , tnum = 572
+   , tparser = toFIXString }
 
 tMatchStatus :: FIXTag
-tMatchStatus = FIXTag { tnum = 573, tparser = toFIXChar }
+tMatchStatus = FIXTag 
+   { tName = "MatchStatus"
+   , tnum = 573
+   , tparser = toFIXChar }
 
 tMatchType :: FIXTag
-tMatchType = FIXTag { tnum = 574, tparser = toFIXString }
+tMatchType = FIXTag 
+   { tName = "MatchType"
+   , tnum = 574
+   , tparser = toFIXString }
 
 tOddLot :: FIXTag
-tOddLot = FIXTag { tnum = 575, tparser = toFIXBool }
+tOddLot = FIXTag 
+   { tName = "OddLot"
+   , tnum = 575
+   , tparser = toFIXBool }
 
 tNoClearingInstructions :: FIXTag
-tNoClearingInstructions = FIXTag { tnum = 576, tparser = toFIXInt }
+tNoClearingInstructions = FIXTag 
+   { tName = "NoClearingInstructions"
+   , tnum = 576
+   , tparser = toFIXInt }
 
 tClearingInstruction :: FIXTag
-tClearingInstruction = FIXTag { tnum = 577, tparser = toFIXInt }
+tClearingInstruction = FIXTag 
+   { tName = "ClearingInstruction"
+   , tnum = 577
+   , tparser = toFIXInt }
 
 tTradeInputSource :: FIXTag
-tTradeInputSource = FIXTag { tnum = 578, tparser = toFIXString }
+tTradeInputSource = FIXTag 
+   { tName = "TradeInputSource"
+   , tnum = 578
+   , tparser = toFIXString }
 
 tTradeInputDevice :: FIXTag
-tTradeInputDevice = FIXTag { tnum = 579, tparser = toFIXString }
+tTradeInputDevice = FIXTag 
+   { tName = "TradeInputDevice"
+   , tnum = 579
+   , tparser = toFIXString }
 
 tNoDates :: FIXTag
-tNoDates = FIXTag { tnum = 580, tparser = toFIXInt }
+tNoDates = FIXTag 
+   { tName = "NoDates"
+   , tnum = 580
+   , tparser = toFIXInt }
 
 tAccountType :: FIXTag
-tAccountType = FIXTag { tnum = 581, tparser = toFIXInt }
+tAccountType = FIXTag 
+   { tName = "AccountType"
+   , tnum = 581
+   , tparser = toFIXInt }
 
 tCustOrderCapacity :: FIXTag
-tCustOrderCapacity = FIXTag { tnum = 582, tparser = toFIXInt }
+tCustOrderCapacity = FIXTag 
+   { tName = "CustOrderCapacity"
+   , tnum = 582
+   , tparser = toFIXInt }
 
 tClOrdLinkID :: FIXTag
-tClOrdLinkID = FIXTag { tnum = 583, tparser = toFIXString }
+tClOrdLinkID = FIXTag 
+   { tName = "ClOrdLinkID"
+   , tnum = 583
+   , tparser = toFIXString }
 
 tMassStatusReqID :: FIXTag
-tMassStatusReqID = FIXTag { tnum = 584, tparser = toFIXString }
+tMassStatusReqID = FIXTag 
+   { tName = "MassStatusReqID"
+   , tnum = 584
+   , tparser = toFIXString }
 
 tMassStatusReqType :: FIXTag
-tMassStatusReqType = FIXTag { tnum = 585, tparser = toFIXInt }
+tMassStatusReqType = FIXTag 
+   { tName = "MassStatusReqType"
+   , tnum = 585
+   , tparser = toFIXInt }
 
 tOrigOrdModTime :: FIXTag
-tOrigOrdModTime = FIXTag { tnum = 586, tparser = toFIXUTCTimestamp }
+tOrigOrdModTime = FIXTag 
+   { tName = "OrigOrdModTime"
+   , tnum = 586
+   , tparser = toFIXUTCTimestamp }
 
 tLegSettlmntTyp :: FIXTag
-tLegSettlmntTyp = FIXTag { tnum = 587, tparser = toFIXChar }
+tLegSettlmntTyp = FIXTag 
+   { tName = "LegSettlmntTyp"
+   , tnum = 587
+   , tparser = toFIXChar }
 
 tLegFutSettDate :: FIXTag
-tLegFutSettDate = FIXTag { tnum = 588, tparser = toFIXLocalMktDate }
+tLegFutSettDate = FIXTag 
+   { tName = "LegFutSettDate"
+   , tnum = 588
+   , tparser = toFIXLocalMktDate }
 
 tDayBookingInst :: FIXTag
-tDayBookingInst = FIXTag { tnum = 589, tparser = toFIXChar }
+tDayBookingInst = FIXTag 
+   { tName = "DayBookingInst"
+   , tnum = 589
+   , tparser = toFIXChar }
 
 tBookingUnit :: FIXTag
-tBookingUnit = FIXTag { tnum = 590, tparser = toFIXChar }
+tBookingUnit = FIXTag 
+   { tName = "BookingUnit"
+   , tnum = 590
+   , tparser = toFIXChar }
 
 tPreallocMethod :: FIXTag
-tPreallocMethod = FIXTag { tnum = 591, tparser = toFIXChar }
+tPreallocMethod = FIXTag 
+   { tName = "PreallocMethod"
+   , tnum = 591
+   , tparser = toFIXChar }
 
 tUnderlyingCountryOfIssue :: FIXTag
-tUnderlyingCountryOfIssue = FIXTag { tnum = 592, tparser = toFIXString }
+tUnderlyingCountryOfIssue = FIXTag 
+   { tName = "UnderlyingCountryOfIssue"
+   , tnum = 592
+   , tparser = toFIXString }
 
 tUnderlyingStateOrProvinceOfIssue :: FIXTag
-tUnderlyingStateOrProvinceOfIssue = FIXTag { tnum = 593, tparser = toFIXString }
+tUnderlyingStateOrProvinceOfIssue = FIXTag 
+   { tName = "UnderlyingStateOrProvinceOfIssue"
+   , tnum = 593
+   , tparser = toFIXString }
 
 tUnderlyingLocaleOfIssue :: FIXTag
-tUnderlyingLocaleOfIssue = FIXTag { tnum = 594, tparser = toFIXString }
+tUnderlyingLocaleOfIssue = FIXTag 
+   { tName = "UnderlyingLocaleOfIssue"
+   , tnum = 594
+   , tparser = toFIXString }
 
 tUnderlyingInstrRegistry :: FIXTag
-tUnderlyingInstrRegistry = FIXTag { tnum = 595, tparser = toFIXString }
+tUnderlyingInstrRegistry = FIXTag 
+   { tName = "UnderlyingInstrRegistry"
+   , tnum = 595
+   , tparser = toFIXString }
 
 tLegCountryOfIssue :: FIXTag
-tLegCountryOfIssue = FIXTag { tnum = 596, tparser = toFIXString }
+tLegCountryOfIssue = FIXTag 
+   { tName = "LegCountryOfIssue"
+   , tnum = 596
+   , tparser = toFIXString }
 
 tLegStateOrProvinceOfIssue :: FIXTag
-tLegStateOrProvinceOfIssue = FIXTag { tnum = 597, tparser = toFIXString }
+tLegStateOrProvinceOfIssue = FIXTag 
+   { tName = "LegStateOrProvinceOfIssue"
+   , tnum = 597
+   , tparser = toFIXString }
 
 tLegLocaleOfIssue :: FIXTag
-tLegLocaleOfIssue = FIXTag { tnum = 598, tparser = toFIXString }
+tLegLocaleOfIssue = FIXTag 
+   { tName = "LegLocaleOfIssue"
+   , tnum = 598
+   , tparser = toFIXString }
 
 tLegInstrRegistry :: FIXTag
-tLegInstrRegistry = FIXTag { tnum = 599, tparser = toFIXString }
+tLegInstrRegistry = FIXTag 
+   { tName = "LegInstrRegistry"
+   , tnum = 599
+   , tparser = toFIXString }
 
 tLegSymbol :: FIXTag
-tLegSymbol = FIXTag { tnum = 600, tparser = toFIXString }
+tLegSymbol = FIXTag 
+   { tName = "LegSymbol"
+   , tnum = 600
+   , tparser = toFIXString }
 
 tLegSymbolSfx :: FIXTag
-tLegSymbolSfx = FIXTag { tnum = 601, tparser = toFIXString }
+tLegSymbolSfx = FIXTag 
+   { tName = "LegSymbolSfx"
+   , tnum = 601
+   , tparser = toFIXString }
 
 tLegSecurityID :: FIXTag
-tLegSecurityID = FIXTag { tnum = 602, tparser = toFIXString }
+tLegSecurityID = FIXTag 
+   { tName = "LegSecurityID"
+   , tnum = 602
+   , tparser = toFIXString }
 
 tLegSecurityIDSource :: FIXTag
-tLegSecurityIDSource = FIXTag { tnum = 603, tparser = toFIXString }
+tLegSecurityIDSource = FIXTag 
+   { tName = "LegSecurityIDSource"
+   , tnum = 603
+   , tparser = toFIXString }
 
 tNoLegSecurityAltID :: FIXTag
-tNoLegSecurityAltID = FIXTag { tnum = 604, tparser = toFIXString }
+tNoLegSecurityAltID = FIXTag 
+   { tName = "NoLegSecurityAltID"
+   , tnum = 604
+   , tparser = toFIXString }
 
 tLegSecurityAltID :: FIXTag
-tLegSecurityAltID = FIXTag { tnum = 605, tparser = toFIXString }
+tLegSecurityAltID = FIXTag 
+   { tName = "LegSecurityAltID"
+   , tnum = 605
+   , tparser = toFIXString }
 
 tLegSecurityAltIDSource :: FIXTag
-tLegSecurityAltIDSource = FIXTag { tnum = 606, tparser = toFIXString }
+tLegSecurityAltIDSource = FIXTag 
+   { tName = "LegSecurityAltIDSource"
+   , tnum = 606
+   , tparser = toFIXString }
 
 tLegProduct :: FIXTag
-tLegProduct = FIXTag { tnum = 607, tparser = toFIXInt }
+tLegProduct = FIXTag 
+   { tName = "LegProduct"
+   , tnum = 607
+   , tparser = toFIXInt }
 
 tLegCFICode :: FIXTag
-tLegCFICode = FIXTag { tnum = 608, tparser = toFIXString }
+tLegCFICode = FIXTag 
+   { tName = "LegCFICode"
+   , tnum = 608
+   , tparser = toFIXString }
 
 tLegSecurityType :: FIXTag
-tLegSecurityType = FIXTag { tnum = 609, tparser = toFIXString }
+tLegSecurityType = FIXTag 
+   { tName = "LegSecurityType"
+   , tnum = 609
+   , tparser = toFIXString }
 
 tLegMaturityMonthYear :: FIXTag
-tLegMaturityMonthYear = FIXTag { tnum = 610, tparser = toFIXString }
+tLegMaturityMonthYear = FIXTag 
+   { tName = "LegMaturityMonthYear"
+   , tnum = 610
+   , tparser = toFIXString }
 
 tLegMaturityDate :: FIXTag
-tLegMaturityDate = FIXTag { tnum = 611, tparser = toFIXLocalMktDate }
+tLegMaturityDate = FIXTag 
+   { tName = "LegMaturityDate"
+   , tnum = 611
+   , tparser = toFIXLocalMktDate }
 
 tLegStrikePrice :: FIXTag
-tLegStrikePrice = FIXTag { tnum = 612, tparser = toFIXPrice }
+tLegStrikePrice = FIXTag 
+   { tName = "LegStrikePrice"
+   , tnum = 612
+   , tparser = toFIXPrice }
 
 tLegOptAttribute :: FIXTag
-tLegOptAttribute = FIXTag { tnum = 613, tparser = toFIXChar }
+tLegOptAttribute = FIXTag 
+   { tName = "LegOptAttribute"
+   , tnum = 613
+   , tparser = toFIXChar }
 
 tLegContractMultiplier :: FIXTag
-tLegContractMultiplier = FIXTag { tnum = 614, tparser = toFIXFloat }
+tLegContractMultiplier = FIXTag 
+   { tName = "LegContractMultiplier"
+   , tnum = 614
+   , tparser = toFIXFloat }
 
 tLegCouponRate :: FIXTag
-tLegCouponRate = FIXTag { tnum = 615, tparser = toFIXString }
+tLegCouponRate = FIXTag 
+   { tName = "LegCouponRate"
+   , tnum = 615
+   , tparser = toFIXString }
 
 tLegSecurityExchange :: FIXTag
-tLegSecurityExchange = FIXTag { tnum = 616, tparser = toFIXExchange }
+tLegSecurityExchange = FIXTag 
+   { tName = "LegSecurityExchange"
+   , tnum = 616
+   , tparser = toFIXExchange }
 
 tLegIssuer :: FIXTag
-tLegIssuer = FIXTag { tnum = 617, tparser = toFIXString }
+tLegIssuer = FIXTag 
+   { tName = "LegIssuer"
+   , tnum = 617
+   , tparser = toFIXString }
 
 tEncodedLegIssuerLen :: FIXTag
-tEncodedLegIssuerLen = FIXTag { tnum = 618, tparser = toFIXString }
+tEncodedLegIssuerLen = FIXTag 
+   { tName = "EncodedLegIssuerLen"
+   , tnum = 618
+   , tparser = toFIXString }
 
 tEncodedLegIssuer :: FIXTag
-tEncodedLegIssuer = FIXTag { tnum = 619, tparser = toFIXString }
+tEncodedLegIssuer = FIXTag 
+   { tName = "EncodedLegIssuer"
+   , tnum = 619
+   , tparser = toFIXString }
 
 tLegSecurityDesc :: FIXTag
-tLegSecurityDesc = FIXTag { tnum = 620, tparser = toFIXString }
+tLegSecurityDesc = FIXTag 
+   { tName = "LegSecurityDesc"
+   , tnum = 620
+   , tparser = toFIXString }
 
 tEncodedLegSecurityDescLen :: FIXTag
-tEncodedLegSecurityDescLen = FIXTag { tnum = 621, tparser = toFIXString }
+tEncodedLegSecurityDescLen = FIXTag 
+   { tName = "EncodedLegSecurityDescLen"
+   , tnum = 621
+   , tparser = toFIXString }
 
 tEncodedLegSecurityDesc :: FIXTag
-tEncodedLegSecurityDesc = FIXTag { tnum = 622, tparser = toFIXString }
+tEncodedLegSecurityDesc = FIXTag 
+   { tName = "EncodedLegSecurityDesc"
+   , tnum = 622
+   , tparser = toFIXString }
 
 tLegRatioQty :: FIXTag
-tLegRatioQty = FIXTag { tnum = 623, tparser = toFIXFloat }
+tLegRatioQty = FIXTag 
+   { tName = "LegRatioQty"
+   , tnum = 623
+   , tparser = toFIXFloat }
 
 tLegSide :: FIXTag
-tLegSide = FIXTag { tnum = 624, tparser = toFIXChar }
+tLegSide = FIXTag 
+   { tName = "LegSide"
+   , tnum = 624
+   , tparser = toFIXChar }
 
 tTradingSessionSubID :: FIXTag
-tTradingSessionSubID = FIXTag { tnum = 625, tparser = toFIXString }
+tTradingSessionSubID = FIXTag 
+   { tName = "TradingSessionSubID"
+   , tnum = 625
+   , tparser = toFIXString }
 
 tAllocType :: FIXTag
-tAllocType = FIXTag { tnum = 626, tparser = toFIXInt }
+tAllocType = FIXTag 
+   { tName = "AllocType"
+   , tnum = 626
+   , tparser = toFIXInt }
 
 tNoHops :: FIXTag
-tNoHops = FIXTag { tnum = 627, tparser = toFIXString }
+tNoHops = FIXTag 
+   { tName = "NoHops"
+   , tnum = 627
+   , tparser = toFIXString }
 
 tHopCompID :: FIXTag
-tHopCompID = FIXTag { tnum = 628, tparser = toFIXString }
+tHopCompID = FIXTag 
+   { tName = "HopCompID"
+   , tnum = 628
+   , tparser = toFIXString }
 
 tHopSendingTime :: FIXTag
-tHopSendingTime = FIXTag { tnum = 629, tparser = toFIXUTCTimestamp }
+tHopSendingTime = FIXTag 
+   { tName = "HopSendingTime"
+   , tnum = 629
+   , tparser = toFIXUTCTimestamp }
 
 tHopRefID :: FIXTag
-tHopRefID = FIXTag { tnum = 630, tparser = toFIXString }
+tHopRefID = FIXTag 
+   { tName = "HopRefID"
+   , tnum = 630
+   , tparser = toFIXString }
 
 tMidPx :: FIXTag
-tMidPx = FIXTag { tnum = 631, tparser = toFIXPrice }
+tMidPx = FIXTag 
+   { tName = "MidPx"
+   , tnum = 631
+   , tparser = toFIXPrice }
 
 tBidYield :: FIXTag
-tBidYield = FIXTag { tnum = 632, tparser = toFIXString }
+tBidYield = FIXTag 
+   { tName = "BidYield"
+   , tnum = 632
+   , tparser = toFIXString }
 
 tMidYield :: FIXTag
-tMidYield = FIXTag { tnum = 633, tparser = toFIXString }
+tMidYield = FIXTag 
+   { tName = "MidYield"
+   , tnum = 633
+   , tparser = toFIXString }
 
 tOfferYield :: FIXTag
-tOfferYield = FIXTag { tnum = 634, tparser = toFIXString }
+tOfferYield = FIXTag 
+   { tName = "OfferYield"
+   , tnum = 634
+   , tparser = toFIXString }
 
 tClearingFeeIndicator :: FIXTag
-tClearingFeeIndicator = FIXTag { tnum = 635, tparser = toFIXString }
+tClearingFeeIndicator = FIXTag 
+   { tName = "ClearingFeeIndicator"
+   , tnum = 635
+   , tparser = toFIXString }
 
 tWorkingIndicator :: FIXTag
-tWorkingIndicator = FIXTag { tnum = 636, tparser = toFIXBool }
+tWorkingIndicator = FIXTag 
+   { tName = "WorkingIndicator"
+   , tnum = 636
+   , tparser = toFIXBool }
 
 tLegLastPx :: FIXTag
-tLegLastPx = FIXTag { tnum = 637, tparser = toFIXPrice }
+tLegLastPx = FIXTag 
+   { tName = "LegLastPx"
+   , tnum = 637
+   , tparser = toFIXPrice }
 
 tPriorityIndicator :: FIXTag
-tPriorityIndicator = FIXTag { tnum = 638, tparser = toFIXInt }
+tPriorityIndicator = FIXTag 
+   { tName = "PriorityIndicator"
+   , tnum = 638
+   , tparser = toFIXInt }
 
 tPriceImprovement :: FIXTag
-tPriceImprovement = FIXTag { tnum = 639, tparser = toFIXPriceOffset }
+tPriceImprovement = FIXTag 
+   { tName = "PriceImprovement"
+   , tnum = 639
+   , tparser = toFIXPriceOffset }
 
 tPrice2 :: FIXTag
-tPrice2 = FIXTag { tnum = 640, tparser = toFIXPrice }
+tPrice2 = FIXTag 
+   { tName = "Price2"
+   , tnum = 640
+   , tparser = toFIXPrice }
 
 tLastForwardPoints2 :: FIXTag
-tLastForwardPoints2 = FIXTag { tnum = 641, tparser = toFIXPriceOffset }
+tLastForwardPoints2 = FIXTag 
+   { tName = "LastForwardPoints2"
+   , tnum = 641
+   , tparser = toFIXPriceOffset }
 
 tBidForwardPoints2 :: FIXTag
-tBidForwardPoints2 = FIXTag { tnum = 642, tparser = toFIXPriceOffset }
+tBidForwardPoints2 = FIXTag 
+   { tName = "BidForwardPoints2"
+   , tnum = 642
+   , tparser = toFIXPriceOffset }
 
 tOfferForwardPoints2 :: FIXTag
-tOfferForwardPoints2 = FIXTag { tnum = 643, tparser = toFIXPriceOffset }
+tOfferForwardPoints2 = FIXTag 
+   { tName = "OfferForwardPoints2"
+   , tnum = 643
+   , tparser = toFIXPriceOffset }
 
 tRFQReqID :: FIXTag
-tRFQReqID = FIXTag { tnum = 644, tparser = toFIXString }
+tRFQReqID = FIXTag 
+   { tName = "RFQReqID"
+   , tnum = 644
+   , tparser = toFIXString }
 
 tMktBidPx :: FIXTag
-tMktBidPx = FIXTag { tnum = 645, tparser = toFIXPrice }
+tMktBidPx = FIXTag 
+   { tName = "MktBidPx"
+   , tnum = 645
+   , tparser = toFIXPrice }
 
 tMktOfferPx :: FIXTag
-tMktOfferPx = FIXTag { tnum = 646, tparser = toFIXPrice }
+tMktOfferPx = FIXTag 
+   { tName = "MktOfferPx"
+   , tnum = 646
+   , tparser = toFIXPrice }
 
 tMinBidSize :: FIXTag
-tMinBidSize = FIXTag { tnum = 647, tparser = toFIXQuantity }
+tMinBidSize = FIXTag 
+   { tName = "MinBidSize"
+   , tnum = 647
+   , tparser = toFIXQuantity }
 
 tMinOfferSize :: FIXTag
-tMinOfferSize = FIXTag { tnum = 648, tparser = toFIXQuantity }
+tMinOfferSize = FIXTag 
+   { tName = "MinOfferSize"
+   , tnum = 648
+   , tparser = toFIXQuantity }
 
 tQuoteStatusReqID :: FIXTag
-tQuoteStatusReqID = FIXTag { tnum = 649, tparser = toFIXString }
+tQuoteStatusReqID = FIXTag 
+   { tName = "QuoteStatusReqID"
+   , tnum = 649
+   , tparser = toFIXString }
 
 tLegalConfirm :: FIXTag
-tLegalConfirm = FIXTag { tnum = 650, tparser = toFIXBool }
+tLegalConfirm = FIXTag 
+   { tName = "LegalConfirm"
+   , tnum = 650
+   , tparser = toFIXBool }
 
 tUnderlyingLastPx :: FIXTag
-tUnderlyingLastPx = FIXTag { tnum = 651, tparser = toFIXPrice }
+tUnderlyingLastPx = FIXTag 
+   { tName = "UnderlyingLastPx"
+   , tnum = 651
+   , tparser = toFIXPrice }
 
 tUnderlyingLastQty :: FIXTag
-tUnderlyingLastQty = FIXTag { tnum = 652, tparser = toFIXQuantity }
+tUnderlyingLastQty = FIXTag 
+   { tName = "UnderlyingLastQty"
+   , tnum = 652
+   , tparser = toFIXQuantity }
 
 tSecDefStatus :: FIXTag
-tSecDefStatus = FIXTag { tnum = 653, tparser = toFIXInt }
+tSecDefStatus = FIXTag 
+   { tName = "SecDefStatus"
+   , tnum = 653
+   , tparser = toFIXInt }
 
 tLegRefID :: FIXTag
-tLegRefID = FIXTag { tnum = 654, tparser = toFIXString }
+tLegRefID = FIXTag 
+   { tName = "LegRefID"
+   , tnum = 654
+   , tparser = toFIXString }
 
 tContraLegRefID :: FIXTag
-tContraLegRefID = FIXTag { tnum = 655, tparser = toFIXString }
+tContraLegRefID = FIXTag 
+   { tName = "ContraLegRefID"
+   , tnum = 655
+   , tparser = toFIXString }
 
 tSettlCurrBidFxRate :: FIXTag
-tSettlCurrBidFxRate = FIXTag { tnum = 656, tparser = toFIXFloat }
+tSettlCurrBidFxRate = FIXTag 
+   { tName = "SettlCurrBidFxRate"
+   , tnum = 656
+   , tparser = toFIXFloat }
 
 tSettlCurrOfferFxRate :: FIXTag
-tSettlCurrOfferFxRate = FIXTag { tnum = 657, tparser = toFIXFloat }
+tSettlCurrOfferFxRate = FIXTag 
+   { tName = "SettlCurrOfferFxRate"
+   , tnum = 657
+   , tparser = toFIXFloat }
 
 tQuoteRequestRejectReason :: FIXTag
-tQuoteRequestRejectReason = FIXTag { tnum = 658, tparser = toFIXInt }
+tQuoteRequestRejectReason = FIXTag 
+   { tName = "QuoteRequestRejectReason"
+   , tnum = 658
+   , tparser = toFIXInt }
 
 tSideComplianceID :: FIXTag
-tSideComplianceID = FIXTag { tnum = 659, tparser = toFIXString }
+tSideComplianceID = FIXTag 
+   { tName = "SideComplianceID"
+   , tnum = 659
+   , tparser = toFIXString }
 
 headerFIX43 :: FIXTags
 headerFIX43 = 
-      LT.insert (tnum tBeginString) tBeginString $
-      LT.insert (tnum tBodyLength) tBodyLength $
-      LT.insert (tnum tMsgType) tMsgType $
-      LT.insert (tnum tSenderCompID) tSenderCompID $
-      LT.insert (tnum tTargetCompID) tTargetCompID $
-      LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
-      LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
-      LT.insert (tnum tSecureDataLen) tSecureDataLen $
-      LT.insert (tnum tSecureData) tSecureData $
-      LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
-      LT.insert (tnum tSenderSubID) tSenderSubID $
-      LT.insert (tnum tSenderLocationID) tSenderLocationID $
-      LT.insert (tnum tTargetSubID) tTargetSubID $
-      LT.insert (tnum tTargetLocationID) tTargetLocationID $
-      LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
-      LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
-      LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
-      LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
-      LT.insert (tnum tPossDupFlag) tPossDupFlag $
-      LT.insert (tnum tPossResend) tPossResend $
-      LT.insert (tnum tSendingTime) tSendingTime $
-      LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
-      LT.insert (tnum tXmlDataLen) tXmlDataLen $
-      LT.insert (tnum tXmlData) tXmlData $
-      LT.insert (tnum tMessageEncoding) tMessageEncoding $
-      LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
-      LT.insert (tnum tOnBehalfOfSendingTime) tOnBehalfOfSendingTime $
-      LT.insert (tnum tNoHops) gNoHops $
-      LT.new
-      where
-            gNoHops = FIXTag
-              { tnum = tnum tNoHops
-              , tparser = gNoHopsP }
+   LT.insert (tnum tBeginString) tBeginString $
+   LT.insert (tnum tBodyLength) tBodyLength $
+   LT.insert (tnum tMsgType) tMsgType $
+   LT.insert (tnum tSenderCompID) tSenderCompID $
+   LT.insert (tnum tTargetCompID) tTargetCompID $
+   LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+   LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+   LT.insert (tnum tSecureDataLen) tSecureDataLen $
+   LT.insert (tnum tSecureData) tSecureData $
+   LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+   LT.insert (tnum tSenderSubID) tSenderSubID $
+   LT.insert (tnum tSenderLocationID) tSenderLocationID $
+   LT.insert (tnum tTargetSubID) tTargetSubID $
+   LT.insert (tnum tTargetLocationID) tTargetLocationID $
+   LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+   LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+   LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+   LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+   LT.insert (tnum tPossDupFlag) tPossDupFlag $
+   LT.insert (tnum tPossResend) tPossResend $
+   LT.insert (tnum tSendingTime) tSendingTime $
+   LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+   LT.insert (tnum tXmlDataLen) tXmlDataLen $
+   LT.insert (tnum tXmlData) tXmlData $
+   LT.insert (tnum tMessageEncoding) tMessageEncoding $
+   LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+   LT.insert (tnum tOnBehalfOfSendingTime) tOnBehalfOfSendingTime $
+   LT.insert (tnum tNoHops) gNoHops''    LT.new
+   where
+      gNoHops'' = FIXTag
+         { tName = "NoHops"
+         , tnum = tnum tNoHops
+         , tparser = gNoHopsP'' }
 
-            gNoHopsP = groupP $ FGSpec
-              { gsLength = tNoHops
-              , gsSeperator = tHopCompID
-              , gsBody = gNoHopsBody }
-                where
-                gNoHopsBody = 
-                    LT.insert (tnum tHopSendingTime) tHopSendingTime $
-                    LT.insert (tnum tHopRefID) tHopRefID $
-                    LT.new
+      gNoHopsP'' = groupP FGSpec
+         { gsLength = tNoHops
+         , gsSeperator = tHopCompID
+         , gsBody = gNoHopsBody'' }
+         where
+         gNoHopsBody'' = 
+            LT.insert (tnum tHopSendingTime) tHopSendingTime $
+            LT.insert (tnum tHopRefID) tHopRefID             LT.new
 
 
 
 trailerFIX43 :: FIXTags
 trailerFIX43 = 
-      LT.insert (tnum tSignatureLength) tSignatureLength $
-      LT.insert (tnum tSignature) tSignature $
-      LT.insert (tnum tCheckSum) tCheckSum $
-      LT.new
+   LT.insert (tnum tSignatureLength) tSignatureLength $
+   LT.insert (tnum tSignature) tSignature $
+   LT.insert (tnum tCheckSum) tCheckSum    LT.new
 
 
 mHeartbeat :: FIXMessageSpec
 mHeartbeat = FMSpec
-   { msType = C.pack "0"
+   { msName = "Heartbeat"
+   , msType = C.pack "0"
    , msHeader = headerFIX43
    , msBody = mHeartbeatBody
    , msTrailer = trailerFIX43 }
    where
-      mHeartbeatBody = 
-          LT.insert (tnum tTestReqID) tTestReqID $
-          LT.new
+   mHeartbeatBody = 
+      LT.insert (tnum tTestReqID) tTestReqID       LT.new
 
 
 mTestRequest :: FIXMessageSpec
 mTestRequest = FMSpec
-   { msType = C.pack "1"
+   { msName = "TestRequest"
+   , msType = C.pack "1"
    , msHeader = headerFIX43
    , msBody = mTestRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mTestRequestBody = 
-          LT.insert (tnum tTestReqID) tTestReqID $
-          LT.new
+   mTestRequestBody = 
+      LT.insert (tnum tTestReqID) tTestReqID       LT.new
 
 
 mResendRequest :: FIXMessageSpec
 mResendRequest = FMSpec
-   { msType = C.pack "2"
+   { msName = "ResendRequest"
+   , msType = C.pack "2"
    , msHeader = headerFIX43
    , msBody = mResendRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mResendRequestBody = 
-          LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
-          LT.insert (tnum tEndSeqNo) tEndSeqNo $
-          LT.new
+   mResendRequestBody = 
+      LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
+      LT.insert (tnum tEndSeqNo) tEndSeqNo       LT.new
 
 
 mReject :: FIXMessageSpec
 mReject = FMSpec
-   { msType = C.pack "3"
+   { msName = "Reject"
+   , msType = C.pack "3"
    , msHeader = headerFIX43
    , msBody = mRejectBody
    , msTrailer = trailerFIX43 }
    where
-      mRejectBody = 
-          LT.insert (tnum tRefSeqNum) tRefSeqNum $
-          LT.insert (tnum tRefTagID) tRefTagID $
-          LT.insert (tnum tRefMsgType) tRefMsgType $
-          LT.insert (tnum tSessionRejectReason) tSessionRejectReason $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mRejectBody = 
+      LT.insert (tnum tRefSeqNum) tRefSeqNum $
+      LT.insert (tnum tRefTagID) tRefTagID $
+      LT.insert (tnum tRefMsgType) tRefMsgType $
+      LT.insert (tnum tSessionRejectReason) tSessionRejectReason $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mSequenceReset :: FIXMessageSpec
 mSequenceReset = FMSpec
-   { msType = C.pack "4"
+   { msName = "SequenceReset"
+   , msType = C.pack "4"
    , msHeader = headerFIX43
    , msBody = mSequenceResetBody
    , msTrailer = trailerFIX43 }
    where
-      mSequenceResetBody = 
-          LT.insert (tnum tGapFillFlag) tGapFillFlag $
-          LT.insert (tnum tNewSeqNo) tNewSeqNo $
-          LT.new
+   mSequenceResetBody = 
+      LT.insert (tnum tGapFillFlag) tGapFillFlag $
+      LT.insert (tnum tNewSeqNo) tNewSeqNo       LT.new
 
 
 mLogout :: FIXMessageSpec
 mLogout = FMSpec
-   { msType = C.pack "5"
+   { msName = "Logout"
+   , msType = C.pack "5"
    , msHeader = headerFIX43
    , msBody = mLogoutBody
    , msTrailer = trailerFIX43 }
    where
-      mLogoutBody = 
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mLogoutBody = 
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mIOI :: FIXMessageSpec
 mIOI = FMSpec
-   { msType = C.pack "6"
+   { msName = "IOI"
+   , msType = C.pack "6"
    , msHeader = headerFIX43
    , msBody = mIOIBody
    , msTrailer = trailerFIX43 }
    where
-      mIOIBody = 
-          LT.insert (tnum tIOIid) tIOIid $
-          LT.insert (tnum tIOITransType) tIOITransType $
-          LT.insert (tnum tIOIRefID) tIOIRefID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tQuantityType) tQuantityType $
-          LT.insert (tnum tIOIQty) tIOIQty $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tValidUntilTime) tValidUntilTime $
-          LT.insert (tnum tIOIQltyInd) tIOIQltyInd $
-          LT.insert (tnum tIOINaturalFlag) tIOINaturalFlag $
-          LT.insert (tnum tNoIOIQualifiers) gNoIOIQualifiers $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tURLLink) tURLLink $
-          LT.insert (tnum tNoRoutingIDs) gNoRoutingIDs $
-          LT.insert (tnum tSpread) tSpread $
-          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-          LT.insert (tnum tBenchmark) tBenchmark $
-          LT.new
-          where
-                gNoIOIQualifiers = FIXTag
-                  { tnum = tnum tNoIOIQualifiers
-                  , tparser = gNoIOIQualifiersP }
+   mIOIBody = 
+      LT.insert (tnum tIOIid) tIOIid $
+      LT.insert (tnum tIOITransType) tIOITransType $
+      LT.insert (tnum tIOIRefID) tIOIRefID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tQuantityType) tQuantityType $
+      LT.insert (tnum tIOIQty) tIOIQty $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tValidUntilTime) tValidUntilTime $
+      LT.insert (tnum tIOIQltyInd) tIOIQltyInd $
+      LT.insert (tnum tIOINaturalFlag) tIOINaturalFlag $
+      LT.insert (tnum tNoIOIQualifiers) gNoIOIQualifiers''' $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tURLLink) tURLLink $
+      LT.insert (tnum tNoRoutingIDs) gNoRoutingIDs''' $
+      LT.insert (tnum tSpread) tSpread $
+      LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+      LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+      LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+      LT.insert (tnum tBenchmark) tBenchmark       LT.new
+      where
+         gNoIOIQualifiers''' = FIXTag
+            { tName = "NoIOIQualifiers"
+            , tnum = tnum tNoIOIQualifiers
+            , tparser = gNoIOIQualifiersP''' }
 
-                gNoIOIQualifiersP = groupP $ FGSpec
-                  { gsLength = tNoIOIQualifiers
-                  , gsSeperator = tIOIQualifier
-                  , gsBody = gNoIOIQualifiersBody }
-                    where
-                    gNoIOIQualifiersBody = 
-                        LT.new
+         gNoIOIQualifiersP''' = groupP FGSpec
+            { gsLength = tNoIOIQualifiers
+            , gsSeperator = tIOIQualifier
+            , gsBody = gNoIOIQualifiersBody''' }
+            where
+            gNoIOIQualifiersBody''' = 
+               LT.new
 
-                gNoRoutingIDs = FIXTag
-                  { tnum = tnum tNoRoutingIDs
-                  , tparser = gNoRoutingIDsP }
+         gNoRoutingIDs''' = FIXTag
+            { tName = "NoRoutingIDs"
+            , tnum = tnum tNoRoutingIDs
+            , tparser = gNoRoutingIDsP''' }
 
-                gNoRoutingIDsP = groupP $ FGSpec
-                  { gsLength = tNoRoutingIDs
-                  , gsSeperator = tRoutingType
-                  , gsBody = gNoRoutingIDsBody }
-                    where
-                    gNoRoutingIDsBody = 
-                        LT.insert (tnum tRoutingID) tRoutingID $
-                        LT.new
+         gNoRoutingIDsP''' = groupP FGSpec
+            { gsLength = tNoRoutingIDs
+            , gsSeperator = tRoutingType
+            , gsBody = gNoRoutingIDsBody''' }
+            where
+            gNoRoutingIDsBody''' = 
+               LT.insert (tnum tRoutingID) tRoutingID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mAdvertisement :: FIXMessageSpec
 mAdvertisement = FMSpec
-   { msType = C.pack "7"
+   { msName = "Advertisement"
+   , msType = C.pack "7"
    , msHeader = headerFIX43
    , msBody = mAdvertisementBody
    , msTrailer = trailerFIX43 }
    where
-      mAdvertisementBody = 
-          LT.insert (tnum tAdvId) tAdvId $
-          LT.insert (tnum tAdvTransType) tAdvTransType $
-          LT.insert (tnum tAdvRefID) tAdvRefID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tAdvSide) tAdvSide $
-          LT.insert (tnum tQuantity) tQuantity $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tURLLink) tURLLink $
-          LT.insert (tnum tLastMkt) tLastMkt $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mAdvertisementBody = 
+      LT.insert (tnum tAdvId) tAdvId $
+      LT.insert (tnum tAdvTransType) tAdvTransType $
+      LT.insert (tnum tAdvRefID) tAdvRefID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tAdvSide) tAdvSide $
+      LT.insert (tnum tQuantity) tQuantity $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tURLLink) tURLLink $
+      LT.insert (tnum tLastMkt) tLastMkt $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mExecutionReport :: FIXMessageSpec
 mExecutionReport = FMSpec
-   { msType = C.pack "8"
+   { msName = "ExecutionReport"
+   , msType = C.pack "8"
    , msHeader = headerFIX43
    , msBody = mExecutionReportBody
    , msTrailer = trailerFIX43 }
    where
-      mExecutionReportBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-          LT.insert (tnum tNoContraBrokers) gNoContraBrokers $
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tCrossID) tCrossID $
-          LT.insert (tnum tOrigCrossID) tOrigCrossID $
-          LT.insert (tnum tCrossType) tCrossType $
-          LT.insert (tnum tExecID) tExecID $
-          LT.insert (tnum tExecRefID) tExecRefID $
-          LT.insert (tnum tExecType) tExecType $
-          LT.insert (tnum tOrdStatus) tOrdStatus $
-          LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
-          LT.insert (tnum tOrdRejReason) tOrdRejReason $
-          LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tDayBookingInst) tDayBookingInst $
-          LT.insert (tnum tBookingUnit) tBookingUnit $
-          LT.insert (tnum tPreallocMethod) tPreallocMethod $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tCashMargin) tCashMargin $
-          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tNoStipulations) gNoStipulations $
-          LT.insert (tnum tQuantityType) tQuantityType $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tOrderCapacity) tOrderCapacity $
-          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tRule80A) tRule80A $
-          LT.insert (tnum tLastQty) tLastQty $
-          LT.insert (tnum tUnderlyingLastQty) tUnderlyingLastQty $
-          LT.insert (tnum tLastPx) tLastPx $
-          LT.insert (tnum tUnderlyingLastPx) tUnderlyingLastPx $
-          LT.insert (tnum tLastSpotRate) tLastSpotRate $
-          LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
-          LT.insert (tnum tLastMkt) tLastMkt $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tLastCapacity) tLastCapacity $
-          LT.insert (tnum tLeavesQty) tLeavesQty $
-          LT.insert (tnum tCumQty) tCumQty $
-          LT.insert (tnum tAvgPx) tAvgPx $
-          LT.insert (tnum tDayOrderQty) tDayOrderQty $
-          LT.insert (tnum tDayCumQty) tDayCumQty $
-          LT.insert (tnum tDayAvgPx) tDayAvgPx $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tReportToExch) tReportToExch $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCommCurrency) tCommCurrency $
-          LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-          LT.insert (tnum tSpread) tSpread $
-          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-          LT.insert (tnum tYieldType) tYieldType $
-          LT.insert (tnum tYield) tYield $
-          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
-          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
-          LT.insert (tnum tExDate) tExDate $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-          LT.insert (tnum tTradedFlatSwitch) tTradedFlatSwitch $
-          LT.insert (tnum tBasisFeatureDate) tBasisFeatureDate $
-          LT.insert (tnum tBasisFeaturePrice) tBasisFeaturePrice $
-          LT.insert (tnum tConcession) tConcession $
-          LT.insert (tnum tTotalTakedown) tTotalTakedown $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
-          LT.insert (tnum tSettlCurrency) tSettlCurrency $
-          LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
-          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tPositionEffect) tPositionEffect $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-          LT.insert (tnum tOrderQty2) tOrderQty2 $
-          LT.insert (tnum tLastForwardPoints2) tLastForwardPoints2 $
-          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tTransBkdTime) tTransBkdTime $
-          LT.insert (tnum tExecValuationPoint) tExecValuationPoint $
-          LT.insert (tnum tExecPriceType) tExecPriceType $
-          LT.insert (tnum tExecPriceAdjustment) tExecPriceAdjustment $
-          LT.insert (tnum tPriorityIndicator) tPriorityIndicator $
-          LT.insert (tnum tPriceImprovement) tPriceImprovement $
-          LT.insert (tnum tNoContAmts) gNoContAmts $
-          LT.insert (tnum tNoLegs) gNoLegs $
-          LT.new
-          where
-                gNoContAmts = FIXTag
-                  { tnum = tnum tNoContAmts
-                  , tparser = gNoContAmtsP }
+   mExecutionReportBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+      LT.insert (tnum tNoContraBrokers) gNoContraBrokers''' $
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tCrossID) tCrossID $
+      LT.insert (tnum tOrigCrossID) tOrigCrossID $
+      LT.insert (tnum tCrossType) tCrossType $
+      LT.insert (tnum tExecID) tExecID $
+      LT.insert (tnum tExecRefID) tExecRefID $
+      LT.insert (tnum tExecType) tExecType $
+      LT.insert (tnum tOrdStatus) tOrdStatus $
+      LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
+      LT.insert (tnum tOrdRejReason) tOrdRejReason $
+      LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tDayBookingInst) tDayBookingInst $
+      LT.insert (tnum tBookingUnit) tBookingUnit $
+      LT.insert (tnum tPreallocMethod) tPreallocMethod $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tCashMargin) tCashMargin $
+      LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tNoStipulations) gNoStipulations''' $
+      LT.insert (tnum tQuantityType) tQuantityType $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tOrderCapacity) tOrderCapacity $
+      LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tRule80A) tRule80A $
+      LT.insert (tnum tLastQty) tLastQty $
+      LT.insert (tnum tUnderlyingLastQty) tUnderlyingLastQty $
+      LT.insert (tnum tLastPx) tLastPx $
+      LT.insert (tnum tUnderlyingLastPx) tUnderlyingLastPx $
+      LT.insert (tnum tLastSpotRate) tLastSpotRate $
+      LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
+      LT.insert (tnum tLastMkt) tLastMkt $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tLastCapacity) tLastCapacity $
+      LT.insert (tnum tLeavesQty) tLeavesQty $
+      LT.insert (tnum tCumQty) tCumQty $
+      LT.insert (tnum tAvgPx) tAvgPx $
+      LT.insert (tnum tDayOrderQty) tDayOrderQty $
+      LT.insert (tnum tDayCumQty) tDayCumQty $
+      LT.insert (tnum tDayAvgPx) tDayAvgPx $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tReportToExch) tReportToExch $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCommCurrency) tCommCurrency $
+      LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+      LT.insert (tnum tSpread) tSpread $
+      LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+      LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+      LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+      LT.insert (tnum tYieldType) tYieldType $
+      LT.insert (tnum tYield) tYield $
+      LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+      LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+      LT.insert (tnum tExDate) tExDate $
+      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+      LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+      LT.insert (tnum tTradedFlatSwitch) tTradedFlatSwitch $
+      LT.insert (tnum tBasisFeatureDate) tBasisFeatureDate $
+      LT.insert (tnum tBasisFeaturePrice) tBasisFeaturePrice $
+      LT.insert (tnum tConcession) tConcession $
+      LT.insert (tnum tTotalTakedown) tTotalTakedown $
+      LT.insert (tnum tNetMoney) tNetMoney $
+      LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+      LT.insert (tnum tSettlCurrency) tSettlCurrency $
+      LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
+      LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tPositionEffect) tPositionEffect $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+      LT.insert (tnum tOrderQty2) tOrderQty2 $
+      LT.insert (tnum tLastForwardPoints2) tLastForwardPoints2 $
+      LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tTransBkdTime) tTransBkdTime $
+      LT.insert (tnum tExecValuationPoint) tExecValuationPoint $
+      LT.insert (tnum tExecPriceType) tExecPriceType $
+      LT.insert (tnum tExecPriceAdjustment) tExecPriceAdjustment $
+      LT.insert (tnum tPriorityIndicator) tPriorityIndicator $
+      LT.insert (tnum tPriceImprovement) tPriceImprovement $
+      LT.insert (tnum tNoContAmts) gNoContAmts''' $
+      LT.insert (tnum tNoLegs) gNoLegs'''       LT.new
+      where
+         gNoContAmts''' = FIXTag
+            { tName = "NoContAmts"
+            , tnum = tnum tNoContAmts
+            , tparser = gNoContAmtsP''' }
 
-                gNoContAmtsP = groupP $ FGSpec
-                  { gsLength = tNoContAmts
-                  , gsSeperator = tContAmtType
-                  , gsBody = gNoContAmtsBody }
-                    where
-                    gNoContAmtsBody = 
-                        LT.insert (tnum tContAmtValue) tContAmtValue $
-                        LT.insert (tnum tContAmtCurr) tContAmtCurr $
-                        LT.new
+         gNoContAmtsP''' = groupP FGSpec
+            { gsLength = tNoContAmts
+            , gsSeperator = tContAmtType
+            , gsBody = gNoContAmtsBody''' }
+            where
+            gNoContAmtsBody''' = 
+               LT.insert (tnum tContAmtValue) tContAmtValue $
+               LT.insert (tnum tContAmtCurr) tContAmtCurr                LT.new
 
-                gNoContraBrokers = FIXTag
-                  { tnum = tnum tNoContraBrokers
-                  , tparser = gNoContraBrokersP }
+         gNoContraBrokers''' = FIXTag
+            { tName = "NoContraBrokers"
+            , tnum = tnum tNoContraBrokers
+            , tparser = gNoContraBrokersP''' }
 
-                gNoContraBrokersP = groupP $ FGSpec
-                  { gsLength = tNoContraBrokers
-                  , gsSeperator = tContraBroker
-                  , gsBody = gNoContraBrokersBody }
-                    where
-                    gNoContraBrokersBody = 
-                        LT.insert (tnum tContraTrader) tContraTrader $
-                        LT.insert (tnum tContraTradeQty) tContraTradeQty $
-                        LT.insert (tnum tContraTradeTime) tContraTradeTime $
-                        LT.insert (tnum tContraLegRefID) tContraLegRefID $
-                        LT.new
+         gNoContraBrokersP''' = groupP FGSpec
+            { gsLength = tNoContraBrokers
+            , gsSeperator = tContraBroker
+            , gsBody = gNoContraBrokersBody''' }
+            where
+            gNoContraBrokersBody''' = 
+               LT.insert (tnum tContraTrader) tContraTrader $
+               LT.insert (tnum tContraTradeQty) tContraTradeQty $
+               LT.insert (tnum tContraTradeTime) tContraTradeTime $
+               LT.insert (tnum tContraLegRefID) tContraLegRefID                LT.new
 
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+         gNoLegs''' = FIXTag
+            { tName = "NoLegs"
+            , tnum = tnum tNoLegs
+            , tparser = gNoLegsP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoLegsP''' = groupP FGSpec
+            { gsLength = tNoLegs
+            , gsSeperator = tLegSymbol
+            , gsBody = gNoLegsBody''' }
+            where
+            gNoLegsBody''' = 
+               LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
+               LT.insert (tnum tLegSecurityID) tLegSecurityID $
+               LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
+               LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID'''''' $
+               LT.insert (tnum tLegProduct) tLegProduct $
+               LT.insert (tnum tLegCFICode) tLegCFICode $
+               LT.insert (tnum tLegSecurityType) tLegSecurityType $
+               LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
+               LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
+               LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
+               LT.insert (tnum tLegIssueDate) tLegIssueDate $
+               LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
+               LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
+               LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
+               LT.insert (tnum tLegFactor) tLegFactor $
+               LT.insert (tnum tLegCreditRating) tLegCreditRating $
+               LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
+               LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
+               LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
+               LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
+               LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
+               LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
+               LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
+               LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
+               LT.insert (tnum tLegCouponRate) tLegCouponRate $
+               LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
+               LT.insert (tnum tLegIssuer) tLegIssuer $
+               LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
+               LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
+               LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
+               LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
+               LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
+               LT.insert (tnum tLegRatioQty) tLegRatioQty $
+               LT.insert (tnum tLegSide) tLegSide $
+               LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
+               LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tLegRefID) tLegRefID $
+               LT.insert (tnum tLegPrice) tLegPrice $
+               LT.insert (tnum tLegSettlmntTyp) tLegSettlmntTyp $
+               LT.insert (tnum tLegFutSettDate) tLegFutSettDate $
+               LT.insert (tnum tLegLastPx) tLegLastPx                LT.new
+               where
+                  gNoLegSecurityAltID'''''' = FIXTag
+                     { tName = "NoLegSecurityAltID"
+                     , tnum = tnum tNoLegSecurityAltID
+                     , tparser = gNoLegSecurityAltIDP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
+                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoLegSecurityAltID
+                     , gsSeperator = tLegSecurityAltID
+                     , gsBody = gNoLegSecurityAltIDBody'''''' }
+                     where
+                     gNoLegSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                         LT.new
 
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
-                        LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                        LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                        LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                        LT.insert (tnum tLegProduct) tLegProduct $
-                        LT.insert (tnum tLegCFICode) tLegCFICode $
-                        LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                        LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                        LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                        LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                        LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                        LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                        LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                        LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                        LT.insert (tnum tLegFactor) tLegFactor $
-                        LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                        LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                        LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                        LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                        LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                        LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                        LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                        LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                        LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                        LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                        LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                        LT.insert (tnum tLegIssuer) tLegIssuer $
-                        LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                        LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                        LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                        LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                        LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                        LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                        LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
-                        LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tLegRefID) tLegRefID $
-                        LT.insert (tnum tLegPrice) tLegPrice $
-                        LT.insert (tnum tLegSettlmntTyp) tLegSettlmntTyp $
-                        LT.insert (tnum tLegFutSettDate) tLegFutSettDate $
-                        LT.insert (tnum tLegLastPx) tLegLastPx $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
 
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
-
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
-
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
+         gNoStipulations''' = FIXTag
+            { tName = "NoStipulations"
+            , tnum = tnum tNoStipulations
+            , tparser = gNoStipulationsP''' }
+
+         gNoStipulationsP''' = groupP FGSpec
+            { gsLength = tNoStipulations
+            , gsSeperator = tStipulationType
+            , gsBody = gNoStipulationsBody''' }
+            where
+            gNoStipulationsBody''' = 
+               LT.insert (tnum tStipulationValue) tStipulationValue                LT.new
 
 
 
 mOrderCancelReject :: FIXMessageSpec
 mOrderCancelReject = FMSpec
-   { msType = C.pack "9"
+   { msName = "OrderCancelReject"
+   , msType = C.pack "9"
    , msHeader = headerFIX43
    , msBody = mOrderCancelRejectBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderCancelRejectBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-          LT.insert (tnum tOrdStatus) tOrdStatus $
-          LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
-          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tCxlRejResponseTo) tCxlRejResponseTo $
-          LT.insert (tnum tCxlRejReason) tCxlRejReason $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mOrderCancelRejectBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+      LT.insert (tnum tOrdStatus) tOrdStatus $
+      LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
+      LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tCxlRejResponseTo) tCxlRejResponseTo $
+      LT.insert (tnum tCxlRejReason) tCxlRejReason $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mLogon :: FIXMessageSpec
 mLogon = FMSpec
-   { msType = C.pack "A"
+   { msName = "Logon"
+   , msType = C.pack "A"
    , msHeader = headerFIX43
    , msBody = mLogonBody
    , msTrailer = trailerFIX43 }
    where
-      mLogonBody = 
-          LT.insert (tnum tEncryptMethod) tEncryptMethod $
-          LT.insert (tnum tHeartBtInt) tHeartBtInt $
-          LT.insert (tnum tRawDataLength) tRawDataLength $
-          LT.insert (tnum tRawData) tRawData $
-          LT.insert (tnum tResetSeqNumFlag) tResetSeqNumFlag $
-          LT.insert (tnum tMaxMessageSize) tMaxMessageSize $
-          LT.insert (tnum tNoMsgTypes) gNoMsgTypes $
-          LT.insert (tnum tTestMessageIndicator) tTestMessageIndicator $
-          LT.insert (tnum tUsername) tUsername $
-          LT.insert (tnum tPassword) tPassword $
-          LT.new
-          where
-                gNoMsgTypes = FIXTag
-                  { tnum = tnum tNoMsgTypes
-                  , tparser = gNoMsgTypesP }
+   mLogonBody = 
+      LT.insert (tnum tEncryptMethod) tEncryptMethod $
+      LT.insert (tnum tHeartBtInt) tHeartBtInt $
+      LT.insert (tnum tRawDataLength) tRawDataLength $
+      LT.insert (tnum tRawData) tRawData $
+      LT.insert (tnum tResetSeqNumFlag) tResetSeqNumFlag $
+      LT.insert (tnum tMaxMessageSize) tMaxMessageSize $
+      LT.insert (tnum tNoMsgTypes) gNoMsgTypes''' $
+      LT.insert (tnum tTestMessageIndicator) tTestMessageIndicator $
+      LT.insert (tnum tUsername) tUsername $
+      LT.insert (tnum tPassword) tPassword       LT.new
+      where
+         gNoMsgTypes''' = FIXTag
+            { tName = "NoMsgTypes"
+            , tnum = tnum tNoMsgTypes
+            , tparser = gNoMsgTypesP''' }
 
-                gNoMsgTypesP = groupP $ FGSpec
-                  { gsLength = tNoMsgTypes
-                  , gsSeperator = tRefMsgType
-                  , gsBody = gNoMsgTypesBody }
-                    where
-                    gNoMsgTypesBody = 
-                        LT.insert (tnum tMsgDirection) tMsgDirection $
-                        LT.new
+         gNoMsgTypesP''' = groupP FGSpec
+            { gsLength = tNoMsgTypes
+            , gsSeperator = tRefMsgType
+            , gsBody = gNoMsgTypesBody''' }
+            where
+            gNoMsgTypesBody''' = 
+               LT.insert (tnum tMsgDirection) tMsgDirection                LT.new
 
 
 
 mNews :: FIXMessageSpec
 mNews = FMSpec
-   { msType = C.pack "B"
+   { msName = "News"
+   , msType = C.pack "B"
    , msHeader = headerFIX43
    , msBody = mNewsBody
    , msTrailer = trailerFIX43 }
    where
-      mNewsBody = 
-          LT.insert (tnum tOrigTime) tOrigTime $
-          LT.insert (tnum tUrgency) tUrgency $
-          LT.insert (tnum tHeadline) tHeadline $
-          LT.insert (tnum tEncodedHeadlineLen) tEncodedHeadlineLen $
-          LT.insert (tnum tEncodedHeadline) tEncodedHeadline $
-          LT.insert (tnum tNoRoutingIDs) gNoRoutingIDs $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.insert (tnum tLinesOfText) gLinesOfText $
-          LT.insert (tnum tURLLink) tURLLink $
-          LT.insert (tnum tRawDataLength) tRawDataLength $
-          LT.insert (tnum tRawData) tRawData $
-          LT.new
-          where
-                gLinesOfText = FIXTag
-                  { tnum = tnum tLinesOfText
-                  , tparser = gLinesOfTextP }
+   mNewsBody = 
+      LT.insert (tnum tOrigTime) tOrigTime $
+      LT.insert (tnum tUrgency) tUrgency $
+      LT.insert (tnum tHeadline) tHeadline $
+      LT.insert (tnum tEncodedHeadlineLen) tEncodedHeadlineLen $
+      LT.insert (tnum tEncodedHeadline) tEncodedHeadline $
+      LT.insert (tnum tNoRoutingIDs) gNoRoutingIDs''' $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tLinesOfText) gLinesOfText''' $
+      LT.insert (tnum tURLLink) tURLLink $
+      LT.insert (tnum tRawDataLength) tRawDataLength $
+      LT.insert (tnum tRawData) tRawData       LT.new
+      where
+         gLinesOfText''' = FIXTag
+            { tName = "LinesOfText"
+            , tnum = tnum tLinesOfText
+            , tparser = gLinesOfTextP''' }
 
-                gLinesOfTextP = groupP $ FGSpec
-                  { gsLength = tLinesOfText
-                  , gsSeperator = tText
-                  , gsBody = gLinesOfTextBody }
-                    where
-                    gLinesOfTextBody = 
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
+         gLinesOfTextP''' = groupP FGSpec
+            { gsLength = tLinesOfText
+            , gsSeperator = tText
+            , gsBody = gLinesOfTextBody''' }
+            where
+            gLinesOfTextBody''' = 
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
 
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
 
-                gNoRoutingIDs = FIXTag
-                  { tnum = tnum tNoRoutingIDs
-                  , tparser = gNoRoutingIDsP }
+         gNoRoutingIDs''' = FIXTag
+            { tName = "NoRoutingIDs"
+            , tnum = tnum tNoRoutingIDs
+            , tparser = gNoRoutingIDsP''' }
 
-                gNoRoutingIDsP = groupP $ FGSpec
-                  { gsLength = tNoRoutingIDs
-                  , gsSeperator = tRoutingType
-                  , gsBody = gNoRoutingIDsBody }
-                    where
-                    gNoRoutingIDsBody = 
-                        LT.insert (tnum tRoutingID) tRoutingID $
-                        LT.new
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoRoutingIDsP''' = groupP FGSpec
+            { gsLength = tNoRoutingIDs
+            , gsSeperator = tRoutingType
+            , gsBody = gNoRoutingIDsBody''' }
+            where
+            gNoRoutingIDsBody''' = 
+               LT.insert (tnum tRoutingID) tRoutingID                LT.new
 
 
 
 mEmail :: FIXMessageSpec
 mEmail = FMSpec
-   { msType = C.pack "C"
+   { msName = "Email"
+   , msType = C.pack "C"
    , msHeader = headerFIX43
    , msBody = mEmailBody
    , msTrailer = trailerFIX43 }
    where
-      mEmailBody = 
-          LT.insert (tnum tEmailThreadID) tEmailThreadID $
-          LT.insert (tnum tEmailType) tEmailType $
-          LT.insert (tnum tOrigTime) tOrigTime $
-          LT.insert (tnum tSubject) tSubject $
-          LT.insert (tnum tEncodedSubjectLen) tEncodedSubjectLen $
-          LT.insert (tnum tEncodedSubject) tEncodedSubject $
-          LT.insert (tnum tNoRoutingIDs) gNoRoutingIDs $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tLinesOfText) gLinesOfText $
-          LT.insert (tnum tRawDataLength) tRawDataLength $
-          LT.insert (tnum tRawData) tRawData $
-          LT.new
-          where
-                gLinesOfText = FIXTag
-                  { tnum = tnum tLinesOfText
-                  , tparser = gLinesOfTextP }
+   mEmailBody = 
+      LT.insert (tnum tEmailThreadID) tEmailThreadID $
+      LT.insert (tnum tEmailType) tEmailType $
+      LT.insert (tnum tOrigTime) tOrigTime $
+      LT.insert (tnum tSubject) tSubject $
+      LT.insert (tnum tEncodedSubjectLen) tEncodedSubjectLen $
+      LT.insert (tnum tEncodedSubject) tEncodedSubject $
+      LT.insert (tnum tNoRoutingIDs) gNoRoutingIDs''' $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tLinesOfText) gLinesOfText''' $
+      LT.insert (tnum tRawDataLength) tRawDataLength $
+      LT.insert (tnum tRawData) tRawData       LT.new
+      where
+         gLinesOfText''' = FIXTag
+            { tName = "LinesOfText"
+            , tnum = tnum tLinesOfText
+            , tparser = gLinesOfTextP''' }
 
-                gLinesOfTextP = groupP $ FGSpec
-                  { gsLength = tLinesOfText
-                  , gsSeperator = tText
-                  , gsBody = gLinesOfTextBody }
-                    where
-                    gLinesOfTextBody = 
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
+         gLinesOfTextP''' = groupP FGSpec
+            { gsLength = tLinesOfText
+            , gsSeperator = tText
+            , gsBody = gLinesOfTextBody''' }
+            where
+            gLinesOfTextBody''' = 
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
 
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
 
-                gNoRoutingIDs = FIXTag
-                  { tnum = tnum tNoRoutingIDs
-                  , tparser = gNoRoutingIDsP }
+         gNoRoutingIDs''' = FIXTag
+            { tName = "NoRoutingIDs"
+            , tnum = tnum tNoRoutingIDs
+            , tparser = gNoRoutingIDsP''' }
 
-                gNoRoutingIDsP = groupP $ FGSpec
-                  { gsLength = tNoRoutingIDs
-                  , gsSeperator = tRoutingType
-                  , gsBody = gNoRoutingIDsBody }
-                    where
-                    gNoRoutingIDsBody = 
-                        LT.insert (tnum tRoutingID) tRoutingID $
-                        LT.new
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoRoutingIDsP''' = groupP FGSpec
+            { gsLength = tNoRoutingIDs
+            , gsSeperator = tRoutingType
+            , gsBody = gNoRoutingIDsBody''' }
+            where
+            gNoRoutingIDsBody''' = 
+               LT.insert (tnum tRoutingID) tRoutingID                LT.new
 
 
 
 mNewOrderSingle :: FIXMessageSpec
 mNewOrderSingle = FMSpec
-   { msType = C.pack "D"
+   { msName = "NewOrderSingle"
+   , msType = C.pack "D"
    , msHeader = headerFIX43
    , msBody = mNewOrderSingleBody
    , msTrailer = trailerFIX43 }
    where
-      mNewOrderSingleBody = 
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tDayBookingInst) tDayBookingInst $
-          LT.insert (tnum tBookingUnit) tBookingUnit $
-          LT.insert (tnum tPreallocMethod) tPreallocMethod $
-          LT.insert (tnum tNoAllocs) gNoAllocs $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tCashMargin) tCashMargin $
-          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.insert (tnum tProcessCode) tProcessCode $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tPrevClosePx) tPrevClosePx $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tLocateReqd) tLocateReqd $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tNoStipulations) gNoStipulations $
-          LT.insert (tnum tQuantityType) tQuantityType $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tSpread) tSpread $
-          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-          LT.insert (tnum tYieldType) tYieldType $
-          LT.insert (tnum tYield) tYield $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-          LT.insert (tnum tIOIid) tIOIid $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCommCurrency) tCommCurrency $
-          LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-          LT.insert (tnum tOrderCapacity) tOrderCapacity $
-          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tRule80A) tRule80A $
-          LT.insert (tnum tForexReq) tForexReq $
-          LT.insert (tnum tSettlCurrency) tSettlCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-          LT.insert (tnum tOrderQty2) tOrderQty2 $
-          LT.insert (tnum tPrice2) tPrice2 $
-          LT.insert (tnum tPositionEffect) tPositionEffect $
-          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mNewOrderSingleBody = 
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tDayBookingInst) tDayBookingInst $
+      LT.insert (tnum tBookingUnit) tBookingUnit $
+      LT.insert (tnum tPreallocMethod) tPreallocMethod $
+      LT.insert (tnum tNoAllocs) gNoAllocs''' $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tCashMargin) tCashMargin $
+      LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions''' $
+      LT.insert (tnum tProcessCode) tProcessCode $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tPrevClosePx) tPrevClosePx $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tLocateReqd) tLocateReqd $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tNoStipulations) gNoStipulations''' $
+      LT.insert (tnum tQuantityType) tQuantityType $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tSpread) tSpread $
+      LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+      LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+      LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+      LT.insert (tnum tYieldType) tYieldType $
+      LT.insert (tnum tYield) tYield $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+      LT.insert (tnum tIOIid) tIOIid $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCommCurrency) tCommCurrency $
+      LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+      LT.insert (tnum tOrderCapacity) tOrderCapacity $
+      LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tRule80A) tRule80A $
+      LT.insert (tnum tForexReq) tForexReq $
+      LT.insert (tnum tSettlCurrency) tSettlCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+      LT.insert (tnum tOrderQty2) tOrderQty2 $
+      LT.insert (tnum tPrice2) tPrice2 $
+      LT.insert (tnum tPositionEffect) tPositionEffect $
+      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+      LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+      LT.insert (tnum tNetMoney) tNetMoney       LT.new
+      where
+         gNoAllocs''' = FIXTag
+            { tName = "NoAllocs"
+            , tnum = tnum tNoAllocs
+            , tparser = gNoAllocsP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
-                        LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
-                        where
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+         gNoAllocsP''' = groupP FGSpec
+            { gsLength = tNoAllocs
+            , gsSeperator = tAllocAccount
+            , gsBody = gNoAllocsBody''' }
+            where
+            gNoAllocsBody''' = 
+               LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tAllocQty) tAllocQty                LT.new
+               where
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
-
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
+         gNoStipulations''' = FIXTag
+            { tName = "NoStipulations"
+            , tnum = tnum tNoStipulations
+            , tparser = gNoStipulationsP''' }
 
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
+         gNoStipulationsP''' = groupP FGSpec
+            { gsLength = tNoStipulations
+            , gsSeperator = tStipulationType
+            , gsBody = gNoStipulationsBody''' }
+            where
+            gNoStipulationsBody''' = 
+               LT.insert (tnum tStipulationValue) tStipulationValue                LT.new
 
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
+
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mNewOrderList :: FIXMessageSpec
 mNewOrderList = FMSpec
-   { msType = C.pack "E"
+   { msName = "NewOrderList"
+   , msType = C.pack "E"
    , msHeader = headerFIX43
    , msBody = mNewOrderListBody
    , msTrailer = trailerFIX43 }
    where
-      mNewOrderListBody = 
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tBidID) tBidID $
-          LT.insert (tnum tClientBidID) tClientBidID $
-          LT.insert (tnum tProgRptReqs) tProgRptReqs $
-          LT.insert (tnum tBidType) tBidType $
-          LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tListExecInstType) tListExecInstType $
-          LT.insert (tnum tListExecInst) tListExecInst $
-          LT.insert (tnum tEncodedListExecInstLen) tEncodedListExecInstLen $
-          LT.insert (tnum tEncodedListExecInst) tEncodedListExecInst $
-          LT.insert (tnum tTotNoOrders) tTotNoOrders $
-          LT.insert (tnum tNoOrders) gNoOrders $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mNewOrderListBody = 
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tBidID) tBidID $
+      LT.insert (tnum tClientBidID) tClientBidID $
+      LT.insert (tnum tProgRptReqs) tProgRptReqs $
+      LT.insert (tnum tBidType) tBidType $
+      LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tListExecInstType) tListExecInstType $
+      LT.insert (tnum tListExecInst) tListExecInst $
+      LT.insert (tnum tEncodedListExecInstLen) tEncodedListExecInstLen $
+      LT.insert (tnum tEncodedListExecInst) tEncodedListExecInst $
+      LT.insert (tnum tTotNoOrders) tTotNoOrders $
+      LT.insert (tnum tNoOrders) gNoOrders'''       LT.new
+      where
+         gNoOrders''' = FIXTag
+            { tName = "NoOrders"
+            , tnum = tnum tNoOrders
+            , tparser = gNoOrdersP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
+         gNoOrdersP''' = groupP FGSpec
+            { gsLength = tNoOrders
+            , gsSeperator = tClOrdID
+            , gsBody = gNoOrdersBody''' }
+            where
+            gNoOrdersBody''' = 
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tListSeqNo) tListSeqNo $
+               LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+               LT.insert (tnum tSettlInstMode) tSettlInstMode $
+               LT.insert (tnum tNoPartyIDs) gNoPartyIDs'''''' $
+               LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+               LT.insert (tnum tAccount) tAccount $
+               LT.insert (tnum tAccountType) tAccountType $
+               LT.insert (tnum tDayBookingInst) tDayBookingInst $
+               LT.insert (tnum tBookingUnit) tBookingUnit $
+               LT.insert (tnum tPreallocMethod) tPreallocMethod $
+               LT.insert (tnum tNoAllocs) gNoAllocs'''''' $
+               LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+               LT.insert (tnum tFutSettDate) tFutSettDate $
+               LT.insert (tnum tCashMargin) tCashMargin $
+               LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+               LT.insert (tnum tHandlInst) tHandlInst $
+               LT.insert (tnum tExecInst) tExecInst $
+               LT.insert (tnum tMinQty) tMinQty $
+               LT.insert (tnum tMaxFloor) tMaxFloor $
+               LT.insert (tnum tExDestination) tExDestination $
+               LT.insert (tnum tNoTradingSessions) gNoTradingSessions'''''' $
+               LT.insert (tnum tProcessCode) tProcessCode $
+               LT.insert (tnum tSymbol) tSymbol $
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tPrevClosePx) tPrevClosePx $
+               LT.insert (tnum tSide) tSide $
+               LT.insert (tnum tSideValueInd) tSideValueInd $
+               LT.insert (tnum tLocateReqd) tLocateReqd $
+               LT.insert (tnum tTransactTime) tTransactTime $
+               LT.insert (tnum tNoStipulations) gNoStipulations'''''' $
+               LT.insert (tnum tQuantityType) tQuantityType $
+               LT.insert (tnum tOrderQty) tOrderQty $
+               LT.insert (tnum tCashOrderQty) tCashOrderQty $
+               LT.insert (tnum tOrderPercent) tOrderPercent $
+               LT.insert (tnum tRoundingDirection) tRoundingDirection $
+               LT.insert (tnum tRoundingModulus) tRoundingModulus $
+               LT.insert (tnum tOrdType) tOrdType $
+               LT.insert (tnum tPriceType) tPriceType $
+               LT.insert (tnum tPrice) tPrice $
+               LT.insert (tnum tStopPx) tStopPx $
+               LT.insert (tnum tSpread) tSpread $
+               LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+               LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+               LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+               LT.insert (tnum tYieldType) tYieldType $
+               LT.insert (tnum tYield) tYield $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tComplianceID) tComplianceID $
+               LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+               LT.insert (tnum tIOIid) tIOIid $
+               LT.insert (tnum tQuoteID) tQuoteID $
+               LT.insert (tnum tTimeInForce) tTimeInForce $
+               LT.insert (tnum tEffectiveTime) tEffectiveTime $
+               LT.insert (tnum tExpireDate) tExpireDate $
+               LT.insert (tnum tExpireTime) tExpireTime $
+               LT.insert (tnum tGTBookingInst) tGTBookingInst $
+               LT.insert (tnum tCommission) tCommission $
+               LT.insert (tnum tCommType) tCommType $
+               LT.insert (tnum tCommCurrency) tCommCurrency $
+               LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+               LT.insert (tnum tOrderCapacity) tOrderCapacity $
+               LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+               LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+               LT.insert (tnum tRule80A) tRule80A $
+               LT.insert (tnum tForexReq) tForexReq $
+               LT.insert (tnum tSettlCurrency) tSettlCurrency $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText $
+               LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+               LT.insert (tnum tOrderQty2) tOrderQty2 $
+               LT.insert (tnum tPrice2) tPrice2 $
+               LT.insert (tnum tPositionEffect) tPositionEffect $
+               LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+               LT.insert (tnum tMaxShow) tMaxShow $
+               LT.insert (tnum tPegDifference) tPegDifference $
+               LT.insert (tnum tDiscretionInst) tDiscretionInst $
+               LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+               LT.insert (tnum tDesignation) tDesignation $
+               LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+               LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+               LT.insert (tnum tNetMoney) tNetMoney                LT.new
+               where
+                  gNoAllocs'''''' = FIXTag
+                     { tName = "NoAllocs"
+                     , tnum = tnum tNoAllocs
+                     , tparser = gNoAllocsP'''''' }
+
+                  gNoAllocsP'''''' = groupP FGSpec
+                     { gsLength = tNoAllocs
+                     , gsSeperator = tAllocAccount
+                     , gsBody = gNoAllocsBody'''''' }
+                     where
+                     gNoAllocsBody'''''' = 
                         LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
+                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs''''''''' $
+                        LT.insert (tnum tAllocQty) tAllocQty                         LT.new
                         where
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+                           gNoNestedPartyIDs''''''''' = FIXTag
+                              { tName = "NoNestedPartyIDs"
+                              , tnum = tnum tNoNestedPartyIDs
+                              , tparser = gNoNestedPartyIDsP''''''''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
-
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
-                        LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                        LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
-
-                gNoOrders = FIXTag
-                  { tnum = tnum tNoOrders
-                  , tparser = gNoOrdersP }
-
-                gNoOrdersP = groupP $ FGSpec
-                  { gsLength = tNoOrders
-                  , gsSeperator = tClOrdID
-                  , gsBody = gNoOrdersBody }
-                    where
-                    gNoOrdersBody = 
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tListSeqNo) tListSeqNo $
-                        LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-                        LT.insert (tnum tSettlInstMode) tSettlInstMode $
-                        LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-                        LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-                        LT.insert (tnum tAccount) tAccount $
-                        LT.insert (tnum tAccountType) tAccountType $
-                        LT.insert (tnum tDayBookingInst) tDayBookingInst $
-                        LT.insert (tnum tBookingUnit) tBookingUnit $
-                        LT.insert (tnum tPreallocMethod) tPreallocMethod $
-                        LT.insert (tnum tNoAllocs) gNoAllocs $
-                        LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-                        LT.insert (tnum tFutSettDate) tFutSettDate $
-                        LT.insert (tnum tCashMargin) tCashMargin $
-                        LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-                        LT.insert (tnum tHandlInst) tHandlInst $
-                        LT.insert (tnum tExecInst) tExecInst $
-                        LT.insert (tnum tMinQty) tMinQty $
-                        LT.insert (tnum tMaxFloor) tMaxFloor $
-                        LT.insert (tnum tExDestination) tExDestination $
-                        LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-                        LT.insert (tnum tProcessCode) tProcessCode $
-                        LT.insert (tnum tSymbol) tSymbol $
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tPrevClosePx) tPrevClosePx $
-                        LT.insert (tnum tSide) tSide $
-                        LT.insert (tnum tSideValueInd) tSideValueInd $
-                        LT.insert (tnum tLocateReqd) tLocateReqd $
-                        LT.insert (tnum tTransactTime) tTransactTime $
-                        LT.insert (tnum tNoStipulations) gNoStipulations $
-                        LT.insert (tnum tQuantityType) tQuantityType $
-                        LT.insert (tnum tOrderQty) tOrderQty $
-                        LT.insert (tnum tCashOrderQty) tCashOrderQty $
-                        LT.insert (tnum tOrderPercent) tOrderPercent $
-                        LT.insert (tnum tRoundingDirection) tRoundingDirection $
-                        LT.insert (tnum tRoundingModulus) tRoundingModulus $
-                        LT.insert (tnum tOrdType) tOrdType $
-                        LT.insert (tnum tPriceType) tPriceType $
-                        LT.insert (tnum tPrice) tPrice $
-                        LT.insert (tnum tStopPx) tStopPx $
-                        LT.insert (tnum tSpread) tSpread $
-                        LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-                        LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-                        LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-                        LT.insert (tnum tYieldType) tYieldType $
-                        LT.insert (tnum tYield) tYield $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tComplianceID) tComplianceID $
-                        LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-                        LT.insert (tnum tIOIid) tIOIid $
-                        LT.insert (tnum tQuoteID) tQuoteID $
-                        LT.insert (tnum tTimeInForce) tTimeInForce $
-                        LT.insert (tnum tEffectiveTime) tEffectiveTime $
-                        LT.insert (tnum tExpireDate) tExpireDate $
-                        LT.insert (tnum tExpireTime) tExpireTime $
-                        LT.insert (tnum tGTBookingInst) tGTBookingInst $
-                        LT.insert (tnum tCommission) tCommission $
-                        LT.insert (tnum tCommType) tCommType $
-                        LT.insert (tnum tCommCurrency) tCommCurrency $
-                        LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-                        LT.insert (tnum tOrderCapacity) tOrderCapacity $
-                        LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-                        LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-                        LT.insert (tnum tRule80A) tRule80A $
-                        LT.insert (tnum tForexReq) tForexReq $
-                        LT.insert (tnum tSettlCurrency) tSettlCurrency $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-                        LT.insert (tnum tOrderQty2) tOrderQty2 $
-                        LT.insert (tnum tPrice2) tPrice2 $
-                        LT.insert (tnum tPositionEffect) tPositionEffect $
-                        LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-                        LT.insert (tnum tMaxShow) tMaxShow $
-                        LT.insert (tnum tPegDifference) tPegDifference $
-                        LT.insert (tnum tDiscretionInst) tDiscretionInst $
-                        LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-                        LT.insert (tnum tDesignation) tDesignation $
-                        LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-                        LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-                        LT.insert (tnum tNetMoney) tNetMoney $
-                        LT.new
-                        where
-                              gNoAllocs = FIXTag
-                                { tnum = tnum tNoAllocs
-                                , tparser = gNoAllocsP }
-
-                              gNoAllocsP = groupP $ FGSpec
-                                { gsLength = tNoAllocs
-                                , gsSeperator = tAllocAccount
-                                , gsBody = gNoAllocsBody }
-                                  where
-                                  gNoAllocsBody = 
-                                      LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                                      LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                                      LT.insert (tnum tAllocQty) tAllocQty $
-                                      LT.new
-                                      where
-                                            gNoNestedPartyIDs = FIXTag
-                                              { tnum = tnum tNoNestedPartyIDs
-                                              , tparser = gNoNestedPartyIDsP }
-
-                                            gNoNestedPartyIDsP = groupP $ FGSpec
-                                              { gsLength = tNoNestedPartyIDs
-                                              , gsSeperator = tNestedPartyID
-                                              , gsBody = gNoNestedPartyIDsBody }
-                                                where
-                                                gNoNestedPartyIDsBody = 
-                                                    LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                                    LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                                    LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                                    LT.new
+                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                              { gsLength = tNoNestedPartyIDs
+                              , gsSeperator = tNestedPartyID
+                              , gsBody = gNoNestedPartyIDsBody''''''''' }
+                              where
+                              gNoNestedPartyIDsBody''''''''' = 
+                                 LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
+                                 LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
+                                 LT.insert (tnum tNestedPartySubID) tNestedPartySubID                                  LT.new
 
 
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+                  gNoPartyIDs'''''' = FIXTag
+                     { tName = "NoPartyIDs"
+                     , tnum = tnum tNoPartyIDs
+                     , tparser = gNoPartyIDsP'''''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-                              gNoPartyIDs = FIXTag
-                                { tnum = tnum tNoPartyIDs
-                                , tparser = gNoPartyIDsP }
-
-                              gNoPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoPartyIDs
-                                , gsSeperator = tPartyID
-                                , gsBody = gNoPartyIDsBody }
-                                  where
-                                  gNoPartyIDsBody = 
-                                      LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                                      LT.insert (tnum tPartyRole) tPartyRole $
-                                      LT.insert (tnum tPartySubID) tPartySubID $
-                                      LT.new
-
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
-
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
-
-                              gNoStipulations = FIXTag
-                                { tnum = tnum tNoStipulations
-                                , tparser = gNoStipulationsP }
-
-                              gNoStipulationsP = groupP $ FGSpec
-                                { gsLength = tNoStipulations
-                                , gsSeperator = tStipulationType
-                                , gsBody = gNoStipulationsBody }
-                                  where
-                                  gNoStipulationsBody = 
-                                      LT.insert (tnum tStipulationValue) tStipulationValue $
-                                      LT.new
-
-                              gNoTradingSessions = FIXTag
-                                { tnum = tnum tNoTradingSessions
-                                , tparser = gNoTradingSessionsP }
-
-                              gNoTradingSessionsP = groupP $ FGSpec
-                                { gsLength = tNoTradingSessions
-                                , gsSeperator = tTradingSessionID
-                                , gsBody = gNoTradingSessionsBody }
-                                  where
-                                  gNoTradingSessionsBody = 
-                                      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                                      LT.new
-
-
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
-
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
+                  gNoPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoPartyIDs
+                     , gsSeperator = tPartyID
+                     , gsBody = gNoPartyIDsBody'''''' }
+                     where
+                     gNoPartyIDsBody'''''' = 
                         LT.insert (tnum tPartyIDSource) tPartyIDSource $
                         LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+                        LT.insert (tnum tPartySubID) tPartySubID                         LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
+                  gNoStipulations'''''' = FIXTag
+                     { tName = "NoStipulations"
+                     , tnum = tnum tNoStipulations
+                     , tparser = gNoStipulationsP'''''' }
 
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
+                  gNoStipulationsP'''''' = groupP FGSpec
+                     { gsLength = tNoStipulations
+                     , gsSeperator = tStipulationType
+                     , gsBody = gNoStipulationsBody'''''' }
+                     where
+                     gNoStipulationsBody'''''' = 
+                        LT.insert (tnum tStipulationValue) tStipulationValue                         LT.new
 
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
+                  gNoTradingSessions'''''' = FIXTag
+                     { tName = "NoTradingSessions"
+                     , tnum = tnum tNoTradingSessions
+                     , tparser = gNoTradingSessionsP'''''' }
 
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+                  gNoTradingSessionsP'''''' = groupP FGSpec
+                     { gsLength = tNoTradingSessions
+                     , gsSeperator = tTradingSessionID
+                     , gsBody = gNoTradingSessionsBody'''''' }
+                     where
+                     gNoTradingSessionsBody'''''' = 
+                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                         LT.new
+
 
 
 
 mOrderCancelRequest :: FIXMessageSpec
 mOrderCancelRequest = FMSpec
-   { msType = C.pack "F"
+   { msName = "OrderCancelRequest"
+   , msType = C.pack "F"
    , msHeader = headerFIX43
    , msBody = mOrderCancelRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderCancelRequestBody = 
-          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mOrderCancelRequestBody = 
+      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mOrderCancelReplaceRequest :: FIXMessageSpec
 mOrderCancelReplaceRequest = FMSpec
-   { msType = C.pack "G"
+   { msName = "OrderCancelReplaceRequest"
+   , msType = C.pack "G"
    , msHeader = headerFIX43
    , msBody = mOrderCancelReplaceRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderCancelReplaceRequestBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tDayBookingInst) tDayBookingInst $
-          LT.insert (tnum tBookingUnit) tBookingUnit $
-          LT.insert (tnum tPreallocMethod) tPreallocMethod $
-          LT.insert (tnum tNoAllocs) gNoAllocs $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tCashMargin) tCashMargin $
-          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tQuantityType) tQuantityType $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tSpread) tSpread $
-          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-          LT.insert (tnum tYieldType) tYieldType $
-          LT.insert (tnum tYield) tYield $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCommCurrency) tCommCurrency $
-          LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-          LT.insert (tnum tOrderCapacity) tOrderCapacity $
-          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tRule80A) tRule80A $
-          LT.insert (tnum tForexReq) tForexReq $
-          LT.insert (tnum tSettlCurrency) tSettlCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-          LT.insert (tnum tOrderQty2) tOrderQty2 $
-          LT.insert (tnum tPrice2) tPrice2 $
-          LT.insert (tnum tPositionEffect) tPositionEffect $
-          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tLocateReqd) tLocateReqd $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mOrderCancelReplaceRequestBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tDayBookingInst) tDayBookingInst $
+      LT.insert (tnum tBookingUnit) tBookingUnit $
+      LT.insert (tnum tPreallocMethod) tPreallocMethod $
+      LT.insert (tnum tNoAllocs) gNoAllocs''' $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tCashMargin) tCashMargin $
+      LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions''' $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tQuantityType) tQuantityType $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tSpread) tSpread $
+      LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+      LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+      LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+      LT.insert (tnum tYieldType) tYieldType $
+      LT.insert (tnum tYield) tYield $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCommCurrency) tCommCurrency $
+      LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+      LT.insert (tnum tOrderCapacity) tOrderCapacity $
+      LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tRule80A) tRule80A $
+      LT.insert (tnum tForexReq) tForexReq $
+      LT.insert (tnum tSettlCurrency) tSettlCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+      LT.insert (tnum tOrderQty2) tOrderQty2 $
+      LT.insert (tnum tPrice2) tPrice2 $
+      LT.insert (tnum tPositionEffect) tPositionEffect $
+      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tLocateReqd) tLocateReqd $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+      LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+      LT.insert (tnum tNetMoney) tNetMoney       LT.new
+      where
+         gNoAllocs''' = FIXTag
+            { tName = "NoAllocs"
+            , tnum = tnum tNoAllocs
+            , tparser = gNoAllocsP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
-                        LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
-                        where
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+         gNoAllocsP''' = groupP FGSpec
+            { gsLength = tNoAllocs
+            , gsSeperator = tAllocAccount
+            , gsBody = gNoAllocsBody''' }
+            where
+            gNoAllocsBody''' = 
+               LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tAllocQty) tAllocQty                LT.new
+               where
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
-
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
+
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mOrderStatusRequest :: FIXMessageSpec
 mOrderStatusRequest = FMSpec
-   { msType = C.pack "H"
+   { msName = "OrderStatusRequest"
+   , msType = C.pack "H"
    , msHeader = headerFIX43
    , msBody = mOrderStatusRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderStatusRequestBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mOrderStatusRequestBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSide) tSide       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mAllocation :: FIXMessageSpec
 mAllocation = FMSpec
-   { msType = C.pack "J"
+   { msName = "Allocation"
+   , msType = C.pack "J"
    , msHeader = headerFIX43
    , msBody = mAllocationBody
    , msTrailer = trailerFIX43 }
    where
-      mAllocationBody = 
-          LT.insert (tnum tAllocID) tAllocID $
-          LT.insert (tnum tAllocTransType) tAllocTransType $
-          LT.insert (tnum tAllocType) tAllocType $
-          LT.insert (tnum tRefAllocID) tRefAllocID $
-          LT.insert (tnum tAllocLinkID) tAllocLinkID $
-          LT.insert (tnum tAllocLinkType) tAllocLinkType $
-          LT.insert (tnum tBookingRefID) tBookingRefID $
-          LT.insert (tnum tNoOrders) gNoOrders $
-          LT.insert (tnum tNoExecs) gNoExecs $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tQuantity) tQuantity $
-          LT.insert (tnum tLastMkt) tLastMkt $
-          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tAvgPx) tAvgPx $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tAvgPrxPrecision) tAvgPrxPrecision $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
-          LT.insert (tnum tConcession) tConcession $
-          LT.insert (tnum tTotalTakedown) tTotalTakedown $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.insert (tnum tPositionEffect) tPositionEffect $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.insert (tnum tTotalAccruedInterestAmt) tTotalAccruedInterestAmt $
-          LT.insert (tnum tLegalConfirm) tLegalConfirm $
-          LT.insert (tnum tNoAllocs) gNoAllocs $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mAllocationBody = 
+      LT.insert (tnum tAllocID) tAllocID $
+      LT.insert (tnum tAllocTransType) tAllocTransType $
+      LT.insert (tnum tAllocType) tAllocType $
+      LT.insert (tnum tRefAllocID) tRefAllocID $
+      LT.insert (tnum tAllocLinkID) tAllocLinkID $
+      LT.insert (tnum tAllocLinkType) tAllocLinkType $
+      LT.insert (tnum tBookingRefID) tBookingRefID $
+      LT.insert (tnum tNoOrders) gNoOrders''' $
+      LT.insert (tnum tNoExecs) gNoExecs''' $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tQuantity) tQuantity $
+      LT.insert (tnum tLastMkt) tLastMkt $
+      LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tAvgPx) tAvgPx $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tAvgPrxPrecision) tAvgPrxPrecision $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+      LT.insert (tnum tConcession) tConcession $
+      LT.insert (tnum tTotalTakedown) tTotalTakedown $
+      LT.insert (tnum tNetMoney) tNetMoney $
+      LT.insert (tnum tPositionEffect) tPositionEffect $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+      LT.insert (tnum tTotalAccruedInterestAmt) tTotalAccruedInterestAmt $
+      LT.insert (tnum tLegalConfirm) tLegalConfirm $
+      LT.insert (tnum tNoAllocs) gNoAllocs'''       LT.new
+      where
+         gNoAllocs''' = FIXTag
+            { tName = "NoAllocs"
+            , tnum = tnum tNoAllocs
+            , tparser = gNoAllocsP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
-                        LT.insert (tnum tAllocPrice) tAllocPrice $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tProcessCode) tProcessCode $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tNotifyBrokerOfCredit) tNotifyBrokerOfCredit $
-                        LT.insert (tnum tAllocHandlInst) tAllocHandlInst $
-                        LT.insert (tnum tAllocText) tAllocText $
-                        LT.insert (tnum tEncodedAllocTextLen) tEncodedAllocTextLen $
-                        LT.insert (tnum tEncodedAllocText) tEncodedAllocText $
-                        LT.insert (tnum tCommission) tCommission $
-                        LT.insert (tnum tCommType) tCommType $
-                        LT.insert (tnum tCommCurrency) tCommCurrency $
-                        LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-                        LT.insert (tnum tAllocAvgPx) tAllocAvgPx $
-                        LT.insert (tnum tAllocNetMoney) tAllocNetMoney $
-                        LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
-                        LT.insert (tnum tSettlCurrency) tSettlCurrency $
-                        LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
-                        LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
-                        LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-                        LT.insert (tnum tSettlInstMode) tSettlInstMode $
-                        LT.insert (tnum tNoMiscFees) gNoMiscFees $
-                        LT.new
-                        where
-                              gNoMiscFees = FIXTag
-                                { tnum = tnum tNoMiscFees
-                                , tparser = gNoMiscFeesP }
+         gNoAllocsP''' = groupP FGSpec
+            { gsLength = tNoAllocs
+            , gsSeperator = tAllocAccount
+            , gsBody = gNoAllocsBody''' }
+            where
+            gNoAllocsBody''' = 
+               LT.insert (tnum tAllocPrice) tAllocPrice $
+               LT.insert (tnum tAllocQty) tAllocQty $
+               LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+               LT.insert (tnum tProcessCode) tProcessCode $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tNotifyBrokerOfCredit) tNotifyBrokerOfCredit $
+               LT.insert (tnum tAllocHandlInst) tAllocHandlInst $
+               LT.insert (tnum tAllocText) tAllocText $
+               LT.insert (tnum tEncodedAllocTextLen) tEncodedAllocTextLen $
+               LT.insert (tnum tEncodedAllocText) tEncodedAllocText $
+               LT.insert (tnum tCommission) tCommission $
+               LT.insert (tnum tCommType) tCommType $
+               LT.insert (tnum tCommCurrency) tCommCurrency $
+               LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+               LT.insert (tnum tAllocAvgPx) tAllocAvgPx $
+               LT.insert (tnum tAllocNetMoney) tAllocNetMoney $
+               LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+               LT.insert (tnum tSettlCurrency) tSettlCurrency $
+               LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
+               LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+               LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+               LT.insert (tnum tSettlInstMode) tSettlInstMode $
+               LT.insert (tnum tNoMiscFees) gNoMiscFees''''''                LT.new
+               where
+                  gNoMiscFees'''''' = FIXTag
+                     { tName = "NoMiscFees"
+                     , tnum = tnum tNoMiscFees
+                     , tparser = gNoMiscFeesP'''''' }
 
-                              gNoMiscFeesP = groupP $ FGSpec
-                                { gsLength = tNoMiscFees
-                                , gsSeperator = tMiscFeeAmt
-                                , gsBody = gNoMiscFeesBody }
-                                  where
-                                  gNoMiscFeesBody = 
-                                      LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
-                                      LT.insert (tnum tMiscFeeType) tMiscFeeType $
-                                      LT.new
-
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
-
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoExecs = FIXTag
-                  { tnum = tnum tNoExecs
-                  , tparser = gNoExecsP }
-
-                gNoExecsP = groupP $ FGSpec
-                  { gsLength = tNoExecs
-                  , gsSeperator = tLastQty
-                  , gsBody = gNoExecsBody }
-                    where
-                    gNoExecsBody = 
-                        LT.insert (tnum tExecID) tExecID $
-                        LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
-                        LT.insert (tnum tLastPx) tLastPx $
-                        LT.insert (tnum tLastCapacity) tLastCapacity $
-                        LT.new
-
-                gNoMiscFees = FIXTag
-                  { tnum = tnum tNoMiscFees
-                  , tparser = gNoMiscFeesP }
-
-                gNoMiscFeesP = groupP $ FGSpec
-                  { gsLength = tNoMiscFees
-                  , gsSeperator = tMiscFeeAmt
-                  , gsBody = gNoMiscFeesBody }
-                    where
-                    gNoMiscFeesBody = 
+                  gNoMiscFeesP'''''' = groupP FGSpec
+                     { gsLength = tNoMiscFees
+                     , gsSeperator = tMiscFeeAmt
+                     , gsBody = gNoMiscFeesBody'''''' }
+                     where
+                     gNoMiscFeesBody'''''' = 
                         LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
-                        LT.insert (tnum tMiscFeeType) tMiscFeeType $
-                        LT.new
+                        LT.insert (tnum tMiscFeeType) tMiscFeeType                         LT.new
 
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
 
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
-                gNoOrders = FIXTag
-                  { tnum = tnum tNoOrders
-                  , tparser = gNoOrdersP }
 
-                gNoOrdersP = groupP $ FGSpec
-                  { gsLength = tNoOrders
-                  , gsSeperator = tClOrdID
-                  , gsBody = gNoOrdersBody }
-                    where
-                    gNoOrdersBody = 
-                        LT.insert (tnum tOrderID) tOrderID $
-                        LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tListID) tListID $
-                        LT.new
+         gNoExecs''' = FIXTag
+            { tName = "NoExecs"
+            , tnum = tnum tNoExecs
+            , tparser = gNoExecsP''' }
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+         gNoExecsP''' = groupP FGSpec
+            { gsLength = tNoExecs
+            , gsSeperator = tLastQty
+            , gsBody = gNoExecsBody''' }
+            where
+            gNoExecsBody''' = 
+               LT.insert (tnum tExecID) tExecID $
+               LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+               LT.insert (tnum tLastPx) tLastPx $
+               LT.insert (tnum tLastCapacity) tLastCapacity                LT.new
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoOrders''' = FIXTag
+            { tName = "NoOrders"
+            , tnum = tnum tNoOrders
+            , tparser = gNoOrdersP''' }
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoOrdersP''' = groupP FGSpec
+            { gsLength = tNoOrders
+            , gsSeperator = tClOrdID
+            , gsBody = gNoOrdersBody''' }
+            where
+            gNoOrdersBody''' = 
+               LT.insert (tnum tOrderID) tOrderID $
+               LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tListID) tListID                LT.new
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
+
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
+
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
+
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mListCancelRequest :: FIXMessageSpec
 mListCancelRequest = FMSpec
-   { msType = C.pack "K"
+   { msName = "ListCancelRequest"
+   , msType = C.pack "K"
    , msHeader = headerFIX43
    , msBody = mListCancelRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mListCancelRequestBody = 
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mListCancelRequestBody = 
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mListExecute :: FIXMessageSpec
 mListExecute = FMSpec
-   { msType = C.pack "L"
+   { msName = "ListExecute"
+   , msType = C.pack "L"
    , msHeader = headerFIX43
    , msBody = mListExecuteBody
    , msTrailer = trailerFIX43 }
    where
-      mListExecuteBody = 
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tClientBidID) tClientBidID $
-          LT.insert (tnum tBidID) tBidID $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mListExecuteBody = 
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tClientBidID) tClientBidID $
+      LT.insert (tnum tBidID) tBidID $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mListStatusRequest :: FIXMessageSpec
 mListStatusRequest = FMSpec
-   { msType = C.pack "M"
+   { msName = "ListStatusRequest"
+   , msType = C.pack "M"
    , msHeader = headerFIX43
    , msBody = mListStatusRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mListStatusRequestBody = 
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mListStatusRequestBody = 
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mListStatus :: FIXMessageSpec
 mListStatus = FMSpec
-   { msType = C.pack "N"
+   { msName = "ListStatus"
+   , msType = C.pack "N"
    , msHeader = headerFIX43
    , msBody = mListStatusBody
    , msTrailer = trailerFIX43 }
    where
-      mListStatusBody = 
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tListStatusType) tListStatusType $
-          LT.insert (tnum tNoRpts) tNoRpts $
-          LT.insert (tnum tListOrderStatus) tListOrderStatus $
-          LT.insert (tnum tRptSeq) tRptSeq $
-          LT.insert (tnum tListStatusText) tListStatusText $
-          LT.insert (tnum tEncodedListStatusTextLen) tEncodedListStatusTextLen $
-          LT.insert (tnum tEncodedListStatusText) tEncodedListStatusText $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tTotNoOrders) tTotNoOrders $
-          LT.insert (tnum tNoOrders) gNoOrders $
-          LT.new
-          where
-                gNoOrders = FIXTag
-                  { tnum = tnum tNoOrders
-                  , tparser = gNoOrdersP }
+   mListStatusBody = 
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tListStatusType) tListStatusType $
+      LT.insert (tnum tNoRpts) tNoRpts $
+      LT.insert (tnum tListOrderStatus) tListOrderStatus $
+      LT.insert (tnum tRptSeq) tRptSeq $
+      LT.insert (tnum tListStatusText) tListStatusText $
+      LT.insert (tnum tEncodedListStatusTextLen) tEncodedListStatusTextLen $
+      LT.insert (tnum tEncodedListStatusText) tEncodedListStatusText $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tTotNoOrders) tTotNoOrders $
+      LT.insert (tnum tNoOrders) gNoOrders'''       LT.new
+      where
+         gNoOrders''' = FIXTag
+            { tName = "NoOrders"
+            , tnum = tnum tNoOrders
+            , tparser = gNoOrdersP''' }
 
-                gNoOrdersP = groupP $ FGSpec
-                  { gsLength = tNoOrders
-                  , gsSeperator = tClOrdID
-                  , gsBody = gNoOrdersBody }
-                    where
-                    gNoOrdersBody = 
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tCumQty) tCumQty $
-                        LT.insert (tnum tOrdStatus) tOrdStatus $
-                        LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
-                        LT.insert (tnum tLeavesQty) tLeavesQty $
-                        LT.insert (tnum tCxlQty) tCxlQty $
-                        LT.insert (tnum tAvgPx) tAvgPx $
-                        LT.insert (tnum tOrdRejReason) tOrdRejReason $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
+         gNoOrdersP''' = groupP FGSpec
+            { gsLength = tNoOrders
+            , gsSeperator = tClOrdID
+            , gsBody = gNoOrdersBody''' }
+            where
+            gNoOrdersBody''' = 
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tCumQty) tCumQty $
+               LT.insert (tnum tOrdStatus) tOrdStatus $
+               LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
+               LT.insert (tnum tLeavesQty) tLeavesQty $
+               LT.insert (tnum tCxlQty) tCxlQty $
+               LT.insert (tnum tAvgPx) tAvgPx $
+               LT.insert (tnum tOrdRejReason) tOrdRejReason $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
 
 
 
 mAllocationAck :: FIXMessageSpec
 mAllocationAck = FMSpec
-   { msType = C.pack "P"
+   { msName = "AllocationAck"
+   , msType = C.pack "P"
    , msHeader = headerFIX43
    , msBody = mAllocationAckBody
    , msTrailer = trailerFIX43 }
    where
-      mAllocationAckBody = 
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAllocID) tAllocID $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tAllocStatus) tAllocStatus $
-          LT.insert (tnum tAllocRejCode) tAllocRejCode $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tLegalConfirm) tLegalConfirm $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mAllocationAckBody = 
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAllocID) tAllocID $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tAllocStatus) tAllocStatus $
+      LT.insert (tnum tAllocRejCode) tAllocRejCode $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tLegalConfirm) tLegalConfirm       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
 
 
 mDontKnowTrade :: FIXMessageSpec
 mDontKnowTrade = FMSpec
-   { msType = C.pack "Q"
+   { msName = "DontKnowTrade"
+   , msType = C.pack "Q"
    , msHeader = headerFIX43
    , msBody = mDontKnowTradeBody
    , msTrailer = trailerFIX43 }
    where
-      mDontKnowTradeBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tExecID) tExecID $
-          LT.insert (tnum tDKReason) tDKReason $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tLastQty) tLastQty $
-          LT.insert (tnum tLastPx) tLastPx $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mDontKnowTradeBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tExecID) tExecID $
+      LT.insert (tnum tDKReason) tDKReason $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tLastQty) tLastQty $
+      LT.insert (tnum tLastPx) tLastPx $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mQuoteRequest :: FIXMessageSpec
 mQuoteRequest = FMSpec
-   { msType = C.pack "R"
+   { msName = "QuoteRequest"
+   , msType = C.pack "R"
    , msHeader = headerFIX43
    , msBody = mQuoteRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mQuoteRequestBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tRFQReqID) tRFQReqID $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
+   mQuoteRequestBody = 
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tRFQReqID) tRFQReqID $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tPrevClosePx) tPrevClosePx $
-                        LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
-                        LT.insert (tnum tQuoteType) tQuoteType $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-                        LT.insert (tnum tNoStipulations) gNoStipulations $
-                        LT.insert (tnum tSide) tSide $
-                        LT.insert (tnum tQuantityType) tQuantityType $
-                        LT.insert (tnum tOrderQty) tOrderQty $
-                        LT.insert (tnum tCashOrderQty) tCashOrderQty $
-                        LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-                        LT.insert (tnum tFutSettDate) tFutSettDate $
-                        LT.insert (tnum tOrdType) tOrdType $
-                        LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-                        LT.insert (tnum tOrderQty2) tOrderQty2 $
-                        LT.insert (tnum tExpireTime) tExpireTime $
-                        LT.insert (tnum tTransactTime) tTransactTime $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tSpread) tSpread $
-                        LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-                        LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-                        LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-                        LT.insert (tnum tPriceType) tPriceType $
-                        LT.insert (tnum tPrice) tPrice $
-                        LT.insert (tnum tPrice2) tPrice2 $
-                        LT.insert (tnum tYieldType) tYieldType $
-                        LT.insert (tnum tYield) tYield $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tPrevClosePx) tPrevClosePx $
+               LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
+               LT.insert (tnum tQuoteType) tQuoteType $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+               LT.insert (tnum tNoStipulations) gNoStipulations'''''' $
+               LT.insert (tnum tSide) tSide $
+               LT.insert (tnum tQuantityType) tQuantityType $
+               LT.insert (tnum tOrderQty) tOrderQty $
+               LT.insert (tnum tCashOrderQty) tCashOrderQty $
+               LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+               LT.insert (tnum tFutSettDate) tFutSettDate $
+               LT.insert (tnum tOrdType) tOrdType $
+               LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+               LT.insert (tnum tOrderQty2) tOrderQty2 $
+               LT.insert (tnum tExpireTime) tExpireTime $
+               LT.insert (tnum tTransactTime) tTransactTime $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tSpread) tSpread $
+               LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+               LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+               LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+               LT.insert (tnum tPriceType) tPriceType $
+               LT.insert (tnum tPrice) tPrice $
+               LT.insert (tnum tPrice2) tPrice2 $
+               LT.insert (tnum tYieldType) tYieldType $
+               LT.insert (tnum tYield) tYield                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-                              gNoStipulations = FIXTag
-                                { tnum = tnum tNoStipulations
-                                , tparser = gNoStipulationsP }
+                  gNoStipulations'''''' = FIXTag
+                     { tName = "NoStipulations"
+                     , tnum = tnum tNoStipulations
+                     , tparser = gNoStipulationsP'''''' }
 
-                              gNoStipulationsP = groupP $ FGSpec
-                                { gsLength = tNoStipulations
-                                , gsSeperator = tStipulationType
-                                , gsBody = gNoStipulationsBody }
-                                  where
-                                  gNoStipulationsBody = 
-                                      LT.insert (tnum tStipulationValue) tStipulationValue $
-                                      LT.new
+                  gNoStipulationsP'''''' = groupP FGSpec
+                     { gsLength = tNoStipulations
+                     , gsSeperator = tStipulationType
+                     , gsBody = gNoStipulationsBody'''''' }
+                     where
+                     gNoStipulationsBody'''''' = 
+                        LT.insert (tnum tStipulationValue) tStipulationValue                         LT.new
 
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
-
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
 
 
 
 mQuote :: FIXMessageSpec
 mQuote = FMSpec
-   { msType = C.pack "S"
+   { msName = "Quote"
+   , msType = C.pack "S"
    , msHeader = headerFIX43
    , msBody = mQuoteBody
    , msTrailer = trailerFIX43 }
    where
-      mQuoteBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tQuoteType) tQuoteType $
-          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tBidPx) tBidPx $
-          LT.insert (tnum tOfferPx) tOfferPx $
-          LT.insert (tnum tMktBidPx) tMktBidPx $
-          LT.insert (tnum tMktOfferPx) tMktOfferPx $
-          LT.insert (tnum tMinBidSize) tMinBidSize $
-          LT.insert (tnum tBidSize) tBidSize $
-          LT.insert (tnum tMinOfferSize) tMinOfferSize $
-          LT.insert (tnum tOfferSize) tOfferSize $
-          LT.insert (tnum tValidUntilTime) tValidUntilTime $
-          LT.insert (tnum tBidSpotRate) tBidSpotRate $
-          LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
-          LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
-          LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
-          LT.insert (tnum tMidPx) tMidPx $
-          LT.insert (tnum tBidYield) tBidYield $
-          LT.insert (tnum tMidYield) tMidYield $
-          LT.insert (tnum tOfferYield) tOfferYield $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-          LT.insert (tnum tOrderQty2) tOrderQty2 $
-          LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
-          LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
-          LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
-          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mQuoteBody = 
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tQuoteType) tQuoteType $
+      LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tBidPx) tBidPx $
+      LT.insert (tnum tOfferPx) tOfferPx $
+      LT.insert (tnum tMktBidPx) tMktBidPx $
+      LT.insert (tnum tMktOfferPx) tMktOfferPx $
+      LT.insert (tnum tMinBidSize) tMinBidSize $
+      LT.insert (tnum tBidSize) tBidSize $
+      LT.insert (tnum tMinOfferSize) tMinOfferSize $
+      LT.insert (tnum tOfferSize) tOfferSize $
+      LT.insert (tnum tValidUntilTime) tValidUntilTime $
+      LT.insert (tnum tBidSpotRate) tBidSpotRate $
+      LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
+      LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
+      LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
+      LT.insert (tnum tMidPx) tMidPx $
+      LT.insert (tnum tBidYield) tBidYield $
+      LT.insert (tnum tMidYield) tMidYield $
+      LT.insert (tnum tOfferYield) tOfferYield $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+      LT.insert (tnum tOrderQty2) tOrderQty2 $
+      LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
+      LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
+      LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
+      LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mSettlementInstructions :: FIXMessageSpec
 mSettlementInstructions = FMSpec
-   { msType = C.pack "T"
+   { msName = "SettlementInstructions"
+   , msType = C.pack "T"
    , msHeader = headerFIX43
    , msBody = mSettlementInstructionsBody
    , msTrailer = trailerFIX43 }
    where
-      mSettlementInstructionsBody = 
-          LT.insert (tnum tSettlInstID) tSettlInstID $
-          LT.insert (tnum tSettlInstTransType) tSettlInstTransType $
-          LT.insert (tnum tSettlInstRefID) tSettlInstRefID $
-          LT.insert (tnum tSettlInstMode) tSettlInstMode $
-          LT.insert (tnum tSettlInstSource) tSettlInstSource $
-          LT.insert (tnum tAllocAccount) tAllocAccount $
-          LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tAllocID) tAllocID $
-          LT.insert (tnum tLastMkt) tLastMkt $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tStandInstDbType) tStandInstDbType $
-          LT.insert (tnum tStandInstDbName) tStandInstDbName $
-          LT.insert (tnum tStandInstDbID) tStandInstDbID $
-          LT.insert (tnum tSettlDeliveryType) tSettlDeliveryType $
-          LT.insert (tnum tSettlDepositoryCode) tSettlDepositoryCode $
-          LT.insert (tnum tSettlBrkrCode) tSettlBrkrCode $
-          LT.insert (tnum tSettlInstCode) tSettlInstCode $
-          LT.insert (tnum tSecuritySettlAgentName) tSecuritySettlAgentName $
-          LT.insert (tnum tSecuritySettlAgentCode) tSecuritySettlAgentCode $
-          LT.insert (tnum tSecuritySettlAgentAcctNum) tSecuritySettlAgentAcctNum $
-          LT.insert (tnum tSecuritySettlAgentAcctName) tSecuritySettlAgentAcctName $
-          LT.insert (tnum tSecuritySettlAgentContactName) tSecuritySettlAgentContactName $
-          LT.insert (tnum tSecuritySettlAgentContactPhone) tSecuritySettlAgentContactPhone $
-          LT.insert (tnum tCashSettlAgentName) tCashSettlAgentName $
-          LT.insert (tnum tCashSettlAgentCode) tCashSettlAgentCode $
-          LT.insert (tnum tCashSettlAgentAcctNum) tCashSettlAgentAcctNum $
-          LT.insert (tnum tCashSettlAgentAcctName) tCashSettlAgentAcctName $
-          LT.insert (tnum tCashSettlAgentContactName) tCashSettlAgentContactName $
-          LT.insert (tnum tCashSettlAgentContactPhone) tCashSettlAgentContactPhone $
-          LT.insert (tnum tPaymentMethod) tPaymentMethod $
-          LT.insert (tnum tPaymentRef) tPaymentRef $
-          LT.insert (tnum tCardHolderName) tCardHolderName $
-          LT.insert (tnum tCardNumber) tCardNumber $
-          LT.insert (tnum tCardStartDate) tCardStartDate $
-          LT.insert (tnum tCardExpDate) tCardExpDate $
-          LT.insert (tnum tCardIssNo) tCardIssNo $
-          LT.insert (tnum tPaymentDate) tPaymentDate $
-          LT.insert (tnum tPaymentRemitterID) tPaymentRemitterID $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mSettlementInstructionsBody = 
+      LT.insert (tnum tSettlInstID) tSettlInstID $
+      LT.insert (tnum tSettlInstTransType) tSettlInstTransType $
+      LT.insert (tnum tSettlInstRefID) tSettlInstRefID $
+      LT.insert (tnum tSettlInstMode) tSettlInstMode $
+      LT.insert (tnum tSettlInstSource) tSettlInstSource $
+      LT.insert (tnum tAllocAccount) tAllocAccount $
+      LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tAllocID) tAllocID $
+      LT.insert (tnum tLastMkt) tLastMkt $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tStandInstDbType) tStandInstDbType $
+      LT.insert (tnum tStandInstDbName) tStandInstDbName $
+      LT.insert (tnum tStandInstDbID) tStandInstDbID $
+      LT.insert (tnum tSettlDeliveryType) tSettlDeliveryType $
+      LT.insert (tnum tSettlDepositoryCode) tSettlDepositoryCode $
+      LT.insert (tnum tSettlBrkrCode) tSettlBrkrCode $
+      LT.insert (tnum tSettlInstCode) tSettlInstCode $
+      LT.insert (tnum tSecuritySettlAgentName) tSecuritySettlAgentName $
+      LT.insert (tnum tSecuritySettlAgentCode) tSecuritySettlAgentCode $
+      LT.insert (tnum tSecuritySettlAgentAcctNum) tSecuritySettlAgentAcctNum $
+      LT.insert (tnum tSecuritySettlAgentAcctName) tSecuritySettlAgentAcctName $
+      LT.insert (tnum tSecuritySettlAgentContactName) tSecuritySettlAgentContactName $
+      LT.insert (tnum tSecuritySettlAgentContactPhone) tSecuritySettlAgentContactPhone $
+      LT.insert (tnum tCashSettlAgentName) tCashSettlAgentName $
+      LT.insert (tnum tCashSettlAgentCode) tCashSettlAgentCode $
+      LT.insert (tnum tCashSettlAgentAcctNum) tCashSettlAgentAcctNum $
+      LT.insert (tnum tCashSettlAgentAcctName) tCashSettlAgentAcctName $
+      LT.insert (tnum tCashSettlAgentContactName) tCashSettlAgentContactName $
+      LT.insert (tnum tCashSettlAgentContactPhone) tCashSettlAgentContactPhone $
+      LT.insert (tnum tPaymentMethod) tPaymentMethod $
+      LT.insert (tnum tPaymentRef) tPaymentRef $
+      LT.insert (tnum tCardHolderName) tCardHolderName $
+      LT.insert (tnum tCardNumber) tCardNumber $
+      LT.insert (tnum tCardStartDate) tCardStartDate $
+      LT.insert (tnum tCardExpDate) tCardExpDate $
+      LT.insert (tnum tCardIssNo) tCardIssNo $
+      LT.insert (tnum tPaymentDate) tPaymentDate $
+      LT.insert (tnum tPaymentRemitterID) tPaymentRemitterID       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
 
 
 mMarketDataRequest :: FIXMessageSpec
 mMarketDataRequest = FMSpec
-   { msType = C.pack "V"
+   { msName = "MarketDataRequest"
+   , msType = C.pack "V"
    , msHeader = headerFIX43
    , msBody = mMarketDataRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mMarketDataRequestBody = 
-          LT.insert (tnum tMDReqID) tMDReqID $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.insert (tnum tMarketDepth) tMarketDepth $
-          LT.insert (tnum tMDUpdateType) tMDUpdateType $
-          LT.insert (tnum tAggregatedBook) tAggregatedBook $
-          LT.insert (tnum tOpenCloseSettleFlag) tOpenCloseSettleFlag $
-          LT.insert (tnum tScope) tScope $
-          LT.insert (tnum tMDImplicitDelete) tMDImplicitDelete $
-          LT.insert (tnum tNoMDEntryTypes) gNoMDEntryTypes $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.new
-          where
-                gNoMDEntryTypes = FIXTag
-                  { tnum = tnum tNoMDEntryTypes
-                  , tparser = gNoMDEntryTypesP }
+   mMarketDataRequestBody = 
+      LT.insert (tnum tMDReqID) tMDReqID $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+      LT.insert (tnum tMarketDepth) tMarketDepth $
+      LT.insert (tnum tMDUpdateType) tMDUpdateType $
+      LT.insert (tnum tAggregatedBook) tAggregatedBook $
+      LT.insert (tnum tOpenCloseSettleFlag) tOpenCloseSettleFlag $
+      LT.insert (tnum tScope) tScope $
+      LT.insert (tnum tMDImplicitDelete) tMDImplicitDelete $
+      LT.insert (tnum tNoMDEntryTypes) gNoMDEntryTypes''' $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions'''       LT.new
+      where
+         gNoMDEntryTypes''' = FIXTag
+            { tName = "NoMDEntryTypes"
+            , tnum = tnum tNoMDEntryTypes
+            , tparser = gNoMDEntryTypesP''' }
 
-                gNoMDEntryTypesP = groupP $ FGSpec
-                  { gsLength = tNoMDEntryTypes
-                  , gsSeperator = tMDEntryType
-                  , gsBody = gNoMDEntryTypesBody }
-                    where
-                    gNoMDEntryTypesBody = 
-                        LT.new
+         gNoMDEntryTypesP''' = groupP FGSpec
+            { gsLength = tNoMDEntryTypes
+            , gsSeperator = tMDEntryType
+            , gsBody = gNoMDEntryTypesBody''' }
+            where
+            gNoMDEntryTypesBody''' = 
+               LT.new
 
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
-
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mMarketDataSnapshotFullRefresh :: FIXMessageSpec
 mMarketDataSnapshotFullRefresh = FMSpec
-   { msType = C.pack "W"
+   { msName = "MarketDataSnapshotFullRefresh"
+   , msType = C.pack "W"
    , msHeader = headerFIX43
    , msBody = mMarketDataSnapshotFullRefreshBody
    , msTrailer = trailerFIX43 }
    where
-      mMarketDataSnapshotFullRefreshBody = 
-          LT.insert (tnum tMDReqID) tMDReqID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tFinancialStatus) tFinancialStatus $
-          LT.insert (tnum tCorporateAction) tCorporateAction $
-          LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
-          LT.insert (tnum tTotalVolumeTradedDate) tTotalVolumeTradedDate $
-          LT.insert (tnum tTotalVolumeTradedTime) tTotalVolumeTradedTime $
-          LT.insert (tnum tNetChgPrevDay) tNetChgPrevDay $
-          LT.insert (tnum tNoMDEntries) gNoMDEntries $
-          LT.new
-          where
-                gNoMDEntries = FIXTag
-                  { tnum = tnum tNoMDEntries
-                  , tparser = gNoMDEntriesP }
+   mMarketDataSnapshotFullRefreshBody = 
+      LT.insert (tnum tMDReqID) tMDReqID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tFinancialStatus) tFinancialStatus $
+      LT.insert (tnum tCorporateAction) tCorporateAction $
+      LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
+      LT.insert (tnum tTotalVolumeTradedDate) tTotalVolumeTradedDate $
+      LT.insert (tnum tTotalVolumeTradedTime) tTotalVolumeTradedTime $
+      LT.insert (tnum tNetChgPrevDay) tNetChgPrevDay $
+      LT.insert (tnum tNoMDEntries) gNoMDEntries'''       LT.new
+      where
+         gNoMDEntries''' = FIXTag
+            { tName = "NoMDEntries"
+            , tnum = tnum tNoMDEntries
+            , tparser = gNoMDEntriesP''' }
 
-                gNoMDEntriesP = groupP $ FGSpec
-                  { gsLength = tNoMDEntries
-                  , gsSeperator = tMDEntryType
-                  , gsBody = gNoMDEntriesBody }
-                    where
-                    gNoMDEntriesBody = 
-                        LT.insert (tnum tMDEntryPx) tMDEntryPx $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tMDEntrySize) tMDEntrySize $
-                        LT.insert (tnum tMDEntryDate) tMDEntryDate $
-                        LT.insert (tnum tMDEntryTime) tMDEntryTime $
-                        LT.insert (tnum tTickDirection) tTickDirection $
-                        LT.insert (tnum tMDMkt) tMDMkt $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tQuoteCondition) tQuoteCondition $
-                        LT.insert (tnum tTradeCondition) tTradeCondition $
-                        LT.insert (tnum tMDEntryOriginator) tMDEntryOriginator $
-                        LT.insert (tnum tLocationID) tLocationID $
-                        LT.insert (tnum tDeskID) tDeskID $
-                        LT.insert (tnum tOpenCloseSettleFlag) tOpenCloseSettleFlag $
-                        LT.insert (tnum tTimeInForce) tTimeInForce $
-                        LT.insert (tnum tExpireDate) tExpireDate $
-                        LT.insert (tnum tExpireTime) tExpireTime $
-                        LT.insert (tnum tMinQty) tMinQty $
-                        LT.insert (tnum tExecInst) tExecInst $
-                        LT.insert (tnum tSellerDays) tSellerDays $
-                        LT.insert (tnum tOrderID) tOrderID $
-                        LT.insert (tnum tQuoteEntryID) tQuoteEntryID $
-                        LT.insert (tnum tMDEntryBuyer) tMDEntryBuyer $
-                        LT.insert (tnum tMDEntrySeller) tMDEntrySeller $
-                        LT.insert (tnum tNumberOfOrders) tNumberOfOrders $
-                        LT.insert (tnum tMDEntryPositionNo) tMDEntryPositionNo $
-                        LT.insert (tnum tScope) tScope $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
+         gNoMDEntriesP''' = groupP FGSpec
+            { gsLength = tNoMDEntries
+            , gsSeperator = tMDEntryType
+            , gsBody = gNoMDEntriesBody''' }
+            where
+            gNoMDEntriesBody''' = 
+               LT.insert (tnum tMDEntryPx) tMDEntryPx $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tMDEntrySize) tMDEntrySize $
+               LT.insert (tnum tMDEntryDate) tMDEntryDate $
+               LT.insert (tnum tMDEntryTime) tMDEntryTime $
+               LT.insert (tnum tTickDirection) tTickDirection $
+               LT.insert (tnum tMDMkt) tMDMkt $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tQuoteCondition) tQuoteCondition $
+               LT.insert (tnum tTradeCondition) tTradeCondition $
+               LT.insert (tnum tMDEntryOriginator) tMDEntryOriginator $
+               LT.insert (tnum tLocationID) tLocationID $
+               LT.insert (tnum tDeskID) tDeskID $
+               LT.insert (tnum tOpenCloseSettleFlag) tOpenCloseSettleFlag $
+               LT.insert (tnum tTimeInForce) tTimeInForce $
+               LT.insert (tnum tExpireDate) tExpireDate $
+               LT.insert (tnum tExpireTime) tExpireTime $
+               LT.insert (tnum tMinQty) tMinQty $
+               LT.insert (tnum tExecInst) tExecInst $
+               LT.insert (tnum tSellerDays) tSellerDays $
+               LT.insert (tnum tOrderID) tOrderID $
+               LT.insert (tnum tQuoteEntryID) tQuoteEntryID $
+               LT.insert (tnum tMDEntryBuyer) tMDEntryBuyer $
+               LT.insert (tnum tMDEntrySeller) tMDEntrySeller $
+               LT.insert (tnum tNumberOfOrders) tNumberOfOrders $
+               LT.insert (tnum tMDEntryPositionNo) tMDEntryPositionNo $
+               LT.insert (tnum tScope) tScope $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mMarketDataIncrementalRefresh :: FIXMessageSpec
 mMarketDataIncrementalRefresh = FMSpec
-   { msType = C.pack "X"
+   { msName = "MarketDataIncrementalRefresh"
+   , msType = C.pack "X"
    , msHeader = headerFIX43
    , msBody = mMarketDataIncrementalRefreshBody
    , msTrailer = trailerFIX43 }
    where
-      mMarketDataIncrementalRefreshBody = 
-          LT.insert (tnum tMDReqID) tMDReqID $
-          LT.insert (tnum tNoMDEntries) gNoMDEntries $
-          LT.new
-          where
-                gNoMDEntries = FIXTag
-                  { tnum = tnum tNoMDEntries
-                  , tparser = gNoMDEntriesP }
+   mMarketDataIncrementalRefreshBody = 
+      LT.insert (tnum tMDReqID) tMDReqID $
+      LT.insert (tnum tNoMDEntries) gNoMDEntries'''       LT.new
+      where
+         gNoMDEntries''' = FIXTag
+            { tName = "NoMDEntries"
+            , tnum = tnum tNoMDEntries
+            , tparser = gNoMDEntriesP''' }
 
-                gNoMDEntriesP = groupP $ FGSpec
-                  { gsLength = tNoMDEntries
-                  , gsSeperator = tMDUpdateAction
-                  , gsBody = gNoMDEntriesBody }
-                    where
-                    gNoMDEntriesBody = 
-                        LT.insert (tnum tDeleteReason) tDeleteReason $
-                        LT.insert (tnum tMDEntryType) tMDEntryType $
-                        LT.insert (tnum tMDEntryID) tMDEntryID $
-                        LT.insert (tnum tMDEntryRefID) tMDEntryRefID $
-                        LT.insert (tnum tSymbol) tSymbol $
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tFinancialStatus) tFinancialStatus $
-                        LT.insert (tnum tCorporateAction) tCorporateAction $
-                        LT.insert (tnum tMDEntryPx) tMDEntryPx $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tMDEntrySize) tMDEntrySize $
-                        LT.insert (tnum tMDEntryDate) tMDEntryDate $
-                        LT.insert (tnum tMDEntryTime) tMDEntryTime $
-                        LT.insert (tnum tTickDirection) tTickDirection $
-                        LT.insert (tnum tMDMkt) tMDMkt $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tQuoteCondition) tQuoteCondition $
-                        LT.insert (tnum tTradeCondition) tTradeCondition $
-                        LT.insert (tnum tMDEntryOriginator) tMDEntryOriginator $
-                        LT.insert (tnum tLocationID) tLocationID $
-                        LT.insert (tnum tDeskID) tDeskID $
-                        LT.insert (tnum tOpenCloseSettleFlag) tOpenCloseSettleFlag $
-                        LT.insert (tnum tTimeInForce) tTimeInForce $
-                        LT.insert (tnum tExpireDate) tExpireDate $
-                        LT.insert (tnum tExpireTime) tExpireTime $
-                        LT.insert (tnum tMinQty) tMinQty $
-                        LT.insert (tnum tExecInst) tExecInst $
-                        LT.insert (tnum tSellerDays) tSellerDays $
-                        LT.insert (tnum tOrderID) tOrderID $
-                        LT.insert (tnum tQuoteEntryID) tQuoteEntryID $
-                        LT.insert (tnum tMDEntryBuyer) tMDEntryBuyer $
-                        LT.insert (tnum tMDEntrySeller) tMDEntrySeller $
-                        LT.insert (tnum tNumberOfOrders) tNumberOfOrders $
-                        LT.insert (tnum tMDEntryPositionNo) tMDEntryPositionNo $
-                        LT.insert (tnum tScope) tScope $
-                        LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
-                        LT.insert (tnum tTotalVolumeTradedDate) tTotalVolumeTradedDate $
-                        LT.insert (tnum tTotalVolumeTradedTime) tTotalVolumeTradedTime $
-                        LT.insert (tnum tNetChgPrevDay) tNetChgPrevDay $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoMDEntriesP''' = groupP FGSpec
+            { gsLength = tNoMDEntries
+            , gsSeperator = tMDUpdateAction
+            , gsBody = gNoMDEntriesBody''' }
+            where
+            gNoMDEntriesBody''' = 
+               LT.insert (tnum tDeleteReason) tDeleteReason $
+               LT.insert (tnum tMDEntryType) tMDEntryType $
+               LT.insert (tnum tMDEntryID) tMDEntryID $
+               LT.insert (tnum tMDEntryRefID) tMDEntryRefID $
+               LT.insert (tnum tSymbol) tSymbol $
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tFinancialStatus) tFinancialStatus $
+               LT.insert (tnum tCorporateAction) tCorporateAction $
+               LT.insert (tnum tMDEntryPx) tMDEntryPx $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tMDEntrySize) tMDEntrySize $
+               LT.insert (tnum tMDEntryDate) tMDEntryDate $
+               LT.insert (tnum tMDEntryTime) tMDEntryTime $
+               LT.insert (tnum tTickDirection) tTickDirection $
+               LT.insert (tnum tMDMkt) tMDMkt $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tQuoteCondition) tQuoteCondition $
+               LT.insert (tnum tTradeCondition) tTradeCondition $
+               LT.insert (tnum tMDEntryOriginator) tMDEntryOriginator $
+               LT.insert (tnum tLocationID) tLocationID $
+               LT.insert (tnum tDeskID) tDeskID $
+               LT.insert (tnum tOpenCloseSettleFlag) tOpenCloseSettleFlag $
+               LT.insert (tnum tTimeInForce) tTimeInForce $
+               LT.insert (tnum tExpireDate) tExpireDate $
+               LT.insert (tnum tExpireTime) tExpireTime $
+               LT.insert (tnum tMinQty) tMinQty $
+               LT.insert (tnum tExecInst) tExecInst $
+               LT.insert (tnum tSellerDays) tSellerDays $
+               LT.insert (tnum tOrderID) tOrderID $
+               LT.insert (tnum tQuoteEntryID) tQuoteEntryID $
+               LT.insert (tnum tMDEntryBuyer) tMDEntryBuyer $
+               LT.insert (tnum tMDEntrySeller) tMDEntrySeller $
+               LT.insert (tnum tNumberOfOrders) tNumberOfOrders $
+               LT.insert (tnum tMDEntryPositionNo) tMDEntryPositionNo $
+               LT.insert (tnum tScope) tScope $
+               LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
+               LT.insert (tnum tTotalVolumeTradedDate) tTotalVolumeTradedDate $
+               LT.insert (tnum tTotalVolumeTradedTime) tTotalVolumeTradedTime $
+               LT.insert (tnum tNetChgPrevDay) tNetChgPrevDay $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
 
 
 
 mMarketDataRequestReject :: FIXMessageSpec
 mMarketDataRequestReject = FMSpec
-   { msType = C.pack "Y"
+   { msName = "MarketDataRequestReject"
+   , msType = C.pack "Y"
    , msHeader = headerFIX43
    , msBody = mMarketDataRequestRejectBody
    , msTrailer = trailerFIX43 }
    where
-      mMarketDataRequestRejectBody = 
-          LT.insert (tnum tMDReqID) tMDReqID $
-          LT.insert (tnum tMDReqRejReason) tMDReqRejReason $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mMarketDataRequestRejectBody = 
+      LT.insert (tnum tMDReqID) tMDReqID $
+      LT.insert (tnum tMDReqRejReason) tMDReqRejReason $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mQuoteCancel :: FIXMessageSpec
 mQuoteCancel = FMSpec
-   { msType = C.pack "Z"
+   { msName = "QuoteCancel"
+   , msType = C.pack "Z"
    , msHeader = headerFIX43
    , msBody = mQuoteCancelBody
    , msTrailer = trailerFIX43 }
    where
-      mQuoteCancelBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tQuoteCancelType) tQuoteCancelType $
-          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tNoQuoteEntries) gNoQuoteEntries $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mQuoteCancelBody = 
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tQuoteCancelType) tQuoteCancelType $
+      LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tNoQuoteEntries) gNoQuoteEntries'''       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoQuoteEntries = FIXTag
-                  { tnum = tnum tNoQuoteEntries
-                  , tparser = gNoQuoteEntriesP }
+         gNoQuoteEntries''' = FIXTag
+            { tName = "NoQuoteEntries"
+            , tnum = tnum tNoQuoteEntries
+            , tparser = gNoQuoteEntriesP''' }
 
-                gNoQuoteEntriesP = groupP $ FGSpec
-                  { gsLength = tNoQuoteEntries
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoQuoteEntriesBody }
-                    where
-                    gNoQuoteEntriesBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoQuoteEntriesP''' = groupP FGSpec
+            { gsLength = tNoQuoteEntries
+            , gsSeperator = tSymbol
+            , gsBody = gNoQuoteEntriesBody''' }
+            where
+            gNoQuoteEntriesBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
 
 
 
 mQuoteStatusRequest :: FIXMessageSpec
 mQuoteStatusRequest = FMSpec
-   { msType = C.pack "a"
+   { msName = "QuoteStatusRequest"
+   , msType = C.pack "a"
    , msHeader = headerFIX43
    , msBody = mQuoteStatusRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mQuoteStatusRequestBody = 
-          LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mQuoteStatusRequestBody = 
+      LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mMassQuoteAcknowledgement :: FIXMessageSpec
 mMassQuoteAcknowledgement = FMSpec
-   { msType = C.pack "b"
+   { msName = "MassQuoteAcknowledgement"
+   , msType = C.pack "b"
    , msHeader = headerFIX43
    , msBody = mMassQuoteAcknowledgementBody
    , msTrailer = trailerFIX43 }
    where
-      mMassQuoteAcknowledgementBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tQuoteStatus) tQuoteStatus $
-          LT.insert (tnum tQuoteRejectReason) tQuoteRejectReason $
-          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
-          LT.insert (tnum tQuoteType) tQuoteType $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tNoQuoteSets) gNoQuoteSets $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mMassQuoteAcknowledgementBody = 
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tQuoteStatus) tQuoteStatus $
+      LT.insert (tnum tQuoteRejectReason) tQuoteRejectReason $
+      LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+      LT.insert (tnum tQuoteType) tQuoteType $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tNoQuoteSets) gNoQuoteSets'''       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoQuoteEntries = FIXTag
-                  { tnum = tnum tNoQuoteEntries
-                  , tparser = gNoQuoteEntriesP }
+         gNoQuoteSets''' = FIXTag
+            { tName = "NoQuoteSets"
+            , tnum = tnum tNoQuoteSets
+            , tparser = gNoQuoteSetsP''' }
 
-                gNoQuoteEntriesP = groupP $ FGSpec
-                  { gsLength = tNoQuoteEntries
-                  , gsSeperator = tQuoteEntryID
-                  , gsBody = gNoQuoteEntriesBody }
-                    where
-                    gNoQuoteEntriesBody = 
+         gNoQuoteSetsP''' = groupP FGSpec
+            { gsLength = tNoQuoteSets
+            , gsSeperator = tQuoteSetID
+            , gsBody = gNoQuoteSetsBody''' }
+            where
+            gNoQuoteSetsBody''' = 
+               LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+               LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+               LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+               LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+               LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID'''''' $
+               LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+               LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+               LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+               LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+               LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+               LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+               LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+               LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+               LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+               LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+               LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+               LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+               LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+               LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+               LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+               LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+               LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+               LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+               LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+               LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+               LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+               LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+               LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+               LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+               LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+               LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+               LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+               LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+               LT.insert (tnum tTotQuoteEntries) tTotQuoteEntries $
+               LT.insert (tnum tNoQuoteEntries) gNoQuoteEntries''''''                LT.new
+               where
+                  gNoQuoteEntries'''''' = FIXTag
+                     { tName = "NoQuoteEntries"
+                     , tnum = tnum tNoQuoteEntries
+                     , tparser = gNoQuoteEntriesP'''''' }
+
+                  gNoQuoteEntriesP'''''' = groupP FGSpec
+                     { gsLength = tNoQuoteEntries
+                     , gsSeperator = tQuoteEntryID
+                     , gsBody = gNoQuoteEntriesBody'''''' }
+                     where
+                     gNoQuoteEntriesBody'''''' = 
                         LT.insert (tnum tSymbol) tSymbol $
                         LT.insert (tnum tSymbolSfx) tSymbolSfx $
                         LT.insert (tnum tSecurityID) tSecurityID $
                         LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
+                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''''''''' $
                         LT.insert (tnum tProduct) tProduct $
                         LT.insert (tnum tCFICode) tCFICode $
                         LT.insert (tnum tSecurityType) tSecurityType $
@@ -5362,731 +7088,584 @@ mMassQuoteAcknowledgement = FMSpec
                         LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
                         LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
                         LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tQuoteEntryRejectReason) tQuoteEntryRejectReason $
-                        LT.new
+                        LT.insert (tnum tQuoteEntryRejectReason) tQuoteEntryRejectReason                         LT.new
                         where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+                           gNoSecurityAltID''''''''' = FIXTag
+                              { tName = "NoSecurityAltID"
+                              , tnum = tnum tNoSecurityAltID
+                              , tparser = gNoSecurityAltIDP''''''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
-
-
-                gNoQuoteSets = FIXTag
-                  { tnum = tnum tNoQuoteSets
-                  , tparser = gNoQuoteSetsP }
-
-                gNoQuoteSetsP = groupP $ FGSpec
-                  { gsLength = tNoQuoteSets
-                  , gsSeperator = tQuoteSetID
-                  , gsBody = gNoQuoteSetsBody }
-                    where
-                    gNoQuoteSetsBody = 
-                        LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-                        LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-                        LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-                        LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-                        LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-                        LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-                        LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-                        LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-                        LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-                        LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-                        LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-                        LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-                        LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-                        LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-                        LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-                        LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-                        LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-                        LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-                        LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-                        LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-                        LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-                        LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-                        LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-                        LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-                        LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-                        LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-                        LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-                        LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-                        LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-                        LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-                        LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-                        LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-                        LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-                        LT.insert (tnum tTotQuoteEntries) tTotQuoteEntries $
-                        LT.insert (tnum tNoQuoteEntries) gNoQuoteEntries $
-                        LT.new
-                        where
-                              gNoQuoteEntries = FIXTag
-                                { tnum = tnum tNoQuoteEntries
-                                , tparser = gNoQuoteEntriesP }
-
-                              gNoQuoteEntriesP = groupP $ FGSpec
-                                { gsLength = tNoQuoteEntries
-                                , gsSeperator = tQuoteEntryID
-                                , gsBody = gNoQuoteEntriesBody }
-                                  where
-                                  gNoQuoteEntriesBody = 
-                                      LT.insert (tnum tSymbol) tSymbol $
-                                      LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                                      LT.insert (tnum tSecurityID) tSecurityID $
-                                      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                                      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                                      LT.insert (tnum tProduct) tProduct $
-                                      LT.insert (tnum tCFICode) tCFICode $
-                                      LT.insert (tnum tSecurityType) tSecurityType $
-                                      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                                      LT.insert (tnum tMaturityDate) tMaturityDate $
-                                      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                                      LT.insert (tnum tIssueDate) tIssueDate $
-                                      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                                      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                                      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                                      LT.insert (tnum tFactor) tFactor $
-                                      LT.insert (tnum tCreditRating) tCreditRating $
-                                      LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                                      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                                      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                                      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                                      LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                                      LT.insert (tnum tStrikePrice) tStrikePrice $
-                                      LT.insert (tnum tOptAttribute) tOptAttribute $
-                                      LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                                      LT.insert (tnum tCouponRate) tCouponRate $
-                                      LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                                      LT.insert (tnum tIssuer) tIssuer $
-                                      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                                      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                                      LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                                      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                                      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                                      LT.insert (tnum tBidPx) tBidPx $
-                                      LT.insert (tnum tOfferPx) tOfferPx $
-                                      LT.insert (tnum tBidSize) tBidSize $
-                                      LT.insert (tnum tOfferSize) tOfferSize $
-                                      LT.insert (tnum tValidUntilTime) tValidUntilTime $
-                                      LT.insert (tnum tBidSpotRate) tBidSpotRate $
-                                      LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
-                                      LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
-                                      LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
-                                      LT.insert (tnum tMidPx) tMidPx $
-                                      LT.insert (tnum tBidYield) tBidYield $
-                                      LT.insert (tnum tMidYield) tMidYield $
-                                      LT.insert (tnum tOfferYield) tOfferYield $
-                                      LT.insert (tnum tTransactTime) tTransactTime $
-                                      LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                                      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                                      LT.insert (tnum tFutSettDate) tFutSettDate $
-                                      LT.insert (tnum tOrdType) tOrdType $
-                                      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-                                      LT.insert (tnum tOrderQty2) tOrderQty2 $
-                                      LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
-                                      LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
-                                      LT.insert (tnum tCurrency) tCurrency $
-                                      LT.insert (tnum tQuoteEntryRejectReason) tQuoteEntryRejectReason $
-                                      LT.new
-                                      where
-                                            gNoSecurityAltID = FIXTag
-                                              { tnum = tnum tNoSecurityAltID
-                                              , tparser = gNoSecurityAltIDP }
-
-                                            gNoSecurityAltIDP = groupP $ FGSpec
-                                              { gsLength = tNoSecurityAltID
-                                              , gsSeperator = tSecurityAltID
-                                              , gsBody = gNoSecurityAltIDBody }
-                                                where
-                                                gNoSecurityAltIDBody = 
-                                                    LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                                    LT.new
+                           gNoSecurityAltIDP''''''''' = groupP FGSpec
+                              { gsLength = tNoSecurityAltID
+                              , gsSeperator = tSecurityAltID
+                              , gsBody = gNoSecurityAltIDBody''''''''' }
+                              where
+                              gNoSecurityAltIDBody''''''''' = 
+                                 LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                                  LT.new
 
 
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+                  gNoUnderlyingSecurityAltID'''''' = FIXTag
+                     { tName = "NoUnderlyingSecurityAltID"
+                     , tnum = tnum tNoUnderlyingSecurityAltID
+                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoUnderlyingSecurityAltID
+                     , gsSeperator = tUnderlyingSecurityAltID
+                     , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
+                     where
+                     gNoUnderlyingSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                         LT.new
 
-                              gNoUnderlyingSecurityAltID = FIXTag
-                                { tnum = tnum tNoUnderlyingSecurityAltID
-                                , tparser = gNoUnderlyingSecurityAltIDP }
-
-                              gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoUnderlyingSecurityAltID
-                                , gsSeperator = tUnderlyingSecurityAltID
-                                , gsBody = gNoUnderlyingSecurityAltIDBody }
-                                  where
-                                  gNoUnderlyingSecurityAltIDBody = 
-                                      LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                                      LT.new
-
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
-
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
 
 
 
 mSecurityDefinitionRequest :: FIXMessageSpec
 mSecurityDefinitionRequest = FMSpec
-   { msType = C.pack "c"
+   { msName = "SecurityDefinitionRequest"
+   , msType = C.pack "c"
    , msHeader = headerFIX43
    , msBody = mSecurityDefinitionRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityDefinitionRequestBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityRequestType) tSecurityRequestType $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tNoLegs) gNoLegs $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
-          where
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+   mSecurityDefinitionRequestBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityRequestType) tSecurityRequestType $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tNoLegs) gNoLegs''' $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
+      where
+         gNoLegs''' = FIXTag
+            { tName = "NoLegs"
+            , tnum = tnum tNoLegs
+            , tparser = gNoLegsP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoLegsP''' = groupP FGSpec
+            { gsLength = tNoLegs
+            , gsSeperator = tLegSymbol
+            , gsBody = gNoLegsBody''' }
+            where
+            gNoLegsBody''' = 
+               LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
+               LT.insert (tnum tLegSecurityID) tLegSecurityID $
+               LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
+               LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID'''''' $
+               LT.insert (tnum tLegProduct) tLegProduct $
+               LT.insert (tnum tLegCFICode) tLegCFICode $
+               LT.insert (tnum tLegSecurityType) tLegSecurityType $
+               LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
+               LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
+               LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
+               LT.insert (tnum tLegIssueDate) tLegIssueDate $
+               LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
+               LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
+               LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
+               LT.insert (tnum tLegFactor) tLegFactor $
+               LT.insert (tnum tLegCreditRating) tLegCreditRating $
+               LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
+               LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
+               LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
+               LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
+               LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
+               LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
+               LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
+               LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
+               LT.insert (tnum tLegCouponRate) tLegCouponRate $
+               LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
+               LT.insert (tnum tLegIssuer) tLegIssuer $
+               LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
+               LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
+               LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
+               LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
+               LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
+               LT.insert (tnum tLegRatioQty) tLegRatioQty $
+               LT.insert (tnum tLegSide) tLegSide $
+               LT.insert (tnum tLegCurrency) tLegCurrency                LT.new
+               where
+                  gNoLegSecurityAltID'''''' = FIXTag
+                     { tName = "NoLegSecurityAltID"
+                     , tnum = tnum tNoLegSecurityAltID
+                     , tparser = gNoLegSecurityAltIDP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
-
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
-                        LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                        LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                        LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                        LT.insert (tnum tLegProduct) tLegProduct $
-                        LT.insert (tnum tLegCFICode) tLegCFICode $
-                        LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                        LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                        LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                        LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                        LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                        LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                        LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                        LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                        LT.insert (tnum tLegFactor) tLegFactor $
-                        LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                        LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                        LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                        LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                        LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                        LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                        LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                        LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                        LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                        LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                        LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                        LT.insert (tnum tLegIssuer) tLegIssuer $
-                        LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                        LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                        LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                        LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                        LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                        LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                        LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegCurrency) tLegCurrency $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
-
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
+                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoLegSecurityAltID
+                     , gsSeperator = tLegSecurityAltID
+                     , gsBody = gNoLegSecurityAltIDBody'''''' }
+                     where
+                     gNoLegSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                         LT.new
 
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mSecurityDefinition :: FIXMessageSpec
 mSecurityDefinition = FMSpec
-   { msType = C.pack "d"
+   { msName = "SecurityDefinition"
+   , msType = C.pack "d"
    , msHeader = headerFIX43
    , msBody = mSecurityDefinitionBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityDefinitionBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
-          LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tNoLegs) gNoLegs $
-          LT.insert (tnum tRoundLot) tRoundLot $
-          LT.insert (tnum tMinTradeVol) tMinTradeVol $
-          LT.new
-          where
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+   mSecurityDefinitionBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+      LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tNoLegs) gNoLegs''' $
+      LT.insert (tnum tRoundLot) tRoundLot $
+      LT.insert (tnum tMinTradeVol) tMinTradeVol       LT.new
+      where
+         gNoLegs''' = FIXTag
+            { tName = "NoLegs"
+            , tnum = tnum tNoLegs
+            , tparser = gNoLegsP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoLegsP''' = groupP FGSpec
+            { gsLength = tNoLegs
+            , gsSeperator = tLegSymbol
+            , gsBody = gNoLegsBody''' }
+            where
+            gNoLegsBody''' = 
+               LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
+               LT.insert (tnum tLegSecurityID) tLegSecurityID $
+               LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
+               LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID'''''' $
+               LT.insert (tnum tLegProduct) tLegProduct $
+               LT.insert (tnum tLegCFICode) tLegCFICode $
+               LT.insert (tnum tLegSecurityType) tLegSecurityType $
+               LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
+               LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
+               LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
+               LT.insert (tnum tLegIssueDate) tLegIssueDate $
+               LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
+               LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
+               LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
+               LT.insert (tnum tLegFactor) tLegFactor $
+               LT.insert (tnum tLegCreditRating) tLegCreditRating $
+               LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
+               LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
+               LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
+               LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
+               LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
+               LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
+               LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
+               LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
+               LT.insert (tnum tLegCouponRate) tLegCouponRate $
+               LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
+               LT.insert (tnum tLegIssuer) tLegIssuer $
+               LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
+               LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
+               LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
+               LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
+               LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
+               LT.insert (tnum tLegRatioQty) tLegRatioQty $
+               LT.insert (tnum tLegSide) tLegSide $
+               LT.insert (tnum tLegCurrency) tLegCurrency                LT.new
+               where
+                  gNoLegSecurityAltID'''''' = FIXTag
+                     { tName = "NoLegSecurityAltID"
+                     , tnum = tnum tNoLegSecurityAltID
+                     , tparser = gNoLegSecurityAltIDP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
-
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
-                        LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                        LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                        LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                        LT.insert (tnum tLegProduct) tLegProduct $
-                        LT.insert (tnum tLegCFICode) tLegCFICode $
-                        LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                        LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                        LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                        LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                        LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                        LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                        LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                        LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                        LT.insert (tnum tLegFactor) tLegFactor $
-                        LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                        LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                        LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                        LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                        LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                        LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                        LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                        LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                        LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                        LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                        LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                        LT.insert (tnum tLegIssuer) tLegIssuer $
-                        LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                        LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                        LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                        LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                        LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                        LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                        LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegCurrency) tLegCurrency $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
-
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
+                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoLegSecurityAltID
+                     , gsSeperator = tLegSecurityAltID
+                     , gsBody = gNoLegSecurityAltIDBody'''''' }
+                     where
+                     gNoLegSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                         LT.new
 
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mSecurityStatusRequest :: FIXMessageSpec
 mSecurityStatusRequest = FMSpec
-   { msType = C.pack "e"
+   { msName = "SecurityStatusRequest"
+   , msType = C.pack "e"
    , msHeader = headerFIX43
    , msBody = mSecurityStatusRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityStatusRequestBody = 
-          LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mSecurityStatusRequestBody = 
+      LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mSecurityStatus :: FIXMessageSpec
 mSecurityStatus = FMSpec
-   { msType = C.pack "f"
+   { msName = "SecurityStatus"
+   , msType = C.pack "f"
    , msHeader = headerFIX43
    , msBody = mSecurityStatusBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityStatusBody = 
-          LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
-          LT.insert (tnum tSecurityTradingStatus) tSecurityTradingStatus $
-          LT.insert (tnum tFinancialStatus) tFinancialStatus $
-          LT.insert (tnum tCorporateAction) tCorporateAction $
-          LT.insert (tnum tHaltReasonChar) tHaltReasonChar $
-          LT.insert (tnum tInViewOfCommon) tInViewOfCommon $
-          LT.insert (tnum tDueToRelated) tDueToRelated $
-          LT.insert (tnum tBuyVolume) tBuyVolume $
-          LT.insert (tnum tSellVolume) tSellVolume $
-          LT.insert (tnum tHighPx) tHighPx $
-          LT.insert (tnum tLowPx) tLowPx $
-          LT.insert (tnum tLastPx) tLastPx $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tAdjustment) tAdjustment $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mSecurityStatusBody = 
+      LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+      LT.insert (tnum tSecurityTradingStatus) tSecurityTradingStatus $
+      LT.insert (tnum tFinancialStatus) tFinancialStatus $
+      LT.insert (tnum tCorporateAction) tCorporateAction $
+      LT.insert (tnum tHaltReasonChar) tHaltReasonChar $
+      LT.insert (tnum tInViewOfCommon) tInViewOfCommon $
+      LT.insert (tnum tDueToRelated) tDueToRelated $
+      LT.insert (tnum tBuyVolume) tBuyVolume $
+      LT.insert (tnum tSellVolume) tSellVolume $
+      LT.insert (tnum tHighPx) tHighPx $
+      LT.insert (tnum tLowPx) tLowPx $
+      LT.insert (tnum tLastPx) tLastPx $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tAdjustment) tAdjustment $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mTradingSessionStatusRequest :: FIXMessageSpec
 mTradingSessionStatusRequest = FMSpec
-   { msType = C.pack "g"
+   { msName = "TradingSessionStatusRequest"
+   , msType = C.pack "g"
    , msHeader = headerFIX43
    , msBody = mTradingSessionStatusRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mTradingSessionStatusRequestBody = 
-          LT.insert (tnum tTradSesReqID) tTradSesReqID $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tTradSesMethod) tTradSesMethod $
-          LT.insert (tnum tTradSesMode) tTradSesMode $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
+   mTradingSessionStatusRequestBody = 
+      LT.insert (tnum tTradSesReqID) tTradSesReqID $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tTradSesMethod) tTradSesMethod $
+      LT.insert (tnum tTradSesMode) tTradSesMode $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
 
 
 mTradingSessionStatus :: FIXMessageSpec
 mTradingSessionStatus = FMSpec
-   { msType = C.pack "h"
+   { msName = "TradingSessionStatus"
+   , msType = C.pack "h"
    , msHeader = headerFIX43
    , msBody = mTradingSessionStatusBody
    , msTrailer = trailerFIX43 }
    where
-      mTradingSessionStatusBody = 
-          LT.insert (tnum tTradSesReqID) tTradSesReqID $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tTradSesMethod) tTradSesMethod $
-          LT.insert (tnum tTradSesMode) tTradSesMode $
-          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
-          LT.insert (tnum tTradSesStatus) tTradSesStatus $
-          LT.insert (tnum tTradSesStatusRejReason) tTradSesStatusRejReason $
-          LT.insert (tnum tTradSesStartTime) tTradSesStartTime $
-          LT.insert (tnum tTradSesOpenTime) tTradSesOpenTime $
-          LT.insert (tnum tTradSesPreCloseTime) tTradSesPreCloseTime $
-          LT.insert (tnum tTradSesCloseTime) tTradSesCloseTime $
-          LT.insert (tnum tTradSesEndTime) tTradSesEndTime $
-          LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mTradingSessionStatusBody = 
+      LT.insert (tnum tTradSesReqID) tTradSesReqID $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tTradSesMethod) tTradSesMethod $
+      LT.insert (tnum tTradSesMode) tTradSesMode $
+      LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+      LT.insert (tnum tTradSesStatus) tTradSesStatus $
+      LT.insert (tnum tTradSesStatusRejReason) tTradSesStatusRejReason $
+      LT.insert (tnum tTradSesStartTime) tTradSesStartTime $
+      LT.insert (tnum tTradSesOpenTime) tTradSesOpenTime $
+      LT.insert (tnum tTradSesPreCloseTime) tTradSesPreCloseTime $
+      LT.insert (tnum tTradSesCloseTime) tTradSesCloseTime $
+      LT.insert (tnum tTradSesEndTime) tTradSesEndTime $
+      LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mMassQuote :: FIXMessageSpec
 mMassQuote = FMSpec
-   { msType = C.pack "i"
+   { msName = "MassQuote"
+   , msType = C.pack "i"
    , msHeader = headerFIX43
    , msBody = mMassQuoteBody
    , msTrailer = trailerFIX43 }
    where
-      mMassQuoteBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tQuoteType) tQuoteType $
-          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tDefBidSize) tDefBidSize $
-          LT.insert (tnum tDefOfferSize) tDefOfferSize $
-          LT.insert (tnum tNoQuoteSets) gNoQuoteSets $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mMassQuoteBody = 
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tQuoteType) tQuoteType $
+      LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tDefBidSize) tDefBidSize $
+      LT.insert (tnum tDefOfferSize) tDefOfferSize $
+      LT.insert (tnum tNoQuoteSets) gNoQuoteSets'''       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoQuoteEntries = FIXTag
-                  { tnum = tnum tNoQuoteEntries
-                  , tparser = gNoQuoteEntriesP }
+         gNoQuoteSets''' = FIXTag
+            { tName = "NoQuoteSets"
+            , tnum = tnum tNoQuoteSets
+            , tparser = gNoQuoteSetsP''' }
 
-                gNoQuoteEntriesP = groupP $ FGSpec
-                  { gsLength = tNoQuoteEntries
-                  , gsSeperator = tQuoteEntryID
-                  , gsBody = gNoQuoteEntriesBody }
-                    where
-                    gNoQuoteEntriesBody = 
+         gNoQuoteSetsP''' = groupP FGSpec
+            { gsLength = tNoQuoteSets
+            , gsSeperator = tQuoteSetID
+            , gsBody = gNoQuoteSetsBody''' }
+            where
+            gNoQuoteSetsBody''' = 
+               LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+               LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+               LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+               LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+               LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID'''''' $
+               LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+               LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+               LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+               LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+               LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+               LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+               LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+               LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+               LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+               LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+               LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+               LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+               LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+               LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+               LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+               LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+               LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+               LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+               LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+               LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+               LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+               LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+               LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+               LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+               LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+               LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+               LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+               LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+               LT.insert (tnum tQuoteSetValidUntilTime) tQuoteSetValidUntilTime $
+               LT.insert (tnum tTotQuoteEntries) tTotQuoteEntries $
+               LT.insert (tnum tNoQuoteEntries) gNoQuoteEntries''''''                LT.new
+               where
+                  gNoQuoteEntries'''''' = FIXTag
+                     { tName = "NoQuoteEntries"
+                     , tnum = tnum tNoQuoteEntries
+                     , tparser = gNoQuoteEntriesP'''''' }
+
+                  gNoQuoteEntriesP'''''' = groupP FGSpec
+                     { gsLength = tNoQuoteEntries
+                     , gsSeperator = tQuoteEntryID
+                     , gsBody = gNoQuoteEntriesBody'''''' }
+                     where
+                     gNoQuoteEntriesBody'''''' = 
                         LT.insert (tnum tSymbol) tSymbol $
                         LT.insert (tnum tSymbolSfx) tSymbolSfx $
                         LT.insert (tnum tSecurityID) tSecurityID $
                         LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
+                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''''''''' $
                         LT.insert (tnum tProduct) tProduct $
                         LT.insert (tnum tCFICode) tCFICode $
                         LT.insert (tnum tSecurityType) tSecurityType $
@@ -6137,1730 +7716,1406 @@ mMassQuote = FMSpec
                         LT.insert (tnum tOrderQty2) tOrderQty2 $
                         LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
                         LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.new
+                        LT.insert (tnum tCurrency) tCurrency                         LT.new
                         where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+                           gNoSecurityAltID''''''''' = FIXTag
+                              { tName = "NoSecurityAltID"
+                              , tnum = tnum tNoSecurityAltID
+                              , tparser = gNoSecurityAltIDP''''''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
-
-
-                gNoQuoteSets = FIXTag
-                  { tnum = tnum tNoQuoteSets
-                  , tparser = gNoQuoteSetsP }
-
-                gNoQuoteSetsP = groupP $ FGSpec
-                  { gsLength = tNoQuoteSets
-                  , gsSeperator = tQuoteSetID
-                  , gsBody = gNoQuoteSetsBody }
-                    where
-                    gNoQuoteSetsBody = 
-                        LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-                        LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-                        LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-                        LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-                        LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-                        LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-                        LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-                        LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-                        LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-                        LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-                        LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-                        LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-                        LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-                        LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-                        LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-                        LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-                        LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-                        LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-                        LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-                        LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-                        LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-                        LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-                        LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-                        LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-                        LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-                        LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-                        LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-                        LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-                        LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-                        LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-                        LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-                        LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-                        LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-                        LT.insert (tnum tQuoteSetValidUntilTime) tQuoteSetValidUntilTime $
-                        LT.insert (tnum tTotQuoteEntries) tTotQuoteEntries $
-                        LT.insert (tnum tNoQuoteEntries) gNoQuoteEntries $
-                        LT.new
-                        where
-                              gNoQuoteEntries = FIXTag
-                                { tnum = tnum tNoQuoteEntries
-                                , tparser = gNoQuoteEntriesP }
-
-                              gNoQuoteEntriesP = groupP $ FGSpec
-                                { gsLength = tNoQuoteEntries
-                                , gsSeperator = tQuoteEntryID
-                                , gsBody = gNoQuoteEntriesBody }
-                                  where
-                                  gNoQuoteEntriesBody = 
-                                      LT.insert (tnum tSymbol) tSymbol $
-                                      LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                                      LT.insert (tnum tSecurityID) tSecurityID $
-                                      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                                      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                                      LT.insert (tnum tProduct) tProduct $
-                                      LT.insert (tnum tCFICode) tCFICode $
-                                      LT.insert (tnum tSecurityType) tSecurityType $
-                                      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                                      LT.insert (tnum tMaturityDate) tMaturityDate $
-                                      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                                      LT.insert (tnum tIssueDate) tIssueDate $
-                                      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                                      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                                      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                                      LT.insert (tnum tFactor) tFactor $
-                                      LT.insert (tnum tCreditRating) tCreditRating $
-                                      LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                                      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                                      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                                      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                                      LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                                      LT.insert (tnum tStrikePrice) tStrikePrice $
-                                      LT.insert (tnum tOptAttribute) tOptAttribute $
-                                      LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                                      LT.insert (tnum tCouponRate) tCouponRate $
-                                      LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                                      LT.insert (tnum tIssuer) tIssuer $
-                                      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                                      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                                      LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                                      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                                      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                                      LT.insert (tnum tBidPx) tBidPx $
-                                      LT.insert (tnum tOfferPx) tOfferPx $
-                                      LT.insert (tnum tBidSize) tBidSize $
-                                      LT.insert (tnum tOfferSize) tOfferSize $
-                                      LT.insert (tnum tValidUntilTime) tValidUntilTime $
-                                      LT.insert (tnum tBidSpotRate) tBidSpotRate $
-                                      LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
-                                      LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
-                                      LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
-                                      LT.insert (tnum tMidPx) tMidPx $
-                                      LT.insert (tnum tBidYield) tBidYield $
-                                      LT.insert (tnum tMidYield) tMidYield $
-                                      LT.insert (tnum tOfferYield) tOfferYield $
-                                      LT.insert (tnum tTransactTime) tTransactTime $
-                                      LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                                      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                                      LT.insert (tnum tFutSettDate) tFutSettDate $
-                                      LT.insert (tnum tOrdType) tOrdType $
-                                      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-                                      LT.insert (tnum tOrderQty2) tOrderQty2 $
-                                      LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
-                                      LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
-                                      LT.insert (tnum tCurrency) tCurrency $
-                                      LT.new
-                                      where
-                                            gNoSecurityAltID = FIXTag
-                                              { tnum = tnum tNoSecurityAltID
-                                              , tparser = gNoSecurityAltIDP }
-
-                                            gNoSecurityAltIDP = groupP $ FGSpec
-                                              { gsLength = tNoSecurityAltID
-                                              , gsSeperator = tSecurityAltID
-                                              , gsBody = gNoSecurityAltIDBody }
-                                                where
-                                                gNoSecurityAltIDBody = 
-                                                    LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                                    LT.new
+                           gNoSecurityAltIDP''''''''' = groupP FGSpec
+                              { gsLength = tNoSecurityAltID
+                              , gsSeperator = tSecurityAltID
+                              , gsBody = gNoSecurityAltIDBody''''''''' }
+                              where
+                              gNoSecurityAltIDBody''''''''' = 
+                                 LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                                  LT.new
 
 
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+                  gNoUnderlyingSecurityAltID'''''' = FIXTag
+                     { tName = "NoUnderlyingSecurityAltID"
+                     , tnum = tnum tNoUnderlyingSecurityAltID
+                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoUnderlyingSecurityAltID
+                     , gsSeperator = tUnderlyingSecurityAltID
+                     , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
+                     where
+                     gNoUnderlyingSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                         LT.new
 
-                              gNoUnderlyingSecurityAltID = FIXTag
-                                { tnum = tnum tNoUnderlyingSecurityAltID
-                                , tparser = gNoUnderlyingSecurityAltIDP }
-
-                              gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoUnderlyingSecurityAltID
-                                , gsSeperator = tUnderlyingSecurityAltID
-                                , gsBody = gNoUnderlyingSecurityAltIDBody }
-                                  where
-                                  gNoUnderlyingSecurityAltIDBody = 
-                                      LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                                      LT.new
-
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
-
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
 
 
 
 mBusinessMessageReject :: FIXMessageSpec
 mBusinessMessageReject = FMSpec
-   { msType = C.pack "j"
+   { msName = "BusinessMessageReject"
+   , msType = C.pack "j"
    , msHeader = headerFIX43
    , msBody = mBusinessMessageRejectBody
    , msTrailer = trailerFIX43 }
    where
-      mBusinessMessageRejectBody = 
-          LT.insert (tnum tRefSeqNum) tRefSeqNum $
-          LT.insert (tnum tRefMsgType) tRefMsgType $
-          LT.insert (tnum tBusinessRejectRefID) tBusinessRejectRefID $
-          LT.insert (tnum tBusinessRejectReason) tBusinessRejectReason $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
+   mBusinessMessageRejectBody = 
+      LT.insert (tnum tRefSeqNum) tRefSeqNum $
+      LT.insert (tnum tRefMsgType) tRefMsgType $
+      LT.insert (tnum tBusinessRejectRefID) tBusinessRejectRefID $
+      LT.insert (tnum tBusinessRejectReason) tBusinessRejectReason $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
 
 
 mBidRequest :: FIXMessageSpec
 mBidRequest = FMSpec
-   { msType = C.pack "k"
+   { msName = "BidRequest"
+   , msType = C.pack "k"
    , msHeader = headerFIX43
    , msBody = mBidRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mBidRequestBody = 
-          LT.insert (tnum tBidID) tBidID $
-          LT.insert (tnum tClientBidID) tClientBidID $
-          LT.insert (tnum tBidRequestTransType) tBidRequestTransType $
-          LT.insert (tnum tListName) tListName $
-          LT.insert (tnum tTotalNumSecurities) tTotalNumSecurities $
-          LT.insert (tnum tBidType) tBidType $
-          LT.insert (tnum tNumTickets) tNumTickets $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tSideValue1) tSideValue1 $
-          LT.insert (tnum tSideValue2) tSideValue2 $
-          LT.insert (tnum tNoBidDescriptors) gNoBidDescriptors $
-          LT.insert (tnum tNoBidComponents) gNoBidComponents $
-          LT.insert (tnum tLiquidityIndType) tLiquidityIndType $
-          LT.insert (tnum tWtAverageLiquidity) tWtAverageLiquidity $
-          LT.insert (tnum tExchangeForPhysical) tExchangeForPhysical $
-          LT.insert (tnum tOutMainCntryUIndex) tOutMainCntryUIndex $
-          LT.insert (tnum tCrossPercent) tCrossPercent $
-          LT.insert (tnum tProgRptReqs) tProgRptReqs $
-          LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
-          LT.insert (tnum tIncTaxInd) tIncTaxInd $
-          LT.insert (tnum tForexReq) tForexReq $
-          LT.insert (tnum tNumBidders) tNumBidders $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tTradeType) tTradeType $
-          LT.insert (tnum tBasisPxType) tBasisPxType $
-          LT.insert (tnum tStrikeTime) tStrikeTime $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoBidComponents = FIXTag
-                  { tnum = tnum tNoBidComponents
-                  , tparser = gNoBidComponentsP }
+   mBidRequestBody = 
+      LT.insert (tnum tBidID) tBidID $
+      LT.insert (tnum tClientBidID) tClientBidID $
+      LT.insert (tnum tBidRequestTransType) tBidRequestTransType $
+      LT.insert (tnum tListName) tListName $
+      LT.insert (tnum tTotalNumSecurities) tTotalNumSecurities $
+      LT.insert (tnum tBidType) tBidType $
+      LT.insert (tnum tNumTickets) tNumTickets $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tSideValue1) tSideValue1 $
+      LT.insert (tnum tSideValue2) tSideValue2 $
+      LT.insert (tnum tNoBidDescriptors) gNoBidDescriptors''' $
+      LT.insert (tnum tNoBidComponents) gNoBidComponents''' $
+      LT.insert (tnum tLiquidityIndType) tLiquidityIndType $
+      LT.insert (tnum tWtAverageLiquidity) tWtAverageLiquidity $
+      LT.insert (tnum tExchangeForPhysical) tExchangeForPhysical $
+      LT.insert (tnum tOutMainCntryUIndex) tOutMainCntryUIndex $
+      LT.insert (tnum tCrossPercent) tCrossPercent $
+      LT.insert (tnum tProgRptReqs) tProgRptReqs $
+      LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
+      LT.insert (tnum tIncTaxInd) tIncTaxInd $
+      LT.insert (tnum tForexReq) tForexReq $
+      LT.insert (tnum tNumBidders) tNumBidders $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tTradeType) tTradeType $
+      LT.insert (tnum tBasisPxType) tBasisPxType $
+      LT.insert (tnum tStrikeTime) tStrikeTime $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoBidComponents''' = FIXTag
+            { tName = "NoBidComponents"
+            , tnum = tnum tNoBidComponents
+            , tparser = gNoBidComponentsP''' }
 
-                gNoBidComponentsP = groupP $ FGSpec
-                  { gsLength = tNoBidComponents
-                  , gsSeperator = tListID
-                  , gsBody = gNoBidComponentsBody }
-                    where
-                    gNoBidComponentsBody = 
-                        LT.insert (tnum tSide) tSide $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tNetGrossInd) tNetGrossInd $
-                        LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-                        LT.insert (tnum tFutSettDate) tFutSettDate $
-                        LT.insert (tnum tAccount) tAccount $
-                        LT.new
+         gNoBidComponentsP''' = groupP FGSpec
+            { gsLength = tNoBidComponents
+            , gsSeperator = tListID
+            , gsBody = gNoBidComponentsBody''' }
+            where
+            gNoBidComponentsBody''' = 
+               LT.insert (tnum tSide) tSide $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tNetGrossInd) tNetGrossInd $
+               LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+               LT.insert (tnum tFutSettDate) tFutSettDate $
+               LT.insert (tnum tAccount) tAccount                LT.new
 
-                gNoBidDescriptors = FIXTag
-                  { tnum = tnum tNoBidDescriptors
-                  , tparser = gNoBidDescriptorsP }
+         gNoBidDescriptors''' = FIXTag
+            { tName = "NoBidDescriptors"
+            , tnum = tnum tNoBidDescriptors
+            , tparser = gNoBidDescriptorsP''' }
 
-                gNoBidDescriptorsP = groupP $ FGSpec
-                  { gsLength = tNoBidDescriptors
-                  , gsSeperator = tBidDescriptorType
-                  , gsBody = gNoBidDescriptorsBody }
-                    where
-                    gNoBidDescriptorsBody = 
-                        LT.insert (tnum tBidDescriptor) tBidDescriptor $
-                        LT.insert (tnum tSideValueInd) tSideValueInd $
-                        LT.insert (tnum tLiquidityValue) tLiquidityValue $
-                        LT.insert (tnum tLiquidityNumSecurities) tLiquidityNumSecurities $
-                        LT.insert (tnum tLiquidityPctLow) tLiquidityPctLow $
-                        LT.insert (tnum tLiquidityPctHigh) tLiquidityPctHigh $
-                        LT.insert (tnum tEFPTrackingError) tEFPTrackingError $
-                        LT.insert (tnum tFairValue) tFairValue $
-                        LT.insert (tnum tOutsideIndexPct) tOutsideIndexPct $
-                        LT.insert (tnum tValueOfFutures) tValueOfFutures $
-                        LT.new
+         gNoBidDescriptorsP''' = groupP FGSpec
+            { gsLength = tNoBidDescriptors
+            , gsSeperator = tBidDescriptorType
+            , gsBody = gNoBidDescriptorsBody''' }
+            where
+            gNoBidDescriptorsBody''' = 
+               LT.insert (tnum tBidDescriptor) tBidDescriptor $
+               LT.insert (tnum tSideValueInd) tSideValueInd $
+               LT.insert (tnum tLiquidityValue) tLiquidityValue $
+               LT.insert (tnum tLiquidityNumSecurities) tLiquidityNumSecurities $
+               LT.insert (tnum tLiquidityPctLow) tLiquidityPctLow $
+               LT.insert (tnum tLiquidityPctHigh) tLiquidityPctHigh $
+               LT.insert (tnum tEFPTrackingError) tEFPTrackingError $
+               LT.insert (tnum tFairValue) tFairValue $
+               LT.insert (tnum tOutsideIndexPct) tOutsideIndexPct $
+               LT.insert (tnum tValueOfFutures) tValueOfFutures                LT.new
 
 
 
 mBidResponse :: FIXMessageSpec
 mBidResponse = FMSpec
-   { msType = C.pack "l"
+   { msName = "BidResponse"
+   , msType = C.pack "l"
    , msHeader = headerFIX43
    , msBody = mBidResponseBody
    , msTrailer = trailerFIX43 }
    where
-      mBidResponseBody = 
-          LT.insert (tnum tBidID) tBidID $
-          LT.insert (tnum tClientBidID) tClientBidID $
-          LT.insert (tnum tNoBidComponents) gNoBidComponents $
-          LT.new
-          where
-                gNoBidComponents = FIXTag
-                  { tnum = tnum tNoBidComponents
-                  , tparser = gNoBidComponentsP }
+   mBidResponseBody = 
+      LT.insert (tnum tBidID) tBidID $
+      LT.insert (tnum tClientBidID) tClientBidID $
+      LT.insert (tnum tNoBidComponents) gNoBidComponents'''       LT.new
+      where
+         gNoBidComponents''' = FIXTag
+            { tName = "NoBidComponents"
+            , tnum = tnum tNoBidComponents
+            , tparser = gNoBidComponentsP''' }
 
-                gNoBidComponentsP = groupP $ FGSpec
-                  { gsLength = tNoBidComponents
-                  , gsSeperator = tCommission
-                  , gsBody = gNoBidComponentsBody }
-                    where
-                    gNoBidComponentsBody = 
-                        LT.insert (tnum tCommType) tCommType $
-                        LT.insert (tnum tCommCurrency) tCommCurrency $
-                        LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-                        LT.insert (tnum tListID) tListID $
-                        LT.insert (tnum tCountry) tCountry $
-                        LT.insert (tnum tSide) tSide $
-                        LT.insert (tnum tPrice) tPrice $
-                        LT.insert (tnum tPriceType) tPriceType $
-                        LT.insert (tnum tFairValue) tFairValue $
-                        LT.insert (tnum tNetGrossInd) tNetGrossInd $
-                        LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-                        LT.insert (tnum tFutSettDate) tFutSettDate $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
+         gNoBidComponentsP''' = groupP FGSpec
+            { gsLength = tNoBidComponents
+            , gsSeperator = tCommission
+            , gsBody = gNoBidComponentsBody''' }
+            where
+            gNoBidComponentsBody''' = 
+               LT.insert (tnum tCommType) tCommType $
+               LT.insert (tnum tCommCurrency) tCommCurrency $
+               LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+               LT.insert (tnum tListID) tListID $
+               LT.insert (tnum tCountry) tCountry $
+               LT.insert (tnum tSide) tSide $
+               LT.insert (tnum tPrice) tPrice $
+               LT.insert (tnum tPriceType) tPriceType $
+               LT.insert (tnum tFairValue) tFairValue $
+               LT.insert (tnum tNetGrossInd) tNetGrossInd $
+               LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+               LT.insert (tnum tFutSettDate) tFutSettDate $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
 
 
 
 mListStrikePrice :: FIXMessageSpec
 mListStrikePrice = FMSpec
-   { msType = C.pack "m"
+   { msName = "ListStrikePrice"
+   , msType = C.pack "m"
    , msHeader = headerFIX43
    , msBody = mListStrikePriceBody
    , msTrailer = trailerFIX43 }
    where
-      mListStrikePriceBody = 
-          LT.insert (tnum tListID) tListID $
-          LT.insert (tnum tTotNoStrikes) tTotNoStrikes $
-          LT.insert (tnum tNoStrikes) gNoStrikes $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mListStrikePriceBody = 
+      LT.insert (tnum tListID) tListID $
+      LT.insert (tnum tTotNoStrikes) tTotNoStrikes $
+      LT.insert (tnum tNoStrikes) gNoStrikes'''       LT.new
+      where
+         gNoStrikes''' = FIXTag
+            { tName = "NoStrikes"
+            , tnum = tnum tNoStrikes
+            , tparser = gNoStrikesP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoStrikesP''' = groupP FGSpec
+            { gsLength = tNoStrikes
+            , gsSeperator = tSymbol
+            , gsBody = gNoStrikesBody''' }
+            where
+            gNoStrikesBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tPrevClosePx) tPrevClosePx $
+               LT.insert (tnum tClOrdID) tClOrdID $
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tSide) tSide $
+               LT.insert (tnum tPrice) tPrice $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                gNoStrikes = FIXTag
-                  { tnum = tnum tNoStrikes
-                  , tparser = gNoStrikesP }
-
-                gNoStrikesP = groupP $ FGSpec
-                  { gsLength = tNoStrikes
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoStrikesBody }
-                    where
-                    gNoStrikesBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tPrevClosePx) tPrevClosePx $
-                        LT.insert (tnum tClOrdID) tClOrdID $
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tSide) tSide $
-                        LT.insert (tnum tPrice) tPrice $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
-
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
 
 
 
 mRegistrationInstructions :: FIXMessageSpec
 mRegistrationInstructions = FMSpec
-   { msType = C.pack "o"
+   { msName = "RegistrationInstructions"
+   , msType = C.pack "o"
    , msHeader = headerFIX43
    , msBody = mRegistrationInstructionsBody
    , msTrailer = trailerFIX43 }
    where
-      mRegistrationInstructionsBody = 
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tRegistTransType) tRegistTransType $
-          LT.insert (tnum tRegistRefID) tRegistRefID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tRegistAcctType) tRegistAcctType $
-          LT.insert (tnum tTaxAdvantageType) tTaxAdvantageType $
-          LT.insert (tnum tOwnershipType) tOwnershipType $
-          LT.insert (tnum tNoRegistDtls) gNoRegistDtls $
-          LT.insert (tnum tNoDistribInsts) gNoDistribInsts $
-          LT.new
-          where
-                gNoDistribInsts = FIXTag
-                  { tnum = tnum tNoDistribInsts
-                  , tparser = gNoDistribInstsP }
+   mRegistrationInstructionsBody = 
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tRegistTransType) tRegistTransType $
+      LT.insert (tnum tRegistRefID) tRegistRefID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tRegistAcctType) tRegistAcctType $
+      LT.insert (tnum tTaxAdvantageType) tTaxAdvantageType $
+      LT.insert (tnum tOwnershipType) tOwnershipType $
+      LT.insert (tnum tNoRegistDtls) gNoRegistDtls''' $
+      LT.insert (tnum tNoDistribInsts) gNoDistribInsts'''       LT.new
+      where
+         gNoDistribInsts''' = FIXTag
+            { tName = "NoDistribInsts"
+            , tnum = tnum tNoDistribInsts
+            , tparser = gNoDistribInstsP''' }
 
-                gNoDistribInstsP = groupP $ FGSpec
-                  { gsLength = tNoDistribInsts
-                  , gsSeperator = tDistribPaymentMethod
-                  , gsBody = gNoDistribInstsBody }
-                    where
-                    gNoDistribInstsBody = 
-                        LT.insert (tnum tDistribPercentage) tDistribPercentage $
-                        LT.insert (tnum tCashDistribCurr) tCashDistribCurr $
-                        LT.insert (tnum tCashDistribAgentName) tCashDistribAgentName $
-                        LT.insert (tnum tCashDistribAgentCode) tCashDistribAgentCode $
-                        LT.insert (tnum tCashDistribAgentAcctNumber) tCashDistribAgentAcctNumber $
-                        LT.insert (tnum tCashDistribPayRef) tCashDistribPayRef $
-                        LT.new
+         gNoDistribInstsP''' = groupP FGSpec
+            { gsLength = tNoDistribInsts
+            , gsSeperator = tDistribPaymentMethod
+            , gsBody = gNoDistribInstsBody''' }
+            where
+            gNoDistribInstsBody''' = 
+               LT.insert (tnum tDistribPercentage) tDistribPercentage $
+               LT.insert (tnum tCashDistribCurr) tCashDistribCurr $
+               LT.insert (tnum tCashDistribAgentName) tCashDistribAgentName $
+               LT.insert (tnum tCashDistribAgentCode) tCashDistribAgentCode $
+               LT.insert (tnum tCashDistribAgentAcctNumber) tCashDistribAgentAcctNumber $
+               LT.insert (tnum tCashDistribPayRef) tCashDistribPayRef                LT.new
 
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
+
+         gNoRegistDtls''' = FIXTag
+            { tName = "NoRegistDtls"
+            , tnum = tnum tNoRegistDtls
+            , tparser = gNoRegistDtlsP''' }
+
+         gNoRegistDtlsP''' = groupP FGSpec
+            { gsLength = tNoRegistDtls
+            , gsSeperator = tRegistDetls
+            , gsBody = gNoRegistDtlsBody''' }
+            where
+            gNoRegistDtlsBody''' = 
+               LT.insert (tnum tRegistEmail) tRegistEmail $
+               LT.insert (tnum tMailingDtls) tMailingDtls $
+               LT.insert (tnum tMailingInst) tMailingInst $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tOwnerType) tOwnerType $
+               LT.insert (tnum tDateOfBirth) tDateOfBirth $
+               LT.insert (tnum tInvestorCountryOfResidence) tInvestorCountryOfResidence                LT.new
+               where
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
+
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
-
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
-
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
-
-                gNoRegistDtls = FIXTag
-                  { tnum = tnum tNoRegistDtls
-                  , tparser = gNoRegistDtlsP }
-
-                gNoRegistDtlsP = groupP $ FGSpec
-                  { gsLength = tNoRegistDtls
-                  , gsSeperator = tRegistDetls
-                  , gsBody = gNoRegistDtlsBody }
-                    where
-                    gNoRegistDtlsBody = 
-                        LT.insert (tnum tRegistEmail) tRegistEmail $
-                        LT.insert (tnum tMailingDtls) tMailingDtls $
-                        LT.insert (tnum tMailingInst) tMailingInst $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tOwnerType) tOwnerType $
-                        LT.insert (tnum tDateOfBirth) tDateOfBirth $
-                        LT.insert (tnum tInvestorCountryOfResidence) tInvestorCountryOfResidence $
-                        LT.new
-                        where
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
-
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
 
 
 
 mRegistrationInstructionsResponse :: FIXMessageSpec
 mRegistrationInstructionsResponse = FMSpec
-   { msType = C.pack "p"
+   { msName = "RegistrationInstructionsResponse"
+   , msType = C.pack "p"
    , msHeader = headerFIX43
    , msBody = mRegistrationInstructionsResponseBody
    , msTrailer = trailerFIX43 }
    where
-      mRegistrationInstructionsResponseBody = 
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tRegistTransType) tRegistTransType $
-          LT.insert (tnum tRegistRefID) tRegistRefID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tRegistStatus) tRegistStatus $
-          LT.insert (tnum tRegistRejReasonCode) tRegistRejReasonCode $
-          LT.insert (tnum tRegistRejReasonText) tRegistRejReasonText $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mRegistrationInstructionsResponseBody = 
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tRegistTransType) tRegistTransType $
+      LT.insert (tnum tRegistRefID) tRegistRefID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tRegistStatus) tRegistStatus $
+      LT.insert (tnum tRegistRejReasonCode) tRegistRejReasonCode $
+      LT.insert (tnum tRegistRejReasonText) tRegistRejReasonText       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
 
 
 mOrderMassCancelRequest :: FIXMessageSpec
 mOrderMassCancelRequest = FMSpec
-   { msType = C.pack "q"
+   { msName = "OrderMassCancelRequest"
+   , msType = C.pack "q"
    , msHeader = headerFIX43
    , msBody = mOrderMassCancelRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderMassCancelRequestBody = 
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-          LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-          LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-          LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-          LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-          LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-          LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-          LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-          LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-          LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-          LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-          LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-          LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-          LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-          LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-          LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-          LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-          LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-          LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-          LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-          LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-          LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-          LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-          LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-          LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-          LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-          LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-          LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-          LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-          LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-          LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-          LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-          LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mOrderMassCancelRequestBody = 
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+      LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+      LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+      LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+      LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID''' $
+      LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+      LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+      LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+      LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+      LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+      LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+      LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+      LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+      LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+      LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+      LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+      LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+      LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+      LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+      LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+      LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+      LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+      LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+      LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+      LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+      LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+      LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+      LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+      LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+      LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+      LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+      LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+      LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
+         gNoUnderlyingSecurityAltID''' = FIXTag
+            { tName = "NoUnderlyingSecurityAltID"
+            , tnum = tnum tNoUnderlyingSecurityAltID
+            , tparser = gNoUnderlyingSecurityAltIDP''' }
 
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
+         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoUnderlyingSecurityAltID
+            , gsSeperator = tUnderlyingSecurityAltID
+            , gsBody = gNoUnderlyingSecurityAltIDBody''' }
+            where
+            gNoUnderlyingSecurityAltIDBody''' = 
+               LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                LT.new
 
 
 
 mOrderMassCancelReport :: FIXMessageSpec
 mOrderMassCancelReport = FMSpec
-   { msType = C.pack "r"
+   { msName = "OrderMassCancelReport"
+   , msType = C.pack "r"
    , msHeader = headerFIX43
    , msBody = mOrderMassCancelReportBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderMassCancelReportBody = 
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
-          LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
-          LT.insert (tnum tMassCancelResponse) tMassCancelResponse $
-          LT.insert (tnum tMassCancelRejectReason) tMassCancelRejectReason $
-          LT.insert (tnum tTotalAffectedOrders) tTotalAffectedOrders $
-          LT.insert (tnum tNoAffectedOrders) gNoAffectedOrders $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-          LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-          LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-          LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-          LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-          LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-          LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-          LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-          LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-          LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-          LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-          LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-          LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-          LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-          LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-          LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-          LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-          LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-          LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-          LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-          LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-          LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-          LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-          LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-          LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-          LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-          LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-          LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-          LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-          LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-          LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-          LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-          LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoAffectedOrders = FIXTag
-                  { tnum = tnum tNoAffectedOrders
-                  , tparser = gNoAffectedOrdersP }
+   mOrderMassCancelReportBody = 
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+      LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
+      LT.insert (tnum tMassCancelResponse) tMassCancelResponse $
+      LT.insert (tnum tMassCancelRejectReason) tMassCancelRejectReason $
+      LT.insert (tnum tTotalAffectedOrders) tTotalAffectedOrders $
+      LT.insert (tnum tNoAffectedOrders) gNoAffectedOrders''' $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+      LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+      LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+      LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+      LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID''' $
+      LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+      LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+      LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+      LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+      LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+      LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+      LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+      LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+      LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+      LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+      LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+      LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+      LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+      LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+      LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+      LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+      LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+      LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+      LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+      LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+      LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+      LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+      LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+      LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+      LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+      LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+      LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+      LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoAffectedOrders''' = FIXTag
+            { tName = "NoAffectedOrders"
+            , tnum = tnum tNoAffectedOrders
+            , tparser = gNoAffectedOrdersP''' }
 
-                gNoAffectedOrdersP = groupP $ FGSpec
-                  { gsLength = tNoAffectedOrders
-                  , gsSeperator = tOrigClOrdID
-                  , gsBody = gNoAffectedOrdersBody }
-                    where
-                    gNoAffectedOrdersBody = 
-                        LT.insert (tnum tAffectedOrderID) tAffectedOrderID $
-                        LT.insert (tnum tAffectedSecondaryOrderID) tAffectedSecondaryOrderID $
-                        LT.new
+         gNoAffectedOrdersP''' = groupP FGSpec
+            { gsLength = tNoAffectedOrders
+            , gsSeperator = tOrigClOrdID
+            , gsBody = gNoAffectedOrdersBody''' }
+            where
+            gNoAffectedOrdersBody''' = 
+               LT.insert (tnum tAffectedOrderID) tAffectedOrderID $
+               LT.insert (tnum tAffectedSecondaryOrderID) tAffectedSecondaryOrderID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
+         gNoUnderlyingSecurityAltID''' = FIXTag
+            { tName = "NoUnderlyingSecurityAltID"
+            , tnum = tnum tNoUnderlyingSecurityAltID
+            , tparser = gNoUnderlyingSecurityAltIDP''' }
 
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
+         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoUnderlyingSecurityAltID
+            , gsSeperator = tUnderlyingSecurityAltID
+            , gsBody = gNoUnderlyingSecurityAltIDBody''' }
+            where
+            gNoUnderlyingSecurityAltIDBody''' = 
+               LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                LT.new
 
 
 
 mNewOrderCross :: FIXMessageSpec
 mNewOrderCross = FMSpec
-   { msType = C.pack "s"
+   { msName = "NewOrderCross"
+   , msType = C.pack "s"
    , msHeader = headerFIX43
    , msBody = mNewOrderCrossBody
    , msTrailer = trailerFIX43 }
    where
-      mNewOrderCrossBody = 
-          LT.insert (tnum tCrossID) tCrossID $
-          LT.insert (tnum tCrossType) tCrossType $
-          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
-          LT.insert (tnum tNoSides) gNoSides $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.insert (tnum tProcessCode) tProcessCode $
-          LT.insert (tnum tPrevClosePx) tPrevClosePx $
-          LT.insert (tnum tLocateReqd) tLocateReqd $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tNoStipulations) gNoStipulations $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tSpread) tSpread $
-          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-          LT.insert (tnum tYieldType) tYieldType $
-          LT.insert (tnum tYield) tYield $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tIOIid) tIOIid $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mNewOrderCrossBody = 
+      LT.insert (tnum tCrossID) tCrossID $
+      LT.insert (tnum tCrossType) tCrossType $
+      LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+      LT.insert (tnum tNoSides) gNoSides''' $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions''' $
+      LT.insert (tnum tProcessCode) tProcessCode $
+      LT.insert (tnum tPrevClosePx) tPrevClosePx $
+      LT.insert (tnum tLocateReqd) tLocateReqd $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tNoStipulations) gNoStipulations''' $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tSpread) tSpread $
+      LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+      LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+      LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+      LT.insert (tnum tYieldType) tYieldType $
+      LT.insert (tnum tYield) tYield $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tIOIid) tIOIid $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+      LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+      LT.insert (tnum tNetMoney) tNetMoney       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
+
+         gNoSides''' = FIXTag
+            { tName = "NoSides"
+            , tnum = tnum tNoSides
+            , tparser = gNoSidesP''' }
+
+         gNoSidesP''' = groupP FGSpec
+            { gsLength = tNoSides
+            , gsSeperator = tSide
+            , gsBody = gNoSidesBody''' }
+            where
+            gNoSidesBody''' = 
+               LT.insert (tnum tClOrdID) tClOrdID $
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+               LT.insert (tnum tNoPartyIDs) gNoPartyIDs'''''' $
+               LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+               LT.insert (tnum tAccount) tAccount $
+               LT.insert (tnum tAccountType) tAccountType $
+               LT.insert (tnum tDayBookingInst) tDayBookingInst $
+               LT.insert (tnum tBookingUnit) tBookingUnit $
+               LT.insert (tnum tPreallocMethod) tPreallocMethod $
+               LT.insert (tnum tNoAllocs) gNoAllocs'''''' $
+               LT.insert (tnum tQuantityType) tQuantityType $
+               LT.insert (tnum tOrderQty) tOrderQty $
+               LT.insert (tnum tCashOrderQty) tCashOrderQty $
+               LT.insert (tnum tOrderPercent) tOrderPercent $
+               LT.insert (tnum tRoundingDirection) tRoundingDirection $
+               LT.insert (tnum tRoundingModulus) tRoundingModulus $
+               LT.insert (tnum tCommission) tCommission $
+               LT.insert (tnum tCommType) tCommType $
+               LT.insert (tnum tCommCurrency) tCommCurrency $
+               LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+               LT.insert (tnum tOrderCapacity) tOrderCapacity $
+               LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+               LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+               LT.insert (tnum tForexReq) tForexReq $
+               LT.insert (tnum tSettlCurrency) tSettlCurrency $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText $
+               LT.insert (tnum tPositionEffect) tPositionEffect $
+               LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+               LT.insert (tnum tCashMargin) tCashMargin $
+               LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+               LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+               LT.insert (tnum tSideComplianceID) tSideComplianceID                LT.new
+               where
+                  gNoAllocs'''''' = FIXTag
+                     { tName = "NoAllocs"
+                     , tnum = tnum tNoAllocs
+                     , tparser = gNoAllocsP'''''' }
+
+                  gNoAllocsP'''''' = groupP FGSpec
+                     { gsLength = tNoAllocs
+                     , gsSeperator = tAllocAccount
+                     , gsBody = gNoAllocsBody'''''' }
+                     where
+                     gNoAllocsBody'''''' = 
                         LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
+                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs''''''''' $
+                        LT.insert (tnum tAllocQty) tAllocQty                         LT.new
                         where
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+                           gNoNestedPartyIDs''''''''' = FIXTag
+                              { tName = "NoNestedPartyIDs"
+                              , tnum = tnum tNoNestedPartyIDs
+                              , tparser = gNoNestedPartyIDsP''''''''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
+                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                              { gsLength = tNoNestedPartyIDs
+                              , gsSeperator = tNestedPartyID
+                              , gsBody = gNoNestedPartyIDsBody''''''''' }
+                              where
+                              gNoNestedPartyIDsBody''''''''' = 
+                                 LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
+                                 LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
+                                 LT.insert (tnum tNestedPartySubID) tNestedPartySubID                                  LT.new
 
 
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
+                  gNoPartyIDs'''''' = FIXTag
+                     { tName = "NoPartyIDs"
+                     , tnum = tnum tNoPartyIDs
+                     , tparser = gNoPartyIDsP'''''' }
 
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
-                        LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                        LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
-
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
-
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
+                  gNoPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoPartyIDs
+                     , gsSeperator = tPartyID
+                     , gsBody = gNoPartyIDsBody'''''' }
+                     where
+                     gNoPartyIDsBody'''''' = 
                         LT.insert (tnum tPartyIDSource) tPartyIDSource $
                         LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoSides = FIXTag
-                  { tnum = tnum tNoSides
-                  , tparser = gNoSidesP }
-
-                gNoSidesP = groupP $ FGSpec
-                  { gsLength = tNoSides
-                  , gsSeperator = tSide
-                  , gsBody = gNoSidesBody }
-                    where
-                    gNoSidesBody = 
-                        LT.insert (tnum tClOrdID) tClOrdID $
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-                        LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-                        LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-                        LT.insert (tnum tAccount) tAccount $
-                        LT.insert (tnum tAccountType) tAccountType $
-                        LT.insert (tnum tDayBookingInst) tDayBookingInst $
-                        LT.insert (tnum tBookingUnit) tBookingUnit $
-                        LT.insert (tnum tPreallocMethod) tPreallocMethod $
-                        LT.insert (tnum tNoAllocs) gNoAllocs $
-                        LT.insert (tnum tQuantityType) tQuantityType $
-                        LT.insert (tnum tOrderQty) tOrderQty $
-                        LT.insert (tnum tCashOrderQty) tCashOrderQty $
-                        LT.insert (tnum tOrderPercent) tOrderPercent $
-                        LT.insert (tnum tRoundingDirection) tRoundingDirection $
-                        LT.insert (tnum tRoundingModulus) tRoundingModulus $
-                        LT.insert (tnum tCommission) tCommission $
-                        LT.insert (tnum tCommType) tCommType $
-                        LT.insert (tnum tCommCurrency) tCommCurrency $
-                        LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-                        LT.insert (tnum tOrderCapacity) tOrderCapacity $
-                        LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-                        LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-                        LT.insert (tnum tForexReq) tForexReq $
-                        LT.insert (tnum tSettlCurrency) tSettlCurrency $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.insert (tnum tPositionEffect) tPositionEffect $
-                        LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-                        LT.insert (tnum tCashMargin) tCashMargin $
-                        LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-                        LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-                        LT.insert (tnum tSideComplianceID) tSideComplianceID $
-                        LT.new
-                        where
-                              gNoAllocs = FIXTag
-                                { tnum = tnum tNoAllocs
-                                , tparser = gNoAllocsP }
-
-                              gNoAllocsP = groupP $ FGSpec
-                                { gsLength = tNoAllocs
-                                , gsSeperator = tAllocAccount
-                                , gsBody = gNoAllocsBody }
-                                  where
-                                  gNoAllocsBody = 
-                                      LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                                      LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                                      LT.insert (tnum tAllocQty) tAllocQty $
-                                      LT.new
-                                      where
-                                            gNoNestedPartyIDs = FIXTag
-                                              { tnum = tnum tNoNestedPartyIDs
-                                              , tparser = gNoNestedPartyIDsP }
-
-                                            gNoNestedPartyIDsP = groupP $ FGSpec
-                                              { gsLength = tNoNestedPartyIDs
-                                              , gsSeperator = tNestedPartyID
-                                              , gsBody = gNoNestedPartyIDsBody }
-                                                where
-                                                gNoNestedPartyIDsBody = 
-                                                    LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                                    LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                                    LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                                    LT.new
+                        LT.insert (tnum tPartySubID) tPartySubID                         LT.new
 
 
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+         gNoStipulations''' = FIXTag
+            { tName = "NoStipulations"
+            , tnum = tnum tNoStipulations
+            , tparser = gNoStipulationsP''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
+         gNoStipulationsP''' = groupP FGSpec
+            { gsLength = tNoStipulations
+            , gsSeperator = tStipulationType
+            , gsBody = gNoStipulationsBody''' }
+            where
+            gNoStipulationsBody''' = 
+               LT.insert (tnum tStipulationValue) tStipulationValue                LT.new
 
-                              gNoPartyIDs = FIXTag
-                                { tnum = tnum tNoPartyIDs
-                                , tparser = gNoPartyIDsP }
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
 
-                              gNoPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoPartyIDs
-                                , gsSeperator = tPartyID
-                                , gsBody = gNoPartyIDsBody }
-                                  where
-                                  gNoPartyIDsBody = 
-                                      LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                                      LT.insert (tnum tPartyRole) tPartyRole $
-                                      LT.insert (tnum tPartySubID) tPartySubID $
-                                      LT.new
-
-
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
-
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
-
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
-
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mCrossOrderCancelRequest :: FIXMessageSpec
 mCrossOrderCancelRequest = FMSpec
-   { msType = C.pack "u"
+   { msName = "CrossOrderCancelRequest"
+   , msType = C.pack "u"
    , msHeader = headerFIX43
    , msBody = mCrossOrderCancelRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mCrossOrderCancelRequestBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tCrossID) tCrossID $
-          LT.insert (tnum tOrigCrossID) tOrigCrossID $
-          LT.insert (tnum tCrossType) tCrossType $
-          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
-          LT.insert (tnum tNoSides) gNoSides $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mCrossOrderCancelRequestBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tCrossID) tCrossID $
+      LT.insert (tnum tOrigCrossID) tOrigCrossID $
+      LT.insert (tnum tCrossType) tCrossType $
+      LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+      LT.insert (tnum tNoSides) gNoSides''' $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tTransactTime) tTransactTime       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
+
+         gNoSides''' = FIXTag
+            { tName = "NoSides"
+            , tnum = tnum tNoSides
+            , tparser = gNoSidesP''' }
+
+         gNoSidesP''' = groupP FGSpec
+            { gsLength = tNoSides
+            , gsSeperator = tSide
+            , gsBody = gNoSidesBody''' }
+            where
+            gNoSidesBody''' = 
+               LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+               LT.insert (tnum tClOrdID) tClOrdID $
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+               LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+               LT.insert (tnum tNoPartyIDs) gNoPartyIDs'''''' $
+               LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+               LT.insert (tnum tOrderQty) tOrderQty $
+               LT.insert (tnum tCashOrderQty) tCashOrderQty $
+               LT.insert (tnum tOrderPercent) tOrderPercent $
+               LT.insert (tnum tRoundingDirection) tRoundingDirection $
+               LT.insert (tnum tRoundingModulus) tRoundingModulus $
+               LT.insert (tnum tComplianceID) tComplianceID $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
+               where
+                  gNoPartyIDs'''''' = FIXTag
+                     { tName = "NoPartyIDs"
+                     , tnum = tnum tNoPartyIDs
+                     , tparser = gNoPartyIDsP'''''' }
+
+                  gNoPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoPartyIDs
+                     , gsSeperator = tPartyID
+                     , gsBody = gNoPartyIDsBody'''''' }
+                     where
+                     gNoPartyIDsBody'''''' = 
                         LT.insert (tnum tPartyIDSource) tPartyIDSource $
                         LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoSides = FIXTag
-                  { tnum = tnum tNoSides
-                  , tparser = gNoSidesP }
-
-                gNoSidesP = groupP $ FGSpec
-                  { gsLength = tNoSides
-                  , gsSeperator = tSide
-                  , gsBody = gNoSidesBody }
-                    where
-                    gNoSidesBody = 
-                        LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-                        LT.insert (tnum tClOrdID) tClOrdID $
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-                        LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
-                        LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-                        LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-                        LT.insert (tnum tOrderQty) tOrderQty $
-                        LT.insert (tnum tCashOrderQty) tCashOrderQty $
-                        LT.insert (tnum tOrderPercent) tOrderPercent $
-                        LT.insert (tnum tRoundingDirection) tRoundingDirection $
-                        LT.insert (tnum tRoundingModulus) tRoundingModulus $
-                        LT.insert (tnum tComplianceID) tComplianceID $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
-                        where
-                              gNoPartyIDs = FIXTag
-                                { tnum = tnum tNoPartyIDs
-                                , tparser = gNoPartyIDsP }
-
-                              gNoPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoPartyIDs
-                                , gsSeperator = tPartyID
-                                , gsBody = gNoPartyIDsBody }
-                                  where
-                                  gNoPartyIDsBody = 
-                                      LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                                      LT.insert (tnum tPartyRole) tPartyRole $
-                                      LT.insert (tnum tPartySubID) tPartySubID $
-                                      LT.new
+                        LT.insert (tnum tPartySubID) tPartySubID                         LT.new
 
 
 
 
 mCrossOrderCancelReplaceRequest :: FIXMessageSpec
 mCrossOrderCancelReplaceRequest = FMSpec
-   { msType = C.pack "t"
+   { msName = "CrossOrderCancelReplaceRequest"
+   , msType = C.pack "t"
    , msHeader = headerFIX43
    , msBody = mCrossOrderCancelReplaceRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mCrossOrderCancelReplaceRequestBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tCrossID) tCrossID $
-          LT.insert (tnum tOrigCrossID) tOrigCrossID $
-          LT.insert (tnum tCrossType) tCrossType $
-          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
-          LT.insert (tnum tNoSides) gNoSides $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.insert (tnum tProcessCode) tProcessCode $
-          LT.insert (tnum tPrevClosePx) tPrevClosePx $
-          LT.insert (tnum tLocateReqd) tLocateReqd $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tNoStipulations) gNoStipulations $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tSpread) tSpread $
-          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-          LT.insert (tnum tYieldType) tYieldType $
-          LT.insert (tnum tYield) tYield $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tIOIid) tIOIid $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mCrossOrderCancelReplaceRequestBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tCrossID) tCrossID $
+      LT.insert (tnum tOrigCrossID) tOrigCrossID $
+      LT.insert (tnum tCrossType) tCrossType $
+      LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+      LT.insert (tnum tNoSides) gNoSides''' $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions''' $
+      LT.insert (tnum tProcessCode) tProcessCode $
+      LT.insert (tnum tPrevClosePx) tPrevClosePx $
+      LT.insert (tnum tLocateReqd) tLocateReqd $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tNoStipulations) gNoStipulations''' $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tSpread) tSpread $
+      LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+      LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+      LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+      LT.insert (tnum tYieldType) tYieldType $
+      LT.insert (tnum tYield) tYield $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tIOIid) tIOIid $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+      LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+      LT.insert (tnum tNetMoney) tNetMoney       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
+
+         gNoSides''' = FIXTag
+            { tName = "NoSides"
+            , tnum = tnum tNoSides
+            , tparser = gNoSidesP''' }
+
+         gNoSidesP''' = groupP FGSpec
+            { gsLength = tNoSides
+            , gsSeperator = tSide
+            , gsBody = gNoSidesBody''' }
+            where
+            gNoSidesBody''' = 
+               LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+               LT.insert (tnum tClOrdID) tClOrdID $
+               LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+               LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+               LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+               LT.insert (tnum tNoPartyIDs) gNoPartyIDs'''''' $
+               LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+               LT.insert (tnum tAccount) tAccount $
+               LT.insert (tnum tAccountType) tAccountType $
+               LT.insert (tnum tDayBookingInst) tDayBookingInst $
+               LT.insert (tnum tBookingUnit) tBookingUnit $
+               LT.insert (tnum tPreallocMethod) tPreallocMethod $
+               LT.insert (tnum tNoAllocs) gNoAllocs'''''' $
+               LT.insert (tnum tQuantityType) tQuantityType $
+               LT.insert (tnum tOrderQty) tOrderQty $
+               LT.insert (tnum tCashOrderQty) tCashOrderQty $
+               LT.insert (tnum tOrderPercent) tOrderPercent $
+               LT.insert (tnum tRoundingDirection) tRoundingDirection $
+               LT.insert (tnum tRoundingModulus) tRoundingModulus $
+               LT.insert (tnum tCommission) tCommission $
+               LT.insert (tnum tCommType) tCommType $
+               LT.insert (tnum tCommCurrency) tCommCurrency $
+               LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+               LT.insert (tnum tOrderCapacity) tOrderCapacity $
+               LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+               LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+               LT.insert (tnum tForexReq) tForexReq $
+               LT.insert (tnum tSettlCurrency) tSettlCurrency $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText $
+               LT.insert (tnum tPositionEffect) tPositionEffect $
+               LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+               LT.insert (tnum tCashMargin) tCashMargin $
+               LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+               LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+               LT.insert (tnum tSideComplianceID) tSideComplianceID                LT.new
+               where
+                  gNoAllocs'''''' = FIXTag
+                     { tName = "NoAllocs"
+                     , tnum = tnum tNoAllocs
+                     , tparser = gNoAllocsP'''''' }
+
+                  gNoAllocsP'''''' = groupP FGSpec
+                     { gsLength = tNoAllocs
+                     , gsSeperator = tAllocAccount
+                     , gsBody = gNoAllocsBody'''''' }
+                     where
+                     gNoAllocsBody'''''' = 
                         LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
+                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs''''''''' $
+                        LT.insert (tnum tAllocQty) tAllocQty                         LT.new
                         where
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+                           gNoNestedPartyIDs''''''''' = FIXTag
+                              { tName = "NoNestedPartyIDs"
+                              , tnum = tnum tNoNestedPartyIDs
+                              , tparser = gNoNestedPartyIDsP''''''''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
+                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                              { gsLength = tNoNestedPartyIDs
+                              , gsSeperator = tNestedPartyID
+                              , gsBody = gNoNestedPartyIDsBody''''''''' }
+                              where
+                              gNoNestedPartyIDsBody''''''''' = 
+                                 LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
+                                 LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
+                                 LT.insert (tnum tNestedPartySubID) tNestedPartySubID                                  LT.new
 
 
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
+                  gNoPartyIDs'''''' = FIXTag
+                     { tName = "NoPartyIDs"
+                     , tnum = tnum tNoPartyIDs
+                     , tparser = gNoPartyIDsP'''''' }
 
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
-                        LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                        LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
-
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
-
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
+                  gNoPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoPartyIDs
+                     , gsSeperator = tPartyID
+                     , gsBody = gNoPartyIDsBody'''''' }
+                     where
+                     gNoPartyIDsBody'''''' = 
                         LT.insert (tnum tPartyIDSource) tPartyIDSource $
                         LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoSides = FIXTag
-                  { tnum = tnum tNoSides
-                  , tparser = gNoSidesP }
-
-                gNoSidesP = groupP $ FGSpec
-                  { gsLength = tNoSides
-                  , gsSeperator = tSide
-                  , gsBody = gNoSidesBody }
-                    where
-                    gNoSidesBody = 
-                        LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-                        LT.insert (tnum tClOrdID) tClOrdID $
-                        LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-                        LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-                        LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
-                        LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-                        LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-                        LT.insert (tnum tAccount) tAccount $
-                        LT.insert (tnum tAccountType) tAccountType $
-                        LT.insert (tnum tDayBookingInst) tDayBookingInst $
-                        LT.insert (tnum tBookingUnit) tBookingUnit $
-                        LT.insert (tnum tPreallocMethod) tPreallocMethod $
-                        LT.insert (tnum tNoAllocs) gNoAllocs $
-                        LT.insert (tnum tQuantityType) tQuantityType $
-                        LT.insert (tnum tOrderQty) tOrderQty $
-                        LT.insert (tnum tCashOrderQty) tCashOrderQty $
-                        LT.insert (tnum tOrderPercent) tOrderPercent $
-                        LT.insert (tnum tRoundingDirection) tRoundingDirection $
-                        LT.insert (tnum tRoundingModulus) tRoundingModulus $
-                        LT.insert (tnum tCommission) tCommission $
-                        LT.insert (tnum tCommType) tCommType $
-                        LT.insert (tnum tCommCurrency) tCommCurrency $
-                        LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-                        LT.insert (tnum tOrderCapacity) tOrderCapacity $
-                        LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-                        LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-                        LT.insert (tnum tForexReq) tForexReq $
-                        LT.insert (tnum tSettlCurrency) tSettlCurrency $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.insert (tnum tPositionEffect) tPositionEffect $
-                        LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-                        LT.insert (tnum tCashMargin) tCashMargin $
-                        LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-                        LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-                        LT.insert (tnum tSideComplianceID) tSideComplianceID $
-                        LT.new
-                        where
-                              gNoAllocs = FIXTag
-                                { tnum = tnum tNoAllocs
-                                , tparser = gNoAllocsP }
-
-                              gNoAllocsP = groupP $ FGSpec
-                                { gsLength = tNoAllocs
-                                , gsSeperator = tAllocAccount
-                                , gsBody = gNoAllocsBody }
-                                  where
-                                  gNoAllocsBody = 
-                                      LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                                      LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                                      LT.insert (tnum tAllocQty) tAllocQty $
-                                      LT.new
-                                      where
-                                            gNoNestedPartyIDs = FIXTag
-                                              { tnum = tnum tNoNestedPartyIDs
-                                              , tparser = gNoNestedPartyIDsP }
-
-                                            gNoNestedPartyIDsP = groupP $ FGSpec
-                                              { gsLength = tNoNestedPartyIDs
-                                              , gsSeperator = tNestedPartyID
-                                              , gsBody = gNoNestedPartyIDsBody }
-                                                where
-                                                gNoNestedPartyIDsBody = 
-                                                    LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                                    LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                                    LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                                    LT.new
+                        LT.insert (tnum tPartySubID) tPartySubID                         LT.new
 
 
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
+         gNoStipulations''' = FIXTag
+            { tName = "NoStipulations"
+            , tnum = tnum tNoStipulations
+            , tparser = gNoStipulationsP''' }
 
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
+         gNoStipulationsP''' = groupP FGSpec
+            { gsLength = tNoStipulations
+            , gsSeperator = tStipulationType
+            , gsBody = gNoStipulationsBody''' }
+            where
+            gNoStipulationsBody''' = 
+               LT.insert (tnum tStipulationValue) tStipulationValue                LT.new
 
-                              gNoPartyIDs = FIXTag
-                                { tnum = tnum tNoPartyIDs
-                                , tparser = gNoPartyIDsP }
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
 
-                              gNoPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoPartyIDs
-                                , gsSeperator = tPartyID
-                                , gsBody = gNoPartyIDsBody }
-                                  where
-                                  gNoPartyIDsBody = 
-                                      LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                                      LT.insert (tnum tPartyRole) tPartyRole $
-                                      LT.insert (tnum tPartySubID) tPartySubID $
-                                      LT.new
-
-
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
-
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
-
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
-
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mSecurityTypeRequest :: FIXMessageSpec
 mSecurityTypeRequest = FMSpec
-   { msType = C.pack "v"
+   { msName = "SecurityTypeRequest"
+   , msType = C.pack "v"
    , msHeader = headerFIX43
    , msBody = mSecurityTypeRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityTypeRequestBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.new
+   mSecurityTypeRequestBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID       LT.new
 
 
 mSecurityTypes :: FIXMessageSpec
 mSecurityTypes = FMSpec
-   { msType = C.pack "w"
+   { msName = "SecurityTypes"
+   , msType = C.pack "w"
    , msHeader = headerFIX43
    , msBody = mSecurityTypesBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityTypesBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
-          LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
-          LT.insert (tnum tTotalNumSecurityTypes) tTotalNumSecurityTypes $
-          LT.insert (tnum tNoSecurityTypes) gNoSecurityTypes $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
-          where
-                gNoSecurityTypes = FIXTag
-                  { tnum = tnum tNoSecurityTypes
-                  , tparser = gNoSecurityTypesP }
+   mSecurityTypesBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+      LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
+      LT.insert (tnum tTotalNumSecurityTypes) tTotalNumSecurityTypes $
+      LT.insert (tnum tNoSecurityTypes) gNoSecurityTypes''' $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
+      where
+         gNoSecurityTypes''' = FIXTag
+            { tName = "NoSecurityTypes"
+            , tnum = tnum tNoSecurityTypes
+            , tparser = gNoSecurityTypesP''' }
 
-                gNoSecurityTypesP = groupP $ FGSpec
-                  { gsLength = tNoSecurityTypes
-                  , gsSeperator = tSecurityType
-                  , gsBody = gNoSecurityTypesBody }
-                    where
-                    gNoSecurityTypesBody = 
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.new
+         gNoSecurityTypesP''' = groupP FGSpec
+            { gsLength = tNoSecurityTypes
+            , gsSeperator = tSecurityType
+            , gsBody = gNoSecurityTypesBody''' }
+            where
+            gNoSecurityTypesBody''' = 
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode                LT.new
 
 
 
 mSecurityListRequest :: FIXMessageSpec
 mSecurityListRequest = FMSpec
-   { msType = C.pack "x"
+   { msName = "SecurityListRequest"
+   , msType = C.pack "x"
    , msHeader = headerFIX43
    , msBody = mSecurityListRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityListRequestBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
-          where
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+   mSecurityListRequestBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mSecurityList :: FIXMessageSpec
 mSecurityList = FMSpec
-   { msType = C.pack "y"
+   { msName = "SecurityList"
+   , msType = C.pack "y"
    , msHeader = headerFIX43
    , msBody = mSecurityListBody
    , msTrailer = trailerFIX43 }
    where
-      mSecurityListBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
-          LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
-          LT.insert (tnum tTotalNumSecurities) tTotalNumSecurities $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.new
-          where
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+   mSecurityListBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+      LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
+      LT.insert (tnum tTotalNumSecurities) tTotalNumSecurities $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym'''       LT.new
+      where
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tNoLegs) gNoLegs'''''' $
+               LT.insert (tnum tRoundLot) tRoundLot $
+               LT.insert (tnum tMinTradeVol) tMinTradeVol $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
+               where
+                  gNoLegs'''''' = FIXTag
+                     { tName = "NoLegs"
+                     , tnum = tnum tNoLegs
+                     , tparser = gNoLegsP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
-
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
+                  gNoLegsP'''''' = groupP FGSpec
+                     { gsLength = tNoLegs
+                     , gsSeperator = tLegSymbol
+                     , gsBody = gNoLegsBody'''''' }
+                     where
+                     gNoLegsBody'''''' = 
                         LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
                         LT.insert (tnum tLegSecurityID) tLegSecurityID $
                         LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
+                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID''''''''' $
                         LT.insert (tnum tLegProduct) tLegProduct $
                         LT.insert (tnum tLegCFICode) tLegCFICode $
                         LT.insert (tnum tLegSecurityType) tLegSecurityType $
@@ -7891,321 +9146,219 @@ mSecurityList = FMSpec
                         LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
                         LT.insert (tnum tLegRatioQty) tLegRatioQty $
                         LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegCurrency) tLegCurrency $
-                        LT.new
+                        LT.insert (tnum tLegCurrency) tLegCurrency                         LT.new
                         where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
+                           gNoLegSecurityAltID''''''''' = FIXTag
+                              { tName = "NoLegSecurityAltID"
+                              , tnum = tnum tNoLegSecurityAltID
+                              , tparser = gNoLegSecurityAltIDP''''''''' }
 
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
-
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tNoLegs) gNoLegs $
-                        LT.insert (tnum tRoundLot) tRoundLot $
-                        LT.insert (tnum tMinTradeVol) tMinTradeVol $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
-
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-                              gNoLegs = FIXTag
-                                { tnum = tnum tNoLegs
-                                , tparser = gNoLegsP }
-
-                              gNoLegsP = groupP $ FGSpec
-                                { gsLength = tNoLegs
-                                , gsSeperator = tLegSymbol
-                                , gsBody = gNoLegsBody }
-                                  where
-                                  gNoLegsBody = 
-                                      LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                                      LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                                      LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                                      LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                                      LT.insert (tnum tLegProduct) tLegProduct $
-                                      LT.insert (tnum tLegCFICode) tLegCFICode $
-                                      LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                                      LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                                      LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                                      LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                                      LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                                      LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                                      LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                                      LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                                      LT.insert (tnum tLegFactor) tLegFactor $
-                                      LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                                      LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                                      LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                                      LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                                      LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                                      LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                                      LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                                      LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                                      LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                                      LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                                      LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                                      LT.insert (tnum tLegIssuer) tLegIssuer $
-                                      LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                                      LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                                      LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                                      LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                                      LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                                      LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                                      LT.insert (tnum tLegSide) tLegSide $
-                                      LT.insert (tnum tLegCurrency) tLegCurrency $
-                                      LT.new
-                                      where
-                                            gNoLegSecurityAltID = FIXTag
-                                              { tnum = tnum tNoLegSecurityAltID
-                                              , tparser = gNoLegSecurityAltIDP }
-
-                                            gNoLegSecurityAltIDP = groupP $ FGSpec
-                                              { gsLength = tNoLegSecurityAltID
-                                              , gsSeperator = tLegSecurityAltID
-                                              , gsBody = gNoLegSecurityAltIDBody }
-                                                where
-                                                gNoLegSecurityAltIDBody = 
-                                                    LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                                    LT.new
+                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                              { gsLength = tNoLegSecurityAltID
+                              , gsSeperator = tLegSecurityAltID
+                              , gsBody = gNoLegSecurityAltIDBody''''''''' }
+                              where
+                              gNoLegSecurityAltIDBody''''''''' = 
+                                 LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                                  LT.new
 
 
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
 
 
 
 mDerivativeSecurityListRequest :: FIXMessageSpec
 mDerivativeSecurityListRequest = FMSpec
-   { msType = C.pack "z"
+   { msName = "DerivativeSecurityListRequest"
+   , msType = C.pack "z"
    , msHeader = headerFIX43
    , msBody = mDerivativeSecurityListRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mDerivativeSecurityListRequestBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
-          LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-          LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-          LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-          LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-          LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-          LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-          LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-          LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-          LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-          LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-          LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-          LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-          LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-          LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-          LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-          LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-          LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-          LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-          LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-          LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-          LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-          LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-          LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-          LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-          LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-          LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-          LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-          LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-          LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-          LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-          LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-          LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-          LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
-          where
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
+   mDerivativeSecurityListRequestBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
+      LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+      LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+      LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+      LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+      LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID''' $
+      LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+      LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+      LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+      LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+      LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+      LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+      LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+      LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+      LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+      LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+      LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+      LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+      LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+      LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+      LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+      LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+      LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+      LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+      LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+      LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+      LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+      LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+      LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+      LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+      LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+      LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+      LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+      LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
+      where
+         gNoUnderlyingSecurityAltID''' = FIXTag
+            { tName = "NoUnderlyingSecurityAltID"
+            , tnum = tnum tNoUnderlyingSecurityAltID
+            , tparser = gNoUnderlyingSecurityAltIDP''' }
 
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
+         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoUnderlyingSecurityAltID
+            , gsSeperator = tUnderlyingSecurityAltID
+            , gsBody = gNoUnderlyingSecurityAltIDBody''' }
+            where
+            gNoUnderlyingSecurityAltIDBody''' = 
+               LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                LT.new
 
 
 
 mDerivativeSecurityList :: FIXMessageSpec
 mDerivativeSecurityList = FMSpec
-   { msType = C.pack "AA"
+   { msName = "DerivativeSecurityList"
+   , msType = C.pack "AA"
    , msHeader = headerFIX43
    , msBody = mDerivativeSecurityListBody
    , msTrailer = trailerFIX43 }
    where
-      mDerivativeSecurityListBody = 
-          LT.insert (tnum tSecurityReqID) tSecurityReqID $
-          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
-          LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
-          LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-          LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-          LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-          LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-          LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-          LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-          LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-          LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-          LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-          LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-          LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-          LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-          LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-          LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-          LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-          LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-          LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-          LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-          LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-          LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-          LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-          LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-          LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-          LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-          LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-          LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-          LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-          LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-          LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-          LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-          LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-          LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-          LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-          LT.insert (tnum tTotalNumSecurities) tTotalNumSecurities $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.new
-          where
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+   mDerivativeSecurityListBody = 
+      LT.insert (tnum tSecurityReqID) tSecurityReqID $
+      LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+      LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
+      LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+      LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+      LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+      LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+      LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID''' $
+      LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+      LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+      LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+      LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+      LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+      LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+      LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+      LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+      LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+      LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+      LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+      LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+      LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+      LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+      LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+      LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+      LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+      LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+      LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+      LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+      LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+      LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+      LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+      LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+      LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+      LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+      LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+      LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+      LT.insert (tnum tTotalNumSecurities) tTotalNumSecurities $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym'''       LT.new
+      where
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tNoLegs) gNoLegs'''''' $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText                LT.new
+               where
+                  gNoLegs'''''' = FIXTag
+                     { tName = "NoLegs"
+                     , tnum = tnum tNoLegs
+                     , tparser = gNoLegsP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
-
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
+                  gNoLegsP'''''' = groupP FGSpec
+                     { gsLength = tNoLegs
+                     , gsSeperator = tLegSymbol
+                     , gsBody = gNoLegsBody'''''' }
+                     where
+                     gNoLegsBody'''''' = 
                         LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
                         LT.insert (tnum tLegSecurityID) tLegSecurityID $
                         LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
+                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID''''''''' $
                         LT.insert (tnum tLegProduct) tLegProduct $
                         LT.insert (tnum tLegCFICode) tLegCFICode $
                         LT.insert (tnum tLegSecurityType) tLegSecurityType $
@@ -8236,1578 +9389,1290 @@ mDerivativeSecurityList = FMSpec
                         LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
                         LT.insert (tnum tLegRatioQty) tLegRatioQty $
                         LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegCurrency) tLegCurrency $
-                        LT.new
+                        LT.insert (tnum tLegCurrency) tLegCurrency                         LT.new
                         where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
+                           gNoLegSecurityAltID''''''''' = FIXTag
+                              { tName = "NoLegSecurityAltID"
+                              , tnum = tnum tNoLegSecurityAltID
+                              , tparser = gNoLegSecurityAltIDP''''''''' }
 
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
-
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tNoLegs) gNoLegs $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
-
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-                              gNoLegs = FIXTag
-                                { tnum = tnum tNoLegs
-                                , tparser = gNoLegsP }
-
-                              gNoLegsP = groupP $ FGSpec
-                                { gsLength = tNoLegs
-                                , gsSeperator = tLegSymbol
-                                , gsBody = gNoLegsBody }
-                                  where
-                                  gNoLegsBody = 
-                                      LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                                      LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                                      LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                                      LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                                      LT.insert (tnum tLegProduct) tLegProduct $
-                                      LT.insert (tnum tLegCFICode) tLegCFICode $
-                                      LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                                      LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                                      LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                                      LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                                      LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                                      LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                                      LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                                      LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                                      LT.insert (tnum tLegFactor) tLegFactor $
-                                      LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                                      LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                                      LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                                      LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                                      LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                                      LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                                      LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                                      LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                                      LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                                      LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                                      LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                                      LT.insert (tnum tLegIssuer) tLegIssuer $
-                                      LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                                      LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                                      LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                                      LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                                      LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                                      LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                                      LT.insert (tnum tLegSide) tLegSide $
-                                      LT.insert (tnum tLegCurrency) tLegCurrency $
-                                      LT.new
-                                      where
-                                            gNoLegSecurityAltID = FIXTag
-                                              { tnum = tnum tNoLegSecurityAltID
-                                              , tparser = gNoLegSecurityAltIDP }
-
-                                            gNoLegSecurityAltIDP = groupP $ FGSpec
-                                              { gsLength = tNoLegSecurityAltID
-                                              , gsSeperator = tLegSecurityAltID
-                                              , gsBody = gNoLegSecurityAltIDBody }
-                                                where
-                                                gNoLegSecurityAltIDBody = 
-                                                    LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                                    LT.new
+                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                              { gsLength = tNoLegSecurityAltID
+                              , gsSeperator = tLegSecurityAltID
+                              , gsBody = gNoLegSecurityAltIDBody''''''''' }
+                              where
+                              gNoLegSecurityAltIDBody''''''''' = 
+                                 LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                                  LT.new
 
 
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoUnderlyingSecurityAltID''' = FIXTag
+            { tName = "NoUnderlyingSecurityAltID"
+            , tnum = tnum tNoUnderlyingSecurityAltID
+            , tparser = gNoUnderlyingSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
-
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
+         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoUnderlyingSecurityAltID
+            , gsSeperator = tUnderlyingSecurityAltID
+            , gsBody = gNoUnderlyingSecurityAltIDBody''' }
+            where
+            gNoUnderlyingSecurityAltIDBody''' = 
+               LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                LT.new
 
 
 
 mNewOrderMultileg :: FIXMessageSpec
 mNewOrderMultileg = FMSpec
-   { msType = C.pack "AB"
+   { msName = "NewOrderMultileg"
+   , msType = C.pack "AB"
    , msHeader = headerFIX43
    , msBody = mNewOrderMultilegBody
    , msTrailer = trailerFIX43 }
    where
-      mNewOrderMultilegBody = 
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tDayBookingInst) tDayBookingInst $
-          LT.insert (tnum tBookingUnit) tBookingUnit $
-          LT.insert (tnum tPreallocMethod) tPreallocMethod $
-          LT.insert (tnum tNoAllocs) gNoAllocs $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tCashMargin) tCashMargin $
-          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.insert (tnum tProcessCode) tProcessCode $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tPrevClosePx) tPrevClosePx $
-          LT.insert (tnum tNoLegs) gNoLegs $
-          LT.insert (tnum tLocateReqd) tLocateReqd $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tQuantityType) tQuantityType $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-          LT.insert (tnum tIOIid) tIOIid $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCommCurrency) tCommCurrency $
-          LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-          LT.insert (tnum tOrderCapacity) tOrderCapacity $
-          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tForexReq) tForexReq $
-          LT.insert (tnum tSettlCurrency) tSettlCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tPositionEffect) tPositionEffect $
-          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mNewOrderMultilegBody = 
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tDayBookingInst) tDayBookingInst $
+      LT.insert (tnum tBookingUnit) tBookingUnit $
+      LT.insert (tnum tPreallocMethod) tPreallocMethod $
+      LT.insert (tnum tNoAllocs) gNoAllocs''' $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tCashMargin) tCashMargin $
+      LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions''' $
+      LT.insert (tnum tProcessCode) tProcessCode $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tPrevClosePx) tPrevClosePx $
+      LT.insert (tnum tNoLegs) gNoLegs''' $
+      LT.insert (tnum tLocateReqd) tLocateReqd $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tQuantityType) tQuantityType $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+      LT.insert (tnum tIOIid) tIOIid $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCommCurrency) tCommCurrency $
+      LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+      LT.insert (tnum tOrderCapacity) tOrderCapacity $
+      LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tForexReq) tForexReq $
+      LT.insert (tnum tSettlCurrency) tSettlCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tPositionEffect) tPositionEffect $
+      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
+      LT.insert (tnum tNetMoney) tNetMoney       LT.new
+      where
+         gNoAllocs''' = FIXTag
+            { tName = "NoAllocs"
+            , tnum = tnum tNoAllocs
+            , tparser = gNoAllocsP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
-                        LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
+         gNoAllocsP''' = groupP FGSpec
+            { gsLength = tNoAllocs
+            , gsSeperator = tAllocAccount
+            , gsBody = gNoAllocsBody''' }
+            where
+            gNoAllocsBody''' = 
+               LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+               LT.insert (tnum tAllocQty) tAllocQty                LT.new
 
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+         gNoLegs''' = FIXTag
+            { tName = "NoLegs"
+            , tnum = tnum tNoLegs
+            , tparser = gNoLegsP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoLegsP''' = groupP FGSpec
+            { gsLength = tNoLegs
+            , gsSeperator = tLegSymbol
+            , gsBody = gNoLegsBody''' }
+            where
+            gNoLegsBody''' = 
+               LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
+               LT.insert (tnum tLegSecurityID) tLegSecurityID $
+               LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
+               LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID'''''' $
+               LT.insert (tnum tLegProduct) tLegProduct $
+               LT.insert (tnum tLegCFICode) tLegCFICode $
+               LT.insert (tnum tLegSecurityType) tLegSecurityType $
+               LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
+               LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
+               LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
+               LT.insert (tnum tLegIssueDate) tLegIssueDate $
+               LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
+               LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
+               LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
+               LT.insert (tnum tLegFactor) tLegFactor $
+               LT.insert (tnum tLegCreditRating) tLegCreditRating $
+               LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
+               LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
+               LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
+               LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
+               LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
+               LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
+               LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
+               LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
+               LT.insert (tnum tLegCouponRate) tLegCouponRate $
+               LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
+               LT.insert (tnum tLegIssuer) tLegIssuer $
+               LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
+               LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
+               LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
+               LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
+               LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
+               LT.insert (tnum tLegRatioQty) tLegRatioQty $
+               LT.insert (tnum tLegSide) tLegSide $
+               LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
+               LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tLegRefID) tLegRefID $
+               LT.insert (tnum tLegPrice) tLegPrice $
+               LT.insert (tnum tLegSettlmntTyp) tLegSettlmntTyp $
+               LT.insert (tnum tLegFutSettDate) tLegFutSettDate                LT.new
+               where
+                  gNoLegSecurityAltID'''''' = FIXTag
+                     { tName = "NoLegSecurityAltID"
+                     , tnum = tnum tNoLegSecurityAltID
+                     , tparser = gNoLegSecurityAltIDP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
+                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoLegSecurityAltID
+                     , gsSeperator = tLegSecurityAltID
+                     , gsBody = gNoLegSecurityAltIDBody'''''' }
+                     where
+                     gNoLegSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                         LT.new
 
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
-                        LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                        LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                        LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                        LT.insert (tnum tLegProduct) tLegProduct $
-                        LT.insert (tnum tLegCFICode) tLegCFICode $
-                        LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                        LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                        LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                        LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                        LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                        LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                        LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                        LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                        LT.insert (tnum tLegFactor) tLegFactor $
-                        LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                        LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                        LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                        LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                        LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                        LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                        LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                        LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                        LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                        LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                        LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                        LT.insert (tnum tLegIssuer) tLegIssuer $
-                        LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                        LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                        LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                        LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                        LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                        LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                        LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
-                        LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tLegRefID) tLegRefID $
-                        LT.insert (tnum tLegPrice) tLegPrice $
-                        LT.insert (tnum tLegSettlmntTyp) tLegSettlmntTyp $
-                        LT.insert (tnum tLegFutSettDate) tLegFutSettDate $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
 
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
-
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
-
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
+
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mMultilegOrderCancelReplaceRequest :: FIXMessageSpec
 mMultilegOrderCancelReplaceRequest = FMSpec
-   { msType = C.pack "AC"
+   { msName = "MultilegOrderCancelReplaceRequest"
+   , msType = C.pack "AC"
    , msHeader = headerFIX43
    , msBody = mMultilegOrderCancelReplaceRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mMultilegOrderCancelReplaceRequestBody = 
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
-          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
-          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tDayBookingInst) tDayBookingInst $
-          LT.insert (tnum tBookingUnit) tBookingUnit $
-          LT.insert (tnum tPreallocMethod) tPreallocMethod $
-          LT.insert (tnum tNoAllocs) gNoAllocs $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tCashMargin) tCashMargin $
-          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-          LT.insert (tnum tHandlInst) tHandlInst $
-          LT.insert (tnum tExecInst) tExecInst $
-          LT.insert (tnum tMinQty) tMinQty $
-          LT.insert (tnum tMaxFloor) tMaxFloor $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tNoTradingSessions) gNoTradingSessions $
-          LT.insert (tnum tProcessCode) tProcessCode $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tPrevClosePx) tPrevClosePx $
-          LT.insert (tnum tNoLegs) gNoLegs $
-          LT.insert (tnum tLocateReqd) tLocateReqd $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tQuantityType) tQuantityType $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tPriceType) tPriceType $
-          LT.insert (tnum tPrice) tPrice $
-          LT.insert (tnum tStopPx) tStopPx $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tComplianceID) tComplianceID $
-          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-          LT.insert (tnum tIOIid) tIOIid $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tTimeInForce) tTimeInForce $
-          LT.insert (tnum tEffectiveTime) tEffectiveTime $
-          LT.insert (tnum tExpireDate) tExpireDate $
-          LT.insert (tnum tExpireTime) tExpireTime $
-          LT.insert (tnum tGTBookingInst) tGTBookingInst $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCommCurrency) tCommCurrency $
-          LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-          LT.insert (tnum tOrderCapacity) tOrderCapacity $
-          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tForexReq) tForexReq $
-          LT.insert (tnum tSettlCurrency) tSettlCurrency $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tPositionEffect) tPositionEffect $
-          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
-          LT.insert (tnum tMaxShow) tMaxShow $
-          LT.insert (tnum tPegDifference) tPegDifference $
-          LT.insert (tnum tDiscretionInst) tDiscretionInst $
-          LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
-          LT.insert (tnum tCancellationRights) tCancellationRights $
-          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
-          LT.insert (tnum tRegistID) tRegistID $
-          LT.insert (tnum tDesignation) tDesignation $
-          LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
-          LT.insert (tnum tNetMoney) tNetMoney $
-          LT.new
-          where
-                gNoAllocs = FIXTag
-                  { tnum = tnum tNoAllocs
-                  , tparser = gNoAllocsP }
+   mMultilegOrderCancelReplaceRequestBody = 
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+      LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+      LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tDayBookingInst) tDayBookingInst $
+      LT.insert (tnum tBookingUnit) tBookingUnit $
+      LT.insert (tnum tPreallocMethod) tPreallocMethod $
+      LT.insert (tnum tNoAllocs) gNoAllocs''' $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tCashMargin) tCashMargin $
+      LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+      LT.insert (tnum tHandlInst) tHandlInst $
+      LT.insert (tnum tExecInst) tExecInst $
+      LT.insert (tnum tMinQty) tMinQty $
+      LT.insert (tnum tMaxFloor) tMaxFloor $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tNoTradingSessions) gNoTradingSessions''' $
+      LT.insert (tnum tProcessCode) tProcessCode $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tPrevClosePx) tPrevClosePx $
+      LT.insert (tnum tNoLegs) gNoLegs''' $
+      LT.insert (tnum tLocateReqd) tLocateReqd $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tQuantityType) tQuantityType $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tPriceType) tPriceType $
+      LT.insert (tnum tPrice) tPrice $
+      LT.insert (tnum tStopPx) tStopPx $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tComplianceID) tComplianceID $
+      LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+      LT.insert (tnum tIOIid) tIOIid $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tTimeInForce) tTimeInForce $
+      LT.insert (tnum tEffectiveTime) tEffectiveTime $
+      LT.insert (tnum tExpireDate) tExpireDate $
+      LT.insert (tnum tExpireTime) tExpireTime $
+      LT.insert (tnum tGTBookingInst) tGTBookingInst $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCommCurrency) tCommCurrency $
+      LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+      LT.insert (tnum tOrderCapacity) tOrderCapacity $
+      LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tForexReq) tForexReq $
+      LT.insert (tnum tSettlCurrency) tSettlCurrency $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tPositionEffect) tPositionEffect $
+      LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+      LT.insert (tnum tMaxShow) tMaxShow $
+      LT.insert (tnum tPegDifference) tPegDifference $
+      LT.insert (tnum tDiscretionInst) tDiscretionInst $
+      LT.insert (tnum tDiscretionOffset) tDiscretionOffset $
+      LT.insert (tnum tCancellationRights) tCancellationRights $
+      LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+      LT.insert (tnum tRegistID) tRegistID $
+      LT.insert (tnum tDesignation) tDesignation $
+      LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
+      LT.insert (tnum tNetMoney) tNetMoney       LT.new
+      where
+         gNoAllocs''' = FIXTag
+            { tName = "NoAllocs"
+            , tnum = tnum tNoAllocs
+            , tparser = gNoAllocsP''' }
 
-                gNoAllocsP = groupP $ FGSpec
-                  { gsLength = tNoAllocs
-                  , gsSeperator = tAllocAccount
-                  , gsBody = gNoAllocsBody }
-                    where
-                    gNoAllocsBody = 
-                        LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
-                        LT.insert (tnum tAllocQty) tAllocQty $
-                        LT.new
+         gNoAllocsP''' = groupP FGSpec
+            { gsLength = tNoAllocs
+            , gsSeperator = tAllocAccount
+            , gsBody = gNoAllocsBody''' }
+            where
+            gNoAllocsBody''' = 
+               LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+               LT.insert (tnum tAllocQty) tAllocQty                LT.new
 
-                gNoLegSecurityAltID = FIXTag
-                  { tnum = tnum tNoLegSecurityAltID
-                  , tparser = gNoLegSecurityAltIDP }
+         gNoLegs''' = FIXTag
+            { tName = "NoLegs"
+            , tnum = tnum tNoLegs
+            , tparser = gNoLegsP''' }
 
-                gNoLegSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoLegSecurityAltID
-                  , gsSeperator = tLegSecurityAltID
-                  , gsBody = gNoLegSecurityAltIDBody }
-                    where
-                    gNoLegSecurityAltIDBody = 
-                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                        LT.new
+         gNoLegsP''' = groupP FGSpec
+            { gsLength = tNoLegs
+            , gsSeperator = tLegSymbol
+            , gsBody = gNoLegsBody''' }
+            where
+            gNoLegsBody''' = 
+               LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
+               LT.insert (tnum tLegSecurityID) tLegSecurityID $
+               LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
+               LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID'''''' $
+               LT.insert (tnum tLegProduct) tLegProduct $
+               LT.insert (tnum tLegCFICode) tLegCFICode $
+               LT.insert (tnum tLegSecurityType) tLegSecurityType $
+               LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
+               LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
+               LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
+               LT.insert (tnum tLegIssueDate) tLegIssueDate $
+               LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
+               LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
+               LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
+               LT.insert (tnum tLegFactor) tLegFactor $
+               LT.insert (tnum tLegCreditRating) tLegCreditRating $
+               LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
+               LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
+               LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
+               LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
+               LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
+               LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
+               LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
+               LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
+               LT.insert (tnum tLegCouponRate) tLegCouponRate $
+               LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
+               LT.insert (tnum tLegIssuer) tLegIssuer $
+               LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
+               LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
+               LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
+               LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
+               LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
+               LT.insert (tnum tLegRatioQty) tLegRatioQty $
+               LT.insert (tnum tLegSide) tLegSide $
+               LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
+               LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
+               LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs'''''' $
+               LT.insert (tnum tLegRefID) tLegRefID $
+               LT.insert (tnum tLegPrice) tLegPrice $
+               LT.insert (tnum tLegSettlmntTyp) tLegSettlmntTyp $
+               LT.insert (tnum tLegFutSettDate) tLegFutSettDate                LT.new
+               where
+                  gNoLegSecurityAltID'''''' = FIXTag
+                     { tName = "NoLegSecurityAltID"
+                     , tnum = tnum tNoLegSecurityAltID
+                     , tparser = gNoLegSecurityAltIDP'''''' }
 
-                gNoLegs = FIXTag
-                  { tnum = tnum tNoLegs
-                  , tparser = gNoLegsP }
+                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoLegSecurityAltID
+                     , gsSeperator = tLegSecurityAltID
+                     , gsBody = gNoLegSecurityAltIDBody'''''' }
+                     where
+                     gNoLegSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource                         LT.new
 
-                gNoLegsP = groupP $ FGSpec
-                  { gsLength = tNoLegs
-                  , gsSeperator = tLegSymbol
-                  , gsBody = gNoLegsBody }
-                    where
-                    gNoLegsBody = 
-                        LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
-                        LT.insert (tnum tLegSecurityID) tLegSecurityID $
-                        LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
-                        LT.insert (tnum tNoLegSecurityAltID) gNoLegSecurityAltID $
-                        LT.insert (tnum tLegProduct) tLegProduct $
-                        LT.insert (tnum tLegCFICode) tLegCFICode $
-                        LT.insert (tnum tLegSecurityType) tLegSecurityType $
-                        LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
-                        LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
-                        LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
-                        LT.insert (tnum tLegIssueDate) tLegIssueDate $
-                        LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
-                        LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
-                        LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
-                        LT.insert (tnum tLegFactor) tLegFactor $
-                        LT.insert (tnum tLegCreditRating) tLegCreditRating $
-                        LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
-                        LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
-                        LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
-                        LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
-                        LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
-                        LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
-                        LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
-                        LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
-                        LT.insert (tnum tLegCouponRate) tLegCouponRate $
-                        LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
-                        LT.insert (tnum tLegIssuer) tLegIssuer $
-                        LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
-                        LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
-                        LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
-                        LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
-                        LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
-                        LT.insert (tnum tLegRatioQty) tLegRatioQty $
-                        LT.insert (tnum tLegSide) tLegSide $
-                        LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
-                        LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
-                        LT.insert (tnum tNoNestedPartyIDs) gNoNestedPartyIDs $
-                        LT.insert (tnum tLegRefID) tLegRefID $
-                        LT.insert (tnum tLegPrice) tLegPrice $
-                        LT.insert (tnum tLegSettlmntTyp) tLegSettlmntTyp $
-                        LT.insert (tnum tLegFutSettDate) tLegFutSettDate $
-                        LT.new
-                        where
-                              gNoLegSecurityAltID = FIXTag
-                                { tnum = tnum tNoLegSecurityAltID
-                                , tparser = gNoLegSecurityAltIDP }
+                  gNoNestedPartyIDs'''''' = FIXTag
+                     { tName = "NoNestedPartyIDs"
+                     , tnum = tnum tNoNestedPartyIDs
+                     , tparser = gNoNestedPartyIDsP'''''' }
 
-                              gNoLegSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoLegSecurityAltID
-                                , gsSeperator = tLegSecurityAltID
-                                , gsBody = gNoLegSecurityAltIDBody }
-                                  where
-                                  gNoLegSecurityAltIDBody = 
-                                      LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
-                                      LT.new
-
-                              gNoNestedPartyIDs = FIXTag
-                                { tnum = tnum tNoNestedPartyIDs
-                                , tparser = gNoNestedPartyIDsP }
-
-                              gNoNestedPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoNestedPartyIDs
-                                , gsSeperator = tNestedPartyID
-                                , gsBody = gNoNestedPartyIDsBody }
-                                  where
-                                  gNoNestedPartyIDsBody = 
-                                      LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
-                                      LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                                      LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                                      LT.new
-
-
-                gNoNestedPartyIDs = FIXTag
-                  { tnum = tnum tNoNestedPartyIDs
-                  , tparser = gNoNestedPartyIDsP }
-
-                gNoNestedPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoNestedPartyIDs
-                  , gsSeperator = tNestedPartyID
-                  , gsBody = gNoNestedPartyIDsBody }
-                    where
-                    gNoNestedPartyIDsBody = 
+                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoNestedPartyIDs
+                     , gsSeperator = tNestedPartyID
+                     , gsBody = gNoNestedPartyIDsBody'''''' }
+                     where
+                     gNoNestedPartyIDsBody'''''' = 
                         LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
                         LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
-                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
-                        LT.new
+                        LT.insert (tnum tNestedPartySubID) tNestedPartySubID                         LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoTradingSessions = FIXTag
-                  { tnum = tnum tNoTradingSessions
-                  , tparser = gNoTradingSessionsP }
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoTradingSessionsP = groupP $ FGSpec
-                  { gsLength = tNoTradingSessions
-                  , gsSeperator = tTradingSessionID
-                  , gsBody = gNoTradingSessionsBody }
-                    where
-                    gNoTradingSessionsBody = 
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
+         gNoTradingSessions''' = FIXTag
+            { tName = "NoTradingSessions"
+            , tnum = tnum tNoTradingSessions
+            , tparser = gNoTradingSessionsP''' }
+
+         gNoTradingSessionsP''' = groupP FGSpec
+            { gsLength = tNoTradingSessions
+            , gsSeperator = tTradingSessionID
+            , gsBody = gNoTradingSessionsBody''' }
+            where
+            gNoTradingSessionsBody''' = 
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
 
 
 
 mTradeCaptureReportRequest :: FIXMessageSpec
 mTradeCaptureReportRequest = FMSpec
-   { msType = C.pack "AD"
+   { msName = "TradeCaptureReportRequest"
+   , msType = C.pack "AD"
    , msHeader = headerFIX43
    , msBody = mTradeCaptureReportRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mTradeCaptureReportRequestBody = 
-          LT.insert (tnum tTradeRequestID) tTradeRequestID $
-          LT.insert (tnum tTradeRequestType) tTradeRequestType $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.insert (tnum tExecID) tExecID $
-          LT.insert (tnum tOrderID) tOrderID $
-          LT.insert (tnum tClOrdID) tClOrdID $
-          LT.insert (tnum tMatchStatus) tMatchStatus $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tNoDates) gNoDates $
-          LT.insert (tnum tSide) tSide $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.insert (tnum tTradeInputSource) tTradeInputSource $
-          LT.insert (tnum tTradeInputDevice) tTradeInputDevice $
-          LT.new
-          where
-                gNoDates = FIXTag
-                  { tnum = tnum tNoDates
-                  , tparser = gNoDatesP }
+   mTradeCaptureReportRequestBody = 
+      LT.insert (tnum tTradeRequestID) tTradeRequestID $
+      LT.insert (tnum tTradeRequestType) tTradeRequestType $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+      LT.insert (tnum tExecID) tExecID $
+      LT.insert (tnum tOrderID) tOrderID $
+      LT.insert (tnum tClOrdID) tClOrdID $
+      LT.insert (tnum tMatchStatus) tMatchStatus $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tNoDates) gNoDates''' $
+      LT.insert (tnum tSide) tSide $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText $
+      LT.insert (tnum tTradeInputSource) tTradeInputSource $
+      LT.insert (tnum tTradeInputDevice) tTradeInputDevice       LT.new
+      where
+         gNoDates''' = FIXTag
+            { tName = "NoDates"
+            , tnum = tnum tNoDates
+            , tparser = gNoDatesP''' }
 
-                gNoDatesP = groupP $ FGSpec
-                  { gsLength = tNoDates
-                  , gsSeperator = tTradeDate
-                  , gsBody = gNoDatesBody }
-                    where
-                    gNoDatesBody = 
-                        LT.insert (tnum tTransactTime) tTransactTime $
-                        LT.new
+         gNoDatesP''' = groupP FGSpec
+            { gsLength = tNoDates
+            , gsSeperator = tTradeDate
+            , gsBody = gNoDatesBody''' }
+            where
+            gNoDatesBody''' = 
+               LT.insert (tnum tTransactTime) tTransactTime                LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
 mTradeCaptureReport :: FIXMessageSpec
 mTradeCaptureReport = FMSpec
-   { msType = C.pack "AE"
+   { msName = "TradeCaptureReport"
+   , msType = C.pack "AE"
    , msHeader = headerFIX43
    , msBody = mTradeCaptureReportBody
    , msTrailer = trailerFIX43 }
    where
-      mTradeCaptureReportBody = 
-          LT.insert (tnum tTradeReportID) tTradeReportID $
-          LT.insert (tnum tTradeReportTransType) tTradeReportTransType $
-          LT.insert (tnum tTradeRequestID) tTradeRequestID $
-          LT.insert (tnum tExecType) tExecType $
-          LT.insert (tnum tTradeReportRefID) tTradeReportRefID $
-          LT.insert (tnum tExecID) tExecID $
-          LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
-          LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
-          LT.insert (tnum tPreviouslyReported) tPreviouslyReported $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tOrderQty) tOrderQty $
-          LT.insert (tnum tCashOrderQty) tCashOrderQty $
-          LT.insert (tnum tOrderPercent) tOrderPercent $
-          LT.insert (tnum tRoundingDirection) tRoundingDirection $
-          LT.insert (tnum tRoundingModulus) tRoundingModulus $
-          LT.insert (tnum tLastQty) tLastQty $
-          LT.insert (tnum tLastPx) tLastPx $
-          LT.insert (tnum tLastSpotRate) tLastSpotRate $
-          LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
-          LT.insert (tnum tLastMkt) tLastMkt $
-          LT.insert (tnum tTradeDate) tTradeDate $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tMatchStatus) tMatchStatus $
-          LT.insert (tnum tMatchType) tMatchType $
-          LT.insert (tnum tNoSides) gNoSides $
-          LT.new
-          where
-                gNoClearingInstructions = FIXTag
-                  { tnum = tnum tNoClearingInstructions
-                  , tparser = gNoClearingInstructionsP }
+   mTradeCaptureReportBody = 
+      LT.insert (tnum tTradeReportID) tTradeReportID $
+      LT.insert (tnum tTradeReportTransType) tTradeReportTransType $
+      LT.insert (tnum tTradeRequestID) tTradeRequestID $
+      LT.insert (tnum tExecType) tExecType $
+      LT.insert (tnum tTradeReportRefID) tTradeReportRefID $
+      LT.insert (tnum tExecID) tExecID $
+      LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+      LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
+      LT.insert (tnum tPreviouslyReported) tPreviouslyReported $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tOrderQty) tOrderQty $
+      LT.insert (tnum tCashOrderQty) tCashOrderQty $
+      LT.insert (tnum tOrderPercent) tOrderPercent $
+      LT.insert (tnum tRoundingDirection) tRoundingDirection $
+      LT.insert (tnum tRoundingModulus) tRoundingModulus $
+      LT.insert (tnum tLastQty) tLastQty $
+      LT.insert (tnum tLastPx) tLastPx $
+      LT.insert (tnum tLastSpotRate) tLastSpotRate $
+      LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
+      LT.insert (tnum tLastMkt) tLastMkt $
+      LT.insert (tnum tTradeDate) tTradeDate $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tMatchStatus) tMatchStatus $
+      LT.insert (tnum tMatchType) tMatchType $
+      LT.insert (tnum tNoSides) gNoSides'''       LT.new
+      where
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoClearingInstructionsP = groupP $ FGSpec
-                  { gsLength = tNoClearingInstructions
-                  , gsSeperator = tClearingInstruction
-                  , gsBody = gNoClearingInstructionsBody }
-                    where
-                    gNoClearingInstructionsBody = 
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
+
+         gNoSides''' = FIXTag
+            { tName = "NoSides"
+            , tnum = tnum tNoSides
+            , tparser = gNoSidesP''' }
+
+         gNoSidesP''' = groupP FGSpec
+            { gsLength = tNoSides
+            , gsSeperator = tSide
+            , gsBody = gNoSidesBody''' }
+            where
+            gNoSidesBody''' = 
+               LT.insert (tnum tOrderID) tOrderID $
+               LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+               LT.insert (tnum tClOrdID) tClOrdID $
+               LT.insert (tnum tNoPartyIDs) gNoPartyIDs'''''' $
+               LT.insert (tnum tAccount) tAccount $
+               LT.insert (tnum tAccountType) tAccountType $
+               LT.insert (tnum tProcessCode) tProcessCode $
+               LT.insert (tnum tOddLot) tOddLot $
+               LT.insert (tnum tNoClearingInstructions) gNoClearingInstructions'''''' $
+               LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+               LT.insert (tnum tTradeInputSource) tTradeInputSource $
+               LT.insert (tnum tTradeInputDevice) tTradeInputDevice $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tComplianceID) tComplianceID $
+               LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+               LT.insert (tnum tOrderCapacity) tOrderCapacity $
+               LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+               LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+               LT.insert (tnum tTransBkdTime) tTransBkdTime $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tCommission) tCommission $
+               LT.insert (tnum tCommType) tCommType $
+               LT.insert (tnum tCommCurrency) tCommCurrency $
+               LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+               LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+               LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+               LT.insert (tnum tExDate) tExDate $
+               LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+               LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+               LT.insert (tnum tConcession) tConcession $
+               LT.insert (tnum tTotalTakedown) tTotalTakedown $
+               LT.insert (tnum tNetMoney) tNetMoney $
+               LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+               LT.insert (tnum tSettlCurrency) tSettlCurrency $
+               LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
+               LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+               LT.insert (tnum tPositionEffect) tPositionEffect $
+               LT.insert (tnum tText) tText $
+               LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+               LT.insert (tnum tEncodedText) tEncodedText $
+               LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+               LT.insert (tnum tNoContAmts) gNoContAmts'''''' $
+               LT.insert (tnum tNoMiscFees) gNoMiscFees''''''                LT.new
+               where
+                  gNoClearingInstructions'''''' = FIXTag
+                     { tName = "NoClearingInstructions"
+                     , tnum = tnum tNoClearingInstructions
+                     , tparser = gNoClearingInstructionsP'''''' }
+
+                  gNoClearingInstructionsP'''''' = groupP FGSpec
+                     { gsLength = tNoClearingInstructions
+                     , gsSeperator = tClearingInstruction
+                     , gsBody = gNoClearingInstructionsBody'''''' }
+                     where
+                     gNoClearingInstructionsBody'''''' = 
                         LT.new
 
-                gNoContAmts = FIXTag
-                  { tnum = tnum tNoContAmts
-                  , tparser = gNoContAmtsP }
+                  gNoContAmts'''''' = FIXTag
+                     { tName = "NoContAmts"
+                     , tnum = tnum tNoContAmts
+                     , tparser = gNoContAmtsP'''''' }
 
-                gNoContAmtsP = groupP $ FGSpec
-                  { gsLength = tNoContAmts
-                  , gsSeperator = tContAmtType
-                  , gsBody = gNoContAmtsBody }
-                    where
-                    gNoContAmtsBody = 
+                  gNoContAmtsP'''''' = groupP FGSpec
+                     { gsLength = tNoContAmts
+                     , gsSeperator = tContAmtType
+                     , gsBody = gNoContAmtsBody'''''' }
+                     where
+                     gNoContAmtsBody'''''' = 
                         LT.insert (tnum tContAmtValue) tContAmtValue $
-                        LT.insert (tnum tContAmtCurr) tContAmtCurr $
-                        LT.new
+                        LT.insert (tnum tContAmtCurr) tContAmtCurr                         LT.new
 
-                gNoMiscFees = FIXTag
-                  { tnum = tnum tNoMiscFees
-                  , tparser = gNoMiscFeesP }
+                  gNoMiscFees'''''' = FIXTag
+                     { tName = "NoMiscFees"
+                     , tnum = tnum tNoMiscFees
+                     , tparser = gNoMiscFeesP'''''' }
 
-                gNoMiscFeesP = groupP $ FGSpec
-                  { gsLength = tNoMiscFees
-                  , gsSeperator = tMiscFeeAmt
-                  , gsBody = gNoMiscFeesBody }
-                    where
-                    gNoMiscFeesBody = 
+                  gNoMiscFeesP'''''' = groupP FGSpec
+                     { gsLength = tNoMiscFees
+                     , gsSeperator = tMiscFeeAmt
+                     , gsBody = gNoMiscFeesBody'''''' }
+                     where
+                     gNoMiscFeesBody'''''' = 
                         LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
-                        LT.insert (tnum tMiscFeeType) tMiscFeeType $
-                        LT.new
+                        LT.insert (tnum tMiscFeeType) tMiscFeeType                         LT.new
 
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+                  gNoPartyIDs'''''' = FIXTag
+                     { tName = "NoPartyIDs"
+                     , tnum = tnum tNoPartyIDs
+                     , tparser = gNoPartyIDsP'''''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
+                  gNoPartyIDsP'''''' = groupP FGSpec
+                     { gsLength = tNoPartyIDs
+                     , gsSeperator = tPartyID
+                     , gsBody = gNoPartyIDsBody'''''' }
+                     where
+                     gNoPartyIDsBody'''''' = 
                         LT.insert (tnum tPartyIDSource) tPartyIDSource $
                         LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoSides = FIXTag
-                  { tnum = tnum tNoSides
-                  , tparser = gNoSidesP }
-
-                gNoSidesP = groupP $ FGSpec
-                  { gsLength = tNoSides
-                  , gsSeperator = tSide
-                  , gsBody = gNoSidesBody }
-                    where
-                    gNoSidesBody = 
-                        LT.insert (tnum tOrderID) tOrderID $
-                        LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
-                        LT.insert (tnum tClOrdID) tClOrdID $
-                        LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-                        LT.insert (tnum tAccount) tAccount $
-                        LT.insert (tnum tAccountType) tAccountType $
-                        LT.insert (tnum tProcessCode) tProcessCode $
-                        LT.insert (tnum tOddLot) tOddLot $
-                        LT.insert (tnum tNoClearingInstructions) gNoClearingInstructions $
-                        LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
-                        LT.insert (tnum tTradeInputSource) tTradeInputSource $
-                        LT.insert (tnum tTradeInputDevice) tTradeInputDevice $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tComplianceID) tComplianceID $
-                        LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
-                        LT.insert (tnum tOrderCapacity) tOrderCapacity $
-                        LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
-                        LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-                        LT.insert (tnum tTransBkdTime) tTransBkdTime $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tCommission) tCommission $
-                        LT.insert (tnum tCommType) tCommType $
-                        LT.insert (tnum tCommCurrency) tCommCurrency $
-                        LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
-                        LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
-                        LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
-                        LT.insert (tnum tExDate) tExDate $
-                        LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
-                        LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
-                        LT.insert (tnum tConcession) tConcession $
-                        LT.insert (tnum tTotalTakedown) tTotalTakedown $
-                        LT.insert (tnum tNetMoney) tNetMoney $
-                        LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
-                        LT.insert (tnum tSettlCurrency) tSettlCurrency $
-                        LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
-                        LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
-                        LT.insert (tnum tPositionEffect) tPositionEffect $
-                        LT.insert (tnum tText) tText $
-                        LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-                        LT.insert (tnum tEncodedText) tEncodedText $
-                        LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
-                        LT.insert (tnum tNoContAmts) gNoContAmts $
-                        LT.insert (tnum tNoMiscFees) gNoMiscFees $
-                        LT.new
-                        where
-                              gNoClearingInstructions = FIXTag
-                                { tnum = tnum tNoClearingInstructions
-                                , tparser = gNoClearingInstructionsP }
-
-                              gNoClearingInstructionsP = groupP $ FGSpec
-                                { gsLength = tNoClearingInstructions
-                                , gsSeperator = tClearingInstruction
-                                , gsBody = gNoClearingInstructionsBody }
-                                  where
-                                  gNoClearingInstructionsBody = 
-                                      LT.new
-
-                              gNoContAmts = FIXTag
-                                { tnum = tnum tNoContAmts
-                                , tparser = gNoContAmtsP }
-
-                              gNoContAmtsP = groupP $ FGSpec
-                                { gsLength = tNoContAmts
-                                , gsSeperator = tContAmtType
-                                , gsBody = gNoContAmtsBody }
-                                  where
-                                  gNoContAmtsBody = 
-                                      LT.insert (tnum tContAmtValue) tContAmtValue $
-                                      LT.insert (tnum tContAmtCurr) tContAmtCurr $
-                                      LT.new
-
-                              gNoMiscFees = FIXTag
-                                { tnum = tnum tNoMiscFees
-                                , tparser = gNoMiscFeesP }
-
-                              gNoMiscFeesP = groupP $ FGSpec
-                                { gsLength = tNoMiscFees
-                                , gsSeperator = tMiscFeeAmt
-                                , gsBody = gNoMiscFeesBody }
-                                  where
-                                  gNoMiscFeesBody = 
-                                      LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
-                                      LT.insert (tnum tMiscFeeType) tMiscFeeType $
-                                      LT.new
-
-                              gNoPartyIDs = FIXTag
-                                { tnum = tnum tNoPartyIDs
-                                , tparser = gNoPartyIDsP }
-
-                              gNoPartyIDsP = groupP $ FGSpec
-                                { gsLength = tNoPartyIDs
-                                , gsSeperator = tPartyID
-                                , gsBody = gNoPartyIDsBody }
-                                  where
-                                  gNoPartyIDsBody = 
-                                      LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                                      LT.insert (tnum tPartyRole) tPartyRole $
-                                      LT.insert (tnum tPartySubID) tPartySubID $
-                                      LT.new
+                        LT.insert (tnum tPartySubID) tPartySubID                         LT.new
 
 
 
 
 mOrderMassStatusRequest :: FIXMessageSpec
 mOrderMassStatusRequest = FMSpec
-   { msType = C.pack "AF"
+   { msName = "OrderMassStatusRequest"
+   , msType = C.pack "AF"
    , msHeader = headerFIX43
    , msBody = mOrderMassStatusRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mOrderMassStatusRequestBody = 
-          LT.insert (tnum tMassStatusReqID) tMassStatusReqID $
-          LT.insert (tnum tMassStatusReqType) tMassStatusReqType $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
-          LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
-          LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
-          LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
-          LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID $
-          LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
-          LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
-          LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
-          LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
-          LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
-          LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
-          LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
-          LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
-          LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
-          LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
-          LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
-          LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
-          LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
-          LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
-          LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
-          LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
-          LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
-          LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
-          LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
-          LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
-          LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
-          LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
-          LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
-          LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
-          LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
-          LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
-          LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
-          LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
-          LT.insert (tnum tSide) tSide $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mOrderMassStatusRequestBody = 
+      LT.insert (tnum tMassStatusReqID) tMassStatusReqID $
+      LT.insert (tnum tMassStatusReqType) tMassStatusReqType $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+      LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+      LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+      LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+      LT.insert (tnum tNoUnderlyingSecurityAltID) gNoUnderlyingSecurityAltID''' $
+      LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+      LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+      LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+      LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+      LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+      LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+      LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+      LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+      LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+      LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+      LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+      LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+      LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+      LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+      LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+      LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+      LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+      LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+      LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+      LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+      LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+      LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+      LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+      LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+      LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+      LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+      LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+      LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+      LT.insert (tnum tSide) tSide       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
-                gNoUnderlyingSecurityAltID = FIXTag
-                  { tnum = tnum tNoUnderlyingSecurityAltID
-                  , tparser = gNoUnderlyingSecurityAltIDP }
+         gNoUnderlyingSecurityAltID''' = FIXTag
+            { tName = "NoUnderlyingSecurityAltID"
+            , tnum = tnum tNoUnderlyingSecurityAltID
+            , tparser = gNoUnderlyingSecurityAltIDP''' }
 
-                gNoUnderlyingSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoUnderlyingSecurityAltID
-                  , gsSeperator = tUnderlyingSecurityAltID
-                  , gsBody = gNoUnderlyingSecurityAltIDBody }
-                    where
-                    gNoUnderlyingSecurityAltIDBody = 
-                        LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
-                        LT.new
+         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoUnderlyingSecurityAltID
+            , gsSeperator = tUnderlyingSecurityAltID
+            , gsBody = gNoUnderlyingSecurityAltIDBody''' }
+            where
+            gNoUnderlyingSecurityAltIDBody''' = 
+               LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource                LT.new
 
 
 
 mQuoteRequestReject :: FIXMessageSpec
 mQuoteRequestReject = FMSpec
-   { msType = C.pack "AG"
+   { msName = "QuoteRequestReject"
+   , msType = C.pack "AG"
    , msHeader = headerFIX43
    , msBody = mQuoteRequestRejectBody
    , msTrailer = trailerFIX43 }
    where
-      mQuoteRequestRejectBody = 
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tRFQReqID) tRFQReqID $
-          LT.insert (tnum tQuoteRequestRejectReason) tQuoteRequestRejectReason $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.insert (tnum tText) tText $
-          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
-          LT.insert (tnum tEncodedText) tEncodedText $
-          LT.new
-          where
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
+   mQuoteRequestRejectBody = 
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tRFQReqID) tRFQReqID $
+      LT.insert (tnum tQuoteRequestRejectReason) tQuoteRequestRejectReason $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tText) tText $
+      LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+      LT.insert (tnum tEncodedText) tEncodedText       LT.new
+      where
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tPrevClosePx) tPrevClosePx $
-                        LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
-                        LT.insert (tnum tQuoteType) tQuoteType $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
-                        LT.insert (tnum tNoStipulations) gNoStipulations $
-                        LT.insert (tnum tSide) tSide $
-                        LT.insert (tnum tQuantityType) tQuantityType $
-                        LT.insert (tnum tOrderQty) tOrderQty $
-                        LT.insert (tnum tCashOrderQty) tCashOrderQty $
-                        LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
-                        LT.insert (tnum tFutSettDate) tFutSettDate $
-                        LT.insert (tnum tOrdType) tOrdType $
-                        LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-                        LT.insert (tnum tOrderQty2) tOrderQty2 $
-                        LT.insert (tnum tExpireTime) tExpireTime $
-                        LT.insert (tnum tTransactTime) tTransactTime $
-                        LT.insert (tnum tCurrency) tCurrency $
-                        LT.insert (tnum tSpread) tSpread $
-                        LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
-                        LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
-                        LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
-                        LT.insert (tnum tPriceType) tPriceType $
-                        LT.insert (tnum tPrice) tPrice $
-                        LT.insert (tnum tPrice2) tPrice2 $
-                        LT.insert (tnum tYieldType) tYieldType $
-                        LT.insert (tnum tYield) tYield $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tPrevClosePx) tPrevClosePx $
+               LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
+               LT.insert (tnum tQuoteType) tQuoteType $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+               LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+               LT.insert (tnum tNoStipulations) gNoStipulations'''''' $
+               LT.insert (tnum tSide) tSide $
+               LT.insert (tnum tQuantityType) tQuantityType $
+               LT.insert (tnum tOrderQty) tOrderQty $
+               LT.insert (tnum tCashOrderQty) tCashOrderQty $
+               LT.insert (tnum tSettlmntTyp) tSettlmntTyp $
+               LT.insert (tnum tFutSettDate) tFutSettDate $
+               LT.insert (tnum tOrdType) tOrdType $
+               LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+               LT.insert (tnum tOrderQty2) tOrderQty2 $
+               LT.insert (tnum tExpireTime) tExpireTime $
+               LT.insert (tnum tTransactTime) tTransactTime $
+               LT.insert (tnum tCurrency) tCurrency $
+               LT.insert (tnum tSpread) tSpread $
+               LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+               LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+               LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+               LT.insert (tnum tPriceType) tPriceType $
+               LT.insert (tnum tPrice) tPrice $
+               LT.insert (tnum tPrice2) tPrice2 $
+               LT.insert (tnum tYieldType) tYieldType $
+               LT.insert (tnum tYield) tYield                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-                              gNoStipulations = FIXTag
-                                { tnum = tnum tNoStipulations
-                                , tparser = gNoStipulationsP }
+                  gNoStipulations'''''' = FIXTag
+                     { tName = "NoStipulations"
+                     , tnum = tnum tNoStipulations
+                     , tparser = gNoStipulationsP'''''' }
 
-                              gNoStipulationsP = groupP $ FGSpec
-                                { gsLength = tNoStipulations
-                                , gsSeperator = tStipulationType
-                                , gsBody = gNoStipulationsBody }
-                                  where
-                                  gNoStipulationsBody = 
-                                      LT.insert (tnum tStipulationValue) tStipulationValue $
-                                      LT.new
+                  gNoStipulationsP'''''' = groupP FGSpec
+                     { gsLength = tNoStipulations
+                     , gsSeperator = tStipulationType
+                     , gsBody = gNoStipulationsBody'''''' }
+                     where
+                     gNoStipulationsBody'''''' = 
+                        LT.insert (tnum tStipulationValue) tStipulationValue                         LT.new
 
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
-
-                gNoStipulations = FIXTag
-                  { tnum = tnum tNoStipulations
-                  , tparser = gNoStipulationsP }
-
-                gNoStipulationsP = groupP $ FGSpec
-                  { gsLength = tNoStipulations
-                  , gsSeperator = tStipulationType
-                  , gsBody = gNoStipulationsBody }
-                    where
-                    gNoStipulationsBody = 
-                        LT.insert (tnum tStipulationValue) tStipulationValue $
-                        LT.new
 
 
 
 mRFQRequest :: FIXMessageSpec
 mRFQRequest = FMSpec
-   { msType = C.pack "AH"
+   { msName = "RFQRequest"
+   , msType = C.pack "AH"
    , msHeader = headerFIX43
    , msBody = mRFQRequestBody
    , msTrailer = trailerFIX43 }
    where
-      mRFQRequestBody = 
-          LT.insert (tnum tRFQReqID) tRFQReqID $
-          LT.insert (tnum tNoRelatedSym) gNoRelatedSym $
-          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
-          LT.new
-          where
-                gNoRelatedSym = FIXTag
-                  { tnum = tnum tNoRelatedSym
-                  , tparser = gNoRelatedSymP }
+   mRFQRequestBody = 
+      LT.insert (tnum tRFQReqID) tRFQReqID $
+      LT.insert (tnum tNoRelatedSym) gNoRelatedSym''' $
+      LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType       LT.new
+      where
+         gNoRelatedSym''' = FIXTag
+            { tName = "NoRelatedSym"
+            , tnum = tnum tNoRelatedSym
+            , tparser = gNoRelatedSymP''' }
 
-                gNoRelatedSymP = groupP $ FGSpec
-                  { gsLength = tNoRelatedSym
-                  , gsSeperator = tSymbol
-                  , gsBody = gNoRelatedSymBody }
-                    where
-                    gNoRelatedSymBody = 
-                        LT.insert (tnum tSymbolSfx) tSymbolSfx $
-                        LT.insert (tnum tSecurityID) tSecurityID $
-                        LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-                        LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-                        LT.insert (tnum tProduct) tProduct $
-                        LT.insert (tnum tCFICode) tCFICode $
-                        LT.insert (tnum tSecurityType) tSecurityType $
-                        LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-                        LT.insert (tnum tMaturityDate) tMaturityDate $
-                        LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-                        LT.insert (tnum tIssueDate) tIssueDate $
-                        LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-                        LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-                        LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-                        LT.insert (tnum tFactor) tFactor $
-                        LT.insert (tnum tCreditRating) tCreditRating $
-                        LT.insert (tnum tInstrRegistry) tInstrRegistry $
-                        LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-                        LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-                        LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-                        LT.insert (tnum tRedemptionDate) tRedemptionDate $
-                        LT.insert (tnum tStrikePrice) tStrikePrice $
-                        LT.insert (tnum tOptAttribute) tOptAttribute $
-                        LT.insert (tnum tContractMultiplier) tContractMultiplier $
-                        LT.insert (tnum tCouponRate) tCouponRate $
-                        LT.insert (tnum tSecurityExchange) tSecurityExchange $
-                        LT.insert (tnum tIssuer) tIssuer $
-                        LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-                        LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-                        LT.insert (tnum tSecurityDesc) tSecurityDesc $
-                        LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-                        LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-                        LT.insert (tnum tPrevClosePx) tPrevClosePx $
-                        LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
-                        LT.insert (tnum tQuoteType) tQuoteType $
-                        LT.insert (tnum tTradingSessionID) tTradingSessionID $
-                        LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-                        LT.new
-                        where
-                              gNoSecurityAltID = FIXTag
-                                { tnum = tnum tNoSecurityAltID
-                                , tparser = gNoSecurityAltIDP }
+         gNoRelatedSymP''' = groupP FGSpec
+            { gsLength = tNoRelatedSym
+            , gsSeperator = tSymbol
+            , gsBody = gNoRelatedSymBody''' }
+            where
+            gNoRelatedSymBody''' = 
+               LT.insert (tnum tSymbolSfx) tSymbolSfx $
+               LT.insert (tnum tSecurityID) tSecurityID $
+               LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+               LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID'''''' $
+               LT.insert (tnum tProduct) tProduct $
+               LT.insert (tnum tCFICode) tCFICode $
+               LT.insert (tnum tSecurityType) tSecurityType $
+               LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+               LT.insert (tnum tMaturityDate) tMaturityDate $
+               LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+               LT.insert (tnum tIssueDate) tIssueDate $
+               LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+               LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+               LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+               LT.insert (tnum tFactor) tFactor $
+               LT.insert (tnum tCreditRating) tCreditRating $
+               LT.insert (tnum tInstrRegistry) tInstrRegistry $
+               LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+               LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+               LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+               LT.insert (tnum tRedemptionDate) tRedemptionDate $
+               LT.insert (tnum tStrikePrice) tStrikePrice $
+               LT.insert (tnum tOptAttribute) tOptAttribute $
+               LT.insert (tnum tContractMultiplier) tContractMultiplier $
+               LT.insert (tnum tCouponRate) tCouponRate $
+               LT.insert (tnum tSecurityExchange) tSecurityExchange $
+               LT.insert (tnum tIssuer) tIssuer $
+               LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+               LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+               LT.insert (tnum tSecurityDesc) tSecurityDesc $
+               LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+               LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+               LT.insert (tnum tPrevClosePx) tPrevClosePx $
+               LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
+               LT.insert (tnum tQuoteType) tQuoteType $
+               LT.insert (tnum tTradingSessionID) tTradingSessionID $
+               LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID                LT.new
+               where
+                  gNoSecurityAltID'''''' = FIXTag
+                     { tName = "NoSecurityAltID"
+                     , tnum = tnum tNoSecurityAltID
+                     , tparser = gNoSecurityAltIDP'''''' }
 
-                              gNoSecurityAltIDP = groupP $ FGSpec
-                                { gsLength = tNoSecurityAltID
-                                , gsSeperator = tSecurityAltID
-                                , gsBody = gNoSecurityAltIDBody }
-                                  where
-                                  gNoSecurityAltIDBody = 
-                                      LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                                      LT.new
+                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                     { gsLength = tNoSecurityAltID
+                     , gsSeperator = tSecurityAltID
+                     , gsBody = gNoSecurityAltIDBody'''''' }
+                     where
+                     gNoSecurityAltIDBody'''''' = 
+                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                         LT.new
 
-
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
-
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
 
 
 
 mQuoteStatusReport :: FIXMessageSpec
 mQuoteStatusReport = FMSpec
-   { msType = C.pack "AI"
+   { msName = "QuoteStatusReport"
+   , msType = C.pack "AI"
    , msHeader = headerFIX43
    , msBody = mQuoteStatusReportBody
    , msTrailer = trailerFIX43 }
    where
-      mQuoteStatusReportBody = 
-          LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
-          LT.insert (tnum tQuoteReqID) tQuoteReqID $
-          LT.insert (tnum tQuoteID) tQuoteID $
-          LT.insert (tnum tQuoteType) tQuoteType $
-          LT.insert (tnum tNoPartyIDs) gNoPartyIDs $
-          LT.insert (tnum tAccount) tAccount $
-          LT.insert (tnum tAccountType) tAccountType $
-          LT.insert (tnum tTradingSessionID) tTradingSessionID $
-          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
-          LT.insert (tnum tSymbol) tSymbol $
-          LT.insert (tnum tSymbolSfx) tSymbolSfx $
-          LT.insert (tnum tSecurityID) tSecurityID $
-          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
-          LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID $
-          LT.insert (tnum tProduct) tProduct $
-          LT.insert (tnum tCFICode) tCFICode $
-          LT.insert (tnum tSecurityType) tSecurityType $
-          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
-          LT.insert (tnum tMaturityDate) tMaturityDate $
-          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
-          LT.insert (tnum tIssueDate) tIssueDate $
-          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
-          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
-          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
-          LT.insert (tnum tFactor) tFactor $
-          LT.insert (tnum tCreditRating) tCreditRating $
-          LT.insert (tnum tInstrRegistry) tInstrRegistry $
-          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
-          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
-          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
-          LT.insert (tnum tRedemptionDate) tRedemptionDate $
-          LT.insert (tnum tStrikePrice) tStrikePrice $
-          LT.insert (tnum tOptAttribute) tOptAttribute $
-          LT.insert (tnum tContractMultiplier) tContractMultiplier $
-          LT.insert (tnum tCouponRate) tCouponRate $
-          LT.insert (tnum tSecurityExchange) tSecurityExchange $
-          LT.insert (tnum tIssuer) tIssuer $
-          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
-          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
-          LT.insert (tnum tSecurityDesc) tSecurityDesc $
-          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
-          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
-          LT.insert (tnum tBidPx) tBidPx $
-          LT.insert (tnum tOfferPx) tOfferPx $
-          LT.insert (tnum tMktBidPx) tMktBidPx $
-          LT.insert (tnum tMktOfferPx) tMktOfferPx $
-          LT.insert (tnum tMinBidSize) tMinBidSize $
-          LT.insert (tnum tBidSize) tBidSize $
-          LT.insert (tnum tMinOfferSize) tMinOfferSize $
-          LT.insert (tnum tOfferSize) tOfferSize $
-          LT.insert (tnum tValidUntilTime) tValidUntilTime $
-          LT.insert (tnum tBidSpotRate) tBidSpotRate $
-          LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
-          LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
-          LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
-          LT.insert (tnum tMidPx) tMidPx $
-          LT.insert (tnum tBidYield) tBidYield $
-          LT.insert (tnum tMidYield) tMidYield $
-          LT.insert (tnum tOfferYield) tOfferYield $
-          LT.insert (tnum tTransactTime) tTransactTime $
-          LT.insert (tnum tFutSettDate) tFutSettDate $
-          LT.insert (tnum tOrdType) tOrdType $
-          LT.insert (tnum tFutSettDate2) tFutSettDate2 $
-          LT.insert (tnum tOrderQty2) tOrderQty2 $
-          LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
-          LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
-          LT.insert (tnum tCurrency) tCurrency $
-          LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
-          LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
-          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
-          LT.insert (tnum tCommission) tCommission $
-          LT.insert (tnum tCommType) tCommType $
-          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
-          LT.insert (tnum tExDestination) tExDestination $
-          LT.insert (tnum tQuoteStatus) tQuoteStatus $
-          LT.new
-          where
-                gNoPartyIDs = FIXTag
-                  { tnum = tnum tNoPartyIDs
-                  , tparser = gNoPartyIDsP }
+   mQuoteStatusReportBody = 
+      LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
+      LT.insert (tnum tQuoteReqID) tQuoteReqID $
+      LT.insert (tnum tQuoteID) tQuoteID $
+      LT.insert (tnum tQuoteType) tQuoteType $
+      LT.insert (tnum tNoPartyIDs) gNoPartyIDs''' $
+      LT.insert (tnum tAccount) tAccount $
+      LT.insert (tnum tAccountType) tAccountType $
+      LT.insert (tnum tTradingSessionID) tTradingSessionID $
+      LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+      LT.insert (tnum tSymbol) tSymbol $
+      LT.insert (tnum tSymbolSfx) tSymbolSfx $
+      LT.insert (tnum tSecurityID) tSecurityID $
+      LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+      LT.insert (tnum tNoSecurityAltID) gNoSecurityAltID''' $
+      LT.insert (tnum tProduct) tProduct $
+      LT.insert (tnum tCFICode) tCFICode $
+      LT.insert (tnum tSecurityType) tSecurityType $
+      LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+      LT.insert (tnum tMaturityDate) tMaturityDate $
+      LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+      LT.insert (tnum tIssueDate) tIssueDate $
+      LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+      LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+      LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+      LT.insert (tnum tFactor) tFactor $
+      LT.insert (tnum tCreditRating) tCreditRating $
+      LT.insert (tnum tInstrRegistry) tInstrRegistry $
+      LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+      LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+      LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+      LT.insert (tnum tRedemptionDate) tRedemptionDate $
+      LT.insert (tnum tStrikePrice) tStrikePrice $
+      LT.insert (tnum tOptAttribute) tOptAttribute $
+      LT.insert (tnum tContractMultiplier) tContractMultiplier $
+      LT.insert (tnum tCouponRate) tCouponRate $
+      LT.insert (tnum tSecurityExchange) tSecurityExchange $
+      LT.insert (tnum tIssuer) tIssuer $
+      LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+      LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+      LT.insert (tnum tSecurityDesc) tSecurityDesc $
+      LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+      LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+      LT.insert (tnum tBidPx) tBidPx $
+      LT.insert (tnum tOfferPx) tOfferPx $
+      LT.insert (tnum tMktBidPx) tMktBidPx $
+      LT.insert (tnum tMktOfferPx) tMktOfferPx $
+      LT.insert (tnum tMinBidSize) tMinBidSize $
+      LT.insert (tnum tBidSize) tBidSize $
+      LT.insert (tnum tMinOfferSize) tMinOfferSize $
+      LT.insert (tnum tOfferSize) tOfferSize $
+      LT.insert (tnum tValidUntilTime) tValidUntilTime $
+      LT.insert (tnum tBidSpotRate) tBidSpotRate $
+      LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
+      LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
+      LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
+      LT.insert (tnum tMidPx) tMidPx $
+      LT.insert (tnum tBidYield) tBidYield $
+      LT.insert (tnum tMidYield) tMidYield $
+      LT.insert (tnum tOfferYield) tOfferYield $
+      LT.insert (tnum tTransactTime) tTransactTime $
+      LT.insert (tnum tFutSettDate) tFutSettDate $
+      LT.insert (tnum tOrdType) tOrdType $
+      LT.insert (tnum tFutSettDate2) tFutSettDate2 $
+      LT.insert (tnum tOrderQty2) tOrderQty2 $
+      LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
+      LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
+      LT.insert (tnum tCurrency) tCurrency $
+      LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
+      LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
+      LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+      LT.insert (tnum tCommission) tCommission $
+      LT.insert (tnum tCommType) tCommType $
+      LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+      LT.insert (tnum tExDestination) tExDestination $
+      LT.insert (tnum tQuoteStatus) tQuoteStatus       LT.new
+      where
+         gNoPartyIDs''' = FIXTag
+            { tName = "NoPartyIDs"
+            , tnum = tnum tNoPartyIDs
+            , tparser = gNoPartyIDsP''' }
 
-                gNoPartyIDsP = groupP $ FGSpec
-                  { gsLength = tNoPartyIDs
-                  , gsSeperator = tPartyID
-                  , gsBody = gNoPartyIDsBody }
-                    where
-                    gNoPartyIDsBody = 
-                        LT.insert (tnum tPartyIDSource) tPartyIDSource $
-                        LT.insert (tnum tPartyRole) tPartyRole $
-                        LT.insert (tnum tPartySubID) tPartySubID $
-                        LT.new
+         gNoPartyIDsP''' = groupP FGSpec
+            { gsLength = tNoPartyIDs
+            , gsSeperator = tPartyID
+            , gsBody = gNoPartyIDsBody''' }
+            where
+            gNoPartyIDsBody''' = 
+               LT.insert (tnum tPartyIDSource) tPartyIDSource $
+               LT.insert (tnum tPartyRole) tPartyRole $
+               LT.insert (tnum tPartySubID) tPartySubID                LT.new
 
-                gNoSecurityAltID = FIXTag
-                  { tnum = tnum tNoSecurityAltID
-                  , tparser = gNoSecurityAltIDP }
+         gNoSecurityAltID''' = FIXTag
+            { tName = "NoSecurityAltID"
+            , tnum = tnum tNoSecurityAltID
+            , tparser = gNoSecurityAltIDP''' }
 
-                gNoSecurityAltIDP = groupP $ FGSpec
-                  { gsLength = tNoSecurityAltID
-                  , gsSeperator = tSecurityAltID
-                  , gsBody = gNoSecurityAltIDBody }
-                    where
-                    gNoSecurityAltIDBody = 
-                        LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
-                        LT.new
+         gNoSecurityAltIDP''' = groupP FGSpec
+            { gsLength = tNoSecurityAltID
+            , gsSeperator = tSecurityAltID
+            , gsBody = gNoSecurityAltIDBody''' }
+            where
+            gNoSecurityAltIDBody''' = 
+               LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource                LT.new
 
 
 
@@ -9884,5 +10749,4 @@ fix43 = FSpec
           LT.insert (msType mOrderMassStatusRequest) mOrderMassStatusRequest $
           LT.insert (msType mQuoteRequestReject) mQuoteRequestReject $
           LT.insert (msType mRFQRequest) mRFQRequest $
-          LT.insert (msType mQuoteStatusReport) mQuoteStatusReport $
-          LT.new 
+          LT.insert (msType mQuoteStatusReport) mQuoteStatusReport           LT.new 
