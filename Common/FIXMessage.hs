@@ -1,4 +1,4 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 
 module Common.FIXMessage 
     ( delimiter
@@ -13,11 +13,12 @@ module Common.FIXMessage
     , FIXGroupSpec (..)
     , FIXSpec (..)
     , paddedChecksum
+    , arbibtraryFIXGroup
     , checksum
     , checksum'
 	) where
 
-import System.Time ( CalendarTime )
+import System.Time ( CalendarTime (..) )
 import Prelude hiding ( take, null, head, tail, length )
 import Data.Word ( Word8 )
 import Data.ByteString ( ByteString )
@@ -27,12 +28,17 @@ import Data.Map ( Map )
 import Data.ByteString.Char8 as C ( pack, cons, append )
 import Data.Attoparsec ( Parser ) 
 import Data.LookupTable ( LookupTable )
-import qualified Data.LookupTable ( toList )
+import qualified Data.LookupTable as LT ( insert, toList, fromList )
+import Control.DeepSeq ( NFData (..) )
+import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
+import Data.Functor ( (<$>) )
+import Control.Monad ( liftM )
 
 data FIXTag = FIXTag 
     { tName :: String
     , tnum :: Int
-    , tparser :: Parser FIXValue } 
+    , tparser :: Parser FIXValue 
+    , arbitraryValue :: Gen FIXValue } 
 
 instance Show FIXTag where
     show = show . tnum 
@@ -62,34 +68,12 @@ data FIXValue = FIXInt Int
               | FIXDataLen Int
               | FIXGroup Int [FIXValues]
 
-instance Show FIXValue where
-    show (FIXInt a) = show a
-    show (FIXDayOfMonth a) = show a
-    show (FIXFloat a) = show a
-    show (FIXQuantity a) = show a
-    show (FIXPrice a) = show a
-    show (FIXPriceOffset a) = show a
-    show (FIXAmt a) = show a
-    show (FIXChar a) = show a
-    show (FIXBool a) = show a
-    show (FIXString a) = show a
-    show (FIXMultipleValueString a) = show a
-    show (FIXCurrency a) = show a
-    show (FIXExchange a) = show a
-    show (FIXUTCTimestamp _) = "time"
-    show (FIXUTCTimeOnly _) = "time"
-    show (FIXLocalMktDate _) = "time"
-    show (FIXUTCDate _) = "time"
-    show (FIXMonthYear _) = "time"
-    show (FIXData _ a) = show a
-    show (FIXGroup _ _) = "group"
-
 --- should be alias of type in the typeclass LookupTable
-newtype ListOfValues a = LV (IntMap a) 
-    deriving (LookupTable Int a)
+newtype ListOfValues a = LoV (IntMap a) 
+    deriving (LookupTable Int a, NFData)
 
 instance Show a => Show (ListOfValues a) where
-    show a = concatMap printKV $ Data.LookupTable.toList a
+    show a = concatMap printKV $ LT.toList a
         where
             printKV (k, v) = show k ++ " = " ++ show v ++ "\n"
 
@@ -105,7 +89,7 @@ instance Show FIXMessage where
         ++ "Body:\n\n" ++ show (mBody m) ++ "\n"
         ++ "Trailer:\n\n" ++ show (mTrailer m) 
 
-newtype ListOfTags a = LT (IntMap a)
+newtype ListOfTags a = LoT (IntMap a)
     deriving (LookupTable Int a)
 
 type FIXTags = ListOfTags FIXTag
@@ -153,3 +137,94 @@ checksum' b | b < 10 = C.pack "00" `append` num
             | b < 100 = C.cons '0' num
 	        | otherwise = num
             where num = C.pack (show b)
+
+arbibtraryFIXValues :: FIXTags -> Gen FIXValues
+arbibtraryFIXValues tags = 
+    let tlist :: [FIXTag]
+        tlist = map snd $ LT.toList tags
+        arb :: FIXTag -> Gen (Int, FIXValue)
+        arb tag = arbitraryValue tag >>= (return . ( (,) (tnum tag)))
+    in
+        liftM LT.fromList $ mapM arb tlist
+
+arbibtraryFIXGroup :: FIXGroupSpec -> Gen FIXValue
+arbibtraryFIXGroup spec = 
+    let ltag = gsLength spec 
+        stag = gsSeperator spec
+        btags = gsBody spec 
+    in  
+        do FIXInt l <- arbitraryValue ltag 
+           s <- arbitraryValue stag
+           body <- (LT.insert (tnum stag) s) <$> arbibtraryFIXValues btags 
+           return $ FIXGroup l [body]
+
+
+instance NFData ByteString 
+instance Arbitrary ByteString where
+        arbitrary = C.pack <$> arbitrary 
+
+instance NFData CalendarTime
+instance Arbitrary CalendarTime where
+        arbitrary = return CalendarTime {
+               ctYear  = 0
+             , ctMonth = toEnum 0
+             , ctDay   = 0
+             , ctHour  = 0
+             , ctMin   = 0 
+             , ctSec   = 0
+             , ctPicosec = 0
+             , ctWDay  = toEnum 0
+             , ctYDay  = toEnum 0
+             , ctTZName = "UTC"
+             , ctTZ    = 0
+             , ctIsDST = True }
+
+instance Control.DeepSeq.NFData FIXValue where
+    rnf (FIXInt x) = rnf x
+    rnf (FIXDayOfMonth x) = rnf x
+    rnf (FIXFloat x) = rnf x
+    rnf (FIXQuantity x) = rnf x
+    rnf (FIXPrice x) = rnf x
+    rnf (FIXPriceOffset x) = rnf x
+    rnf (FIXAmt x) = rnf x
+    rnf (FIXChar x) = rnf x
+    rnf (FIXBool x) = rnf x
+    rnf (FIXString x) = rnf x
+    rnf (FIXMultipleValueString x) = rnf x
+    rnf (FIXCurrency x) = rnf x
+    rnf (FIXExchange x) = rnf x
+    rnf (FIXUTCTimestamp x) = rnf x
+    rnf (FIXUTCTimeOnly x) = rnf x
+    rnf (FIXLocalMktDate x) = rnf x
+    rnf (FIXUTCDate x) = rnf x
+    rnf (FIXMonthYear x) = rnf x
+    rnf (FIXData x) = rnf x 
+    rnf (FIXDataLen x) = rnf x 
+    rnf (FIXGroup l vs) = rnf l `seq` rnf vs
+
+instance Control.DeepSeq.NFData FIXMessage where
+    rnf (FIXMessage h b t) = rnf h `seq` rnf b `seq` rnf t
+
+instance Show FIXValue where
+    show (FIXInt a) = show a
+    show (FIXDayOfMonth a) = show a
+    show (FIXFloat a) = show a
+    show (FIXQuantity a) = show a
+    show (FIXPrice a) = show a
+    show (FIXPriceOffset a) = show a
+    show (FIXAmt a) = show a
+    show (FIXChar a) = show a
+    show (FIXBool a) = show a
+    show (FIXString a) = show a
+    show (FIXMultipleValueString a) = show a
+    show (FIXCurrency a) = show a
+    show (FIXExchange a) = show a
+    show (FIXUTCTimestamp _) = "time"
+    show (FIXUTCTimeOnly _) = "time"
+    show (FIXLocalMktDate _) = "time"
+    show (FIXUTCDate _) = "time"
+    show (FIXMonthYear _) = "time"
+    show (FIXData a) = show a
+    show (FIXDataLen a) = show a
+    show (FIXGroup _ _) = "group"
+

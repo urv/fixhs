@@ -8,14 +8,14 @@ Build-Type:          Simple
 Cabal-Version:       >=1.8
 
 Library 
-  Build-Depends:     base >= 3 && < 5, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq
+  Build-Depends:     base >= 3 && < 5, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck
 
   Exposed-modules:   Common.FIXParser Common.FIXMessage Data.LookupTable Data.FIX.FIX41 Data.FIX.FIX42 
   ghc-options:       -fno-warn-missing-signatures -O -Wall -rtsopts 
 
 Executable fix-parser
   Main-is:           Main.hs
-  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, deepseq
+  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, deepseq, QuickCheck
   ghc-options:       -Wall -O -rtsopts 
 
 Executable fix-generator

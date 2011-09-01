@@ -40,7 +40,9 @@ main = do
             "import qualified Data.ByteString.Char8 as C\n" ++ 
             "import qualified Data.LookupTable as LT ( new, insert )\n" ++
             "import Common.FIXMessage\n" ++ 
-            "import Common.FIXParser\n" 
+            "import Common.FIXParser\n" ++
+            "import Data.Functor ( (<$>) )\n" ++
+            "import Test.QuickCheck ( arbitrary )\n" 
 
         -- command line options 
         xmlFile :: [String] -> String
@@ -201,7 +203,9 @@ fieldDef (CElem e _) =
         fname ++ " = FIXTag \n" ++ 
             "   { tName = \"" ++ name ++ "\"\n" ++
             "   , tnum = " ++ fenum ++ "\n" ++
-            "   , tparser = "  ++ tparser ++ " }\n\n"
+            "   , tparser = "  ++ tparser ++ "\n" ++ 
+            "   , arbitraryValue = " ++ typeOfFIX ftype ++ 
+                " <$> arbitrary }\n\n"
     where
 
         typeOfFIX :: String -> String
@@ -302,8 +306,11 @@ fieldsOf l cs =
                 indent' ++ gname ++ suffix' ++ " = FIXTag\n" ++
                 indent'' ++ "{ tName = \"" ++ n ++ "\"\n" ++
                 indent'' ++ ", tnum = tnum " ++ tName n ++ "\n" ++
-                indent'' ++ ", tparser = " ++ gname ++ "P" ++ suffix' ++ " }\n\n" ++
-                indent' ++ gname ++ "P" ++ suffix' ++ " = groupP FGSpec\n" ++
+                indent'' ++ ", tparser = " ++ gname ++ "P" ++ suffix' ++ "\n" ++
+                indent'' ++ ", arbitraryValue = arbibtraryFIXGroup " ++ 
+                                gname ++ "Spec" ++ suffix' ++ " }\n\n" ++
+                indent' ++ gname ++ "P" ++ suffix' ++ " = groupP " ++ gname ++ "Spec" ++ suffix' ++ "\n" ++
+                indent' ++ gname ++ "Spec" ++ suffix' ++ " = FGSpec\n" ++
                 indent'' ++ "{ gsLength = " ++ tName n ++ "\n" ++
                 indent'' ++ ", gsSeperator = " ++ sname ++ "\n" ++
                 indent'' ++ ", gsBody = " ++ gname ++ "Body" ++ suffix' ++ " }\n" ++
