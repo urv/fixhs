@@ -26,7 +26,7 @@ import Data.Char ( ord )
 import Data.ByteString hiding ( pack, putStrLn )
 import Control.Applicative ( (<$>), (<|>), (*>) )
 import System.Time ( CalendarTime (..) )
-import qualified Common.FIXMessage as FIX ( delimiter )
+import qualified Data.FIX.Common as FIX ( delimiter )
 
 
 signed' :: Num a => Parser a -> Parser a

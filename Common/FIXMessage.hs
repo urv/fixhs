@@ -1,21 +1,19 @@
 {-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 
 module Common.FIXMessage 
-    ( delimiter
-    , FIXValue (..)
+    ( FIXValue (..)
     , FIXValues
     , FIXTag (..)
     , FIXTags
-    , fixVersion
     , FIXMessages
     , FIXMessage (..)
     , FIXMessageSpec (..)
     , FIXGroupSpec (..)
     , FIXSpec (..)
-    , paddedChecksum
     , arbibtraryFIXGroup
     , checksum
-    , checksum'
+    , delimiter
+    , arbitraryFIXMessage
 	) where
 
 import System.Time ( CalendarTime (..) )
@@ -33,6 +31,7 @@ import Control.DeepSeq ( NFData (..) )
 import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
 import Control.Monad ( liftM )
+import Data.FIX.Common ( delimiter )
 
 data FIXTag = FIXTag 
     { tName :: String
@@ -40,11 +39,6 @@ data FIXTag = FIXTag
     , tparser :: Parser FIXValue 
     , arbitraryValue :: Gen FIXValue } 
 
-instance Show FIXTag where
-    show = show . tnum 
-
-instance Eq FIXTag where
-    s == t = tnum s == tnum t
 
 data FIXValue = FIXInt Int 
               | FIXDayOfMonth Int
@@ -78,16 +72,13 @@ instance Show a => Show (ListOfValues a) where
             printKV (k, v) = show k ++ " = " ++ show v ++ "\n"
 
 type FIXValues = ListOfValues FIXValue 
-data FIXMessage = FIXMessage
-                  { mHeader :: FIXValues
+data FIXMessage a = FIXMessage
+                  { mContext :: a
+                  , mType :: ByteString
+                  , mHeader :: FIXValues
                   , mBody :: FIXValues
                   , mTrailer :: FIXValues }
 
-instance Show FIXMessage where
-    show m = 
-        "Header:\n\n" ++ show (mHeader m) ++ "\n"
-        ++ "Body:\n\n" ++ show (mBody m) ++ "\n"
-        ++ "Trailer:\n\n" ++ show (mTrailer m) 
 
 newtype ListOfTags a = LoT (IntMap a)
     deriving (LookupTable Int a)
@@ -114,14 +105,7 @@ data FIXGroupSpec = FGSpec
                     , gsSeperator :: FIXTag 
                     , gsBody :: FIXTags }
 
-delimiter :: Char
-delimiter = '\SOH'
 
-fixVersion :: ByteString
-fixVersion = C.pack "8=FIX.4.2"
-
-paddedChecksum :: ByteString -> ByteString
-paddedChecksum = checksum' . checksum
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: ByteString -> Int
@@ -131,19 +115,12 @@ checksum b | B.null b = 0
                     _sumUp :: Word8 -> Int -> Int
                     _sumUp c = (+) (fromIntegral c)
            
--- FIX length
-checksum' :: Int -> ByteString
-checksum' b | b < 10 = C.pack "00" `append` num
-            | b < 100 = C.cons '0' num
-	        | otherwise = num
-            where num = C.pack (show b)
-
 arbibtraryFIXValues :: FIXTags -> Gen FIXValues
 arbibtraryFIXValues tags = 
     let tlist :: [FIXTag]
         tlist = map snd $ LT.toList tags
         arb :: FIXTag -> Gen (Int, FIXValue)
-        arb tag = arbitraryValue tag >>= (return . ( (,) (tnum tag)))
+        arb tag = fmap ((,) (tnum tag)) $ arbitraryValue tag 
     in
         liftM LT.fromList $ mapM arb tlist
 
@@ -155,13 +132,28 @@ arbibtraryFIXGroup spec =
     in  
         do FIXInt l <- arbitraryValue ltag 
            s <- arbitraryValue stag
-           body <- (LT.insert (tnum stag) s) <$> arbibtraryFIXValues btags 
+           body <- LT.insert (tnum stag) s <$> arbibtraryFIXValues btags 
            return $ FIXGroup l [body]
 
+arbitraryFIXMessage :: FIXSpec -> FIXMessageSpec -> Gen (FIXMessage FIXSpec)
+arbitraryFIXMessage context spec = do
+        header <- arbibtraryFIXValues $ msHeader spec
+        body <- arbibtraryFIXValues $ msBody spec
+        trailer <- arbibtraryFIXValues $ msTrailer spec
+        return FIXMessage 
+            { mContext = context
+            , mType = msType spec
+            , mHeader = header
+            , mBody = body
+            , mTrailer = trailer }
+
+
+{-serialize :: FIXMessage -> String-}
+{-serialize m = -}
 
 instance NFData ByteString 
 instance Arbitrary ByteString where
-        arbitrary = C.pack <$> arbitrary 
+        arbitrary = return $ C.pack "sdsd"
 
 instance NFData CalendarTime
 instance Arbitrary CalendarTime where
@@ -202,29 +194,6 @@ instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXDataLen x) = rnf x 
     rnf (FIXGroup l vs) = rnf l `seq` rnf vs
 
-instance Control.DeepSeq.NFData FIXMessage where
-    rnf (FIXMessage h b t) = rnf h `seq` rnf b `seq` rnf t
-
-instance Show FIXValue where
-    show (FIXInt a) = show a
-    show (FIXDayOfMonth a) = show a
-    show (FIXFloat a) = show a
-    show (FIXQuantity a) = show a
-    show (FIXPrice a) = show a
-    show (FIXPriceOffset a) = show a
-    show (FIXAmt a) = show a
-    show (FIXChar a) = show a
-    show (FIXBool a) = show a
-    show (FIXString a) = show a
-    show (FIXMultipleValueString a) = show a
-    show (FIXCurrency a) = show a
-    show (FIXExchange a) = show a
-    show (FIXUTCTimestamp _) = "time"
-    show (FIXUTCTimeOnly _) = "time"
-    show (FIXLocalMktDate _) = "time"
-    show (FIXUTCDate _) = "time"
-    show (FIXMonthYear _) = "time"
-    show (FIXData a) = show a
-    show (FIXDataLen a) = show a
-    show (FIXGroup _ _) = "group"
+instance Control.DeepSeq.NFData (FIXMessage a) where
+    rnf (FIXMessage a mt h b t) = rnf h `seq` rnf b `seq` rnf t
 

@@ -56,27 +56,6 @@ tBeginSeqNo = FIXTag
    , tparser = toFIXInt
    , arbitraryValue = FIXInt <$> arbitrary }
 
-tBeginString :: FIXTag
-tBeginString = FIXTag 
-   { tName = "BeginString"
-   , tnum = 8
-   , tparser = toFIXString
-   , arbitraryValue = FIXString <$> arbitrary }
-
-tBodyLength :: FIXTag
-tBodyLength = FIXTag 
-   { tName = "BodyLength"
-   , tnum = 9
-   , tparser = toFIXInt
-   , arbitraryValue = FIXInt <$> arbitrary }
-
-tCheckSum :: FIXTag
-tCheckSum = FIXTag 
-   { tName = "CheckSum"
-   , tnum = 10
-   , tparser = toFIXString
-   , arbitraryValue = FIXString <$> arbitrary }
-
 tClOrdID :: FIXTag
 tClOrdID = FIXTag 
    { tName = "ClOrdID"
@@ -244,13 +223,6 @@ tMsgSeqNum = FIXTag
    , tnum = 34
    , tparser = toFIXInt
    , arbitraryValue = FIXInt <$> arbitrary }
-
-tMsgType :: FIXTag
-tMsgType = FIXTag 
-   { tName = "MsgType"
-   , tnum = 35
-   , tparser = toFIXString
-   , arbitraryValue = FIXString <$> arbitrary }
 
 tNewSeqNo :: FIXTag
 tNewSeqNo = FIXTag 
@@ -2844,9 +2816,6 @@ tEncodedListStatusText = FIXTag
 
 headerFIX42 :: FIXTags
 headerFIX42 = 
-   LT.insert (tnum tBeginString) tBeginString $
-   LT.insert (tnum tBodyLength) tBodyLength $
-   LT.insert (tnum tMsgType) tMsgType $
    LT.insert (tnum tSenderCompID) tSenderCompID $
    LT.insert (tnum tTargetCompID) tTargetCompID $
    LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
@@ -2876,8 +2845,7 @@ headerFIX42 =
 trailerFIX42 :: FIXTags
 trailerFIX42 = 
    LT.insert (tnum tSignatureLength) tSignatureLength $
-   LT.insert (tnum tSignature) tSignature $
-   LT.insert (tnum tCheckSum) tCheckSum    LT.new
+   LT.insert (tnum tSignature) tSignature    LT.new
 
 
 mHeartbeat :: FIXMessageSpec

@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleInstances #-}
+
 module Common.FIXCoparser 
 	(
 	-- 
@@ -5,11 +7,15 @@ module Common.FIXCoparser
 	) where
 
 import Prelude as P
-import Common.FIXMessage ( FIXMessage, FIXValue (..), fixVersion )
-import qualified Common.FIXMessage as FIX ( delimiter, paddedChecksum )
+import Common.FIXMessage ( FIXSpec, FIXMessage, tnum, FIXValue (..) )
+import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
+import qualified Common.FIXMessage as FIX ( checksum, delimiter )
+import qualified Data.FIX.Common as FIX ( fixVersion )
+import Data.Coparser ( Coparser (..) )
 import Data.ByteString as B
-import Data.ByteString.Char8 as C
+import Data.ByteString.Char8 as C ( unpack, length, cons, pack, singleton, append, snoc )
 import qualified Data.LookupTable as LT
+import Common.FIXMessage ( FIXValues, FIXValue (..), FIXMessage (..) )
 
 -- implementation is not efficient 
 -- this is just meant for testing 
@@ -24,16 +30,6 @@ import qualified Data.LookupTable as LT
 --    -> seems to be slow (see comments in blaze-builder). also we just need
 --       one direction, i.e. put - get would be the FIXParser
 
--- FIX header
-header :: ByteString
--- header = C.pack "8=FIX.4.2\SOH"
-header = C.snoc fixVersion FIX.delimiter
-
-checksumTag :: ByteString
-checksumTag = undefined -- toString FIX_CHECKSUM
-
-lengthTag :: ByteString
-lengthTag = undefined -- toString FIX_MSG_LENGTH
 
 -- FIX body
 externalize :: (Int, FIXValue) -> ByteString
@@ -49,23 +45,90 @@ externalize' (FIXBool b) = C.pack $ show b
 externalize' (FIXString s) = s
 externalize' _ = undefined
 
-body :: FIXMessage -> ByteString
+
+coValues :: FIXValues -> String
+coValues vs = let values = LT.toList vs in
+    P.concatMap mapV values
+        where
+            mapV (k, FIXGroup l vs') = 
+                show k ++ "=" ++ show l ++ 
+                    FIX.delimiter : P.concatMap coValues vs'
+            mapV (k, v) = show k ++ "=" ++ show v ++ FIX.delimiter : ""
+
+
+body :: FIXMessage a -> ByteString
 -- body l = B.concat $ P.map ((C.cons FIX.delimiter) . externalize) l
 -- body l = B.intercalate (C.pack FIX.delimiter) (externalize l)
-body l = let ts = LT.toList l in 
-    B.intercalate (C.singleton FIX.delimiter) (P.map externalize ts)
+{-body l = let ts = LT.toList l in -}
+    {-B.intercalate (C.singleton FIX.delimiter) (P.map externalize ts)-}
+body m = C.pack $ (coValues $ mHeader m) 
+            ++ (coValues $ mBody m) 
+            ++ (coValues $ mTrailer m) 
 
 {-toString :: FIXTag -> ByteString-}
 {-toString = C.pack . show -}
 
-equals :: ByteString
-equals = C.singleton '='
                  
 -- externalize the FIXMessage
-coparse :: FIXMessage -> ByteString
-coparse l = message' `append` checksum' `C.snoc` FIX.delimiter
-	where 
-		message' = header `append` length' `C.snoc` FIX.delimiter `append` body'
-		checksum' = checksumTag `append` equals `append` FIX.paddedChecksum message'
-		length' = lengthTag `append` equals `append` C.pack (show $ C.length body')
-		body' = body l `C.snoc` FIX.delimiter
+instance Coparser (FIXMessage FIXSpec) where
+    coparse l = msg' `append` chksum' `C.snoc` FIX.delimiter
+        where 
+            msg' = header `append` len' `C.snoc` FIX.delimiter `append`  body'
+            chksum' = checksumTag `append` equals `append` paddedChecksum msg'
+            len' = lengthTag `append` equals `append` C.pack (show $ C.length body')
+            mtype' = msgTypeTag `append` equals `append` mType l
+            body' = mtype' `C.snoc` FIX.delimiter `append` body l 
+            
+            checksumTag = C.pack . show $ tnum tCheckSum
+            lengthTag = C.pack . show $ tnum tBodyLength 
+            msgTypeTag = C.pack . show $ tnum tMsgType
+
+            equals = C.singleton '='
+            header = C.snoc FIX.fixVersion FIX.delimiter -- FIX Header
+
+            paddedChecksum :: ByteString -> ByteString
+            paddedChecksum = checksum' . FIX.checksum
+                where
+                    checksum' :: Int -> ByteString
+                    checksum' b | b < 10 = C.pack "00" `append` num
+                                | b < 100 = C.cons '0' num
+                                | otherwise = num
+                                where num = C.pack (show b)
+
+fromFIXUTCTimetamp = const "0000000-00:00:00"
+fromFIXUTCTimeOnly = const "00:00:00"
+fromFIXLocalMktDate = const "00000000"
+fromFIXUTCData = const "00000000"
+fromFIXMonthYear  = const "000000"
+
+
+
+instance Show FIXValue where
+    show (FIXInt a) = show a
+    show (FIXDayOfMonth a) = show a
+    show (FIXFloat a) = "0"
+    show (FIXQuantity a) = "0"
+    show (FIXPrice a) = "0"
+    show (FIXPriceOffset a) = "0"
+    show (FIXAmt a) = "0"
+    show (FIXChar a) = a : ""
+    show (FIXBool a) 
+        | True = "Y"
+        | False = "N"
+    show (FIXString a) = C.unpack a
+    show (FIXMultipleValueString a) = C.unpack a
+    show (FIXCurrency a) = C.unpack a
+    show (FIXExchange a) = C.unpack a
+    show (FIXUTCTimestamp a) = fromFIXUTCTimetamp a
+    show (FIXUTCTimeOnly a) = fromFIXUTCTimeOnly a
+    show (FIXLocalMktDate a) = fromFIXLocalMktDate a
+    show (FIXUTCDate a) = fromFIXUTCData a
+    show (FIXMonthYear a) = fromFIXMonthYear a
+    show (FIXData a) = C.unpack a
+    show (FIXDataLen a) = show a
+    show (FIXGroup _ _) = "group"
+
+
+instance Show (FIXMessage a) where
+    show m = show (mHeader m) ++ "\n"
+        ++ show (mBody m) ++ "\n" ++ show (mTrailer m) 

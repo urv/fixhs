@@ -9,6 +9,8 @@ import Data.Map ( Map )
 import Data.Maybe ( fromMaybe )
 import Control.Monad ( liftM )
 import Control.Applicative ( (<$>) )
+import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum )
+import qualified Common.FIXMessage as FM ( tName ) 
 
 
 main = do
@@ -53,7 +55,13 @@ main = do
                       | otherwise = error 
                             "you need to specify a name for the module"
 
-
+_commonTag :: Content a -> Bool
+_commonTag (CElem e _) = 
+               let tags = map FM.tName [tBeginString, tBodyLength, tCheckSum, tMsgType]
+                   tag = getNameAttr e
+               in 
+                   elem tag tags
+_commonTag _ = False
 
 genFIXHeader :: Document a -> String
 genFIXHeader doc = let name = headerName doc in
@@ -61,7 +69,9 @@ genFIXHeader doc = let name = headerName doc in
     name ++ " = \n" ++ tags' ++ "\n\n"
     where   
         tags' = let h = getHeaderSpec doc 
-                in fieldsOf 1 $ content h
+                    header = filter (not . _commonTag) $ content h 
+                in 
+                    fieldsOf 1 header
 
 genFIXTrailer :: Document a -> String
 genFIXTrailer doc = let name = trailerName doc in 
@@ -69,7 +79,9 @@ genFIXTrailer doc = let name = trailerName doc in
     name ++ " = \n" ++ tags' ++ "\n\n"
     where   
         tags' = let h = getTrailerSpec doc 
-                in fieldsOf 1 $ content h
+                    trailer = filter (not . _commonTag) $ content h 
+                in 
+                    fieldsOf 1 trailer
 
 genFIXMessages :: Document a -> String
 genFIXMessages doc = concatMap genMessage $ messagesOf doc
@@ -96,7 +108,9 @@ genFIXMessages doc = concatMap genMessage $ messagesOf doc
         getMsgTypeAttr = getAttr "msgtype"
 
 genFIXFields :: Document a -> String
-genFIXFields doc = concatMap fieldDef $ content $ getFieldSpec doc
+genFIXFields doc = let fields = filter (not . _commonTag) $ 
+                                    content $ getFieldSpec doc 
+                    in concatMap fieldDef fields
 
 genFIXSpec :: Document a -> String
 genFIXSpec doc = let spec' = fixSpecName doc 
@@ -161,8 +175,9 @@ _matchName :: String -> Content a -> Bool
 _matchName name (CElem (Elem (N n) _ _) _) = n == name
 _matchName name _ = False
 
-_lookup :: LookupTable k v t => k -> t -> v
-_lookup key t = fromMaybe undefined $ LT.lookup key t
+_lookup :: Show k => LookupTable k v t => k -> t -> v
+_lookup key t = fromMaybe (error $ "couldn't find key " ++ show key)
+                    $ LT.lookup key t
 
 getSpec :: String -> Document a -> Maybe (Element a)
 getSpec name doc = 

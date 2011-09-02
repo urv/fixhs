@@ -24,6 +24,10 @@ module Common.FIXParser
     , toFIXDataLen
     , toFIXUTCDate
     , toFIXMonthYear
+    , tBeginString
+    , tCheckSum
+    , tBodyLength
+    , tMsgType
 	) where
 
 import Prelude hiding ( take, null, head, tail )
@@ -31,7 +35,8 @@ import Common.FIXMessage
     ( FIXTags, FIXSpec (..), FIXMessage (..)
     , FIXTag (..), FIXValue (..), FIXMessageSpec (..)
     , FIXValues, FIXGroupSpec (..) )
-import qualified Common.FIXMessage as FIX ( delimiter, checksum )
+import qualified Common.FIXMessage as FIX ( checksum )
+import qualified Data.FIX.Common as FIX ( delimiter )
 import Common.FIXParserCombinators 
 import Data.Attoparsec ( count, many, string, take, parseOnly )
 import Data.Char ( ord )
@@ -41,6 +46,7 @@ import Data.Maybe ( fromMaybe )
 import qualified Data.LookupTable as LT ( lookup, fromList, insert )
 import Control.Applicative ( (<$>) )
 import Control.Monad ( liftM )
+import Test.QuickCheck ( arbitrary )
 
 -- Lookup the parser for a given FIX tag.
 parseFIXTag :: FIXTags -> Parser (Int, FIXValue)
@@ -109,7 +115,7 @@ _nextP = do
 _nextP' :: Parser ByteString
 _nextP' = do 
           msg <- take =<< _numBytes
-          toTag >> toInt
+          _ <- toTag >> toInt
           return msg 
     where
         _numBytes = 
@@ -121,7 +127,7 @@ _nextP' = do
                 skipHeader >> toInt
 
  -- Parse a FIX message out of the stream
-messageP :: FIXSpec -> Parser FIXMessage
+messageP :: FIXSpec -> Parser (FIXMessage FIXSpec)
 messageP spec = 
     let headerP  = tagsP $ fsHeader spec  -- parse header
         trailerP = tagsP $ fsTrailer spec -- parse trailer
@@ -133,16 +139,18 @@ messageP spec =
             in 
                 tagsP msgBodyTags
     in do
+        FIXString mt <- tagP tMsgType
         h <- headerP
-        let mt' = fromMaybe (error "next tag should be 35") (LT.lookup 35 h) 
-            mt = case mt' of 
-                      FIXString t -> t 
-                      _ -> undefined
         b <- bodyP mt
         t <- trailerP 
-        return FIXMessage { mHeader = h, mBody = b, mTrailer = t }
+        return FIXMessage 
+            { mContext = spec
+            , mType = mt
+            , mHeader = h
+            , mBody = b
+            , mTrailer = t }
 
-nm :: FIXSpec -> Parser FIXMessage
+nm :: FIXSpec -> Parser (FIXMessage FIXSpec)
 nm spec = do msg <- _nextP
              case parseOnly (messageP spec) msg of
                  Right ts -> return ts
@@ -169,3 +177,33 @@ toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate
 toFIXChar = FIXChar <$> toChar
 toFIXUTCDate = FIXUTCDate <$> toUTCDate
 toFIXMonthYear = FIXMonthYear <$> toMonthYear
+
+
+tBeginString :: FIXTag
+tBeginString = FIXTag
+    { tName = "BeginString"
+    , tnum = 8
+    , tparser = toFIXString
+    , arbitraryValue = FIXString <$> arbitrary }
+
+
+tBodyLength :: FIXTag
+tBodyLength = FIXTag
+    { tName = "BodyLength"
+    , tnum = 9
+    , tparser = toFIXInt
+    , arbitraryValue = FIXInt <$> arbitrary }
+
+tMsgType :: FIXTag
+tMsgType = FIXTag
+    { tName = "MsgType"
+    , tnum = 35
+    , tparser = toFIXString
+    , arbitraryValue = FIXString <$> arbitrary }
+
+tCheckSum :: FIXTag
+tCheckSum = FIXTag
+    { tName = "CheckSum"
+    , tnum = 10
+    , tparser = toFIXInt
+    , arbitraryValue = FIXInt <$> arbitrary }
