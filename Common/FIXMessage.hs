@@ -30,7 +30,7 @@ import qualified Data.LookupTable as LT ( insert, toList, fromList )
 import Control.DeepSeq ( NFData (..) )
 import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
-import Control.Monad ( liftM )
+import Control.Monad ( replicateM, liftM )
 import Data.FIX.Common ( delimiter )
 
 data FIXTag = FIXTag 
@@ -126,14 +126,18 @@ arbibtraryFIXValues tags =
 
 arbibtraryFIXGroup :: FIXGroupSpec -> Gen FIXValue
 arbibtraryFIXGroup spec = 
-    let ltag = gsLength spec 
-        stag = gsSeperator spec
-        btags = gsBody spec 
-    in  
-        do FIXInt l <- arbitraryValue ltag 
-           s <- arbitraryValue stag
-           body <- LT.insert (tnum stag) s <$> arbibtraryFIXValues btags 
-           return $ FIXGroup l [body]
+    let ltag = gsLength spec in  
+        do FIXInt l' <- arbitraryValue ltag 
+           let l = l' `mod` 4
+           bodies <- replicateM l arbitraryGBody
+           return $ FIXGroup l bodies
+    where
+        arbitraryGBody = 
+           let stag = gsSeperator spec
+               btags = gsBody spec 
+           in
+               arbitraryValue stag >>=
+               (\s -> LT.insert (tnum stag) s <$> arbibtraryFIXValues btags )
 
 arbitraryFIXMessage :: FIXSpec -> FIXMessageSpec -> Gen (FIXMessage FIXSpec)
 arbitraryFIXMessage context spec = do
@@ -147,9 +151,6 @@ arbitraryFIXMessage context spec = do
             , mBody = body
             , mTrailer = trailer }
 
-
-{-serialize :: FIXMessage -> String-}
-{-serialize m = -}
 
 instance NFData ByteString 
 instance Arbitrary ByteString where
@@ -195,5 +196,5 @@ instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXGroup l vs) = rnf l `seq` rnf vs
 
 instance Control.DeepSeq.NFData (FIXMessage a) where
-    rnf (FIXMessage a mt h b t) = rnf h `seq` rnf b `seq` rnf t
+    rnf (FIXMessage _ _ h b t) = rnf h `seq` rnf b `seq` rnf t
 

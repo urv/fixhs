@@ -1,4 +1,4 @@
-{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
 
 module Common.FIXCoparser 
 	(
@@ -7,15 +7,17 @@ module Common.FIXCoparser
 	) where
 
 import Prelude as P
-import Common.FIXMessage ( FIXSpec, FIXMessage, tnum, FIXValue (..) )
+import Common.FIXMessage 
+    ( FIXSpec, FIXMessage (..), tnum, FIXValues, FIXValue (..) )
 import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
 import qualified Data.FIX.Common as FIX ( fixVersion )
 import Data.Coparser ( Coparser (..) )
-import Data.ByteString as B
-import Data.ByteString.Char8 as C ( unpack, length, cons, pack, singleton, append, snoc )
+import Data.ByteString as B hiding ( append )
+import Data.ByteString.Char8 as C 
+    ( unpack, length, cons, pack, singleton, append, snoc )
 import qualified Data.LookupTable as LT
-import Common.FIXMessage ( FIXValues, FIXValue (..), FIXMessage (..) )
+import System.Time ( CalendarTime (..) )
 
 -- implementation is not efficient 
 -- this is just meant for testing 
@@ -31,53 +33,34 @@ import Common.FIXMessage ( FIXValues, FIXValue (..), FIXMessage (..) )
 --       one direction, i.e. put - get would be the FIXParser
 
 
--- FIX body
-externalize :: (Int, FIXValue) -> ByteString
-externalize (t,v) = tag `append` del `append` val 
-	where
-		val = externalize' v
-		tag = C.pack $ show t
-		del = C.singleton '='
-
-externalize' :: FIXValue -> ByteString
-externalize' (FIXInt i) = C.pack $ show i 
-externalize' (FIXBool b) = C.pack $ show b  
-externalize' (FIXString s) = s
-externalize' _ = undefined
-
-
-coValues :: FIXValues -> String
-coValues vs = let values = LT.toList vs in
-    P.concatMap mapV values
+instance Coparser FIXValues where
+    coparse = C.pack . _serialize . LT.toList
         where
-            mapV (k, FIXGroup l vs') = 
-                show k ++ "=" ++ show l ++ 
-                    FIX.delimiter : P.concatMap coValues vs'
-            mapV (k, v) = show k ++ "=" ++ show v ++ FIX.delimiter : ""
+            _serialize :: [(Int,FIXValue)] -> String
+            _serialize = P.concatMap _serValue
+                where
+                    _serValue :: (Int, FIXValue) -> String
+                    _serValue (k, FIXGroup i ls) = 
+                        let sub = P.concatMap (_serialize . LT.toList) ls 
+                            delim = FIX.delimiter         
+                        in
+                            show k ++ "=" ++ show i ++ delim : sub
+                    _serValue (k, v) = 
+                        let delim = FIX.delimiter in
+                            show k ++ "=" ++ show v ++ delim : ""
 
 
-body :: FIXMessage a -> ByteString
--- body l = B.concat $ P.map ((C.cons FIX.delimiter) . externalize) l
--- body l = B.intercalate (C.pack FIX.delimiter) (externalize l)
-{-body l = let ts = LT.toList l in -}
-    {-B.intercalate (C.singleton FIX.delimiter) (P.map externalize ts)-}
-body m = C.pack $ (coValues $ mHeader m) 
-            ++ (coValues $ mBody m) 
-            ++ (coValues $ mTrailer m) 
-
-{-toString :: FIXTag -> ByteString-}
-{-toString = C.pack . show -}
-
-                 
 -- externalize the FIXMessage
 instance Coparser (FIXMessage FIXSpec) where
-    coparse l = msg' `append` chksum' `C.snoc` FIX.delimiter
+    coparse m = msg' `append` chksum' 
         where 
             msg' = header `append` len' `C.snoc` FIX.delimiter `append`  body'
-            chksum' = checksumTag `append` equals `append` paddedChecksum msg'
+            chksum' = checksumTag `append` equals `append` paddedChecksum msg' `C.snoc` FIX.delimiter
             len' = lengthTag `append` equals `append` C.pack (show $ C.length body')
-            mtype' = msgTypeTag `append` equals `append` mType l
-            body' = mtype' `C.snoc` FIX.delimiter `append` body l 
+            mtype' = msgTypeTag `append` equals `append` mType m
+            body = coparse (mHeader m) `append` coparse (mBody m) 
+                    `append` coparse (mTrailer m) 
+            body' = mtype' `C.snoc` FIX.delimiter `append` body 
             
             checksumTag = C.pack . show $ tnum tCheckSum
             lengthTag = C.pack . show $ tnum tBodyLength 
@@ -95,10 +78,17 @@ instance Coparser (FIXMessage FIXSpec) where
                                 | otherwise = num
                                 where num = C.pack (show b)
 
+
+
+fromFIXUTCTimetamp :: CalendarTime -> String
 fromFIXUTCTimetamp = const "0000000-00:00:00"
+fromFIXUTCTimeOnly :: CalendarTime -> String
 fromFIXUTCTimeOnly = const "00:00:00"
+fromFIXLocalMktDate :: CalendarTime -> String
 fromFIXLocalMktDate = const "00000000"
+fromFIXUTCData :: CalendarTime -> String
 fromFIXUTCData = const "00000000"
+fromFIXMonthYear :: CalendarTime -> String
 fromFIXMonthYear  = const "000000"
 
 
@@ -106,15 +96,15 @@ fromFIXMonthYear  = const "000000"
 instance Show FIXValue where
     show (FIXInt a) = show a
     show (FIXDayOfMonth a) = show a
-    show (FIXFloat a) = "0"
-    show (FIXQuantity a) = "0"
-    show (FIXPrice a) = "0"
-    show (FIXPriceOffset a) = "0"
-    show (FIXAmt a) = "0"
+    show (FIXFloat a) = show a
+    show (FIXQuantity a) = show a
+    show (FIXPrice a) = show a
+    show (FIXPriceOffset a) = show a
+    show (FIXAmt a) = show a
     show (FIXChar a) = a : ""
     show (FIXBool a) 
-        | True = "Y"
-        | False = "N"
+        | a = "Y"
+        | otherwise = "N"
     show (FIXString a) = C.unpack a
     show (FIXMultipleValueString a) = C.unpack a
     show (FIXCurrency a) = C.unpack a
@@ -126,7 +116,7 @@ instance Show FIXValue where
     show (FIXMonthYear a) = fromFIXMonthYear a
     show (FIXData a) = C.unpack a
     show (FIXDataLen a) = show a
-    show (FIXGroup _ _) = "group"
+    show (FIXGroup _ ls) = show ls
 
 
 instance Show (FIXMessage a) where
