@@ -9,7 +9,7 @@ import Data.Map ( Map )
 import Data.Maybe ( fromMaybe )
 import Control.Monad ( liftM )
 import Control.Applicative ( (<$>) )
-import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum )
+import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FM ( tName ) 
 
 
