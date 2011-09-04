@@ -24,14 +24,14 @@ import qualified Data.ByteString as B ( null, foldr )
 import Data.IntMap ( IntMap )
 import Data.Map ( Map )
 import qualified Data.ByteString.Char8 as C ( pack, cons, append )
-import qualified Data.Char as C ( isAscii, isLetter, isAlphaNum )
+import qualified Data.Char as C ( isAscii, isAlphaNum )
 import Data.Attoparsec ( Parser ) 
 import Data.LookupTable ( LookupTable )
 import qualified Data.LookupTable as LT ( insert, toList, fromList )
 import Control.DeepSeq ( NFData (..) )
 import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
-import Control.Monad ( replicateM, liftM )
+import Control.Monad ( join, replicateM, liftM )
 import Data.FIX.Common ( delimiter )
 
 data FIXTag = FIXTag 
@@ -159,28 +159,29 @@ arbitraryFIXMessage context spec = do
 instance Arbitrary ByteString where
         arbitrary = do
             l' <- arbitrary :: Gen Int
-            let l = 1 + l' `mod` max
+            let l = 1 + l' `mod` maxLen
             C.pack <$> replicateM l (aChar pred)
             where
-                aChar :: (Char -> Bool) -> Gen Char
+                aChar :: (Char -> Bool) -- predicate
+                        -> Gen Char     -- random generator
                 aChar p = do  
                     c <- arbitrary 
                     if p c then return c else aChar p
 
-                pred c = (C.isAlphaNum c) && (C.isAscii c)
-                max = 15
+                pred c = C.isAlphaNum c && C.isAscii c
+                maxLen = 15
 
 instance Arbitrary CalendarTime where
         arbitrary = do 
-            year <- yearT' <$> arbitrary 
-            month <- monthT' <$> arbitrary
-            day <- dayT' <$> arbitrary
-            hour <- hourT' <$> arbitrary
-            min <- minT' <$> arbitrary
-            sec <- secT' <$> arbitrary
-            psec <- psecT' <$> arbitrary
-            return CalendarTime {
-               ctYear  = year
+            year <- aYear
+            month <- aMonth
+            day <- aDay
+            hour <- aHour
+            min <- aMin
+            sec <- aSec
+            psec <- aPsec
+            return CalendarTime 
+             { ctYear  = year
              , ctMonth = toEnum month
              , ctDay   = day
              , ctHour  = hour
@@ -193,13 +194,13 @@ instance Arbitrary CalendarTime where
              , ctTZ    = 0
              , ctIsDST = True }
              where
-                yearT' = (`mod` 10000)
-                monthT' = (`mod` 12)
-                hourT' = (`mod` 24)
-                dayT' = (`mod` 28)
-                minT' = (`mod` 60)
-                secT' = (`mod` 60)
-                psecT' = (`mod` 1000000000000)
+                aYear = (`mod` 10000) <$> arbitrary 
+                aMonth = (`mod` 12) <$> arbitrary
+                aHour = (`mod` 24) <$> arbitrary
+                aDay = (`mod` 28) <$> arbitrary
+                aMin = (`mod` 60) <$> arbitrary
+                aSec = (`mod` 60) <$> arbitrary
+                aPsec = (`mod` 1000000000000) <$> arbitrary
 
 
 instance Control.DeepSeq.NFData ByteString 
