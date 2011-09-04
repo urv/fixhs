@@ -1,4 +1,4 @@
-module Data.FIX.FIX42 where
+module Data.FIX.FIX42 ( fix42 ) where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )
 import Common.FIXMessage
@@ -146,13 +146,6 @@ tIOIid = FIXTag
    , tnum = 23
    , tparser = toFIXString
    , arbitraryValue = FIXString <$> arbitrary }
-
-tIOIOthSvc :: FIXTag
-tIOIOthSvc = FIXTag 
-   { tName = "IOIOthSvc"
-   , tnum = 24
-   , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
 
 tIOIQltyInd :: FIXTag
 tIOIQltyInd = FIXTag 
@@ -328,13 +321,6 @@ tSenderSubID = FIXTag
    , tnum = 50
    , tparser = toFIXString
    , arbitraryValue = FIXString <$> arbitrary }
-
-tSendingDate :: FIXTag
-tSendingDate = FIXTag 
-   { tName = "SendingDate"
-   , tnum = 51
-   , tparser = toFIXLocalMktDate
-   , arbitraryValue = FIXLocalMktDate <$> arbitrary }
 
 tSendingTime :: FIXTag
 tSendingTime = FIXTag 
@@ -566,20 +552,6 @@ tCxlQty = FIXTag
    , tnum = 84
    , tparser = toFIXQuantity
    , arbitraryValue = FIXQuantity <$> arbitrary }
-
-tNoDlvyInst :: FIXTag
-tNoDlvyInst = FIXTag 
-   { tName = "NoDlvyInst"
-   , tnum = 85
-   , tparser = toFIXInt
-   , arbitraryValue = FIXInt <$> arbitrary }
-
-tDlvyInst :: FIXTag
-tDlvyInst = FIXTag 
-   { tName = "DlvyInst"
-   , tnum = 86
-   , tparser = toFIXString
-   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocStatus :: FIXTag
 tAllocStatus = FIXTag 
@@ -839,13 +811,6 @@ tNoExecs = FIXTag
    , tnum = 124
    , tparser = toFIXInt
    , arbitraryValue = FIXInt <$> arbitrary }
-
-tCxlType :: FIXTag
-tCxlType = FIXTag 
-   { tName = "CxlType"
-   , tnum = 125
-   , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
 
 tExpireTime :: FIXTag
 tExpireTime = FIXTag 

@@ -1686,7 +1686,6 @@
    <value enum='9' description='CONSOLIDATED_TAPE_ASSOCIATION' />
   </field>
   <field number='23' name='IOIid' type='STRING' />
-  <field number='24' name='IOIOthSvc' type='CHAR' />
   <field number='25' name='IOIQltyInd' type='CHAR'>
    <value enum='H' description='HIGH' />
    <value enum='L' description='LOW' />
@@ -1840,7 +1839,6 @@
   <field number='48' name='SecurityID' type='STRING' />
   <field number='49' name='SenderCompID' type='STRING' />
   <field number='50' name='SenderSubID' type='STRING' />
-  <field number='51' name='SendingDate' type='LOCALMKTDATE' />
   <field number='52' name='SendingTime' type='UTCTIMESTAMP' />
   <field number='53' name='Shares' type='QTY' />
   <field number='54' name='Side' type='CHAR'>
@@ -1925,8 +1923,6 @@
   <field number='82' name='NoRpts' type='INT' />
   <field number='83' name='RptSeq' type='INT' />
   <field number='84' name='CxlQty' type='QTY' />
-  <field number='85' name='NoDlvyInst' type='INT' />
-  <field number='86' name='DlvyInst' type='STRING' />
   <field number='87' name='AllocStatus' type='INT'>
    <value enum='0' description='ACCEPTED' />
    <value enum='1' description='REJECTED' />
@@ -2037,7 +2033,6 @@
    <value enum='Y' description='YES' />
   </field>
   <field number='124' name='NoExecs' type='INT' />
-  <field number='125' name='CxlType' type='CHAR' />
   <field number='126' name='ExpireTime' type='UTCTIMESTAMP' />
   <field number='127' name='DKReason' type='CHAR'>
    <value enum='A' description='UNKNOWN_SYMBOL' />
