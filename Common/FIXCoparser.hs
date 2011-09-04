@@ -12,10 +12,9 @@ import Common.FIXMessage
 import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
 import qualified Data.FIX.Common as FIX ( fixVersion )
-import Data.Coparser ( Coparser (..) )
-import Data.ByteString as B hiding ( append )
-import Data.ByteString.Char8 as C 
-    ( unpack, length, cons, pack, singleton, append, snoc )
+import Data.Coparser ( Coparser (..), TextLike (..) )
+import Data.ByteString ( ByteString )
+import Data.ByteString.Char8 as C ( unpack, length )
 import qualified Data.LookupTable as LT
 import System.Time ( CalendarTime (..) )
 
@@ -34,7 +33,7 @@ import System.Time ( CalendarTime (..) )
 
 
 instance Coparser FIXValues where
-    coparse = C.pack . _serialize . LT.toList
+    coparse = pack . _serialize . LT.toList  
         where
             _serialize :: [(Int,FIXValue)] -> String
             _serialize = P.concatMap _serValue
@@ -52,25 +51,28 @@ instance Coparser FIXValues where
 
 -- externalize the FIXMessage
 instance Coparser (FIXMessage FIXSpec) where
-    coparse m = msg' `append` chksum' 
+    coparse m = pack . C.unpack $ msg' `append` chksum' 
         where 
-            msg' = header `append` len' `C.snoc` FIX.delimiter `append`  body'
-            chksum' = checksumTag `append` equals `append` paddedChecksum msg' `C.snoc` FIX.delimiter
-            len' = lengthTag `append` equals `append` C.pack (show $ C.length body')
-            mtype' = msgTypeTag `append` equals `append` mType m
-            body = coparse (mHeader m) `append` coparse (mBody m) 
-                    `append` coparse (mTrailer m) 
-            body' = mtype' `C.snoc` FIX.delimiter `append` body 
+            msg' = header 
+                `append` len' `snoc` FIX.delimiter 
+                `append` body'
+
+            chksum' = ctag `append` equals `append` paddedChecksum msg' `snoc` FIX.delimiter
+            len' = ltag `append` equals `append` pack (show $ C.length body')
+            mtype' = mtag `append` equals `append` pack (C.unpack $ mType m)
+            body' = mtype' `snoc` FIX.delimiter 
+                `append` coparse (mHeader m) 
+                `append` coparse (mBody m) 
+                `append` coparse (mTrailer m)
             
-            checksumTag = C.pack . show $ tnum tCheckSum
-            lengthTag = C.pack . show $ tnum tBodyLength 
-            msgTypeTag = C.pack . show $ tnum tMsgType
+            ctag = pack . show $ tnum tCheckSum
+            ltag = pack . show $ tnum tBodyLength 
+            mtag = pack . show $ tnum tMsgType
 
-            equals = C.singleton '='
-            header = C.snoc FIX.fixVersion FIX.delimiter -- FIX Header
+            equals = singleton '='
+            header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter -- FIX Header
 
-            paddedChecksum :: ByteString -> ByteString
-            paddedChecksum = C.pack . pad 3 . FIX.checksum
+            paddedChecksum = pack . pad 3 . FIX.checksum
 
 
 fromFIXMonthYear :: CalendarTime -> String

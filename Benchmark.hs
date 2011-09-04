@@ -7,11 +7,14 @@ import Common.FIXParser
 import Common.FIXCoparser
 import Common.FIXMessage
 import Data.Attoparsec hiding (take)
+import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT
 import Test.QuickCheck.Gen 
 import Control.Applicative ( (<$>) )
 import Control.DeepSeq
+import Data.Coparser (TextLike (..))
+import Data.Text.Lazy.Builder ( Builder )
 
 myConfig = defaultConfig 
 
@@ -27,10 +30,11 @@ samples spec =
 benchmark :: FIXSpec -> [FIXMessage FIXSpec] -> [Benchmark]
 benchmark spec ss = 
     let ms = map snd $ LT.toList $ fsMessages spec 
-        parsingB (m, input) = bench (msName m ++ " parsing") $ 
-                nf (parseOnly (nm spec)) (coparse input)
+        parsingB (m, input) = let input' = coparse input :: [Char] in 
+            bench (msName m ++ " parsing") $ 
+                nf (parseOnly (nm spec)) (C.pack $ unpack input')
         coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
-                nf coparse input
+                nf (coparse :: FIXMessage FIXSpec -> [Char] ) input
 
         bench1 = map coparsingB $ zip ms ss
         bench2 = map parsingB $ zip ms ss
