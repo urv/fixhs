@@ -38,7 +38,7 @@ main = do
            putStr $ genFIXSpec xmlDoc
     where
         moduleHeader mod' doc = 
-            "module " ++ mod' ++ " where\n" ++
+            "module " ++ mod' ++ " ( " ++ fixSpecName doc ++ " ) where\n" ++
             "import qualified Data.ByteString.Char8 as C\n" ++ 
             "import qualified Data.LookupTable as LT ( new, insert )\n" ++
             "import Common.FIXMessage\n" ++ 
