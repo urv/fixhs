@@ -44,10 +44,10 @@ instance Coparser FIXValues where
                         let sub = P.concatMap (_serialize . LT.toList) ls 
                             delim = FIX.delimiter         
                         in
-                            show k ++ "=" ++ show i ++ delim : sub
+                            show k ++ '=' : show i ++ delim : sub
                     _serValue (k, v) = 
                         let delim = FIX.delimiter in
-                            show k ++ "=" ++ show v ++ delim : ""
+                            show k ++ '=' : show v ++ [delim] 
 
 
 -- externalize the FIXMessage
@@ -75,11 +75,11 @@ instance Coparser (FIXMessage FIXSpec) where
 
 fromFIXMonthYear :: CalendarTime -> String
 fromFIXMonthYear c = 
-    let year = ctYear c; month = fromEnum $ ctMonth c in
+    let year = ctYear c; month = 1 + fromEnum (ctMonth c) in
         pad 4 year ++ pad 2 month
 
 fromFIXUTCData :: CalendarTime -> String
-fromFIXUTCData c = let day = ctDay c in
+fromFIXUTCData c = let day = 1 + ctDay c in
     fromFIXMonthYear c ++ pad 2 day 
 
 fromFIXLocalMktDate :: CalendarTime -> String
@@ -103,7 +103,7 @@ instance Show FIXValue where
     show (FIXPrice a) = show a
     show (FIXPriceOffset a) = show a
     show (FIXAmt a) = show a
-    show (FIXChar a) = a : ""
+    show (FIXChar a) = [a]
     show (FIXBool a) 
         | a = "Y"
         | otherwise = "N"
@@ -122,13 +122,12 @@ instance Show FIXValue where
 
 
 instance Show (FIXMessage a) where
-    show m = show (mHeader m) ++ "\n"
-        ++ show (mBody m) ++ "\n" ++ show (mTrailer m) 
-
+    show m = show (mHeader m) 
+        ++ '\n' : show (mBody m) ++ '\n' : show (mTrailer m) 
 
 pad :: Int -> Int -> String
 pad w i | d <= 0 = t
-        | d < 10 = '0' : t
+        | d == 1 = '0' : t
         | otherwise = let prefix = P.replicate d '0' in prefix ++ t
     where
         t = show i

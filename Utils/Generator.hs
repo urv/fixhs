@@ -99,8 +99,8 @@ genFIXMessages doc = concatMap genMessage $ messagesOf doc
                 msg ++ " = FMSpec\n" ++
                 indent ++ "{ msName = \"" ++ msg' ++ "\"\n" ++
                 indent ++ ", msType = C.pack \"" ++ mType ++ "\"\n" ++
-                indent ++ ", msHeader = " ++ headerName doc ++ "\n" ++
-                indent ++ ", msBody = " ++ msgBody' ++  "\n" ++
+                indent ++ ", msHeader = " ++ headerName doc ++ '\n' :
+                indent ++ ", msBody = " ++ msgBody' ++  '\n' :
                 indent ++ ", msTrailer = " ++ trailerName doc ++ " }\n" ++
                 indent ++ "where\n" ++
                 indent ++ msgBody' ++ " = \n" ++ tags' ++ "\n\n"
@@ -117,8 +117,8 @@ genFIXSpec doc = let spec' = fixSpecName doc
                in  
                    spec' ++ " :: FIXSpec\n" ++
                    spec' ++ " = FSpec\n" ++
-                   "   { fsHeader = " ++ headerName doc ++ "\n" ++
-                   "   , fsTrailer = " ++ trailerName doc ++ "\n" ++
+                   "   { fsHeader = " ++ headerName doc ++ '\n' :
+                   "   , fsTrailer = " ++ trailerName doc ++ '\n' : 
                    "   , fsMessages = " ++ spec' ++ "Messages }\n" ++
                    "   where\n" ++
                    "      " ++ spec' ++ "Messages =\n" ++
@@ -217,8 +217,8 @@ fieldDef (CElem e _) =
         fname ++ " :: FIXTag\n" ++ 
         fname ++ " = FIXTag \n" ++ 
             "   { tName = \"" ++ name ++ "\"\n" ++
-            "   , tnum = " ++ fenum ++ "\n" ++
-            "   , tparser = "  ++ tparser ++ "\n" ++ 
+            "   , tnum = " ++ fenum ++ '\n' :
+            "   , tparser = "  ++ tparser ++ '\n' :
             "   , arbitraryValue = " ++ typeOfFIX ftype ++ 
                 " <$> arbitrary }\n\n"
     where
@@ -320,14 +320,14 @@ fieldsOf l cs =
             in
                 indent' ++ gname ++ suffix' ++ " = FIXTag\n" ++
                 indent'' ++ "{ tName = \"" ++ n ++ "\"\n" ++
-                indent'' ++ ", tnum = tnum " ++ tName n ++ "\n" ++
-                indent'' ++ ", tparser = " ++ gname ++ "P" ++ suffix' ++ "\n" ++
+                indent'' ++ ", tnum = tnum " ++ tName n ++ '\n' :
+                indent'' ++ ", tparser = " ++ gname ++ "P" ++ suffix' ++ '\n' : 
                 indent'' ++ ", arbitraryValue = arbibtraryFIXGroup " ++ 
                                 gname ++ "Spec" ++ suffix' ++ " }\n\n" ++
-                indent' ++ gname ++ "P" ++ suffix' ++ " = groupP " ++ gname ++ "Spec" ++ suffix' ++ "\n" ++
+                indent' ++ gname ++ "P" ++ suffix' ++ " = groupP " ++ gname ++ "Spec" ++ suffix' ++ '\n' :
                 indent' ++ gname ++ "Spec" ++ suffix' ++ " = FGSpec\n" ++
-                indent'' ++ "{ gsLength = " ++ tName n ++ "\n" ++
-                indent'' ++ ", gsSeperator = " ++ sname ++ "\n" ++
+                indent'' ++ "{ gsLength = " ++ tName n ++ '\n' :
+                indent'' ++ ", gsSeperator = " ++ sname ++ '\n' :
                 indent'' ++ ", gsBody = " ++ gname ++ "Body" ++ suffix' ++ " }\n" ++
                 indent'' ++ "where\n" ++
                 indent'' ++ gname ++ "Body" ++ suffix' ++ " = \n"  ++ tags' ++ "\n"

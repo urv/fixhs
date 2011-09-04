@@ -17,13 +17,14 @@ module Common.FIXMessage
 	) where
 
 import System.Time ( CalendarTime (..) )
-import Prelude hiding ( take, null, head, tail, length )
+import Prelude hiding ( null )
 import Data.Word ( Word8 )
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString as B ( null, foldr )
 import Data.IntMap ( IntMap )
 import Data.Map ( Map )
-import Data.ByteString.Char8 as C ( pack, cons, append )
+import qualified Data.ByteString.Char8 as C ( pack, cons, append )
+import qualified Data.Char as C ( isAscii, isLetter, isAlphaNum )
 import Data.Attoparsec ( Parser ) 
 import Data.LookupTable ( LookupTable )
 import qualified Data.LookupTable as LT ( insert, toList, fromList )
@@ -152,25 +153,57 @@ arbitraryFIXMessage context spec = do
             , mTrailer = trailer }
 
 
-instance NFData ByteString 
+-- An arbitrary instance of ByteString. 
+--- we generate a random string out of digits and numbers
+--- generated string has length at least 1 and most <max>
 instance Arbitrary ByteString where
-        arbitrary = return $ C.pack "sdsd"
+        arbitrary = do
+            l' <- arbitrary :: Gen Int
+            let l = 1 + l' `mod` max
+            C.pack <$> replicateM l (aChar pred)
+            where
+                aChar :: (Char -> Bool) -> Gen Char
+                aChar p = do  
+                    c <- arbitrary 
+                    if p c then return c else aChar p
 
-instance NFData CalendarTime
+                pred c = (C.isAlphaNum c) && (C.isAscii c)
+                max = 15
+
 instance Arbitrary CalendarTime where
-        arbitrary = return CalendarTime {
-               ctYear  = 0
-             , ctMonth = toEnum 0
-             , ctDay   = 0
-             , ctHour  = 0
-             , ctMin   = 0 
-             , ctSec   = 0
-             , ctPicosec = 0
+        arbitrary = do 
+            year <- yearT' <$> arbitrary 
+            month <- monthT' <$> arbitrary
+            day <- dayT' <$> arbitrary
+            hour <- hourT' <$> arbitrary
+            min <- minT' <$> arbitrary
+            sec <- secT' <$> arbitrary
+            psec <- psecT' <$> arbitrary
+            return CalendarTime {
+               ctYear  = year
+             , ctMonth = toEnum month
+             , ctDay   = day
+             , ctHour  = hour
+             , ctMin   = min
+             , ctSec   = sec
+             , ctPicosec = psec
              , ctWDay  = toEnum 0
              , ctYDay  = toEnum 0
              , ctTZName = "UTC"
              , ctTZ    = 0
              , ctIsDST = True }
+             where
+                yearT' = (`mod` 10000)
+                monthT' = (`mod` 12)
+                hourT' = (`mod` 24)
+                dayT' = (`mod` 28)
+                minT' = (`mod` 60)
+                secT' = (`mod` 60)
+                psecT' = (`mod` 1000000000000)
+
+
+instance Control.DeepSeq.NFData ByteString 
+instance Control.DeepSeq.NFData CalendarTime
 
 instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXInt x) = rnf x
