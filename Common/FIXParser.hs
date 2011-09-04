@@ -89,10 +89,11 @@ _nextP :: Parser ByteString
 _nextP = do 
     (hchksum, len) <- _header'
     msg <- take len 
+    let chksum = (hchksum + FIX.checksum msg) `mod` 256  
     c <- _calcChksum'
-    let chksum = (hchksum + FIX.checksum msg) `mod` 256  in
-        if chksum == c then return msg else fail "checksum not valid"
-
+    if chksum == c then return msg 
+        else fail $ "checksum is not valid: is " ++ 
+                    show chksum  ++ " should be " ++ show c
     where
         -- Parse header and return checksum and length.
         -- A header always starts with the version tag (8)  

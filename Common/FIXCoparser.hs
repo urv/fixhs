@@ -70,27 +70,29 @@ instance Coparser (FIXMessage FIXSpec) where
             header = C.snoc FIX.fixVersion FIX.delimiter -- FIX Header
 
             paddedChecksum :: ByteString -> ByteString
-            paddedChecksum = checksum' . FIX.checksum
-                where
-                    checksum' :: Int -> ByteString
-                    checksum' b | b < 10 = C.pack "00" `append` num
-                                | b < 100 = C.cons '0' num
-                                | otherwise = num
-                                where num = C.pack (show b)
+            paddedChecksum = C.pack . pad 3 . FIX.checksum
 
 
+fromFIXMonthYear :: CalendarTime -> String
+fromFIXMonthYear c = 
+    let year = ctYear c; month = fromEnum $ ctMonth c in
+        pad 4 year ++ pad 2 month
+
+fromFIXUTCData :: CalendarTime -> String
+fromFIXUTCData c = let day = ctDay c in
+    fromFIXMonthYear c ++ pad 2 day 
+
+fromFIXLocalMktDate :: CalendarTime -> String
+fromFIXLocalMktDate = fromFIXUTCData
+
+fromFIXUTCTimeOnly :: CalendarTime -> String
+fromFIXUTCTimeOnly c = 
+    let min = ctMin c; sec = ctSec c; hours = ctHour c in
+        pad 2 hours ++ ':' : pad 2 min ++ ':' : pad 2 sec
 
 fromFIXUTCTimetamp :: CalendarTime -> String
-fromFIXUTCTimetamp = const "0000000-00:00:00"
-fromFIXUTCTimeOnly :: CalendarTime -> String
-fromFIXUTCTimeOnly = const "00:00:00"
-fromFIXLocalMktDate :: CalendarTime -> String
-fromFIXLocalMktDate = const "00000000"
-fromFIXUTCData :: CalendarTime -> String
-fromFIXUTCData = const "00000000"
-fromFIXMonthYear :: CalendarTime -> String
-fromFIXMonthYear  = const "000000"
-
+fromFIXUTCTimetamp c =  fromFIXUTCData c ++ '-' : 
+    fromFIXUTCTimeOnly c
 
 
 instance Show FIXValue where
@@ -122,3 +124,12 @@ instance Show FIXValue where
 instance Show (FIXMessage a) where
     show m = show (mHeader m) ++ "\n"
         ++ show (mBody m) ++ "\n" ++ show (mTrailer m) 
+
+
+pad :: Int -> Int -> String
+pad w i | d <= 0 = t
+        | d < 10 = '0' : t
+        | otherwise = let prefix = P.replicate d '0' in prefix ++ t
+    where
+        t = show i
+        d = w - P.length t
