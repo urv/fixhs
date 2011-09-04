@@ -17,22 +17,36 @@ input = C.pack "8=FIX.4.2\SOH9=178\SOH35=8\SOH49=PHLX\SOH56=PERS\SOH52=20071123-
 
 myConfig = defaultConfig 
 
-samples :: FIXSpec -> IO [C.ByteString]
-samples spec = let ms = map snd $ LT.toList $ fsMessages spec in
-                   mapM genSample ms
-               where
-                    genSample :: FIXMessageSpec -> IO C.ByteString
-                    genSample m' = let randMsg = arbitraryFIXMessage spec in
-                        (coparse . head) <$> sample' (randMsg m')
+
+samples :: FIXSpec -> IO [FIXMessage FIXSpec]
+samples spec = 
+    let ms = map snd $ LT.toList $ fsMessages spec in
+        mapM genSample ms
+    where
+       genSample :: FIXMessageSpec -> IO (FIXMessage FIXSpec)
+       genSample m' = let randMsg = arbitraryFIXMessage spec in
+                          head <$> sample' (randMsg m')
                 
-benchmark :: FIXSpec -> [C.ByteString] -> [Benchmark]
-benchmark spec ss = let ms = map snd $ LT.toList $ fsMessages spec 
-                        newBenchmark (m, input) = 
-                                bench (msName m) $ nf (parseOnly (nm spec)) input
-                     in
-                        map newBenchmark $ zip ms ss
+benchmark :: FIXSpec -> [FIXMessage FIXSpec] -> [Benchmark]
+benchmark spec ss = 
+    let ms = map snd $ LT.toList $ fsMessages spec 
+        parsingB (m, input) = bench (msName m ++ " parsing") $ 
+                nf (parseOnly (nm spec)) (coparse input)
+        coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
+                nf coparse input
+
+        bench1 = map coparsingB $ zip ms ss
+        bench2 = map parsingB $ zip ms ss
+    in
+        ziczac bench1 bench2
+
+    where
+        ziczac :: [a] -> [a] -> [a]
+        ziczac l r = foldr _construct [] $ zip l r
+            where
+                _construct :: (a, a) -> [a] -> [a]
+                _construct (l, r) as = l : r : as
 
 main = do 
         ss <- samples fix42
-        print ss
         defaultMainWith myConfig (return ()) [ bgroup "FIX42" $ benchmark fix42 ss ]
