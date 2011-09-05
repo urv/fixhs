@@ -1,5 +1,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
+import Prelude hiding ( foldr )
+import qualified Prelude as P ( foldr )
 import Criterion.Main
 import Criterion.Config
 import Data.FIX.FIX42
@@ -30,11 +32,11 @@ samples spec =
 benchmark :: FIXSpec -> [FIXMessage FIXSpec] -> [Benchmark]
 benchmark spec ss = 
     let ms = map snd $ LT.toList $ fsMessages spec 
-        parsingB (m, input) = let input' = coparse input :: [Char] in 
+        parsingB (m, input) = let input' = coparse input :: Builder in 
             bench (msName m ++ " parsing") $ 
                 nf (parseOnly (nm spec)) (C.pack $ unpack input')
         coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
-                nf (coparse :: FIXMessage FIXSpec -> [Char] ) input
+                nf (coparse :: FIXMessage FIXSpec -> Builder ) input
 
         bench1 = map coparsingB $ zip ms ss
         bench2 = map parsingB $ zip ms ss
@@ -43,7 +45,7 @@ benchmark spec ss =
 
     where
         ziczac :: [a] -> [a] -> [a]
-        ziczac l r = foldr _construct [] $ zip l r
+        ziczac l r = P.foldr _construct [] $ zip l r
             where
                 _construct :: (a, a) -> [a] -> [a]
                 _construct (l, r) as = l : r : as

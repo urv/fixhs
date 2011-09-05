@@ -6,13 +6,14 @@ module Common.FIXCoparser
 	coparse
 	) where
 
-import Prelude as P
+import Prelude as P hiding (concat)
 import Common.FIXMessage 
     ( FIXSpec, FIXMessage (..), tnum, FIXValues, FIXValue (..) )
 import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
 import qualified Data.FIX.Common as FIX ( fixVersion )
-import Data.Coparser ( Coparser (..), TextLike (..) )
+import Data.Coparser ( Coparser (..), TextLike, pack, concat, append, cons, snoc, singleton )
+import qualified Data.Coparser as Text ( length )
 import Data.ByteString ( ByteString )
 import Data.ByteString.Char8 as C ( unpack, length )
 import qualified Data.LookupTable as LT
@@ -35,44 +36,38 @@ import System.Time ( CalendarTime (..) )
 instance Coparser FIXValues where
     coparse = pack . _serialize . LT.toList  
         where
-            _serialize :: [(Int,FIXValue)] -> String
-            _serialize = P.concatMap _serValue
+            _serialize = concat . (P.map _serValue)
                 where
-                    _serValue :: (Int, FIXValue) -> String
                     _serValue (k, FIXGroup i ls) = 
-                        let sub = P.concatMap (_serialize . LT.toList) ls 
+                        let sub = concat $ P.map (_serialize . LT.toList) ls 
                             delim = FIX.delimiter         
                         in
-                            show k ++ '=' : show i ++ delim : sub
+                            pack (show k) `append` ('=' `cons` (pack (show i) `append` (delim `cons` sub)))
                     _serValue (k, v) = 
                         let delim = FIX.delimiter in
-                            show k ++ '=' : show v ++ [delim] 
+                            pack (show k) `append` ('=' `cons` (pack (show v) `append` (singleton delim)))
 
 
 -- externalize the FIXMessage
 instance Coparser (FIXMessage FIXSpec) where
-    coparse m = pack . C.unpack $ msg' `append` chksum' 
+    coparse m = msg' `append` chksum' 
         where 
-            msg' = header 
-                `append` len' `snoc` FIX.delimiter 
-                `append` body'
+            msg' = header `append` (len' `append` (FIX.delimiter `cons` body'))
 
-            chksum' = ctag `append` equals `append` paddedChecksum msg' `snoc` FIX.delimiter
-            len' = ltag `append` equals `append` pack (show $ C.length body')
-            mtype' = mtag `append` equals `append` pack (C.unpack $ mType m)
-            body' = mtype' `snoc` FIX.delimiter 
-                `append` coparse (mHeader m) 
-                `append` coparse (mBody m) 
-                `append` coparse (mTrailer m)
+            chksum' = ctag `append` ('=' `cons` (paddedChecksum msg' `snoc` FIX.delimiter))
+            len' = ltag `append` ('=' `cons` pack (show $ Text.length body'))
+            mtype' = mtag `append` ('=' `cons` pack (C.unpack $ mType m))
+            body' = mtype' 
+                `append` (FIX.delimiter `cons` (coparse (mHeader m) 
+                `append` (coparse (mBody m) 
+                `append` coparse (mTrailer m))))
             
             ctag = pack . show $ tnum tCheckSum
             ltag = pack . show $ tnum tBodyLength 
             mtag = pack . show $ tnum tMsgType
 
-            equals = singleton '='
-            header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter -- FIX Header
-
-            paddedChecksum = pack . pad 3 . FIX.checksum
+            header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter
+            paddedChecksum m' = pack $ pad 3 $ FIX.checksum m'
 
 
 fromFIXMonthYear :: CalendarTime -> String

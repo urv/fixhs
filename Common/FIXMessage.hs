@@ -20,7 +20,7 @@ import System.Time ( CalendarTime (..) )
 import Prelude hiding ( null )
 import Data.Word ( Word8 )
 import Data.ByteString ( ByteString )
-import qualified Data.ByteString as B ( null, foldr )
+import qualified Data.ByteString as B ( null, foldl' )
 import Data.IntMap ( IntMap )
 import Data.Map ( Map )
 import qualified Data.ByteString.Char8 as C ( pack, cons, append )
@@ -33,6 +33,7 @@ import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
 import Control.Monad ( join, replicateM, liftM )
 import Data.FIX.Common ( delimiter )
+import Data.Coparser ( TextLike (..) )
 
 data FIXTag = FIXTag 
     { tName :: String
@@ -109,12 +110,11 @@ data FIXGroupSpec = FGSpec
 
 
 -- FIX checksum is simply the sum of bytes modulo 256
-checksum :: ByteString -> Int
-checksum b | B.null b = 0
-           | otherwise = B.foldr _sumUp 0 b `mod` 256
+checksum :: (TextLike t c, Enum c)  => t -> Int
+checksum b = foldl' _sumUp 0 b `mod` 256
                 where 
-                    _sumUp :: Word8 -> Int -> Int
-                    _sumUp c = (+) (fromIntegral c)
+                    _sumUp :: (Enum b) => Int -> b -> Int
+                    _sumUp t c = t + (fromEnum c)
            
 arbibtraryFIXValues :: FIXTags -> Gen FIXValues
 arbibtraryFIXValues tags = 
