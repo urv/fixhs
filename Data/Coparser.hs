@@ -25,21 +25,17 @@ import Control.DeepSeq ( NFData (..) )
 class Enum c => TextLike a c | a -> c where
     pack :: String -> a
     unpack :: a -> String
-
     singleton :: Char -> a
     append :: a -> a -> a
     concat :: [a] -> a
     foldl :: (b -> c -> b) -> b -> a -> b
     foldl' :: (b -> c -> b) -> b -> a -> b
-
     cons :: Char -> a -> a
-    cons c t = singleton c `append` t
-
     snoc :: a -> Char -> a
-    snoc t c = t `append` singleton c
-
     length :: a -> Int
 
+    cons c t = singleton c `append` t
+    snoc t c = t `append` singleton c
 
 instance TextLike String Char where
     pack = id
