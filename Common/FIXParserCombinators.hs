@@ -1,3 +1,6 @@
+-- Module   : Common.FIXCoparser
+-- License  : GPLv2
+
 module Common.FIXParserCombinators 
     ( toTag
     , toString

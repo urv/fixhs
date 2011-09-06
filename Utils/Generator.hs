@@ -1,5 +1,8 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleContexts #-}
 
+-- Module   : Common.FIXCoparser
+-- License  : GPLv2
+
 import Text.XML.HaXml
 import qualified Text.XML.HaXml.Pretty as P 
 import System.Environment ( getArgs )

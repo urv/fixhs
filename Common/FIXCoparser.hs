@@ -1,5 +1,8 @@
 {-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
 
+-- Module   : Common.FIXCoparser
+-- License  : GPLv2
+
 module Common.FIXCoparser 
 	(
 	-- 
@@ -37,16 +40,16 @@ import System.Time ( CalendarTime (..) )
 instance Coparser FIXValues where
     coparse = pack . _serialize . LT.toList  
         where
-            _serialize = concat . (P.map _serValue)
+            _serialize = concat . P.map _serValue
                 where
                     _serValue (k, FIXGroup i ls) = 
-                        let sub = concat $ P.map (_serialize . LT.toList) ls 
+                        let sub = concat (P.map (_serialize . LT.toList) ls)
                             delim = FIX.delimiter         
                         in
-                            pack (show k) `append` ('=' `cons` pack (show i) `append` (delim `cons` sub))
+                            decimal k `append` ('=' `cons` decimal i `append` (delim `cons` sub))
                     _serValue (k, v) = 
                         let delim = FIX.delimiter in
-                            pack (show k) `append` ('=' `cons` coparse v `append` singleton delim)
+                            decimal k `append` ('=' `cons` coparse v `append` singleton delim)
 
 
 
@@ -57,31 +60,29 @@ instance Coparser (FIXMessage FIXSpec) where
             msg' = header `append` (len' `append` (FIX.delimiter `cons` body'))
 
             chksum' = ctag `append` ('=' `cons` (paddedChecksum msg' `snoc` FIX.delimiter))
-            len' = ltag `append` ('=' `cons` pack (show $ Text.length body'))
+            len' = ltag `append` ('=' `cons` decimal (Text.length body'))
             mtype' = mtag `append` ('=' `cons` pack (C.unpack $ mType m))
             body' = mtype' 
                 `append` (FIX.delimiter `cons` coparse (mHeader m))
                 `append` coparse (mBody m) 
                 `append` coparse (mTrailer m)
             
-            ctag = pack . show $ tnum tCheckSum
-            ltag = pack . show $ tnum tBodyLength 
-            mtag = pack . show $ tnum tMsgType
+            ctag = decimal $ tnum tCheckSum
+            ltag = decimal $ tnum tBodyLength 
+            mtag = decimal $ tnum tMsgType
 
             header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter
-            paddedChecksum m' = pack $ pad 3 $ FIX.checksum m'
+            paddedChecksum m' = (FIX.checksum m') `pad` 3 
 
-packedPad :: (BuilderLike t a) => Int -> Int -> t
-packedPad i = pack . pad i
 
 fromFIXMonthYear :: (BuilderLike t a) => CalendarTime -> t
 fromFIXMonthYear c = 
     let year = ctYear c; month = 1 + fromEnum (ctMonth c) in
-        packedPad 4 year `append` packedPad 2 month
+        (year `pad` 4) `append` (month `pad` 2)
 
 fromFIXUTCData :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCData c = let day = 1 + ctDay c in
-    fromFIXMonthYear c `append` packedPad 2 day 
+    fromFIXMonthYear c `append` (day `pad` 2)
 
 fromFIXLocalMktDate :: (BuilderLike t a) => CalendarTime -> t
 fromFIXLocalMktDate = fromFIXUTCData
@@ -89,8 +90,8 @@ fromFIXLocalMktDate = fromFIXUTCData
 fromFIXUTCTimeOnly :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCTimeOnly c = 
     let min = ctMin c; sec = ctSec c; hours = ctHour c in
-        packedPad 2 hours `append` (':' `cons` packedPad 2 min 
-        `append` (':' `cons` packedPad 2 sec))
+        (hours `pad` 2) `append` (':' `cons` (min `pad` 2)
+        `append` (':' `cons` (sec `pad` 2 )))
 
 fromFIXUTCTimetamp :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCTimetamp c =  fromFIXUTCData c `append` 
@@ -128,10 +129,12 @@ instance Coparser FIXValue where
         {-`append` ('\n' `cons` coparse (mBody m) -}
         {-`append` ('\n' `cons` coparse (mTrailer m)))-}
 
-pad :: Int -> Int -> String
-pad w i | d <= 0 = t
-        | d == 1 = '0' : t
-        | otherwise = let prefix = P.replicate d '0' in prefix ++ t
+pad :: (BuilderLike a c) => Int -> Int -> a
+pad i w | d <= 0 = decimal i
+        | d == 1 = '0' `cons` decimal i
+        | otherwise = let prefix = P.replicate d '0' in 
+            pack prefix `append` decimal i
     where
-        t = show i
-        d = w - P.length t
+        d = w - len' i
+
+        len' i' = if i' < 10 then 1 else 1 + len' (i' `div` 10)

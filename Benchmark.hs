@@ -1,5 +1,8 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
+--- Module     : Benchmark
+--- License    : GPLv2
+
 import Prelude hiding ( foldr )
 import qualified Prelude as P ( foldr )
 import Criterion.Main

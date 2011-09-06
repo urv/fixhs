@@ -1,3 +1,6 @@
+-- Module   : Common.FIXParser
+-- License  : GPLv2
+
 module Common.FIXParser 
 	( messageP
     , groupP

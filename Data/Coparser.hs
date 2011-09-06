@@ -1,5 +1,8 @@
 {-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
 
+-- Module   : Common.FIXCoparser
+-- License  : GPLv2
+
 module Data.Coparser 
     ( Coparser (..)
     , BuilderLike (..)

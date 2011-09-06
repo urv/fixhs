@@ -1,3 +1,6 @@
+-- Module   : Common.FIXCoparser
+-- License  : GPLv2
+
 module Socket.ClientSocket 
 	where
 

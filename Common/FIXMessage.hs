@@ -1,5 +1,8 @@
 {-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 
+-- Module   : Common.FIXMessage
+-- License  : GPLv2
+
 module Common.FIXMessage 
     ( FIXValue (..)
     , FIXValues
@@ -114,7 +117,7 @@ checksum :: (BuilderLike t c, Enum c)  => t -> Int
 checksum b = foldl' _sumUp 0 b `mod` 256
                 where 
                     _sumUp :: (Enum b) => Int -> b -> Int
-                    _sumUp t c = t + (fromEnum c)
+                    _sumUp t c = t + fromEnum c
            
 arbibtraryFIXValues :: FIXTags -> Gen FIXValues
 arbibtraryFIXValues tags = 
