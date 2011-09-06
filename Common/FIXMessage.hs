@@ -33,7 +33,7 @@ import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
 import Control.Monad ( join, replicateM, liftM )
 import Data.FIX.Common ( delimiter )
-import Data.Coparser ( TextLike (..), foldl' )
+import Data.Coparser ( BuilderLike (..), foldl' )
 
 data FIXTag = FIXTag 
     { tName :: String
@@ -110,7 +110,7 @@ data FIXGroupSpec = FGSpec
 
 
 -- FIX checksum is simply the sum of bytes modulo 256
-checksum :: (TextLike t c, Enum c)  => t -> Int
+checksum :: (BuilderLike t c, Enum c)  => t -> Int
 checksum b = foldl' _sumUp 0 b `mod` 256
                 where 
                     _sumUp :: (Enum b) => Int -> b -> Int

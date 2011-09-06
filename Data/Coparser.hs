@@ -2,7 +2,7 @@
 
 module Data.Coparser 
     ( Coparser (..)
-    , TextLike (..)
+    , BuilderLike (..)
     , length
     , Data.Coparser.foldl'
     , Data.Coparser.foldl
@@ -17,7 +17,7 @@ import qualified Data.ByteString as B
     ( length, concat, unpack, append, singleton, foldl, foldl' )
 import Data.Word ( Word8 )
 import qualified Data.ByteString.Char8 as C 
-    ( cons, snoc, pack, unpack, singleton )
+    ( foldl', foldl, cons, snoc, pack, unpack, singleton )
 import Data.Text.Lazy.Builder ( Builder )
 import qualified Data.Text.Lazy as Builder ( unpack, foldl, foldl' )
 import qualified Data.Text.Lazy.Builder as Builder 
@@ -26,7 +26,7 @@ import Data.Monoid ( mappend, mconcat )
 import Control.DeepSeq ( NFData (..) )
 import qualified Data.DList as DL
 
-class Enum c => TextLike a c | a -> c where
+class Enum c => BuilderLike a c | a -> c where
     pack :: String -> a
     unpack :: a -> String
     singleton :: Char -> a
@@ -34,21 +34,25 @@ class Enum c => TextLike a c | a -> c where
     concat :: [a] -> a
     cons :: Char -> a -> a
     snoc :: a -> Char -> a
+    decimal :: Integral i => i -> a
+    realFloat :: RealFloat r => r -> a
 
+    decimal = pack . show
+    realFloat = pack . show
     cons c t = singleton c `append` t
     snoc t c = t `append` singleton c
 
 
-length :: (TextLike a c) => a -> Int
+length :: (BuilderLike a c) => a -> Int
 length = P.length . unpack
 
-foldl' :: (TextLike a c) => (b -> Char -> b) -> b -> a -> b
+foldl' :: (BuilderLike a c) => (b -> Char -> b) -> b -> a -> b
 foldl' f x0 = P.foldl' f x0 . unpack
 
-foldl :: (TextLike a c) => (b -> Char -> b) -> b -> a -> b
+foldl :: (BuilderLike a c) => (b -> Char -> b) -> b -> a -> b
 foldl f x0 = P.foldl f x0 . unpack
 
-instance TextLike String Char where
+instance BuilderLike String Char where
     pack = id
     unpack = id
     singleton c = [c]
@@ -56,7 +60,7 @@ instance TextLike String Char where
     cons = (:)
     concat = L.concat
 
-instance TextLike ByteString Word8 where
+instance BuilderLike ByteString Word8 where
     pack = C.pack
     unpack = C.unpack
     singleton = C.singleton
@@ -65,7 +69,7 @@ instance TextLike ByteString Word8 where
     snoc = C.snoc
     concat = B.concat
 
-instance TextLike (DL.DList Char) Char where
+instance BuilderLike (DL.DList Char) Char where
     pack = DL.fromList
     unpack = DL.toList
     singleton = DL.singleton
@@ -74,7 +78,7 @@ instance TextLike (DL.DList Char) Char where
     snoc = DL.snoc
     concat = DL.concat
     
-instance TextLike Builder Char where
+instance BuilderLike Builder Char where
     pack = Builder.fromString
     unpack = Builder.unpack . Builder.toLazyText
     singleton = Builder.singleton
@@ -88,4 +92,4 @@ instance NFData (DL.DList Char) where
     rnf = rnf . unpack
 
 class Coparser a where
-    coparse :: TextLike t c => a -> t
+    coparse :: BuilderLike t c => a -> t

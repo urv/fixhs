@@ -12,7 +12,8 @@ import Common.FIXMessage
 import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
 import qualified Data.FIX.Common as FIX ( fixVersion )
-import Data.Coparser ( Coparser (..), TextLike, pack, concat, append, cons, snoc, singleton )
+import Data.Coparser ( Coparser (..), BuilderLike, 
+    pack, concat, append, cons, snoc, singleton, decimal, realFloat )
 import qualified Data.Coparser as Text ( length )
 import Data.ByteString ( ByteString )
 import Data.ByteString.Char8 as C ( unpack, length )
@@ -45,7 +46,8 @@ instance Coparser FIXValues where
                             pack (show k) `append` ('=' `cons` pack (show i) `append` (delim `cons` sub))
                     _serValue (k, v) = 
                         let delim = FIX.delimiter in
-                            pack (show k) `append` ('=' `cons` pack (show v) `append` singleton delim)
+                            pack (show k) `append` ('=' `cons` coparse v `append` singleton delim)
+
 
 
 -- externalize the FIXMessage
@@ -69,58 +71,62 @@ instance Coparser (FIXMessage FIXSpec) where
             header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter
             paddedChecksum m' = pack $ pad 3 $ FIX.checksum m'
 
+packedPad :: (BuilderLike t a) => Int -> Int -> t
+packedPad i = pack . pad i
 
-fromFIXMonthYear :: CalendarTime -> String
+fromFIXMonthYear :: (BuilderLike t a) => CalendarTime -> t
 fromFIXMonthYear c = 
     let year = ctYear c; month = 1 + fromEnum (ctMonth c) in
-        pad 4 year ++ pad 2 month
+        packedPad 4 year `append` packedPad 2 month
 
-fromFIXUTCData :: CalendarTime -> String
+fromFIXUTCData :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCData c = let day = 1 + ctDay c in
-    fromFIXMonthYear c ++ pad 2 day 
+    fromFIXMonthYear c `append` packedPad 2 day 
 
-fromFIXLocalMktDate :: CalendarTime -> String
+fromFIXLocalMktDate :: (BuilderLike t a) => CalendarTime -> t
 fromFIXLocalMktDate = fromFIXUTCData
 
-fromFIXUTCTimeOnly :: CalendarTime -> String
+fromFIXUTCTimeOnly :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCTimeOnly c = 
     let min = ctMin c; sec = ctSec c; hours = ctHour c in
-        pad 2 hours ++ ':' : pad 2 min ++ ':' : pad 2 sec
+        packedPad 2 hours `append` (':' `cons` packedPad 2 min 
+        `append` (':' `cons` packedPad 2 sec))
 
-fromFIXUTCTimetamp :: CalendarTime -> String
-fromFIXUTCTimetamp c =  fromFIXUTCData c ++ '-' : 
-    fromFIXUTCTimeOnly c
-
-
-instance Show FIXValue where
-    show (FIXInt a) = show a
-    show (FIXDayOfMonth a) = show a
-    show (FIXFloat a) = show a
-    show (FIXQuantity a) = show a
-    show (FIXPrice a) = show a
-    show (FIXPriceOffset a) = show a
-    show (FIXAmt a) = show a
-    show (FIXChar a) = [a]
-    show (FIXBool a) 
-        | a = "Y"
-        | otherwise = "N"
-    show (FIXString a) = C.unpack a
-    show (FIXMultipleValueString a) = C.unpack a
-    show (FIXCurrency a) = C.unpack a
-    show (FIXExchange a) = C.unpack a
-    show (FIXUTCTimestamp a) = fromFIXUTCTimetamp a
-    show (FIXUTCTimeOnly a) = fromFIXUTCTimeOnly a
-    show (FIXLocalMktDate a) = fromFIXLocalMktDate a
-    show (FIXUTCDate a) = fromFIXUTCData a
-    show (FIXMonthYear a) = fromFIXMonthYear a
-    show (FIXData a) = C.unpack a
-    show (FIXDataLen a) = show a
-    show (FIXGroup _ ls) = show ls
+fromFIXUTCTimetamp :: (BuilderLike t a) => CalendarTime -> t
+fromFIXUTCTimetamp c =  fromFIXUTCData c `append` 
+    ('-' `cons` fromFIXUTCTimeOnly c)
 
 
-instance Show (FIXMessage a) where
-    show m = show (mHeader m) 
-        ++ '\n' : show (mBody m) ++ '\n' : show (mTrailer m) 
+instance Coparser FIXValue where
+    coparse (FIXInt a) = decimal a
+    coparse (FIXDayOfMonth a) = decimal a
+    coparse (FIXFloat a) = realFloat a
+    coparse (FIXQuantity a) = realFloat a
+    coparse (FIXPrice a) = realFloat a
+    coparse (FIXPriceOffset a) = realFloat a
+    coparse (FIXAmt a) = realFloat a
+    coparse (FIXChar a) = singleton a
+    coparse (FIXBool a) 
+        | a = singleton 'Y'
+        | otherwise = singleton 'N'
+    coparse (FIXString a) = pack $ C.unpack a
+    coparse (FIXMultipleValueString a) = pack $ C.unpack a
+    coparse (FIXCurrency a) = pack $ C.unpack a
+    coparse (FIXExchange a) = pack $ C.unpack a
+    coparse (FIXUTCTimestamp a) = fromFIXUTCTimetamp a
+    coparse (FIXUTCTimeOnly a) = fromFIXUTCTimeOnly a
+    coparse (FIXLocalMktDate a) = fromFIXLocalMktDate a
+    coparse (FIXUTCDate a) = fromFIXUTCData a
+    coparse (FIXMonthYear a) = fromFIXMonthYear a
+    coparse (FIXData a) = pack $ C.unpack a
+    coparse (FIXDataLen a) = decimal a
+    coparse (FIXGroup _ ls) = concat $ map coparse ls
+
+
+{-instance Coparser (FIXMessage a) where-}
+    {-coparse m = coparse (mHeader m) -}
+        {-`append` ('\n' `cons` coparse (mBody m) -}
+        {-`append` ('\n' `cons` coparse (mTrailer m)))-}
 
 pad :: Int -> Int -> String
 pad w i | d <= 0 = t
