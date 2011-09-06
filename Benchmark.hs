@@ -17,6 +17,7 @@ import Control.Applicative ( (<$>) )
 import Control.DeepSeq
 import Data.Coparser (TextLike (..))
 import Data.Text.Lazy.Builder ( Builder )
+import Data.DList ( DList )
 
 myConfig = defaultConfig 
 
@@ -32,11 +33,11 @@ samples spec =
 benchmark :: FIXSpec -> [FIXMessage FIXSpec] -> [Benchmark]
 benchmark spec ss = 
     let ms = map snd $ LT.toList $ fsMessages spec 
-        parsingB (m, input) = let input' = coparse input :: ByteString in 
+        parsingB (m, input) = let input' = coparse input :: DList Char in 
             bench (msName m ++ " parsing") $ 
                 nf (parseOnly (nm spec)) (C.pack $ unpack input')
         coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
-                nf (coparse :: FIXMessage FIXSpec -> ByteString) input
+                nf (coparse :: FIXMessage FIXSpec -> DList Char ) input
 
         bench1 = map coparsingB $ zip ms ss
         bench2 = map parsingB $ zip ms ss

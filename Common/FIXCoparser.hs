@@ -42,10 +42,10 @@ instance Coparser FIXValues where
                         let sub = concat $ P.map (_serialize . LT.toList) ls 
                             delim = FIX.delimiter         
                         in
-                            pack (show k) `append` ('=' `cons` (pack (show i) `append` (delim `cons` sub)))
+                            pack (show k) `append` ('=' `cons` pack (show i) `append` (delim `cons` sub))
                     _serValue (k, v) = 
                         let delim = FIX.delimiter in
-                            pack (show k) `append` ('=' `cons` (pack (show v) `append` (singleton delim)))
+                            pack (show k) `append` ('=' `cons` pack (show v) `append` singleton delim)
 
 
 -- externalize the FIXMessage
@@ -58,9 +58,9 @@ instance Coparser (FIXMessage FIXSpec) where
             len' = ltag `append` ('=' `cons` pack (show $ Text.length body'))
             mtype' = mtag `append` ('=' `cons` pack (C.unpack $ mType m))
             body' = mtype' 
-                `append` (FIX.delimiter `cons` (coparse (mHeader m) 
-                `append` (coparse (mBody m) 
-                `append` coparse (mTrailer m))))
+                `append` (FIX.delimiter `cons` coparse (mHeader m))
+                `append` coparse (mBody m) 
+                `append` coparse (mTrailer m)
             
             ctag = pack . show $ tnum tCheckSum
             ltag = pack . show $ tnum tBodyLength 

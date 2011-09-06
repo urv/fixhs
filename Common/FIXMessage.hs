@@ -33,7 +33,7 @@ import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
 import Control.Monad ( join, replicateM, liftM )
 import Data.FIX.Common ( delimiter )
-import Data.Coparser ( TextLike (..) )
+import Data.Coparser ( TextLike (..), foldl' )
 
 data FIXTag = FIXTag 
     { tName :: String
