@@ -1,7 +1,10 @@
-{-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
-
 -- Module   : Common.FIXMessage
 -- License  : GPLv2
+
+
+{-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
+{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
+
 
 module Common.FIXMessage 
     ( FIXValue (..)
@@ -79,9 +82,9 @@ instance Show a => Show (ListOfValues a) where
 type FIXValues = ListOfValues FIXValue 
 data FIXMessage a = FIXMessage
                   { mContext :: a
-                  , mType :: ByteString
-                  , mHeader :: FIXValues
-                  , mBody :: FIXValues
+                  , mType    :: ByteString
+                  , mHeader  :: FIXValues
+                  , mBody    :: FIXValues
                   , mTrailer :: FIXValues }
 
 
@@ -90,10 +93,10 @@ newtype ListOfTags a = LoT (IntMap a)
 
 type FIXTags = ListOfTags FIXTag
 data FIXMessageSpec = FMSpec 
-                      { msName :: String
-                      , msType :: ByteString
-                      , msHeader :: FIXTags
-                      , msBody :: FIXTags 
+                      { msName    :: String
+                      , msType    :: ByteString
+                      , msHeader  :: FIXTags
+                      , msBody    :: FIXTags 
                       , msTrailer :: FIXTags }
 
 newtype ListOfMessages a = LM (Map ByteString a)
@@ -101,22 +104,21 @@ newtype ListOfMessages a = LM (Map ByteString a)
 
 type FIXMessages = ListOfMessages FIXMessageSpec
 data FIXSpec = FSpec 
-               { fsHeader :: FIXTags
-               , fsTrailer :: FIXTags
+               { fsHeader   :: FIXTags
+               , fsTrailer  :: FIXTags
                , fsMessages :: FIXMessages }
 
 data FIXGroupSpec = FGSpec
-                    { gsLength :: FIXTag
+                    { gsLength    :: FIXTag
                     , gsSeperator :: FIXTag 
-                    , gsBody :: FIXTags }
-
+                    , gsBody      :: FIXTags }
 
 
 -- FIX checksum is simply the sum of bytes modulo 256
 checksum :: (BuilderLike t c, Enum c)  => t -> Int
 checksum b = foldl' _sumUp 0 b `mod` 256
                 where 
-                    _sumUp :: (Enum b) => Int -> b -> Int
+                    _sumUp :: (Enum c) => Int -> c -> Int
                     _sumUp t c = t + fromEnum c
            
 arbibtraryFIXValues :: FIXTags -> Gen FIXValues
@@ -197,13 +199,13 @@ instance Arbitrary CalendarTime where
              , ctTZ    = 0
              , ctIsDST = True }
              where
-                aYear = (`mod` 10000) <$> arbitrary 
-                aMonth = (`mod` 12) <$> arbitrary
-                aHour = (`mod` 24) <$> arbitrary
-                aDay = (`mod` 28) <$> arbitrary
-                aMin = (`mod` 60) <$> arbitrary
-                aSec = (`mod` 60) <$> arbitrary
-                aPsec = (`mod` 1000000000000) <$> arbitrary
+                aYear  = (`mod` 10000) <$> arbitrary 
+                aMonth =    (`mod` 12) <$> arbitrary
+                aHour  =    (`mod` 24) <$> arbitrary
+                aDay   =    (`mod` 28) <$> arbitrary
+                aMin   =    (`mod` 60) <$> arbitrary
+                aSec   =    (`mod` 60) <$> arbitrary
+                aPsec  = (`mod` 1000000000000) <$> arbitrary
 
 
 instance Control.DeepSeq.NFData ByteString 

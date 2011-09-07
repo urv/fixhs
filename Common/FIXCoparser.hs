@@ -3,11 +3,7 @@
 -- Module   : Common.FIXCoparser
 -- License  : GPLv2
 
-module Common.FIXCoparser 
-	(
-	-- 
-	coparse
-	) where
+module Common.FIXCoparser ( coparse) where
 
 import Prelude as P hiding (concat)
 import Common.FIXMessage 
@@ -72,7 +68,7 @@ instance Coparser (FIXMessage FIXSpec) where
             mtag = decimal $ tnum tMsgType
 
             header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter
-            paddedChecksum m' = (FIX.checksum m') `pad` 3 
+            paddedChecksum m' = FIX.checksum m' `pad` 3 
 
 
 fromFIXMonthYear :: (BuilderLike t a) => CalendarTime -> t
