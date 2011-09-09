@@ -116,11 +116,17 @@ genFIXFields doc = let fields = filter (not . _commonTag) $
                     in concatMap fieldDef fields
 
 genFIXSpec :: Document a -> String
-genFIXSpec doc = let spec' = fixSpecName doc 
+genFIXSpec doc = let 
+                spec' = fixSpecName doc 
+                fix = getFIXSpec doc
+                major = getAttr "major" fix
+                minor = getAttr "minor" fix
                in  
                    spec' ++ " :: FIXSpec\n" ++
                    spec' ++ " = FSpec\n" ++
-                   "   { fsHeader = " ++ headerName doc ++ '\n' :
+                   "   { fsVersion = \"FIX." ++ 
+                        major ++ "." ++ minor++ "\"\n" ++ 
+                   "   , fsHeader = " ++ headerName doc ++ '\n' :
                    "   , fsTrailer = " ++ trailerName doc ++ '\n' : 
                    "   , fsMessages = " ++ spec' ++ "Messages }\n" ++
                    "   where\n" ++

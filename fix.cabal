@@ -20,5 +20,5 @@ Executable fix-parser
 
 Executable fix-generator
   Main-is:           Utils/Generator.hs
-  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck
+  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck, dlist, text
 

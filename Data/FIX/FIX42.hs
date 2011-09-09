@@ -5280,7 +5280,8 @@ mListStrikePrice = FMSpec
 
 fix42 :: FIXSpec
 fix42 = FSpec
-   { fsHeader = headerFIX42
+   { fsVersion = "FIX.4.2"
+   , fsHeader = headerFIX42
    , fsTrailer = trailerFIX42
    , fsMessages = fix42Messages }
    where

@@ -103,7 +103,8 @@ newtype ListOfMessages a = LM (Map ByteString a)
 
 type FIXMessages = ListOfMessages FIXMessageSpec
 data FIXSpec = FSpec 
-               { fsHeader   :: FIXTags
+               { fsVersion  :: String
+               , fsHeader   :: FIXTags
                , fsTrailer  :: FIXTags
                , fsMessages :: FIXMessages }
 

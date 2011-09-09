@@ -7,10 +7,9 @@ module Common.FIXCoparser ( coparse) where
 
 import Prelude as P hiding (concat)
 import Common.FIXMessage 
-    ( FIXSpec, FIXMessage (..), tnum, FIXValues, FIXValue (..) )
-import Common.FIXParser ( tBodyLength, tCheckSum, tMsgType )
+    ( FIXSpec (..), FIXMessage (..), tnum, FIXValues, FIXValue (..) )
+import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
-import qualified Data.FIX.Common as FIX ( fixVersion )
 import Data.Coparser ( Coparser (..), BuilderLike, 
     pack, concat, append, cons, snoc, singleton, decimal, realFloat )
 import qualified Data.Coparser as Text ( length )
@@ -64,11 +63,13 @@ instance Coparser (FIXMessage FIXSpec) where
                 `append` coparse (mBody m) 
                 `append` coparse (mTrailer m)
             
+            btag = decimal $ tnum tBeginString
             ctag = decimal $ tnum tCheckSum
             ltag = decimal $ tnum tBodyLength 
             mtag = decimal $ tnum tMsgType
 
-            header = pack (C.unpack FIX.fixVersion) `snoc` FIX.delimiter
+            version = fsVersion $ mContext m
+            header = btag `append` ('=' `cons` pack version `snoc` FIX.delimiter)
             paddedChecksum m' = FIX.checksum m' `pad` 3 
 
 
