@@ -37,7 +37,7 @@ benchmark spec ss =
     let ms = map snd $ LT.toList $ fsMessages spec 
         parsingB (m, input) = let input' = coparse input :: ByteString in 
             bench (msName m ++ " parsing") $ 
-                nf (parseOnly (nm spec)) (C.pack $ unpack input')
+                nf (parseOnly (_nextP' >>= messageP fix42)) (C.pack $ unpack input')
         coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
                 nf (coparse :: FIXMessage FIXSpec -> ByteString ) input
 

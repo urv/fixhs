@@ -9,7 +9,6 @@ module Common.FIXParser
     , groupP
     , _nextP
     , _nextP'
-    , nm
     , toFIXInt
     , toFIXChar
     , toFIXString
@@ -134,34 +133,34 @@ _nextP' = do
                 skipHeader >> toInt
 
  -- Parse a FIX message out of the stream
-messageP :: FIXSpec -> Parser (FIXMessage FIXSpec)
-messageP spec = 
-    let headerP  = tagsP $ fsHeader spec  -- parse header
-        trailerP = tagsP $ fsTrailer spec -- parse trailer
-        bodyP mtype =                     -- parse body
+messageP :: FIXSpec -> ByteString -> Parser (FIXMessage FIXSpec)
+messageP spec msg = 
+    let headerP'  = tagsP $ fsHeader spec  -- parse header
+        trailerP' = tagsP $ fsTrailer spec -- parse trailer
+        bodyP' mtype =                     -- parse body
             let allSpecs = fsMessages spec
                 msgSpec = fromMaybe (error "no message") $
                                 LT.lookup mtype allSpecs
                 msgBodyTags = msBody msgSpec
             in 
                 tagsP msgBodyTags
-    in do
-        FIXString mt <- tagP tMsgType
-        h <- headerP
-        b <- bodyP mt
-        t <- trailerP 
-        return FIXMessage 
-            { mContext = spec
-            , mType = mt
-            , mHeader = h
-            , mBody = b
-            , mTrailer = t }
 
-nm :: FIXSpec -> Parser (FIXMessage FIXSpec)
-nm spec = do msg <- _nextP
-             case parseOnly (messageP spec) msg of
-                 Right ts -> return ts
-                 Left err -> fail err 
+        fixP' = do
+                FIXString mt <- tagP tMsgType
+                h <- headerP'
+                b <- bodyP' mt
+                t <- trailerP' 
+                return FIXMessage 
+                    { mContext = spec
+                    , mType = mt
+                    , mHeader = h
+                    , mBody = b
+                    , mTrailer = t }
+    in 
+        case parseOnly fixP' msg of
+             Right ts -> return ts
+             Left err -> fail err 
+
 
 -- FIX value parsers 
 toFIXInt = FIXInt <$> toInt
