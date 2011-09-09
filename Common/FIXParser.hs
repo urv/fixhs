@@ -1,5 +1,8 @@
+{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
+
 -- Module   : Common.FIXParser
 -- License  : GPLv2
+
 
 module Common.FIXParser 
 	( messageP

@@ -8,14 +8,14 @@ module Common.FIXCoparser ( coparse) where
 import Prelude as P hiding (concat)
 import Common.FIXMessage 
     ( FIXSpec, FIXMessage (..), tnum, FIXValues, FIXValue (..) )
-import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
+import Common.FIXParser ( tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
 import qualified Data.FIX.Common as FIX ( fixVersion )
 import Data.Coparser ( Coparser (..), BuilderLike, 
     pack, concat, append, cons, snoc, singleton, decimal, realFloat )
 import qualified Data.Coparser as Text ( length )
 import Data.ByteString ( ByteString )
-import Data.ByteString.Char8 as C ( unpack, length )
+import Data.ByteString.Char8 as C ( unpack )
 import qualified Data.LookupTable as LT
 import System.Time ( CalendarTime (..) )
 
@@ -37,15 +37,16 @@ instance Coparser FIXValues where
     coparse = pack . _serialize . LT.toList  
         where
             _serialize = concat . P.map _serValue
-                where
-                    _serValue (k, FIXGroup i ls) = 
-                        let sub = concat (P.map (_serialize . LT.toList) ls)
-                            delim = FIX.delimiter         
-                        in
-                            decimal k `append` ('=' `cons` decimal i `append` (delim `cons` sub))
-                    _serValue (k, v) = 
-                        let delim = FIX.delimiter in
-                            decimal k `append` ('=' `cons` coparse v `append` singleton delim)
+
+            _serValue (k, FIXGroup i ls) = 
+                let sub = concat (P.map (_serialize . LT.toList) ls)
+                    delim = FIX.delimiter         
+                in
+                    decimal k `append` ('=' `cons` decimal i `append` (delim `cons` sub))
+
+            _serValue (k, v) = 
+                let delim = FIX.delimiter in
+                    decimal k `append` ('=' `cons` coparse v `append` singleton delim)
 
 
 
@@ -84,13 +85,12 @@ fromFIXLocalMktDate :: (BuilderLike t a) => CalendarTime -> t
 fromFIXLocalMktDate = fromFIXUTCData
 
 fromFIXUTCTimeOnly :: (BuilderLike t a) => CalendarTime -> t
-fromFIXUTCTimeOnly c = 
-    let min = ctMin c; sec = ctSec c; hours = ctHour c in
-        (hours `pad` 2) `append` (':' `cons` (min `pad` 2)
-        `append` (':' `cons` (sec `pad` 2 )))
+fromFIXUTCTimeOnly c = let m = ctMin c; s = ctSec c; h = ctHour c in
+        (h `pad` 2) `append` (':' `cons` (m `pad` 2) 
+        `append` (':' `cons` (s `pad` 2 )))
 
 fromFIXUTCTimetamp :: (BuilderLike t a) => CalendarTime -> t
-fromFIXUTCTimetamp c =  fromFIXUTCData c `append` 
+fromFIXUTCTimetamp c = fromFIXUTCData c `append` 
     ('-' `cons` fromFIXUTCTimeOnly c)
 
 

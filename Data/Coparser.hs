@@ -16,13 +16,12 @@ import qualified Prelude as P ( length, foldl )
 import qualified Data.Foldable as P ( foldl' )
 import qualified Data.List as L ( concat )
 import Data.ByteString ( ByteString )
-import qualified Data.ByteString as B 
-    ( length, concat, unpack, append, singleton, foldl, foldl' )
+import qualified Data.ByteString as B ( concat, append  )
 import Data.Word ( Word8 )
 import qualified Data.ByteString.Char8 as C 
-    ( foldl', foldl, cons, snoc, pack, unpack, singleton )
+    ( cons, snoc, pack, unpack, singleton )
 import Data.Text.Lazy.Builder ( Builder )
-import qualified Data.Text.Lazy as Builder ( unpack, foldl, foldl' )
+import qualified Data.Text.Lazy as Builder ( unpack )
 import qualified Data.Text.Lazy.Builder as Builder 
     ( fromString, singleton, toLazyText )
 import Data.Monoid ( mappend, mconcat )

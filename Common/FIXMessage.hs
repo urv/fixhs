@@ -24,12 +24,11 @@ module Common.FIXMessage
 
 import System.Time ( CalendarTime (..) )
 import Prelude hiding ( null )
-import Data.Word ( Word8 )
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString as B ( null, foldl' )
 import Data.IntMap ( IntMap )
 import Data.Map ( Map )
-import qualified Data.ByteString.Char8 as C ( pack, cons, append )
+import qualified Data.ByteString.Char8 as C ( pack )
 import qualified Data.Char as C ( isAscii, isAlphaNum )
 import Data.Attoparsec ( Parser ) 
 import Data.LookupTable ( LookupTable )
@@ -37,7 +36,7 @@ import qualified Data.LookupTable as LT ( insert, toList, fromList )
 import Control.DeepSeq ( NFData (..) )
 import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
 import Data.Functor ( (<$>) )
-import Control.Monad ( join, replicateM, liftM )
+import Control.Monad ( replicateM, liftM )
 import Data.FIX.Common ( delimiter )
 import Data.Coparser ( BuilderLike (..), foldl' )
 
@@ -165,7 +164,7 @@ instance Arbitrary ByteString where
         arbitrary = do
             l' <- arbitrary :: Gen Int
             let l = 1 + l' `mod` maxLen
-            C.pack <$> replicateM l (aChar pred)
+            C.pack <$> replicateM l (aChar isAlpha')
             where
                 aChar :: (Char -> Bool) -- predicate
                         -> Gen Char     -- random generator
@@ -173,7 +172,7 @@ instance Arbitrary ByteString where
                     c <- arbitrary 
                     if p c then return c else aChar p
 
-                pred c = C.isAlphaNum c && C.isAscii c
+                isAlpha' c = C.isAlphaNum c && C.isAscii c
                 maxLen = 15
 
 instance Arbitrary CalendarTime where
@@ -182,7 +181,7 @@ instance Arbitrary CalendarTime where
             month <- aMonth
             day <- aDay
             hour <- aHour
-            min <- aMin
+            minute <- aMin
             sec <- aSec
             psec <- aPsec
             return CalendarTime 
@@ -190,7 +189,7 @@ instance Arbitrary CalendarTime where
              , ctMonth = toEnum month
              , ctDay   = day
              , ctHour  = hour
-             , ctMin   = min
+             , ctMin   = minute
              , ctSec   = sec
              , ctPicosec = psec
              , ctWDay  = toEnum 0
