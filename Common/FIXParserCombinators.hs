@@ -16,6 +16,8 @@ module Common.FIXParserCombinators
     , toTime
     , toMonthYear
 
+    , skipToken
+
     -- exporting Attoparsec
     , Data.Attoparsec.Parser
     , Data.Attoparsec.Zepto.parse
@@ -24,7 +26,8 @@ module Common.FIXParserCombinators
 import Prelude hiding ( null, tail, head )
 import Data.Attoparsec ( Parser )
 import qualified Data.Attoparsec.Zepto ( parse )
-import Data.Attoparsec.Char8 ( char, char8, anyChar, takeWhile1, decimal )
+import Data.Attoparsec.Char8 
+    ( skipWhile, signed, char, char8, anyChar, takeWhile1, decimal, double )
 import Data.Char ( ord )
 import Data.ByteString hiding ( pack, putStrLn )
 import Control.Applicative ( (<$>), (<|>), (*>) )
@@ -32,17 +35,13 @@ import System.Time ( CalendarTime (..) )
 import qualified Data.FIX.Common as FIX ( delimiter )
 
 
-signed' :: Num a => Parser a -> Parser a
-signed' p = (negate <$> (char8 '-' *> p))
-       <|> (char8 '+' *> p)
-       <|> p
-
 skipFIXDelimiter :: Parser ()
 skipFIXDelimiter = char8 FIX.delimiter >> return ()
 
+
 toFloat :: Parser Float 
 toFloat = do 
-    a <- signed' decimal :: Parser Integer
+    a <- signed decimal :: Parser Integer
     (m, e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
     skipFIXDelimiter
     if a < 0 
@@ -58,7 +57,7 @@ toFloat = do
 
 parseIntTill :: Char -> Parser Int
 parseIntTill c = do
-    i <- signed' decimal
+    i <- signed decimal
     _ <- char8 c
     return i
 
@@ -213,3 +212,6 @@ toTime = toUTCTimestamp
           <|> toUTCTimeOnly 
           <|> toUTCDate 
           <|> toLocalMktDate
+
+skipToken :: Parser ()
+skipToken = skipWhile (FIX.delimiter /=)

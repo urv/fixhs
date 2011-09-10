@@ -71,8 +71,8 @@ tagP tag = do l <- toTag -- read out tag in message
 
 -- parse all the specificed tags and their corresponding values
 tagsP :: FIXTags -> Parser FIXValues
-tagsP ts = let tag' = parseFIXTag ts in 
-               liftM LT.fromList $ many tag'
+tagsP ts = let tags' = parseFIXTag ts in 
+               liftM LT.fromList $ many tags'
 
 -- parse a value of type FIX group
 groupP :: FIXGroupSpec -> Parser FIXValue
