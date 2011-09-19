@@ -263,8 +263,8 @@ tOrigTime :: FIXTag
 tOrigTime = FIXTag 
    { tName = "OrigTime"
    , tnum = 42
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tPossDupFlag :: FIXTag
 tPossDupFlag = FIXTag 
@@ -326,8 +326,8 @@ tSendingTime :: FIXTag
 tSendingTime = FIXTag 
    { tName = "SendingTime"
    , tnum = 52
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tShares :: FIXTag
 tShares = FIXTag 
@@ -382,8 +382,8 @@ tTransactTime :: FIXTag
 tTransactTime = FIXTag 
    { tName = "TransactTime"
    , tnum = 60
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tUrgency :: FIXTag
 tUrgency = FIXTag 
@@ -396,8 +396,8 @@ tValidUntilTime :: FIXTag
 tValidUntilTime = FIXTag 
    { tName = "ValidUntilTime"
    , tnum = 62
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tSettlmntTyp :: FIXTag
 tSettlmntTyp = FIXTag 
@@ -410,8 +410,8 @@ tFutSettDate :: FIXTag
 tFutSettDate = FIXTag 
    { tName = "FutSettDate"
    , tnum = 64
-   , tparser = toFIXLocalMktDate
-   , arbitraryValue = FIXLocalMktDate <$> arbitrary }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tSymbolSfx :: FIXTag
 tSymbolSfx = FIXTag 
@@ -487,8 +487,8 @@ tTradeDate :: FIXTag
 tTradeDate = FIXTag 
    { tName = "TradeDate"
    , tnum = 75
-   , tparser = toFIXLocalMktDate
-   , arbitraryValue = FIXLocalMktDate <$> arbitrary }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tExecBroker :: FIXTag
 tExecBroker = FIXTag 
@@ -795,8 +795,8 @@ tOrigSendingTime :: FIXTag
 tOrigSendingTime = FIXTag 
    { tName = "OrigSendingTime"
    , tnum = 122
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tGapFillFlag :: FIXTag
 tGapFillFlag = FIXTag 
@@ -816,8 +816,8 @@ tExpireTime :: FIXTag
 tExpireTime = FIXTag 
    { tName = "ExpireTime"
    , tnum = 126
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tDKReason :: FIXTag
 tDKReason = FIXTag 
@@ -1110,8 +1110,8 @@ tEffectiveTime :: FIXTag
 tEffectiveTime = FIXTag 
    { tName = "EffectiveTime"
    , tnum = 168
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tStandInstDbType :: FIXTag
 tStandInstDbType = FIXTag 
@@ -1285,8 +1285,8 @@ tFutSettDate2 :: FIXTag
 tFutSettDate2 = FIXTag 
    { tName = "FutSettDate2"
    , tnum = 193
-   , tparser = toFIXLocalMktDate
-   , arbitraryValue = FIXLocalMktDate <$> arbitrary }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLastSpotRate :: FIXTag
 tLastSpotRate = FIXTag 
@@ -1558,15 +1558,15 @@ tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
    { tName = "MDEntryDate"
    , tnum = 272
-   , tparser = toFIXUTCDate
-   , arbitraryValue = FIXUTCDate <$> arbitrary }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tMDEntryTime :: FIXTag
 tMDEntryTime = FIXTag 
    { tName = "MDEntryTime"
    , tnum = 273
-   , tparser = toFIXUTCTimeOnly
-   , arbitraryValue = FIXUTCTimeOnly <$> arbitrary }
+   , tparser = toFIXTimeOnly
+   , arbitraryValue = FIXTimeOnly <$> arbitrary }
 
 tTickDirection :: FIXTag
 tTickDirection = FIXTag 
@@ -2041,36 +2041,36 @@ tTradSesStartTime :: FIXTag
 tTradSesStartTime = FIXTag 
    { tName = "TradSesStartTime"
    , tnum = 341
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesOpenTime :: FIXTag
 tTradSesOpenTime = FIXTag 
    { tName = "TradSesOpenTime"
    , tnum = 342
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesPreCloseTime :: FIXTag
 tTradSesPreCloseTime = FIXTag 
    { tName = "TradSesPreCloseTime"
    , tnum = 343
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesCloseTime :: FIXTag
 tTradSesCloseTime = FIXTag 
    { tName = "TradSesCloseTime"
    , tnum = 344
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesEndTime :: FIXTag
 tTradSesEndTime = FIXTag 
    { tName = "TradSesEndTime"
    , tnum = 345
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tNumberOfOrders :: FIXTag
 tNumberOfOrders = FIXTag 
@@ -2223,8 +2223,8 @@ tQuoteSetValidUntilTime :: FIXTag
 tQuoteSetValidUntilTime = FIXTag 
    { tName = "QuoteSetValidUntilTime"
    , tnum = 367
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tQuoteEntryRejectReason :: FIXTag
 tQuoteEntryRejectReason = FIXTag 
@@ -2244,8 +2244,8 @@ tOnBehalfOfSendingTime :: FIXTag
 tOnBehalfOfSendingTime = FIXTag 
    { tName = "OnBehalfOfSendingTime"
    , tnum = 370
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tRefTagID :: FIXTag
 tRefTagID = FIXTag 
@@ -2678,8 +2678,8 @@ tExpireDate :: FIXTag
 tExpireDate = FIXTag 
    { tName = "ExpireDate"
    , tnum = 432
-   , tparser = toFIXLocalMktDate
-   , arbitraryValue = FIXLocalMktDate <$> arbitrary }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tListExecInstType :: FIXTag
 tListExecInstType = FIXTag 
@@ -2720,8 +2720,8 @@ tContraTradeTime :: FIXTag
 tContraTradeTime = FIXTag 
    { tName = "ContraTradeTime"
    , tnum = 438
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tClearingFirm :: FIXTag
 tClearingFirm = FIXTag 
@@ -2755,8 +2755,8 @@ tStrikeTime :: FIXTag
 tStrikeTime = FIXTag 
    { tName = "StrikeTime"
    , tnum = 443
-   , tparser = toFIXUTCTimestamp
-   , arbitraryValue = FIXUTCTimestamp <$> arbitrary }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tListStatusText :: FIXTag
 tListStatusText = FIXTag 

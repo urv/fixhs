@@ -1,5733 +1,6657 @@
-module Data.FIX.FIX44 where
+module Data.FIX.FIX44 ( fix44 ) where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )
 import Common.FIXMessage
 import Common.FIXParser
+import Data.Functor ( (<$>) )
+import Test.QuickCheck ( arbitrary )
 
 
 tAccount :: FIXTag
 tAccount = FIXTag 
    { tName = "Account"
    , tnum = 1
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAdvId :: FIXTag
 tAdvId = FIXTag 
    { tName = "AdvId"
    , tnum = 2
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAdvRefID :: FIXTag
 tAdvRefID = FIXTag 
    { tName = "AdvRefID"
    , tnum = 3
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAdvSide :: FIXTag
 tAdvSide = FIXTag 
    { tName = "AdvSide"
    , tnum = 4
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tAdvTransType :: FIXTag
 tAdvTransType = FIXTag 
    { tName = "AdvTransType"
    , tnum = 5
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAvgPx :: FIXTag
 tAvgPx = FIXTag 
    { tName = "AvgPx"
    , tnum = 6
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBeginSeqNo :: FIXTag
 tBeginSeqNo = FIXTag 
    { tName = "BeginSeqNo"
    , tnum = 7
-   , tparser = toFIXString }
-
-tBeginString :: FIXTag
-tBeginString = FIXTag 
-   { tName = "BeginString"
-   , tnum = 8
-   , tparser = toFIXString }
-
-tBodyLength :: FIXTag
-tBodyLength = FIXTag 
-   { tName = "BodyLength"
-   , tnum = 9
-   , tparser = toFIXString }
-
-tCheckSum :: FIXTag
-tCheckSum = FIXTag 
-   { tName = "CheckSum"
-   , tnum = 10
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tClOrdID :: FIXTag
 tClOrdID = FIXTag 
    { tName = "ClOrdID"
    , tnum = 11
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCommission :: FIXTag
 tCommission = FIXTag 
    { tName = "Commission"
    , tnum = 12
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCommType :: FIXTag
 tCommType = FIXTag 
    { tName = "CommType"
    , tnum = 13
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tCumQty :: FIXTag
 tCumQty = FIXTag 
    { tName = "CumQty"
    , tnum = 14
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCurrency :: FIXTag
 tCurrency = FIXTag 
    { tName = "Currency"
    , tnum = 15
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tEndSeqNo :: FIXTag
 tEndSeqNo = FIXTag 
    { tName = "EndSeqNo"
    , tnum = 16
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tExecID :: FIXTag
 tExecID = FIXTag 
    { tName = "ExecID"
    , tnum = 17
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tExecInst :: FIXTag
 tExecInst = FIXTag 
    { tName = "ExecInst"
    , tnum = 18
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tExecRefID :: FIXTag
 tExecRefID = FIXTag 
    { tName = "ExecRefID"
    , tnum = 19
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tExecTransType :: FIXTag
 tExecTransType = FIXTag 
    { tName = "ExecTransType"
    , tnum = 20
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tHandlInst :: FIXTag
 tHandlInst = FIXTag 
    { tName = "HandlInst"
    , tnum = 21
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSecurityIDSource :: FIXTag
 tSecurityIDSource = FIXTag 
    { tName = "SecurityIDSource"
    , tnum = 22
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIOIID :: FIXTag
 tIOIID = FIXTag 
    { tName = "IOIID"
    , tnum = 23
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIOIOthSvc :: FIXTag
 tIOIOthSvc = FIXTag 
    { tName = "IOIOthSvc"
    , tnum = 24
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tIOIQltyInd :: FIXTag
 tIOIQltyInd = FIXTag 
    { tName = "IOIQltyInd"
    , tnum = 25
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tIOIRefID :: FIXTag
 tIOIRefID = FIXTag 
    { tName = "IOIRefID"
    , tnum = 26
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIOIQty :: FIXTag
 tIOIQty = FIXTag 
    { tName = "IOIQty"
    , tnum = 27
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIOITransType :: FIXTag
 tIOITransType = FIXTag 
    { tName = "IOITransType"
    , tnum = 28
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tLastCapacity :: FIXTag
 tLastCapacity = FIXTag 
    { tName = "LastCapacity"
    , tnum = 29
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tLastMkt :: FIXTag
 tLastMkt = FIXTag 
    { tName = "LastMkt"
    , tnum = 30
-   , tparser = toFIXExchange }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLastPx :: FIXTag
 tLastPx = FIXTag 
    { tName = "LastPx"
    , tnum = 31
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLastQty :: FIXTag
 tLastQty = FIXTag 
    { tName = "LastQty"
    , tnum = 32
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoLinesOfText :: FIXTag
 tNoLinesOfText = FIXTag 
    { tName = "NoLinesOfText"
    , tnum = 33
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMsgSeqNum :: FIXTag
 tMsgSeqNum = FIXTag 
    { tName = "MsgSeqNum"
    , tnum = 34
-   , tparser = toFIXString }
-
-tMsgType :: FIXTag
-tMsgType = FIXTag 
-   { tName = "MsgType"
-   , tnum = 35
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNewSeqNo :: FIXTag
 tNewSeqNo = FIXTag 
    { tName = "NewSeqNo"
    , tnum = 36
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrderID :: FIXTag
 tOrderID = FIXTag 
    { tName = "OrderID"
    , tnum = 37
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOrderQty :: FIXTag
 tOrderQty = FIXTag 
    { tName = "OrderQty"
    , tnum = 38
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOrdStatus :: FIXTag
 tOrdStatus = FIXTag 
    { tName = "OrdStatus"
    , tnum = 39
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tOrdType :: FIXTag
 tOrdType = FIXTag 
    { tName = "OrdType"
    , tnum = 40
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tOrigClOrdID :: FIXTag
 tOrigClOrdID = FIXTag 
    { tName = "OrigClOrdID"
    , tnum = 41
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOrigTime :: FIXTag
 tOrigTime = FIXTag 
    { tName = "OrigTime"
    , tnum = 42
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tPossDupFlag :: FIXTag
 tPossDupFlag = FIXTag 
    { tName = "PossDupFlag"
    , tnum = 43
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tPrice :: FIXTag
 tPrice = FIXTag 
    { tName = "Price"
    , tnum = 44
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tRefSeqNum :: FIXTag
 tRefSeqNum = FIXTag 
    { tName = "RefSeqNum"
    , tnum = 45
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRelatdSym :: FIXTag
 tRelatdSym = FIXTag 
    { tName = "RelatdSym"
    , tnum = 46
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRule80A :: FIXTag
 tRule80A = FIXTag 
    { tName = "Rule80A"
    , tnum = 47
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSecurityID :: FIXTag
 tSecurityID = FIXTag 
    { tName = "SecurityID"
    , tnum = 48
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSenderCompID :: FIXTag
 tSenderCompID = FIXTag 
    { tName = "SenderCompID"
    , tnum = 49
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSenderSubID :: FIXTag
 tSenderSubID = FIXTag 
    { tName = "SenderSubID"
    , tnum = 50
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSendingDate :: FIXTag
 tSendingDate = FIXTag 
    { tName = "SendingDate"
    , tnum = 51
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tSendingTime :: FIXTag
 tSendingTime = FIXTag 
    { tName = "SendingTime"
    , tnum = 52
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tQuantity :: FIXTag
 tQuantity = FIXTag 
    { tName = "Quantity"
    , tnum = 53
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSide :: FIXTag
 tSide = FIXTag 
    { tName = "Side"
    , tnum = 54
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSymbol :: FIXTag
 tSymbol = FIXTag 
    { tName = "Symbol"
    , tnum = 55
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTargetCompID :: FIXTag
 tTargetCompID = FIXTag 
    { tName = "TargetCompID"
    , tnum = 56
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTargetSubID :: FIXTag
 tTargetSubID = FIXTag 
    { tName = "TargetSubID"
    , tnum = 57
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tText :: FIXTag
 tText = FIXTag 
    { tName = "Text"
    , tnum = 58
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTimeInForce :: FIXTag
 tTimeInForce = FIXTag 
    { tName = "TimeInForce"
    , tnum = 59
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tTransactTime :: FIXTag
 tTransactTime = FIXTag 
    { tName = "TransactTime"
    , tnum = 60
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tUrgency :: FIXTag
 tUrgency = FIXTag 
    { tName = "Urgency"
    , tnum = 61
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tValidUntilTime :: FIXTag
 tValidUntilTime = FIXTag 
    { tName = "ValidUntilTime"
    , tnum = 62
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tSettlType :: FIXTag
 tSettlType = FIXTag 
    { tName = "SettlType"
    , tnum = 63
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSettlDate :: FIXTag
 tSettlDate = FIXTag 
    { tName = "SettlDate"
    , tnum = 64
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tSymbolSfx :: FIXTag
 tSymbolSfx = FIXTag 
    { tName = "SymbolSfx"
    , tnum = 65
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tListID :: FIXTag
 tListID = FIXTag 
    { tName = "ListID"
    , tnum = 66
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tListSeqNo :: FIXTag
 tListSeqNo = FIXTag 
    { tName = "ListSeqNo"
    , tnum = 67
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTotNoOrders :: FIXTag
 tTotNoOrders = FIXTag 
    { tName = "TotNoOrders"
    , tnum = 68
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tListExecInst :: FIXTag
 tListExecInst = FIXTag 
    { tName = "ListExecInst"
    , tnum = 69
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocID :: FIXTag
 tAllocID = FIXTag 
    { tName = "AllocID"
    , tnum = 70
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocTransType :: FIXTag
 tAllocTransType = FIXTag 
    { tName = "AllocTransType"
    , tnum = 71
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tRefAllocID :: FIXTag
 tRefAllocID = FIXTag 
    { tName = "RefAllocID"
    , tnum = 72
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoOrders :: FIXTag
 tNoOrders = FIXTag 
    { tName = "NoOrders"
    , tnum = 73
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAvgPxPrecision :: FIXTag
 tAvgPxPrecision = FIXTag 
    { tName = "AvgPxPrecision"
    , tnum = 74
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeDate :: FIXTag
 tTradeDate = FIXTag 
    { tName = "TradeDate"
    , tnum = 75
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tExecBroker :: FIXTag
 tExecBroker = FIXTag 
    { tName = "ExecBroker"
    , tnum = 76
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPositionEffect :: FIXTag
 tPositionEffect = FIXTag 
    { tName = "PositionEffect"
    , tnum = 77
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNoAllocs :: FIXTag
 tNoAllocs = FIXTag 
    { tName = "NoAllocs"
    , tnum = 78
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocAccount :: FIXTag
 tAllocAccount = FIXTag 
    { tName = "AllocAccount"
    , tnum = 79
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocQty :: FIXTag
 tAllocQty = FIXTag 
    { tName = "AllocQty"
    , tnum = 80
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tProcessCode :: FIXTag
 tProcessCode = FIXTag 
    { tName = "ProcessCode"
    , tnum = 81
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNoRpts :: FIXTag
 tNoRpts = FIXTag 
    { tName = "NoRpts"
    , tnum = 82
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRptSeq :: FIXTag
 tRptSeq = FIXTag 
    { tName = "RptSeq"
    , tnum = 83
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCxlQty :: FIXTag
 tCxlQty = FIXTag 
    { tName = "CxlQty"
    , tnum = 84
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoDlvyInst :: FIXTag
 tNoDlvyInst = FIXTag 
    { tName = "NoDlvyInst"
    , tnum = 85
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDlvyInst :: FIXTag
 tDlvyInst = FIXTag 
    { tName = "DlvyInst"
    , tnum = 86
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocStatus :: FIXTag
 tAllocStatus = FIXTag 
    { tName = "AllocStatus"
    , tnum = 87
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocRejCode :: FIXTag
 tAllocRejCode = FIXTag 
    { tName = "AllocRejCode"
    , tnum = 88
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSignature :: FIXTag
 tSignature = FIXTag 
    { tName = "Signature"
    , tnum = 89
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tSecureDataLen :: FIXTag
 tSecureDataLen = FIXTag 
    { tName = "SecureDataLen"
    , tnum = 90
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecureData :: FIXTag
 tSecureData = FIXTag 
    { tName = "SecureData"
    , tnum = 91
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tBrokerOfCredit :: FIXTag
 tBrokerOfCredit = FIXTag 
    { tName = "BrokerOfCredit"
    , tnum = 92
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSignatureLength :: FIXTag
 tSignatureLength = FIXTag 
    { tName = "SignatureLength"
    , tnum = 93
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEmailType :: FIXTag
 tEmailType = FIXTag 
    { tName = "EmailType"
    , tnum = 94
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tRawDataLength :: FIXTag
 tRawDataLength = FIXTag 
    { tName = "RawDataLength"
    , tnum = 95
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRawData :: FIXTag
 tRawData = FIXTag 
    { tName = "RawData"
    , tnum = 96
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tPossResend :: FIXTag
 tPossResend = FIXTag 
    { tName = "PossResend"
    , tnum = 97
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tEncryptMethod :: FIXTag
 tEncryptMethod = FIXTag 
    { tName = "EncryptMethod"
    , tnum = 98
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tStopPx :: FIXTag
 tStopPx = FIXTag 
    { tName = "StopPx"
    , tnum = 99
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tExDestination :: FIXTag
 tExDestination = FIXTag 
    { tName = "ExDestination"
    , tnum = 100
-   , tparser = toFIXExchange }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCxlRejReason :: FIXTag
 tCxlRejReason = FIXTag 
    { tName = "CxlRejReason"
    , tnum = 102
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrdRejReason :: FIXTag
 tOrdRejReason = FIXTag 
    { tName = "OrdRejReason"
    , tnum = 103
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tIOIQualifier :: FIXTag
 tIOIQualifier = FIXTag 
    { tName = "IOIQualifier"
    , tnum = 104
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tWaveNo :: FIXTag
 tWaveNo = FIXTag 
    { tName = "WaveNo"
    , tnum = 105
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIssuer :: FIXTag
 tIssuer = FIXTag 
    { tName = "Issuer"
    , tnum = 106
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecurityDesc :: FIXTag
 tSecurityDesc = FIXTag 
    { tName = "SecurityDesc"
    , tnum = 107
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tHeartBtInt :: FIXTag
 tHeartBtInt = FIXTag 
    { tName = "HeartBtInt"
    , tnum = 108
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tClientID :: FIXTag
 tClientID = FIXTag 
    { tName = "ClientID"
    , tnum = 109
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMinQty :: FIXTag
 tMinQty = FIXTag 
    { tName = "MinQty"
    , tnum = 110
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMaxFloor :: FIXTag
 tMaxFloor = FIXTag 
    { tName = "MaxFloor"
    , tnum = 111
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTestReqID :: FIXTag
 tTestReqID = FIXTag 
    { tName = "TestReqID"
    , tnum = 112
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tReportToExch :: FIXTag
 tReportToExch = FIXTag 
    { tName = "ReportToExch"
    , tnum = 113
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tLocateReqd :: FIXTag
 tLocateReqd = FIXTag 
    { tName = "LocateReqd"
    , tnum = 114
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tOnBehalfOfCompID :: FIXTag
 tOnBehalfOfCompID = FIXTag 
    { tName = "OnBehalfOfCompID"
    , tnum = 115
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOnBehalfOfSubID :: FIXTag
 tOnBehalfOfSubID = FIXTag 
    { tName = "OnBehalfOfSubID"
    , tnum = 116
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuoteID :: FIXTag
 tQuoteID = FIXTag 
    { tName = "QuoteID"
    , tnum = 117
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNetMoney :: FIXTag
 tNetMoney = FIXTag 
    { tName = "NetMoney"
    , tnum = 118
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlCurrAmt :: FIXTag
 tSettlCurrAmt = FIXTag 
    { tName = "SettlCurrAmt"
    , tnum = 119
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlCurrency :: FIXTag
 tSettlCurrency = FIXTag 
    { tName = "SettlCurrency"
    , tnum = 120
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tForexReq :: FIXTag
 tForexReq = FIXTag 
    { tName = "ForexReq"
    , tnum = 121
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tOrigSendingTime :: FIXTag
 tOrigSendingTime = FIXTag 
    { tName = "OrigSendingTime"
    , tnum = 122
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tGapFillFlag :: FIXTag
 tGapFillFlag = FIXTag 
    { tName = "GapFillFlag"
    , tnum = 123
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tNoExecs :: FIXTag
 tNoExecs = FIXTag 
    { tName = "NoExecs"
    , tnum = 124
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCxlType :: FIXTag
 tCxlType = FIXTag 
    { tName = "CxlType"
    , tnum = 125
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tExpireTime :: FIXTag
 tExpireTime = FIXTag 
    { tName = "ExpireTime"
    , tnum = 126
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tDKReason :: FIXTag
 tDKReason = FIXTag 
    { tName = "DKReason"
    , tnum = 127
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tDeliverToCompID :: FIXTag
 tDeliverToCompID = FIXTag 
    { tName = "DeliverToCompID"
    , tnum = 128
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDeliverToSubID :: FIXTag
 tDeliverToSubID = FIXTag 
    { tName = "DeliverToSubID"
    , tnum = 129
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIOINaturalFlag :: FIXTag
 tIOINaturalFlag = FIXTag 
    { tName = "IOINaturalFlag"
    , tnum = 130
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tQuoteReqID :: FIXTag
 tQuoteReqID = FIXTag 
    { tName = "QuoteReqID"
    , tnum = 131
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tBidPx :: FIXTag
 tBidPx = FIXTag 
    { tName = "BidPx"
    , tnum = 132
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOfferPx :: FIXTag
 tOfferPx = FIXTag 
    { tName = "OfferPx"
    , tnum = 133
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBidSize :: FIXTag
 tBidSize = FIXTag 
    { tName = "BidSize"
    , tnum = 134
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOfferSize :: FIXTag
 tOfferSize = FIXTag 
    { tName = "OfferSize"
    , tnum = 135
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoMiscFees :: FIXTag
 tNoMiscFees = FIXTag 
    { tName = "NoMiscFees"
    , tnum = 136
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMiscFeeAmt :: FIXTag
 tMiscFeeAmt = FIXTag 
    { tName = "MiscFeeAmt"
    , tnum = 137
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMiscFeeCurr :: FIXTag
 tMiscFeeCurr = FIXTag 
    { tName = "MiscFeeCurr"
    , tnum = 138
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMiscFeeType :: FIXTag
 tMiscFeeType = FIXTag 
    { tName = "MiscFeeType"
    , tnum = 139
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tPrevClosePx :: FIXTag
 tPrevClosePx = FIXTag 
    { tName = "PrevClosePx"
    , tnum = 140
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tResetSeqNumFlag :: FIXTag
 tResetSeqNumFlag = FIXTag 
    { tName = "ResetSeqNumFlag"
    , tnum = 141
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tSenderLocationID :: FIXTag
 tSenderLocationID = FIXTag 
    { tName = "SenderLocationID"
    , tnum = 142
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTargetLocationID :: FIXTag
 tTargetLocationID = FIXTag 
    { tName = "TargetLocationID"
    , tnum = 143
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOnBehalfOfLocationID :: FIXTag
 tOnBehalfOfLocationID = FIXTag 
    { tName = "OnBehalfOfLocationID"
    , tnum = 144
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDeliverToLocationID :: FIXTag
 tDeliverToLocationID = FIXTag 
    { tName = "DeliverToLocationID"
    , tnum = 145
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoRelatedSym :: FIXTag
 tNoRelatedSym = FIXTag 
    { tName = "NoRelatedSym"
    , tnum = 146
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSubject :: FIXTag
 tSubject = FIXTag 
    { tName = "Subject"
    , tnum = 147
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tHeadline :: FIXTag
 tHeadline = FIXTag 
    { tName = "Headline"
    , tnum = 148
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tURLLink :: FIXTag
 tURLLink = FIXTag 
    { tName = "URLLink"
    , tnum = 149
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tExecType :: FIXTag
 tExecType = FIXTag 
    { tName = "ExecType"
    , tnum = 150
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tLeavesQty :: FIXTag
 tLeavesQty = FIXTag 
    { tName = "LeavesQty"
    , tnum = 151
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCashOrderQty :: FIXTag
 tCashOrderQty = FIXTag 
    { tName = "CashOrderQty"
    , tnum = 152
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAllocAvgPx :: FIXTag
 tAllocAvgPx = FIXTag 
    { tName = "AllocAvgPx"
    , tnum = 153
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAllocNetMoney :: FIXTag
 tAllocNetMoney = FIXTag 
    { tName = "AllocNetMoney"
    , tnum = 154
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlCurrFxRate :: FIXTag
 tSettlCurrFxRate = FIXTag 
    { tName = "SettlCurrFxRate"
    , tnum = 155
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlCurrFxRateCalc :: FIXTag
 tSettlCurrFxRateCalc = FIXTag 
    { tName = "SettlCurrFxRateCalc"
    , tnum = 156
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNumDaysInterest :: FIXTag
 tNumDaysInterest = FIXTag 
    { tName = "NumDaysInterest"
    , tnum = 157
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAccruedInterestRate :: FIXTag
 tAccruedInterestRate = FIXTag 
    { tName = "AccruedInterestRate"
    , tnum = 158
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAccruedInterestAmt :: FIXTag
 tAccruedInterestAmt = FIXTag 
    { tName = "AccruedInterestAmt"
    , tnum = 159
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlInstMode :: FIXTag
 tSettlInstMode = FIXTag 
    { tName = "SettlInstMode"
    , tnum = 160
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tAllocText :: FIXTag
 tAllocText = FIXTag 
    { tName = "AllocText"
    , tnum = 161
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlInstID :: FIXTag
 tSettlInstID = FIXTag 
    { tName = "SettlInstID"
    , tnum = 162
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlInstTransType :: FIXTag
 tSettlInstTransType = FIXTag 
    { tName = "SettlInstTransType"
    , tnum = 163
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tEmailThreadID :: FIXTag
 tEmailThreadID = FIXTag 
    { tName = "EmailThreadID"
    , tnum = 164
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlInstSource :: FIXTag
 tSettlInstSource = FIXTag 
    { tName = "SettlInstSource"
    , tnum = 165
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSettlLocation :: FIXTag
 tSettlLocation = FIXTag 
    { tName = "SettlLocation"
    , tnum = 166
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecurityType :: FIXTag
 tSecurityType = FIXTag 
    { tName = "SecurityType"
    , tnum = 167
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tEffectiveTime :: FIXTag
 tEffectiveTime = FIXTag 
    { tName = "EffectiveTime"
    , tnum = 168
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tStandInstDbType :: FIXTag
 tStandInstDbType = FIXTag 
    { tName = "StandInstDbType"
    , tnum = 169
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tStandInstDbName :: FIXTag
 tStandInstDbName = FIXTag 
    { tName = "StandInstDbName"
    , tnum = 170
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tStandInstDbID :: FIXTag
 tStandInstDbID = FIXTag 
    { tName = "StandInstDbID"
    , tnum = 171
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlDeliveryType :: FIXTag
 tSettlDeliveryType = FIXTag 
    { tName = "SettlDeliveryType"
    , tnum = 172
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSettlDepositoryCode :: FIXTag
 tSettlDepositoryCode = FIXTag 
    { tName = "SettlDepositoryCode"
    , tnum = 173
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlBrkrCode :: FIXTag
 tSettlBrkrCode = FIXTag 
    { tName = "SettlBrkrCode"
    , tnum = 174
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlInstCode :: FIXTag
 tSettlInstCode = FIXTag 
    { tName = "SettlInstCode"
    , tnum = 175
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySettlAgentName :: FIXTag
 tSecuritySettlAgentName = FIXTag 
    { tName = "SecuritySettlAgentName"
    , tnum = 176
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySettlAgentCode :: FIXTag
 tSecuritySettlAgentCode = FIXTag 
    { tName = "SecuritySettlAgentCode"
    , tnum = 177
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySettlAgentAcctNum :: FIXTag
 tSecuritySettlAgentAcctNum = FIXTag 
    { tName = "SecuritySettlAgentAcctNum"
    , tnum = 178
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySettlAgentAcctName :: FIXTag
 tSecuritySettlAgentAcctName = FIXTag 
    { tName = "SecuritySettlAgentAcctName"
    , tnum = 179
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySettlAgentContactName :: FIXTag
 tSecuritySettlAgentContactName = FIXTag 
    { tName = "SecuritySettlAgentContactName"
    , tnum = 180
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySettlAgentContactPhone :: FIXTag
 tSecuritySettlAgentContactPhone = FIXTag 
    { tName = "SecuritySettlAgentContactPhone"
    , tnum = 181
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashSettlAgentName :: FIXTag
 tCashSettlAgentName = FIXTag 
    { tName = "CashSettlAgentName"
    , tnum = 182
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashSettlAgentCode :: FIXTag
 tCashSettlAgentCode = FIXTag 
    { tName = "CashSettlAgentCode"
    , tnum = 183
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashSettlAgentAcctNum :: FIXTag
 tCashSettlAgentAcctNum = FIXTag 
    { tName = "CashSettlAgentAcctNum"
    , tnum = 184
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashSettlAgentAcctName :: FIXTag
 tCashSettlAgentAcctName = FIXTag 
    { tName = "CashSettlAgentAcctName"
    , tnum = 185
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashSettlAgentContactName :: FIXTag
 tCashSettlAgentContactName = FIXTag 
    { tName = "CashSettlAgentContactName"
    , tnum = 186
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashSettlAgentContactPhone :: FIXTag
 tCashSettlAgentContactPhone = FIXTag 
    { tName = "CashSettlAgentContactPhone"
    , tnum = 187
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tBidSpotRate :: FIXTag
 tBidSpotRate = FIXTag 
    { tName = "BidSpotRate"
    , tnum = 188
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBidForwardPoints :: FIXTag
 tBidForwardPoints = FIXTag 
    { tName = "BidForwardPoints"
    , tnum = 189
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOfferSpotRate :: FIXTag
 tOfferSpotRate = FIXTag 
    { tName = "OfferSpotRate"
    , tnum = 190
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOfferForwardPoints :: FIXTag
 tOfferForwardPoints = FIXTag 
    { tName = "OfferForwardPoints"
    , tnum = 191
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOrderQty2 :: FIXTag
 tOrderQty2 = FIXTag 
    { tName = "OrderQty2"
    , tnum = 192
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlDate2 :: FIXTag
 tSettlDate2 = FIXTag 
    { tName = "SettlDate2"
    , tnum = 193
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLastSpotRate :: FIXTag
 tLastSpotRate = FIXTag 
    { tName = "LastSpotRate"
    , tnum = 194
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLastForwardPoints :: FIXTag
 tLastForwardPoints = FIXTag 
    { tName = "LastForwardPoints"
    , tnum = 195
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAllocLinkID :: FIXTag
 tAllocLinkID = FIXTag 
    { tName = "AllocLinkID"
    , tnum = 196
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocLinkType :: FIXTag
 tAllocLinkType = FIXTag 
    { tName = "AllocLinkType"
    , tnum = 197
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecondaryOrderID :: FIXTag
 tSecondaryOrderID = FIXTag 
    { tName = "SecondaryOrderID"
    , tnum = 198
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoIOIQualifiers :: FIXTag
 tNoIOIQualifiers = FIXTag 
    { tName = "NoIOIQualifiers"
    , tnum = 199
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMaturityMonthYear :: FIXTag
 tMaturityMonthYear = FIXTag 
    { tName = "MaturityMonthYear"
    , tnum = 200
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear
+   , arbitraryValue = FIXMonthYear <$> arbitrary }
 
 tPutOrCall :: FIXTag
 tPutOrCall = FIXTag 
    { tName = "PutOrCall"
    , tnum = 201
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tStrikePrice :: FIXTag
 tStrikePrice = FIXTag 
    { tName = "StrikePrice"
    , tnum = 202
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCoveredOrUncovered :: FIXTag
 tCoveredOrUncovered = FIXTag 
    { tName = "CoveredOrUncovered"
    , tnum = 203
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCustomerOrFirm :: FIXTag
 tCustomerOrFirm = FIXTag 
    { tName = "CustomerOrFirm"
    , tnum = 204
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMaturityDay :: FIXTag
 tMaturityDay = FIXTag 
    { tName = "MaturityDay"
    , tnum = 205
-   , tparser = toFIXDayOfMonth }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOptAttribute :: FIXTag
 tOptAttribute = FIXTag 
    { tName = "OptAttribute"
    , tnum = 206
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSecurityExchange :: FIXTag
 tSecurityExchange = FIXTag 
    { tName = "SecurityExchange"
    , tnum = 207
-   , tparser = toFIXExchange }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNotifyBrokerOfCredit :: FIXTag
 tNotifyBrokerOfCredit = FIXTag 
    { tName = "NotifyBrokerOfCredit"
    , tnum = 208
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tAllocHandlInst :: FIXTag
 tAllocHandlInst = FIXTag 
    { tName = "AllocHandlInst"
    , tnum = 209
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMaxShow :: FIXTag
 tMaxShow = FIXTag 
    { tName = "MaxShow"
    , tnum = 210
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPegOffsetValue :: FIXTag
 tPegOffsetValue = FIXTag 
    { tName = "PegOffsetValue"
    , tnum = 211
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tXmlDataLen :: FIXTag
 tXmlDataLen = FIXTag 
    { tName = "XmlDataLen"
    , tnum = 212
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tXmlData :: FIXTag
 tXmlData = FIXTag 
    { tName = "XmlData"
    , tnum = 213
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tSettlInstRefID :: FIXTag
 tSettlInstRefID = FIXTag 
    { tName = "SettlInstRefID"
    , tnum = 214
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoRoutingIDs :: FIXTag
 tNoRoutingIDs = FIXTag 
    { tName = "NoRoutingIDs"
    , tnum = 215
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRoutingType :: FIXTag
 tRoutingType = FIXTag 
    { tName = "RoutingType"
    , tnum = 216
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRoutingID :: FIXTag
 tRoutingID = FIXTag 
    { tName = "RoutingID"
    , tnum = 217
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSpread :: FIXTag
 tSpread = FIXTag 
    { tName = "Spread"
    , tnum = 218
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBenchmark :: FIXTag
 tBenchmark = FIXTag 
    { tName = "Benchmark"
    , tnum = 219
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tBenchmarkCurveCurrency :: FIXTag
 tBenchmarkCurveCurrency = FIXTag 
    { tName = "BenchmarkCurveCurrency"
    , tnum = 220
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tBenchmarkCurveName :: FIXTag
 tBenchmarkCurveName = FIXTag 
    { tName = "BenchmarkCurveName"
    , tnum = 221
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tBenchmarkCurvePoint :: FIXTag
 tBenchmarkCurvePoint = FIXTag 
    { tName = "BenchmarkCurvePoint"
    , tnum = 222
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCouponRate :: FIXTag
 tCouponRate = FIXTag 
    { tName = "CouponRate"
    , tnum = 223
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCouponPaymentDate :: FIXTag
 tCouponPaymentDate = FIXTag 
    { tName = "CouponPaymentDate"
    , tnum = 224
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tIssueDate :: FIXTag
 tIssueDate = FIXTag 
    { tName = "IssueDate"
    , tnum = 225
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tRepurchaseTerm :: FIXTag
 tRepurchaseTerm = FIXTag 
    { tName = "RepurchaseTerm"
    , tnum = 226
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRepurchaseRate :: FIXTag
 tRepurchaseRate = FIXTag 
    { tName = "RepurchaseRate"
    , tnum = 227
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tFactor :: FIXTag
 tFactor = FIXTag 
    { tName = "Factor"
    , tnum = 228
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTradeOriginationDate :: FIXTag
 tTradeOriginationDate = FIXTag 
    { tName = "TradeOriginationDate"
    , tnum = 229
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tExDate :: FIXTag
 tExDate = FIXTag 
    { tName = "ExDate"
    , tnum = 230
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tContractMultiplier :: FIXTag
 tContractMultiplier = FIXTag 
    { tName = "ContractMultiplier"
    , tnum = 231
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoStipulations :: FIXTag
 tNoStipulations = FIXTag 
    { tName = "NoStipulations"
    , tnum = 232
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tStipulationType :: FIXTag
 tStipulationType = FIXTag 
    { tName = "StipulationType"
    , tnum = 233
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tStipulationValue :: FIXTag
 tStipulationValue = FIXTag 
    { tName = "StipulationValue"
    , tnum = 234
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tYieldType :: FIXTag
 tYieldType = FIXTag 
    { tName = "YieldType"
    , tnum = 235
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tYield :: FIXTag
 tYield = FIXTag 
    { tName = "Yield"
    , tnum = 236
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTotalTakedown :: FIXTag
 tTotalTakedown = FIXTag 
    { tName = "TotalTakedown"
    , tnum = 237
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tConcession :: FIXTag
 tConcession = FIXTag 
    { tName = "Concession"
    , tnum = 238
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tRepoCollateralSecurityType :: FIXTag
 tRepoCollateralSecurityType = FIXTag 
    { tName = "RepoCollateralSecurityType"
    , tnum = 239
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRedemptionDate :: FIXTag
 tRedemptionDate = FIXTag 
    { tName = "RedemptionDate"
    , tnum = 240
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tUnderlyingCouponPaymentDate :: FIXTag
 tUnderlyingCouponPaymentDate = FIXTag 
    { tName = "UnderlyingCouponPaymentDate"
    , tnum = 241
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tUnderlyingIssueDate :: FIXTag
 tUnderlyingIssueDate = FIXTag 
    { tName = "UnderlyingIssueDate"
    , tnum = 242
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tUnderlyingRepoCollateralSecurityType :: FIXTag
 tUnderlyingRepoCollateralSecurityType = FIXTag 
    { tName = "UnderlyingRepoCollateralSecurityType"
    , tnum = 243
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingRepurchaseTerm :: FIXTag
 tUnderlyingRepurchaseTerm = FIXTag 
    { tName = "UnderlyingRepurchaseTerm"
    , tnum = 244
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingRepurchaseRate :: FIXTag
 tUnderlyingRepurchaseRate = FIXTag 
    { tName = "UnderlyingRepurchaseRate"
    , tnum = 245
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingFactor :: FIXTag
 tUnderlyingFactor = FIXTag 
    { tName = "UnderlyingFactor"
    , tnum = 246
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingRedemptionDate :: FIXTag
 tUnderlyingRedemptionDate = FIXTag 
    { tName = "UnderlyingRedemptionDate"
    , tnum = 247
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLegCouponPaymentDate :: FIXTag
 tLegCouponPaymentDate = FIXTag 
    { tName = "LegCouponPaymentDate"
    , tnum = 248
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLegIssueDate :: FIXTag
 tLegIssueDate = FIXTag 
    { tName = "LegIssueDate"
    , tnum = 249
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLegRepoCollateralSecurityType :: FIXTag
 tLegRepoCollateralSecurityType = FIXTag 
    { tName = "LegRepoCollateralSecurityType"
    , tnum = 250
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegRepurchaseTerm :: FIXTag
 tLegRepurchaseTerm = FIXTag 
    { tName = "LegRepurchaseTerm"
    , tnum = 251
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegRepurchaseRate :: FIXTag
 tLegRepurchaseRate = FIXTag 
    { tName = "LegRepurchaseRate"
    , tnum = 252
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegFactor :: FIXTag
 tLegFactor = FIXTag 
    { tName = "LegFactor"
    , tnum = 253
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegRedemptionDate :: FIXTag
 tLegRedemptionDate = FIXTag 
    { tName = "LegRedemptionDate"
    , tnum = 254
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tCreditRating :: FIXTag
 tCreditRating = FIXTag 
    { tName = "CreditRating"
    , tnum = 255
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingCreditRating :: FIXTag
 tUnderlyingCreditRating = FIXTag 
    { tName = "UnderlyingCreditRating"
    , tnum = 256
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegCreditRating :: FIXTag
 tLegCreditRating = FIXTag 
    { tName = "LegCreditRating"
    , tnum = 257
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradedFlatSwitch :: FIXTag
 tTradedFlatSwitch = FIXTag 
    { tName = "TradedFlatSwitch"
    , tnum = 258
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tBasisFeatureDate :: FIXTag
 tBasisFeatureDate = FIXTag 
    { tName = "BasisFeatureDate"
    , tnum = 259
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tBasisFeaturePrice :: FIXTag
 tBasisFeaturePrice = FIXTag 
    { tName = "BasisFeaturePrice"
    , tnum = 260
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMDReqID :: FIXTag
 tMDReqID = FIXTag 
    { tName = "MDReqID"
    , tnum = 262
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSubscriptionRequestType :: FIXTag
 tSubscriptionRequestType = FIXTag 
    { tName = "SubscriptionRequestType"
    , tnum = 263
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMarketDepth :: FIXTag
 tMarketDepth = FIXTag 
    { tName = "MarketDepth"
    , tnum = 264
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMDUpdateType :: FIXTag
 tMDUpdateType = FIXTag 
    { tName = "MDUpdateType"
    , tnum = 265
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAggregatedBook :: FIXTag
 tAggregatedBook = FIXTag 
    { tName = "AggregatedBook"
    , tnum = 266
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tNoMDEntryTypes :: FIXTag
 tNoMDEntryTypes = FIXTag 
    { tName = "NoMDEntryTypes"
    , tnum = 267
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoMDEntries :: FIXTag
 tNoMDEntries = FIXTag 
    { tName = "NoMDEntries"
    , tnum = 268
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMDEntryType :: FIXTag
 tMDEntryType = FIXTag 
    { tName = "MDEntryType"
    , tnum = 269
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMDEntryPx :: FIXTag
 tMDEntryPx = FIXTag 
    { tName = "MDEntryPx"
    , tnum = 270
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMDEntrySize :: FIXTag
 tMDEntrySize = FIXTag 
    { tName = "MDEntrySize"
    , tnum = 271
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
    { tName = "MDEntryDate"
    , tnum = 272
-   , tparser = toFIXString }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tMDEntryTime :: FIXTag
 tMDEntryTime = FIXTag 
    { tName = "MDEntryTime"
    , tnum = 273
-   , tparser = toFIXUTCTimeOnly }
+   , tparser = toFIXTimeOnly
+   , arbitraryValue = FIXTimeOnly <$> arbitrary }
 
 tTickDirection :: FIXTag
 tTickDirection = FIXTag 
    { tName = "TickDirection"
    , tnum = 274
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMDMkt :: FIXTag
 tMDMkt = FIXTag 
    { tName = "MDMkt"
    , tnum = 275
-   , tparser = toFIXExchange }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuoteCondition :: FIXTag
 tQuoteCondition = FIXTag 
    { tName = "QuoteCondition"
    , tnum = 276
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tTradeCondition :: FIXTag
 tTradeCondition = FIXTag 
    { tName = "TradeCondition"
    , tnum = 277
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tMDEntryID :: FIXTag
 tMDEntryID = FIXTag 
    { tName = "MDEntryID"
    , tnum = 278
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMDUpdateAction :: FIXTag
 tMDUpdateAction = FIXTag 
    { tName = "MDUpdateAction"
    , tnum = 279
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMDEntryRefID :: FIXTag
 tMDEntryRefID = FIXTag 
    { tName = "MDEntryRefID"
    , tnum = 280
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMDReqRejReason :: FIXTag
 tMDReqRejReason = FIXTag 
    { tName = "MDReqRejReason"
    , tnum = 281
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMDEntryOriginator :: FIXTag
 tMDEntryOriginator = FIXTag 
    { tName = "MDEntryOriginator"
    , tnum = 282
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLocationID :: FIXTag
 tLocationID = FIXTag 
    { tName = "LocationID"
    , tnum = 283
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDeskID :: FIXTag
 tDeskID = FIXTag 
    { tName = "DeskID"
    , tnum = 284
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDeleteReason :: FIXTag
 tDeleteReason = FIXTag 
    { tName = "DeleteReason"
    , tnum = 285
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tOpenCloseSettlFlag :: FIXTag
 tOpenCloseSettlFlag = FIXTag 
    { tName = "OpenCloseSettlFlag"
    , tnum = 286
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tSellerDays :: FIXTag
 tSellerDays = FIXTag 
    { tName = "SellerDays"
    , tnum = 287
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMDEntryBuyer :: FIXTag
 tMDEntryBuyer = FIXTag 
    { tName = "MDEntryBuyer"
    , tnum = 288
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMDEntrySeller :: FIXTag
 tMDEntrySeller = FIXTag 
    { tName = "MDEntrySeller"
    , tnum = 289
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMDEntryPositionNo :: FIXTag
 tMDEntryPositionNo = FIXTag 
    { tName = "MDEntryPositionNo"
    , tnum = 290
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tFinancialStatus :: FIXTag
 tFinancialStatus = FIXTag 
    { tName = "FinancialStatus"
    , tnum = 291
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tCorporateAction :: FIXTag
 tCorporateAction = FIXTag 
    { tName = "CorporateAction"
    , tnum = 292
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tDefBidSize :: FIXTag
 tDefBidSize = FIXTag 
    { tName = "DefBidSize"
    , tnum = 293
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDefOfferSize :: FIXTag
 tDefOfferSize = FIXTag 
    { tName = "DefOfferSize"
    , tnum = 294
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoQuoteEntries :: FIXTag
 tNoQuoteEntries = FIXTag 
    { tName = "NoQuoteEntries"
    , tnum = 295
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoQuoteSets :: FIXTag
 tNoQuoteSets = FIXTag 
    { tName = "NoQuoteSets"
    , tnum = 296
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteStatus :: FIXTag
 tQuoteStatus = FIXTag 
    { tName = "QuoteStatus"
    , tnum = 297
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteCancelType :: FIXTag
 tQuoteCancelType = FIXTag 
    { tName = "QuoteCancelType"
    , tnum = 298
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteEntryID :: FIXTag
 tQuoteEntryID = FIXTag 
    { tName = "QuoteEntryID"
    , tnum = 299
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuoteRejectReason :: FIXTag
 tQuoteRejectReason = FIXTag 
    { tName = "QuoteRejectReason"
    , tnum = 300
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteResponseLevel :: FIXTag
 tQuoteResponseLevel = FIXTag 
    { tName = "QuoteResponseLevel"
    , tnum = 301
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteSetID :: FIXTag
 tQuoteSetID = FIXTag 
    { tName = "QuoteSetID"
    , tnum = 302
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuoteRequestType :: FIXTag
 tQuoteRequestType = FIXTag 
    { tName = "QuoteRequestType"
    , tnum = 303
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTotNoQuoteEntries :: FIXTag
 tTotNoQuoteEntries = FIXTag 
    { tName = "TotNoQuoteEntries"
    , tnum = 304
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingSecurityIDSource :: FIXTag
 tUnderlyingSecurityIDSource = FIXTag 
    { tName = "UnderlyingSecurityIDSource"
    , tnum = 305
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingIssuer :: FIXTag
 tUnderlyingIssuer = FIXTag 
    { tName = "UnderlyingIssuer"
    , tnum = 306
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSecurityDesc :: FIXTag
 tUnderlyingSecurityDesc = FIXTag 
    { tName = "UnderlyingSecurityDesc"
    , tnum = 307
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSecurityExchange :: FIXTag
 tUnderlyingSecurityExchange = FIXTag 
    { tName = "UnderlyingSecurityExchange"
    , tnum = 308
-   , tparser = toFIXExchange }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSecurityID :: FIXTag
 tUnderlyingSecurityID = FIXTag 
    { tName = "UnderlyingSecurityID"
    , tnum = 309
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSecurityType :: FIXTag
 tUnderlyingSecurityType = FIXTag 
    { tName = "UnderlyingSecurityType"
    , tnum = 310
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSymbol :: FIXTag
 tUnderlyingSymbol = FIXTag 
    { tName = "UnderlyingSymbol"
    , tnum = 311
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSymbolSfx :: FIXTag
 tUnderlyingSymbolSfx = FIXTag 
    { tName = "UnderlyingSymbolSfx"
    , tnum = 312
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingMaturityMonthYear :: FIXTag
 tUnderlyingMaturityMonthYear = FIXTag 
    { tName = "UnderlyingMaturityMonthYear"
    , tnum = 313
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear
+   , arbitraryValue = FIXMonthYear <$> arbitrary }
 
 tUnderlyingMaturityDay :: FIXTag
 tUnderlyingMaturityDay = FIXTag 
    { tName = "UnderlyingMaturityDay"
    , tnum = 314
-   , tparser = toFIXDayOfMonth }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingPutOrCall :: FIXTag
 tUnderlyingPutOrCall = FIXTag 
    { tName = "UnderlyingPutOrCall"
    , tnum = 315
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingStrikePrice :: FIXTag
 tUnderlyingStrikePrice = FIXTag 
    { tName = "UnderlyingStrikePrice"
    , tnum = 316
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingOptAttribute :: FIXTag
 tUnderlyingOptAttribute = FIXTag 
    { tName = "UnderlyingOptAttribute"
    , tnum = 317
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tUnderlyingCurrency :: FIXTag
 tUnderlyingCurrency = FIXTag 
    { tName = "UnderlyingCurrency"
    , tnum = 318
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRatioQty :: FIXTag
 tRatioQty = FIXTag 
    { tName = "RatioQty"
    , tnum = 319
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSecurityReqID :: FIXTag
 tSecurityReqID = FIXTag 
    { tName = "SecurityReqID"
    , tnum = 320
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecurityRequestType :: FIXTag
 tSecurityRequestType = FIXTag 
    { tName = "SecurityRequestType"
    , tnum = 321
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecurityResponseID :: FIXTag
 tSecurityResponseID = FIXTag 
    { tName = "SecurityResponseID"
    , tnum = 322
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecurityResponseType :: FIXTag
 tSecurityResponseType = FIXTag 
    { tName = "SecurityResponseType"
    , tnum = 323
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecurityStatusReqID :: FIXTag
 tSecurityStatusReqID = FIXTag 
    { tName = "SecurityStatusReqID"
    , tnum = 324
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnsolicitedIndicator :: FIXTag
 tUnsolicitedIndicator = FIXTag 
    { tName = "UnsolicitedIndicator"
    , tnum = 325
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tSecurityTradingStatus :: FIXTag
 tSecurityTradingStatus = FIXTag 
    { tName = "SecurityTradingStatus"
    , tnum = 326
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tHaltReasonChar :: FIXTag
 tHaltReasonChar = FIXTag 
    { tName = "HaltReasonChar"
    , tnum = 327
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tInViewOfCommon :: FIXTag
 tInViewOfCommon = FIXTag 
    { tName = "InViewOfCommon"
    , tnum = 328
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tDueToRelated :: FIXTag
 tDueToRelated = FIXTag 
    { tName = "DueToRelated"
    , tnum = 329
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tBuyVolume :: FIXTag
 tBuyVolume = FIXTag 
    { tName = "BuyVolume"
    , tnum = 330
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSellVolume :: FIXTag
 tSellVolume = FIXTag 
    { tName = "SellVolume"
    , tnum = 331
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tHighPx :: FIXTag
 tHighPx = FIXTag 
    { tName = "HighPx"
    , tnum = 332
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLowPx :: FIXTag
 tLowPx = FIXTag 
    { tName = "LowPx"
    , tnum = 333
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAdjustment :: FIXTag
 tAdjustment = FIXTag 
    { tName = "Adjustment"
    , tnum = 334
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradSesReqID :: FIXTag
 tTradSesReqID = FIXTag 
    { tName = "TradSesReqID"
    , tnum = 335
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradingSessionID :: FIXTag
 tTradingSessionID = FIXTag 
    { tName = "TradingSessionID"
    , tnum = 336
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tContraTrader :: FIXTag
 tContraTrader = FIXTag 
    { tName = "ContraTrader"
    , tnum = 337
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradSesMethod :: FIXTag
 tTradSesMethod = FIXTag 
    { tName = "TradSesMethod"
    , tnum = 338
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradSesMode :: FIXTag
 tTradSesMode = FIXTag 
    { tName = "TradSesMode"
    , tnum = 339
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradSesStatus :: FIXTag
 tTradSesStatus = FIXTag 
    { tName = "TradSesStatus"
    , tnum = 340
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradSesStartTime :: FIXTag
 tTradSesStartTime = FIXTag 
    { tName = "TradSesStartTime"
    , tnum = 341
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesOpenTime :: FIXTag
 tTradSesOpenTime = FIXTag 
    { tName = "TradSesOpenTime"
    , tnum = 342
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesPreCloseTime :: FIXTag
 tTradSesPreCloseTime = FIXTag 
    { tName = "TradSesPreCloseTime"
    , tnum = 343
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesCloseTime :: FIXTag
 tTradSesCloseTime = FIXTag 
    { tName = "TradSesCloseTime"
    , tnum = 344
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTradSesEndTime :: FIXTag
 tTradSesEndTime = FIXTag 
    { tName = "TradSesEndTime"
    , tnum = 345
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tNumberOfOrders :: FIXTag
 tNumberOfOrders = FIXTag 
    { tName = "NumberOfOrders"
    , tnum = 346
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMessageEncoding :: FIXTag
 tMessageEncoding = FIXTag 
    { tName = "MessageEncoding"
    , tnum = 347
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tEncodedIssuerLen :: FIXTag
 tEncodedIssuerLen = FIXTag 
    { tName = "EncodedIssuerLen"
    , tnum = 348
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedIssuer :: FIXTag
 tEncodedIssuer = FIXTag 
    { tName = "EncodedIssuer"
    , tnum = 349
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedSecurityDescLen :: FIXTag
 tEncodedSecurityDescLen = FIXTag 
    { tName = "EncodedSecurityDescLen"
    , tnum = 350
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedSecurityDesc :: FIXTag
 tEncodedSecurityDesc = FIXTag 
    { tName = "EncodedSecurityDesc"
    , tnum = 351
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedListExecInstLen :: FIXTag
 tEncodedListExecInstLen = FIXTag 
    { tName = "EncodedListExecInstLen"
    , tnum = 352
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedListExecInst :: FIXTag
 tEncodedListExecInst = FIXTag 
    { tName = "EncodedListExecInst"
    , tnum = 353
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedTextLen :: FIXTag
 tEncodedTextLen = FIXTag 
    { tName = "EncodedTextLen"
    , tnum = 354
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedText :: FIXTag
 tEncodedText = FIXTag 
    { tName = "EncodedText"
    , tnum = 355
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedSubjectLen :: FIXTag
 tEncodedSubjectLen = FIXTag 
    { tName = "EncodedSubjectLen"
    , tnum = 356
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedSubject :: FIXTag
 tEncodedSubject = FIXTag 
    { tName = "EncodedSubject"
    , tnum = 357
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedHeadlineLen :: FIXTag
 tEncodedHeadlineLen = FIXTag 
    { tName = "EncodedHeadlineLen"
    , tnum = 358
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedHeadline :: FIXTag
 tEncodedHeadline = FIXTag 
    { tName = "EncodedHeadline"
    , tnum = 359
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedAllocTextLen :: FIXTag
 tEncodedAllocTextLen = FIXTag 
    { tName = "EncodedAllocTextLen"
    , tnum = 360
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedAllocText :: FIXTag
 tEncodedAllocText = FIXTag 
    { tName = "EncodedAllocText"
    , tnum = 361
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedUnderlyingIssuerLen :: FIXTag
 tEncodedUnderlyingIssuerLen = FIXTag 
    { tName = "EncodedUnderlyingIssuerLen"
    , tnum = 362
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedUnderlyingIssuer :: FIXTag
 tEncodedUnderlyingIssuer = FIXTag 
    { tName = "EncodedUnderlyingIssuer"
    , tnum = 363
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tEncodedUnderlyingSecurityDescLen :: FIXTag
 tEncodedUnderlyingSecurityDescLen = FIXTag 
    { tName = "EncodedUnderlyingSecurityDescLen"
    , tnum = 364
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedUnderlyingSecurityDesc :: FIXTag
 tEncodedUnderlyingSecurityDesc = FIXTag 
    { tName = "EncodedUnderlyingSecurityDesc"
    , tnum = 365
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tAllocPrice :: FIXTag
 tAllocPrice = FIXTag 
    { tName = "AllocPrice"
    , tnum = 366
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tQuoteSetValidUntilTime :: FIXTag
 tQuoteSetValidUntilTime = FIXTag 
    { tName = "QuoteSetValidUntilTime"
    , tnum = 367
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tQuoteEntryRejectReason :: FIXTag
 tQuoteEntryRejectReason = FIXTag 
    { tName = "QuoteEntryRejectReason"
    , tnum = 368
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLastMsgSeqNumProcessed :: FIXTag
 tLastMsgSeqNumProcessed = FIXTag 
    { tName = "LastMsgSeqNumProcessed"
    , tnum = 369
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOnBehalfOfSendingTime :: FIXTag
 tOnBehalfOfSendingTime = FIXTag 
    { tName = "OnBehalfOfSendingTime"
    , tnum = 370
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tRefTagID :: FIXTag
 tRefTagID = FIXTag 
    { tName = "RefTagID"
    , tnum = 371
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRefMsgType :: FIXTag
 tRefMsgType = FIXTag 
    { tName = "RefMsgType"
    , tnum = 372
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSessionRejectReason :: FIXTag
 tSessionRejectReason = FIXTag 
    { tName = "SessionRejectReason"
    , tnum = 373
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBidRequestTransType :: FIXTag
 tBidRequestTransType = FIXTag 
    { tName = "BidRequestTransType"
    , tnum = 374
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tContraBroker :: FIXTag
 tContraBroker = FIXTag 
    { tName = "ContraBroker"
    , tnum = 375
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tComplianceID :: FIXTag
 tComplianceID = FIXTag 
    { tName = "ComplianceID"
    , tnum = 376
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSolicitedFlag :: FIXTag
 tSolicitedFlag = FIXTag 
    { tName = "SolicitedFlag"
    , tnum = 377
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tExecRestatementReason :: FIXTag
 tExecRestatementReason = FIXTag 
    { tName = "ExecRestatementReason"
    , tnum = 378
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBusinessRejectRefID :: FIXTag
 tBusinessRejectRefID = FIXTag 
    { tName = "BusinessRejectRefID"
    , tnum = 379
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tBusinessRejectReason :: FIXTag
 tBusinessRejectReason = FIXTag 
    { tName = "BusinessRejectReason"
    , tnum = 380
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tGrossTradeAmt :: FIXTag
 tGrossTradeAmt = FIXTag 
    { tName = "GrossTradeAmt"
    , tnum = 381
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoContraBrokers :: FIXTag
 tNoContraBrokers = FIXTag 
    { tName = "NoContraBrokers"
    , tnum = 382
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMaxMessageSize :: FIXTag
 tMaxMessageSize = FIXTag 
    { tName = "MaxMessageSize"
    , tnum = 383
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoMsgTypes :: FIXTag
 tNoMsgTypes = FIXTag 
    { tName = "NoMsgTypes"
    , tnum = 384
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMsgDirection :: FIXTag
 tMsgDirection = FIXTag 
    { tName = "MsgDirection"
    , tnum = 385
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNoTradingSessions :: FIXTag
 tNoTradingSessions = FIXTag 
    { tName = "NoTradingSessions"
    , tnum = 386
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTotalVolumeTraded :: FIXTag
 tTotalVolumeTraded = FIXTag 
    { tName = "TotalVolumeTraded"
    , tnum = 387
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDiscretionInst :: FIXTag
 tDiscretionInst = FIXTag 
    { tName = "DiscretionInst"
    , tnum = 388
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tDiscretionOffsetValue :: FIXTag
 tDiscretionOffsetValue = FIXTag 
    { tName = "DiscretionOffsetValue"
    , tnum = 389
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBidID :: FIXTag
 tBidID = FIXTag 
    { tName = "BidID"
    , tnum = 390
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tClientBidID :: FIXTag
 tClientBidID = FIXTag 
    { tName = "ClientBidID"
    , tnum = 391
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tListName :: FIXTag
 tListName = FIXTag 
    { tName = "ListName"
    , tnum = 392
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTotNoRelatedSym :: FIXTag
 tTotNoRelatedSym = FIXTag 
    { tName = "TotNoRelatedSym"
    , tnum = 393
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBidType :: FIXTag
 tBidType = FIXTag 
    { tName = "BidType"
    , tnum = 394
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNumTickets :: FIXTag
 tNumTickets = FIXTag 
    { tName = "NumTickets"
    , tnum = 395
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSideValue1 :: FIXTag
 tSideValue1 = FIXTag 
    { tName = "SideValue1"
    , tnum = 396
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSideValue2 :: FIXTag
 tSideValue2 = FIXTag 
    { tName = "SideValue2"
    , tnum = 397
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoBidDescriptors :: FIXTag
 tNoBidDescriptors = FIXTag 
    { tName = "NoBidDescriptors"
    , tnum = 398
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBidDescriptorType :: FIXTag
 tBidDescriptorType = FIXTag 
    { tName = "BidDescriptorType"
    , tnum = 399
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBidDescriptor :: FIXTag
 tBidDescriptor = FIXTag 
    { tName = "BidDescriptor"
    , tnum = 400
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSideValueInd :: FIXTag
 tSideValueInd = FIXTag 
    { tName = "SideValueInd"
    , tnum = 401
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLiquidityPctLow :: FIXTag
 tLiquidityPctLow = FIXTag 
    { tName = "LiquidityPctLow"
    , tnum = 402
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLiquidityPctHigh :: FIXTag
 tLiquidityPctHigh = FIXTag 
    { tName = "LiquidityPctHigh"
    , tnum = 403
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLiquidityValue :: FIXTag
 tLiquidityValue = FIXTag 
    { tName = "LiquidityValue"
    , tnum = 404
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tEFPTrackingError :: FIXTag
 tEFPTrackingError = FIXTag 
    { tName = "EFPTrackingError"
    , tnum = 405
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tFairValue :: FIXTag
 tFairValue = FIXTag 
    { tName = "FairValue"
    , tnum = 406
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOutsideIndexPct :: FIXTag
 tOutsideIndexPct = FIXTag 
    { tName = "OutsideIndexPct"
    , tnum = 407
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tValueOfFutures :: FIXTag
 tValueOfFutures = FIXTag 
    { tName = "ValueOfFutures"
    , tnum = 408
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLiquidityIndType :: FIXTag
 tLiquidityIndType = FIXTag 
    { tName = "LiquidityIndType"
    , tnum = 409
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tWtAverageLiquidity :: FIXTag
 tWtAverageLiquidity = FIXTag 
    { tName = "WtAverageLiquidity"
    , tnum = 410
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tExchangeForPhysical :: FIXTag
 tExchangeForPhysical = FIXTag 
    { tName = "ExchangeForPhysical"
    , tnum = 411
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tOutMainCntryUIndex :: FIXTag
 tOutMainCntryUIndex = FIXTag 
    { tName = "OutMainCntryUIndex"
    , tnum = 412
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCrossPercent :: FIXTag
 tCrossPercent = FIXTag 
    { tName = "CrossPercent"
    , tnum = 413
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tProgRptReqs :: FIXTag
 tProgRptReqs = FIXTag 
    { tName = "ProgRptReqs"
    , tnum = 414
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tProgPeriodInterval :: FIXTag
 tProgPeriodInterval = FIXTag 
    { tName = "ProgPeriodInterval"
    , tnum = 415
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tIncTaxInd :: FIXTag
 tIncTaxInd = FIXTag 
    { tName = "IncTaxInd"
    , tnum = 416
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNumBidders :: FIXTag
 tNumBidders = FIXTag 
    { tName = "NumBidders"
    , tnum = 417
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBidTradeType :: FIXTag
 tBidTradeType = FIXTag 
    { tName = "BidTradeType"
    , tnum = 418
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tBasisPxType :: FIXTag
 tBasisPxType = FIXTag 
    { tName = "BasisPxType"
    , tnum = 419
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNoBidComponents :: FIXTag
 tNoBidComponents = FIXTag 
    { tName = "NoBidComponents"
    , tnum = 420
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCountry :: FIXTag
 tCountry = FIXTag 
    { tName = "Country"
    , tnum = 421
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTotNoStrikes :: FIXTag
 tTotNoStrikes = FIXTag 
    { tName = "TotNoStrikes"
    , tnum = 422
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPriceType :: FIXTag
 tPriceType = FIXTag 
    { tName = "PriceType"
    , tnum = 423
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDayOrderQty :: FIXTag
 tDayOrderQty = FIXTag 
    { tName = "DayOrderQty"
    , tnum = 424
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDayCumQty :: FIXTag
 tDayCumQty = FIXTag 
    { tName = "DayCumQty"
    , tnum = 425
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDayAvgPx :: FIXTag
 tDayAvgPx = FIXTag 
    { tName = "DayAvgPx"
    , tnum = 426
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tGTBookingInst :: FIXTag
 tGTBookingInst = FIXTag 
    { tName = "GTBookingInst"
    , tnum = 427
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoStrikes :: FIXTag
 tNoStrikes = FIXTag 
    { tName = "NoStrikes"
    , tnum = 428
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tListStatusType :: FIXTag
 tListStatusType = FIXTag 
    { tName = "ListStatusType"
    , tnum = 429
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNetGrossInd :: FIXTag
 tNetGrossInd = FIXTag 
    { tName = "NetGrossInd"
    , tnum = 430
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tListOrderStatus :: FIXTag
 tListOrderStatus = FIXTag 
    { tName = "ListOrderStatus"
    , tnum = 431
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tExpireDate :: FIXTag
 tExpireDate = FIXTag 
    { tName = "ExpireDate"
    , tnum = 432
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tListExecInstType :: FIXTag
 tListExecInstType = FIXTag 
    { tName = "ListExecInstType"
    , tnum = 433
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tCxlRejResponseTo :: FIXTag
 tCxlRejResponseTo = FIXTag 
    { tName = "CxlRejResponseTo"
    , tnum = 434
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tUnderlyingCouponRate :: FIXTag
 tUnderlyingCouponRate = FIXTag 
    { tName = "UnderlyingCouponRate"
    , tnum = 435
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingContractMultiplier :: FIXTag
 tUnderlyingContractMultiplier = FIXTag 
    { tName = "UnderlyingContractMultiplier"
    , tnum = 436
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tContraTradeQty :: FIXTag
 tContraTradeQty = FIXTag 
    { tName = "ContraTradeQty"
    , tnum = 437
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tContraTradeTime :: FIXTag
 tContraTradeTime = FIXTag 
    { tName = "ContraTradeTime"
    , tnum = 438
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tClearingFirm :: FIXTag
 tClearingFirm = FIXTag 
    { tName = "ClearingFirm"
    , tnum = 439
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tClearingAccount :: FIXTag
 tClearingAccount = FIXTag 
    { tName = "ClearingAccount"
    , tnum = 440
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLiquidityNumSecurities :: FIXTag
 tLiquidityNumSecurities = FIXTag 
    { tName = "LiquidityNumSecurities"
    , tnum = 441
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMultiLegReportingType :: FIXTag
 tMultiLegReportingType = FIXTag 
    { tName = "MultiLegReportingType"
    , tnum = 442
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tStrikeTime :: FIXTag
 tStrikeTime = FIXTag 
    { tName = "StrikeTime"
    , tnum = 443
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tListStatusText :: FIXTag
 tListStatusText = FIXTag 
    { tName = "ListStatusText"
    , tnum = 444
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tEncodedListStatusTextLen :: FIXTag
 tEncodedListStatusTextLen = FIXTag 
    { tName = "EncodedListStatusTextLen"
    , tnum = 445
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedListStatusText :: FIXTag
 tEncodedListStatusText = FIXTag 
    { tName = "EncodedListStatusText"
    , tnum = 446
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tPartyIDSource :: FIXTag
 tPartyIDSource = FIXTag 
    { tName = "PartyIDSource"
    , tnum = 447
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tPartyID :: FIXTag
 tPartyID = FIXTag 
    { tName = "PartyID"
    , tnum = 448
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTotalVolumeTradedDate :: FIXTag
 tTotalVolumeTradedDate = FIXTag 
    { tName = "TotalVolumeTradedDate"
    , tnum = 449
-   , tparser = toFIXString }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tTotalVolumeTradedTime :: FIXTag
 tTotalVolumeTradedTime = FIXTag 
    { tName = "TotalVolumeTradedTime"
    , tnum = 450
-   , tparser = toFIXUTCTimeOnly }
+   , tparser = toFIXTimeOnly
+   , arbitraryValue = FIXTimeOnly <$> arbitrary }
 
 tNetChgPrevDay :: FIXTag
 tNetChgPrevDay = FIXTag 
    { tName = "NetChgPrevDay"
    , tnum = 451
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPartyRole :: FIXTag
 tPartyRole = FIXTag 
    { tName = "PartyRole"
    , tnum = 452
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoPartyIDs :: FIXTag
 tNoPartyIDs = FIXTag 
    { tName = "NoPartyIDs"
    , tnum = 453
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoSecurityAltID :: FIXTag
 tNoSecurityAltID = FIXTag 
    { tName = "NoSecurityAltID"
    , tnum = 454
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecurityAltID :: FIXTag
 tSecurityAltID = FIXTag 
    { tName = "SecurityAltID"
    , tnum = 455
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecurityAltIDSource :: FIXTag
 tSecurityAltIDSource = FIXTag 
    { tName = "SecurityAltIDSource"
    , tnum = 456
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoUnderlyingSecurityAltID :: FIXTag
 tNoUnderlyingSecurityAltID = FIXTag 
    { tName = "NoUnderlyingSecurityAltID"
    , tnum = 457
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingSecurityAltID :: FIXTag
 tUnderlyingSecurityAltID = FIXTag 
    { tName = "UnderlyingSecurityAltID"
    , tnum = 458
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSecurityAltIDSource :: FIXTag
 tUnderlyingSecurityAltIDSource = FIXTag 
    { tName = "UnderlyingSecurityAltIDSource"
    , tnum = 459
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tProduct :: FIXTag
 tProduct = FIXTag 
    { tName = "Product"
    , tnum = 460
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCFICode :: FIXTag
 tCFICode = FIXTag 
    { tName = "CFICode"
    , tnum = 461
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingProduct :: FIXTag
 tUnderlyingProduct = FIXTag 
    { tName = "UnderlyingProduct"
    , tnum = 462
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingCFICode :: FIXTag
 tUnderlyingCFICode = FIXTag 
    { tName = "UnderlyingCFICode"
    , tnum = 463
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTestMessageIndicator :: FIXTag
 tTestMessageIndicator = FIXTag 
    { tName = "TestMessageIndicator"
    , tnum = 464
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tQuantityType :: FIXTag
 tQuantityType = FIXTag 
    { tName = "QuantityType"
    , tnum = 465
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBookingRefID :: FIXTag
 tBookingRefID = FIXTag 
    { tName = "BookingRefID"
    , tnum = 466
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tIndividualAllocID :: FIXTag
 tIndividualAllocID = FIXTag 
    { tName = "IndividualAllocID"
    , tnum = 467
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRoundingDirection :: FIXTag
 tRoundingDirection = FIXTag 
    { tName = "RoundingDirection"
    , tnum = 468
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tRoundingModulus :: FIXTag
 tRoundingModulus = FIXTag 
    { tName = "RoundingModulus"
    , tnum = 469
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCountryOfIssue :: FIXTag
 tCountryOfIssue = FIXTag 
    { tName = "CountryOfIssue"
    , tnum = 470
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tStateOrProvinceOfIssue :: FIXTag
 tStateOrProvinceOfIssue = FIXTag 
    { tName = "StateOrProvinceOfIssue"
    , tnum = 471
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLocaleOfIssue :: FIXTag
 tLocaleOfIssue = FIXTag 
    { tName = "LocaleOfIssue"
    , tnum = 472
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoRegistDtls :: FIXTag
 tNoRegistDtls = FIXTag 
    { tName = "NoRegistDtls"
    , tnum = 473
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMailingDtls :: FIXTag
 tMailingDtls = FIXTag 
    { tName = "MailingDtls"
    , tnum = 474
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tInvestorCountryOfResidence :: FIXTag
 tInvestorCountryOfResidence = FIXTag 
    { tName = "InvestorCountryOfResidence"
    , tnum = 475
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPaymentRef :: FIXTag
 tPaymentRef = FIXTag 
    { tName = "PaymentRef"
    , tnum = 476
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDistribPaymentMethod :: FIXTag
 tDistribPaymentMethod = FIXTag 
    { tName = "DistribPaymentMethod"
    , tnum = 477
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCashDistribCurr :: FIXTag
 tCashDistribCurr = FIXTag 
    { tName = "CashDistribCurr"
    , tnum = 478
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCommCurrency :: FIXTag
 tCommCurrency = FIXTag 
    { tName = "CommCurrency"
    , tnum = 479
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCancellationRights :: FIXTag
 tCancellationRights = FIXTag 
    { tName = "CancellationRights"
    , tnum = 480
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMoneyLaunderingStatus :: FIXTag
 tMoneyLaunderingStatus = FIXTag 
    { tName = "MoneyLaunderingStatus"
    , tnum = 481
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMailingInst :: FIXTag
 tMailingInst = FIXTag 
    { tName = "MailingInst"
    , tnum = 482
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTransBkdTime :: FIXTag
 tTransBkdTime = FIXTag 
    { tName = "TransBkdTime"
    , tnum = 483
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tExecPriceType :: FIXTag
 tExecPriceType = FIXTag 
    { tName = "ExecPriceType"
    , tnum = 484
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tExecPriceAdjustment :: FIXTag
 tExecPriceAdjustment = FIXTag 
    { tName = "ExecPriceAdjustment"
    , tnum = 485
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDateOfBirth :: FIXTag
 tDateOfBirth = FIXTag 
    { tName = "DateOfBirth"
    , tnum = 486
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tTradeReportTransType :: FIXTag
 tTradeReportTransType = FIXTag 
    { tName = "TradeReportTransType"
    , tnum = 487
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCardHolderName :: FIXTag
 tCardHolderName = FIXTag 
    { tName = "CardHolderName"
    , tnum = 488
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCardNumber :: FIXTag
 tCardNumber = FIXTag 
    { tName = "CardNumber"
    , tnum = 489
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCardExpDate :: FIXTag
 tCardExpDate = FIXTag 
    { tName = "CardExpDate"
    , tnum = 490
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tCardIssNum :: FIXTag
 tCardIssNum = FIXTag 
    { tName = "CardIssNum"
    , tnum = 491
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPaymentMethod :: FIXTag
 tPaymentMethod = FIXTag 
    { tName = "PaymentMethod"
    , tnum = 492
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRegistAcctType :: FIXTag
 tRegistAcctType = FIXTag 
    { tName = "RegistAcctType"
    , tnum = 493
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDesignation :: FIXTag
 tDesignation = FIXTag 
    { tName = "Designation"
    , tnum = 494
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTaxAdvantageType :: FIXTag
 tTaxAdvantageType = FIXTag 
    { tName = "TaxAdvantageType"
    , tnum = 495
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRegistRejReasonText :: FIXTag
 tRegistRejReasonText = FIXTag 
    { tName = "RegistRejReasonText"
    , tnum = 496
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tFundRenewWaiv :: FIXTag
 tFundRenewWaiv = FIXTag 
    { tName = "FundRenewWaiv"
    , tnum = 497
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tCashDistribAgentName :: FIXTag
 tCashDistribAgentName = FIXTag 
    { tName = "CashDistribAgentName"
    , tnum = 498
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashDistribAgentCode :: FIXTag
 tCashDistribAgentCode = FIXTag 
    { tName = "CashDistribAgentCode"
    , tnum = 499
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashDistribAgentAcctNumber :: FIXTag
 tCashDistribAgentAcctNumber = FIXTag 
    { tName = "CashDistribAgentAcctNumber"
    , tnum = 500
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashDistribPayRef :: FIXTag
 tCashDistribPayRef = FIXTag 
    { tName = "CashDistribPayRef"
    , tnum = 501
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashDistribAgentAcctName :: FIXTag
 tCashDistribAgentAcctName = FIXTag 
    { tName = "CashDistribAgentAcctName"
    , tnum = 502
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCardStartDate :: FIXTag
 tCardStartDate = FIXTag 
    { tName = "CardStartDate"
    , tnum = 503
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tPaymentDate :: FIXTag
 tPaymentDate = FIXTag 
    { tName = "PaymentDate"
    , tnum = 504
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tPaymentRemitterID :: FIXTag
 tPaymentRemitterID = FIXTag 
    { tName = "PaymentRemitterID"
    , tnum = 505
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRegistStatus :: FIXTag
 tRegistStatus = FIXTag 
    { tName = "RegistStatus"
    , tnum = 506
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tRegistRejReasonCode :: FIXTag
 tRegistRejReasonCode = FIXTag 
    { tName = "RegistRejReasonCode"
    , tnum = 507
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRegistRefID :: FIXTag
 tRegistRefID = FIXTag 
    { tName = "RegistRefID"
    , tnum = 508
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRegistDtls :: FIXTag
 tRegistDtls = FIXTag 
    { tName = "RegistDtls"
    , tnum = 509
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoDistribInsts :: FIXTag
 tNoDistribInsts = FIXTag 
    { tName = "NoDistribInsts"
    , tnum = 510
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRegistEmail :: FIXTag
 tRegistEmail = FIXTag 
    { tName = "RegistEmail"
    , tnum = 511
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDistribPercentage :: FIXTag
 tDistribPercentage = FIXTag 
    { tName = "DistribPercentage"
    , tnum = 512
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tRegistID :: FIXTag
 tRegistID = FIXTag 
    { tName = "RegistID"
    , tnum = 513
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRegistTransType :: FIXTag
 tRegistTransType = FIXTag 
    { tName = "RegistTransType"
    , tnum = 514
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tExecValuationPoint :: FIXTag
 tExecValuationPoint = FIXTag 
    { tName = "ExecValuationPoint"
    , tnum = 515
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tOrderPercent :: FIXTag
 tOrderPercent = FIXTag 
    { tName = "OrderPercent"
    , tnum = 516
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOwnershipType :: FIXTag
 tOwnershipType = FIXTag 
    { tName = "OwnershipType"
    , tnum = 517
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNoContAmts :: FIXTag
 tNoContAmts = FIXTag 
    { tName = "NoContAmts"
    , tnum = 518
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tContAmtType :: FIXTag
 tContAmtType = FIXTag 
    { tName = "ContAmtType"
    , tnum = 519
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tContAmtValue :: FIXTag
 tContAmtValue = FIXTag 
    { tName = "ContAmtValue"
    , tnum = 520
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tContAmtCurr :: FIXTag
 tContAmtCurr = FIXTag 
    { tName = "ContAmtCurr"
    , tnum = 521
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOwnerType :: FIXTag
 tOwnerType = FIXTag 
    { tName = "OwnerType"
    , tnum = 522
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPartySubID :: FIXTag
 tPartySubID = FIXTag 
    { tName = "PartySubID"
    , tnum = 523
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNestedPartyID :: FIXTag
 tNestedPartyID = FIXTag 
    { tName = "NestedPartyID"
    , tnum = 524
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNestedPartyIDSource :: FIXTag
 tNestedPartyIDSource = FIXTag 
    { tName = "NestedPartyIDSource"
    , tnum = 525
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSecondaryClOrdID :: FIXTag
 tSecondaryClOrdID = FIXTag 
    { tName = "SecondaryClOrdID"
    , tnum = 526
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecondaryExecID :: FIXTag
 tSecondaryExecID = FIXTag 
    { tName = "SecondaryExecID"
    , tnum = 527
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOrderCapacity :: FIXTag
 tOrderCapacity = FIXTag 
    { tName = "OrderCapacity"
    , tnum = 528
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tOrderRestrictions :: FIXTag
 tOrderRestrictions = FIXTag 
    { tName = "OrderRestrictions"
    , tnum = 529
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tMassCancelRequestType :: FIXTag
 tMassCancelRequestType = FIXTag 
    { tName = "MassCancelRequestType"
    , tnum = 530
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMassCancelResponse :: FIXTag
 tMassCancelResponse = FIXTag 
    { tName = "MassCancelResponse"
    , tnum = 531
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMassCancelRejectReason :: FIXTag
 tMassCancelRejectReason = FIXTag 
    { tName = "MassCancelRejectReason"
    , tnum = 532
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tTotalAffectedOrders :: FIXTag
 tTotalAffectedOrders = FIXTag 
    { tName = "TotalAffectedOrders"
    , tnum = 533
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoAffectedOrders :: FIXTag
 tNoAffectedOrders = FIXTag 
    { tName = "NoAffectedOrders"
    , tnum = 534
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAffectedOrderID :: FIXTag
 tAffectedOrderID = FIXTag 
    { tName = "AffectedOrderID"
    , tnum = 535
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAffectedSecondaryOrderID :: FIXTag
 tAffectedSecondaryOrderID = FIXTag 
    { tName = "AffectedSecondaryOrderID"
    , tnum = 536
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuoteType :: FIXTag
 tQuoteType = FIXTag 
    { tName = "QuoteType"
    , tnum = 537
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNestedPartyRole :: FIXTag
 tNestedPartyRole = FIXTag 
    { tName = "NestedPartyRole"
    , tnum = 538
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoNestedPartyIDs :: FIXTag
 tNoNestedPartyIDs = FIXTag 
    { tName = "NoNestedPartyIDs"
    , tnum = 539
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTotalAccruedInterestAmt :: FIXTag
 tTotalAccruedInterestAmt = FIXTag 
    { tName = "TotalAccruedInterestAmt"
    , tnum = 540
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMaturityDate :: FIXTag
 tMaturityDate = FIXTag 
    { tName = "MaturityDate"
    , tnum = 541
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tUnderlyingMaturityDate :: FIXTag
 tUnderlyingMaturityDate = FIXTag 
    { tName = "UnderlyingMaturityDate"
    , tnum = 542
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tInstrRegistry :: FIXTag
 tInstrRegistry = FIXTag 
    { tName = "InstrRegistry"
    , tnum = 543
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCashMargin :: FIXTag
 tCashMargin = FIXTag 
    { tName = "CashMargin"
    , tnum = 544
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNestedPartySubID :: FIXTag
 tNestedPartySubID = FIXTag 
    { tName = "NestedPartySubID"
    , tnum = 545
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tScope :: FIXTag
 tScope = FIXTag 
    { tName = "Scope"
    , tnum = 546
-   , tparser = toFIXMultipleValueString }
+   , tparser = toFIXMultipleValueString
+   , arbitraryValue = FIXMultipleValueString <$> arbitrary }
 
 tMDImplicitDelete :: FIXTag
 tMDImplicitDelete = FIXTag 
    { tName = "MDImplicitDelete"
    , tnum = 547
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tCrossID :: FIXTag
 tCrossID = FIXTag 
    { tName = "CrossID"
    , tnum = 548
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCrossType :: FIXTag
 tCrossType = FIXTag 
    { tName = "CrossType"
    , tnum = 549
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCrossPrioritization :: FIXTag
 tCrossPrioritization = FIXTag 
    { tName = "CrossPrioritization"
    , tnum = 550
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrigCrossID :: FIXTag
 tOrigCrossID = FIXTag 
    { tName = "OrigCrossID"
    , tnum = 551
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoSides :: FIXTag
 tNoSides = FIXTag 
    { tName = "NoSides"
    , tnum = 552
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUsername :: FIXTag
 tUsername = FIXTag 
    { tName = "Username"
    , tnum = 553
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPassword :: FIXTag
 tPassword = FIXTag 
    { tName = "Password"
    , tnum = 554
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoLegs :: FIXTag
 tNoLegs = FIXTag 
    { tName = "NoLegs"
    , tnum = 555
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegCurrency :: FIXTag
 tLegCurrency = FIXTag 
    { tName = "LegCurrency"
    , tnum = 556
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTotNoSecurityTypes :: FIXTag
 tTotNoSecurityTypes = FIXTag 
    { tName = "TotNoSecurityTypes"
    , tnum = 557
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoSecurityTypes :: FIXTag
 tNoSecurityTypes = FIXTag 
    { tName = "NoSecurityTypes"
    , tnum = 558
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecurityListRequestType :: FIXTag
 tSecurityListRequestType = FIXTag 
    { tName = "SecurityListRequestType"
    , tnum = 559
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecurityRequestResult :: FIXTag
 tSecurityRequestResult = FIXTag 
    { tName = "SecurityRequestResult"
    , tnum = 560
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tRoundLot :: FIXTag
 tRoundLot = FIXTag 
    { tName = "RoundLot"
    , tnum = 561
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMinTradeVol :: FIXTag
 tMinTradeVol = FIXTag 
    { tName = "MinTradeVol"
    , tnum = 562
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMultiLegRptTypeReq :: FIXTag
 tMultiLegRptTypeReq = FIXTag 
    { tName = "MultiLegRptTypeReq"
    , tnum = 563
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegPositionEffect :: FIXTag
 tLegPositionEffect = FIXTag 
    { tName = "LegPositionEffect"
    , tnum = 564
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tLegCoveredOrUncovered :: FIXTag
 tLegCoveredOrUncovered = FIXTag 
    { tName = "LegCoveredOrUncovered"
    , tnum = 565
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegPrice :: FIXTag
 tLegPrice = FIXTag 
    { tName = "LegPrice"
    , tnum = 566
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTradSesStatusRejReason :: FIXTag
 tTradSesStatusRejReason = FIXTag 
    { tName = "TradSesStatusRejReason"
    , tnum = 567
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeRequestID :: FIXTag
 tTradeRequestID = FIXTag 
    { tName = "TradeRequestID"
    , tnum = 568
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradeRequestType :: FIXTag
 tTradeRequestType = FIXTag 
    { tName = "TradeRequestType"
    , tnum = 569
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPreviouslyReported :: FIXTag
 tPreviouslyReported = FIXTag 
    { tName = "PreviouslyReported"
    , tnum = 570
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tTradeReportID :: FIXTag
 tTradeReportID = FIXTag 
    { tName = "TradeReportID"
    , tnum = 571
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradeReportRefID :: FIXTag
 tTradeReportRefID = FIXTag 
    { tName = "TradeReportRefID"
    , tnum = 572
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMatchStatus :: FIXTag
 tMatchStatus = FIXTag 
    { tName = "MatchStatus"
    , tnum = 573
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tMatchType :: FIXTag
 tMatchType = FIXTag 
    { tName = "MatchType"
    , tnum = 574
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOddLot :: FIXTag
 tOddLot = FIXTag 
    { tName = "OddLot"
    , tnum = 575
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tNoClearingInstructions :: FIXTag
 tNoClearingInstructions = FIXTag 
    { tName = "NoClearingInstructions"
    , tnum = 576
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tClearingInstruction :: FIXTag
 tClearingInstruction = FIXTag 
    { tName = "ClearingInstruction"
    , tnum = 577
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeInputSource :: FIXTag
 tTradeInputSource = FIXTag 
    { tName = "TradeInputSource"
    , tnum = 578
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradeInputDevice :: FIXTag
 tTradeInputDevice = FIXTag 
    { tName = "TradeInputDevice"
    , tnum = 579
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoDates :: FIXTag
 tNoDates = FIXTag 
    { tName = "NoDates"
    , tnum = 580
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAccountType :: FIXTag
 tAccountType = FIXTag 
    { tName = "AccountType"
    , tnum = 581
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCustOrderCapacity :: FIXTag
 tCustOrderCapacity = FIXTag 
    { tName = "CustOrderCapacity"
    , tnum = 582
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tClOrdLinkID :: FIXTag
 tClOrdLinkID = FIXTag 
    { tName = "ClOrdLinkID"
    , tnum = 583
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMassStatusReqID :: FIXTag
 tMassStatusReqID = FIXTag 
    { tName = "MassStatusReqID"
    , tnum = 584
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMassStatusReqType :: FIXTag
 tMassStatusReqType = FIXTag 
    { tName = "MassStatusReqType"
    , tnum = 585
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrigOrdModTime :: FIXTag
 tOrigOrdModTime = FIXTag 
    { tName = "OrigOrdModTime"
    , tnum = 586
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tLegSettlType :: FIXTag
 tLegSettlType = FIXTag 
    { tName = "LegSettlType"
    , tnum = 587
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tLegSettlDate :: FIXTag
 tLegSettlDate = FIXTag 
    { tName = "LegSettlDate"
    , tnum = 588
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tDayBookingInst :: FIXTag
 tDayBookingInst = FIXTag 
    { tName = "DayBookingInst"
    , tnum = 589
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tBookingUnit :: FIXTag
 tBookingUnit = FIXTag 
    { tName = "BookingUnit"
    , tnum = 590
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tPreallocMethod :: FIXTag
 tPreallocMethod = FIXTag 
    { tName = "PreallocMethod"
    , tnum = 591
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tUnderlyingCountryOfIssue :: FIXTag
 tUnderlyingCountryOfIssue = FIXTag 
    { tName = "UnderlyingCountryOfIssue"
    , tnum = 592
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingStateOrProvinceOfIssue :: FIXTag
 tUnderlyingStateOrProvinceOfIssue = FIXTag 
    { tName = "UnderlyingStateOrProvinceOfIssue"
    , tnum = 593
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingLocaleOfIssue :: FIXTag
 tUnderlyingLocaleOfIssue = FIXTag 
    { tName = "UnderlyingLocaleOfIssue"
    , tnum = 594
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingInstrRegistry :: FIXTag
 tUnderlyingInstrRegistry = FIXTag 
    { tName = "UnderlyingInstrRegistry"
    , tnum = 595
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegCountryOfIssue :: FIXTag
 tLegCountryOfIssue = FIXTag 
    { tName = "LegCountryOfIssue"
    , tnum = 596
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegStateOrProvinceOfIssue :: FIXTag
 tLegStateOrProvinceOfIssue = FIXTag 
    { tName = "LegStateOrProvinceOfIssue"
    , tnum = 597
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegLocaleOfIssue :: FIXTag
 tLegLocaleOfIssue = FIXTag 
    { tName = "LegLocaleOfIssue"
    , tnum = 598
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegInstrRegistry :: FIXTag
 tLegInstrRegistry = FIXTag 
    { tName = "LegInstrRegistry"
    , tnum = 599
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSymbol :: FIXTag
 tLegSymbol = FIXTag 
    { tName = "LegSymbol"
    , tnum = 600
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSymbolSfx :: FIXTag
 tLegSymbolSfx = FIXTag 
    { tName = "LegSymbolSfx"
    , tnum = 601
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSecurityID :: FIXTag
 tLegSecurityID = FIXTag 
    { tName = "LegSecurityID"
    , tnum = 602
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSecurityIDSource :: FIXTag
 tLegSecurityIDSource = FIXTag 
    { tName = "LegSecurityIDSource"
    , tnum = 603
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoLegSecurityAltID :: FIXTag
 tNoLegSecurityAltID = FIXTag 
    { tName = "NoLegSecurityAltID"
    , tnum = 604
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSecurityAltID :: FIXTag
 tLegSecurityAltID = FIXTag 
    { tName = "LegSecurityAltID"
    , tnum = 605
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSecurityAltIDSource :: FIXTag
 tLegSecurityAltIDSource = FIXTag 
    { tName = "LegSecurityAltIDSource"
    , tnum = 606
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegProduct :: FIXTag
 tLegProduct = FIXTag 
    { tName = "LegProduct"
    , tnum = 607
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegCFICode :: FIXTag
 tLegCFICode = FIXTag 
    { tName = "LegCFICode"
    , tnum = 608
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSecurityType :: FIXTag
 tLegSecurityType = FIXTag 
    { tName = "LegSecurityType"
    , tnum = 609
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegMaturityMonthYear :: FIXTag
 tLegMaturityMonthYear = FIXTag 
    { tName = "LegMaturityMonthYear"
    , tnum = 610
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear
+   , arbitraryValue = FIXMonthYear <$> arbitrary }
 
 tLegMaturityDate :: FIXTag
 tLegMaturityDate = FIXTag 
    { tName = "LegMaturityDate"
    , tnum = 611
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLegStrikePrice :: FIXTag
 tLegStrikePrice = FIXTag 
    { tName = "LegStrikePrice"
    , tnum = 612
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegOptAttribute :: FIXTag
 tLegOptAttribute = FIXTag 
    { tName = "LegOptAttribute"
    , tnum = 613
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tLegContractMultiplier :: FIXTag
 tLegContractMultiplier = FIXTag 
    { tName = "LegContractMultiplier"
    , tnum = 614
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegCouponRate :: FIXTag
 tLegCouponRate = FIXTag 
    { tName = "LegCouponRate"
    , tnum = 615
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegSecurityExchange :: FIXTag
 tLegSecurityExchange = FIXTag 
    { tName = "LegSecurityExchange"
    , tnum = 616
-   , tparser = toFIXExchange }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegIssuer :: FIXTag
 tLegIssuer = FIXTag 
    { tName = "LegIssuer"
    , tnum = 617
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tEncodedLegIssuerLen :: FIXTag
 tEncodedLegIssuerLen = FIXTag 
    { tName = "EncodedLegIssuerLen"
    , tnum = 618
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedLegIssuer :: FIXTag
 tEncodedLegIssuer = FIXTag 
    { tName = "EncodedLegIssuer"
    , tnum = 619
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tLegSecurityDesc :: FIXTag
 tLegSecurityDesc = FIXTag 
    { tName = "LegSecurityDesc"
    , tnum = 620
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tEncodedLegSecurityDescLen :: FIXTag
 tEncodedLegSecurityDescLen = FIXTag 
    { tName = "EncodedLegSecurityDescLen"
    , tnum = 621
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEncodedLegSecurityDesc :: FIXTag
 tEncodedLegSecurityDesc = FIXTag 
    { tName = "EncodedLegSecurityDesc"
    , tnum = 622
-   , tparser = toFIXString }
+   , tparser = toFIXData
+   , arbitraryValue = FIXData <$> arbitrary }
 
 tLegRatioQty :: FIXTag
 tLegRatioQty = FIXTag 
    { tName = "LegRatioQty"
    , tnum = 623
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegSide :: FIXTag
 tLegSide = FIXTag 
    { tName = "LegSide"
    , tnum = 624
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tTradingSessionSubID :: FIXTag
 tTradingSessionSubID = FIXTag 
    { tName = "TradingSessionSubID"
    , tnum = 625
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocType :: FIXTag
 tAllocType = FIXTag 
    { tName = "AllocType"
    , tnum = 626
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoHops :: FIXTag
 tNoHops = FIXTag 
    { tName = "NoHops"
    , tnum = 627
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tHopCompID :: FIXTag
 tHopCompID = FIXTag 
    { tName = "HopCompID"
    , tnum = 628
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tHopSendingTime :: FIXTag
 tHopSendingTime = FIXTag 
    { tName = "HopSendingTime"
    , tnum = 629
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tHopRefID :: FIXTag
 tHopRefID = FIXTag 
    { tName = "HopRefID"
    , tnum = 630
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMidPx :: FIXTag
 tMidPx = FIXTag 
    { tName = "MidPx"
    , tnum = 631
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBidYield :: FIXTag
 tBidYield = FIXTag 
    { tName = "BidYield"
    , tnum = 632
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMidYield :: FIXTag
 tMidYield = FIXTag 
    { tName = "MidYield"
    , tnum = 633
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOfferYield :: FIXTag
 tOfferYield = FIXTag 
    { tName = "OfferYield"
    , tnum = 634
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tClearingFeeIndicator :: FIXTag
 tClearingFeeIndicator = FIXTag 
    { tName = "ClearingFeeIndicator"
    , tnum = 635
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tWorkingIndicator :: FIXTag
 tWorkingIndicator = FIXTag 
    { tName = "WorkingIndicator"
    , tnum = 636
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tLegLastPx :: FIXTag
 tLegLastPx = FIXTag 
    { tName = "LegLastPx"
    , tnum = 637
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPriorityIndicator :: FIXTag
 tPriorityIndicator = FIXTag 
    { tName = "PriorityIndicator"
    , tnum = 638
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPriceImprovement :: FIXTag
 tPriceImprovement = FIXTag 
    { tName = "PriceImprovement"
    , tnum = 639
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPrice2 :: FIXTag
 tPrice2 = FIXTag 
    { tName = "Price2"
    , tnum = 640
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLastForwardPoints2 :: FIXTag
 tLastForwardPoints2 = FIXTag 
    { tName = "LastForwardPoints2"
    , tnum = 641
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBidForwardPoints2 :: FIXTag
 tBidForwardPoints2 = FIXTag 
    { tName = "BidForwardPoints2"
    , tnum = 642
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOfferForwardPoints2 :: FIXTag
 tOfferForwardPoints2 = FIXTag 
    { tName = "OfferForwardPoints2"
    , tnum = 643
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tRFQReqID :: FIXTag
 tRFQReqID = FIXTag 
    { tName = "RFQReqID"
    , tnum = 644
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMktBidPx :: FIXTag
 tMktBidPx = FIXTag 
    { tName = "MktBidPx"
    , tnum = 645
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMktOfferPx :: FIXTag
 tMktOfferPx = FIXTag 
    { tName = "MktOfferPx"
    , tnum = 646
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMinBidSize :: FIXTag
 tMinBidSize = FIXTag 
    { tName = "MinBidSize"
    , tnum = 647
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMinOfferSize :: FIXTag
 tMinOfferSize = FIXTag 
    { tName = "MinOfferSize"
    , tnum = 648
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tQuoteStatusReqID :: FIXTag
 tQuoteStatusReqID = FIXTag 
    { tName = "QuoteStatusReqID"
    , tnum = 649
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegalConfirm :: FIXTag
 tLegalConfirm = FIXTag 
    { tName = "LegalConfirm"
    , tnum = 650
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tUnderlyingLastPx :: FIXTag
 tUnderlyingLastPx = FIXTag 
    { tName = "UnderlyingLastPx"
    , tnum = 651
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingLastQty :: FIXTag
 tUnderlyingLastQty = FIXTag 
    { tName = "UnderlyingLastQty"
    , tnum = 652
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSecDefStatus :: FIXTag
 tSecDefStatus = FIXTag 
    { tName = "SecDefStatus"
    , tnum = 653
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegRefID :: FIXTag
 tLegRefID = FIXTag 
    { tName = "LegRefID"
    , tnum = 654
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tContraLegRefID :: FIXTag
 tContraLegRefID = FIXTag 
    { tName = "ContraLegRefID"
    , tnum = 655
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlCurrBidFxRate :: FIXTag
 tSettlCurrBidFxRate = FIXTag 
    { tName = "SettlCurrBidFxRate"
    , tnum = 656
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlCurrOfferFxRate :: FIXTag
 tSettlCurrOfferFxRate = FIXTag 
    { tName = "SettlCurrOfferFxRate"
    , tnum = 657
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tQuoteRequestRejectReason :: FIXTag
 tQuoteRequestRejectReason = FIXTag 
    { tName = "QuoteRequestRejectReason"
    , tnum = 658
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSideComplianceID :: FIXTag
 tSideComplianceID = FIXTag 
    { tName = "SideComplianceID"
    , tnum = 659
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAcctIDSource :: FIXTag
 tAcctIDSource = FIXTag 
    { tName = "AcctIDSource"
    , tnum = 660
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocAcctIDSource :: FIXTag
 tAllocAcctIDSource = FIXTag 
    { tName = "AllocAcctIDSource"
    , tnum = 661
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBenchmarkPrice :: FIXTag
 tBenchmarkPrice = FIXTag 
    { tName = "BenchmarkPrice"
    , tnum = 662
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tBenchmarkPriceType :: FIXTag
 tBenchmarkPriceType = FIXTag 
    { tName = "BenchmarkPriceType"
    , tnum = 663
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tConfirmID :: FIXTag
 tConfirmID = FIXTag 
    { tName = "ConfirmID"
    , tnum = 664
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tConfirmStatus :: FIXTag
 tConfirmStatus = FIXTag 
    { tName = "ConfirmStatus"
    , tnum = 665
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tConfirmTransType :: FIXTag
 tConfirmTransType = FIXTag 
    { tName = "ConfirmTransType"
    , tnum = 666
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tContractSettlMonth :: FIXTag
 tContractSettlMonth = FIXTag 
    { tName = "ContractSettlMonth"
    , tnum = 667
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear
+   , arbitraryValue = FIXMonthYear <$> arbitrary }
 
 tDeliveryForm :: FIXTag
 tDeliveryForm = FIXTag 
    { tName = "DeliveryForm"
    , tnum = 668
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLastParPx :: FIXTag
 tLastParPx = FIXTag 
    { tName = "LastParPx"
    , tnum = 669
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoLegAllocs :: FIXTag
 tNoLegAllocs = FIXTag 
    { tName = "NoLegAllocs"
    , tnum = 670
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegAllocAccount :: FIXTag
 tLegAllocAccount = FIXTag 
    { tName = "LegAllocAccount"
    , tnum = 671
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegIndividualAllocID :: FIXTag
 tLegIndividualAllocID = FIXTag 
    { tName = "LegIndividualAllocID"
    , tnum = 672
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegAllocQty :: FIXTag
 tLegAllocQty = FIXTag 
    { tName = "LegAllocQty"
    , tnum = 673
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegAllocAcctIDSource :: FIXTag
 tLegAllocAcctIDSource = FIXTag 
    { tName = "LegAllocAcctIDSource"
    , tnum = 674
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSettlCurrency :: FIXTag
 tLegSettlCurrency = FIXTag 
    { tName = "LegSettlCurrency"
    , tnum = 675
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegBenchmarkCurveCurrency :: FIXTag
 tLegBenchmarkCurveCurrency = FIXTag 
    { tName = "LegBenchmarkCurveCurrency"
    , tnum = 676
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegBenchmarkCurveName :: FIXTag
 tLegBenchmarkCurveName = FIXTag 
    { tName = "LegBenchmarkCurveName"
    , tnum = 677
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegBenchmarkCurvePoint :: FIXTag
 tLegBenchmarkCurvePoint = FIXTag 
    { tName = "LegBenchmarkCurvePoint"
    , tnum = 678
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegBenchmarkPrice :: FIXTag
 tLegBenchmarkPrice = FIXTag 
    { tName = "LegBenchmarkPrice"
    , tnum = 679
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegBenchmarkPriceType :: FIXTag
 tLegBenchmarkPriceType = FIXTag 
    { tName = "LegBenchmarkPriceType"
    , tnum = 680
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegBidPx :: FIXTag
 tLegBidPx = FIXTag 
    { tName = "LegBidPx"
    , tnum = 681
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegIOIQty :: FIXTag
 tLegIOIQty = FIXTag 
    { tName = "LegIOIQty"
    , tnum = 682
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoLegStipulations :: FIXTag
 tNoLegStipulations = FIXTag 
    { tName = "NoLegStipulations"
    , tnum = 683
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegOfferPx :: FIXTag
 tLegOfferPx = FIXTag 
    { tName = "LegOfferPx"
    , tnum = 684
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegOrderQty :: FIXTag
 tLegOrderQty = FIXTag 
    { tName = "LegOrderQty"
    , tnum = 685
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegPriceType :: FIXTag
 tLegPriceType = FIXTag 
    { tName = "LegPriceType"
    , tnum = 686
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegQty :: FIXTag
 tLegQty = FIXTag 
    { tName = "LegQty"
    , tnum = 687
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegStipulationType :: FIXTag
 tLegStipulationType = FIXTag 
    { tName = "LegStipulationType"
    , tnum = 688
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegStipulationValue :: FIXTag
 tLegStipulationValue = FIXTag 
    { tName = "LegStipulationValue"
    , tnum = 689
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSwapType :: FIXTag
 tLegSwapType = FIXTag 
    { tName = "LegSwapType"
    , tnum = 690
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPool :: FIXTag
 tPool = FIXTag 
    { tName = "Pool"
    , tnum = 691
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuotePriceType :: FIXTag
 tQuotePriceType = FIXTag 
    { tName = "QuotePriceType"
    , tnum = 692
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteRespID :: FIXTag
 tQuoteRespID = FIXTag 
    { tName = "QuoteRespID"
    , tnum = 693
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tQuoteRespType :: FIXTag
 tQuoteRespType = FIXTag 
    { tName = "QuoteRespType"
    , tnum = 694
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQuoteQualifier :: FIXTag
 tQuoteQualifier = FIXTag 
    { tName = "QuoteQualifier"
    , tnum = 695
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tYieldRedemptionDate :: FIXTag
 tYieldRedemptionDate = FIXTag 
    { tName = "YieldRedemptionDate"
    , tnum = 696
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tYieldRedemptionPrice :: FIXTag
 tYieldRedemptionPrice = FIXTag 
    { tName = "YieldRedemptionPrice"
    , tnum = 697
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tYieldRedemptionPriceType :: FIXTag
 tYieldRedemptionPriceType = FIXTag 
    { tName = "YieldRedemptionPriceType"
    , tnum = 698
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBenchmarkSecurityID :: FIXTag
 tBenchmarkSecurityID = FIXTag 
    { tName = "BenchmarkSecurityID"
    , tnum = 699
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tReversalIndicator :: FIXTag
 tReversalIndicator = FIXTag 
    { tName = "ReversalIndicator"
    , tnum = 700
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tYieldCalcDate :: FIXTag
 tYieldCalcDate = FIXTag 
    { tName = "YieldCalcDate"
    , tnum = 701
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tNoPositions :: FIXTag
 tNoPositions = FIXTag 
    { tName = "NoPositions"
    , tnum = 702
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosType :: FIXTag
 tPosType = FIXTag 
    { tName = "PosType"
    , tnum = 703
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLongQty :: FIXTag
 tLongQty = FIXTag 
    { tName = "LongQty"
    , tnum = 704
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tShortQty :: FIXTag
 tShortQty = FIXTag 
    { tName = "ShortQty"
    , tnum = 705
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPosQtyStatus :: FIXTag
 tPosQtyStatus = FIXTag 
    { tName = "PosQtyStatus"
    , tnum = 706
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosAmtType :: FIXTag
 tPosAmtType = FIXTag 
    { tName = "PosAmtType"
    , tnum = 707
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPosAmt :: FIXTag
 tPosAmt = FIXTag 
    { tName = "PosAmt"
    , tnum = 708
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPosTransType :: FIXTag
 tPosTransType = FIXTag 
    { tName = "PosTransType"
    , tnum = 709
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosReqID :: FIXTag
 tPosReqID = FIXTag 
    { tName = "PosReqID"
    , tnum = 710
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoUnderlyings :: FIXTag
 tNoUnderlyings = FIXTag 
    { tName = "NoUnderlyings"
    , tnum = 711
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosMaintAction :: FIXTag
 tPosMaintAction = FIXTag 
    { tName = "PosMaintAction"
    , tnum = 712
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrigPosReqRefID :: FIXTag
 tOrigPosReqRefID = FIXTag 
    { tName = "OrigPosReqRefID"
    , tnum = 713
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPosMaintRptRefID :: FIXTag
 tPosMaintRptRefID = FIXTag 
    { tName = "PosMaintRptRefID"
    , tnum = 714
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tClearingBusinessDate :: FIXTag
 tClearingBusinessDate = FIXTag 
    { tName = "ClearingBusinessDate"
    , tnum = 715
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tSettlSessID :: FIXTag
 tSettlSessID = FIXTag 
    { tName = "SettlSessID"
    , tnum = 716
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlSessSubID :: FIXTag
 tSettlSessSubID = FIXTag 
    { tName = "SettlSessSubID"
    , tnum = 717
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAdjustmentType :: FIXTag
 tAdjustmentType = FIXTag 
    { tName = "AdjustmentType"
    , tnum = 718
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tContraryInstructionIndicator :: FIXTag
 tContraryInstructionIndicator = FIXTag 
    { tName = "ContraryInstructionIndicator"
    , tnum = 719
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tPriorSpreadIndicator :: FIXTag
 tPriorSpreadIndicator = FIXTag 
    { tName = "PriorSpreadIndicator"
    , tnum = 720
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tPosMaintRptID :: FIXTag
 tPosMaintRptID = FIXTag 
    { tName = "PosMaintRptID"
    , tnum = 721
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPosMaintStatus :: FIXTag
 tPosMaintStatus = FIXTag 
    { tName = "PosMaintStatus"
    , tnum = 722
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosMaintResult :: FIXTag
 tPosMaintResult = FIXTag 
    { tName = "PosMaintResult"
    , tnum = 723
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosReqType :: FIXTag
 tPosReqType = FIXTag 
    { tName = "PosReqType"
    , tnum = 724
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tResponseTransportType :: FIXTag
 tResponseTransportType = FIXTag 
    { tName = "ResponseTransportType"
    , tnum = 725
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tResponseDestination :: FIXTag
 tResponseDestination = FIXTag 
    { tName = "ResponseDestination"
    , tnum = 726
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTotalNumPosReports :: FIXTag
 tTotalNumPosReports = FIXTag 
    { tName = "TotalNumPosReports"
    , tnum = 727
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosReqResult :: FIXTag
 tPosReqResult = FIXTag 
    { tName = "PosReqResult"
    , tnum = 728
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPosReqStatus :: FIXTag
 tPosReqStatus = FIXTag 
    { tName = "PosReqStatus"
    , tnum = 729
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSettlPrice :: FIXTag
 tSettlPrice = FIXTag 
    { tName = "SettlPrice"
    , tnum = 730
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tSettlPriceType :: FIXTag
 tSettlPriceType = FIXTag 
    { tName = "SettlPriceType"
    , tnum = 731
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingSettlPrice :: FIXTag
 tUnderlyingSettlPrice = FIXTag 
    { tName = "UnderlyingSettlPrice"
    , tnum = 732
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingSettlPriceType :: FIXTag
 tUnderlyingSettlPriceType = FIXTag 
    { tName = "UnderlyingSettlPriceType"
    , tnum = 733
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPriorSettlPrice :: FIXTag
 tPriorSettlPrice = FIXTag 
    { tName = "PriorSettlPrice"
    , tnum = 734
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoQuoteQualifiers :: FIXTag
 tNoQuoteQualifiers = FIXTag 
    { tName = "NoQuoteQualifiers"
    , tnum = 735
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocSettlCurrency :: FIXTag
 tAllocSettlCurrency = FIXTag 
    { tName = "AllocSettlCurrency"
    , tnum = 736
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocSettlCurrAmt :: FIXTag
 tAllocSettlCurrAmt = FIXTag 
    { tName = "AllocSettlCurrAmt"
    , tnum = 737
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tInterestAtMaturity :: FIXTag
 tInterestAtMaturity = FIXTag 
    { tName = "InterestAtMaturity"
    , tnum = 738
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLegDatedDate :: FIXTag
 tLegDatedDate = FIXTag 
    { tName = "LegDatedDate"
    , tnum = 739
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tLegPool :: FIXTag
 tLegPool = FIXTag 
    { tName = "LegPool"
    , tnum = 740
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocInterestAtMaturity :: FIXTag
 tAllocInterestAtMaturity = FIXTag 
    { tName = "AllocInterestAtMaturity"
    , tnum = 741
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAllocAccruedInterestAmt :: FIXTag
 tAllocAccruedInterestAmt = FIXTag 
    { tName = "AllocAccruedInterestAmt"
    , tnum = 742
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDeliveryDate :: FIXTag
 tDeliveryDate = FIXTag 
    { tName = "DeliveryDate"
    , tnum = 743
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tAssignmentMethod :: FIXTag
 tAssignmentMethod = FIXTag 
    { tName = "AssignmentMethod"
    , tnum = 744
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tAssignmentUnit :: FIXTag
 tAssignmentUnit = FIXTag 
    { tName = "AssignmentUnit"
    , tnum = 745
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOpenInterest :: FIXTag
 tOpenInterest = FIXTag 
    { tName = "OpenInterest"
    , tnum = 746
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tExerciseMethod :: FIXTag
 tExerciseMethod = FIXTag 
    { tName = "ExerciseMethod"
    , tnum = 747
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tTotNumTradeReports :: FIXTag
 tTotNumTradeReports = FIXTag 
    { tName = "TotNumTradeReports"
    , tnum = 748
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeRequestResult :: FIXTag
 tTradeRequestResult = FIXTag 
    { tName = "TradeRequestResult"
    , tnum = 749
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeRequestStatus :: FIXTag
 tTradeRequestStatus = FIXTag 
    { tName = "TradeRequestStatus"
    , tnum = 750
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeReportRejectReason :: FIXTag
 tTradeReportRejectReason = FIXTag 
    { tName = "TradeReportRejectReason"
    , tnum = 751
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSideMultiLegReportingType :: FIXTag
 tSideMultiLegReportingType = FIXTag 
    { tName = "SideMultiLegReportingType"
    , tnum = 752
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoPosAmt :: FIXTag
 tNoPosAmt = FIXTag 
    { tName = "NoPosAmt"
    , tnum = 753
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAutoAcceptIndicator :: FIXTag
 tAutoAcceptIndicator = FIXTag 
    { tName = "AutoAcceptIndicator"
    , tnum = 754
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tAllocReportID :: FIXTag
 tAllocReportID = FIXTag 
    { tName = "AllocReportID"
    , tnum = 755
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoNested2PartyIDs :: FIXTag
 tNoNested2PartyIDs = FIXTag 
    { tName = "NoNested2PartyIDs"
    , tnum = 756
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNested2PartyID :: FIXTag
 tNested2PartyID = FIXTag 
    { tName = "Nested2PartyID"
    , tnum = 757
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNested2PartyIDSource :: FIXTag
 tNested2PartyIDSource = FIXTag 
    { tName = "Nested2PartyIDSource"
    , tnum = 758
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNested2PartyRole :: FIXTag
 tNested2PartyRole = FIXTag 
    { tName = "Nested2PartyRole"
    , tnum = 759
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNested2PartySubID :: FIXTag
 tNested2PartySubID = FIXTag 
    { tName = "Nested2PartySubID"
    , tnum = 760
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tBenchmarkSecurityIDSource :: FIXTag
 tBenchmarkSecurityIDSource = FIXTag 
    { tName = "BenchmarkSecurityIDSource"
    , tnum = 761
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecuritySubType :: FIXTag
 tSecuritySubType = FIXTag 
    { tName = "SecuritySubType"
    , tnum = 762
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingSecuritySubType :: FIXTag
 tUnderlyingSecuritySubType = FIXTag 
    { tName = "UnderlyingSecuritySubType"
    , tnum = 763
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegSecuritySubType :: FIXTag
 tLegSecuritySubType = FIXTag 
    { tName = "LegSecuritySubType"
    , tnum = 764
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllowableOneSidednessPct :: FIXTag
 tAllowableOneSidednessPct = FIXTag 
    { tName = "AllowableOneSidednessPct"
    , tnum = 765
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAllowableOneSidednessValue :: FIXTag
 tAllowableOneSidednessValue = FIXTag 
    { tName = "AllowableOneSidednessValue"
    , tnum = 766
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tAllowableOneSidednessCurr :: FIXTag
 tAllowableOneSidednessCurr = FIXTag 
    { tName = "AllowableOneSidednessCurr"
    , tnum = 767
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoTrdRegTimestamps :: FIXTag
 tNoTrdRegTimestamps = FIXTag 
    { tName = "NoTrdRegTimestamps"
    , tnum = 768
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTrdRegTimestamp :: FIXTag
 tTrdRegTimestamp = FIXTag 
    { tName = "TrdRegTimestamp"
    , tnum = 769
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tTrdRegTimestampType :: FIXTag
 tTrdRegTimestampType = FIXTag 
    { tName = "TrdRegTimestampType"
    , tnum = 770
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTrdRegTimestampOrigin :: FIXTag
 tTrdRegTimestampOrigin = FIXTag 
    { tName = "TrdRegTimestampOrigin"
    , tnum = 771
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tConfirmRefID :: FIXTag
 tConfirmRefID = FIXTag 
    { tName = "ConfirmRefID"
    , tnum = 772
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tConfirmType :: FIXTag
 tConfirmType = FIXTag 
    { tName = "ConfirmType"
    , tnum = 773
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tConfirmRejReason :: FIXTag
 tConfirmRejReason = FIXTag 
    { tName = "ConfirmRejReason"
    , tnum = 774
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tBookingType :: FIXTag
 tBookingType = FIXTag 
    { tName = "BookingType"
    , tnum = 775
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tIndividualAllocRejCode :: FIXTag
 tIndividualAllocRejCode = FIXTag 
    { tName = "IndividualAllocRejCode"
    , tnum = 776
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSettlInstMsgID :: FIXTag
 tSettlInstMsgID = FIXTag 
    { tName = "SettlInstMsgID"
    , tnum = 777
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoSettlInst :: FIXTag
 tNoSettlInst = FIXTag 
    { tName = "NoSettlInst"
    , tnum = 778
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLastUpdateTime :: FIXTag
 tLastUpdateTime = FIXTag 
    { tName = "LastUpdateTime"
    , tnum = 779
-   , tparser = toFIXUTCTimestamp }
+   , tparser = toFIXTimestamp
+   , arbitraryValue = FIXTimestamp <$> arbitrary }
 
 tAllocSettlInstType :: FIXTag
 tAllocSettlInstType = FIXTag 
    { tName = "AllocSettlInstType"
    , tnum = 780
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoSettlPartyIDs :: FIXTag
 tNoSettlPartyIDs = FIXTag 
    { tName = "NoSettlPartyIDs"
    , tnum = 781
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSettlPartyID :: FIXTag
 tSettlPartyID = FIXTag 
    { tName = "SettlPartyID"
    , tnum = 782
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlPartyIDSource :: FIXTag
 tSettlPartyIDSource = FIXTag 
    { tName = "SettlPartyIDSource"
    , tnum = 783
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tSettlPartyRole :: FIXTag
 tSettlPartyRole = FIXTag 
    { tName = "SettlPartyRole"
    , tnum = 784
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSettlPartySubID :: FIXTag
 tSettlPartySubID = FIXTag 
    { tName = "SettlPartySubID"
    , tnum = 785
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlPartySubIDType :: FIXTag
 tSettlPartySubIDType = FIXTag 
    { tName = "SettlPartySubIDType"
    , tnum = 786
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDlvyInstType :: FIXTag
 tDlvyInstType = FIXTag 
    { tName = "DlvyInstType"
    , tnum = 787
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tTerminationType :: FIXTag
 tTerminationType = FIXTag 
    { tName = "TerminationType"
    , tnum = 788
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNextExpectedMsgSeqNum :: FIXTag
 tNextExpectedMsgSeqNum = FIXTag 
    { tName = "NextExpectedMsgSeqNum"
    , tnum = 789
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrdStatusReqID :: FIXTag
 tOrdStatusReqID = FIXTag 
    { tName = "OrdStatusReqID"
    , tnum = 790
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlInstReqID :: FIXTag
 tSettlInstReqID = FIXTag 
    { tName = "SettlInstReqID"
    , tnum = 791
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSettlInstReqRejCode :: FIXTag
 tSettlInstReqRejCode = FIXTag 
    { tName = "SettlInstReqRejCode"
    , tnum = 792
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecondaryAllocID :: FIXTag
 tSecondaryAllocID = FIXTag 
    { tName = "SecondaryAllocID"
    , tnum = 793
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocReportType :: FIXTag
 tAllocReportType = FIXTag 
    { tName = "AllocReportType"
    , tnum = 794
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocReportRefID :: FIXTag
 tAllocReportRefID = FIXTag 
    { tName = "AllocReportRefID"
    , tnum = 795
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAllocCancReplaceReason :: FIXTag
 tAllocCancReplaceReason = FIXTag 
    { tName = "AllocCancReplaceReason"
    , tnum = 796
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCopyMsgIndicator :: FIXTag
 tCopyMsgIndicator = FIXTag 
    { tName = "CopyMsgIndicator"
    , tnum = 797
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tAllocAccountType :: FIXTag
 tAllocAccountType = FIXTag 
    { tName = "AllocAccountType"
    , tnum = 798
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrderAvgPx :: FIXTag
 tOrderAvgPx = FIXTag 
    { tName = "OrderAvgPx"
    , tnum = 799
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tOrderBookingQty :: FIXTag
 tOrderBookingQty = FIXTag 
    { tName = "OrderBookingQty"
    , tnum = 800
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoSettlPartySubIDs :: FIXTag
 tNoSettlPartySubIDs = FIXTag 
    { tName = "NoSettlPartySubIDs"
    , tnum = 801
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoPartySubIDs :: FIXTag
 tNoPartySubIDs = FIXTag 
    { tName = "NoPartySubIDs"
    , tnum = 802
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPartySubIDType :: FIXTag
 tPartySubIDType = FIXTag 
    { tName = "PartySubIDType"
    , tnum = 803
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoNestedPartySubIDs :: FIXTag
 tNoNestedPartySubIDs = FIXTag 
    { tName = "NoNestedPartySubIDs"
    , tnum = 804
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNestedPartySubIDType :: FIXTag
 tNestedPartySubIDType = FIXTag 
    { tName = "NestedPartySubIDType"
    , tnum = 805
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoNested2PartySubIDs :: FIXTag
 tNoNested2PartySubIDs = FIXTag 
    { tName = "NoNested2PartySubIDs"
    , tnum = 806
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNested2PartySubIDType :: FIXTag
 tNested2PartySubIDType = FIXTag 
    { tName = "Nested2PartySubIDType"
    , tnum = 807
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocIntermedReqType :: FIXTag
 tAllocIntermedReqType = FIXTag 
    { tName = "AllocIntermedReqType"
    , tnum = 808
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingPx :: FIXTag
 tUnderlyingPx = FIXTag 
    { tName = "UnderlyingPx"
    , tnum = 810
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPriceDelta :: FIXTag
 tPriceDelta = FIXTag 
    { tName = "PriceDelta"
    , tnum = 811
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tApplQueueMax :: FIXTag
 tApplQueueMax = FIXTag 
    { tName = "ApplQueueMax"
    , tnum = 812
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tApplQueueDepth :: FIXTag
 tApplQueueDepth = FIXTag 
    { tName = "ApplQueueDepth"
    , tnum = 813
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tApplQueueResolution :: FIXTag
 tApplQueueResolution = FIXTag 
    { tName = "ApplQueueResolution"
    , tnum = 814
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tApplQueueAction :: FIXTag
 tApplQueueAction = FIXTag 
    { tName = "ApplQueueAction"
    , tnum = 815
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoAltMDSource :: FIXTag
 tNoAltMDSource = FIXTag 
    { tName = "NoAltMDSource"
    , tnum = 816
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAltMDSourceID :: FIXTag
 tAltMDSourceID = FIXTag 
    { tName = "AltMDSourceID"
    , tnum = 817
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecondaryTradeReportID :: FIXTag
 tSecondaryTradeReportID = FIXTag 
    { tName = "SecondaryTradeReportID"
    , tnum = 818
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAvgPxIndicator :: FIXTag
 tAvgPxIndicator = FIXTag 
    { tName = "AvgPxIndicator"
    , tnum = 819
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeLinkID :: FIXTag
 tTradeLinkID = FIXTag 
    { tName = "TradeLinkID"
    , tnum = 820
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tOrderInputDevice :: FIXTag
 tOrderInputDevice = FIXTag 
    { tName = "OrderInputDevice"
    , tnum = 821
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingTradingSessionID :: FIXTag
 tUnderlyingTradingSessionID = FIXTag 
    { tName = "UnderlyingTradingSessionID"
    , tnum = 822
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingTradingSessionSubID :: FIXTag
 tUnderlyingTradingSessionSubID = FIXTag 
    { tName = "UnderlyingTradingSessionSubID"
    , tnum = 823
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradeLegRefID :: FIXTag
 tTradeLegRefID = FIXTag 
    { tName = "TradeLegRefID"
    , tnum = 824
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tExchangeRule :: FIXTag
 tExchangeRule = FIXTag 
    { tName = "ExchangeRule"
    , tnum = 825
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTradeAllocIndicator :: FIXTag
 tTradeAllocIndicator = FIXTag 
    { tName = "TradeAllocIndicator"
    , tnum = 826
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tExpirationCycle :: FIXTag
 tExpirationCycle = FIXTag 
    { tName = "ExpirationCycle"
    , tnum = 827
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTrdType :: FIXTag
 tTrdType = FIXTag 
    { tName = "TrdType"
    , tnum = 828
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTrdSubType :: FIXTag
 tTrdSubType = FIXTag 
    { tName = "TrdSubType"
    , tnum = 829
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTransferReason :: FIXTag
 tTransferReason = FIXTag 
    { tName = "TransferReason"
    , tnum = 830
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAsgnReqID :: FIXTag
 tAsgnReqID = FIXTag 
    { tName = "AsgnReqID"
    , tnum = 831
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTotNumAssignmentReports :: FIXTag
 tTotNumAssignmentReports = FIXTag 
    { tName = "TotNumAssignmentReports"
    , tnum = 832
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAsgnRptID :: FIXTag
 tAsgnRptID = FIXTag 
    { tName = "AsgnRptID"
    , tnum = 833
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tThresholdAmount :: FIXTag
 tThresholdAmount = FIXTag 
    { tName = "ThresholdAmount"
    , tnum = 834
-   , tparser = toFIXPriceOffset }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPegMoveType :: FIXTag
 tPegMoveType = FIXTag 
    { tName = "PegMoveType"
    , tnum = 835
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPegOffsetType :: FIXTag
 tPegOffsetType = FIXTag 
    { tName = "PegOffsetType"
    , tnum = 836
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPegLimitType :: FIXTag
 tPegLimitType = FIXTag 
    { tName = "PegLimitType"
    , tnum = 837
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPegRoundDirection :: FIXTag
 tPegRoundDirection = FIXTag 
    { tName = "PegRoundDirection"
    , tnum = 838
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPeggedPrice :: FIXTag
 tPeggedPrice = FIXTag 
    { tName = "PeggedPrice"
    , tnum = 839
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tPegScope :: FIXTag
 tPegScope = FIXTag 
    { tName = "PegScope"
    , tnum = 840
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDiscretionMoveType :: FIXTag
 tDiscretionMoveType = FIXTag 
    { tName = "DiscretionMoveType"
    , tnum = 841
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDiscretionOffsetType :: FIXTag
 tDiscretionOffsetType = FIXTag 
    { tName = "DiscretionOffsetType"
    , tnum = 842
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDiscretionLimitType :: FIXTag
 tDiscretionLimitType = FIXTag 
    { tName = "DiscretionLimitType"
    , tnum = 843
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDiscretionRoundDirection :: FIXTag
 tDiscretionRoundDirection = FIXTag 
    { tName = "DiscretionRoundDirection"
    , tnum = 844
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tDiscretionPrice :: FIXTag
 tDiscretionPrice = FIXTag 
    { tName = "DiscretionPrice"
    , tnum = 845
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tDiscretionScope :: FIXTag
 tDiscretionScope = FIXTag 
    { tName = "DiscretionScope"
    , tnum = 846
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTargetStrategy :: FIXTag
 tTargetStrategy = FIXTag 
    { tName = "TargetStrategy"
    , tnum = 847
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTargetStrategyParameters :: FIXTag
 tTargetStrategyParameters = FIXTag 
    { tName = "TargetStrategyParameters"
    , tnum = 848
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tParticipationRate :: FIXTag
 tParticipationRate = FIXTag 
    { tName = "ParticipationRate"
    , tnum = 849
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTargetStrategyPerformance :: FIXTag
 tTargetStrategyPerformance = FIXTag 
    { tName = "TargetStrategyPerformance"
    , tnum = 850
-   , tparser = toFIXFloat }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tLastLiquidityInd :: FIXTag
 tLastLiquidityInd = FIXTag 
    { tName = "LastLiquidityInd"
    , tnum = 851
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tPublishTrdIndicator :: FIXTag
 tPublishTrdIndicator = FIXTag 
    { tName = "PublishTrdIndicator"
    , tnum = 852
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tShortSaleReason :: FIXTag
 tShortSaleReason = FIXTag 
    { tName = "ShortSaleReason"
    , tnum = 853
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tQtyType :: FIXTag
 tQtyType = FIXTag 
    { tName = "QtyType"
    , tnum = 854
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSecondaryTrdType :: FIXTag
 tSecondaryTrdType = FIXTag 
    { tName = "SecondaryTrdType"
    , tnum = 855
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTradeReportType :: FIXTag
 tTradeReportType = FIXTag 
    { tName = "TradeReportType"
    , tnum = 856
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAllocNoOrdersType :: FIXTag
 tAllocNoOrdersType = FIXTag 
    { tName = "AllocNoOrdersType"
    , tnum = 857
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tSharedCommission :: FIXTag
 tSharedCommission = FIXTag 
    { tName = "SharedCommission"
    , tnum = 858
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tConfirmReqID :: FIXTag
 tConfirmReqID = FIXTag 
    { tName = "ConfirmReqID"
    , tnum = 859
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAvgParPx :: FIXTag
 tAvgParPx = FIXTag 
    { tName = "AvgParPx"
    , tnum = 860
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tReportedPx :: FIXTag
 tReportedPx = FIXTag 
    { tName = "ReportedPx"
    , tnum = 861
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoCapacities :: FIXTag
 tNoCapacities = FIXTag 
    { tName = "NoCapacities"
    , tnum = 862
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tOrderCapacityQty :: FIXTag
 tOrderCapacityQty = FIXTag 
    { tName = "OrderCapacityQty"
    , tnum = 863
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoEvents :: FIXTag
 tNoEvents = FIXTag 
    { tName = "NoEvents"
    , tnum = 864
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEventType :: FIXTag
 tEventType = FIXTag 
    { tName = "EventType"
    , tnum = 865
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEventDate :: FIXTag
 tEventDate = FIXTag 
    { tName = "EventDate"
    , tnum = 866
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tEventPx :: FIXTag
 tEventPx = FIXTag 
    { tName = "EventPx"
    , tnum = 867
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tEventText :: FIXTag
 tEventText = FIXTag 
    { tName = "EventText"
    , tnum = 868
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tPctAtRisk :: FIXTag
 tPctAtRisk = FIXTag 
    { tName = "PctAtRisk"
    , tnum = 869
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoInstrAttrib :: FIXTag
 tNoInstrAttrib = FIXTag 
    { tName = "NoInstrAttrib"
    , tnum = 870
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tInstrAttribType :: FIXTag
 tInstrAttribType = FIXTag 
    { tName = "InstrAttribType"
    , tnum = 871
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tInstrAttribValue :: FIXTag
 tInstrAttribValue = FIXTag 
    { tName = "InstrAttribValue"
    , tnum = 872
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDatedDate :: FIXTag
 tDatedDate = FIXTag 
    { tName = "DatedDate"
    , tnum = 873
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tInterestAccrualDate :: FIXTag
 tInterestAccrualDate = FIXTag 
    { tName = "InterestAccrualDate"
    , tnum = 874
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tCPProgram :: FIXTag
 tCPProgram = FIXTag 
    { tName = "CPProgram"
    , tnum = 875
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCPRegType :: FIXTag
 tCPRegType = FIXTag 
    { tName = "CPRegType"
    , tnum = 876
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingCPProgram :: FIXTag
 tUnderlyingCPProgram = FIXTag 
    { tName = "UnderlyingCPProgram"
    , tnum = 877
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingCPRegType :: FIXTag
 tUnderlyingCPRegType = FIXTag 
    { tName = "UnderlyingCPRegType"
    , tnum = 878
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingQty :: FIXTag
 tUnderlyingQty = FIXTag 
    { tName = "UnderlyingQty"
    , tnum = 879
-   , tparser = toFIXQuantity }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTrdMatchID :: FIXTag
 tTrdMatchID = FIXTag 
    { tName = "TrdMatchID"
    , tnum = 880
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tSecondaryTradeReportRefID :: FIXTag
 tSecondaryTradeReportRefID = FIXTag 
    { tName = "SecondaryTradeReportRefID"
    , tnum = 881
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingDirtyPrice :: FIXTag
 tUnderlyingDirtyPrice = FIXTag 
    { tName = "UnderlyingDirtyPrice"
    , tnum = 882
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingEndPrice :: FIXTag
 tUnderlyingEndPrice = FIXTag 
    { tName = "UnderlyingEndPrice"
    , tnum = 883
-   , tparser = toFIXPrice }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingStartValue :: FIXTag
 tUnderlyingStartValue = FIXTag 
    { tName = "UnderlyingStartValue"
    , tnum = 884
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingCurrentValue :: FIXTag
 tUnderlyingCurrentValue = FIXTag 
    { tName = "UnderlyingCurrentValue"
    , tnum = 885
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUnderlyingEndValue :: FIXTag
 tUnderlyingEndValue = FIXTag 
    { tName = "UnderlyingEndValue"
    , tnum = 886
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tNoUnderlyingStips :: FIXTag
 tNoUnderlyingStips = FIXTag 
    { tName = "NoUnderlyingStips"
    , tnum = 887
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingStipType :: FIXTag
 tUnderlyingStipType = FIXTag 
    { tName = "UnderlyingStipType"
    , tnum = 888
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUnderlyingStipValue :: FIXTag
 tUnderlyingStipValue = FIXTag 
    { tName = "UnderlyingStipValue"
    , tnum = 889
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tMaturityNetMoney :: FIXTag
 tMaturityNetMoney = FIXTag 
    { tName = "MaturityNetMoney"
    , tnum = 890
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMiscFeeBasis :: FIXTag
 tMiscFeeBasis = FIXTag 
    { tName = "MiscFeeBasis"
    , tnum = 891
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTotNoAllocs :: FIXTag
 tTotNoAllocs = FIXTag 
    { tName = "TotNoAllocs"
    , tnum = 892
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLastFragment :: FIXTag
 tLastFragment = FIXTag 
    { tName = "LastFragment"
    , tnum = 893
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tCollReqID :: FIXTag
 tCollReqID = FIXTag 
    { tName = "CollReqID"
    , tnum = 894
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollAsgnReason :: FIXTag
 tCollAsgnReason = FIXTag 
    { tName = "CollAsgnReason"
    , tnum = 895
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCollInquiryQualifier :: FIXTag
 tCollInquiryQualifier = FIXTag 
    { tName = "CollInquiryQualifier"
    , tnum = 896
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoTrades :: FIXTag
 tNoTrades = FIXTag 
    { tName = "NoTrades"
    , tnum = 897
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tMarginRatio :: FIXTag
 tMarginRatio = FIXTag 
    { tName = "MarginRatio"
    , tnum = 898
-   , tparser = toFIXString }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tMarginExcess :: FIXTag
 tMarginExcess = FIXTag 
    { tName = "MarginExcess"
    , tnum = 899
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tTotalNetValue :: FIXTag
 tTotalNetValue = FIXTag 
    { tName = "TotalNetValue"
    , tnum = 900
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCashOutstanding :: FIXTag
 tCashOutstanding = FIXTag 
    { tName = "CashOutstanding"
    , tnum = 901
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tCollAsgnID :: FIXTag
 tCollAsgnID = FIXTag 
    { tName = "CollAsgnID"
    , tnum = 902
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollAsgnTransType :: FIXTag
 tCollAsgnTransType = FIXTag 
    { tName = "CollAsgnTransType"
    , tnum = 903
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCollRespID :: FIXTag
 tCollRespID = FIXTag 
    { tName = "CollRespID"
    , tnum = 904
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollAsgnRespType :: FIXTag
 tCollAsgnRespType = FIXTag 
    { tName = "CollAsgnRespType"
    , tnum = 905
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCollAsgnRejectReason :: FIXTag
 tCollAsgnRejectReason = FIXTag 
    { tName = "CollAsgnRejectReason"
    , tnum = 906
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCollAsgnRefID :: FIXTag
 tCollAsgnRefID = FIXTag 
    { tName = "CollAsgnRefID"
    , tnum = 907
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollRptID :: FIXTag
 tCollRptID = FIXTag 
    { tName = "CollRptID"
    , tnum = 908
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollInquiryID :: FIXTag
 tCollInquiryID = FIXTag 
    { tName = "CollInquiryID"
    , tnum = 909
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollStatus :: FIXTag
 tCollStatus = FIXTag 
    { tName = "CollStatus"
    , tnum = 910
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTotNumReports :: FIXTag
 tTotNumReports = FIXTag 
    { tName = "TotNumReports"
    , tnum = 911
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLastRptRequested :: FIXTag
 tLastRptRequested = FIXTag 
    { tName = "LastRptRequested"
    , tnum = 912
-   , tparser = toFIXBool }
+   , tparser = toFIXBool
+   , arbitraryValue = FIXBool <$> arbitrary }
 
 tAgreementDesc :: FIXTag
 tAgreementDesc = FIXTag 
    { tName = "AgreementDesc"
    , tnum = 913
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAgreementID :: FIXTag
 tAgreementID = FIXTag 
    { tName = "AgreementID"
    , tnum = 914
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tAgreementDate :: FIXTag
 tAgreementDate = FIXTag 
    { tName = "AgreementDate"
    , tnum = 915
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tStartDate :: FIXTag
 tStartDate = FIXTag 
    { tName = "StartDate"
    , tnum = 916
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tEndDate :: FIXTag
 tEndDate = FIXTag 
    { tName = "EndDate"
    , tnum = 917
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 tAgreementCurrency :: FIXTag
 tAgreementCurrency = FIXTag 
    { tName = "AgreementCurrency"
    , tnum = 918
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tDeliveryType :: FIXTag
 tDeliveryType = FIXTag 
    { tName = "DeliveryType"
    , tnum = 919
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tEndAccruedInterestAmt :: FIXTag
 tEndAccruedInterestAmt = FIXTag 
    { tName = "EndAccruedInterestAmt"
    , tnum = 920
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tStartCash :: FIXTag
 tStartCash = FIXTag 
    { tName = "StartCash"
    , tnum = 921
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tEndCash :: FIXTag
 tEndCash = FIXTag 
    { tName = "EndCash"
    , tnum = 922
-   , tparser = toFIXAmt }
+   , tparser = toFIXFloat
+   , arbitraryValue = FIXFloat <$> arbitrary }
 
 tUserRequestID :: FIXTag
 tUserRequestID = FIXTag 
    { tName = "UserRequestID"
    , tnum = 923
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUserRequestType :: FIXTag
 tUserRequestType = FIXTag 
    { tName = "UserRequestType"
    , tnum = 924
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNewPassword :: FIXTag
 tNewPassword = FIXTag 
    { tName = "NewPassword"
    , tnum = 925
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tUserStatus :: FIXTag
 tUserStatus = FIXTag 
    { tName = "UserStatus"
    , tnum = 926
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUserStatusText :: FIXTag
 tUserStatusText = FIXTag 
    { tName = "UserStatusText"
    , tnum = 927
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tStatusValue :: FIXTag
 tStatusValue = FIXTag 
    { tName = "StatusValue"
    , tnum = 928
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tStatusText :: FIXTag
 tStatusText = FIXTag 
    { tName = "StatusText"
    , tnum = 929
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRefCompID :: FIXTag
 tRefCompID = FIXTag 
    { tName = "RefCompID"
    , tnum = 930
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tRefSubID :: FIXTag
 tRefSubID = FIXTag 
    { tName = "RefSubID"
    , tnum = 931
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNetworkResponseID :: FIXTag
 tNetworkResponseID = FIXTag 
    { tName = "NetworkResponseID"
    , tnum = 932
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNetworkRequestID :: FIXTag
 tNetworkRequestID = FIXTag 
    { tName = "NetworkRequestID"
    , tnum = 933
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLastNetworkResponseID :: FIXTag
 tLastNetworkResponseID = FIXTag 
    { tName = "LastNetworkResponseID"
    , tnum = 934
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNetworkRequestType :: FIXTag
 tNetworkRequestType = FIXTag 
    { tName = "NetworkRequestType"
    , tnum = 935
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoCompIDs :: FIXTag
 tNoCompIDs = FIXTag 
    { tName = "NoCompIDs"
    , tnum = 936
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNetworkStatusResponseType :: FIXTag
 tNetworkStatusResponseType = FIXTag 
    { tName = "NetworkStatusResponseType"
    , tnum = 937
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoCollInquiryQualifier :: FIXTag
 tNoCollInquiryQualifier = FIXTag 
    { tName = "NoCollInquiryQualifier"
    , tnum = 938
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tTrdRptStatus :: FIXTag
 tTrdRptStatus = FIXTag 
    { tName = "TrdRptStatus"
    , tnum = 939
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tAffirmStatus :: FIXTag
 tAffirmStatus = FIXTag 
    { tName = "AffirmStatus"
    , tnum = 940
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tUnderlyingStrikeCurrency :: FIXTag
 tUnderlyingStrikeCurrency = FIXTag 
    { tName = "UnderlyingStrikeCurrency"
    , tnum = 941
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tLegStrikeCurrency :: FIXTag
 tLegStrikeCurrency = FIXTag 
    { tName = "LegStrikeCurrency"
    , tnum = 942
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tTimeBracket :: FIXTag
 tTimeBracket = FIXTag 
    { tName = "TimeBracket"
    , tnum = 943
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tCollAction :: FIXTag
 tCollAction = FIXTag 
    { tName = "CollAction"
    , tnum = 944
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCollInquiryStatus :: FIXTag
 tCollInquiryStatus = FIXTag 
    { tName = "CollInquiryStatus"
    , tnum = 945
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tCollInquiryResult :: FIXTag
 tCollInquiryResult = FIXTag 
    { tName = "CollInquiryResult"
    , tnum = 946
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tStrikeCurrency :: FIXTag
 tStrikeCurrency = FIXTag 
    { tName = "StrikeCurrency"
    , tnum = 947
-   , tparser = toFIXCurrency }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNoNested3PartyIDs :: FIXTag
 tNoNested3PartyIDs = FIXTag 
    { tName = "NoNested3PartyIDs"
    , tnum = 948
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNested3PartyID :: FIXTag
 tNested3PartyID = FIXTag 
    { tName = "Nested3PartyID"
    , tnum = 949
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNested3PartyIDSource :: FIXTag
 tNested3PartyIDSource = FIXTag 
    { tName = "Nested3PartyIDSource"
    , tnum = 950
-   , tparser = toFIXChar }
+   , tparser = toFIXChar
+   , arbitraryValue = FIXChar <$> arbitrary }
 
 tNested3PartyRole :: FIXTag
 tNested3PartyRole = FIXTag 
    { tName = "Nested3PartyRole"
    , tnum = 951
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNoNested3PartySubIDs :: FIXTag
 tNoNested3PartySubIDs = FIXTag 
    { tName = "NoNested3PartySubIDs"
    , tnum = 952
-   , tparser = toFIXString }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tNested3PartySubID :: FIXTag
 tNested3PartySubID = FIXTag 
    { tName = "Nested3PartySubID"
    , tnum = 953
-   , tparser = toFIXString }
+   , tparser = toFIXString
+   , arbitraryValue = FIXString <$> arbitrary }
 
 tNested3PartySubIDType :: FIXTag
 tNested3PartySubIDType = FIXTag 
    { tName = "Nested3PartySubIDType"
    , tnum = 954
-   , tparser = toFIXInt }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegContractSettlMonth :: FIXTag
 tLegContractSettlMonth = FIXTag 
    { tName = "LegContractSettlMonth"
    , tnum = 955
-   , tparser = toFIXString }
+   , tparser = toFIXMonthYear
+   , arbitraryValue = FIXMonthYear <$> arbitrary }
 
 tLegInterestAccrualDate :: FIXTag
 tLegInterestAccrualDate = FIXTag 
    { tName = "LegInterestAccrualDate"
    , tnum = 956
-   , tparser = toFIXLocalMktDate }
+   , tparser = toFIXDate
+   , arbitraryValue = FIXDate <$> arbitrary }
 
 headerFIX44 :: FIXTags
 headerFIX44 = 
-   LT.insert (tnum tBeginString) tBeginString $
-   LT.insert (tnum tBodyLength) tBodyLength $
-   LT.insert (tnum tMsgType) tMsgType $
    LT.insert (tnum tSenderCompID) tSenderCompID $
    LT.insert (tnum tTargetCompID) tTargetCompID $
    LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
@@ -5756,9 +6680,11 @@ headerFIX44 =
       gNoHops'' = FIXTag
          { tName = "NoHops"
          , tnum = tnum tNoHops
-         , tparser = gNoHopsP'' }
+         , tparser = gNoHopsP''
+         , arbitraryValue = arbibtraryFIXGroup gNoHopsSpec'' }
 
-      gNoHopsP'' = groupP FGSpec
+      gNoHopsP'' = groupP gNoHopsSpec''
+      gNoHopsSpec'' = FGSpec
          { gsLength = tNoHops
          , gsSeperator = tHopCompID
          , gsBody = gNoHopsBody'' }
@@ -5772,8 +6698,7 @@ headerFIX44 =
 trailerFIX44 :: FIXTags
 trailerFIX44 = 
    LT.insert (tnum tSignatureLength) tSignatureLength $
-   LT.insert (tnum tSignature) tSignature $
-   LT.insert (tnum tCheckSum) tCheckSum    LT.new
+   LT.insert (tnum tSignature) tSignature    LT.new
 
 
 mHeartbeat :: FIXMessageSpec
@@ -5963,9 +6888,11 @@ mIOI = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -5978,9 +6905,11 @@ mIOI = FMSpec
          gNoIOIQualifiers''' = FIXTag
             { tName = "NoIOIQualifiers"
             , tnum = tnum tNoIOIQualifiers
-            , tparser = gNoIOIQualifiersP''' }
+            , tparser = gNoIOIQualifiersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoIOIQualifiersSpec''' }
 
-         gNoIOIQualifiersP''' = groupP FGSpec
+         gNoIOIQualifiersP''' = groupP gNoIOIQualifiersSpec'''
+         gNoIOIQualifiersSpec''' = FGSpec
             { gsLength = tNoIOIQualifiers
             , gsSeperator = tIOIQualifier
             , gsBody = gNoIOIQualifiersBody''' }
@@ -5991,9 +6920,11 @@ mIOI = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -6046,9 +6977,11 @@ mIOI = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -6059,9 +6992,11 @@ mIOI = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -6073,9 +7008,11 @@ mIOI = FMSpec
          gNoRoutingIDs''' = FIXTag
             { tName = "NoRoutingIDs"
             , tnum = tnum tNoRoutingIDs
-            , tparser = gNoRoutingIDsP''' }
+            , tparser = gNoRoutingIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRoutingIDsSpec''' }
 
-         gNoRoutingIDsP''' = groupP FGSpec
+         gNoRoutingIDsP''' = groupP gNoRoutingIDsSpec'''
+         gNoRoutingIDsSpec''' = FGSpec
             { gsLength = tNoRoutingIDs
             , gsSeperator = tRoutingType
             , gsBody = gNoRoutingIDsBody''' }
@@ -6086,9 +7023,11 @@ mIOI = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -6099,9 +7038,11 @@ mIOI = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -6112,9 +7053,11 @@ mIOI = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -6169,9 +7112,11 @@ mIOI = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -6182,9 +7127,11 @@ mIOI = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -6269,9 +7216,11 @@ mAdvertisement = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -6284,9 +7233,11 @@ mAdvertisement = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -6337,9 +7288,11 @@ mAdvertisement = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -6351,9 +7304,11 @@ mAdvertisement = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -6364,9 +7319,11 @@ mAdvertisement = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -6421,9 +7378,11 @@ mAdvertisement = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -6434,9 +7393,11 @@ mAdvertisement = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -6677,9 +7638,11 @@ mExecutionReport = FMSpec
          gNoContAmts''' = FIXTag
             { tName = "NoContAmts"
             , tnum = tnum tNoContAmts
-            , tparser = gNoContAmtsP''' }
+            , tparser = gNoContAmtsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoContAmtsSpec''' }
 
-         gNoContAmtsP''' = groupP FGSpec
+         gNoContAmtsP''' = groupP gNoContAmtsSpec'''
+         gNoContAmtsSpec''' = FGSpec
             { gsLength = tNoContAmts
             , gsSeperator = tContAmtType
             , gsBody = gNoContAmtsBody''' }
@@ -6691,9 +7654,11 @@ mExecutionReport = FMSpec
          gNoContraBrokers''' = FIXTag
             { tName = "NoContraBrokers"
             , tnum = tnum tNoContraBrokers
-            , tparser = gNoContraBrokersP''' }
+            , tparser = gNoContraBrokersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoContraBrokersSpec''' }
 
-         gNoContraBrokersP''' = groupP FGSpec
+         gNoContraBrokersP''' = groupP gNoContraBrokersSpec'''
+         gNoContraBrokersSpec''' = FGSpec
             { gsLength = tNoContraBrokers
             , gsSeperator = tContraBroker
             , gsBody = gNoContraBrokersBody''' }
@@ -6707,9 +7672,11 @@ mExecutionReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -6722,9 +7689,11 @@ mExecutionReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -6786,9 +7755,11 @@ mExecutionReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -6799,9 +7770,11 @@ mExecutionReport = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -6812,9 +7785,11 @@ mExecutionReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -6827,9 +7802,11 @@ mExecutionReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -6842,9 +7819,11 @@ mExecutionReport = FMSpec
          gNoMiscFees''' = FIXTag
             { tName = "NoMiscFees"
             , tnum = tnum tNoMiscFees
-            , tparser = gNoMiscFeesP''' }
+            , tparser = gNoMiscFeesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec''' }
 
-         gNoMiscFeesP''' = groupP FGSpec
+         gNoMiscFeesP''' = groupP gNoMiscFeesSpec'''
+         gNoMiscFeesSpec''' = FGSpec
             { gsLength = tNoMiscFees
             , gsSeperator = tMiscFeeAmt
             , gsBody = gNoMiscFeesBody''' }
@@ -6857,9 +7836,11 @@ mExecutionReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -6872,9 +7853,11 @@ mExecutionReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -6886,9 +7869,11 @@ mExecutionReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -6899,9 +7884,11 @@ mExecutionReport = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -6912,9 +7899,11 @@ mExecutionReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -6969,9 +7958,11 @@ mExecutionReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -6982,9 +7973,11 @@ mExecutionReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -7051,9 +8044,11 @@ mLogon = FMSpec
          gNoMsgTypes''' = FIXTag
             { tName = "NoMsgTypes"
             , tnum = tnum tNoMsgTypes
-            , tparser = gNoMsgTypesP''' }
+            , tparser = gNoMsgTypesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMsgTypesSpec''' }
 
-         gNoMsgTypesP''' = groupP FGSpec
+         gNoMsgTypesP''' = groupP gNoMsgTypesSpec'''
+         gNoMsgTypesSpec''' = FGSpec
             { gsLength = tNoMsgTypes
             , gsSeperator = tRefMsgType
             , gsBody = gNoMsgTypesBody''' }
@@ -7089,9 +8084,11 @@ mNews = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -7142,9 +8139,11 @@ mNews = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -7156,9 +8155,11 @@ mNews = FMSpec
          gNoLinesOfText''' = FIXTag
             { tName = "NoLinesOfText"
             , tnum = tnum tNoLinesOfText
-            , tparser = gNoLinesOfTextP''' }
+            , tparser = gNoLinesOfTextP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLinesOfTextSpec''' }
 
-         gNoLinesOfTextP''' = groupP FGSpec
+         gNoLinesOfTextP''' = groupP gNoLinesOfTextSpec'''
+         gNoLinesOfTextSpec''' = FGSpec
             { gsLength = tNoLinesOfText
             , gsSeperator = tText
             , gsBody = gNoLinesOfTextBody''' }
@@ -7170,9 +8171,11 @@ mNews = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -7223,9 +8226,11 @@ mNews = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -7238,9 +8243,11 @@ mNews = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -7252,9 +8259,11 @@ mNews = FMSpec
          gNoRoutingIDs''' = FIXTag
             { tName = "NoRoutingIDs"
             , tnum = tnum tNoRoutingIDs
-            , tparser = gNoRoutingIDsP''' }
+            , tparser = gNoRoutingIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRoutingIDsSpec''' }
 
-         gNoRoutingIDsP''' = groupP FGSpec
+         gNoRoutingIDsP''' = groupP gNoRoutingIDsSpec'''
+         gNoRoutingIDsSpec''' = FGSpec
             { gsLength = tNoRoutingIDs
             , gsSeperator = tRoutingType
             , gsBody = gNoRoutingIDsBody''' }
@@ -7265,9 +8274,11 @@ mNews = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -7322,9 +8333,11 @@ mNews = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -7335,9 +8348,11 @@ mNews = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -7376,9 +8391,11 @@ mEmail = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -7429,9 +8446,11 @@ mEmail = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -7443,9 +8462,11 @@ mEmail = FMSpec
          gNoLinesOfText''' = FIXTag
             { tName = "NoLinesOfText"
             , tnum = tnum tNoLinesOfText
-            , tparser = gNoLinesOfTextP''' }
+            , tparser = gNoLinesOfTextP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLinesOfTextSpec''' }
 
-         gNoLinesOfTextP''' = groupP FGSpec
+         gNoLinesOfTextP''' = groupP gNoLinesOfTextSpec'''
+         gNoLinesOfTextSpec''' = FGSpec
             { gsLength = tNoLinesOfText
             , gsSeperator = tText
             , gsBody = gNoLinesOfTextBody''' }
@@ -7457,9 +8478,11 @@ mEmail = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -7510,9 +8533,11 @@ mEmail = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -7525,9 +8550,11 @@ mEmail = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -7539,9 +8566,11 @@ mEmail = FMSpec
          gNoRoutingIDs''' = FIXTag
             { tName = "NoRoutingIDs"
             , tnum = tnum tNoRoutingIDs
-            , tparser = gNoRoutingIDsP''' }
+            , tparser = gNoRoutingIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRoutingIDsSpec''' }
 
-         gNoRoutingIDsP''' = groupP FGSpec
+         gNoRoutingIDsP''' = groupP gNoRoutingIDsSpec'''
+         gNoRoutingIDsSpec''' = FGSpec
             { gsLength = tNoRoutingIDs
             , gsSeperator = tRoutingType
             , gsBody = gNoRoutingIDsBody''' }
@@ -7552,9 +8581,11 @@ mEmail = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -7609,9 +8640,11 @@ mEmail = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -7622,9 +8655,11 @@ mEmail = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -7803,9 +8838,11 @@ mNewOrderSingle = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -7820,9 +8857,11 @@ mNewOrderSingle = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -7835,9 +8874,11 @@ mNewOrderSingle = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -7850,9 +8891,11 @@ mNewOrderSingle = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -7865,9 +8908,11 @@ mNewOrderSingle = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -7880,9 +8925,11 @@ mNewOrderSingle = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -7894,9 +8941,11 @@ mNewOrderSingle = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -7907,9 +8956,11 @@ mNewOrderSingle = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -7920,9 +8971,11 @@ mNewOrderSingle = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -7933,9 +8986,11 @@ mNewOrderSingle = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -7990,9 +9045,11 @@ mNewOrderSingle = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -8003,9 +9060,11 @@ mNewOrderSingle = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -8048,9 +9107,11 @@ mNewOrderList = FMSpec
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
             , tnum = tnum tNoOrders
-            , tparser = gNoOrdersP''' }
+            , tparser = gNoOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoOrdersSpec''' }
 
-         gNoOrdersP''' = groupP FGSpec
+         gNoOrdersP''' = groupP gNoOrdersSpec'''
+         gNoOrdersSpec''' = FGSpec
             { gsLength = tNoOrders
             , gsSeperator = tClOrdID
             , gsBody = gNoOrdersBody''' }
@@ -8205,9 +9266,11 @@ mNewOrderList = FMSpec
                   gNoAllocs'''''' = FIXTag
                      { tName = "NoAllocs"
                      , tnum = tnum tNoAllocs
-                     , tparser = gNoAllocsP'''''' }
+                     , tparser = gNoAllocsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec'''''' }
 
-                  gNoAllocsP'''''' = groupP FGSpec
+                  gNoAllocsP'''''' = groupP gNoAllocsSpec''''''
+                  gNoAllocsSpec'''''' = FGSpec
                      { gsLength = tNoAllocs
                      , gsSeperator = tAllocAccount
                      , gsBody = gNoAllocsBody'''''' }
@@ -8222,9 +9285,11 @@ mNewOrderList = FMSpec
                            gNoNestedPartyIDs''''''''' = FIXTag
                               { tName = "NoNestedPartyIDs"
                               , tnum = tnum tNoNestedPartyIDs
-                              , tparser = gNoNestedPartyIDsP''''''''' }
+                              , tparser = gNoNestedPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec''''''''' }
 
-                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartyIDsP''''''''' = groupP gNoNestedPartyIDsSpec'''''''''
+                           gNoNestedPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartyIDs
                               , gsSeperator = tNestedPartyID
                               , gsBody = gNoNestedPartyIDsBody''''''''' }
@@ -8237,9 +9302,11 @@ mNewOrderList = FMSpec
                                     gNoNestedPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNestedPartySubIDs"
                                        , tnum = tnum tNoNestedPartySubIDs
-                                       , tparser = gNoNestedPartySubIDsP'''''''''''' }
+                                       , tparser = gNoNestedPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec'''''''''''' }
 
-                                    gNoNestedPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNestedPartySubIDsP'''''''''''' = groupP gNoNestedPartySubIDsSpec''''''''''''
+                                    gNoNestedPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNestedPartySubIDs
                                        , gsSeperator = tNestedPartySubID
                                        , gsBody = gNoNestedPartySubIDsBody'''''''''''' }
@@ -8252,9 +9319,11 @@ mNewOrderList = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -8267,9 +9336,11 @@ mNewOrderList = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -8282,9 +9353,11 @@ mNewOrderList = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -8296,9 +9369,11 @@ mNewOrderList = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -8309,9 +9384,11 @@ mNewOrderList = FMSpec
                   gNoStipulations'''''' = FIXTag
                      { tName = "NoStipulations"
                      , tnum = tnum tNoStipulations
-                     , tparser = gNoStipulationsP'''''' }
+                     , tparser = gNoStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec'''''' }
 
-                  gNoStipulationsP'''''' = groupP FGSpec
+                  gNoStipulationsP'''''' = groupP gNoStipulationsSpec''''''
+                  gNoStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoStipulations
                      , gsSeperator = tStipulationType
                      , gsBody = gNoStipulationsBody'''''' }
@@ -8322,9 +9399,11 @@ mNewOrderList = FMSpec
                   gNoTradingSessions'''''' = FIXTag
                      { tName = "NoTradingSessions"
                      , tnum = tnum tNoTradingSessions
-                     , tparser = gNoTradingSessionsP'''''' }
+                     , tparser = gNoTradingSessionsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec'''''' }
 
-                  gNoTradingSessionsP'''''' = groupP FGSpec
+                  gNoTradingSessionsP'''''' = groupP gNoTradingSessionsSpec''''''
+                  gNoTradingSessionsSpec'''''' = FGSpec
                      { gsLength = tNoTradingSessions
                      , gsSeperator = tTradingSessionID
                      , gsBody = gNoTradingSessionsBody'''''' }
@@ -8335,9 +9414,11 @@ mNewOrderList = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -8392,9 +9473,11 @@ mNewOrderList = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -8405,9 +9488,11 @@ mNewOrderList = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -8506,9 +9591,11 @@ mOrderCancelRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -8521,9 +9608,11 @@ mOrderCancelRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -8536,9 +9625,11 @@ mOrderCancelRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -8550,9 +9641,11 @@ mOrderCancelRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -8563,9 +9656,11 @@ mOrderCancelRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -8620,9 +9715,11 @@ mOrderCancelRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -8633,9 +9730,11 @@ mOrderCancelRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -8813,9 +9912,11 @@ mOrderCancelReplaceRequest = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -8830,9 +9931,11 @@ mOrderCancelReplaceRequest = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -8845,9 +9948,11 @@ mOrderCancelReplaceRequest = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -8860,9 +9965,11 @@ mOrderCancelReplaceRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -8875,9 +9982,11 @@ mOrderCancelReplaceRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -8890,9 +9999,11 @@ mOrderCancelReplaceRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -8904,9 +10015,11 @@ mOrderCancelReplaceRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -8917,9 +10030,11 @@ mOrderCancelReplaceRequest = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -8930,9 +10045,11 @@ mOrderCancelReplaceRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -8987,9 +10104,11 @@ mOrderCancelReplaceRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -9000,9 +10119,11 @@ mOrderCancelReplaceRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -9087,9 +10208,11 @@ mOrderStatusRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -9102,9 +10225,11 @@ mOrderStatusRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -9117,9 +10242,11 @@ mOrderStatusRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -9131,9 +10258,11 @@ mOrderStatusRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -9144,9 +10273,11 @@ mOrderStatusRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -9201,9 +10332,11 @@ mOrderStatusRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -9214,9 +10347,11 @@ mOrderStatusRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -9366,9 +10501,11 @@ mAllocationInstruction = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -9413,9 +10550,11 @@ mAllocationInstruction = FMSpec
                   gNoClearingInstructions'''''' = FIXTag
                      { tName = "NoClearingInstructions"
                      , tnum = tnum tNoClearingInstructions
-                     , tparser = gNoClearingInstructionsP'''''' }
+                     , tparser = gNoClearingInstructionsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoClearingInstructionsSpec'''''' }
 
-                  gNoClearingInstructionsP'''''' = groupP FGSpec
+                  gNoClearingInstructionsP'''''' = groupP gNoClearingInstructionsSpec''''''
+                  gNoClearingInstructionsSpec'''''' = FGSpec
                      { gsLength = tNoClearingInstructions
                      , gsSeperator = tClearingInstruction
                      , gsBody = gNoClearingInstructionsBody'''''' }
@@ -9426,9 +10565,11 @@ mAllocationInstruction = FMSpec
                   gNoDlvyInst'''''' = FIXTag
                      { tName = "NoDlvyInst"
                      , tnum = tnum tNoDlvyInst
-                     , tparser = gNoDlvyInstP'''''' }
+                     , tparser = gNoDlvyInstP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec'''''' }
 
-                  gNoDlvyInstP'''''' = groupP FGSpec
+                  gNoDlvyInstP'''''' = groupP gNoDlvyInstSpec''''''
+                  gNoDlvyInstSpec'''''' = FGSpec
                      { gsLength = tNoDlvyInst
                      , gsSeperator = tSettlInstSource
                      , gsBody = gNoDlvyInstBody'''''' }
@@ -9440,9 +10581,11 @@ mAllocationInstruction = FMSpec
                            gNoSettlPartyIDs''''''''' = FIXTag
                               { tName = "NoSettlPartyIDs"
                               , tnum = tnum tNoSettlPartyIDs
-                              , tparser = gNoSettlPartyIDsP''''''''' }
+                              , tparser = gNoSettlPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec''''''''' }
 
-                           gNoSettlPartyIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartyIDsP''''''''' = groupP gNoSettlPartyIDsSpec'''''''''
+                           gNoSettlPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartyIDs
                               , gsSeperator = tSettlPartyID
                               , gsBody = gNoSettlPartyIDsBody''''''''' }
@@ -9455,9 +10598,11 @@ mAllocationInstruction = FMSpec
                                     gNoSettlPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoSettlPartySubIDs"
                                        , tnum = tnum tNoSettlPartySubIDs
-                                       , tparser = gNoSettlPartySubIDsP'''''''''''' }
+                                       , tparser = gNoSettlPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec'''''''''''' }
 
-                                    gNoSettlPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoSettlPartySubIDsP'''''''''''' = groupP gNoSettlPartySubIDsSpec''''''''''''
+                                    gNoSettlPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoSettlPartySubIDs
                                        , gsSeperator = tSettlPartySubID
                                        , gsBody = gNoSettlPartySubIDsBody'''''''''''' }
@@ -9470,9 +10615,11 @@ mAllocationInstruction = FMSpec
                   gNoMiscFees'''''' = FIXTag
                      { tName = "NoMiscFees"
                      , tnum = tnum tNoMiscFees
-                     , tparser = gNoMiscFeesP'''''' }
+                     , tparser = gNoMiscFeesP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec'''''' }
 
-                  gNoMiscFeesP'''''' = groupP FGSpec
+                  gNoMiscFeesP'''''' = groupP gNoMiscFeesSpec''''''
+                  gNoMiscFeesSpec'''''' = FGSpec
                      { gsLength = tNoMiscFees
                      , gsSeperator = tMiscFeeAmt
                      , gsBody = gNoMiscFeesBody'''''' }
@@ -9485,9 +10632,11 @@ mAllocationInstruction = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -9500,9 +10649,11 @@ mAllocationInstruction = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -9515,9 +10666,11 @@ mAllocationInstruction = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -9530,9 +10683,11 @@ mAllocationInstruction = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tLastQty
             , gsBody = gNoExecsBody''' }
@@ -9547,9 +10702,11 @@ mAllocationInstruction = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -9560,9 +10717,11 @@ mAllocationInstruction = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -9613,9 +10772,11 @@ mAllocationInstruction = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -9627,9 +10788,11 @@ mAllocationInstruction = FMSpec
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
             , tnum = tnum tNoOrders
-            , tparser = gNoOrdersP''' }
+            , tparser = gNoOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoOrdersSpec''' }
 
-         gNoOrdersP''' = groupP FGSpec
+         gNoOrdersP''' = groupP gNoOrdersSpec'''
+         gNoOrdersSpec''' = FGSpec
             { gsLength = tNoOrders
             , gsSeperator = tClOrdID
             , gsBody = gNoOrdersBody''' }
@@ -9647,9 +10810,11 @@ mAllocationInstruction = FMSpec
                   gNoNested2PartyIDs'''''' = FIXTag
                      { tName = "NoNested2PartyIDs"
                      , tnum = tnum tNoNested2PartyIDs
-                     , tparser = gNoNested2PartyIDsP'''''' }
+                     , tparser = gNoNested2PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec'''''' }
 
-                  gNoNested2PartyIDsP'''''' = groupP FGSpec
+                  gNoNested2PartyIDsP'''''' = groupP gNoNested2PartyIDsSpec''''''
+                  gNoNested2PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested2PartyIDs
                      , gsSeperator = tNested2PartyID
                      , gsBody = gNoNested2PartyIDsBody'''''' }
@@ -9662,9 +10827,11 @@ mAllocationInstruction = FMSpec
                            gNoNested2PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested2PartySubIDs"
                               , tnum = tnum tNoNested2PartySubIDs
-                              , tparser = gNoNested2PartySubIDsP''''''''' }
+                              , tparser = gNoNested2PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec''''''''' }
 
-                           gNoNested2PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartySubIDsP''''''''' = groupP gNoNested2PartySubIDsSpec'''''''''
+                           gNoNested2PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartySubIDs
                               , gsSeperator = tNested2PartySubID
                               , gsBody = gNoNested2PartySubIDsBody''''''''' }
@@ -9677,9 +10844,11 @@ mAllocationInstruction = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -9692,9 +10861,11 @@ mAllocationInstruction = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -9706,9 +10877,11 @@ mAllocationInstruction = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -9719,9 +10892,11 @@ mAllocationInstruction = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -9732,9 +10907,11 @@ mAllocationInstruction = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -9789,9 +10966,11 @@ mAllocationInstruction = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -9802,9 +10981,11 @@ mAllocationInstruction = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -9891,9 +11072,11 @@ mListStatus = FMSpec
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
             , tnum = tnum tNoOrders
-            , tparser = gNoOrdersP''' }
+            , tparser = gNoOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoOrdersSpec''' }
 
-         gNoOrdersP''' = groupP FGSpec
+         gNoOrdersP''' = groupP gNoOrdersSpec'''
+         gNoOrdersSpec''' = FGSpec
             { gsLength = tNoOrders
             , gsSeperator = tClOrdID
             , gsBody = gNoOrdersBody''' }
@@ -9942,9 +11125,11 @@ mAllocationInstructionAck = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -9961,9 +11146,11 @@ mAllocationInstructionAck = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -9976,9 +11163,11 @@ mAllocationInstructionAck = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -10061,9 +11250,11 @@ mDontKnowTrade = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -10076,9 +11267,11 @@ mDontKnowTrade = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -10129,9 +11322,11 @@ mDontKnowTrade = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -10143,9 +11338,11 @@ mDontKnowTrade = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -10156,9 +11353,11 @@ mDontKnowTrade = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -10213,9 +11412,11 @@ mDontKnowTrade = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -10226,9 +11427,11 @@ mDontKnowTrade = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -10260,9 +11463,11 @@ mQuoteRequest = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -10370,9 +11575,11 @@ mQuoteRequest = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -10385,9 +11592,11 @@ mQuoteRequest = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -10449,9 +11658,11 @@ mQuoteRequest = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -10462,9 +11673,11 @@ mQuoteRequest = FMSpec
                            gNoLegStipulations''''''''' = FIXTag
                               { tName = "NoLegStipulations"
                               , tnum = tnum tNoLegStipulations
-                              , tparser = gNoLegStipulationsP''''''''' }
+                              , tparser = gNoLegStipulationsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec''''''''' }
 
-                           gNoLegStipulationsP''''''''' = groupP FGSpec
+                           gNoLegStipulationsP''''''''' = groupP gNoLegStipulationsSpec'''''''''
+                           gNoLegStipulationsSpec''''''''' = FGSpec
                               { gsLength = tNoLegStipulations
                               , gsSeperator = tLegStipulationType
                               , gsBody = gNoLegStipulationsBody''''''''' }
@@ -10475,9 +11688,11 @@ mQuoteRequest = FMSpec
                            gNoNestedPartyIDs''''''''' = FIXTag
                               { tName = "NoNestedPartyIDs"
                               , tnum = tnum tNoNestedPartyIDs
-                              , tparser = gNoNestedPartyIDsP''''''''' }
+                              , tparser = gNoNestedPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec''''''''' }
 
-                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartyIDsP''''''''' = groupP gNoNestedPartyIDsSpec'''''''''
+                           gNoNestedPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartyIDs
                               , gsSeperator = tNestedPartyID
                               , gsBody = gNoNestedPartyIDsBody''''''''' }
@@ -10490,9 +11705,11 @@ mQuoteRequest = FMSpec
                                     gNoNestedPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNestedPartySubIDs"
                                        , tnum = tnum tNoNestedPartySubIDs
-                                       , tparser = gNoNestedPartySubIDsP'''''''''''' }
+                                       , tparser = gNoNestedPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec'''''''''''' }
 
-                                    gNoNestedPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNestedPartySubIDsP'''''''''''' = groupP gNoNestedPartySubIDsSpec''''''''''''
+                                    gNoNestedPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNestedPartySubIDs
                                        , gsSeperator = tNestedPartySubID
                                        , gsBody = gNoNestedPartySubIDsBody'''''''''''' }
@@ -10505,9 +11722,11 @@ mQuoteRequest = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -10520,9 +11739,11 @@ mQuoteRequest = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -10534,9 +11755,11 @@ mQuoteRequest = FMSpec
                   gNoQuoteQualifiers'''''' = FIXTag
                      { tName = "NoQuoteQualifiers"
                      , tnum = tnum tNoQuoteQualifiers
-                     , tparser = gNoQuoteQualifiersP'''''' }
+                     , tparser = gNoQuoteQualifiersP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoQuoteQualifiersSpec'''''' }
 
-                  gNoQuoteQualifiersP'''''' = groupP FGSpec
+                  gNoQuoteQualifiersP'''''' = groupP gNoQuoteQualifiersSpec''''''
+                  gNoQuoteQualifiersSpec'''''' = FGSpec
                      { gsLength = tNoQuoteQualifiers
                      , gsSeperator = tQuoteQualifier
                      , gsBody = gNoQuoteQualifiersBody'''''' }
@@ -10547,9 +11770,11 @@ mQuoteRequest = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -10560,9 +11785,11 @@ mQuoteRequest = FMSpec
                   gNoStipulations'''''' = FIXTag
                      { tName = "NoStipulations"
                      , tnum = tnum tNoStipulations
-                     , tparser = gNoStipulationsP'''''' }
+                     , tparser = gNoStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec'''''' }
 
-                  gNoStipulationsP'''''' = groupP FGSpec
+                  gNoStipulationsP'''''' = groupP gNoStipulationsSpec''''''
+                  gNoStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoStipulations
                      , gsSeperator = tStipulationType
                      , gsBody = gNoStipulationsBody'''''' }
@@ -10573,9 +11800,11 @@ mQuoteRequest = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -10630,9 +11859,11 @@ mQuoteRequest = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -10643,9 +11874,11 @@ mQuoteRequest = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -10794,9 +12027,11 @@ mQuote = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -10809,9 +12044,11 @@ mQuote = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -10876,9 +12113,11 @@ mQuote = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -10889,9 +12128,11 @@ mQuote = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -10902,9 +12143,11 @@ mQuote = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -10917,9 +12160,11 @@ mQuote = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -10932,9 +12177,11 @@ mQuote = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -10947,9 +12194,11 @@ mQuote = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -10961,9 +12210,11 @@ mQuote = FMSpec
          gNoQuoteQualifiers''' = FIXTag
             { tName = "NoQuoteQualifiers"
             , tnum = tnum tNoQuoteQualifiers
-            , tparser = gNoQuoteQualifiersP''' }
+            , tparser = gNoQuoteQualifiersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoQuoteQualifiersSpec''' }
 
-         gNoQuoteQualifiersP''' = groupP FGSpec
+         gNoQuoteQualifiersP''' = groupP gNoQuoteQualifiersSpec'''
+         gNoQuoteQualifiersSpec''' = FGSpec
             { gsLength = tNoQuoteQualifiers
             , gsSeperator = tQuoteQualifier
             , gsBody = gNoQuoteQualifiersBody''' }
@@ -10974,9 +12225,11 @@ mQuote = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -10987,9 +12240,11 @@ mQuote = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -11000,9 +12255,11 @@ mQuote = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -11057,9 +12314,11 @@ mQuote = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -11070,9 +12329,11 @@ mQuote = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -11106,9 +12367,11 @@ mSettlementInstructions = FMSpec
          gNoSettlInst''' = FIXTag
             { tName = "NoSettlInst"
             , tnum = tnum tNoSettlInst
-            , tparser = gNoSettlInstP''' }
+            , tparser = gNoSettlInstP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSettlInstSpec''' }
 
-         gNoSettlInstP''' = groupP FGSpec
+         gNoSettlInstP''' = groupP gNoSettlInstSpec'''
+         gNoSettlInstSpec''' = FGSpec
             { gsLength = tNoSettlInst
             , gsSeperator = tSettlInstID
             , gsBody = gNoSettlInstBody''' }
@@ -11142,9 +12405,11 @@ mSettlementInstructions = FMSpec
                   gNoDlvyInst'''''' = FIXTag
                      { tName = "NoDlvyInst"
                      , tnum = tnum tNoDlvyInst
-                     , tparser = gNoDlvyInstP'''''' }
+                     , tparser = gNoDlvyInstP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec'''''' }
 
-                  gNoDlvyInstP'''''' = groupP FGSpec
+                  gNoDlvyInstP'''''' = groupP gNoDlvyInstSpec''''''
+                  gNoDlvyInstSpec'''''' = FGSpec
                      { gsLength = tNoDlvyInst
                      , gsSeperator = tSettlInstSource
                      , gsBody = gNoDlvyInstBody'''''' }
@@ -11156,9 +12421,11 @@ mSettlementInstructions = FMSpec
                            gNoSettlPartyIDs''''''''' = FIXTag
                               { tName = "NoSettlPartyIDs"
                               , tnum = tnum tNoSettlPartyIDs
-                              , tparser = gNoSettlPartyIDsP''''''''' }
+                              , tparser = gNoSettlPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec''''''''' }
 
-                           gNoSettlPartyIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartyIDsP''''''''' = groupP gNoSettlPartyIDsSpec'''''''''
+                           gNoSettlPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartyIDs
                               , gsSeperator = tSettlPartyID
                               , gsBody = gNoSettlPartyIDsBody''''''''' }
@@ -11171,9 +12438,11 @@ mSettlementInstructions = FMSpec
                                     gNoSettlPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoSettlPartySubIDs"
                                        , tnum = tnum tNoSettlPartySubIDs
-                                       , tparser = gNoSettlPartySubIDsP'''''''''''' }
+                                       , tparser = gNoSettlPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec'''''''''''' }
 
-                                    gNoSettlPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoSettlPartySubIDsP'''''''''''' = groupP gNoSettlPartySubIDsSpec''''''''''''
+                                    gNoSettlPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoSettlPartySubIDs
                                        , gsSeperator = tSettlPartySubID
                                        , gsBody = gNoSettlPartySubIDsBody'''''''''''' }
@@ -11186,9 +12455,11 @@ mSettlementInstructions = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -11201,9 +12472,11 @@ mSettlementInstructions = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -11238,9 +12511,11 @@ mMarketDataRequest = FMSpec
          gNoMDEntryTypes''' = FIXTag
             { tName = "NoMDEntryTypes"
             , tnum = tnum tNoMDEntryTypes
-            , tparser = gNoMDEntryTypesP''' }
+            , tparser = gNoMDEntryTypesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMDEntryTypesSpec''' }
 
-         gNoMDEntryTypesP''' = groupP FGSpec
+         gNoMDEntryTypesP''' = groupP gNoMDEntryTypesSpec'''
+         gNoMDEntryTypesSpec''' = FGSpec
             { gsLength = tNoMDEntryTypes
             , gsSeperator = tMDEntryType
             , gsBody = gNoMDEntryTypesBody''' }
@@ -11251,9 +12526,11 @@ mMarketDataRequest = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -11309,9 +12586,11 @@ mMarketDataRequest = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -11324,9 +12603,11 @@ mMarketDataRequest = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -11377,9 +12658,11 @@ mMarketDataRequest = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -11391,9 +12674,11 @@ mMarketDataRequest = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -11404,9 +12689,11 @@ mMarketDataRequest = FMSpec
                   gNoTradingSessions'''''' = FIXTag
                      { tName = "NoTradingSessions"
                      , tnum = tnum tNoTradingSessions
-                     , tparser = gNoTradingSessionsP'''''' }
+                     , tparser = gNoTradingSessionsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec'''''' }
 
-                  gNoTradingSessionsP'''''' = groupP FGSpec
+                  gNoTradingSessionsP'''''' = groupP gNoTradingSessionsSpec''''''
+                  gNoTradingSessionsSpec'''''' = FGSpec
                      { gsLength = tNoTradingSessions
                      , gsSeperator = tTradingSessionID
                      , gsBody = gNoTradingSessionsBody'''''' }
@@ -11417,9 +12704,11 @@ mMarketDataRequest = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -11474,9 +12763,11 @@ mMarketDataRequest = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -11487,9 +12778,11 @@ mMarketDataRequest = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -11565,9 +12858,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -11580,9 +12875,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -11633,9 +12930,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -11647,9 +12946,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
          gNoMDEntries''' = FIXTag
             { tName = "NoMDEntries"
             , tnum = tnum tNoMDEntries
-            , tparser = gNoMDEntriesP''' }
+            , tparser = gNoMDEntriesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMDEntriesSpec''' }
 
-         gNoMDEntriesP''' = groupP FGSpec
+         gNoMDEntriesP''' = groupP gNoMDEntriesSpec'''
+         gNoMDEntriesSpec''' = FGSpec
             { gsLength = tNoMDEntries
             , gsSeperator = tMDEntryType
             , gsBody = gNoMDEntriesBody''' }
@@ -11691,9 +12992,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -11704,9 +13007,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -11761,9 +13066,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -11774,9 +13081,11 @@ mMarketDataSnapshotFullRefresh = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -11804,9 +13113,11 @@ mMarketDataIncrementalRefresh = FMSpec
          gNoMDEntries''' = FIXTag
             { tName = "NoMDEntries"
             , tnum = tnum tNoMDEntries
-            , tparser = gNoMDEntriesP''' }
+            , tparser = gNoMDEntriesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMDEntriesSpec''' }
 
-         gNoMDEntriesP''' = groupP FGSpec
+         gNoMDEntriesP''' = groupP gNoMDEntriesSpec'''
+         gNoMDEntriesSpec''' = FGSpec
             { gsLength = tNoMDEntries
             , gsSeperator = tMDUpdateAction
             , gsBody = gNoMDEntriesBody''' }
@@ -11899,9 +13210,11 @@ mMarketDataIncrementalRefresh = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -11914,9 +13227,11 @@ mMarketDataIncrementalRefresh = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -11967,9 +13282,11 @@ mMarketDataIncrementalRefresh = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -11981,9 +13298,11 @@ mMarketDataIncrementalRefresh = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -11994,9 +13313,11 @@ mMarketDataIncrementalRefresh = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -12051,9 +13372,11 @@ mMarketDataIncrementalRefresh = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -12064,9 +13387,11 @@ mMarketDataIncrementalRefresh = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -12097,9 +13422,11 @@ mMarketDataRequestReject = FMSpec
          gNoAltMDSource''' = FIXTag
             { tName = "NoAltMDSource"
             , tnum = tnum tNoAltMDSource
-            , tparser = gNoAltMDSourceP''' }
+            , tparser = gNoAltMDSourceP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAltMDSourceSpec''' }
 
-         gNoAltMDSourceP''' = groupP FGSpec
+         gNoAltMDSourceP''' = groupP gNoAltMDSourceSpec'''
+         gNoAltMDSourceSpec''' = FGSpec
             { gsLength = tNoAltMDSource
             , gsSeperator = tAltMDSourceID
             , gsBody = gNoAltMDSourceBody''' }
@@ -12133,9 +13460,11 @@ mQuoteCancel = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -12148,9 +13477,11 @@ mQuoteCancel = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -12162,9 +13493,11 @@ mQuoteCancel = FMSpec
          gNoQuoteEntries''' = FIXTag
             { tName = "NoQuoteEntries"
             , tnum = tnum tNoQuoteEntries
-            , tparser = gNoQuoteEntriesP''' }
+            , tparser = gNoQuoteEntriesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoQuoteEntriesSpec''' }
 
-         gNoQuoteEntriesP''' = groupP FGSpec
+         gNoQuoteEntriesP''' = groupP gNoQuoteEntriesSpec'''
+         gNoQuoteEntriesSpec''' = FGSpec
             { gsLength = tNoQuoteEntries
             , gsSeperator = tSymbol
             , gsBody = gNoQuoteEntriesBody''' }
@@ -12226,9 +13559,11 @@ mQuoteCancel = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -12241,9 +13576,11 @@ mQuoteCancel = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -12294,9 +13631,11 @@ mQuoteCancel = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -12308,9 +13647,11 @@ mQuoteCancel = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -12321,9 +13662,11 @@ mQuoteCancel = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -12378,9 +13721,11 @@ mQuoteCancel = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -12391,9 +13736,11 @@ mQuoteCancel = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -12480,9 +13827,11 @@ mQuoteStatusRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -12495,9 +13844,11 @@ mQuoteStatusRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -12548,9 +13899,11 @@ mQuoteStatusRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -12562,9 +13915,11 @@ mQuoteStatusRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -12577,9 +13932,11 @@ mQuoteStatusRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -12591,9 +13948,11 @@ mQuoteStatusRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -12604,9 +13963,11 @@ mQuoteStatusRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -12661,9 +14022,11 @@ mQuoteStatusRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -12674,9 +14037,11 @@ mQuoteStatusRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -12714,9 +14079,11 @@ mMassQuoteAcknowledgement = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -12729,9 +14096,11 @@ mMassQuoteAcknowledgement = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -12743,9 +14112,11 @@ mMassQuoteAcknowledgement = FMSpec
          gNoQuoteSets''' = FIXTag
             { tName = "NoQuoteSets"
             , tnum = tnum tNoQuoteSets
-            , tparser = gNoQuoteSetsP''' }
+            , tparser = gNoQuoteSetsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoQuoteSetsSpec''' }
 
-         gNoQuoteSetsP''' = groupP FGSpec
+         gNoQuoteSetsP''' = groupP gNoQuoteSetsSpec'''
+         gNoQuoteSetsSpec''' = FGSpec
             { gsLength = tNoQuoteSets
             , gsSeperator = tQuoteSetID
             , gsBody = gNoQuoteSetsBody''' }
@@ -12804,9 +14175,11 @@ mMassQuoteAcknowledgement = FMSpec
                   gNoQuoteEntries'''''' = FIXTag
                      { tName = "NoQuoteEntries"
                      , tnum = tnum tNoQuoteEntries
-                     , tparser = gNoQuoteEntriesP'''''' }
+                     , tparser = gNoQuoteEntriesP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoQuoteEntriesSpec'''''' }
 
-                  gNoQuoteEntriesP'''''' = groupP FGSpec
+                  gNoQuoteEntriesP'''''' = groupP gNoQuoteEntriesSpec''''''
+                  gNoQuoteEntriesSpec'''''' = FGSpec
                      { gsLength = tNoQuoteEntries
                      , gsSeperator = tQuoteEntryID
                      , gsBody = gNoQuoteEntriesBody'''''' }
@@ -12883,9 +14256,11 @@ mMassQuoteAcknowledgement = FMSpec
                            gNoEvents''''''''' = FIXTag
                               { tName = "NoEvents"
                               , tnum = tnum tNoEvents
-                              , tparser = gNoEventsP''''''''' }
+                              , tparser = gNoEventsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''''''''' }
 
-                           gNoEventsP''''''''' = groupP FGSpec
+                           gNoEventsP''''''''' = groupP gNoEventsSpec'''''''''
+                           gNoEventsSpec''''''''' = FGSpec
                               { gsLength = tNoEvents
                               , gsSeperator = tEventType
                               , gsBody = gNoEventsBody''''''''' }
@@ -12898,9 +14273,11 @@ mMassQuoteAcknowledgement = FMSpec
                            gNoLegs''''''''' = FIXTag
                               { tName = "NoLegs"
                               , tnum = tnum tNoLegs
-                              , tparser = gNoLegsP''''''''' }
+                              , tparser = gNoLegsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''''''''' }
 
-                           gNoLegsP''''''''' = groupP FGSpec
+                           gNoLegsP''''''''' = groupP gNoLegsSpec'''''''''
+                           gNoLegsSpec''''''''' = FGSpec
                               { gsLength = tNoLegs
                               , gsSeperator = tLegSymbol
                               , gsBody = gNoLegsBody''''''''' }
@@ -12951,9 +14328,11 @@ mMassQuoteAcknowledgement = FMSpec
                                     gNoLegSecurityAltID'''''''''''' = FIXTag
                                        { tName = "NoLegSecurityAltID"
                                        , tnum = tnum tNoLegSecurityAltID
-                                       , tparser = gNoLegSecurityAltIDP'''''''''''' }
+                                       , tparser = gNoLegSecurityAltIDP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''''''''' }
 
-                                    gNoLegSecurityAltIDP'''''''''''' = groupP FGSpec
+                                    gNoLegSecurityAltIDP'''''''''''' = groupP gNoLegSecurityAltIDSpec''''''''''''
+                                    gNoLegSecurityAltIDSpec'''''''''''' = FGSpec
                                        { gsLength = tNoLegSecurityAltID
                                        , gsSeperator = tLegSecurityAltID
                                        , gsBody = gNoLegSecurityAltIDBody'''''''''''' }
@@ -12965,9 +14344,11 @@ mMassQuoteAcknowledgement = FMSpec
                            gNoSecurityAltID''''''''' = FIXTag
                               { tName = "NoSecurityAltID"
                               , tnum = tnum tNoSecurityAltID
-                              , tparser = gNoSecurityAltIDP''''''''' }
+                              , tparser = gNoSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''''''''' }
 
-                           gNoSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoSecurityAltIDP''''''''' = groupP gNoSecurityAltIDSpec'''''''''
+                           gNoSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoSecurityAltID
                               , gsSeperator = tSecurityAltID
                               , gsBody = gNoSecurityAltIDBody''''''''' }
@@ -12979,9 +14360,11 @@ mMassQuoteAcknowledgement = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -12992,9 +14375,11 @@ mMassQuoteAcknowledgement = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -13075,9 +14460,11 @@ mSecurityDefinitionRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -13090,9 +14477,11 @@ mSecurityDefinitionRequest = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -13103,9 +14492,11 @@ mSecurityDefinitionRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -13156,9 +14547,11 @@ mSecurityDefinitionRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -13170,9 +14563,11 @@ mSecurityDefinitionRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -13183,9 +14578,11 @@ mSecurityDefinitionRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -13240,9 +14637,11 @@ mSecurityDefinitionRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -13253,9 +14652,11 @@ mSecurityDefinitionRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -13338,9 +14739,11 @@ mSecurityDefinition = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -13353,9 +14756,11 @@ mSecurityDefinition = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -13366,9 +14771,11 @@ mSecurityDefinition = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -13419,9 +14826,11 @@ mSecurityDefinition = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -13433,9 +14842,11 @@ mSecurityDefinition = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -13446,9 +14857,11 @@ mSecurityDefinition = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -13503,9 +14916,11 @@ mSecurityDefinition = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -13516,9 +14931,11 @@ mSecurityDefinition = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -13594,9 +15011,11 @@ mSecurityStatusRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -13609,9 +15028,11 @@ mSecurityStatusRequest = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -13622,9 +15043,11 @@ mSecurityStatusRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -13675,9 +15098,11 @@ mSecurityStatusRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -13689,9 +15114,11 @@ mSecurityStatusRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -13702,9 +15129,11 @@ mSecurityStatusRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -13759,9 +15188,11 @@ mSecurityStatusRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -13772,9 +15203,11 @@ mSecurityStatusRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -13866,9 +15299,11 @@ mSecurityStatus = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -13881,9 +15316,11 @@ mSecurityStatus = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -13894,9 +15331,11 @@ mSecurityStatus = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -13947,9 +15386,11 @@ mSecurityStatus = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -13961,9 +15402,11 @@ mSecurityStatus = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -13974,9 +15417,11 @@ mSecurityStatus = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -14031,9 +15476,11 @@ mSecurityStatus = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -14044,9 +15491,11 @@ mSecurityStatus = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -14126,9 +15575,11 @@ mMassQuote = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -14141,9 +15592,11 @@ mMassQuote = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -14155,9 +15608,11 @@ mMassQuote = FMSpec
          gNoQuoteSets''' = FIXTag
             { tName = "NoQuoteSets"
             , tnum = tnum tNoQuoteSets
-            , tparser = gNoQuoteSetsP''' }
+            , tparser = gNoQuoteSetsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoQuoteSetsSpec''' }
 
-         gNoQuoteSetsP''' = groupP FGSpec
+         gNoQuoteSetsP''' = groupP gNoQuoteSetsSpec'''
+         gNoQuoteSetsSpec''' = FGSpec
             { gsLength = tNoQuoteSets
             , gsSeperator = tQuoteSetID
             , gsBody = gNoQuoteSetsBody''' }
@@ -14217,9 +15672,11 @@ mMassQuote = FMSpec
                   gNoQuoteEntries'''''' = FIXTag
                      { tName = "NoQuoteEntries"
                      , tnum = tnum tNoQuoteEntries
-                     , tparser = gNoQuoteEntriesP'''''' }
+                     , tparser = gNoQuoteEntriesP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoQuoteEntriesSpec'''''' }
 
-                  gNoQuoteEntriesP'''''' = groupP FGSpec
+                  gNoQuoteEntriesP'''''' = groupP gNoQuoteEntriesSpec''''''
+                  gNoQuoteEntriesSpec'''''' = FGSpec
                      { gsLength = tNoQuoteEntries
                      , gsSeperator = tQuoteEntryID
                      , gsBody = gNoQuoteEntriesBody'''''' }
@@ -14295,9 +15752,11 @@ mMassQuote = FMSpec
                            gNoEvents''''''''' = FIXTag
                               { tName = "NoEvents"
                               , tnum = tnum tNoEvents
-                              , tparser = gNoEventsP''''''''' }
+                              , tparser = gNoEventsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''''''''' }
 
-                           gNoEventsP''''''''' = groupP FGSpec
+                           gNoEventsP''''''''' = groupP gNoEventsSpec'''''''''
+                           gNoEventsSpec''''''''' = FGSpec
                               { gsLength = tNoEvents
                               , gsSeperator = tEventType
                               , gsBody = gNoEventsBody''''''''' }
@@ -14310,9 +15769,11 @@ mMassQuote = FMSpec
                            gNoLegs''''''''' = FIXTag
                               { tName = "NoLegs"
                               , tnum = tnum tNoLegs
-                              , tparser = gNoLegsP''''''''' }
+                              , tparser = gNoLegsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''''''''' }
 
-                           gNoLegsP''''''''' = groupP FGSpec
+                           gNoLegsP''''''''' = groupP gNoLegsSpec'''''''''
+                           gNoLegsSpec''''''''' = FGSpec
                               { gsLength = tNoLegs
                               , gsSeperator = tLegSymbol
                               , gsBody = gNoLegsBody''''''''' }
@@ -14363,9 +15824,11 @@ mMassQuote = FMSpec
                                     gNoLegSecurityAltID'''''''''''' = FIXTag
                                        { tName = "NoLegSecurityAltID"
                                        , tnum = tnum tNoLegSecurityAltID
-                                       , tparser = gNoLegSecurityAltIDP'''''''''''' }
+                                       , tparser = gNoLegSecurityAltIDP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''''''''' }
 
-                                    gNoLegSecurityAltIDP'''''''''''' = groupP FGSpec
+                                    gNoLegSecurityAltIDP'''''''''''' = groupP gNoLegSecurityAltIDSpec''''''''''''
+                                    gNoLegSecurityAltIDSpec'''''''''''' = FGSpec
                                        { gsLength = tNoLegSecurityAltID
                                        , gsSeperator = tLegSecurityAltID
                                        , gsBody = gNoLegSecurityAltIDBody'''''''''''' }
@@ -14377,9 +15840,11 @@ mMassQuote = FMSpec
                            gNoSecurityAltID''''''''' = FIXTag
                               { tName = "NoSecurityAltID"
                               , tnum = tnum tNoSecurityAltID
-                              , tparser = gNoSecurityAltIDP''''''''' }
+                              , tparser = gNoSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''''''''' }
 
-                           gNoSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoSecurityAltIDP''''''''' = groupP gNoSecurityAltIDSpec'''''''''
+                           gNoSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoSecurityAltID
                               , gsSeperator = tSecurityAltID
                               , gsBody = gNoSecurityAltIDBody''''''''' }
@@ -14391,9 +15856,11 @@ mMassQuote = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -14404,9 +15871,11 @@ mMassQuote = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -14477,9 +15946,11 @@ mBidRequest = FMSpec
          gNoBidComponents''' = FIXTag
             { tName = "NoBidComponents"
             , tnum = tnum tNoBidComponents
-            , tparser = gNoBidComponentsP''' }
+            , tparser = gNoBidComponentsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoBidComponentsSpec''' }
 
-         gNoBidComponentsP''' = groupP FGSpec
+         gNoBidComponentsP''' = groupP gNoBidComponentsSpec'''
+         gNoBidComponentsSpec''' = FGSpec
             { gsLength = tNoBidComponents
             , gsSeperator = tListID
             , gsBody = gNoBidComponentsBody''' }
@@ -14497,9 +15968,11 @@ mBidRequest = FMSpec
          gNoBidDescriptors''' = FIXTag
             { tName = "NoBidDescriptors"
             , tnum = tnum tNoBidDescriptors
-            , tparser = gNoBidDescriptorsP''' }
+            , tparser = gNoBidDescriptorsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoBidDescriptorsSpec''' }
 
-         gNoBidDescriptorsP''' = groupP FGSpec
+         gNoBidDescriptorsP''' = groupP gNoBidDescriptorsSpec'''
+         gNoBidDescriptorsSpec''' = FGSpec
             { gsLength = tNoBidDescriptors
             , gsSeperator = tBidDescriptorType
             , gsBody = gNoBidDescriptorsBody''' }
@@ -14534,9 +16007,11 @@ mBidResponse = FMSpec
          gNoBidComponents''' = FIXTag
             { tName = "NoBidComponents"
             , tnum = tnum tNoBidComponents
-            , tparser = gNoBidComponentsP''' }
+            , tparser = gNoBidComponentsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoBidComponentsSpec''' }
 
-         gNoBidComponentsP''' = groupP FGSpec
+         gNoBidComponentsP''' = groupP gNoBidComponentsSpec'''
+         gNoBidComponentsSpec''' = FGSpec
             { gsLength = tNoBidComponents
             , gsSeperator = tCommission
             , gsBody = gNoBidComponentsBody''' }
@@ -14580,9 +16055,11 @@ mListStrikePrice = FMSpec
          gNoStrikes''' = FIXTag
             { tName = "NoStrikes"
             , tnum = tnum tNoStrikes
-            , tparser = gNoStrikesP''' }
+            , tparser = gNoStrikesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStrikesSpec''' }
 
-         gNoStrikesP''' = groupP FGSpec
+         gNoStrikesP''' = groupP gNoStrikesSpec'''
+         gNoStrikesSpec''' = FGSpec
             { gsLength = tNoStrikes
             , gsSeperator = tSymbol
             , gsBody = gNoStrikesBody''' }
@@ -14633,9 +16110,11 @@ mListStrikePrice = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -14648,9 +16127,11 @@ mListStrikePrice = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -14662,9 +16143,11 @@ mListStrikePrice = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -14728,9 +16211,11 @@ mListStrikePrice = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -14741,9 +16226,11 @@ mListStrikePrice = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -14779,9 +16266,11 @@ mRegistrationInstructions = FMSpec
          gNoDistribInsts''' = FIXTag
             { tName = "NoDistribInsts"
             , tnum = tnum tNoDistribInsts
-            , tparser = gNoDistribInstsP''' }
+            , tparser = gNoDistribInstsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoDistribInstsSpec''' }
 
-         gNoDistribInstsP''' = groupP FGSpec
+         gNoDistribInstsP''' = groupP gNoDistribInstsSpec'''
+         gNoDistribInstsSpec''' = FGSpec
             { gsLength = tNoDistribInsts
             , gsSeperator = tDistribPaymentMethod
             , gsBody = gNoDistribInstsBody''' }
@@ -14798,9 +16287,11 @@ mRegistrationInstructions = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -14813,9 +16304,11 @@ mRegistrationInstructions = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -14827,9 +16320,11 @@ mRegistrationInstructions = FMSpec
          gNoRegistDtls''' = FIXTag
             { tName = "NoRegistDtls"
             , tnum = tnum tNoRegistDtls
-            , tparser = gNoRegistDtlsP''' }
+            , tparser = gNoRegistDtlsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRegistDtlsSpec''' }
 
-         gNoRegistDtlsP''' = groupP FGSpec
+         gNoRegistDtlsP''' = groupP gNoRegistDtlsSpec'''
+         gNoRegistDtlsSpec''' = FGSpec
             { gsLength = tNoRegistDtls
             , gsSeperator = tRegistDtls
             , gsBody = gNoRegistDtlsBody''' }
@@ -14846,9 +16341,11 @@ mRegistrationInstructions = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -14861,9 +16358,11 @@ mRegistrationInstructions = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -14898,9 +16397,11 @@ mRegistrationInstructionsResponse = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -14913,9 +16414,11 @@ mRegistrationInstructionsResponse = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -15037,9 +16540,11 @@ mOrderMassCancelRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -15052,9 +16557,11 @@ mOrderMassCancelRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -15065,9 +16572,11 @@ mOrderMassCancelRequest = FMSpec
          gNoUnderlyingSecurityAltID''' = FIXTag
             { tName = "NoUnderlyingSecurityAltID"
             , tnum = tnum tNoUnderlyingSecurityAltID
-            , tparser = gNoUnderlyingSecurityAltIDP''' }
+            , tparser = gNoUnderlyingSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''' }
 
-         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+         gNoUnderlyingSecurityAltIDP''' = groupP gNoUnderlyingSecurityAltIDSpec'''
+         gNoUnderlyingSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoUnderlyingSecurityAltID
             , gsSeperator = tUnderlyingSecurityAltID
             , gsBody = gNoUnderlyingSecurityAltIDBody''' }
@@ -15078,9 +16587,11 @@ mOrderMassCancelRequest = FMSpec
          gNoUnderlyingStips''' = FIXTag
             { tName = "NoUnderlyingStips"
             , tnum = tnum tNoUnderlyingStips
-            , tparser = gNoUnderlyingStipsP''' }
+            , tparser = gNoUnderlyingStipsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''' }
 
-         gNoUnderlyingStipsP''' = groupP FGSpec
+         gNoUnderlyingStipsP''' = groupP gNoUnderlyingStipsSpec'''
+         gNoUnderlyingStipsSpec''' = FGSpec
             { gsLength = tNoUnderlyingStips
             , gsSeperator = tUnderlyingStipType
             , gsBody = gNoUnderlyingStipsBody''' }
@@ -15207,9 +16718,11 @@ mOrderMassCancelReport = FMSpec
          gNoAffectedOrders''' = FIXTag
             { tName = "NoAffectedOrders"
             , tnum = tnum tNoAffectedOrders
-            , tparser = gNoAffectedOrdersP''' }
+            , tparser = gNoAffectedOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAffectedOrdersSpec''' }
 
-         gNoAffectedOrdersP''' = groupP FGSpec
+         gNoAffectedOrdersP''' = groupP gNoAffectedOrdersSpec'''
+         gNoAffectedOrdersSpec''' = FGSpec
             { gsLength = tNoAffectedOrders
             , gsSeperator = tOrigClOrdID
             , gsBody = gNoAffectedOrdersBody''' }
@@ -15221,9 +16734,11 @@ mOrderMassCancelReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -15236,9 +16751,11 @@ mOrderMassCancelReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -15249,9 +16766,11 @@ mOrderMassCancelReport = FMSpec
          gNoUnderlyingSecurityAltID''' = FIXTag
             { tName = "NoUnderlyingSecurityAltID"
             , tnum = tnum tNoUnderlyingSecurityAltID
-            , tparser = gNoUnderlyingSecurityAltIDP''' }
+            , tparser = gNoUnderlyingSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''' }
 
-         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+         gNoUnderlyingSecurityAltIDP''' = groupP gNoUnderlyingSecurityAltIDSpec'''
+         gNoUnderlyingSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoUnderlyingSecurityAltID
             , gsSeperator = tUnderlyingSecurityAltID
             , gsBody = gNoUnderlyingSecurityAltIDBody''' }
@@ -15262,9 +16781,11 @@ mOrderMassCancelReport = FMSpec
          gNoUnderlyingStips''' = FIXTag
             { tName = "NoUnderlyingStips"
             , tnum = tnum tNoUnderlyingStips
-            , tparser = gNoUnderlyingStipsP''' }
+            , tparser = gNoUnderlyingStipsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''' }
 
-         gNoUnderlyingStipsP''' = groupP FGSpec
+         gNoUnderlyingStipsP''' = groupP gNoUnderlyingStipsSpec'''
+         gNoUnderlyingStipsSpec''' = FGSpec
             { gsLength = tNoUnderlyingStips
             , gsSeperator = tUnderlyingStipType
             , gsBody = gNoUnderlyingStipsBody''' }
@@ -15396,9 +16917,11 @@ mNewOrderCross = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -15411,9 +16934,11 @@ mNewOrderCross = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -15464,9 +16989,11 @@ mNewOrderCross = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -15478,9 +17005,11 @@ mNewOrderCross = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -15491,9 +17020,11 @@ mNewOrderCross = FMSpec
          gNoSides''' = FIXTag
             { tName = "NoSides"
             , tnum = tnum tNoSides
-            , tparser = gNoSidesP''' }
+            , tparser = gNoSidesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSidesSpec''' }
 
-         gNoSidesP''' = groupP FGSpec
+         gNoSidesP''' = groupP gNoSidesSpec'''
+         gNoSidesSpec''' = FGSpec
             { gsLength = tNoSides
             , gsSeperator = tSide
             , gsBody = gNoSidesBody''' }
@@ -15542,9 +17073,11 @@ mNewOrderCross = FMSpec
                   gNoAllocs'''''' = FIXTag
                      { tName = "NoAllocs"
                      , tnum = tnum tNoAllocs
-                     , tparser = gNoAllocsP'''''' }
+                     , tparser = gNoAllocsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec'''''' }
 
-                  gNoAllocsP'''''' = groupP FGSpec
+                  gNoAllocsP'''''' = groupP gNoAllocsSpec''''''
+                  gNoAllocsSpec'''''' = FGSpec
                      { gsLength = tNoAllocs
                      , gsSeperator = tAllocAccount
                      , gsBody = gNoAllocsBody'''''' }
@@ -15559,9 +17092,11 @@ mNewOrderCross = FMSpec
                            gNoNestedPartyIDs''''''''' = FIXTag
                               { tName = "NoNestedPartyIDs"
                               , tnum = tnum tNoNestedPartyIDs
-                              , tparser = gNoNestedPartyIDsP''''''''' }
+                              , tparser = gNoNestedPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec''''''''' }
 
-                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartyIDsP''''''''' = groupP gNoNestedPartyIDsSpec'''''''''
+                           gNoNestedPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartyIDs
                               , gsSeperator = tNestedPartyID
                               , gsBody = gNoNestedPartyIDsBody''''''''' }
@@ -15574,9 +17109,11 @@ mNewOrderCross = FMSpec
                                     gNoNestedPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNestedPartySubIDs"
                                        , tnum = tnum tNoNestedPartySubIDs
-                                       , tparser = gNoNestedPartySubIDsP'''''''''''' }
+                                       , tparser = gNoNestedPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec'''''''''''' }
 
-                                    gNoNestedPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNestedPartySubIDsP'''''''''''' = groupP gNoNestedPartySubIDsSpec''''''''''''
+                                    gNoNestedPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNestedPartySubIDs
                                        , gsSeperator = tNestedPartySubID
                                        , gsBody = gNoNestedPartySubIDsBody'''''''''''' }
@@ -15589,9 +17126,11 @@ mNewOrderCross = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -15604,9 +17143,11 @@ mNewOrderCross = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -15619,9 +17160,11 @@ mNewOrderCross = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -15632,9 +17175,11 @@ mNewOrderCross = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -15645,9 +17190,11 @@ mNewOrderCross = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -15702,9 +17249,11 @@ mNewOrderCross = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -15715,9 +17264,11 @@ mNewOrderCross = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -15852,9 +17403,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -15867,9 +17420,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -15920,9 +17475,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -15934,9 +17491,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -15947,9 +17506,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoSides''' = FIXTag
             { tName = "NoSides"
             , tnum = tnum tNoSides
-            , tparser = gNoSidesP''' }
+            , tparser = gNoSidesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSidesSpec''' }
 
-         gNoSidesP''' = groupP FGSpec
+         gNoSidesP''' = groupP gNoSidesSpec'''
+         gNoSidesSpec''' = FGSpec
             { gsLength = tNoSides
             , gsSeperator = tSide
             , gsBody = gNoSidesBody''' }
@@ -16000,9 +17561,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                   gNoAllocs'''''' = FIXTag
                      { tName = "NoAllocs"
                      , tnum = tnum tNoAllocs
-                     , tparser = gNoAllocsP'''''' }
+                     , tparser = gNoAllocsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec'''''' }
 
-                  gNoAllocsP'''''' = groupP FGSpec
+                  gNoAllocsP'''''' = groupP gNoAllocsSpec''''''
+                  gNoAllocsSpec'''''' = FGSpec
                      { gsLength = tNoAllocs
                      , gsSeperator = tAllocAccount
                      , gsBody = gNoAllocsBody'''''' }
@@ -16017,9 +17580,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                            gNoNestedPartyIDs''''''''' = FIXTag
                               { tName = "NoNestedPartyIDs"
                               , tnum = tnum tNoNestedPartyIDs
-                              , tparser = gNoNestedPartyIDsP''''''''' }
+                              , tparser = gNoNestedPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec''''''''' }
 
-                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartyIDsP''''''''' = groupP gNoNestedPartyIDsSpec'''''''''
+                           gNoNestedPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartyIDs
                               , gsSeperator = tNestedPartyID
                               , gsBody = gNoNestedPartyIDsBody''''''''' }
@@ -16032,9 +17597,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                                     gNoNestedPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNestedPartySubIDs"
                                        , tnum = tnum tNoNestedPartySubIDs
-                                       , tparser = gNoNestedPartySubIDsP'''''''''''' }
+                                       , tparser = gNoNestedPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec'''''''''''' }
 
-                                    gNoNestedPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNestedPartySubIDsP'''''''''''' = groupP gNoNestedPartySubIDsSpec''''''''''''
+                                    gNoNestedPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNestedPartySubIDs
                                        , gsSeperator = tNestedPartySubID
                                        , gsBody = gNoNestedPartySubIDsBody'''''''''''' }
@@ -16047,9 +17614,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -16062,9 +17631,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -16077,9 +17648,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -16090,9 +17663,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -16103,9 +17678,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -16160,9 +17737,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -16173,9 +17752,11 @@ mCrossOrderCancelReplaceRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -16250,9 +17831,11 @@ mCrossOrderCancelRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -16265,9 +17848,11 @@ mCrossOrderCancelRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -16318,9 +17903,11 @@ mCrossOrderCancelRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -16332,9 +17919,11 @@ mCrossOrderCancelRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -16345,9 +17934,11 @@ mCrossOrderCancelRequest = FMSpec
          gNoSides''' = FIXTag
             { tName = "NoSides"
             , tnum = tnum tNoSides
-            , tparser = gNoSidesP''' }
+            , tparser = gNoSidesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSidesSpec''' }
 
-         gNoSidesP''' = groupP FGSpec
+         gNoSidesP''' = groupP gNoSidesSpec'''
+         gNoSidesSpec''' = FGSpec
             { gsLength = tNoSides
             , gsSeperator = tSide
             , gsBody = gNoSidesBody''' }
@@ -16374,9 +17965,11 @@ mCrossOrderCancelRequest = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -16389,9 +17982,11 @@ mCrossOrderCancelRequest = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -16404,9 +17999,11 @@ mCrossOrderCancelRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -16461,9 +18058,11 @@ mCrossOrderCancelRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -16474,9 +18073,11 @@ mCrossOrderCancelRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -16532,9 +18133,11 @@ mSecurityTypes = FMSpec
          gNoSecurityTypes''' = FIXTag
             { tName = "NoSecurityTypes"
             , tnum = tnum tNoSecurityTypes
-            , tparser = gNoSecurityTypesP''' }
+            , tparser = gNoSecurityTypesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityTypesSpec''' }
 
-         gNoSecurityTypesP''' = groupP FGSpec
+         gNoSecurityTypesP''' = groupP gNoSecurityTypesSpec'''
+         gNoSecurityTypesSpec''' = FGSpec
             { gsLength = tNoSecurityTypes
             , gsSeperator = tSecurityType
             , gsBody = gNoSecurityTypesBody''' }
@@ -16624,9 +18227,11 @@ mSecurityListRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -16639,9 +18244,11 @@ mSecurityListRequest = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -16652,9 +18259,11 @@ mSecurityListRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -16705,9 +18314,11 @@ mSecurityListRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -16719,9 +18330,11 @@ mSecurityListRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -16732,9 +18345,11 @@ mSecurityListRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -16789,9 +18404,11 @@ mSecurityListRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -16802,9 +18419,11 @@ mSecurityListRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -16834,9 +18453,11 @@ mSecurityList = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -16925,9 +18546,11 @@ mSecurityList = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -16940,9 +18563,11 @@ mSecurityList = FMSpec
                   gNoInstrAttrib'''''' = FIXTag
                      { tName = "NoInstrAttrib"
                      , tnum = tnum tNoInstrAttrib
-                     , tparser = gNoInstrAttribP'''''' }
+                     , tparser = gNoInstrAttribP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec'''''' }
 
-                  gNoInstrAttribP'''''' = groupP FGSpec
+                  gNoInstrAttribP'''''' = groupP gNoInstrAttribSpec''''''
+                  gNoInstrAttribSpec'''''' = FGSpec
                      { gsLength = tNoInstrAttrib
                      , gsSeperator = tInstrAttribType
                      , gsBody = gNoInstrAttribBody'''''' }
@@ -16953,9 +18578,11 @@ mSecurityList = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -17014,9 +18641,11 @@ mSecurityList = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -17027,9 +18656,11 @@ mSecurityList = FMSpec
                            gNoLegStipulations''''''''' = FIXTag
                               { tName = "NoLegStipulations"
                               , tnum = tnum tNoLegStipulations
-                              , tparser = gNoLegStipulationsP''''''''' }
+                              , tparser = gNoLegStipulationsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec''''''''' }
 
-                           gNoLegStipulationsP''''''''' = groupP FGSpec
+                           gNoLegStipulationsP''''''''' = groupP gNoLegStipulationsSpec'''''''''
+                           gNoLegStipulationsSpec''''''''' = FGSpec
                               { gsLength = tNoLegStipulations
                               , gsSeperator = tLegStipulationType
                               , gsBody = gNoLegStipulationsBody''''''''' }
@@ -17041,9 +18672,11 @@ mSecurityList = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -17054,9 +18687,11 @@ mSecurityList = FMSpec
                   gNoStipulations'''''' = FIXTag
                      { tName = "NoStipulations"
                      , tnum = tnum tNoStipulations
-                     , tparser = gNoStipulationsP'''''' }
+                     , tparser = gNoStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec'''''' }
 
-                  gNoStipulationsP'''''' = groupP FGSpec
+                  gNoStipulationsP'''''' = groupP gNoStipulationsSpec''''''
+                  gNoStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoStipulations
                      , gsSeperator = tStipulationType
                      , gsBody = gNoStipulationsBody'''''' }
@@ -17067,9 +18702,11 @@ mSecurityList = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -17124,9 +18761,11 @@ mSecurityList = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -17137,9 +18776,11 @@ mSecurityList = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -17220,9 +18861,11 @@ mDerivativeSecurityListRequest = FMSpec
          gNoUnderlyingSecurityAltID''' = FIXTag
             { tName = "NoUnderlyingSecurityAltID"
             , tnum = tnum tNoUnderlyingSecurityAltID
-            , tparser = gNoUnderlyingSecurityAltIDP''' }
+            , tparser = gNoUnderlyingSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''' }
 
-         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+         gNoUnderlyingSecurityAltIDP''' = groupP gNoUnderlyingSecurityAltIDSpec'''
+         gNoUnderlyingSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoUnderlyingSecurityAltID
             , gsSeperator = tUnderlyingSecurityAltID
             , gsBody = gNoUnderlyingSecurityAltIDBody''' }
@@ -17233,9 +18876,11 @@ mDerivativeSecurityListRequest = FMSpec
          gNoUnderlyingStips''' = FIXTag
             { tName = "NoUnderlyingStips"
             , tnum = tnum tNoUnderlyingStips
-            , tparser = gNoUnderlyingStipsP''' }
+            , tparser = gNoUnderlyingStipsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''' }
 
-         gNoUnderlyingStipsP''' = groupP FGSpec
+         gNoUnderlyingStipsP''' = groupP gNoUnderlyingStipsSpec'''
+         gNoUnderlyingStipsSpec''' = FGSpec
             { gsLength = tNoUnderlyingStips
             , gsSeperator = tUnderlyingStipType
             , gsBody = gNoUnderlyingStipsBody''' }
@@ -17310,9 +18955,11 @@ mDerivativeSecurityList = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -17374,9 +19021,11 @@ mDerivativeSecurityList = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -17389,9 +19038,11 @@ mDerivativeSecurityList = FMSpec
                   gNoInstrAttrib'''''' = FIXTag
                      { tName = "NoInstrAttrib"
                      , tnum = tnum tNoInstrAttrib
-                     , tparser = gNoInstrAttribP'''''' }
+                     , tparser = gNoInstrAttribP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec'''''' }
 
-                  gNoInstrAttribP'''''' = groupP FGSpec
+                  gNoInstrAttribP'''''' = groupP gNoInstrAttribSpec''''''
+                  gNoInstrAttribSpec'''''' = FGSpec
                      { gsLength = tNoInstrAttrib
                      , gsSeperator = tInstrAttribType
                      , gsBody = gNoInstrAttribBody'''''' }
@@ -17402,9 +19053,11 @@ mDerivativeSecurityList = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -17455,9 +19108,11 @@ mDerivativeSecurityList = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -17469,9 +19124,11 @@ mDerivativeSecurityList = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -17483,9 +19140,11 @@ mDerivativeSecurityList = FMSpec
          gNoUnderlyingSecurityAltID''' = FIXTag
             { tName = "NoUnderlyingSecurityAltID"
             , tnum = tnum tNoUnderlyingSecurityAltID
-            , tparser = gNoUnderlyingSecurityAltIDP''' }
+            , tparser = gNoUnderlyingSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''' }
 
-         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+         gNoUnderlyingSecurityAltIDP''' = groupP gNoUnderlyingSecurityAltIDSpec'''
+         gNoUnderlyingSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoUnderlyingSecurityAltID
             , gsSeperator = tUnderlyingSecurityAltID
             , gsBody = gNoUnderlyingSecurityAltIDBody''' }
@@ -17496,9 +19155,11 @@ mDerivativeSecurityList = FMSpec
          gNoUnderlyingStips''' = FIXTag
             { tName = "NoUnderlyingStips"
             , tnum = tnum tNoUnderlyingStips
-            , tparser = gNoUnderlyingStipsP''' }
+            , tparser = gNoUnderlyingStipsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''' }
 
-         gNoUnderlyingStipsP''' = groupP FGSpec
+         gNoUnderlyingStipsP''' = groupP gNoUnderlyingStipsSpec'''
+         gNoUnderlyingStipsSpec''' = FGSpec
             { gsLength = tNoUnderlyingStips
             , gsSeperator = tUnderlyingStipType
             , gsBody = gNoUnderlyingStipsBody''' }
@@ -17651,9 +19312,11 @@ mNewOrderMultileg = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -17668,9 +19331,11 @@ mNewOrderMultileg = FMSpec
                   gNoNested3PartyIDs'''''' = FIXTag
                      { tName = "NoNested3PartyIDs"
                      , tnum = tnum tNoNested3PartyIDs
-                     , tparser = gNoNested3PartyIDsP'''''' }
+                     , tparser = gNoNested3PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested3PartyIDsSpec'''''' }
 
-                  gNoNested3PartyIDsP'''''' = groupP FGSpec
+                  gNoNested3PartyIDsP'''''' = groupP gNoNested3PartyIDsSpec''''''
+                  gNoNested3PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested3PartyIDs
                      , gsSeperator = tNested3PartyID
                      , gsBody = gNoNested3PartyIDsBody'''''' }
@@ -17683,9 +19348,11 @@ mNewOrderMultileg = FMSpec
                            gNoNested3PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested3PartySubIDs"
                               , tnum = tnum tNoNested3PartySubIDs
-                              , tparser = gNoNested3PartySubIDsP''''''''' }
+                              , tparser = gNoNested3PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested3PartySubIDsSpec''''''''' }
 
-                           gNoNested3PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested3PartySubIDsP''''''''' = groupP gNoNested3PartySubIDsSpec'''''''''
+                           gNoNested3PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested3PartySubIDs
                               , gsSeperator = tNested3PartySubID
                               , gsBody = gNoNested3PartySubIDsBody''''''''' }
@@ -17698,9 +19365,11 @@ mNewOrderMultileg = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -17713,9 +19382,11 @@ mNewOrderMultileg = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -17777,9 +19448,11 @@ mNewOrderMultileg = FMSpec
                   gNoLegAllocs'''''' = FIXTag
                      { tName = "NoLegAllocs"
                      , tnum = tnum tNoLegAllocs
-                     , tparser = gNoLegAllocsP'''''' }
+                     , tparser = gNoLegAllocsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegAllocsSpec'''''' }
 
-                  gNoLegAllocsP'''''' = groupP FGSpec
+                  gNoLegAllocsP'''''' = groupP gNoLegAllocsSpec''''''
+                  gNoLegAllocsSpec'''''' = FGSpec
                      { gsLength = tNoLegAllocs
                      , gsSeperator = tLegAllocAccount
                      , gsBody = gNoLegAllocsBody'''''' }
@@ -17794,9 +19467,11 @@ mNewOrderMultileg = FMSpec
                            gNoNested2PartyIDs''''''''' = FIXTag
                               { tName = "NoNested2PartyIDs"
                               , tnum = tnum tNoNested2PartyIDs
-                              , tparser = gNoNested2PartyIDsP''''''''' }
+                              , tparser = gNoNested2PartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec''''''''' }
 
-                           gNoNested2PartyIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartyIDsP''''''''' = groupP gNoNested2PartyIDsSpec'''''''''
+                           gNoNested2PartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartyIDs
                               , gsSeperator = tNested2PartyID
                               , gsBody = gNoNested2PartyIDsBody''''''''' }
@@ -17809,9 +19484,11 @@ mNewOrderMultileg = FMSpec
                                     gNoNested2PartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNested2PartySubIDs"
                                        , tnum = tnum tNoNested2PartySubIDs
-                                       , tparser = gNoNested2PartySubIDsP'''''''''''' }
+                                       , tparser = gNoNested2PartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec'''''''''''' }
 
-                                    gNoNested2PartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNested2PartySubIDsP'''''''''''' = groupP gNoNested2PartySubIDsSpec''''''''''''
+                                    gNoNested2PartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNested2PartySubIDs
                                        , gsSeperator = tNested2PartySubID
                                        , gsBody = gNoNested2PartySubIDsBody'''''''''''' }
@@ -17824,9 +19501,11 @@ mNewOrderMultileg = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -17837,9 +19516,11 @@ mNewOrderMultileg = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -17850,9 +19531,11 @@ mNewOrderMultileg = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -17865,9 +19548,11 @@ mNewOrderMultileg = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -17880,9 +19565,11 @@ mNewOrderMultileg = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -17895,9 +19582,11 @@ mNewOrderMultileg = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -17909,9 +19598,11 @@ mNewOrderMultileg = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -17922,9 +19613,11 @@ mNewOrderMultileg = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -17935,9 +19628,11 @@ mNewOrderMultileg = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -17992,9 +19687,11 @@ mNewOrderMultileg = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -18005,9 +19702,11 @@ mNewOrderMultileg = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -18164,9 +19863,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -18181,9 +19882,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoNested3PartyIDs'''''' = FIXTag
                      { tName = "NoNested3PartyIDs"
                      , tnum = tnum tNoNested3PartyIDs
-                     , tparser = gNoNested3PartyIDsP'''''' }
+                     , tparser = gNoNested3PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested3PartyIDsSpec'''''' }
 
-                  gNoNested3PartyIDsP'''''' = groupP FGSpec
+                  gNoNested3PartyIDsP'''''' = groupP gNoNested3PartyIDsSpec''''''
+                  gNoNested3PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested3PartyIDs
                      , gsSeperator = tNested3PartyID
                      , gsBody = gNoNested3PartyIDsBody'''''' }
@@ -18196,9 +19899,11 @@ mMultilegOrderCancelReplace = FMSpec
                            gNoNested3PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested3PartySubIDs"
                               , tnum = tnum tNoNested3PartySubIDs
-                              , tparser = gNoNested3PartySubIDsP''''''''' }
+                              , tparser = gNoNested3PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested3PartySubIDsSpec''''''''' }
 
-                           gNoNested3PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested3PartySubIDsP''''''''' = groupP gNoNested3PartySubIDsSpec'''''''''
+                           gNoNested3PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested3PartySubIDs
                               , gsSeperator = tNested3PartySubID
                               , gsBody = gNoNested3PartySubIDsBody''''''''' }
@@ -18211,9 +19916,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -18226,9 +19933,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -18290,9 +19999,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoLegAllocs'''''' = FIXTag
                      { tName = "NoLegAllocs"
                      , tnum = tnum tNoLegAllocs
-                     , tparser = gNoLegAllocsP'''''' }
+                     , tparser = gNoLegAllocsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegAllocsSpec'''''' }
 
-                  gNoLegAllocsP'''''' = groupP FGSpec
+                  gNoLegAllocsP'''''' = groupP gNoLegAllocsSpec''''''
+                  gNoLegAllocsSpec'''''' = FGSpec
                      { gsLength = tNoLegAllocs
                      , gsSeperator = tLegAllocAccount
                      , gsBody = gNoLegAllocsBody'''''' }
@@ -18307,9 +20018,11 @@ mMultilegOrderCancelReplace = FMSpec
                            gNoNested2PartyIDs''''''''' = FIXTag
                               { tName = "NoNested2PartyIDs"
                               , tnum = tnum tNoNested2PartyIDs
-                              , tparser = gNoNested2PartyIDsP''''''''' }
+                              , tparser = gNoNested2PartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec''''''''' }
 
-                           gNoNested2PartyIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartyIDsP''''''''' = groupP gNoNested2PartyIDsSpec'''''''''
+                           gNoNested2PartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartyIDs
                               , gsSeperator = tNested2PartyID
                               , gsBody = gNoNested2PartyIDsBody''''''''' }
@@ -18322,9 +20035,11 @@ mMultilegOrderCancelReplace = FMSpec
                                     gNoNested2PartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNested2PartySubIDs"
                                        , tnum = tnum tNoNested2PartySubIDs
-                                       , tparser = gNoNested2PartySubIDsP'''''''''''' }
+                                       , tparser = gNoNested2PartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec'''''''''''' }
 
-                                    gNoNested2PartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNested2PartySubIDsP'''''''''''' = groupP gNoNested2PartySubIDsSpec''''''''''''
+                                    gNoNested2PartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNested2PartySubIDs
                                        , gsSeperator = tNested2PartySubID
                                        , gsBody = gNoNested2PartySubIDsBody'''''''''''' }
@@ -18337,9 +20052,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -18350,9 +20067,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -18363,9 +20082,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -18378,9 +20099,11 @@ mMultilegOrderCancelReplace = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -18393,9 +20116,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -18408,9 +20133,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -18422,9 +20149,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -18435,9 +20164,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -18448,9 +20179,11 @@ mMultilegOrderCancelReplace = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -18505,9 +20238,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -18518,9 +20253,11 @@ mMultilegOrderCancelReplace = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -18631,9 +20368,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoDates''' = FIXTag
             { tName = "NoDates"
             , tnum = tnum tNoDates
-            , tparser = gNoDatesP''' }
+            , tparser = gNoDatesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoDatesSpec''' }
 
-         gNoDatesP''' = groupP FGSpec
+         gNoDatesP''' = groupP gNoDatesSpec'''
+         gNoDatesSpec''' = FGSpec
             { gsLength = tNoDates
             , gsSeperator = tTradeDate
             , gsBody = gNoDatesBody''' }
@@ -18644,9 +20383,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -18659,9 +20400,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -18672,9 +20415,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -18725,9 +20470,11 @@ mTradeCaptureReportRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -18739,9 +20486,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -18754,9 +20503,11 @@ mTradeCaptureReportRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -18768,9 +20519,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -18781,9 +20534,11 @@ mTradeCaptureReportRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -18838,9 +20593,11 @@ mTradeCaptureReportRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -18851,9 +20608,11 @@ mTradeCaptureReportRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -18996,9 +20755,11 @@ mTradeCaptureReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -19011,9 +20772,11 @@ mTradeCaptureReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -19075,9 +20838,11 @@ mTradeCaptureReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -19088,9 +20853,11 @@ mTradeCaptureReport = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -19101,9 +20868,11 @@ mTradeCaptureReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -19116,9 +20885,11 @@ mTradeCaptureReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -19131,9 +20902,11 @@ mTradeCaptureReport = FMSpec
          gNoPosAmt''' = FIXTag
             { tName = "NoPosAmt"
             , tnum = tnum tNoPosAmt
-            , tparser = gNoPosAmtP''' }
+            , tparser = gNoPosAmtP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPosAmtSpec''' }
 
-         gNoPosAmtP''' = groupP FGSpec
+         gNoPosAmtP''' = groupP gNoPosAmtSpec'''
+         gNoPosAmtSpec''' = FGSpec
             { gsLength = tNoPosAmt
             , gsSeperator = tPosAmtType
             , gsBody = gNoPosAmtBody''' }
@@ -19144,9 +20917,11 @@ mTradeCaptureReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -19157,9 +20932,11 @@ mTradeCaptureReport = FMSpec
          gNoSides''' = FIXTag
             { tName = "NoSides"
             , tnum = tnum tNoSides
-            , tparser = gNoSidesP''' }
+            , tparser = gNoSidesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSidesSpec''' }
 
-         gNoSidesP''' = groupP FGSpec
+         gNoSidesP''' = groupP gNoSidesSpec'''
+         gNoSidesSpec''' = FGSpec
             { gsLength = tNoSides
             , gsSeperator = tSide
             , gsBody = gNoSidesBody''' }
@@ -19233,9 +21010,11 @@ mTradeCaptureReport = FMSpec
                   gNoAllocs'''''' = FIXTag
                      { tName = "NoAllocs"
                      , tnum = tnum tNoAllocs
-                     , tparser = gNoAllocsP'''''' }
+                     , tparser = gNoAllocsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec'''''' }
 
-                  gNoAllocsP'''''' = groupP FGSpec
+                  gNoAllocsP'''''' = groupP gNoAllocsSpec''''''
+                  gNoAllocsSpec'''''' = FGSpec
                      { gsLength = tNoAllocs
                      , gsSeperator = tAllocAccount
                      , gsBody = gNoAllocsBody'''''' }
@@ -19250,9 +21029,11 @@ mTradeCaptureReport = FMSpec
                            gNoNested2PartyIDs''''''''' = FIXTag
                               { tName = "NoNested2PartyIDs"
                               , tnum = tnum tNoNested2PartyIDs
-                              , tparser = gNoNested2PartyIDsP''''''''' }
+                              , tparser = gNoNested2PartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec''''''''' }
 
-                           gNoNested2PartyIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartyIDsP''''''''' = groupP gNoNested2PartyIDsSpec'''''''''
+                           gNoNested2PartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartyIDs
                               , gsSeperator = tNested2PartyID
                               , gsBody = gNoNested2PartyIDsBody''''''''' }
@@ -19265,9 +21046,11 @@ mTradeCaptureReport = FMSpec
                                     gNoNested2PartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNested2PartySubIDs"
                                        , tnum = tnum tNoNested2PartySubIDs
-                                       , tparser = gNoNested2PartySubIDsP'''''''''''' }
+                                       , tparser = gNoNested2PartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec'''''''''''' }
 
-                                    gNoNested2PartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNested2PartySubIDsP'''''''''''' = groupP gNoNested2PartySubIDsSpec''''''''''''
+                                    gNoNested2PartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNested2PartySubIDs
                                        , gsSeperator = tNested2PartySubID
                                        , gsBody = gNoNested2PartySubIDsBody'''''''''''' }
@@ -19280,9 +21063,11 @@ mTradeCaptureReport = FMSpec
                   gNoClearingInstructions'''''' = FIXTag
                      { tName = "NoClearingInstructions"
                      , tnum = tnum tNoClearingInstructions
-                     , tparser = gNoClearingInstructionsP'''''' }
+                     , tparser = gNoClearingInstructionsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoClearingInstructionsSpec'''''' }
 
-                  gNoClearingInstructionsP'''''' = groupP FGSpec
+                  gNoClearingInstructionsP'''''' = groupP gNoClearingInstructionsSpec''''''
+                  gNoClearingInstructionsSpec'''''' = FGSpec
                      { gsLength = tNoClearingInstructions
                      , gsSeperator = tClearingInstruction
                      , gsBody = gNoClearingInstructionsBody'''''' }
@@ -19293,9 +21078,11 @@ mTradeCaptureReport = FMSpec
                   gNoContAmts'''''' = FIXTag
                      { tName = "NoContAmts"
                      , tnum = tnum tNoContAmts
-                     , tparser = gNoContAmtsP'''''' }
+                     , tparser = gNoContAmtsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoContAmtsSpec'''''' }
 
-                  gNoContAmtsP'''''' = groupP FGSpec
+                  gNoContAmtsP'''''' = groupP gNoContAmtsSpec''''''
+                  gNoContAmtsSpec'''''' = FGSpec
                      { gsLength = tNoContAmts
                      , gsSeperator = tContAmtType
                      , gsBody = gNoContAmtsBody'''''' }
@@ -19307,9 +21094,11 @@ mTradeCaptureReport = FMSpec
                   gNoMiscFees'''''' = FIXTag
                      { tName = "NoMiscFees"
                      , tnum = tnum tNoMiscFees
-                     , tparser = gNoMiscFeesP'''''' }
+                     , tparser = gNoMiscFeesP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec'''''' }
 
-                  gNoMiscFeesP'''''' = groupP FGSpec
+                  gNoMiscFeesP'''''' = groupP gNoMiscFeesSpec''''''
+                  gNoMiscFeesSpec'''''' = FGSpec
                      { gsLength = tNoMiscFees
                      , gsSeperator = tMiscFeeAmt
                      , gsBody = gNoMiscFeesBody'''''' }
@@ -19322,9 +21111,11 @@ mTradeCaptureReport = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -19337,9 +21128,11 @@ mTradeCaptureReport = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -19351,9 +21144,11 @@ mTradeCaptureReport = FMSpec
                   gNoStipulations'''''' = FIXTag
                      { tName = "NoStipulations"
                      , tnum = tnum tNoStipulations
-                     , tparser = gNoStipulationsP'''''' }
+                     , tparser = gNoStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec'''''' }
 
-                  gNoStipulationsP'''''' = groupP FGSpec
+                  gNoStipulationsP'''''' = groupP gNoStipulationsSpec''''''
+                  gNoStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoStipulations
                      , gsSeperator = tStipulationType
                      , gsBody = gNoStipulationsBody'''''' }
@@ -19365,9 +21160,11 @@ mTradeCaptureReport = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -19379,9 +21176,11 @@ mTradeCaptureReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -19436,9 +21235,11 @@ mTradeCaptureReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -19449,9 +21250,11 @@ mTradeCaptureReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -19571,9 +21374,11 @@ mOrderMassStatusRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -19586,9 +21391,11 @@ mOrderMassStatusRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -19601,9 +21408,11 @@ mOrderMassStatusRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -19615,9 +21424,11 @@ mOrderMassStatusRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -19628,9 +21439,11 @@ mOrderMassStatusRequest = FMSpec
          gNoUnderlyingSecurityAltID''' = FIXTag
             { tName = "NoUnderlyingSecurityAltID"
             , tnum = tnum tNoUnderlyingSecurityAltID
-            , tparser = gNoUnderlyingSecurityAltIDP''' }
+            , tparser = gNoUnderlyingSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''' }
 
-         gNoUnderlyingSecurityAltIDP''' = groupP FGSpec
+         gNoUnderlyingSecurityAltIDP''' = groupP gNoUnderlyingSecurityAltIDSpec'''
+         gNoUnderlyingSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoUnderlyingSecurityAltID
             , gsSeperator = tUnderlyingSecurityAltID
             , gsBody = gNoUnderlyingSecurityAltIDBody''' }
@@ -19641,9 +21454,11 @@ mOrderMassStatusRequest = FMSpec
          gNoUnderlyingStips''' = FIXTag
             { tName = "NoUnderlyingStips"
             , tnum = tnum tNoUnderlyingStips
-            , tparser = gNoUnderlyingStipsP''' }
+            , tparser = gNoUnderlyingStipsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''' }
 
-         gNoUnderlyingStipsP''' = groupP FGSpec
+         gNoUnderlyingStipsP''' = groupP gNoUnderlyingStipsSpec'''
+         gNoUnderlyingStipsSpec''' = FGSpec
             { gsLength = tNoUnderlyingStips
             , gsSeperator = tUnderlyingStipType
             , gsBody = gNoUnderlyingStipsBody''' }
@@ -19673,9 +21488,11 @@ mQuoteRequestReject = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -19782,9 +21599,11 @@ mQuoteRequestReject = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -19797,9 +21616,11 @@ mQuoteRequestReject = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -19861,9 +21682,11 @@ mQuoteRequestReject = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -19874,9 +21697,11 @@ mQuoteRequestReject = FMSpec
                            gNoLegStipulations''''''''' = FIXTag
                               { tName = "NoLegStipulations"
                               , tnum = tnum tNoLegStipulations
-                              , tparser = gNoLegStipulationsP''''''''' }
+                              , tparser = gNoLegStipulationsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec''''''''' }
 
-                           gNoLegStipulationsP''''''''' = groupP FGSpec
+                           gNoLegStipulationsP''''''''' = groupP gNoLegStipulationsSpec'''''''''
+                           gNoLegStipulationsSpec''''''''' = FGSpec
                               { gsLength = tNoLegStipulations
                               , gsSeperator = tLegStipulationType
                               , gsBody = gNoLegStipulationsBody''''''''' }
@@ -19887,9 +21712,11 @@ mQuoteRequestReject = FMSpec
                            gNoNestedPartyIDs''''''''' = FIXTag
                               { tName = "NoNestedPartyIDs"
                               , tnum = tnum tNoNestedPartyIDs
-                              , tparser = gNoNestedPartyIDsP''''''''' }
+                              , tparser = gNoNestedPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec''''''''' }
 
-                           gNoNestedPartyIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartyIDsP''''''''' = groupP gNoNestedPartyIDsSpec'''''''''
+                           gNoNestedPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartyIDs
                               , gsSeperator = tNestedPartyID
                               , gsBody = gNoNestedPartyIDsBody''''''''' }
@@ -19902,9 +21729,11 @@ mQuoteRequestReject = FMSpec
                                     gNoNestedPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoNestedPartySubIDs"
                                        , tnum = tnum tNoNestedPartySubIDs
-                                       , tparser = gNoNestedPartySubIDsP'''''''''''' }
+                                       , tparser = gNoNestedPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec'''''''''''' }
 
-                                    gNoNestedPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoNestedPartySubIDsP'''''''''''' = groupP gNoNestedPartySubIDsSpec''''''''''''
+                                    gNoNestedPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoNestedPartySubIDs
                                        , gsSeperator = tNestedPartySubID
                                        , gsBody = gNoNestedPartySubIDsBody'''''''''''' }
@@ -19917,9 +21746,11 @@ mQuoteRequestReject = FMSpec
                   gNoPartyIDs'''''' = FIXTag
                      { tName = "NoPartyIDs"
                      , tnum = tnum tNoPartyIDs
-                     , tparser = gNoPartyIDsP'''''' }
+                     , tparser = gNoPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec'''''' }
 
-                  gNoPartyIDsP'''''' = groupP FGSpec
+                  gNoPartyIDsP'''''' = groupP gNoPartyIDsSpec''''''
+                  gNoPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartyIDs
                      , gsSeperator = tPartyID
                      , gsBody = gNoPartyIDsBody'''''' }
@@ -19932,9 +21763,11 @@ mQuoteRequestReject = FMSpec
                            gNoPartySubIDs''''''''' = FIXTag
                               { tName = "NoPartySubIDs"
                               , tnum = tnum tNoPartySubIDs
-                              , tparser = gNoPartySubIDsP''''''''' }
+                              , tparser = gNoPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec''''''''' }
 
-                           gNoPartySubIDsP''''''''' = groupP FGSpec
+                           gNoPartySubIDsP''''''''' = groupP gNoPartySubIDsSpec'''''''''
+                           gNoPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoPartySubIDs
                               , gsSeperator = tPartySubID
                               , gsBody = gNoPartySubIDsBody''''''''' }
@@ -19946,9 +21779,11 @@ mQuoteRequestReject = FMSpec
                   gNoQuoteQualifiers'''''' = FIXTag
                      { tName = "NoQuoteQualifiers"
                      , tnum = tnum tNoQuoteQualifiers
-                     , tparser = gNoQuoteQualifiersP'''''' }
+                     , tparser = gNoQuoteQualifiersP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoQuoteQualifiersSpec'''''' }
 
-                  gNoQuoteQualifiersP'''''' = groupP FGSpec
+                  gNoQuoteQualifiersP'''''' = groupP gNoQuoteQualifiersSpec''''''
+                  gNoQuoteQualifiersSpec'''''' = FGSpec
                      { gsLength = tNoQuoteQualifiers
                      , gsSeperator = tQuoteQualifier
                      , gsBody = gNoQuoteQualifiersBody'''''' }
@@ -19959,9 +21794,11 @@ mQuoteRequestReject = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -19972,9 +21809,11 @@ mQuoteRequestReject = FMSpec
                   gNoStipulations'''''' = FIXTag
                      { tName = "NoStipulations"
                      , tnum = tnum tNoStipulations
-                     , tparser = gNoStipulationsP'''''' }
+                     , tparser = gNoStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec'''''' }
 
-                  gNoStipulationsP'''''' = groupP FGSpec
+                  gNoStipulationsP'''''' = groupP gNoStipulationsSpec''''''
+                  gNoStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoStipulations
                      , gsSeperator = tStipulationType
                      , gsBody = gNoStipulationsBody'''''' }
@@ -19985,9 +21824,11 @@ mQuoteRequestReject = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -20042,9 +21883,11 @@ mQuoteRequestReject = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -20055,9 +21898,11 @@ mQuoteRequestReject = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -20085,9 +21930,11 @@ mRFQRequest = FMSpec
          gNoRelatedSym''' = FIXTag
             { tName = "NoRelatedSym"
             , tnum = tnum tNoRelatedSym
-            , tparser = gNoRelatedSymP''' }
+            , tparser = gNoRelatedSymP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoRelatedSymSpec''' }
 
-         gNoRelatedSymP''' = groupP FGSpec
+         gNoRelatedSymP''' = groupP gNoRelatedSymSpec'''
+         gNoRelatedSymSpec''' = FGSpec
             { gsLength = tNoRelatedSym
             , gsSeperator = tSymbol
             , gsBody = gNoRelatedSymBody''' }
@@ -20145,9 +21992,11 @@ mRFQRequest = FMSpec
                   gNoEvents'''''' = FIXTag
                      { tName = "NoEvents"
                      , tnum = tnum tNoEvents
-                     , tparser = gNoEventsP'''''' }
+                     , tparser = gNoEventsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec'''''' }
 
-                  gNoEventsP'''''' = groupP FGSpec
+                  gNoEventsP'''''' = groupP gNoEventsSpec''''''
+                  gNoEventsSpec'''''' = FGSpec
                      { gsLength = tNoEvents
                      , gsSeperator = tEventType
                      , gsBody = gNoEventsBody'''''' }
@@ -20160,9 +22009,11 @@ mRFQRequest = FMSpec
                   gNoLegs'''''' = FIXTag
                      { tName = "NoLegs"
                      , tnum = tnum tNoLegs
-                     , tparser = gNoLegsP'''''' }
+                     , tparser = gNoLegsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec'''''' }
 
-                  gNoLegsP'''''' = groupP FGSpec
+                  gNoLegsP'''''' = groupP gNoLegsSpec''''''
+                  gNoLegsSpec'''''' = FGSpec
                      { gsLength = tNoLegs
                      , gsSeperator = tLegSymbol
                      , gsBody = gNoLegsBody'''''' }
@@ -20213,9 +22064,11 @@ mRFQRequest = FMSpec
                            gNoLegSecurityAltID''''''''' = FIXTag
                               { tName = "NoLegSecurityAltID"
                               , tnum = tnum tNoLegSecurityAltID
-                              , tparser = gNoLegSecurityAltIDP''''''''' }
+                              , tparser = gNoLegSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec''''''''' }
 
-                           gNoLegSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoLegSecurityAltIDP''''''''' = groupP gNoLegSecurityAltIDSpec'''''''''
+                           gNoLegSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoLegSecurityAltID
                               , gsSeperator = tLegSecurityAltID
                               , gsBody = gNoLegSecurityAltIDBody''''''''' }
@@ -20227,9 +22080,11 @@ mRFQRequest = FMSpec
                   gNoSecurityAltID'''''' = FIXTag
                      { tName = "NoSecurityAltID"
                      , tnum = tnum tNoSecurityAltID
-                     , tparser = gNoSecurityAltIDP'''''' }
+                     , tparser = gNoSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec'''''' }
 
-                  gNoSecurityAltIDP'''''' = groupP FGSpec
+                  gNoSecurityAltIDP'''''' = groupP gNoSecurityAltIDSpec''''''
+                  gNoSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoSecurityAltID
                      , gsSeperator = tSecurityAltID
                      , gsBody = gNoSecurityAltIDBody'''''' }
@@ -20240,9 +22095,11 @@ mRFQRequest = FMSpec
                   gNoUnderlyings'''''' = FIXTag
                      { tName = "NoUnderlyings"
                      , tnum = tnum tNoUnderlyings
-                     , tparser = gNoUnderlyingsP'''''' }
+                     , tparser = gNoUnderlyingsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec'''''' }
 
-                  gNoUnderlyingsP'''''' = groupP FGSpec
+                  gNoUnderlyingsP'''''' = groupP gNoUnderlyingsSpec''''''
+                  gNoUnderlyingsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyings
                      , gsSeperator = tUnderlyingSymbol
                      , gsBody = gNoUnderlyingsBody'''''' }
@@ -20297,9 +22154,11 @@ mRFQRequest = FMSpec
                            gNoUnderlyingSecurityAltID''''''''' = FIXTag
                               { tName = "NoUnderlyingSecurityAltID"
                               , tnum = tnum tNoUnderlyingSecurityAltID
-                              , tparser = gNoUnderlyingSecurityAltIDP''''''''' }
+                              , tparser = gNoUnderlyingSecurityAltIDP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec''''''''' }
 
-                           gNoUnderlyingSecurityAltIDP''''''''' = groupP FGSpec
+                           gNoUnderlyingSecurityAltIDP''''''''' = groupP gNoUnderlyingSecurityAltIDSpec'''''''''
+                           gNoUnderlyingSecurityAltIDSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingSecurityAltID
                               , gsSeperator = tUnderlyingSecurityAltID
                               , gsBody = gNoUnderlyingSecurityAltIDBody''''''''' }
@@ -20310,9 +22169,11 @@ mRFQRequest = FMSpec
                            gNoUnderlyingStips''''''''' = FIXTag
                               { tName = "NoUnderlyingStips"
                               , tnum = tnum tNoUnderlyingStips
-                              , tparser = gNoUnderlyingStipsP''''''''' }
+                              , tparser = gNoUnderlyingStipsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec''''''''' }
 
-                           gNoUnderlyingStipsP''''''''' = groupP FGSpec
+                           gNoUnderlyingStipsP''''''''' = groupP gNoUnderlyingStipsSpec'''''''''
+                           gNoUnderlyingStipsSpec''''''''' = FGSpec
                               { gsLength = tNoUnderlyingStips
                               , gsSeperator = tUnderlyingStipType
                               , gsBody = gNoUnderlyingStipsBody''''''''' }
@@ -20463,9 +22324,11 @@ mQuoteStatusReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -20478,9 +22341,11 @@ mQuoteStatusReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -20537,9 +22402,11 @@ mQuoteStatusReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -20550,9 +22417,11 @@ mQuoteStatusReport = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -20563,9 +22432,11 @@ mQuoteStatusReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -20578,9 +22449,11 @@ mQuoteStatusReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -20593,9 +22466,11 @@ mQuoteStatusReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -20608,9 +22483,11 @@ mQuoteStatusReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -20622,9 +22499,11 @@ mQuoteStatusReport = FMSpec
          gNoQuoteQualifiers''' = FIXTag
             { tName = "NoQuoteQualifiers"
             , tnum = tnum tNoQuoteQualifiers
-            , tparser = gNoQuoteQualifiersP''' }
+            , tparser = gNoQuoteQualifiersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoQuoteQualifiersSpec''' }
 
-         gNoQuoteQualifiersP''' = groupP FGSpec
+         gNoQuoteQualifiersP''' = groupP gNoQuoteQualifiersSpec'''
+         gNoQuoteQualifiersSpec''' = FGSpec
             { gsLength = tNoQuoteQualifiers
             , gsSeperator = tQuoteQualifier
             , gsBody = gNoQuoteQualifiersBody''' }
@@ -20635,9 +22514,11 @@ mQuoteStatusReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -20648,9 +22529,11 @@ mQuoteStatusReport = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -20661,9 +22544,11 @@ mQuoteStatusReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -20718,9 +22603,11 @@ mQuoteStatusReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -20731,9 +22618,11 @@ mQuoteStatusReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -20883,9 +22772,11 @@ mQuoteResponse = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -20898,9 +22789,11 @@ mQuoteResponse = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -20965,9 +22858,11 @@ mQuoteResponse = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -20978,9 +22873,11 @@ mQuoteResponse = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -20991,9 +22888,11 @@ mQuoteResponse = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -21006,9 +22905,11 @@ mQuoteResponse = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -21021,9 +22922,11 @@ mQuoteResponse = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -21036,9 +22939,11 @@ mQuoteResponse = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -21050,9 +22955,11 @@ mQuoteResponse = FMSpec
          gNoQuoteQualifiers''' = FIXTag
             { tName = "NoQuoteQualifiers"
             , tnum = tnum tNoQuoteQualifiers
-            , tparser = gNoQuoteQualifiersP''' }
+            , tparser = gNoQuoteQualifiersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoQuoteQualifiersSpec''' }
 
-         gNoQuoteQualifiersP''' = groupP FGSpec
+         gNoQuoteQualifiersP''' = groupP gNoQuoteQualifiersSpec'''
+         gNoQuoteQualifiersSpec''' = FGSpec
             { gsLength = tNoQuoteQualifiers
             , gsSeperator = tQuoteQualifier
             , gsBody = gNoQuoteQualifiersBody''' }
@@ -21063,9 +22970,11 @@ mQuoteResponse = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -21076,9 +22985,11 @@ mQuoteResponse = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -21089,9 +23000,11 @@ mQuoteResponse = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -21146,9 +23059,11 @@ mQuoteResponse = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -21159,9 +23074,11 @@ mQuoteResponse = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -21320,9 +23237,11 @@ mConfirmation = FMSpec
          gNoCapacities''' = FIXTag
             { tName = "NoCapacities"
             , tnum = tnum tNoCapacities
-            , tparser = gNoCapacitiesP''' }
+            , tparser = gNoCapacitiesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoCapacitiesSpec''' }
 
-         gNoCapacitiesP''' = groupP FGSpec
+         gNoCapacitiesP''' = groupP gNoCapacitiesSpec'''
+         gNoCapacitiesSpec''' = FGSpec
             { gsLength = tNoCapacities
             , gsSeperator = tOrderCapacity
             , gsBody = gNoCapacitiesBody''' }
@@ -21334,9 +23253,11 @@ mConfirmation = FMSpec
          gNoDlvyInst''' = FIXTag
             { tName = "NoDlvyInst"
             , tnum = tnum tNoDlvyInst
-            , tparser = gNoDlvyInstP''' }
+            , tparser = gNoDlvyInstP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec''' }
 
-         gNoDlvyInstP''' = groupP FGSpec
+         gNoDlvyInstP''' = groupP gNoDlvyInstSpec'''
+         gNoDlvyInstSpec''' = FGSpec
             { gsLength = tNoDlvyInst
             , gsSeperator = tSettlInstSource
             , gsBody = gNoDlvyInstBody''' }
@@ -21348,9 +23269,11 @@ mConfirmation = FMSpec
                   gNoSettlPartyIDs'''''' = FIXTag
                      { tName = "NoSettlPartyIDs"
                      , tnum = tnum tNoSettlPartyIDs
-                     , tparser = gNoSettlPartyIDsP'''''' }
+                     , tparser = gNoSettlPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec'''''' }
 
-                  gNoSettlPartyIDsP'''''' = groupP FGSpec
+                  gNoSettlPartyIDsP'''''' = groupP gNoSettlPartyIDsSpec''''''
+                  gNoSettlPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoSettlPartyIDs
                      , gsSeperator = tSettlPartyID
                      , gsBody = gNoSettlPartyIDsBody'''''' }
@@ -21363,9 +23286,11 @@ mConfirmation = FMSpec
                            gNoSettlPartySubIDs''''''''' = FIXTag
                               { tName = "NoSettlPartySubIDs"
                               , tnum = tnum tNoSettlPartySubIDs
-                              , tparser = gNoSettlPartySubIDsP''''''''' }
+                              , tparser = gNoSettlPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec''''''''' }
 
-                           gNoSettlPartySubIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartySubIDsP''''''''' = groupP gNoSettlPartySubIDsSpec'''''''''
+                           gNoSettlPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartySubIDs
                               , gsSeperator = tSettlPartySubID
                               , gsBody = gNoSettlPartySubIDsBody''''''''' }
@@ -21378,9 +23303,11 @@ mConfirmation = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -21393,9 +23320,11 @@ mConfirmation = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -21406,9 +23335,11 @@ mConfirmation = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -21459,9 +23390,11 @@ mConfirmation = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -21473,9 +23406,11 @@ mConfirmation = FMSpec
          gNoMiscFees''' = FIXTag
             { tName = "NoMiscFees"
             , tnum = tnum tNoMiscFees
-            , tparser = gNoMiscFeesP''' }
+            , tparser = gNoMiscFeesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec''' }
 
-         gNoMiscFeesP''' = groupP FGSpec
+         gNoMiscFeesP''' = groupP gNoMiscFeesSpec'''
+         gNoMiscFeesSpec''' = FGSpec
             { gsLength = tNoMiscFees
             , gsSeperator = tMiscFeeAmt
             , gsBody = gNoMiscFeesBody''' }
@@ -21488,9 +23423,11 @@ mConfirmation = FMSpec
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
             , tnum = tnum tNoOrders
-            , tparser = gNoOrdersP''' }
+            , tparser = gNoOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoOrdersSpec''' }
 
-         gNoOrdersP''' = groupP FGSpec
+         gNoOrdersP''' = groupP gNoOrdersSpec'''
+         gNoOrdersSpec''' = FGSpec
             { gsLength = tNoOrders
             , gsSeperator = tClOrdID
             , gsBody = gNoOrdersBody''' }
@@ -21508,9 +23445,11 @@ mConfirmation = FMSpec
                   gNoNested2PartyIDs'''''' = FIXTag
                      { tName = "NoNested2PartyIDs"
                      , tnum = tnum tNoNested2PartyIDs
-                     , tparser = gNoNested2PartyIDsP'''''' }
+                     , tparser = gNoNested2PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec'''''' }
 
-                  gNoNested2PartyIDsP'''''' = groupP FGSpec
+                  gNoNested2PartyIDsP'''''' = groupP gNoNested2PartyIDsSpec''''''
+                  gNoNested2PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested2PartyIDs
                      , gsSeperator = tNested2PartyID
                      , gsBody = gNoNested2PartyIDsBody'''''' }
@@ -21523,9 +23462,11 @@ mConfirmation = FMSpec
                            gNoNested2PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested2PartySubIDs"
                               , tnum = tnum tNoNested2PartySubIDs
-                              , tparser = gNoNested2PartySubIDsP''''''''' }
+                              , tparser = gNoNested2PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec''''''''' }
 
-                           gNoNested2PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartySubIDsP''''''''' = groupP gNoNested2PartySubIDsSpec'''''''''
+                           gNoNested2PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartySubIDs
                               , gsSeperator = tNested2PartySubID
                               , gsBody = gNoNested2PartySubIDsBody''''''''' }
@@ -21538,9 +23479,11 @@ mConfirmation = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -21553,9 +23496,11 @@ mConfirmation = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -21567,9 +23512,11 @@ mConfirmation = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -21580,9 +23527,11 @@ mConfirmation = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -21593,9 +23542,11 @@ mConfirmation = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -21607,9 +23558,11 @@ mConfirmation = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -21664,9 +23617,11 @@ mConfirmation = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -21677,9 +23632,11 @@ mConfirmation = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -21770,9 +23727,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -21785,9 +23744,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -21838,9 +23799,11 @@ mPositionMaintenanceRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -21852,9 +23815,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -21867,9 +23832,11 @@ mPositionMaintenanceRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -21881,9 +23848,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoPositions''' = FIXTag
             { tName = "NoPositions"
             , tnum = tnum tNoPositions
-            , tparser = gNoPositionsP''' }
+            , tparser = gNoPositionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPositionsSpec''' }
 
-         gNoPositionsP''' = groupP FGSpec
+         gNoPositionsP''' = groupP gNoPositionsSpec'''
+         gNoPositionsSpec''' = FGSpec
             { gsLength = tNoPositions
             , gsSeperator = tPosType
             , gsBody = gNoPositionsBody''' }
@@ -21897,9 +23866,11 @@ mPositionMaintenanceRequest = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -21912,9 +23883,11 @@ mPositionMaintenanceRequest = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -21927,9 +23900,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -21940,9 +23915,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -21953,9 +23930,11 @@ mPositionMaintenanceRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -22010,9 +23989,11 @@ mPositionMaintenanceRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -22023,9 +24004,11 @@ mPositionMaintenanceRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -22117,9 +24100,11 @@ mPositionMaintenanceReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -22132,9 +24117,11 @@ mPositionMaintenanceReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -22185,9 +24172,11 @@ mPositionMaintenanceReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -22199,9 +24188,11 @@ mPositionMaintenanceReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -22214,9 +24205,11 @@ mPositionMaintenanceReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -22228,9 +24221,11 @@ mPositionMaintenanceReport = FMSpec
          gNoPosAmt''' = FIXTag
             { tName = "NoPosAmt"
             , tnum = tnum tNoPosAmt
-            , tparser = gNoPosAmtP''' }
+            , tparser = gNoPosAmtP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPosAmtSpec''' }
 
-         gNoPosAmtP''' = groupP FGSpec
+         gNoPosAmtP''' = groupP gNoPosAmtSpec'''
+         gNoPosAmtSpec''' = FGSpec
             { gsLength = tNoPosAmt
             , gsSeperator = tPosAmtType
             , gsBody = gNoPosAmtBody''' }
@@ -22241,9 +24236,11 @@ mPositionMaintenanceReport = FMSpec
          gNoPositions''' = FIXTag
             { tName = "NoPositions"
             , tnum = tnum tNoPositions
-            , tparser = gNoPositionsP''' }
+            , tparser = gNoPositionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPositionsSpec''' }
 
-         gNoPositionsP''' = groupP FGSpec
+         gNoPositionsP''' = groupP gNoPositionsSpec'''
+         gNoPositionsSpec''' = FGSpec
             { gsLength = tNoPositions
             , gsSeperator = tPosType
             , gsBody = gNoPositionsBody''' }
@@ -22257,9 +24254,11 @@ mPositionMaintenanceReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -22272,9 +24271,11 @@ mPositionMaintenanceReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -22287,9 +24288,11 @@ mPositionMaintenanceReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -22300,9 +24303,11 @@ mPositionMaintenanceReport = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -22313,9 +24318,11 @@ mPositionMaintenanceReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -22370,9 +24377,11 @@ mPositionMaintenanceReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -22383,9 +24392,11 @@ mPositionMaintenanceReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -22472,9 +24483,11 @@ mRequestForPositions = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -22487,9 +24500,11 @@ mRequestForPositions = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -22540,9 +24555,11 @@ mRequestForPositions = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -22554,9 +24571,11 @@ mRequestForPositions = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -22569,9 +24588,11 @@ mRequestForPositions = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -22583,9 +24604,11 @@ mRequestForPositions = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -22596,9 +24619,11 @@ mRequestForPositions = FMSpec
          gNoTradingSessions''' = FIXTag
             { tName = "NoTradingSessions"
             , tnum = tnum tNoTradingSessions
-            , tparser = gNoTradingSessionsP''' }
+            , tparser = gNoTradingSessionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradingSessionsSpec''' }
 
-         gNoTradingSessionsP''' = groupP FGSpec
+         gNoTradingSessionsP''' = groupP gNoTradingSessionsSpec'''
+         gNoTradingSessionsSpec''' = FGSpec
             { gsLength = tNoTradingSessions
             , gsSeperator = tTradingSessionID
             , gsBody = gNoTradingSessionsBody''' }
@@ -22609,9 +24634,11 @@ mRequestForPositions = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -22666,9 +24693,11 @@ mRequestForPositions = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -22679,9 +24708,11 @@ mRequestForPositions = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -22765,9 +24796,11 @@ mRequestForPositionsAck = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -22780,9 +24813,11 @@ mRequestForPositionsAck = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -22833,9 +24868,11 @@ mRequestForPositionsAck = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -22847,9 +24884,11 @@ mRequestForPositionsAck = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -22862,9 +24901,11 @@ mRequestForPositionsAck = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -22876,9 +24917,11 @@ mRequestForPositionsAck = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -22889,9 +24932,11 @@ mRequestForPositionsAck = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -22946,9 +24991,11 @@ mRequestForPositionsAck = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -22959,9 +25006,11 @@ mRequestForPositionsAck = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -23054,9 +25103,11 @@ mPositionReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -23069,9 +25120,11 @@ mPositionReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -23122,9 +25175,11 @@ mPositionReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -23136,9 +25191,11 @@ mPositionReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -23151,9 +25208,11 @@ mPositionReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -23165,9 +25224,11 @@ mPositionReport = FMSpec
          gNoPosAmt''' = FIXTag
             { tName = "NoPosAmt"
             , tnum = tnum tNoPosAmt
-            , tparser = gNoPosAmtP''' }
+            , tparser = gNoPosAmtP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPosAmtSpec''' }
 
-         gNoPosAmtP''' = groupP FGSpec
+         gNoPosAmtP''' = groupP gNoPosAmtSpec'''
+         gNoPosAmtSpec''' = FGSpec
             { gsLength = tNoPosAmt
             , gsSeperator = tPosAmtType
             , gsBody = gNoPosAmtBody''' }
@@ -23178,9 +25239,11 @@ mPositionReport = FMSpec
          gNoPositions''' = FIXTag
             { tName = "NoPositions"
             , tnum = tnum tNoPositions
-            , tparser = gNoPositionsP''' }
+            , tparser = gNoPositionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPositionsSpec''' }
 
-         gNoPositionsP''' = groupP FGSpec
+         gNoPositionsP''' = groupP gNoPositionsSpec'''
+         gNoPositionsSpec''' = FGSpec
             { gsLength = tNoPositions
             , gsSeperator = tPosType
             , gsBody = gNoPositionsBody''' }
@@ -23194,9 +25257,11 @@ mPositionReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -23209,9 +25274,11 @@ mPositionReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -23224,9 +25291,11 @@ mPositionReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -23237,9 +25306,11 @@ mPositionReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -23296,9 +25367,11 @@ mPositionReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -23309,9 +25382,11 @@ mPositionReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -23391,9 +25466,11 @@ mTradeCaptureReportRequestAck = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -23406,9 +25483,11 @@ mTradeCaptureReportRequestAck = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -23459,9 +25538,11 @@ mTradeCaptureReportRequestAck = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -23473,9 +25554,11 @@ mTradeCaptureReportRequestAck = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -23486,9 +25569,11 @@ mTradeCaptureReportRequestAck = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -23543,9 +25628,11 @@ mTradeCaptureReportRequestAck = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -23556,9 +25643,11 @@ mTradeCaptureReportRequestAck = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -23660,9 +25749,11 @@ mTradeCaptureReportAck = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -23677,9 +25768,11 @@ mTradeCaptureReportAck = FMSpec
                   gNoNested2PartyIDs'''''' = FIXTag
                      { tName = "NoNested2PartyIDs"
                      , tnum = tnum tNoNested2PartyIDs
-                     , tparser = gNoNested2PartyIDsP'''''' }
+                     , tparser = gNoNested2PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec'''''' }
 
-                  gNoNested2PartyIDsP'''''' = groupP FGSpec
+                  gNoNested2PartyIDsP'''''' = groupP gNoNested2PartyIDsSpec''''''
+                  gNoNested2PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested2PartyIDs
                      , gsSeperator = tNested2PartyID
                      , gsBody = gNoNested2PartyIDsBody'''''' }
@@ -23692,9 +25785,11 @@ mTradeCaptureReportAck = FMSpec
                            gNoNested2PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested2PartySubIDs"
                               , tnum = tnum tNoNested2PartySubIDs
-                              , tparser = gNoNested2PartySubIDsP''''''''' }
+                              , tparser = gNoNested2PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec''''''''' }
 
-                           gNoNested2PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartySubIDsP''''''''' = groupP gNoNested2PartySubIDsSpec'''''''''
+                           gNoNested2PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartySubIDs
                               , gsSeperator = tNested2PartySubID
                               , gsBody = gNoNested2PartySubIDsBody''''''''' }
@@ -23707,9 +25802,11 @@ mTradeCaptureReportAck = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -23722,9 +25819,11 @@ mTradeCaptureReportAck = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -23786,9 +25885,11 @@ mTradeCaptureReportAck = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -23799,9 +25900,11 @@ mTradeCaptureReportAck = FMSpec
                   gNoLegStipulations'''''' = FIXTag
                      { tName = "NoLegStipulations"
                      , tnum = tnum tNoLegStipulations
-                     , tparser = gNoLegStipulationsP'''''' }
+                     , tparser = gNoLegStipulationsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegStipulationsSpec'''''' }
 
-                  gNoLegStipulationsP'''''' = groupP FGSpec
+                  gNoLegStipulationsP'''''' = groupP gNoLegStipulationsSpec''''''
+                  gNoLegStipulationsSpec'''''' = FGSpec
                      { gsLength = tNoLegStipulations
                      , gsSeperator = tLegStipulationType
                      , gsBody = gNoLegStipulationsBody'''''' }
@@ -23812,9 +25915,11 @@ mTradeCaptureReportAck = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -23827,9 +25932,11 @@ mTradeCaptureReportAck = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -23842,9 +25949,11 @@ mTradeCaptureReportAck = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -23855,9 +25964,11 @@ mTradeCaptureReportAck = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -24011,9 +26122,11 @@ mAllocationReport = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -24058,9 +26171,11 @@ mAllocationReport = FMSpec
                   gNoClearingInstructions'''''' = FIXTag
                      { tName = "NoClearingInstructions"
                      , tnum = tnum tNoClearingInstructions
-                     , tparser = gNoClearingInstructionsP'''''' }
+                     , tparser = gNoClearingInstructionsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoClearingInstructionsSpec'''''' }
 
-                  gNoClearingInstructionsP'''''' = groupP FGSpec
+                  gNoClearingInstructionsP'''''' = groupP gNoClearingInstructionsSpec''''''
+                  gNoClearingInstructionsSpec'''''' = FGSpec
                      { gsLength = tNoClearingInstructions
                      , gsSeperator = tClearingInstruction
                      , gsBody = gNoClearingInstructionsBody'''''' }
@@ -24071,9 +26186,11 @@ mAllocationReport = FMSpec
                   gNoDlvyInst'''''' = FIXTag
                      { tName = "NoDlvyInst"
                      , tnum = tnum tNoDlvyInst
-                     , tparser = gNoDlvyInstP'''''' }
+                     , tparser = gNoDlvyInstP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec'''''' }
 
-                  gNoDlvyInstP'''''' = groupP FGSpec
+                  gNoDlvyInstP'''''' = groupP gNoDlvyInstSpec''''''
+                  gNoDlvyInstSpec'''''' = FGSpec
                      { gsLength = tNoDlvyInst
                      , gsSeperator = tSettlInstSource
                      , gsBody = gNoDlvyInstBody'''''' }
@@ -24085,9 +26202,11 @@ mAllocationReport = FMSpec
                            gNoSettlPartyIDs''''''''' = FIXTag
                               { tName = "NoSettlPartyIDs"
                               , tnum = tnum tNoSettlPartyIDs
-                              , tparser = gNoSettlPartyIDsP''''''''' }
+                              , tparser = gNoSettlPartyIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec''''''''' }
 
-                           gNoSettlPartyIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartyIDsP''''''''' = groupP gNoSettlPartyIDsSpec'''''''''
+                           gNoSettlPartyIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartyIDs
                               , gsSeperator = tSettlPartyID
                               , gsBody = gNoSettlPartyIDsBody''''''''' }
@@ -24100,9 +26219,11 @@ mAllocationReport = FMSpec
                                     gNoSettlPartySubIDs'''''''''''' = FIXTag
                                        { tName = "NoSettlPartySubIDs"
                                        , tnum = tnum tNoSettlPartySubIDs
-                                       , tparser = gNoSettlPartySubIDsP'''''''''''' }
+                                       , tparser = gNoSettlPartySubIDsP''''''''''''
+                                       , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec'''''''''''' }
 
-                                    gNoSettlPartySubIDsP'''''''''''' = groupP FGSpec
+                                    gNoSettlPartySubIDsP'''''''''''' = groupP gNoSettlPartySubIDsSpec''''''''''''
+                                    gNoSettlPartySubIDsSpec'''''''''''' = FGSpec
                                        { gsLength = tNoSettlPartySubIDs
                                        , gsSeperator = tSettlPartySubID
                                        , gsBody = gNoSettlPartySubIDsBody'''''''''''' }
@@ -24115,9 +26236,11 @@ mAllocationReport = FMSpec
                   gNoMiscFees'''''' = FIXTag
                      { tName = "NoMiscFees"
                      , tnum = tnum tNoMiscFees
-                     , tparser = gNoMiscFeesP'''''' }
+                     , tparser = gNoMiscFeesP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec'''''' }
 
-                  gNoMiscFeesP'''''' = groupP FGSpec
+                  gNoMiscFeesP'''''' = groupP gNoMiscFeesSpec''''''
+                  gNoMiscFeesSpec'''''' = FGSpec
                      { gsLength = tNoMiscFees
                      , gsSeperator = tMiscFeeAmt
                      , gsBody = gNoMiscFeesBody'''''' }
@@ -24130,9 +26253,11 @@ mAllocationReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -24145,9 +26270,11 @@ mAllocationReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -24160,9 +26287,11 @@ mAllocationReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -24175,9 +26304,11 @@ mAllocationReport = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tLastQty
             , gsBody = gNoExecsBody''' }
@@ -24192,9 +26323,11 @@ mAllocationReport = FMSpec
          gNoInstrAttrib''' = FIXTag
             { tName = "NoInstrAttrib"
             , tnum = tnum tNoInstrAttrib
-            , tparser = gNoInstrAttribP''' }
+            , tparser = gNoInstrAttribP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoInstrAttribSpec''' }
 
-         gNoInstrAttribP''' = groupP FGSpec
+         gNoInstrAttribP''' = groupP gNoInstrAttribSpec'''
+         gNoInstrAttribSpec''' = FGSpec
             { gsLength = tNoInstrAttrib
             , gsSeperator = tInstrAttribType
             , gsBody = gNoInstrAttribBody''' }
@@ -24205,9 +26338,11 @@ mAllocationReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -24258,9 +26393,11 @@ mAllocationReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -24272,9 +26409,11 @@ mAllocationReport = FMSpec
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
             , tnum = tnum tNoOrders
-            , tparser = gNoOrdersP''' }
+            , tparser = gNoOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoOrdersSpec''' }
 
-         gNoOrdersP''' = groupP FGSpec
+         gNoOrdersP''' = groupP gNoOrdersSpec'''
+         gNoOrdersSpec''' = FGSpec
             { gsLength = tNoOrders
             , gsSeperator = tClOrdID
             , gsBody = gNoOrdersBody''' }
@@ -24292,9 +26431,11 @@ mAllocationReport = FMSpec
                   gNoNested2PartyIDs'''''' = FIXTag
                      { tName = "NoNested2PartyIDs"
                      , tnum = tnum tNoNested2PartyIDs
-                     , tparser = gNoNested2PartyIDsP'''''' }
+                     , tparser = gNoNested2PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec'''''' }
 
-                  gNoNested2PartyIDsP'''''' = groupP FGSpec
+                  gNoNested2PartyIDsP'''''' = groupP gNoNested2PartyIDsSpec''''''
+                  gNoNested2PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested2PartyIDs
                      , gsSeperator = tNested2PartyID
                      , gsBody = gNoNested2PartyIDsBody'''''' }
@@ -24307,9 +26448,11 @@ mAllocationReport = FMSpec
                            gNoNested2PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested2PartySubIDs"
                               , tnum = tnum tNoNested2PartySubIDs
-                              , tparser = gNoNested2PartySubIDsP''''''''' }
+                              , tparser = gNoNested2PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec''''''''' }
 
-                           gNoNested2PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartySubIDsP''''''''' = groupP gNoNested2PartySubIDsSpec'''''''''
+                           gNoNested2PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartySubIDs
                               , gsSeperator = tNested2PartySubID
                               , gsBody = gNoNested2PartySubIDsBody''''''''' }
@@ -24322,9 +26465,11 @@ mAllocationReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -24337,9 +26482,11 @@ mAllocationReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -24351,9 +26498,11 @@ mAllocationReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -24364,9 +26513,11 @@ mAllocationReport = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -24377,9 +26528,11 @@ mAllocationReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -24434,9 +26587,11 @@ mAllocationReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -24447,9 +26602,11 @@ mAllocationReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -24490,9 +26647,11 @@ mAllocationReportAck = FMSpec
          gNoAllocs''' = FIXTag
             { tName = "NoAllocs"
             , tnum = tnum tNoAllocs
-            , tparser = gNoAllocsP''' }
+            , tparser = gNoAllocsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoAllocsSpec''' }
 
-         gNoAllocsP''' = groupP FGSpec
+         gNoAllocsP''' = groupP gNoAllocsSpec'''
+         gNoAllocsSpec''' = FGSpec
             { gsLength = tNoAllocs
             , gsSeperator = tAllocAccount
             , gsBody = gNoAllocsBody''' }
@@ -24509,9 +26668,11 @@ mAllocationReportAck = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -24524,9 +26685,11 @@ mAllocationReportAck = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -24585,9 +26748,11 @@ mSettlementInstructionRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -24600,9 +26765,11 @@ mSettlementInstructionRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -24694,9 +26861,11 @@ mAssignmentReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -24709,9 +26878,11 @@ mAssignmentReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -24762,9 +26933,11 @@ mAssignmentReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -24776,9 +26949,11 @@ mAssignmentReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -24791,9 +26966,11 @@ mAssignmentReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -24805,9 +26982,11 @@ mAssignmentReport = FMSpec
          gNoPosAmt''' = FIXTag
             { tName = "NoPosAmt"
             , tnum = tnum tNoPosAmt
-            , tparser = gNoPosAmtP''' }
+            , tparser = gNoPosAmtP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPosAmtSpec''' }
 
-         gNoPosAmtP''' = groupP FGSpec
+         gNoPosAmtP''' = groupP gNoPosAmtSpec'''
+         gNoPosAmtSpec''' = FGSpec
             { gsLength = tNoPosAmt
             , gsSeperator = tPosAmtType
             , gsBody = gNoPosAmtBody''' }
@@ -24818,9 +26997,11 @@ mAssignmentReport = FMSpec
          gNoPositions''' = FIXTag
             { tName = "NoPositions"
             , tnum = tnum tNoPositions
-            , tparser = gNoPositionsP''' }
+            , tparser = gNoPositionsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPositionsSpec''' }
 
-         gNoPositionsP''' = groupP FGSpec
+         gNoPositionsP''' = groupP gNoPositionsSpec'''
+         gNoPositionsSpec''' = FGSpec
             { gsLength = tNoPositions
             , gsSeperator = tPosType
             , gsBody = gNoPositionsBody''' }
@@ -24834,9 +27015,11 @@ mAssignmentReport = FMSpec
                   gNoNestedPartyIDs'''''' = FIXTag
                      { tName = "NoNestedPartyIDs"
                      , tnum = tnum tNoNestedPartyIDs
-                     , tparser = gNoNestedPartyIDsP'''''' }
+                     , tparser = gNoNestedPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNestedPartyIDsSpec'''''' }
 
-                  gNoNestedPartyIDsP'''''' = groupP FGSpec
+                  gNoNestedPartyIDsP'''''' = groupP gNoNestedPartyIDsSpec''''''
+                  gNoNestedPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNestedPartyIDs
                      , gsSeperator = tNestedPartyID
                      , gsBody = gNoNestedPartyIDsBody'''''' }
@@ -24849,9 +27032,11 @@ mAssignmentReport = FMSpec
                            gNoNestedPartySubIDs''''''''' = FIXTag
                               { tName = "NoNestedPartySubIDs"
                               , tnum = tnum tNoNestedPartySubIDs
-                              , tparser = gNoNestedPartySubIDsP''''''''' }
+                              , tparser = gNoNestedPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNestedPartySubIDsSpec''''''''' }
 
-                           gNoNestedPartySubIDsP''''''''' = groupP FGSpec
+                           gNoNestedPartySubIDsP''''''''' = groupP gNoNestedPartySubIDsSpec'''''''''
+                           gNoNestedPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNestedPartySubIDs
                               , gsSeperator = tNestedPartySubID
                               , gsBody = gNoNestedPartySubIDsBody''''''''' }
@@ -24864,9 +27049,11 @@ mAssignmentReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -24877,9 +27064,11 @@ mAssignmentReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -24934,9 +27123,11 @@ mAssignmentReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -24947,9 +27138,11 @@ mAssignmentReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -25072,9 +27265,11 @@ mCollateralRequest = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -25087,9 +27282,11 @@ mCollateralRequest = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
@@ -25100,9 +27297,11 @@ mCollateralRequest = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -25153,9 +27352,11 @@ mCollateralRequest = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -25167,9 +27368,11 @@ mCollateralRequest = FMSpec
          gNoMiscFees''' = FIXTag
             { tName = "NoMiscFees"
             , tnum = tnum tNoMiscFees
-            , tparser = gNoMiscFeesP''' }
+            , tparser = gNoMiscFeesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec''' }
 
-         gNoMiscFeesP''' = groupP FGSpec
+         gNoMiscFeesP''' = groupP gNoMiscFeesSpec'''
+         gNoMiscFeesSpec''' = FGSpec
             { gsLength = tNoMiscFees
             , gsSeperator = tMiscFeeAmt
             , gsBody = gNoMiscFeesBody''' }
@@ -25182,9 +27385,11 @@ mCollateralRequest = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -25197,9 +27402,11 @@ mCollateralRequest = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -25211,9 +27418,11 @@ mCollateralRequest = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -25224,9 +27433,11 @@ mCollateralRequest = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -25237,9 +27448,11 @@ mCollateralRequest = FMSpec
          gNoTrades''' = FIXTag
             { tName = "NoTrades"
             , tnum = tnum tNoTrades
-            , tparser = gNoTradesP''' }
+            , tparser = gNoTradesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradesSpec''' }
 
-         gNoTradesP''' = groupP FGSpec
+         gNoTradesP''' = groupP gNoTradesSpec'''
+         gNoTradesSpec''' = FGSpec
             { gsLength = tNoTrades
             , gsSeperator = tTradeReportID
             , gsBody = gNoTradesBody''' }
@@ -25250,9 +27463,11 @@ mCollateralRequest = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -25264,9 +27479,11 @@ mCollateralRequest = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -25322,9 +27539,11 @@ mCollateralRequest = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -25335,9 +27554,11 @@ mCollateralRequest = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -25468,9 +27689,11 @@ mCollateralAssignment = FMSpec
          gNoDlvyInst''' = FIXTag
             { tName = "NoDlvyInst"
             , tnum = tnum tNoDlvyInst
-            , tparser = gNoDlvyInstP''' }
+            , tparser = gNoDlvyInstP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec''' }
 
-         gNoDlvyInstP''' = groupP FGSpec
+         gNoDlvyInstP''' = groupP gNoDlvyInstSpec'''
+         gNoDlvyInstSpec''' = FGSpec
             { gsLength = tNoDlvyInst
             , gsSeperator = tSettlInstSource
             , gsBody = gNoDlvyInstBody''' }
@@ -25482,9 +27705,11 @@ mCollateralAssignment = FMSpec
                   gNoSettlPartyIDs'''''' = FIXTag
                      { tName = "NoSettlPartyIDs"
                      , tnum = tnum tNoSettlPartyIDs
-                     , tparser = gNoSettlPartyIDsP'''''' }
+                     , tparser = gNoSettlPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec'''''' }
 
-                  gNoSettlPartyIDsP'''''' = groupP FGSpec
+                  gNoSettlPartyIDsP'''''' = groupP gNoSettlPartyIDsSpec''''''
+                  gNoSettlPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoSettlPartyIDs
                      , gsSeperator = tSettlPartyID
                      , gsBody = gNoSettlPartyIDsBody'''''' }
@@ -25497,9 +27722,11 @@ mCollateralAssignment = FMSpec
                            gNoSettlPartySubIDs''''''''' = FIXTag
                               { tName = "NoSettlPartySubIDs"
                               , tnum = tnum tNoSettlPartySubIDs
-                              , tparser = gNoSettlPartySubIDsP''''''''' }
+                              , tparser = gNoSettlPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec''''''''' }
 
-                           gNoSettlPartySubIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartySubIDsP''''''''' = groupP gNoSettlPartySubIDsSpec'''''''''
+                           gNoSettlPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartySubIDs
                               , gsSeperator = tSettlPartySubID
                               , gsBody = gNoSettlPartySubIDsBody''''''''' }
@@ -25512,9 +27739,11 @@ mCollateralAssignment = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -25527,9 +27756,11 @@ mCollateralAssignment = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
@@ -25540,9 +27771,11 @@ mCollateralAssignment = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -25593,9 +27826,11 @@ mCollateralAssignment = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -25607,9 +27842,11 @@ mCollateralAssignment = FMSpec
          gNoMiscFees''' = FIXTag
             { tName = "NoMiscFees"
             , tnum = tnum tNoMiscFees
-            , tparser = gNoMiscFeesP''' }
+            , tparser = gNoMiscFeesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec''' }
 
-         gNoMiscFeesP''' = groupP FGSpec
+         gNoMiscFeesP''' = groupP gNoMiscFeesSpec'''
+         gNoMiscFeesSpec''' = FGSpec
             { gsLength = tNoMiscFees
             , gsSeperator = tMiscFeeAmt
             , gsBody = gNoMiscFeesBody''' }
@@ -25622,9 +27859,11 @@ mCollateralAssignment = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -25637,9 +27876,11 @@ mCollateralAssignment = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -25651,9 +27892,11 @@ mCollateralAssignment = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -25664,9 +27907,11 @@ mCollateralAssignment = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -25677,9 +27922,11 @@ mCollateralAssignment = FMSpec
          gNoTrades''' = FIXTag
             { tName = "NoTrades"
             , tnum = tnum tNoTrades
-            , tparser = gNoTradesP''' }
+            , tparser = gNoTradesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradesSpec''' }
 
-         gNoTradesP''' = groupP FGSpec
+         gNoTradesP''' = groupP gNoTradesSpec'''
+         gNoTradesSpec''' = FGSpec
             { gsLength = tNoTrades
             , gsSeperator = tTradeReportID
             , gsBody = gNoTradesBody''' }
@@ -25690,9 +27937,11 @@ mCollateralAssignment = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -25704,9 +27953,11 @@ mCollateralAssignment = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -25762,9 +28013,11 @@ mCollateralAssignment = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -25775,9 +28028,11 @@ mCollateralAssignment = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -25899,9 +28154,11 @@ mCollateralResponse = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -25914,9 +28171,11 @@ mCollateralResponse = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
@@ -25927,9 +28186,11 @@ mCollateralResponse = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -25980,9 +28241,11 @@ mCollateralResponse = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -25994,9 +28257,11 @@ mCollateralResponse = FMSpec
          gNoMiscFees''' = FIXTag
             { tName = "NoMiscFees"
             , tnum = tnum tNoMiscFees
-            , tparser = gNoMiscFeesP''' }
+            , tparser = gNoMiscFeesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec''' }
 
-         gNoMiscFeesP''' = groupP FGSpec
+         gNoMiscFeesP''' = groupP gNoMiscFeesSpec'''
+         gNoMiscFeesSpec''' = FGSpec
             { gsLength = tNoMiscFees
             , gsSeperator = tMiscFeeAmt
             , gsBody = gNoMiscFeesBody''' }
@@ -26009,9 +28274,11 @@ mCollateralResponse = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -26024,9 +28291,11 @@ mCollateralResponse = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -26038,9 +28307,11 @@ mCollateralResponse = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -26051,9 +28322,11 @@ mCollateralResponse = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -26064,9 +28337,11 @@ mCollateralResponse = FMSpec
          gNoTrades''' = FIXTag
             { tName = "NoTrades"
             , tnum = tnum tNoTrades
-            , tparser = gNoTradesP''' }
+            , tparser = gNoTradesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradesSpec''' }
 
-         gNoTradesP''' = groupP FGSpec
+         gNoTradesP''' = groupP gNoTradesSpec'''
+         gNoTradesSpec''' = FGSpec
             { gsLength = tNoTrades
             , gsSeperator = tTradeReportID
             , gsBody = gNoTradesBody''' }
@@ -26077,9 +28352,11 @@ mCollateralResponse = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -26091,9 +28368,11 @@ mCollateralResponse = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -26149,9 +28428,11 @@ mCollateralResponse = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -26162,9 +28443,11 @@ mCollateralResponse = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -26293,9 +28576,11 @@ mCollateralReport = FMSpec
          gNoDlvyInst''' = FIXTag
             { tName = "NoDlvyInst"
             , tnum = tnum tNoDlvyInst
-            , tparser = gNoDlvyInstP''' }
+            , tparser = gNoDlvyInstP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec''' }
 
-         gNoDlvyInstP''' = groupP FGSpec
+         gNoDlvyInstP''' = groupP gNoDlvyInstSpec'''
+         gNoDlvyInstSpec''' = FGSpec
             { gsLength = tNoDlvyInst
             , gsSeperator = tSettlInstSource
             , gsBody = gNoDlvyInstBody''' }
@@ -26307,9 +28592,11 @@ mCollateralReport = FMSpec
                   gNoSettlPartyIDs'''''' = FIXTag
                      { tName = "NoSettlPartyIDs"
                      , tnum = tnum tNoSettlPartyIDs
-                     , tparser = gNoSettlPartyIDsP'''''' }
+                     , tparser = gNoSettlPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec'''''' }
 
-                  gNoSettlPartyIDsP'''''' = groupP FGSpec
+                  gNoSettlPartyIDsP'''''' = groupP gNoSettlPartyIDsSpec''''''
+                  gNoSettlPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoSettlPartyIDs
                      , gsSeperator = tSettlPartyID
                      , gsBody = gNoSettlPartyIDsBody'''''' }
@@ -26322,9 +28609,11 @@ mCollateralReport = FMSpec
                            gNoSettlPartySubIDs''''''''' = FIXTag
                               { tName = "NoSettlPartySubIDs"
                               , tnum = tnum tNoSettlPartySubIDs
-                              , tparser = gNoSettlPartySubIDsP''''''''' }
+                              , tparser = gNoSettlPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec''''''''' }
 
-                           gNoSettlPartySubIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartySubIDsP''''''''' = groupP gNoSettlPartySubIDsSpec'''''''''
+                           gNoSettlPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartySubIDs
                               , gsSeperator = tSettlPartySubID
                               , gsBody = gNoSettlPartySubIDsBody''''''''' }
@@ -26337,9 +28626,11 @@ mCollateralReport = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -26352,9 +28643,11 @@ mCollateralReport = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
@@ -26365,9 +28658,11 @@ mCollateralReport = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -26418,9 +28713,11 @@ mCollateralReport = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -26432,9 +28729,11 @@ mCollateralReport = FMSpec
          gNoMiscFees''' = FIXTag
             { tName = "NoMiscFees"
             , tnum = tnum tNoMiscFees
-            , tparser = gNoMiscFeesP''' }
+            , tparser = gNoMiscFeesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoMiscFeesSpec''' }
 
-         gNoMiscFeesP''' = groupP FGSpec
+         gNoMiscFeesP''' = groupP gNoMiscFeesSpec'''
+         gNoMiscFeesSpec''' = FGSpec
             { gsLength = tNoMiscFees
             , gsSeperator = tMiscFeeAmt
             , gsBody = gNoMiscFeesBody''' }
@@ -26447,9 +28746,11 @@ mCollateralReport = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -26462,9 +28763,11 @@ mCollateralReport = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -26476,9 +28779,11 @@ mCollateralReport = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -26489,9 +28794,11 @@ mCollateralReport = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -26502,9 +28809,11 @@ mCollateralReport = FMSpec
          gNoTrades''' = FIXTag
             { tName = "NoTrades"
             , tnum = tnum tNoTrades
-            , tparser = gNoTradesP''' }
+            , tparser = gNoTradesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradesSpec''' }
 
-         gNoTradesP''' = groupP FGSpec
+         gNoTradesP''' = groupP gNoTradesSpec'''
+         gNoTradesSpec''' = FGSpec
             { gsLength = tNoTrades
             , gsSeperator = tTradeReportID
             , gsBody = gNoTradesBody''' }
@@ -26515,9 +28824,11 @@ mCollateralReport = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -26529,9 +28840,11 @@ mCollateralReport = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -26586,9 +28899,11 @@ mCollateralReport = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -26599,9 +28914,11 @@ mCollateralReport = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -26729,9 +29046,11 @@ mCollateralInquiry = FMSpec
          gNoCollInquiryQualifier''' = FIXTag
             { tName = "NoCollInquiryQualifier"
             , tnum = tnum tNoCollInquiryQualifier
-            , tparser = gNoCollInquiryQualifierP''' }
+            , tparser = gNoCollInquiryQualifierP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoCollInquiryQualifierSpec''' }
 
-         gNoCollInquiryQualifierP''' = groupP FGSpec
+         gNoCollInquiryQualifierP''' = groupP gNoCollInquiryQualifierSpec'''
+         gNoCollInquiryQualifierSpec''' = FGSpec
             { gsLength = tNoCollInquiryQualifier
             , gsSeperator = tCollInquiryQualifier
             , gsBody = gNoCollInquiryQualifierBody''' }
@@ -26742,9 +29061,11 @@ mCollateralInquiry = FMSpec
          gNoDlvyInst''' = FIXTag
             { tName = "NoDlvyInst"
             , tnum = tnum tNoDlvyInst
-            , tparser = gNoDlvyInstP''' }
+            , tparser = gNoDlvyInstP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoDlvyInstSpec''' }
 
-         gNoDlvyInstP''' = groupP FGSpec
+         gNoDlvyInstP''' = groupP gNoDlvyInstSpec'''
+         gNoDlvyInstSpec''' = FGSpec
             { gsLength = tNoDlvyInst
             , gsSeperator = tSettlInstSource
             , gsBody = gNoDlvyInstBody''' }
@@ -26756,9 +29077,11 @@ mCollateralInquiry = FMSpec
                   gNoSettlPartyIDs'''''' = FIXTag
                      { tName = "NoSettlPartyIDs"
                      , tnum = tnum tNoSettlPartyIDs
-                     , tparser = gNoSettlPartyIDsP'''''' }
+                     , tparser = gNoSettlPartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoSettlPartyIDsSpec'''''' }
 
-                  gNoSettlPartyIDsP'''''' = groupP FGSpec
+                  gNoSettlPartyIDsP'''''' = groupP gNoSettlPartyIDsSpec''''''
+                  gNoSettlPartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoSettlPartyIDs
                      , gsSeperator = tSettlPartyID
                      , gsBody = gNoSettlPartyIDsBody'''''' }
@@ -26771,9 +29094,11 @@ mCollateralInquiry = FMSpec
                            gNoSettlPartySubIDs''''''''' = FIXTag
                               { tName = "NoSettlPartySubIDs"
                               , tnum = tnum tNoSettlPartySubIDs
-                              , tparser = gNoSettlPartySubIDsP''''''''' }
+                              , tparser = gNoSettlPartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoSettlPartySubIDsSpec''''''''' }
 
-                           gNoSettlPartySubIDsP''''''''' = groupP FGSpec
+                           gNoSettlPartySubIDsP''''''''' = groupP gNoSettlPartySubIDsSpec'''''''''
+                           gNoSettlPartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoSettlPartySubIDs
                               , gsSeperator = tSettlPartySubID
                               , gsBody = gNoSettlPartySubIDsBody''''''''' }
@@ -26786,9 +29111,11 @@ mCollateralInquiry = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -26801,9 +29128,11 @@ mCollateralInquiry = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
@@ -26814,9 +29143,11 @@ mCollateralInquiry = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -26867,9 +29198,11 @@ mCollateralInquiry = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -26881,9 +29214,11 @@ mCollateralInquiry = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -26896,9 +29231,11 @@ mCollateralInquiry = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -26910,9 +29247,11 @@ mCollateralInquiry = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -26923,9 +29262,11 @@ mCollateralInquiry = FMSpec
          gNoStipulations''' = FIXTag
             { tName = "NoStipulations"
             , tnum = tnum tNoStipulations
-            , tparser = gNoStipulationsP''' }
+            , tparser = gNoStipulationsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoStipulationsSpec''' }
 
-         gNoStipulationsP''' = groupP FGSpec
+         gNoStipulationsP''' = groupP gNoStipulationsSpec'''
+         gNoStipulationsSpec''' = FGSpec
             { gsLength = tNoStipulations
             , gsSeperator = tStipulationType
             , gsBody = gNoStipulationsBody''' }
@@ -26936,9 +29277,11 @@ mCollateralInquiry = FMSpec
          gNoTrades''' = FIXTag
             { tName = "NoTrades"
             , tnum = tnum tNoTrades
-            , tparser = gNoTradesP''' }
+            , tparser = gNoTradesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradesSpec''' }
 
-         gNoTradesP''' = groupP FGSpec
+         gNoTradesP''' = groupP gNoTradesSpec'''
+         gNoTradesSpec''' = FGSpec
             { gsLength = tNoTrades
             , gsSeperator = tTradeReportID
             , gsBody = gNoTradesBody''' }
@@ -26949,9 +29292,11 @@ mCollateralInquiry = FMSpec
          gNoTrdRegTimestamps''' = FIXTag
             { tName = "NoTrdRegTimestamps"
             , tnum = tnum tNoTrdRegTimestamps
-            , tparser = gNoTrdRegTimestampsP''' }
+            , tparser = gNoTrdRegTimestampsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTrdRegTimestampsSpec''' }
 
-         gNoTrdRegTimestampsP''' = groupP FGSpec
+         gNoTrdRegTimestampsP''' = groupP gNoTrdRegTimestampsSpec'''
+         gNoTrdRegTimestampsSpec''' = FGSpec
             { gsLength = tNoTrdRegTimestamps
             , gsSeperator = tTrdRegTimestamp
             , gsBody = gNoTrdRegTimestampsBody''' }
@@ -26963,9 +29308,11 @@ mCollateralInquiry = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -27020,9 +29367,11 @@ mCollateralInquiry = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -27033,9 +29382,11 @@ mCollateralInquiry = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -27062,9 +29413,11 @@ mNetworkCounterpartySystemStatusRequest = FMSpec
          gNoCompIDs''' = FIXTag
             { tName = "NoCompIDs"
             , tnum = tnum tNoCompIDs
-            , tparser = gNoCompIDsP''' }
+            , tparser = gNoCompIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoCompIDsSpec''' }
 
-         gNoCompIDsP''' = groupP FGSpec
+         gNoCompIDsP''' = groupP gNoCompIDsSpec'''
+         gNoCompIDsSpec''' = FGSpec
             { gsLength = tNoCompIDs
             , gsSeperator = tRefCompID
             , gsBody = gNoCompIDsBody''' }
@@ -27094,9 +29447,11 @@ mNetworkCounterpartySystemStatusResponse = FMSpec
          gNoCompIDs''' = FIXTag
             { tName = "NoCompIDs"
             , tnum = tnum tNoCompIDs
-            , tparser = gNoCompIDsP''' }
+            , tparser = gNoCompIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoCompIDsSpec''' }
 
-         gNoCompIDsP''' = groupP FGSpec
+         gNoCompIDsP''' = groupP gNoCompIDsSpec'''
+         gNoCompIDsSpec''' = FGSpec
             { gsLength = tNoCompIDs
             , gsSeperator = tRefCompID
             , gsBody = gNoCompIDsBody''' }
@@ -27237,9 +29592,11 @@ mCollateralInquiryAck = FMSpec
          gNoCollInquiryQualifier''' = FIXTag
             { tName = "NoCollInquiryQualifier"
             , tnum = tnum tNoCollInquiryQualifier
-            , tparser = gNoCollInquiryQualifierP''' }
+            , tparser = gNoCollInquiryQualifierP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoCollInquiryQualifierSpec''' }
 
-         gNoCollInquiryQualifierP''' = groupP FGSpec
+         gNoCollInquiryQualifierP''' = groupP gNoCollInquiryQualifierSpec'''
+         gNoCollInquiryQualifierSpec''' = FGSpec
             { gsLength = tNoCollInquiryQualifier
             , gsSeperator = tCollInquiryQualifier
             , gsBody = gNoCollInquiryQualifierBody''' }
@@ -27250,9 +29607,11 @@ mCollateralInquiryAck = FMSpec
          gNoEvents''' = FIXTag
             { tName = "NoEvents"
             , tnum = tnum tNoEvents
-            , tparser = gNoEventsP''' }
+            , tparser = gNoEventsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoEventsSpec''' }
 
-         gNoEventsP''' = groupP FGSpec
+         gNoEventsP''' = groupP gNoEventsSpec'''
+         gNoEventsSpec''' = FGSpec
             { gsLength = tNoEvents
             , gsSeperator = tEventType
             , gsBody = gNoEventsBody''' }
@@ -27265,9 +29624,11 @@ mCollateralInquiryAck = FMSpec
          gNoExecs''' = FIXTag
             { tName = "NoExecs"
             , tnum = tnum tNoExecs
-            , tparser = gNoExecsP''' }
+            , tparser = gNoExecsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoExecsSpec''' }
 
-         gNoExecsP''' = groupP FGSpec
+         gNoExecsP''' = groupP gNoExecsSpec'''
+         gNoExecsSpec''' = FGSpec
             { gsLength = tNoExecs
             , gsSeperator = tExecID
             , gsBody = gNoExecsBody''' }
@@ -27278,9 +29639,11 @@ mCollateralInquiryAck = FMSpec
          gNoLegs''' = FIXTag
             { tName = "NoLegs"
             , tnum = tnum tNoLegs
-            , tparser = gNoLegsP''' }
+            , tparser = gNoLegsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoLegsSpec''' }
 
-         gNoLegsP''' = groupP FGSpec
+         gNoLegsP''' = groupP gNoLegsSpec'''
+         gNoLegsSpec''' = FGSpec
             { gsLength = tNoLegs
             , gsSeperator = tLegSymbol
             , gsBody = gNoLegsBody''' }
@@ -27331,9 +29694,11 @@ mCollateralInquiryAck = FMSpec
                   gNoLegSecurityAltID'''''' = FIXTag
                      { tName = "NoLegSecurityAltID"
                      , tnum = tnum tNoLegSecurityAltID
-                     , tparser = gNoLegSecurityAltIDP'''''' }
+                     , tparser = gNoLegSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoLegSecurityAltIDSpec'''''' }
 
-                  gNoLegSecurityAltIDP'''''' = groupP FGSpec
+                  gNoLegSecurityAltIDP'''''' = groupP gNoLegSecurityAltIDSpec''''''
+                  gNoLegSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoLegSecurityAltID
                      , gsSeperator = tLegSecurityAltID
                      , gsBody = gNoLegSecurityAltIDBody'''''' }
@@ -27345,9 +29710,11 @@ mCollateralInquiryAck = FMSpec
          gNoPartyIDs''' = FIXTag
             { tName = "NoPartyIDs"
             , tnum = tnum tNoPartyIDs
-            , tparser = gNoPartyIDsP''' }
+            , tparser = gNoPartyIDsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoPartyIDsSpec''' }
 
-         gNoPartyIDsP''' = groupP FGSpec
+         gNoPartyIDsP''' = groupP gNoPartyIDsSpec'''
+         gNoPartyIDsSpec''' = FGSpec
             { gsLength = tNoPartyIDs
             , gsSeperator = tPartyID
             , gsBody = gNoPartyIDsBody''' }
@@ -27360,9 +29727,11 @@ mCollateralInquiryAck = FMSpec
                   gNoPartySubIDs'''''' = FIXTag
                      { tName = "NoPartySubIDs"
                      , tnum = tnum tNoPartySubIDs
-                     , tparser = gNoPartySubIDsP'''''' }
+                     , tparser = gNoPartySubIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoPartySubIDsSpec'''''' }
 
-                  gNoPartySubIDsP'''''' = groupP FGSpec
+                  gNoPartySubIDsP'''''' = groupP gNoPartySubIDsSpec''''''
+                  gNoPartySubIDsSpec'''''' = FGSpec
                      { gsLength = tNoPartySubIDs
                      , gsSeperator = tPartySubID
                      , gsBody = gNoPartySubIDsBody'''''' }
@@ -27374,9 +29743,11 @@ mCollateralInquiryAck = FMSpec
          gNoSecurityAltID''' = FIXTag
             { tName = "NoSecurityAltID"
             , tnum = tnum tNoSecurityAltID
-            , tparser = gNoSecurityAltIDP''' }
+            , tparser = gNoSecurityAltIDP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoSecurityAltIDSpec''' }
 
-         gNoSecurityAltIDP''' = groupP FGSpec
+         gNoSecurityAltIDP''' = groupP gNoSecurityAltIDSpec'''
+         gNoSecurityAltIDSpec''' = FGSpec
             { gsLength = tNoSecurityAltID
             , gsSeperator = tSecurityAltID
             , gsBody = gNoSecurityAltIDBody''' }
@@ -27387,9 +29758,11 @@ mCollateralInquiryAck = FMSpec
          gNoTrades''' = FIXTag
             { tName = "NoTrades"
             , tnum = tnum tNoTrades
-            , tparser = gNoTradesP''' }
+            , tparser = gNoTradesP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoTradesSpec''' }
 
-         gNoTradesP''' = groupP FGSpec
+         gNoTradesP''' = groupP gNoTradesSpec'''
+         gNoTradesSpec''' = FGSpec
             { gsLength = tNoTrades
             , gsSeperator = tTradeReportID
             , gsBody = gNoTradesBody''' }
@@ -27400,9 +29773,11 @@ mCollateralInquiryAck = FMSpec
          gNoUnderlyings''' = FIXTag
             { tName = "NoUnderlyings"
             , tnum = tnum tNoUnderlyings
-            , tparser = gNoUnderlyingsP''' }
+            , tparser = gNoUnderlyingsP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingsSpec''' }
 
-         gNoUnderlyingsP''' = groupP FGSpec
+         gNoUnderlyingsP''' = groupP gNoUnderlyingsSpec'''
+         gNoUnderlyingsSpec''' = FGSpec
             { gsLength = tNoUnderlyings
             , gsSeperator = tUnderlyingSymbol
             , gsBody = gNoUnderlyingsBody''' }
@@ -27457,9 +29832,11 @@ mCollateralInquiryAck = FMSpec
                   gNoUnderlyingSecurityAltID'''''' = FIXTag
                      { tName = "NoUnderlyingSecurityAltID"
                      , tnum = tnum tNoUnderlyingSecurityAltID
-                     , tparser = gNoUnderlyingSecurityAltIDP'''''' }
+                     , tparser = gNoUnderlyingSecurityAltIDP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingSecurityAltIDSpec'''''' }
 
-                  gNoUnderlyingSecurityAltIDP'''''' = groupP FGSpec
+                  gNoUnderlyingSecurityAltIDP'''''' = groupP gNoUnderlyingSecurityAltIDSpec''''''
+                  gNoUnderlyingSecurityAltIDSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingSecurityAltID
                      , gsSeperator = tUnderlyingSecurityAltID
                      , gsBody = gNoUnderlyingSecurityAltIDBody'''''' }
@@ -27470,9 +29847,11 @@ mCollateralInquiryAck = FMSpec
                   gNoUnderlyingStips'''''' = FIXTag
                      { tName = "NoUnderlyingStips"
                      , tnum = tnum tNoUnderlyingStips
-                     , tparser = gNoUnderlyingStipsP'''''' }
+                     , tparser = gNoUnderlyingStipsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoUnderlyingStipsSpec'''''' }
 
-                  gNoUnderlyingStipsP'''''' = groupP FGSpec
+                  gNoUnderlyingStipsP'''''' = groupP gNoUnderlyingStipsSpec''''''
+                  gNoUnderlyingStipsSpec'''''' = FGSpec
                      { gsLength = tNoUnderlyingStips
                      , gsSeperator = tUnderlyingStipType
                      , gsBody = gNoUnderlyingStipsBody'''''' }
@@ -27509,9 +29888,11 @@ mConfirmationRequest = FMSpec
          gNoOrders''' = FIXTag
             { tName = "NoOrders"
             , tnum = tnum tNoOrders
-            , tparser = gNoOrdersP''' }
+            , tparser = gNoOrdersP'''
+            , arbitraryValue = arbibtraryFIXGroup gNoOrdersSpec''' }
 
-         gNoOrdersP''' = groupP FGSpec
+         gNoOrdersP''' = groupP gNoOrdersSpec'''
+         gNoOrdersSpec''' = FGSpec
             { gsLength = tNoOrders
             , gsSeperator = tClOrdID
             , gsBody = gNoOrdersBody''' }
@@ -27529,9 +29910,11 @@ mConfirmationRequest = FMSpec
                   gNoNested2PartyIDs'''''' = FIXTag
                      { tName = "NoNested2PartyIDs"
                      , tnum = tnum tNoNested2PartyIDs
-                     , tparser = gNoNested2PartyIDsP'''''' }
+                     , tparser = gNoNested2PartyIDsP''''''
+                     , arbitraryValue = arbibtraryFIXGroup gNoNested2PartyIDsSpec'''''' }
 
-                  gNoNested2PartyIDsP'''''' = groupP FGSpec
+                  gNoNested2PartyIDsP'''''' = groupP gNoNested2PartyIDsSpec''''''
+                  gNoNested2PartyIDsSpec'''''' = FGSpec
                      { gsLength = tNoNested2PartyIDs
                      , gsSeperator = tNested2PartyID
                      , gsBody = gNoNested2PartyIDsBody'''''' }
@@ -27544,9 +29927,11 @@ mConfirmationRequest = FMSpec
                            gNoNested2PartySubIDs''''''''' = FIXTag
                               { tName = "NoNested2PartySubIDs"
                               , tnum = tnum tNoNested2PartySubIDs
-                              , tparser = gNoNested2PartySubIDsP''''''''' }
+                              , tparser = gNoNested2PartySubIDsP'''''''''
+                              , arbitraryValue = arbibtraryFIXGroup gNoNested2PartySubIDsSpec''''''''' }
 
-                           gNoNested2PartySubIDsP''''''''' = groupP FGSpec
+                           gNoNested2PartySubIDsP''''''''' = groupP gNoNested2PartySubIDsSpec'''''''''
+                           gNoNested2PartySubIDsSpec''''''''' = FGSpec
                               { gsLength = tNoNested2PartySubIDs
                               , gsSeperator = tNested2PartySubID
                               , gsBody = gNoNested2PartySubIDsBody''''''''' }
@@ -27560,7 +29945,8 @@ mConfirmationRequest = FMSpec
 
 fix44 :: FIXSpec
 fix44 = FSpec
-   { fsHeader = headerFIX44
+   { fsVersion = "FIX.4.4"
+   , fsHeader = headerFIX44
    , fsTrailer = trailerFIX44
    , fsMessages = fix44Messages }
    where

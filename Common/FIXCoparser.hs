@@ -82,9 +82,6 @@ fromFIXUTCDate :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCDate c = let day = 1 + ctDay c in
     fromFIXMonthYear c `append` (day `pad` 2)
 
-fromFIXLocalMktDate :: (BuilderLike t a) => CalendarTime -> t
-fromFIXLocalMktDate = fromFIXUTCDate
-
 fromFIXUTCTimeOnly :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCTimeOnly c = let m = ctMin c; s = ctSec c; h = ctHour c in
         (h `pad` 2) `append` (':' `cons` (m `pad` 2) 
@@ -104,10 +101,9 @@ instance Coparser FIXValue where
         | otherwise = singleton 'N'
     coparse (FIXString a) = pack $ C.unpack a
     coparse (FIXMultipleValueString a) = pack $ C.unpack a
-    coparse (FIXUTCTimestamp a) = fromFIXUTCTimetamp a
-    coparse (FIXUTCTimeOnly a) = fromFIXUTCTimeOnly a
-    coparse (FIXLocalMktDate a) = fromFIXLocalMktDate a
-    coparse (FIXUTCDate a) = fromFIXUTCDate a
+    coparse (FIXTimestamp a) = fromFIXUTCTimetamp a
+    coparse (FIXTimeOnly a) = fromFIXUTCTimeOnly a
+    coparse (FIXDate a) = fromFIXUTCDate a
     coparse (FIXMonthYear a) = fromFIXMonthYear a
     coparse (FIXData a) = pack $ C.unpack a
     coparse (FIXGroup _ ls) = concat $ map coparse ls

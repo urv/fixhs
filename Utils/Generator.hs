@@ -252,13 +252,20 @@ fieldDef (CElem e _) =
                     LT.insert "MULTIPLEVALUESTRING" "FIXMultipleValueString" $
                     LT.insert "CURRENCY" "FIXString" $
                     LT.insert "EXCHANGE" "FIXString" $
-                    LT.insert "UTCTIMESTAMP" "FIXUTCTimestamp" $
-                    LT.insert "UTCTIMEONLY" "FIXUTCTimeOnly" $
-                    LT.insert "UTCDATE" "FIXUTCDate" $
+                    LT.insert "UTCTIMESTAMP" "FIXTimestamp" $
+                    LT.insert "UTCTIMEONLY" "FIXTimeOnly" $
+                    LT.insert "UTCDATE" "FIXDate" $
                     LT.insert "MONTHYEAR" "FIXMonthYear" $
-                    LT.insert "LOCALMKTDATE" "FIXLocalMktDate" $
+                    LT.insert "LOCALMKTDATE" "FIXDate" $
                     LT.insert "DATA" "FIXData" $
-                    LT.insert "LENGTH" "FIXInt" 
+                    LT.insert "LENGTH" "FIXInt" $
+                    LT.insert "TIME" "FIXTimestamp" $ 
+                    LT.insert "SEQNUM" "FIXInt"  $
+                    LT.insert "NUMINGROUP" "FIXInt" $
+                    LT.insert "PERCENTAGE" "FIXFloat" $
+                    LT.insert "COUNTRY" "FIXString" $ 
+                    LT.insert "UTCDATEONLY" "FIXDate" $
+                    LT.insert "DATE" "FIXDate" 
                     LT.new
 fieldDef _ = ""
 
