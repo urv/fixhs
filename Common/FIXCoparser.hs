@@ -78,12 +78,12 @@ fromFIXMonthYear c =
     let year = ctYear c; month = 1 + fromEnum (ctMonth c) in
         (year `pad` 4) `append` (month `pad` 2)
 
-fromFIXUTCData :: (BuilderLike t a) => CalendarTime -> t
-fromFIXUTCData c = let day = 1 + ctDay c in
+fromFIXUTCDate :: (BuilderLike t a) => CalendarTime -> t
+fromFIXUTCDate c = let day = 1 + ctDay c in
     fromFIXMonthYear c `append` (day `pad` 2)
 
 fromFIXLocalMktDate :: (BuilderLike t a) => CalendarTime -> t
-fromFIXLocalMktDate = fromFIXUTCData
+fromFIXLocalMktDate = fromFIXUTCDate
 
 fromFIXUTCTimeOnly :: (BuilderLike t a) => CalendarTime -> t
 fromFIXUTCTimeOnly c = let m = ctMin c; s = ctSec c; h = ctHour c in
@@ -91,7 +91,7 @@ fromFIXUTCTimeOnly c = let m = ctMin c; s = ctSec c; h = ctHour c in
         `append` (':' `cons` (s `pad` 2 )))
 
 fromFIXUTCTimetamp :: (BuilderLike t a) => CalendarTime -> t
-fromFIXUTCTimetamp c = fromFIXUTCData c `append` 
+fromFIXUTCTimetamp c = fromFIXUTCDate c `append` 
     ('-' `cons` fromFIXUTCTimeOnly c)
 
 
@@ -107,7 +107,7 @@ instance Coparser FIXValue where
     coparse (FIXUTCTimestamp a) = fromFIXUTCTimetamp a
     coparse (FIXUTCTimeOnly a) = fromFIXUTCTimeOnly a
     coparse (FIXLocalMktDate a) = fromFIXLocalMktDate a
-    coparse (FIXUTCDate a) = fromFIXUTCData a
+    coparse (FIXUTCDate a) = fromFIXUTCDate a
     coparse (FIXMonthYear a) = fromFIXMonthYear a
     coparse (FIXData a) = pack $ C.unpack a
     coparse (FIXGroup _ ls) = concat $ map coparse ls
