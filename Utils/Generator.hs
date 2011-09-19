@@ -254,9 +254,9 @@ fieldDef (CElem e _) =
                     LT.insert "EXCHANGE" "FIXString" $
                     LT.insert "UTCTIMESTAMP" "FIXTimestamp" $
                     LT.insert "UTCTIMEONLY" "FIXTimeOnly" $
-                    LT.insert "UTCDATE" "FIXDate" $
+                    LT.insert "UTCDATE" "FIXDateOnly" $
                     LT.insert "MONTHYEAR" "FIXMonthYear" $
-                    LT.insert "LOCALMKTDATE" "FIXDate" $
+                    LT.insert "LOCALMKTDATE" "FIXDateOnly" $
                     LT.insert "DATA" "FIXData" $
                     LT.insert "LENGTH" "FIXInt" $
                     LT.insert "TIME" "FIXTimestamp" $ 
@@ -264,8 +264,8 @@ fieldDef (CElem e _) =
                     LT.insert "NUMINGROUP" "FIXInt" $
                     LT.insert "PERCENTAGE" "FIXFloat" $
                     LT.insert "COUNTRY" "FIXString" $ 
-                    LT.insert "UTCDATEONLY" "FIXDate" $
-                    LT.insert "DATE" "FIXDate" 
+                    LT.insert "UTCDATEONLY" "FIXDateOnly" $
+                    LT.insert "DATE" "FIXDateOnly" 
                     LT.new
 fieldDef _ = ""
 

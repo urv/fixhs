@@ -8,11 +8,10 @@ module Common.FIXParserCombinators
     , toInt
     , toFloat
     , toBool
-    , toUTCTimestamp
-    , toUTCTimeOnly
-    , toLocalMktDate
+    , toTimestamp
+    , toTimeOnly
     , toChar
-    , toUTCDate
+    , toDateOnly
     , toTime
     , toMonthYear
 
@@ -116,8 +115,8 @@ toSecMillis = do
 picosPerMilli :: Int
 picosPerMilli = 1000000000
 
-toUTCTimestamp :: Parser CalendarTime
-toUTCTimestamp = do
+toTimestamp :: Parser CalendarTime
+toTimestamp = do
    i <- parseIntTill '-'
    let year  = i `div` 10000
    let rest  = i `mod` 10000
@@ -141,8 +140,8 @@ toUTCTimestamp = do
      , ctIsDST = True
    }
 
-toUTCTimeOnly :: Parser CalendarTime
-toUTCTimeOnly = do
+toTimeOnly :: Parser CalendarTime
+toTimeOnly = do
    hours   <- parseIntTill ':'
    minutes <- parseIntTill ':'
    (sec, milli) <- toSecMillis
@@ -161,8 +160,8 @@ toUTCTimeOnly = do
      , ctIsDST = True
    }
 
-toLocalMktDate :: Parser CalendarTime
-toLocalMktDate = do
+toDateOnly :: Parser CalendarTime
+toDateOnly = do
    i <- parseIntTill '-'
    let year  = i `div` 10000
    let rest  = i `mod` 10000
@@ -183,8 +182,6 @@ toLocalMktDate = do
      , ctIsDST = True
    }
 
-toUTCDate :: Parser CalendarTime
-toUTCDate = toLocalMktDate
 
 toMonthYear :: Parser CalendarTime
 toMonthYear = do
@@ -208,10 +205,10 @@ toMonthYear = do
    }
 
 toTime :: Parser CalendarTime
-toTime = toUTCTimestamp 
-          <|> toUTCTimeOnly 
-          <|> toUTCDate 
-          <|> toLocalMktDate
+toTime = toTimestamp 
+          <|> toTimeOnly 
+          <|> toDateOnly
+          <|> toDateOnly
 
 skipToken :: Parser ()
 skipToken = skipWhile (FIX.delimiter /=)

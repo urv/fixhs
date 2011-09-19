@@ -333,8 +333,8 @@ tSendingDate :: FIXTag
 tSendingDate = FIXTag 
    { tName = "SendingDate"
    , tnum = 51
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tSendingTime :: FIXTag
 tSendingTime = FIXTag 
@@ -424,8 +424,8 @@ tSettlDate :: FIXTag
 tSettlDate = FIXTag 
    { tName = "SettlDate"
    , tnum = 64
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tSymbolSfx :: FIXTag
 tSymbolSfx = FIXTag 
@@ -501,8 +501,8 @@ tTradeDate :: FIXTag
 tTradeDate = FIXTag 
    { tName = "TradeDate"
    , tnum = 75
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tExecBroker :: FIXTag
 tExecBroker = FIXTag 
@@ -1320,8 +1320,8 @@ tSettlDate2 :: FIXTag
 tSettlDate2 = FIXTag 
    { tName = "SettlDate2"
    , tnum = 193
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLastSpotRate :: FIXTag
 tLastSpotRate = FIXTag 
@@ -1537,15 +1537,15 @@ tCouponPaymentDate :: FIXTag
 tCouponPaymentDate = FIXTag 
    { tName = "CouponPaymentDate"
    , tnum = 224
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tIssueDate :: FIXTag
 tIssueDate = FIXTag 
    { tName = "IssueDate"
    , tnum = 225
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tRepurchaseTerm :: FIXTag
 tRepurchaseTerm = FIXTag 
@@ -1572,15 +1572,15 @@ tTradeOriginationDate :: FIXTag
 tTradeOriginationDate = FIXTag 
    { tName = "TradeOriginationDate"
    , tnum = 229
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tExDate :: FIXTag
 tExDate = FIXTag 
    { tName = "ExDate"
    , tnum = 230
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tContractMultiplier :: FIXTag
 tContractMultiplier = FIXTag 
@@ -1649,22 +1649,22 @@ tRedemptionDate :: FIXTag
 tRedemptionDate = FIXTag 
    { tName = "RedemptionDate"
    , tnum = 240
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tUnderlyingCouponPaymentDate :: FIXTag
 tUnderlyingCouponPaymentDate = FIXTag 
    { tName = "UnderlyingCouponPaymentDate"
    , tnum = 241
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tUnderlyingIssueDate :: FIXTag
 tUnderlyingIssueDate = FIXTag 
    { tName = "UnderlyingIssueDate"
    , tnum = 242
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tUnderlyingRepoCollateralSecurityType :: FIXTag
 tUnderlyingRepoCollateralSecurityType = FIXTag 
@@ -1698,22 +1698,22 @@ tUnderlyingRedemptionDate :: FIXTag
 tUnderlyingRedemptionDate = FIXTag 
    { tName = "UnderlyingRedemptionDate"
    , tnum = 247
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLegCouponPaymentDate :: FIXTag
 tLegCouponPaymentDate = FIXTag 
    { tName = "LegCouponPaymentDate"
    , tnum = 248
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLegIssueDate :: FIXTag
 tLegIssueDate = FIXTag 
    { tName = "LegIssueDate"
    , tnum = 249
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLegRepoCollateralSecurityType :: FIXTag
 tLegRepoCollateralSecurityType = FIXTag 
@@ -1747,8 +1747,8 @@ tLegRedemptionDate :: FIXTag
 tLegRedemptionDate = FIXTag 
    { tName = "LegRedemptionDate"
    , tnum = 254
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tCreditRating :: FIXTag
 tCreditRating = FIXTag 
@@ -1782,8 +1782,8 @@ tBasisFeatureDate :: FIXTag
 tBasisFeatureDate = FIXTag 
    { tName = "BasisFeatureDate"
    , tnum = 259
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tBasisFeaturePrice :: FIXTag
 tBasisFeaturePrice = FIXTag 
@@ -1866,8 +1866,8 @@ tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
    { tName = "MDEntryDate"
    , tnum = 272
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tMDEntryTime :: FIXTag
 tMDEntryTime = FIXTag 
@@ -2986,8 +2986,8 @@ tExpireDate :: FIXTag
 tExpireDate = FIXTag 
    { tName = "ExpireDate"
    , tnum = 432
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tListExecInstType :: FIXTag
 tListExecInstType = FIXTag 
@@ -3105,8 +3105,8 @@ tTotalVolumeTradedDate :: FIXTag
 tTotalVolumeTradedDate = FIXTag 
    { tName = "TotalVolumeTradedDate"
    , tnum = 449
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tTotalVolumeTradedTime :: FIXTag
 tTotalVolumeTradedTime = FIXTag 
@@ -3364,8 +3364,8 @@ tDateOfBirth :: FIXTag
 tDateOfBirth = FIXTag 
    { tName = "DateOfBirth"
    , tnum = 486
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tTradeReportTransType :: FIXTag
 tTradeReportTransType = FIXTag 
@@ -3392,8 +3392,8 @@ tCardExpDate :: FIXTag
 tCardExpDate = FIXTag 
    { tName = "CardExpDate"
    , tnum = 490
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tCardIssNum :: FIXTag
 tCardIssNum = FIXTag 
@@ -3483,15 +3483,15 @@ tCardStartDate :: FIXTag
 tCardStartDate = FIXTag 
    { tName = "CardStartDate"
    , tnum = 503
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tPaymentDate :: FIXTag
 tPaymentDate = FIXTag 
    { tName = "PaymentDate"
    , tnum = 504
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tPaymentRemitterID :: FIXTag
 tPaymentRemitterID = FIXTag 
@@ -3749,15 +3749,15 @@ tMaturityDate :: FIXTag
 tMaturityDate = FIXTag 
    { tName = "MaturityDate"
    , tnum = 541
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tUnderlyingMaturityDate :: FIXTag
 tUnderlyingMaturityDate = FIXTag 
    { tName = "UnderlyingMaturityDate"
    , tnum = 542
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tInstrRegistry :: FIXTag
 tInstrRegistry = FIXTag 
@@ -4078,8 +4078,8 @@ tLegSettlDate :: FIXTag
 tLegSettlDate = FIXTag 
    { tName = "LegSettlDate"
    , tnum = 588
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tDayBookingInst :: FIXTag
 tDayBookingInst = FIXTag 
@@ -4239,8 +4239,8 @@ tLegMaturityDate :: FIXTag
 tLegMaturityDate = FIXTag 
    { tName = "LegMaturityDate"
    , tnum = 611
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLegStrikePrice :: FIXTag
 tLegStrikePrice = FIXTag 
@@ -4834,8 +4834,8 @@ tYieldRedemptionDate :: FIXTag
 tYieldRedemptionDate = FIXTag 
    { tName = "YieldRedemptionDate"
    , tnum = 696
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tYieldRedemptionPrice :: FIXTag
 tYieldRedemptionPrice = FIXTag 
@@ -4869,8 +4869,8 @@ tYieldCalcDate :: FIXTag
 tYieldCalcDate = FIXTag 
    { tName = "YieldCalcDate"
    , tnum = 701
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tNoPositions :: FIXTag
 tNoPositions = FIXTag 
@@ -4967,8 +4967,8 @@ tClearingBusinessDate :: FIXTag
 tClearingBusinessDate = FIXTag 
    { tName = "ClearingBusinessDate"
    , tnum = 715
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tSettlSessID :: FIXTag
 tSettlSessID = FIXTag 
@@ -5135,8 +5135,8 @@ tLegDatedDate :: FIXTag
 tLegDatedDate = FIXTag 
    { tName = "LegDatedDate"
    , tnum = 739
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLegPool :: FIXTag
 tLegPool = FIXTag 
@@ -5163,8 +5163,8 @@ tDeliveryDate :: FIXTag
 tDeliveryDate = FIXTag 
    { tName = "DeliveryDate"
    , tnum = 743
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tAssignmentMethod :: FIXTag
 tAssignmentMethod = FIXTag 
@@ -6017,8 +6017,8 @@ tEventDate :: FIXTag
 tEventDate = FIXTag 
    { tName = "EventDate"
    , tnum = 866
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tEventPx :: FIXTag
 tEventPx = FIXTag 
@@ -6066,15 +6066,15 @@ tDatedDate :: FIXTag
 tDatedDate = FIXTag 
    { tName = "DatedDate"
    , tnum = 873
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tInterestAccrualDate :: FIXTag
 tInterestAccrualDate = FIXTag 
    { tName = "InterestAccrualDate"
    , tnum = 874
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tCPProgram :: FIXTag
 tCPProgram = FIXTag 
@@ -6360,22 +6360,22 @@ tAgreementDate :: FIXTag
 tAgreementDate = FIXTag 
    { tName = "AgreementDate"
    , tnum = 915
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tStartDate :: FIXTag
 tStartDate = FIXTag 
    { tName = "StartDate"
    , tnum = 916
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tEndDate :: FIXTag
 tEndDate = FIXTag 
    { tName = "EndDate"
    , tnum = 917
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tAgreementCurrency :: FIXTag
 tAgreementCurrency = FIXTag 
@@ -6647,8 +6647,8 @@ tLegInterestAccrualDate :: FIXTag
 tLegInterestAccrualDate = FIXTag 
    { tName = "LegInterestAccrualDate"
    , tnum = 956
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 headerFIX44 :: FIXTags
 headerFIX44 = 

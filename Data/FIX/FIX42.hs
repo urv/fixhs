@@ -410,8 +410,8 @@ tFutSettDate :: FIXTag
 tFutSettDate = FIXTag 
    { tName = "FutSettDate"
    , tnum = 64
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tSymbolSfx :: FIXTag
 tSymbolSfx = FIXTag 
@@ -487,8 +487,8 @@ tTradeDate :: FIXTag
 tTradeDate = FIXTag 
    { tName = "TradeDate"
    , tnum = 75
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tExecBroker :: FIXTag
 tExecBroker = FIXTag 
@@ -1285,8 +1285,8 @@ tFutSettDate2 :: FIXTag
 tFutSettDate2 = FIXTag 
    { tName = "FutSettDate2"
    , tnum = 193
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tLastSpotRate :: FIXTag
 tLastSpotRate = FIXTag 
@@ -1558,8 +1558,8 @@ tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
    { tName = "MDEntryDate"
    , tnum = 272
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tMDEntryTime :: FIXTag
 tMDEntryTime = FIXTag 
@@ -2678,8 +2678,8 @@ tExpireDate :: FIXTag
 tExpireDate = FIXTag 
    { tName = "ExpireDate"
    , tnum = 432
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tListExecInstType :: FIXTag
 tListExecInstType = FIXTag 

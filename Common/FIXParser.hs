@@ -18,7 +18,7 @@ module Common.FIXParser
     , toFIXTimestamp
     , toFIXTimeOnly
     , toFIXData
-    , toFIXDate
+    , toFIXDateOnly
     , toFIXMonthYear
     , tBeginString
     , tCheckSum
@@ -160,10 +160,10 @@ toFIXBool = FIXBool <$> toBool
 toFIXString = FIXString <$> toString
 toFIXMultipleValueString = FIXMultipleValueString <$> toString
 toFIXData = FIXData <$> toString
-toFIXTimestamp = FIXTimestamp <$> toUTCTimestamp
-toFIXTimeOnly = FIXTimestamp <$> toUTCTimeOnly
+toFIXTimestamp = FIXTimestamp <$> toTimestamp
+toFIXTimeOnly = FIXTimestamp <$> toTimeOnly
 toFIXChar = FIXChar <$> toChar
-toFIXDate = FIXDate <$> toUTCDate
+toFIXDateOnly = FIXDateOnly <$> toDateOnly
 toFIXMonthYear = FIXMonthYear <$> toMonthYear
 
 

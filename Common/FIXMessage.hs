@@ -55,7 +55,7 @@ data FIXValue = FIXInt Int
               | FIXMultipleValueString ByteString 
               | FIXTimestamp CalendarTime
               | FIXTimeOnly CalendarTime
-              | FIXDate CalendarTime
+              | FIXDateOnly CalendarTime
               | FIXMonthYear CalendarTime
               | FIXGroup Int [FIXValues]
 
@@ -210,7 +210,7 @@ instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXMultipleValueString x) = rnf x
     rnf (FIXTimestamp x) = rnf x
     rnf (FIXTimeOnly x) = rnf x
-    rnf (FIXDate x) = rnf x
+    rnf (FIXDateOnly x) = rnf x
     rnf (FIXMonthYear x) = rnf x
     rnf (FIXData x) = rnf x 
     rnf (FIXGroup l vs) = rnf l `seq` rnf vs

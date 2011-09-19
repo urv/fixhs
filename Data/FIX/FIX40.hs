@@ -333,8 +333,8 @@ tSendingDate :: FIXTag
 tSendingDate = FIXTag 
    { tName = "SendingDate"
    , tnum = 51
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tSendingTime :: FIXTag
 tSendingTime = FIXTag 
@@ -424,8 +424,8 @@ tFutSettDate :: FIXTag
 tFutSettDate = FIXTag 
    { tName = "FutSettDate"
    , tnum = 64
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tSymbolSfx :: FIXTag
 tSymbolSfx = FIXTag 
@@ -501,8 +501,8 @@ tTradeDate :: FIXTag
 tTradeDate = FIXTag 
    { tName = "TradeDate"
    , tnum = 75
-   , tparser = toFIXDate
-   , arbitraryValue = FIXDate <$> arbitrary }
+   , tparser = toFIXDateOnly
+   , arbitraryValue = FIXDateOnly <$> arbitrary }
 
 tExecBroker :: FIXTag
 tExecBroker = FIXTag 
