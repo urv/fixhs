@@ -1,7 +1,6 @@
 -- Module   : Common.FIXMessage
 -- License  : GPLv2
 
-
 {-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
@@ -20,7 +19,7 @@ module Common.FIXMessage
     , checksum
     , delimiter
     , arbitraryFIXMessage
-	) where
+    ) where
 
 import System.Time ( CalendarTime (..) )
 import Prelude hiding ( null )
@@ -48,25 +47,17 @@ data FIXTag = FIXTag
 
 
 data FIXValue = FIXInt Int 
-              | FIXDayOfMonth Int
               | FIXFloat Float
-              | FIXQuantity Float
-              | FIXPrice Float
-              | FIXPriceOffset Float
-              | FIXAmt Float
               | FIXChar Char 
               | FIXBool Bool 
               | FIXString ByteString 
+              | FIXData ByteString 
               | FIXMultipleValueString ByteString 
-              | FIXCurrency ByteString 
-              | FIXExchange ByteString 
               | FIXUTCTimestamp CalendarTime
               | FIXUTCTimeOnly CalendarTime
               | FIXLocalMktDate CalendarTime
               | FIXUTCDate CalendarTime
               | FIXMonthYear CalendarTime
-              | FIXData ByteString 
-              | FIXDataLen Int
               | FIXGroup Int [FIXValues]
 
 --- should be alias of type in the typeclass LookupTable
@@ -213,25 +204,17 @@ instance Control.DeepSeq.NFData CalendarTime
 
 instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXInt x) = rnf x
-    rnf (FIXDayOfMonth x) = rnf x
     rnf (FIXFloat x) = rnf x
-    rnf (FIXQuantity x) = rnf x
-    rnf (FIXPrice x) = rnf x
-    rnf (FIXPriceOffset x) = rnf x
-    rnf (FIXAmt x) = rnf x
     rnf (FIXChar x) = rnf x
     rnf (FIXBool x) = rnf x
     rnf (FIXString x) = rnf x
     rnf (FIXMultipleValueString x) = rnf x
-    rnf (FIXCurrency x) = rnf x
-    rnf (FIXExchange x) = rnf x
     rnf (FIXUTCTimestamp x) = rnf x
     rnf (FIXUTCTimeOnly x) = rnf x
     rnf (FIXLocalMktDate x) = rnf x
     rnf (FIXUTCDate x) = rnf x
     rnf (FIXMonthYear x) = rnf x
     rnf (FIXData x) = rnf x 
-    rnf (FIXDataLen x) = rnf x 
     rnf (FIXGroup l vs) = rnf l `seq` rnf vs
 
 instance Control.DeepSeq.NFData (FIXMessage a) where

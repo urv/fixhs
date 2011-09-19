@@ -12,21 +12,13 @@ module Common.FIXParser
     , toFIXInt
     , toFIXChar
     , toFIXString
-    , toFIXDayOfMonth
     , toFIXFloat
-    , toFIXQuantity
-    , toFIXPrice
-    , toFIXPriceOffset
-    , toFIXAmt
     , toFIXBool
     , toFIXMultipleValueString
-    , toFIXCurrency
-    , toFIXExchange
     , toFIXUTCTimestamp
     , toFIXUTCTimeOnly
     , toFIXLocalMktDate
     , toFIXData
-    , toFIXDataLen
     , toFIXUTCDate
     , toFIXMonthYear
     , tBeginString
@@ -164,19 +156,11 @@ messageP spec msg =
 
 -- FIX value parsers 
 toFIXInt = FIXInt <$> toInt
-toFIXDayOfMonth = FIXDayOfMonth <$> toInt
 toFIXFloat = FIXFloat <$> toFloat
-toFIXQuantity = FIXQuantity <$> toFloat
-toFIXPrice = FIXPrice <$> toFloat
-toFIXPriceOffset = FIXPriceOffset <$> toFloat
-toFIXAmt = FIXAmt <$> toFloat
 toFIXBool = FIXBool <$> toBool
 toFIXString = FIXString <$> toString
 toFIXMultipleValueString = FIXMultipleValueString <$> toString
-toFIXCurrency = FIXCurrency <$> toString
-toFIXExchange = FIXExchange <$> toString
 toFIXData = FIXData <$> toString
-toFIXDataLen = FIXDataLen <$> toInt
 toFIXUTCTimestamp = FIXUTCTimestamp <$> toUTCTimestamp
 toFIXUTCTimeOnly = FIXUTCTimestamp <$> toUTCTimeOnly
 toFIXLocalMktDate = FIXLocalMktDate <$> toLocalMktDate

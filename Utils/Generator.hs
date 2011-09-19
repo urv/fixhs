@@ -240,26 +240,25 @@ fieldDef (CElem e _) =
                 values' = 
                     LT.insert "INT" "FIXInt" $
                     LT.insert "STRING" "FIXString" $
-                    LT.insert "DAYOFMONTH" "FIXDayOfMonth" $
+                    LT.insert "DAYOFMONTH" "FIXInt" $
                     LT.insert "CHAR" "FIXChar" $
                     LT.insert "FLOAT" "FIXFloat" $
-                    LT.insert "QTY" "FIXQuantity" $
-                    LT.insert "PRICE" "FIXPrice" $
-                    LT.insert "QUANTITY" "FIXQuantity" $
-                    LT.insert "PRICEOFFSET" "FIXPriceOffset" $
-                    LT.insert "AMT" "FIXAmt" $
+                    LT.insert "QTY" "FIXFloat" $
+                    LT.insert "PRICE" "FIXFloat" $
+                    LT.insert "QUANTITY" "FIXFloat" $
+                    LT.insert "PRICEOFFSET" "FIXFloat" $
+                    LT.insert "AMT" "FIXFloat" $
                     LT.insert "BOOLEAN" "FIXBool" $
-                    LT.insert "MULTIPLEVALUESTRING" 
-                              "FIXMultipleValueString" $
-                    LT.insert "CURRENCY" "FIXCurrency" $
-                    LT.insert "EXCHANGE" "FIXExchange" $
+                    LT.insert "MULTIPLEVALUESTRING" "FIXMultipleValueString" $
+                    LT.insert "CURRENCY" "FIXString" $
+                    LT.insert "EXCHANGE" "FIXString" $
                     LT.insert "UTCTIMESTAMP" "FIXUTCTimestamp" $
                     LT.insert "UTCTIMEONLY" "FIXUTCTimeOnly" $
                     LT.insert "UTCDATE" "FIXUTCDate" $
                     LT.insert "MONTHYEAR" "FIXMonthYear" $
                     LT.insert "LOCALMKTDATE" "FIXLocalMktDate" $
                     LT.insert "DATA" "FIXData" $
-                    LT.insert "LENGTH" "FIXDataLen" 
+                    LT.insert "LENGTH" "FIXInt" 
                     LT.new
 fieldDef _ = ""
 

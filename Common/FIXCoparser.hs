@@ -97,27 +97,19 @@ fromFIXUTCTimetamp c = fromFIXUTCData c `append`
 
 instance Coparser FIXValue where
     coparse (FIXInt a) = decimal a
-    coparse (FIXDayOfMonth a) = decimal a
     coparse (FIXFloat a) = realFloat a
-    coparse (FIXQuantity a) = realFloat a
-    coparse (FIXPrice a) = realFloat a
-    coparse (FIXPriceOffset a) = realFloat a
-    coparse (FIXAmt a) = realFloat a
     coparse (FIXChar a) = singleton a
     coparse (FIXBool a) 
         | a = singleton 'Y'
         | otherwise = singleton 'N'
     coparse (FIXString a) = pack $ C.unpack a
     coparse (FIXMultipleValueString a) = pack $ C.unpack a
-    coparse (FIXCurrency a) = pack $ C.unpack a
-    coparse (FIXExchange a) = pack $ C.unpack a
     coparse (FIXUTCTimestamp a) = fromFIXUTCTimetamp a
     coparse (FIXUTCTimeOnly a) = fromFIXUTCTimeOnly a
     coparse (FIXLocalMktDate a) = fromFIXLocalMktDate a
     coparse (FIXUTCDate a) = fromFIXUTCData a
     coparse (FIXMonthYear a) = fromFIXMonthYear a
     coparse (FIXData a) = pack $ C.unpack a
-    coparse (FIXDataLen a) = decimal a
     coparse (FIXGroup _ ls) = concat $ map coparse ls
 
 
