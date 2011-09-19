@@ -35,10 +35,10 @@ import System.Time ( CalendarTime (..) )
 instance Coparser FIXValues where
     coparse = pack . _serialize . LT.toList  
         where
-            _serialize = concat . P.map _serValue
+            _serialize = concatMap _serValue
 
             _serValue (k, FIXGroup i ls) = 
-                let sub = concat (P.map (_serialize . LT.toList) ls)
+                let sub = concatMap (_serialize . LT.toList) ls
                     delim = FIX.delimiter         
                 in
                     decimal k `append` ('=' `cons` decimal i `append` (delim `cons` sub))
