@@ -94,7 +94,7 @@ fromFIXTimetamp c = fromFIXDateOnly c `append`
 
 instance Coparser FIXValue where
     coparse (FIXInt a) = decimal a
-    coparse (FIXFloat a) = realFloat a
+    coparse (FIXDouble a) = realFloat a
     coparse (FIXChar a) = singleton a
     coparse (FIXBool a) 
         | a = singleton 'Y'

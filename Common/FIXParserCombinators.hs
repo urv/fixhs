@@ -6,7 +6,7 @@ module Common.FIXParserCombinators
     , toString
     , toInt'
     , toInt
-    , toFloat
+    , toDouble
     , toBool
     , toTimestamp
     , toTimeOnly
@@ -38,8 +38,8 @@ skipFIXDelimiter :: Parser ()
 skipFIXDelimiter = char8 FIX.delimiter >> return ()
 
 
-toFloat :: Parser Float 
-toFloat = do 
+toDouble :: Parser Double
+toDouble = do 
     a <- signed decimal :: Parser Integer
     (m, e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
     skipFIXDelimiter

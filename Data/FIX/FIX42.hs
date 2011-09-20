@@ -46,8 +46,8 @@ tAvgPx :: FIXTag
 tAvgPx = FIXTag 
    { tName = "AvgPx"
    , tnum = 6
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tBeginSeqNo :: FIXTag
 tBeginSeqNo = FIXTag 
@@ -67,8 +67,8 @@ tCommission :: FIXTag
 tCommission = FIXTag 
    { tName = "Commission"
    , tnum = 12
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tCommType :: FIXTag
 tCommType = FIXTag 
@@ -81,8 +81,8 @@ tCumQty :: FIXTag
 tCumQty = FIXTag 
    { tName = "CumQty"
    , tnum = 14
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tCurrency :: FIXTag
 tCurrency = FIXTag 
@@ -193,15 +193,15 @@ tLastPx :: FIXTag
 tLastPx = FIXTag 
    { tName = "LastPx"
    , tnum = 31
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLastShares :: FIXTag
 tLastShares = FIXTag 
    { tName = "LastShares"
    , tnum = 32
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLinesOfText :: FIXTag
 tLinesOfText = FIXTag 
@@ -235,8 +235,8 @@ tOrderQty :: FIXTag
 tOrderQty = FIXTag 
    { tName = "OrderQty"
    , tnum = 38
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOrdStatus :: FIXTag
 tOrdStatus = FIXTag 
@@ -277,8 +277,8 @@ tPrice :: FIXTag
 tPrice = FIXTag 
    { tName = "Price"
    , tnum = 44
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tRefSeqNum :: FIXTag
 tRefSeqNum = FIXTag 
@@ -333,8 +333,8 @@ tShares :: FIXTag
 tShares = FIXTag 
    { tName = "Shares"
    , tnum = 53
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSide :: FIXTag
 tSide = FIXTag 
@@ -522,8 +522,8 @@ tAllocShares :: FIXTag
 tAllocShares = FIXTag 
    { tName = "AllocShares"
    , tnum = 80
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tProcessCode :: FIXTag
 tProcessCode = FIXTag 
@@ -550,8 +550,8 @@ tCxlQty :: FIXTag
 tCxlQty = FIXTag 
    { tName = "CxlQty"
    , tnum = 84
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tAllocStatus :: FIXTag
 tAllocStatus = FIXTag 
@@ -641,8 +641,8 @@ tStopPx :: FIXTag
 tStopPx = FIXTag 
    { tName = "StopPx"
    , tnum = 99
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tExDestination :: FIXTag
 tExDestination = FIXTag 
@@ -711,15 +711,15 @@ tMinQty :: FIXTag
 tMinQty = FIXTag 
    { tName = "MinQty"
    , tnum = 110
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tMaxFloor :: FIXTag
 tMaxFloor = FIXTag 
    { tName = "MaxFloor"
    , tnum = 111
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tTestReqID :: FIXTag
 tTestReqID = FIXTag 
@@ -767,15 +767,15 @@ tNetMoney :: FIXTag
 tNetMoney = FIXTag 
    { tName = "NetMoney"
    , tnum = 118
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSettlCurrAmt :: FIXTag
 tSettlCurrAmt = FIXTag 
    { tName = "SettlCurrAmt"
    , tnum = 119
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSettlCurrency :: FIXTag
 tSettlCurrency = FIXTag 
@@ -858,29 +858,29 @@ tBidPx :: FIXTag
 tBidPx = FIXTag 
    { tName = "BidPx"
    , tnum = 132
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOfferPx :: FIXTag
 tOfferPx = FIXTag 
    { tName = "OfferPx"
    , tnum = 133
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tBidSize :: FIXTag
 tBidSize = FIXTag 
    { tName = "BidSize"
    , tnum = 134
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOfferSize :: FIXTag
 tOfferSize = FIXTag 
    { tName = "OfferSize"
    , tnum = 135
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tNoMiscFees :: FIXTag
 tNoMiscFees = FIXTag 
@@ -893,8 +893,8 @@ tMiscFeeAmt :: FIXTag
 tMiscFeeAmt = FIXTag 
    { tName = "MiscFeeAmt"
    , tnum = 137
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tMiscFeeCurr :: FIXTag
 tMiscFeeCurr = FIXTag 
@@ -914,8 +914,8 @@ tPrevClosePx :: FIXTag
 tPrevClosePx = FIXTag 
    { tName = "PrevClosePx"
    , tnum = 140
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tResetSeqNumFlag :: FIXTag
 tResetSeqNumFlag = FIXTag 
@@ -991,36 +991,36 @@ tLeavesQty :: FIXTag
 tLeavesQty = FIXTag 
    { tName = "LeavesQty"
    , tnum = 151
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tCashOrderQty :: FIXTag
 tCashOrderQty = FIXTag 
    { tName = "CashOrderQty"
    , tnum = 152
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tAllocAvgPx :: FIXTag
 tAllocAvgPx = FIXTag 
    { tName = "AllocAvgPx"
    , tnum = 153
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tAllocNetMoney :: FIXTag
 tAllocNetMoney = FIXTag 
    { tName = "AllocNetMoney"
    , tnum = 154
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSettlCurrFxRate :: FIXTag
 tSettlCurrFxRate = FIXTag 
    { tName = "SettlCurrFxRate"
    , tnum = 155
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSettlCurrFxRateCalc :: FIXTag
 tSettlCurrFxRateCalc = FIXTag 
@@ -1040,15 +1040,15 @@ tAccruedInterestRate :: FIXTag
 tAccruedInterestRate = FIXTag 
    { tName = "AccruedInterestRate"
    , tnum = 158
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tAccruedInterestAmt :: FIXTag
 tAccruedInterestAmt = FIXTag 
    { tName = "AccruedInterestAmt"
    , tnum = 159
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSettlInstMode :: FIXTag
 tSettlInstMode = FIXTag 
@@ -1250,36 +1250,36 @@ tBidSpotRate :: FIXTag
 tBidSpotRate = FIXTag 
    { tName = "BidSpotRate"
    , tnum = 188
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tBidForwardPoints :: FIXTag
 tBidForwardPoints = FIXTag 
    { tName = "BidForwardPoints"
    , tnum = 189
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOfferSpotRate :: FIXTag
 tOfferSpotRate = FIXTag 
    { tName = "OfferSpotRate"
    , tnum = 190
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOfferForwardPoints :: FIXTag
 tOfferForwardPoints = FIXTag 
    { tName = "OfferForwardPoints"
    , tnum = 191
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOrderQty2 :: FIXTag
 tOrderQty2 = FIXTag 
    { tName = "OrderQty2"
    , tnum = 192
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tFutSettDate2 :: FIXTag
 tFutSettDate2 = FIXTag 
@@ -1292,15 +1292,15 @@ tLastSpotRate :: FIXTag
 tLastSpotRate = FIXTag 
    { tName = "LastSpotRate"
    , tnum = 194
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLastForwardPoints :: FIXTag
 tLastForwardPoints = FIXTag 
    { tName = "LastForwardPoints"
    , tnum = 195
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tAllocLinkID :: FIXTag
 tAllocLinkID = FIXTag 
@@ -1348,8 +1348,8 @@ tStrikePrice :: FIXTag
 tStrikePrice = FIXTag 
    { tName = "StrikePrice"
    , tnum = 202
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tCoveredOrUncovered :: FIXTag
 tCoveredOrUncovered = FIXTag 
@@ -1404,15 +1404,15 @@ tMaxShow :: FIXTag
 tMaxShow = FIXTag 
    { tName = "MaxShow"
    , tnum = 210
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tPegDifference :: FIXTag
 tPegDifference = FIXTag 
    { tName = "PegDifference"
    , tnum = 211
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tXmlDataLen :: FIXTag
 tXmlDataLen = FIXTag 
@@ -1460,8 +1460,8 @@ tSpreadToBenchmark :: FIXTag
 tSpreadToBenchmark = FIXTag 
    { tName = "SpreadToBenchmark"
    , tnum = 218
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tBenchmark :: FIXTag
 tBenchmark = FIXTag 
@@ -1474,15 +1474,15 @@ tCouponRate :: FIXTag
 tCouponRate = FIXTag 
    { tName = "CouponRate"
    , tnum = 223
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tContractMultiplier :: FIXTag
 tContractMultiplier = FIXTag 
    { tName = "ContractMultiplier"
    , tnum = 231
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tMDReqID :: FIXTag
 tMDReqID = FIXTag 
@@ -1544,15 +1544,15 @@ tMDEntryPx :: FIXTag
 tMDEntryPx = FIXTag 
    { tName = "MDEntryPx"
    , tnum = 270
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tMDEntrySize :: FIXTag
 tMDEntrySize = FIXTag 
    { tName = "MDEntrySize"
    , tnum = 271
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
@@ -1705,15 +1705,15 @@ tDefBidSize :: FIXTag
 tDefBidSize = FIXTag 
    { tName = "DefBidSize"
    , tnum = 293
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tDefOfferSize :: FIXTag
 tDefOfferSize = FIXTag 
    { tName = "DefOfferSize"
    , tnum = 294
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tNoQuoteEntries :: FIXTag
 tNoQuoteEntries = FIXTag 
@@ -1866,8 +1866,8 @@ tUnderlyingStrikePrice :: FIXTag
 tUnderlyingStrikePrice = FIXTag 
    { tName = "UnderlyingStrikePrice"
    , tnum = 316
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tUnderlyingOptAttribute :: FIXTag
 tUnderlyingOptAttribute = FIXTag 
@@ -1887,8 +1887,8 @@ tRatioQty :: FIXTag
 tRatioQty = FIXTag 
    { tName = "RatioQty"
    , tnum = 319
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSecurityReqID :: FIXTag
 tSecurityReqID = FIXTag 
@@ -1964,29 +1964,29 @@ tBuyVolume :: FIXTag
 tBuyVolume = FIXTag 
    { tName = "BuyVolume"
    , tnum = 330
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSellVolume :: FIXTag
 tSellVolume = FIXTag 
    { tName = "SellVolume"
    , tnum = 331
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tHighPx :: FIXTag
 tHighPx = FIXTag 
    { tName = "HighPx"
    , tnum = 332
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLowPx :: FIXTag
 tLowPx = FIXTag 
    { tName = "LowPx"
    , tnum = 333
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tAdjustment :: FIXTag
 tAdjustment = FIXTag 
@@ -2216,8 +2216,8 @@ tAllocPrice :: FIXTag
 tAllocPrice = FIXTag 
    { tName = "AllocPrice"
    , tnum = 366
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tQuoteSetValidUntilTime :: FIXTag
 tQuoteSetValidUntilTime = FIXTag 
@@ -2321,8 +2321,8 @@ tGrossTradeAmt :: FIXTag
 tGrossTradeAmt = FIXTag 
    { tName = "GrossTradeAmt"
    , tnum = 381
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tNoContraBrokers :: FIXTag
 tNoContraBrokers = FIXTag 
@@ -2363,8 +2363,8 @@ tTotalVolumeTraded :: FIXTag
 tTotalVolumeTraded = FIXTag 
    { tName = "TotalVolumeTraded"
    , tnum = 387
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tDiscretionInst :: FIXTag
 tDiscretionInst = FIXTag 
@@ -2377,8 +2377,8 @@ tDiscretionOffset :: FIXTag
 tDiscretionOffset = FIXTag 
    { tName = "DiscretionOffset"
    , tnum = 389
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tBidID :: FIXTag
 tBidID = FIXTag 
@@ -2426,15 +2426,15 @@ tSideValue1 :: FIXTag
 tSideValue1 = FIXTag 
    { tName = "SideValue1"
    , tnum = 396
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tSideValue2 :: FIXTag
 tSideValue2 = FIXTag 
    { tName = "SideValue2"
    , tnum = 397
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tNoBidDescriptors :: FIXTag
 tNoBidDescriptors = FIXTag 
@@ -2468,50 +2468,50 @@ tLiquidityPctLow :: FIXTag
 tLiquidityPctLow = FIXTag 
    { tName = "LiquidityPctLow"
    , tnum = 402
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLiquidityPctHigh :: FIXTag
 tLiquidityPctHigh = FIXTag 
    { tName = "LiquidityPctHigh"
    , tnum = 403
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLiquidityValue :: FIXTag
 tLiquidityValue = FIXTag 
    { tName = "LiquidityValue"
    , tnum = 404
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tEFPTrackingError :: FIXTag
 tEFPTrackingError = FIXTag 
    { tName = "EFPTrackingError"
    , tnum = 405
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tFairValue :: FIXTag
 tFairValue = FIXTag 
    { tName = "FairValue"
    , tnum = 406
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tOutsideIndexPct :: FIXTag
 tOutsideIndexPct = FIXTag 
    { tName = "OutsideIndexPct"
    , tnum = 407
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tValueOfFutures :: FIXTag
 tValueOfFutures = FIXTag 
    { tName = "ValueOfFutures"
    , tnum = 408
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tLiquidityIndType :: FIXTag
 tLiquidityIndType = FIXTag 
@@ -2524,8 +2524,8 @@ tWtAverageLiquidity :: FIXTag
 tWtAverageLiquidity = FIXTag 
    { tName = "WtAverageLiquidity"
    , tnum = 410
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tExchangeForPhysical :: FIXTag
 tExchangeForPhysical = FIXTag 
@@ -2538,15 +2538,15 @@ tOutMainCntryUIndex :: FIXTag
 tOutMainCntryUIndex = FIXTag 
    { tName = "OutMainCntryUIndex"
    , tnum = 412
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tCrossPercent :: FIXTag
 tCrossPercent = FIXTag 
    { tName = "CrossPercent"
    , tnum = 413
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tProgRptReqs :: FIXTag
 tProgRptReqs = FIXTag 
@@ -2622,22 +2622,22 @@ tDayOrderQty :: FIXTag
 tDayOrderQty = FIXTag 
    { tName = "DayOrderQty"
    , tnum = 424
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tDayCumQty :: FIXTag
 tDayCumQty = FIXTag 
    { tName = "DayCumQty"
    , tnum = 425
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tDayAvgPx :: FIXTag
 tDayAvgPx = FIXTag 
    { tName = "DayAvgPx"
    , tnum = 426
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tGTBookingInst :: FIXTag
 tGTBookingInst = FIXTag 
@@ -2699,22 +2699,22 @@ tUnderlyingCouponRate :: FIXTag
 tUnderlyingCouponRate = FIXTag 
    { tName = "UnderlyingCouponRate"
    , tnum = 435
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tUnderlyingContractMultiplier :: FIXTag
 tUnderlyingContractMultiplier = FIXTag 
    { tName = "UnderlyingContractMultiplier"
    , tnum = 436
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tContraTradeQty :: FIXTag
 tContraTradeQty = FIXTag 
    { tName = "ContraTradeQty"
    , tnum = 437
-   , tparser = toFIXFloat
-   , arbitraryValue = FIXFloat <$> arbitrary }
+   , tparser = toFIXDouble
+   , arbitraryValue = FIXDouble <$> arbitrary }
 
 tContraTradeTime :: FIXTag
 tContraTradeTime = FIXTag 

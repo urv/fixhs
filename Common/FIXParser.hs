@@ -12,7 +12,7 @@ module Common.FIXParser
     , toFIXInt
     , toFIXChar
     , toFIXString
-    , toFIXFloat
+    , toFIXDouble
     , toFIXBool
     , toFIXMultipleValueString
     , toFIXTimestamp
@@ -155,7 +155,7 @@ messageP spec msg =
 
 -- FIX value parsers 
 toFIXInt = FIXInt <$> toInt
-toFIXFloat = FIXFloat <$> toFloat
+toFIXDouble = FIXDouble <$> toDouble
 toFIXBool = FIXBool <$> toBool
 toFIXString = FIXString <$> toString
 toFIXMultipleValueString = FIXMultipleValueString <$> toString

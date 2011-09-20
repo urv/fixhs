@@ -242,12 +242,12 @@ fieldDef (CElem e _) =
                     LT.insert "STRING" "FIXString" $
                     LT.insert "DAYOFMONTH" "FIXInt" $
                     LT.insert "CHAR" "FIXChar" $
-                    LT.insert "FLOAT" "FIXFloat" $
-                    LT.insert "QTY" "FIXFloat" $
-                    LT.insert "PRICE" "FIXFloat" $
-                    LT.insert "QUANTITY" "FIXFloat" $
-                    LT.insert "PRICEOFFSET" "FIXFloat" $
-                    LT.insert "AMT" "FIXFloat" $
+                    LT.insert "FLOAT" "FIXDouble" $
+                    LT.insert "QTY" "FIXDouble" $
+                    LT.insert "PRICE" "FIXDouble" $
+                    LT.insert "QUANTITY" "FIXDouble" $
+                    LT.insert "PRICEOFFSET" "FIXDouble" $
+                    LT.insert "AMT" "FIXDouble" $
                     LT.insert "BOOLEAN" "FIXBool" $
                     LT.insert "MULTIPLEVALUESTRING" "FIXMultipleValueString" $
                     LT.insert "CURRENCY" "FIXString" $
@@ -262,7 +262,7 @@ fieldDef (CElem e _) =
                     LT.insert "TIME" "FIXTimestamp" $ 
                     LT.insert "SEQNUM" "FIXInt"  $
                     LT.insert "NUMINGROUP" "FIXInt" $
-                    LT.insert "PERCENTAGE" "FIXFloat" $
+                    LT.insert "PERCENTAGE" "FIXDouble" $
                     LT.insert "COUNTRY" "FIXString" $ 
                     LT.insert "UTCDATEONLY" "FIXDateOnly" $
                     LT.insert "DATE" "FIXDateOnly" 

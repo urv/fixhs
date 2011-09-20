@@ -47,7 +47,7 @@ data FIXTag = FIXTag
 
 
 data FIXValue = FIXInt Int 
-              | FIXFloat Float
+              | FIXDouble Double
               | FIXChar Char 
               | FIXBool Bool 
               | FIXString ByteString 
@@ -203,7 +203,7 @@ instance Control.DeepSeq.NFData CalendarTime
 
 instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXInt x) = rnf x
-    rnf (FIXFloat x) = rnf x
+    rnf (FIXDouble x) = rnf x
     rnf (FIXChar x) = rnf x
     rnf (FIXBool x) = rnf x
     rnf (FIXString x) = rnf x
