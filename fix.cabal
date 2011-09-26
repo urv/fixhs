@@ -16,7 +16,8 @@ Source-Repository    head
 
 Library 
   Build-Depends:     base >= 3 && < 5, containers, MissingH, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck, parallel, text, dlist
-  Exposed-modules:   Common.FIXCoparser Common.FIXParser Common.FIXMessage Data.LookupTable Data.FIX.Common Data.FIX.FIX40 Data.FIX.FIX41 Data.FIX.FIX42 
+  Other-modules:     Common.FIXParserCombinators  
+  Exposed-modules:   Data.LookupTable Data.Coparser Common.FIXCoparser Common.FIXParser Common.FIXMessage Data.FIX.Common Data.FIX.FIX40 Data.FIX.FIX41 Data.FIX.FIX42 
   ghc-options:       -Wall -rtsopts 
 
 Executable fix-generator
