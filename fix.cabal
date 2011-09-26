@@ -1,24 +1,24 @@
 Name:                fix
-Version:             0.0
+Version:             0.1
 Description:         FIX (co)parser
+Synopsis:            FIX (co)parser
+Category:            Protocol
 License:             GPL
 Author:              foo
 Maintainer:          foo
 Build-Type:          Simple
 Cabal-Version:       >=1.8
+License-File:        LICENSE
+	
+Source-Repository    head
+  type:	    git
+  location: http://github.com/urv/fixhs
 
 Library 
-  Build-Depends:     base >= 3 && < 5, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck, parallel, text, dlist
-
+  Build-Depends:     base >= 3 && < 5, containers, MissingH, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck, parallel, text, dlist
   Exposed-modules:   Common.FIXCoparser Common.FIXParser Common.FIXMessage Data.LookupTable Data.FIX.Common Data.FIX.FIX40 Data.FIX.FIX41 Data.FIX.FIX42 
-  ghc-options:       -O -Wall -rtsopts 
-
-Executable fix-parser
-  Main-is:           Main.hs
-  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, deepseq, QuickCheck, dlist, parallel, text
-  ghc-options:       -Wall -O -rtsopts 
+  ghc-options:       -Wall -rtsopts 
 
 Executable fix-generator
   Main-is:           Utils/Generator.hs
-  Build-Depends:     base >= 3 && < 5, fix, containers, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck, dlist, text
-
+  Build-Depends:     base >= 3 && < 5, HaXml, MissingH, dlist, deepseq, text, bytestring, QuickCheck, containers, attoparsec, old-time
