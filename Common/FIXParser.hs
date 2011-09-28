@@ -33,27 +33,17 @@ import Common.FIXMessage
     , FIXValues, FIXGroupSpec (..) )
 import qualified Common.FIXMessage as FIX ( checksum )
 import qualified Data.FIX.Common as FIX ( delimiter )
-import Common.FIXParserCombinators 
-import Data.Attoparsec ( count, many, string, take, parseOnly )
+import Common.FIXParserCombinators ( toTag, toString, toInt, toInt', toBool, toChar, toTimestamp, toDateOnly, toMonthYear, toTimeOnly, toDouble )
+import Data.Attoparsec ( option, Parser, count, many, string, take, parseOnly )
 import Data.Char ( ord )
 import Data.ByteString ( ByteString )
 import Data.FIX.Arbitrary ()
 import qualified Data.ByteString.Char8 as C ( pack ) 
 import Data.Maybe ( fromMaybe )
-import qualified Data.LookupTable as LT ( lookup, fromList, insert )
+import qualified Data.LookupTable as LT ( new, toList, lookup, fromList, insert )
 import Control.Applicative ( (<$>) )
 import Control.Monad ( liftM )
 import Test.QuickCheck ( arbitrary )
-
--- Lookup the parser for a given FIX tag.
-parseFIXTag :: FIXTags -> Parser (Int, FIXValue)
-parseFIXTag tags = do 
-    l <- toTag
-    let tag' = LT.lookup l tags
-        parser' = fromMaybe (fail $ "unknown tag " ++ show l) $ 
-                    liftM tparser tag' 
-        in fmap ((,) l) parser' 
-
 
 -- parse a specific tag and its value
 tagP :: FIXTag -> Parser FIXValue
@@ -63,8 +53,23 @@ tagP tag = do l <- toTag -- read out tag in message
 
 -- parse all the specificed tags and their corresponding values
 tagsP :: FIXTags -> Parser FIXValues
-tagsP ts = let tags' = parseFIXTag ts in 
-               liftM LT.fromList $ many tags'
+tagsP ts = option LT.new (insertValue LT.new)
+	where
+           insertValue :: FIXValues -> Parser FIXValues
+	   insertValue t = do 
+	   	l <- nextTag
+		val <- tparser l
+		let t' = LT.insert (tnum l) val t 
+		option t' (insertValue t') 
+	   
+	   nextTag :: Parser FIXTag
+	   nextTag = do 
+	   	tag' <- toTag 
+		let mtag' = liftM return $ LT.lookup tag' ts 
+		fromMaybe (fail "") mtag'
+
+	   {-errorMsg l = error $ "unknown tag " ++ show l ++-}
+		   {-"\nknown tags are " ++ show (LT.toList ts)-}
 
 -- parse a value of type FIX group
 groupP :: FIXGroupSpec -> Parser FIXValue
@@ -180,19 +185,19 @@ tBodyLength :: FIXTag
 tBodyLength = FIXTag
     { tName = "BodyLength"
     , tnum = 9
-    , tparser = toFIXInt
+    , tparser = toFIXInt 
     , arbitraryValue = FIXInt <$> arbitrary }
 
 tMsgType :: FIXTag
 tMsgType = FIXTag
     { tName = "MsgType"
     , tnum = 35
-    , tparser = toFIXString
+    , tparser = toFIXString 
     , arbitraryValue = FIXString <$> arbitrary }
 
 tCheckSum :: FIXTag
 tCheckSum = FIXTag
     { tName = "CheckSum"
     , tnum = 10
-    , tparser = toFIXInt
+    , tparser = toFIXInt 
     , arbitraryValue = FIXInt <$> arbitrary }

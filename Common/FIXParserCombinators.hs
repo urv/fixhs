@@ -1,6 +1,8 @@
 -- Module   : Common.FIXCoparser
 -- License  : GPLv2
 
+{-# LANGUAGE BangPatterns #-}
+
 module Common.FIXParserCombinators 
     ( toTag
     , toString
@@ -39,20 +41,18 @@ skipFIXDelimiter = char8 FIX.delimiter >> return ()
 
 
 toDouble :: Parser Double
-toDouble = do 
+toDouble =  do 
     a <- signed decimal :: Parser Integer
-    (m, e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
+    (!m, !e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
     skipFIXDelimiter
     if a < 0 
         then return $ fromIntegral a - fromIntegral m / fromIntegral e
-        else return $ fromIntegral a + fromIntegral m / fromIntegral e
+        else  return $ fromIntegral a + fromIntegral m / fromIntegral e
     where
         extract_decimals :: ByteString -> (Int, Int)
-        extract_decimals b 
-            | null b    = (0, 1)
-            | otherwise = 
-                let (m', e') = extract_decimals $ tail b in
-                   (m' * 10 + fromIntegral (head b) - ord '0', 10 * e')
+	extract_decimals = foldl' helper (0, 1)
+		where
+			helper !(!m, !e) c = (m * 10 + fromIntegral c - ord '0', 10 * e)
 
 parseIntTill :: Char -> Parser Int
 parseIntTill c = do

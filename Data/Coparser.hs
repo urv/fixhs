@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
+{-# LANGUAGE BangPatterns, MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
 
 -- Module   : Common.FIXCoparser
 -- License  : GPLv2
@@ -16,7 +16,7 @@ import qualified Prelude as P ( length, foldl )
 import qualified Data.Foldable as P ( foldl' )
 import qualified Data.List as L ( concat )
 import Data.ByteString ( ByteString )
-import qualified Data.ByteString as B ( concat, append  )
+import qualified Data.ByteString as B ( concat, append, length, foldl, foldl'  )
 import Data.Word ( Word8 )
 import qualified Data.ByteString.Char8 as C 
     ( cons, snoc, pack, unpack, singleton )
@@ -27,6 +27,7 @@ import qualified Data.Text.Lazy.Builder as Builder
 import Data.Monoid ( mappend, mconcat )
 import Control.DeepSeq ( NFData (..) )
 import qualified Data.DList as DL
+import Data.Bits.Utils ( w82c )
 
 class Enum c => BuilderLike a c | a -> c where
     pack :: String -> a
@@ -44,15 +45,14 @@ class Enum c => BuilderLike a c | a -> c where
     cons c t = singleton c `append` t
     snoc t c = t `append` singleton c
 
+    length :: a -> Int
+    length = P.length . unpack
 
-length :: (BuilderLike a c) => a -> Int
-length = P.length . unpack
+    foldl' :: (b -> Char -> b) -> b -> a -> b
+    foldl' f x0 = P.foldl' f x0 . unpack
 
-foldl' :: (BuilderLike a c) => (b -> Char -> b) -> b -> a -> b
-foldl' f x0 = P.foldl' f x0 . unpack
-
-foldl :: (BuilderLike a c) => (b -> Char -> b) -> b -> a -> b
-foldl f x0 = P.foldl f x0 . unpack
+    foldl :: (b -> Char -> b) -> b -> a -> b
+    foldl f x0 = P.foldl f x0 . unpack
 
 instance BuilderLike String Char where
     pack = id
@@ -61,6 +61,9 @@ instance BuilderLike String Char where
     append = (++)
     cons = (:)
     concat = L.concat
+    length = P.length
+    foldl' = P.foldl'
+    foldl = P.foldl
 
 instance BuilderLike ByteString Word8 where
     pack = C.pack
@@ -70,6 +73,9 @@ instance BuilderLike ByteString Word8 where
     cons = C.cons
     snoc = C.snoc
     concat = B.concat
+    length = B.length
+    foldl' f = let f' !x !w = {-# SCC "Urvli" #-} w82c w `seq` x `seq` f x (w82c w) in B.foldl' f'
+    foldl f = let  f' x =  (f x) . w82c in B.foldl f'
 
 instance BuilderLike (DL.DList Char) Char where
     pack = DL.fromList
