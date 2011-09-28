@@ -5,6 +5,7 @@ import Common.FIXMessage
 import Common.FIXParser
 import Data.Functor ( (<$>) )
 import Test.QuickCheck ( arbitrary )
+import Data.FIX.Arbitrary
 
 
 tAccount :: FIXTag

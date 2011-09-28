@@ -47,6 +47,7 @@ main = do
             "import Common.FIXMessage\n" ++ 
             "import Common.FIXParser\n" ++
             "import Data.Functor ( (<$>) )\n" ++
+            "import Data.FIX.Arbitrary \n" ++
             "import Test.QuickCheck ( arbitrary )\n" 
 
         -- command line options 

@@ -20,6 +20,7 @@ import Control.Applicative ( (<$>) )
 import Control.DeepSeq
 import Data.DList ( DList )
 import Data.Coparser ( unpack )
+import Data.FIX.Arbitrary
 
 myConfig = defaultConfig 
 

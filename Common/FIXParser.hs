@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
+{-# OPTIONS_GHC  -fno-warn-missing-signatures #-}
 
 -- Module   : Common.FIXParser
 -- License  : GPLv2
@@ -37,6 +37,7 @@ import Common.FIXParserCombinators
 import Data.Attoparsec ( count, many, string, take, parseOnly )
 import Data.Char ( ord )
 import Data.ByteString ( ByteString )
+import Data.FIX.Arbitrary ()
 import qualified Data.ByteString.Char8 as C ( pack ) 
 import Data.Maybe ( fromMaybe )
 import qualified Data.LookupTable as LT ( lookup, fromList, insert )
