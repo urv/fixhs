@@ -1,4 +1,8 @@
-module Data.FIX.Arbitrary where
+module Data.FIX.Arbitrary 
+	( arbibtraryFIXValues
+	, arbibtraryFIXGroup
+	, arbitraryFIXMessage ) 
+	where
 
 import Common.FIXMessage ( 
 	FIXTag(..), FIXValue(..), FIXValues, FIXTags

@@ -75,7 +75,7 @@ instance BuilderLike ByteString Word8 where
     concat = B.concat
     length = B.length
     foldl' f = let f' !x !w = {-# SCC "Urvli" #-} w82c w `seq` x `seq` f x (w82c w) in B.foldl' f'
-    foldl f = let  f' x =  (f x) . w82c in B.foldl f'
+    foldl f = let  f' x =  f x . w82c in B.foldl f'
 
 instance BuilderLike (DL.DList Char) Char where
     pack = DL.fromList
