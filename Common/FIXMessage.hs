@@ -90,7 +90,8 @@ data FIXSpec = FSpec
                { fsVersion  :: String
                , fsHeader   :: FIXTags
                , fsTrailer  :: FIXTags
-               , fsMessages :: FIXMessages }
+               , fsMessages :: FIXMessages 
+               , fsTags     :: FIXTags }
 
 data FIXGroupSpec = FGSpec
                     { gsLength    :: FIXTag

@@ -122,6 +122,7 @@ genFIXSpec doc = let
                 fix = getFIXSpec doc
                 major = getAttr "major" fix
                 minor = getAttr "minor" fix
+
                in  
                    spec' ++ " :: FIXSpec\n" ++
                    spec' ++ " = FSpec\n" ++
@@ -129,11 +130,13 @@ genFIXSpec doc = let
                         major ++ "." ++ minor++ "\"\n" ++ 
                    "   , fsHeader = " ++ headerName doc ++ '\n' :
                    "   , fsTrailer = " ++ trailerName doc ++ '\n' : 
-                   "   , fsMessages = " ++ spec' ++ "Messages }\n" ++
+                   "   , fsMessages = " ++ spec' ++ "Messages \n" ++
+		   "   , fsTags = " ++ spec' ++ "Tags }\n" ++
                    "   where\n" ++
-                   "      " ++ spec' ++ "Messages =\n" ++
-                       messageMap ++
-                   "          LT.new \n"
+                   "      " ++ spec' ++ "Messages =\n" ++ messageMap ++
+                   "          LT.new \n" ++
+		   "      " ++ spec' ++ "Tags =\n" ++ tagsMap ++
+                   "          LT.new \n" 
                where
                 rmLastNewline text | length text > 2 = init . init $ text
                                    | otherwise = text
@@ -143,6 +146,10 @@ genFIXSpec doc = let
                         "          LT.insert (msType " ++ msg' ++ ") " ++ 
                         msg' ++ " $\n" 
                 _insertMsg _ = undefined
+		tagsMap = concatMap _insertTag $ content $ getFieldSpec doc 
+		_insertTag (CElem e _) = let fname = tName (getNameAttr e) in
+                        "          LT.insert (tnum " ++ fname ++ ") " ++ fname ++ " $\n"
+		_insertTag _ = ""
 
 type Groups a = Map String [Content a]
 
