@@ -1,20 +1,23 @@
-{-# LANGUAGE FlexibleInstances, TypeSynonymInstances #-}
+{-# LANGUAGE TupleSections, FlexibleInstances, TypeSynonymInstances #-}
 
 import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
-import Common.FIXMessage ( FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..) )
+import Common.FIXMessage ( FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
 import Common.FIXCoparser ( coparse )
 import Common.FIXParser ( _nextP', messageP  )
 import Data.Attoparsec ( parseOnly )
 import Data.List (group)
-import Test.QuickCheck ( sample, sample', Gen, oneof, quickCheck, forAll, collect )
+import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, forAll, collect )
 import Data.FIX.FIX42
+import qualified Data.FIX.Common as FIX
 import Data.ByteString ( ByteString )
+import qualified Data.ByteString.Char8 as C ( singleton, append )
+import System.Time ( CalendarTime(..) )
 
 
-prop_Idempotent xs = 
+prop_orthogonal xs = 
 	collect (mType xs) $ 
-	coparse xs == ((coparse $ parse $ coparse $ parse $ coparse xs) :: ByteString)
+	xs == parse (coparse xs)
 	where
 	   types = xs :: FIXMessage FIXSpec
 	   fixSpec = mContext xs
@@ -27,7 +30,31 @@ messagesOf spec = oneof $ map (arbitraryFIXMessage spec) allMessages
 	where
 	   allMessages = map snd $ LT.toList $ fsMessages spec
 
-test = quickCheck $ forAll (messagesOf fix42) prop_Idempotent
+testMessages = quickCheck $ forAll (messagesOf fix42) prop_orthogonal
+
+
+tagsOf :: FIXSpec -> Gen (FIXTag, FIXValue)
+tagsOf spec = oneof $ map arbitraryTag allTags
+	where
+	   allTags = map snd $ LT.toList $ fsTags spec
+	   arbitraryTag t = fmap (t,) $ arbitraryValue t
+
+prop_tag (tag, v) = collect (tName tag) $ 
+	notDouble v ==>
+	v == parse (coparse v)
+	where
+	   {-types = xs :: FIXMessage FIXSpec-}
+	   {-fixSpec = mContext xs-}
+	   {-notDouble (FIXTimestamp _) = False-}
+	   {-notDouble (FIXTimeOnly _) = False-}
+	   {-notDouble (FIXMonthYear _) = False-}
+	   {-notDouble (FIXDateOnly _) = False-}
+	   notDouble _ = True
+           parse ss = let ss' = ss `C.append` C.singleton FIX.delimiter in 
+	   	case parseOnly (tparser tag) ss' of
+			Left err -> error err
+			Right ms -> ms
+testTags = quickCheck $ forAll (tagsOf fix42) prop_tag
 
 instance Eq FIXValue where
 	FIXInt left == FIXInt right = left == right
@@ -51,16 +78,32 @@ instance Eq FIXValue where
 	FIXMultipleValueString left == FIXMultipleValueString right = left == right
 	FIXMultipleValueString _ == _ = False
 
-	FIXTimestamp left == FIXTimestamp right = left == right
+	FIXTimestamp left == FIXTimestamp right = 
+		ctYear left == ctYear right 
+		&& ctMonth left == ctMonth right 
+		&& ctDay left == ctDay right 
+		&& ctHour left == ctHour right 
+		&& ctMin left == ctMin right 
+		&& ctSec left == ctSec right 
+		{-&& ctPicosec left == ctPicosec right-}
 	FIXTimestamp _ == _ = False
 
-	FIXTimeOnly left == FIXTimeOnly right = left == right
+	FIXTimeOnly left == FIXTimeOnly right = 
+		ctHour left == ctHour right 
+		&& ctMin left == ctMin right 
+		&& ctSec left == ctSec right 
+		{-ctPicosec left == ctPicosec right-}
 	FIXTimeOnly _ == _ = False
 
-	FIXDateOnly left == FIXDateOnly right = left == right
+	FIXDateOnly left == FIXDateOnly right = 
+		ctYear left == ctYear right 
+		&& ctMonth left == ctMonth right 
+		&& ctDay left == ctDay right
 	FIXDateOnly _ == _ = False
 
-	FIXMonthYear left == FIXMonthYear right = left == right
+	FIXMonthYear left == FIXMonthYear right = 
+		ctYear left == ctYear right 
+		&& ctMonth left == ctMonth right
 	FIXMonthYear _ == _ = False
 
 	FIXGroup nleft left == FIXGroup nright right = 
@@ -88,6 +131,22 @@ instance Eq (FIXMessage a) where
 		&& mHeader left == mHeader right 
 		&& mBody left == mBody right 
 		&& mTrailer left == mTrailer right
+
+instance Show FIXTag where
+	show = tName
+
+instance Show FIXValue where
+	show (FIXInt i) = show i
+	show (FIXDouble i) = show i
+	show (FIXChar i) = show i
+	show (FIXBool i) = show i
+	show (FIXString i) = show i
+	show (FIXData i) = show i
+	show (FIXMultipleValueString i) = show i
+	show (FIXTimestamp i) = show i
+	show (FIXTimeOnly i) = show i
+	show (FIXDateOnly i) = show i
+	show (FIXMonthYear i) = show i
 
 instance Show (FIXMessage FIXSpec) where
 	show ms = coparse ms
