@@ -79,7 +79,7 @@ fromFIXMonthYear c =
         (year `pad` 4) `append` (month `pad` 2)
 
 fromFIXDateOnly :: (BuilderLike t a) => CalendarTime -> t
-fromFIXDateOnly c = let day = 1 + ctDay c in
+fromFIXDateOnly c = let day = ctDay c in
     fromFIXMonthYear c `append` (day `pad` 2)
 
 fromFIXTimeOnly :: (BuilderLike t a) => CalendarTime -> t

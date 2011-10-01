@@ -41,13 +41,10 @@ skipFIXDelimiter = char8 FIX.delimiter >> return ()
 
 
 toDouble :: Parser Double
-toDouble =  do 
-    a <- signed decimal :: Parser Integer
-    (!m, !e) <- (char '.' *> (extract_decimals <$> toString)) <|> return (0, 1)
-    skipFIXDelimiter
-    if a < 0 
-        then return $ fromIntegral a - fromIntegral m / fromIntegral e
-        else  return $ fromIntegral a + fromIntegral m / fromIntegral e
+toDouble =  signed $ do 
+    a <- decimal :: Parser Integer
+    (!m, !e) <- (char '.' *> (extract_decimals <$> toString)) <|> (skipFIXDelimiter >> return (0, 1))
+    return $ fromIntegral a + fromIntegral m / fromIntegral e
     where
         extract_decimals :: ByteString -> (Int, Int)
 	extract_decimals = foldl' helper (0, 1)
@@ -99,12 +96,9 @@ toBool = do
 
 toSecMillis :: Parser (Int, Int)
 toSecMillis = do
-   (sec, mil) <- (toInt >>= only_seconds) <|> read_sec_millis
+   (sec, mil) <- read_sec_millis <|> (toInt >>= (\s -> return (s, 0))) 
    return (sec, mil)
    where
-        only_seconds :: Int -> Parser (Int, Int)
-        only_seconds sec = return (sec, 0)
-
         read_sec_millis :: Parser (Int, Int)
         read_sec_millis = do
             sec' <- parseIntTill '.'
@@ -133,7 +127,7 @@ toTimestamp = do
      , ctMin   = minutes
      , ctSec   = sec
      , ctPicosec = toInteger $ milli * picosPerMilli
-     , ctWDay  = undefined 
+     , ctWDay  = toEnum 0
      , ctYDay  = 0
      , ctTZName = "UTC"
      , ctTZ    = 0
@@ -153,8 +147,8 @@ toTimeOnly = do
      , ctMin   = minutes
      , ctSec   = sec
      , ctPicosec = toInteger $ milli * picosPerMilli
-     , ctWDay  = undefined
-     , ctYDay  = undefined
+     , ctWDay  = toEnum 0
+     , ctYDay  = 0
      , ctTZName = "UTC"
      , ctTZ    = 0
      , ctIsDST = True
@@ -162,7 +156,7 @@ toTimeOnly = do
 
 toDateOnly :: Parser CalendarTime
 toDateOnly = do
-   i <- parseIntTill '-'
+   i <- toInt
    let year  = i `div` 10000
    let rest  = i `mod` 10000
    let month = rest `div` 100
@@ -175,8 +169,8 @@ toDateOnly = do
      , ctMin   = 0 
      , ctSec   = 0
      , ctPicosec = 0
-     , ctWDay  = undefined
-     , ctYDay  = undefined
+     , ctWDay  = toEnum 0
+     , ctYDay  = 0
      , ctTZName = "UTC"
      , ctTZ    = 0
      , ctIsDST = True
@@ -186,9 +180,8 @@ toDateOnly = do
 toMonthYear :: Parser CalendarTime
 toMonthYear = do
    i <- toInt
-   let year  = i `div` 10000
-   let rest  = i `mod` 10000
-   let month = rest `div` 100
+   let year  = i `div` 100
+   let month = i `mod` 100
    return CalendarTime {
        ctYear  = year
      , ctMonth = toEnum $ month - 1
@@ -197,8 +190,8 @@ toMonthYear = do
      , ctMin   = 0 
      , ctSec   = 0
      , ctPicosec = 0
-     , ctWDay  = undefined
-     , ctYDay  = undefined
+     , ctWDay  = toEnum 0
+     , ctYDay  = 0
      , ctTZName = "UTC"
      , ctTZ    = 0
      , ctIsDST = True
@@ -207,7 +200,6 @@ toMonthYear = do
 toTime :: Parser CalendarTime
 toTime = toTimestamp 
           <|> toTimeOnly 
-          <|> toDateOnly
           <|> toDateOnly
 
 skipToken :: Parser ()
