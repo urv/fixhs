@@ -14,6 +14,7 @@ module Common.FIXMessage
     , FIXMessage (..)
     , FIXMessageSpec (..)
     , FIXGroupSpec (..)
+    , FIXGroupElement (..)
     , FIXSpec (..)
     , checksum
     , delimiter
@@ -40,6 +41,8 @@ data FIXTag = FIXTag
     , arbitraryValue :: Gen FIXValue } 
 
 
+data FIXGroupElement = FIXGroupElement Int FIXValue FIXValues
+
 data FIXValue = FIXInt Int 
               | FIXDouble Double
               | FIXChar Char 
@@ -51,7 +54,7 @@ data FIXValue = FIXInt Int
               | FIXTimeOnly CalendarTime
               | FIXDateOnly CalendarTime
               | FIXMonthYear CalendarTime
-              | FIXGroup Int [FIXValues]
+              | FIXGroup Int [FIXGroupElement]
 
 --- should be alias of type in the typeclass LookupTable
 newtype ListOfValues a = LoV (IntMap a) 
@@ -108,6 +111,8 @@ checksum b = foldl' _sumUp 0 b `mod` 256
 
 instance Control.DeepSeq.NFData ByteString 
 instance Control.DeepSeq.NFData CalendarTime
+instance Control.DeepSeq.NFData FIXGroupElement where
+    rnf (FIXGroupElement _ s vs) = rnf s `seq` rnf vs 
 
 instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXInt x) = rnf x
@@ -121,7 +126,7 @@ instance Control.DeepSeq.NFData FIXValue where
     rnf (FIXDateOnly x) = rnf x
     rnf (FIXMonthYear x) = rnf x
     rnf (FIXData x) = rnf x 
-    rnf (FIXGroup l vs) = rnf l `seq` rnf vs
+    rnf (FIXGroup l es) = rnf l `seq` rnf es
 
 instance Control.DeepSeq.NFData (FIXMessage a) where
     rnf (FIXMessage _ _ h b t) = rnf h `seq` rnf b `seq` rnf t

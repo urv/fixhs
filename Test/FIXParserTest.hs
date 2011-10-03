@@ -2,7 +2,7 @@
 
 import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
-import Common.FIXMessage ( FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
+import Common.FIXMessage ( FIXGroupElement(..), FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
 import Common.FIXCoparser ( coparse )
 import Common.FIXParser ( _nextP', messageP  )
 import Data.Attoparsec ( parseOnly )
@@ -13,7 +13,6 @@ import qualified Data.FIX.Common as FIX
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C ( singleton, append )
 import System.Time ( CalendarTime(..) )
-
 
 prop_orthogonal xs = 
 	collect (mType xs) $ 
@@ -56,11 +55,17 @@ prop_tag (tag, v) = collect (tName tag) $
 			Right ms -> ms
 testTags = quickCheck $ forAll (tagsOf fix42) prop_tag
 
+instance Eq FIXGroupElement where
+	FIXGroupElement i1 s1 vs1 == FIXGroupElement i2 s2 vs2 = 
+		i1 == i2 && s1 == s2 && vs1 == vs2 
+
 instance Eq FIXValue where
 	FIXInt left == FIXInt right = left == right
 	FIXInt _ == _ = False
 
-	FIXDouble left == FIXDouble right = left == right
+	FIXDouble left == FIXDouble right = 
+		left >= right - 0.5
+		&& left <= right + 0.5
 	FIXDouble _ == _ = False
 
 	FIXChar left == FIXChar right = left == right
@@ -149,4 +154,4 @@ instance Show FIXValue where
 	show (FIXMonthYear i) = show i
 
 instance Show (FIXMessage FIXSpec) where
-	show ms = coparse ms
+	show ms = show $ (coparse ms :: ByteString)

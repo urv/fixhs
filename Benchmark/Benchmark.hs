@@ -11,7 +11,7 @@ import Data.FIX.FIX42
 import Common.FIXParser
 import Common.FIXCoparser
 import Common.FIXMessage
-import Data.Attoparsec hiding (take)
+import Data.Attoparsec hiding (take, parse)
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT
@@ -38,7 +38,7 @@ benchmark spec ss =
     let ms = map snd $ LT.toList $ fsMessages spec 
         parsingB (m, input) = let input' = coparse input :: ByteString in 
             bench (msName m ++ " parsing") $ 
-                nf (parseOnly (_nextP' >>= messageP fix42)) (C.pack $ unpack input')
+                nf (parse (_nextP' >>= messageP fix42)) (C.pack $ unpack input')
         coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
                 nf (coparse :: FIXMessage FIXSpec -> ByteString ) input
 
@@ -48,6 +48,10 @@ benchmark spec ss =
         ziczac bench1 bench2
 
     where
+    	parse :: Parser (FIXMessage FIXSpec) -> ByteString -> FIXMessage FIXSpec
+        parse p b = case parseOnly p b of 
+		Left err -> error err
+		Right m -> m
         ziczac :: [a] -> [a] -> [a]
         ziczac l r = P.foldr _construct [] $ zip l r
             where

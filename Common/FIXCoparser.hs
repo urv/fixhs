@@ -7,7 +7,8 @@ module Common.FIXCoparser ( coparse) where
 
 import Prelude as P hiding (concat)
 import Common.FIXMessage 
-    ( FIXSpec (..), FIXMessage (..), tnum, FIXValues, FIXValue (..) )
+    ( FIXGroupElement(..), FIXSpec (..), FIXMessage (..)
+    , tnum, FIXValues, FIXValue (..) )
 import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
 import qualified Common.FIXMessage as FIX ( checksum, delimiter )
 import Data.Coparser ( Coparser (..), BuilderLike, 
@@ -38,7 +39,7 @@ instance Coparser FIXValues where
             _serialize = concatMap _serValue
 
             _serValue (k, FIXGroup i ls) = 
-                let sub = concatMap (_serialize . LT.toList) ls
+                let sub = concat $ map coparse ls
                     delim = FIX.delimiter         
                 in
                     decimal k `append` ('=' `cons` decimal i `append` (delim `cons` sub))
@@ -91,6 +92,11 @@ fromFIXTimetamp :: (BuilderLike t a) => CalendarTime -> t
 fromFIXTimetamp c = fromFIXDateOnly c `append` 
     ('-' `cons` fromFIXTimeOnly c)
 
+instance Coparser FIXGroupElement where
+    coparse (FIXGroupElement t s vs) = 
+   	 let delim = FIX.delimiter in
+	     decimal t `append` ('=' `cons` coparse s)
+	     `append` (delim `cons` coparse vs) 
 
 instance Coparser FIXValue where
     coparse (FIXInt a) = decimal a
@@ -106,7 +112,9 @@ instance Coparser FIXValue where
     coparse (FIXDateOnly a) = fromFIXDateOnly a
     coparse (FIXMonthYear a) = fromFIXMonthYear a
     coparse (FIXData a) = pack $ C.unpack a
-    coparse (FIXGroup _ ls) = concat $ map coparse ls
+    coparse (FIXGroup n ls) = 
+    	decimal n `snoc` FIX.delimiter 
+	`append` concat (map coparse ls)
 
 
 {-instance Coparser (FIXMessage a) where-}

@@ -28,17 +28,17 @@ module Common.FIXParser
 
 import Prelude hiding ( take, null, head, tail )
 import Common.FIXMessage 
-    ( FIXTags, FIXSpec (..), FIXMessage (..)
+    ( FIXGroupElement(..), FIXTags, FIXSpec (..), FIXMessage (..)
     , FIXTag (..), FIXValue (..), FIXMessageSpec (..)
     , FIXValues, FIXGroupSpec (..) )
 import qualified Common.FIXMessage as FIX ( checksum )
 import qualified Data.FIX.Common as FIX ( delimiter )
 import Common.FIXParserCombinators ( toTag, toString, toInt, toInt', toBool, toChar, toTimestamp, toDateOnly, toMonthYear, toTimeOnly, toDouble )
-import Data.Attoparsec ( option, Parser, count, many, string, take, parseOnly )
+import Data.Attoparsec ( parseOnly, option, Result(..), Parser, count, many, string, take )
 import Data.Char ( ord )
 import Data.ByteString ( ByteString )
 import Data.FIX.Arbitrary ()
-import qualified Data.ByteString.Char8 as C ( pack ) 
+import qualified Data.ByteString.Char8 as C ( length, pack ) 
 import Data.Maybe ( fromMaybe )
 import qualified Data.LookupTable as LT ( new, toList, lookup, fromList, insert )
 import Control.Applicative ( (<$>) )
@@ -49,7 +49,7 @@ import Test.QuickCheck ( arbitrary )
 tagP :: FIXTag -> Parser FIXValue
 tagP tag = do l <- toTag -- read out tag in message
               if l == tnum tag then -- if the two tags coincide read the value
-                tparser tag else fail ""
+                tparser tag else fail "wrong tag"
 
 -- parse all the specificed tags and their corresponding values
 tagsP :: FIXTags -> Parser FIXValues
@@ -74,16 +74,16 @@ tagsP ts = option LT.new (insertValue LT.new)
 -- parse a value of type FIX group
 groupP :: FIXGroupSpec -> Parser FIXValue
 groupP spec = let numTag = gsLength spec in 
-                 do FIXInt n <- tagP numTag -- number of submessages
-                    b <- count n submsg     -- parse the submessages
+		 do n <- toInt           -- number of submessages
+                    b <- count n submsg  -- parse the submessages
                     return $ FIXGroup n b
               where
-                  submsg :: Parser FIXValues
+                  submsg :: Parser FIXGroupElement
                   submsg = 
                     let sepTag = gsSeperator spec
-                        insertSep = LT.insert (tnum sepTag)
-                    in do h <- tagP sepTag -- The head of the message
-                          insertSep h <$> tagsP (gsBody spec)
+                    in do s  <- tagP sepTag -- The seperator of the message
+		    	  vs <- tagsP (gsBody spec) -- The rest of the message
+			  return (FIXGroupElement (tnum sepTag) s vs)
 
 -- Parse a FIX message. The parser fails when the checksum 
 -- validation fails.
@@ -155,8 +155,8 @@ messageP spec msg =
                     , mTrailer = t }
     in 
         case parseOnly fixP' msg of
-             Right ts -> return ts
-             Left err -> fail err 
+             Left err  -> fail err 
+	     Right msg -> return msg
 
 
 -- FIX value parsers 

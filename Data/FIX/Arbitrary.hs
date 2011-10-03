@@ -5,13 +5,13 @@ module Data.FIX.Arbitrary
 	where
 
 import Common.FIXMessage ( 
-	FIXTag(..), FIXValue(..), FIXValues, FIXTags
+	FIXGroupElement(..), FIXTag(..), FIXValue(..), FIXValues, FIXTags
       , FIXMessage(..), FIXSpec, FIXMessageSpec(..), FIXGroupSpec(..) )
 import System.Time ( CalendarTime (..) )
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C ( pack )
 import qualified Data.Char as C ( isAscii, isAlphaNum )
-import qualified Data.LookupTable as LT ( insert, toList, fromList )
+import qualified Data.LookupTable as LT ( insert, toList, fromList, new )
 import Data.Functor ( (<$>) )
 import Control.Monad ( replicateM, liftM )
 import Test.QuickCheck ( Gen, arbitrary, Arbitrary )
@@ -36,9 +36,10 @@ arbibtraryFIXGroup spec =
         arbitraryGBody = 
            let stag = gsSeperator spec
                btags = gsBody spec 
-           in
-               arbitraryValue stag >>=
-               (\s -> LT.insert (tnum stag) s <$> arbibtraryFIXValues btags )
+           in do
+               s  <- arbitraryValue stag 
+	       vs <- arbibtraryFIXValues btags
+	       return (FIXGroupElement (tnum stag) s vs)
 
 arbitraryFIXMessage :: FIXSpec -> FIXMessageSpec -> Gen (FIXMessage FIXSpec)
 arbitraryFIXMessage context spec = do
