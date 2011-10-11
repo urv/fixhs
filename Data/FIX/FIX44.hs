@@ -4,6 +4,7 @@ import qualified Data.LookupTable as LT ( new, insert )
 import Common.FIXMessage
 import Common.FIXParser
 import Data.Functor ( (<$>) )
+import Data.FIX.Arbitrary 
 import Test.QuickCheck ( arbitrary )
 
 
@@ -33,7 +34,7 @@ tAdvSide = FIXTag
    { tName = "AdvSide"
    , tnum = 4
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tAdvTransType :: FIXTag
 tAdvTransType = FIXTag 
@@ -47,7 +48,7 @@ tAvgPx = FIXTag
    { tName = "AvgPx"
    , tnum = 6
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBeginSeqNo :: FIXTag
 tBeginSeqNo = FIXTag 
@@ -68,21 +69,21 @@ tCommission = FIXTag
    { tName = "Commission"
    , tnum = 12
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCommType :: FIXTag
 tCommType = FIXTag 
    { tName = "CommType"
    , tnum = 13
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tCumQty :: FIXTag
 tCumQty = FIXTag 
    { tName = "CumQty"
    , tnum = 14
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCurrency :: FIXTag
 tCurrency = FIXTag 
@@ -124,14 +125,14 @@ tExecTransType = FIXTag
    { tName = "ExecTransType"
    , tnum = 20
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tHandlInst :: FIXTag
 tHandlInst = FIXTag 
    { tName = "HandlInst"
    , tnum = 21
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSecurityIDSource :: FIXTag
 tSecurityIDSource = FIXTag 
@@ -152,14 +153,14 @@ tIOIOthSvc = FIXTag
    { tName = "IOIOthSvc"
    , tnum = 24
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tIOIQltyInd :: FIXTag
 tIOIQltyInd = FIXTag 
    { tName = "IOIQltyInd"
    , tnum = 25
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tIOIRefID :: FIXTag
 tIOIRefID = FIXTag 
@@ -180,14 +181,14 @@ tIOITransType = FIXTag
    { tName = "IOITransType"
    , tnum = 28
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tLastCapacity :: FIXTag
 tLastCapacity = FIXTag 
    { tName = "LastCapacity"
    , tnum = 29
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tLastMkt :: FIXTag
 tLastMkt = FIXTag 
@@ -201,14 +202,14 @@ tLastPx = FIXTag
    { tName = "LastPx"
    , tnum = 31
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLastQty :: FIXTag
 tLastQty = FIXTag 
    { tName = "LastQty"
    , tnum = 32
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoLinesOfText :: FIXTag
 tNoLinesOfText = FIXTag 
@@ -243,21 +244,21 @@ tOrderQty = FIXTag
    { tName = "OrderQty"
    , tnum = 38
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOrdStatus :: FIXTag
 tOrdStatus = FIXTag 
    { tName = "OrdStatus"
    , tnum = 39
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tOrdType :: FIXTag
 tOrdType = FIXTag 
    { tName = "OrdType"
    , tnum = 40
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tOrigClOrdID :: FIXTag
 tOrigClOrdID = FIXTag 
@@ -285,7 +286,7 @@ tPrice = FIXTag
    { tName = "Price"
    , tnum = 44
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tRefSeqNum :: FIXTag
 tRefSeqNum = FIXTag 
@@ -306,7 +307,7 @@ tRule80A = FIXTag
    { tName = "Rule80A"
    , tnum = 47
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSecurityID :: FIXTag
 tSecurityID = FIXTag 
@@ -348,14 +349,14 @@ tQuantity = FIXTag
    { tName = "Quantity"
    , tnum = 53
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSide :: FIXTag
 tSide = FIXTag 
    { tName = "Side"
    , tnum = 54
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSymbol :: FIXTag
 tSymbol = FIXTag 
@@ -390,7 +391,7 @@ tTimeInForce = FIXTag
    { tName = "TimeInForce"
    , tnum = 59
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tTransactTime :: FIXTag
 tTransactTime = FIXTag 
@@ -404,7 +405,7 @@ tUrgency = FIXTag
    { tName = "Urgency"
    , tnum = 61
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tValidUntilTime :: FIXTag
 tValidUntilTime = FIXTag 
@@ -418,7 +419,7 @@ tSettlType = FIXTag
    { tName = "SettlType"
    , tnum = 63
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSettlDate :: FIXTag
 tSettlDate = FIXTag 
@@ -474,7 +475,7 @@ tAllocTransType = FIXTag
    { tName = "AllocTransType"
    , tnum = 71
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tRefAllocID :: FIXTag
 tRefAllocID = FIXTag 
@@ -516,7 +517,7 @@ tPositionEffect = FIXTag
    { tName = "PositionEffect"
    , tnum = 77
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNoAllocs :: FIXTag
 tNoAllocs = FIXTag 
@@ -537,14 +538,14 @@ tAllocQty = FIXTag
    { tName = "AllocQty"
    , tnum = 80
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tProcessCode :: FIXTag
 tProcessCode = FIXTag 
    { tName = "ProcessCode"
    , tnum = 81
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNoRpts :: FIXTag
 tNoRpts = FIXTag 
@@ -565,7 +566,7 @@ tCxlQty = FIXTag
    { tName = "CxlQty"
    , tnum = 84
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoDlvyInst :: FIXTag
 tNoDlvyInst = FIXTag 
@@ -635,7 +636,7 @@ tEmailType = FIXTag
    { tName = "EmailType"
    , tnum = 94
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tRawDataLength :: FIXTag
 tRawDataLength = FIXTag 
@@ -670,7 +671,7 @@ tStopPx = FIXTag
    { tName = "StopPx"
    , tnum = 99
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tExDestination :: FIXTag
 tExDestination = FIXTag 
@@ -698,7 +699,7 @@ tIOIQualifier = FIXTag
    { tName = "IOIQualifier"
    , tnum = 104
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tWaveNo :: FIXTag
 tWaveNo = FIXTag 
@@ -740,14 +741,14 @@ tMinQty = FIXTag
    { tName = "MinQty"
    , tnum = 110
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMaxFloor :: FIXTag
 tMaxFloor = FIXTag 
    { tName = "MaxFloor"
    , tnum = 111
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTestReqID :: FIXTag
 tTestReqID = FIXTag 
@@ -796,14 +797,14 @@ tNetMoney = FIXTag
    { tName = "NetMoney"
    , tnum = 118
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlCurrAmt :: FIXTag
 tSettlCurrAmt = FIXTag 
    { tName = "SettlCurrAmt"
    , tnum = 119
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlCurrency :: FIXTag
 tSettlCurrency = FIXTag 
@@ -845,7 +846,7 @@ tCxlType = FIXTag
    { tName = "CxlType"
    , tnum = 125
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tExpireTime :: FIXTag
 tExpireTime = FIXTag 
@@ -859,7 +860,7 @@ tDKReason = FIXTag
    { tName = "DKReason"
    , tnum = 127
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tDeliverToCompID :: FIXTag
 tDeliverToCompID = FIXTag 
@@ -894,28 +895,28 @@ tBidPx = FIXTag
    { tName = "BidPx"
    , tnum = 132
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOfferPx :: FIXTag
 tOfferPx = FIXTag 
    { tName = "OfferPx"
    , tnum = 133
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBidSize :: FIXTag
 tBidSize = FIXTag 
    { tName = "BidSize"
    , tnum = 134
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOfferSize :: FIXTag
 tOfferSize = FIXTag 
    { tName = "OfferSize"
    , tnum = 135
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoMiscFees :: FIXTag
 tNoMiscFees = FIXTag 
@@ -929,7 +930,7 @@ tMiscFeeAmt = FIXTag
    { tName = "MiscFeeAmt"
    , tnum = 137
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMiscFeeCurr :: FIXTag
 tMiscFeeCurr = FIXTag 
@@ -943,14 +944,14 @@ tMiscFeeType = FIXTag
    { tName = "MiscFeeType"
    , tnum = 139
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tPrevClosePx :: FIXTag
 tPrevClosePx = FIXTag 
    { tName = "PrevClosePx"
    , tnum = 140
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tResetSeqNumFlag :: FIXTag
 tResetSeqNumFlag = FIXTag 
@@ -1020,49 +1021,49 @@ tExecType = FIXTag
    { tName = "ExecType"
    , tnum = 150
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tLeavesQty :: FIXTag
 tLeavesQty = FIXTag 
    { tName = "LeavesQty"
    , tnum = 151
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCashOrderQty :: FIXTag
 tCashOrderQty = FIXTag 
    { tName = "CashOrderQty"
    , tnum = 152
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAllocAvgPx :: FIXTag
 tAllocAvgPx = FIXTag 
    { tName = "AllocAvgPx"
    , tnum = 153
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAllocNetMoney :: FIXTag
 tAllocNetMoney = FIXTag 
    { tName = "AllocNetMoney"
    , tnum = 154
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlCurrFxRate :: FIXTag
 tSettlCurrFxRate = FIXTag 
    { tName = "SettlCurrFxRate"
    , tnum = 155
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlCurrFxRateCalc :: FIXTag
 tSettlCurrFxRateCalc = FIXTag 
    { tName = "SettlCurrFxRateCalc"
    , tnum = 156
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNumDaysInterest :: FIXTag
 tNumDaysInterest = FIXTag 
@@ -1076,21 +1077,21 @@ tAccruedInterestRate = FIXTag
    { tName = "AccruedInterestRate"
    , tnum = 158
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAccruedInterestAmt :: FIXTag
 tAccruedInterestAmt = FIXTag 
    { tName = "AccruedInterestAmt"
    , tnum = 159
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlInstMode :: FIXTag
 tSettlInstMode = FIXTag 
    { tName = "SettlInstMode"
    , tnum = 160
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tAllocText :: FIXTag
 tAllocText = FIXTag 
@@ -1111,7 +1112,7 @@ tSettlInstTransType = FIXTag
    { tName = "SettlInstTransType"
    , tnum = 163
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tEmailThreadID :: FIXTag
 tEmailThreadID = FIXTag 
@@ -1125,7 +1126,7 @@ tSettlInstSource = FIXTag
    { tName = "SettlInstSource"
    , tnum = 165
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSettlLocation :: FIXTag
 tSettlLocation = FIXTag 
@@ -1286,35 +1287,35 @@ tBidSpotRate = FIXTag
    { tName = "BidSpotRate"
    , tnum = 188
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBidForwardPoints :: FIXTag
 tBidForwardPoints = FIXTag 
    { tName = "BidForwardPoints"
    , tnum = 189
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOfferSpotRate :: FIXTag
 tOfferSpotRate = FIXTag 
    { tName = "OfferSpotRate"
    , tnum = 190
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOfferForwardPoints :: FIXTag
 tOfferForwardPoints = FIXTag 
    { tName = "OfferForwardPoints"
    , tnum = 191
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOrderQty2 :: FIXTag
 tOrderQty2 = FIXTag 
    { tName = "OrderQty2"
    , tnum = 192
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlDate2 :: FIXTag
 tSettlDate2 = FIXTag 
@@ -1328,14 +1329,14 @@ tLastSpotRate = FIXTag
    { tName = "LastSpotRate"
    , tnum = 194
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLastForwardPoints :: FIXTag
 tLastForwardPoints = FIXTag 
    { tName = "LastForwardPoints"
    , tnum = 195
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAllocLinkID :: FIXTag
 tAllocLinkID = FIXTag 
@@ -1384,7 +1385,7 @@ tStrikePrice = FIXTag
    { tName = "StrikePrice"
    , tnum = 202
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCoveredOrUncovered :: FIXTag
 tCoveredOrUncovered = FIXTag 
@@ -1412,7 +1413,7 @@ tOptAttribute = FIXTag
    { tName = "OptAttribute"
    , tnum = 206
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSecurityExchange :: FIXTag
 tSecurityExchange = FIXTag 
@@ -1440,14 +1441,14 @@ tMaxShow = FIXTag
    { tName = "MaxShow"
    , tnum = 210
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPegOffsetValue :: FIXTag
 tPegOffsetValue = FIXTag 
    { tName = "PegOffsetValue"
    , tnum = 211
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tXmlDataLen :: FIXTag
 tXmlDataLen = FIXTag 
@@ -1496,14 +1497,14 @@ tSpread = FIXTag
    { tName = "Spread"
    , tnum = 218
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBenchmark :: FIXTag
 tBenchmark = FIXTag 
    { tName = "Benchmark"
    , tnum = 219
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tBenchmarkCurveCurrency :: FIXTag
 tBenchmarkCurveCurrency = FIXTag 
@@ -1531,7 +1532,7 @@ tCouponRate = FIXTag
    { tName = "CouponRate"
    , tnum = 223
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCouponPaymentDate :: FIXTag
 tCouponPaymentDate = FIXTag 
@@ -1559,14 +1560,14 @@ tRepurchaseRate = FIXTag
    { tName = "RepurchaseRate"
    , tnum = 227
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tFactor :: FIXTag
 tFactor = FIXTag 
    { tName = "Factor"
    , tnum = 228
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTradeOriginationDate :: FIXTag
 tTradeOriginationDate = FIXTag 
@@ -1587,7 +1588,7 @@ tContractMultiplier = FIXTag
    { tName = "ContractMultiplier"
    , tnum = 231
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoStipulations :: FIXTag
 tNoStipulations = FIXTag 
@@ -1622,21 +1623,21 @@ tYield = FIXTag
    { tName = "Yield"
    , tnum = 236
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTotalTakedown :: FIXTag
 tTotalTakedown = FIXTag 
    { tName = "TotalTakedown"
    , tnum = 237
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tConcession :: FIXTag
 tConcession = FIXTag 
    { tName = "Concession"
    , tnum = 238
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tRepoCollateralSecurityType :: FIXTag
 tRepoCollateralSecurityType = FIXTag 
@@ -1685,14 +1686,14 @@ tUnderlyingRepurchaseRate = FIXTag
    { tName = "UnderlyingRepurchaseRate"
    , tnum = 245
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingFactor :: FIXTag
 tUnderlyingFactor = FIXTag 
    { tName = "UnderlyingFactor"
    , tnum = 246
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingRedemptionDate :: FIXTag
 tUnderlyingRedemptionDate = FIXTag 
@@ -1734,14 +1735,14 @@ tLegRepurchaseRate = FIXTag
    { tName = "LegRepurchaseRate"
    , tnum = 252
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegFactor :: FIXTag
 tLegFactor = FIXTag 
    { tName = "LegFactor"
    , tnum = 253
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegRedemptionDate :: FIXTag
 tLegRedemptionDate = FIXTag 
@@ -1790,7 +1791,7 @@ tBasisFeaturePrice = FIXTag
    { tName = "BasisFeaturePrice"
    , tnum = 260
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMDReqID :: FIXTag
 tMDReqID = FIXTag 
@@ -1804,7 +1805,7 @@ tSubscriptionRequestType = FIXTag
    { tName = "SubscriptionRequestType"
    , tnum = 263
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMarketDepth :: FIXTag
 tMarketDepth = FIXTag 
@@ -1846,21 +1847,21 @@ tMDEntryType = FIXTag
    { tName = "MDEntryType"
    , tnum = 269
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMDEntryPx :: FIXTag
 tMDEntryPx = FIXTag 
    { tName = "MDEntryPx"
    , tnum = 270
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMDEntrySize :: FIXTag
 tMDEntrySize = FIXTag 
    { tName = "MDEntrySize"
    , tnum = 271
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMDEntryDate :: FIXTag
 tMDEntryDate = FIXTag 
@@ -1881,7 +1882,7 @@ tTickDirection = FIXTag
    { tName = "TickDirection"
    , tnum = 274
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMDMkt :: FIXTag
 tMDMkt = FIXTag 
@@ -1916,7 +1917,7 @@ tMDUpdateAction = FIXTag
    { tName = "MDUpdateAction"
    , tnum = 279
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMDEntryRefID :: FIXTag
 tMDEntryRefID = FIXTag 
@@ -1930,7 +1931,7 @@ tMDReqRejReason = FIXTag
    { tName = "MDReqRejReason"
    , tnum = 281
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMDEntryOriginator :: FIXTag
 tMDEntryOriginator = FIXTag 
@@ -1958,7 +1959,7 @@ tDeleteReason = FIXTag
    { tName = "DeleteReason"
    , tnum = 285
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tOpenCloseSettlFlag :: FIXTag
 tOpenCloseSettlFlag = FIXTag 
@@ -2014,14 +2015,14 @@ tDefBidSize = FIXTag
    { tName = "DefBidSize"
    , tnum = 293
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDefOfferSize :: FIXTag
 tDefOfferSize = FIXTag 
    { tName = "DefOfferSize"
    , tnum = 294
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoQuoteEntries :: FIXTag
 tNoQuoteEntries = FIXTag 
@@ -2175,14 +2176,14 @@ tUnderlyingStrikePrice = FIXTag
    { tName = "UnderlyingStrikePrice"
    , tnum = 316
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingOptAttribute :: FIXTag
 tUnderlyingOptAttribute = FIXTag 
    { tName = "UnderlyingOptAttribute"
    , tnum = 317
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tUnderlyingCurrency :: FIXTag
 tUnderlyingCurrency = FIXTag 
@@ -2196,7 +2197,7 @@ tRatioQty = FIXTag
    { tName = "RatioQty"
    , tnum = 319
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSecurityReqID :: FIXTag
 tSecurityReqID = FIXTag 
@@ -2252,7 +2253,7 @@ tHaltReasonChar = FIXTag
    { tName = "HaltReasonChar"
    , tnum = 327
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tInViewOfCommon :: FIXTag
 tInViewOfCommon = FIXTag 
@@ -2273,28 +2274,28 @@ tBuyVolume = FIXTag
    { tName = "BuyVolume"
    , tnum = 330
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSellVolume :: FIXTag
 tSellVolume = FIXTag 
    { tName = "SellVolume"
    , tnum = 331
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tHighPx :: FIXTag
 tHighPx = FIXTag 
    { tName = "HighPx"
    , tnum = 332
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLowPx :: FIXTag
 tLowPx = FIXTag 
    { tName = "LowPx"
    , tnum = 333
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAdjustment :: FIXTag
 tAdjustment = FIXTag 
@@ -2525,7 +2526,7 @@ tAllocPrice = FIXTag
    { tName = "AllocPrice"
    , tnum = 366
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tQuoteSetValidUntilTime :: FIXTag
 tQuoteSetValidUntilTime = FIXTag 
@@ -2581,7 +2582,7 @@ tBidRequestTransType = FIXTag
    { tName = "BidRequestTransType"
    , tnum = 374
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tContraBroker :: FIXTag
 tContraBroker = FIXTag 
@@ -2630,7 +2631,7 @@ tGrossTradeAmt = FIXTag
    { tName = "GrossTradeAmt"
    , tnum = 381
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoContraBrokers :: FIXTag
 tNoContraBrokers = FIXTag 
@@ -2658,7 +2659,7 @@ tMsgDirection = FIXTag
    { tName = "MsgDirection"
    , tnum = 385
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNoTradingSessions :: FIXTag
 tNoTradingSessions = FIXTag 
@@ -2672,21 +2673,21 @@ tTotalVolumeTraded = FIXTag
    { tName = "TotalVolumeTraded"
    , tnum = 387
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDiscretionInst :: FIXTag
 tDiscretionInst = FIXTag 
    { tName = "DiscretionInst"
    , tnum = 388
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tDiscretionOffsetValue :: FIXTag
 tDiscretionOffsetValue = FIXTag 
    { tName = "DiscretionOffsetValue"
    , tnum = 389
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBidID :: FIXTag
 tBidID = FIXTag 
@@ -2735,14 +2736,14 @@ tSideValue1 = FIXTag
    { tName = "SideValue1"
    , tnum = 396
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSideValue2 :: FIXTag
 tSideValue2 = FIXTag 
    { tName = "SideValue2"
    , tnum = 397
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoBidDescriptors :: FIXTag
 tNoBidDescriptors = FIXTag 
@@ -2777,49 +2778,49 @@ tLiquidityPctLow = FIXTag
    { tName = "LiquidityPctLow"
    , tnum = 402
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLiquidityPctHigh :: FIXTag
 tLiquidityPctHigh = FIXTag 
    { tName = "LiquidityPctHigh"
    , tnum = 403
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLiquidityValue :: FIXTag
 tLiquidityValue = FIXTag 
    { tName = "LiquidityValue"
    , tnum = 404
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tEFPTrackingError :: FIXTag
 tEFPTrackingError = FIXTag 
    { tName = "EFPTrackingError"
    , tnum = 405
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tFairValue :: FIXTag
 tFairValue = FIXTag 
    { tName = "FairValue"
    , tnum = 406
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOutsideIndexPct :: FIXTag
 tOutsideIndexPct = FIXTag 
    { tName = "OutsideIndexPct"
    , tnum = 407
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tValueOfFutures :: FIXTag
 tValueOfFutures = FIXTag 
    { tName = "ValueOfFutures"
    , tnum = 408
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLiquidityIndType :: FIXTag
 tLiquidityIndType = FIXTag 
@@ -2833,7 +2834,7 @@ tWtAverageLiquidity = FIXTag
    { tName = "WtAverageLiquidity"
    , tnum = 410
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tExchangeForPhysical :: FIXTag
 tExchangeForPhysical = FIXTag 
@@ -2847,14 +2848,14 @@ tOutMainCntryUIndex = FIXTag
    { tName = "OutMainCntryUIndex"
    , tnum = 412
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCrossPercent :: FIXTag
 tCrossPercent = FIXTag 
    { tName = "CrossPercent"
    , tnum = 413
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tProgRptReqs :: FIXTag
 tProgRptReqs = FIXTag 
@@ -2889,14 +2890,14 @@ tBidTradeType = FIXTag
    { tName = "BidTradeType"
    , tnum = 418
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tBasisPxType :: FIXTag
 tBasisPxType = FIXTag 
    { tName = "BasisPxType"
    , tnum = 419
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNoBidComponents :: FIXTag
 tNoBidComponents = FIXTag 
@@ -2931,21 +2932,21 @@ tDayOrderQty = FIXTag
    { tName = "DayOrderQty"
    , tnum = 424
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDayCumQty :: FIXTag
 tDayCumQty = FIXTag 
    { tName = "DayCumQty"
    , tnum = 425
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDayAvgPx :: FIXTag
 tDayAvgPx = FIXTag 
    { tName = "DayAvgPx"
    , tnum = 426
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tGTBookingInst :: FIXTag
 tGTBookingInst = FIXTag 
@@ -2994,35 +2995,35 @@ tListExecInstType = FIXTag
    { tName = "ListExecInstType"
    , tnum = 433
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tCxlRejResponseTo :: FIXTag
 tCxlRejResponseTo = FIXTag 
    { tName = "CxlRejResponseTo"
    , tnum = 434
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tUnderlyingCouponRate :: FIXTag
 tUnderlyingCouponRate = FIXTag 
    { tName = "UnderlyingCouponRate"
    , tnum = 435
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingContractMultiplier :: FIXTag
 tUnderlyingContractMultiplier = FIXTag 
    { tName = "UnderlyingContractMultiplier"
    , tnum = 436
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tContraTradeQty :: FIXTag
 tContraTradeQty = FIXTag 
    { tName = "ContraTradeQty"
    , tnum = 437
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tContraTradeTime :: FIXTag
 tContraTradeTime = FIXTag 
@@ -3057,7 +3058,7 @@ tMultiLegReportingType = FIXTag
    { tName = "MultiLegReportingType"
    , tnum = 442
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tStrikeTime :: FIXTag
 tStrikeTime = FIXTag 
@@ -3092,7 +3093,7 @@ tPartyIDSource = FIXTag
    { tName = "PartyIDSource"
    , tnum = 447
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tPartyID :: FIXTag
 tPartyID = FIXTag 
@@ -3120,7 +3121,7 @@ tNetChgPrevDay = FIXTag
    { tName = "NetChgPrevDay"
    , tnum = 451
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPartyRole :: FIXTag
 tPartyRole = FIXTag 
@@ -3239,14 +3240,14 @@ tRoundingDirection = FIXTag
    { tName = "RoundingDirection"
    , tnum = 468
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tRoundingModulus :: FIXTag
 tRoundingModulus = FIXTag 
    { tName = "RoundingModulus"
    , tnum = 469
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCountryOfIssue :: FIXTag
 tCountryOfIssue = FIXTag 
@@ -3323,14 +3324,14 @@ tCancellationRights = FIXTag
    { tName = "CancellationRights"
    , tnum = 480
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMoneyLaunderingStatus :: FIXTag
 tMoneyLaunderingStatus = FIXTag 
    { tName = "MoneyLaunderingStatus"
    , tnum = 481
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMailingInst :: FIXTag
 tMailingInst = FIXTag 
@@ -3351,14 +3352,14 @@ tExecPriceType = FIXTag
    { tName = "ExecPriceType"
    , tnum = 484
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tExecPriceAdjustment :: FIXTag
 tExecPriceAdjustment = FIXTag 
    { tName = "ExecPriceAdjustment"
    , tnum = 485
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDateOfBirth :: FIXTag
 tDateOfBirth = FIXTag 
@@ -3442,7 +3443,7 @@ tFundRenewWaiv = FIXTag
    { tName = "FundRenewWaiv"
    , tnum = 497
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tCashDistribAgentName :: FIXTag
 tCashDistribAgentName = FIXTag 
@@ -3505,7 +3506,7 @@ tRegistStatus = FIXTag
    { tName = "RegistStatus"
    , tnum = 506
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tRegistRejReasonCode :: FIXTag
 tRegistRejReasonCode = FIXTag 
@@ -3547,7 +3548,7 @@ tDistribPercentage = FIXTag
    { tName = "DistribPercentage"
    , tnum = 512
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tRegistID :: FIXTag
 tRegistID = FIXTag 
@@ -3561,7 +3562,7 @@ tRegistTransType = FIXTag
    { tName = "RegistTransType"
    , tnum = 514
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tExecValuationPoint :: FIXTag
 tExecValuationPoint = FIXTag 
@@ -3575,14 +3576,14 @@ tOrderPercent = FIXTag
    { tName = "OrderPercent"
    , tnum = 516
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOwnershipType :: FIXTag
 tOwnershipType = FIXTag 
    { tName = "OwnershipType"
    , tnum = 517
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNoContAmts :: FIXTag
 tNoContAmts = FIXTag 
@@ -3603,7 +3604,7 @@ tContAmtValue = FIXTag
    { tName = "ContAmtValue"
    , tnum = 520
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tContAmtCurr :: FIXTag
 tContAmtCurr = FIXTag 
@@ -3638,7 +3639,7 @@ tNestedPartyIDSource = FIXTag
    { tName = "NestedPartyIDSource"
    , tnum = 525
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSecondaryClOrdID :: FIXTag
 tSecondaryClOrdID = FIXTag 
@@ -3659,7 +3660,7 @@ tOrderCapacity = FIXTag
    { tName = "OrderCapacity"
    , tnum = 528
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tOrderRestrictions :: FIXTag
 tOrderRestrictions = FIXTag 
@@ -3673,21 +3674,21 @@ tMassCancelRequestType = FIXTag
    { tName = "MassCancelRequestType"
    , tnum = 530
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMassCancelResponse :: FIXTag
 tMassCancelResponse = FIXTag 
    { tName = "MassCancelResponse"
    , tnum = 531
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMassCancelRejectReason :: FIXTag
 tMassCancelRejectReason = FIXTag 
    { tName = "MassCancelRejectReason"
    , tnum = 532
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tTotalAffectedOrders :: FIXTag
 tTotalAffectedOrders = FIXTag 
@@ -3743,7 +3744,7 @@ tTotalAccruedInterestAmt = FIXTag
    { tName = "TotalAccruedInterestAmt"
    , tnum = 540
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMaturityDate :: FIXTag
 tMaturityDate = FIXTag 
@@ -3771,7 +3772,7 @@ tCashMargin = FIXTag
    { tName = "CashMargin"
    , tnum = 544
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNestedPartySubID :: FIXTag
 tNestedPartySubID = FIXTag 
@@ -3890,14 +3891,14 @@ tRoundLot = FIXTag
    { tName = "RoundLot"
    , tnum = 561
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMinTradeVol :: FIXTag
 tMinTradeVol = FIXTag 
    { tName = "MinTradeVol"
    , tnum = 562
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMultiLegRptTypeReq :: FIXTag
 tMultiLegRptTypeReq = FIXTag 
@@ -3911,7 +3912,7 @@ tLegPositionEffect = FIXTag
    { tName = "LegPositionEffect"
    , tnum = 564
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tLegCoveredOrUncovered :: FIXTag
 tLegCoveredOrUncovered = FIXTag 
@@ -3925,7 +3926,7 @@ tLegPrice = FIXTag
    { tName = "LegPrice"
    , tnum = 566
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTradSesStatusRejReason :: FIXTag
 tTradSesStatusRejReason = FIXTag 
@@ -3974,7 +3975,7 @@ tMatchStatus = FIXTag
    { tName = "MatchStatus"
    , tnum = 573
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tMatchType :: FIXTag
 tMatchType = FIXTag 
@@ -4072,7 +4073,7 @@ tLegSettlType = FIXTag
    { tName = "LegSettlType"
    , tnum = 587
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tLegSettlDate :: FIXTag
 tLegSettlDate = FIXTag 
@@ -4086,21 +4087,21 @@ tDayBookingInst = FIXTag
    { tName = "DayBookingInst"
    , tnum = 589
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tBookingUnit :: FIXTag
 tBookingUnit = FIXTag 
    { tName = "BookingUnit"
    , tnum = 590
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tPreallocMethod :: FIXTag
 tPreallocMethod = FIXTag 
    { tName = "PreallocMethod"
    , tnum = 591
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tUnderlyingCountryOfIssue :: FIXTag
 tUnderlyingCountryOfIssue = FIXTag 
@@ -4190,8 +4191,8 @@ tNoLegSecurityAltID :: FIXTag
 tNoLegSecurityAltID = FIXTag 
    { tName = "NoLegSecurityAltID"
    , tnum = 604
-   , tparser = toFIXString
-   , arbitraryValue = FIXString <$> arbitrary }
+   , tparser = toFIXInt
+   , arbitraryValue = FIXInt <$> arbitrary }
 
 tLegSecurityAltID :: FIXTag
 tLegSecurityAltID = FIXTag 
@@ -4247,28 +4248,28 @@ tLegStrikePrice = FIXTag
    { tName = "LegStrikePrice"
    , tnum = 612
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegOptAttribute :: FIXTag
 tLegOptAttribute = FIXTag 
    { tName = "LegOptAttribute"
    , tnum = 613
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tLegContractMultiplier :: FIXTag
 tLegContractMultiplier = FIXTag 
    { tName = "LegContractMultiplier"
    , tnum = 614
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegCouponRate :: FIXTag
 tLegCouponRate = FIXTag 
    { tName = "LegCouponRate"
    , tnum = 615
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegSecurityExchange :: FIXTag
 tLegSecurityExchange = FIXTag 
@@ -4324,14 +4325,14 @@ tLegRatioQty = FIXTag
    { tName = "LegRatioQty"
    , tnum = 623
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegSide :: FIXTag
 tLegSide = FIXTag 
    { tName = "LegSide"
    , tnum = 624
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tTradingSessionSubID :: FIXTag
 tTradingSessionSubID = FIXTag 
@@ -4380,28 +4381,28 @@ tMidPx = FIXTag
    { tName = "MidPx"
    , tnum = 631
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBidYield :: FIXTag
 tBidYield = FIXTag 
    { tName = "BidYield"
    , tnum = 632
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMidYield :: FIXTag
 tMidYield = FIXTag 
    { tName = "MidYield"
    , tnum = 633
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOfferYield :: FIXTag
 tOfferYield = FIXTag 
    { tName = "OfferYield"
    , tnum = 634
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tClearingFeeIndicator :: FIXTag
 tClearingFeeIndicator = FIXTag 
@@ -4422,7 +4423,7 @@ tLegLastPx = FIXTag
    { tName = "LegLastPx"
    , tnum = 637
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPriorityIndicator :: FIXTag
 tPriorityIndicator = FIXTag 
@@ -4436,35 +4437,35 @@ tPriceImprovement = FIXTag
    { tName = "PriceImprovement"
    , tnum = 639
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPrice2 :: FIXTag
 tPrice2 = FIXTag 
    { tName = "Price2"
    , tnum = 640
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLastForwardPoints2 :: FIXTag
 tLastForwardPoints2 = FIXTag 
    { tName = "LastForwardPoints2"
    , tnum = 641
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBidForwardPoints2 :: FIXTag
 tBidForwardPoints2 = FIXTag 
    { tName = "BidForwardPoints2"
    , tnum = 642
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOfferForwardPoints2 :: FIXTag
 tOfferForwardPoints2 = FIXTag 
    { tName = "OfferForwardPoints2"
    , tnum = 643
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tRFQReqID :: FIXTag
 tRFQReqID = FIXTag 
@@ -4478,28 +4479,28 @@ tMktBidPx = FIXTag
    { tName = "MktBidPx"
    , tnum = 645
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMktOfferPx :: FIXTag
 tMktOfferPx = FIXTag 
    { tName = "MktOfferPx"
    , tnum = 646
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMinBidSize :: FIXTag
 tMinBidSize = FIXTag 
    { tName = "MinBidSize"
    , tnum = 647
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMinOfferSize :: FIXTag
 tMinOfferSize = FIXTag 
    { tName = "MinOfferSize"
    , tnum = 648
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tQuoteStatusReqID :: FIXTag
 tQuoteStatusReqID = FIXTag 
@@ -4520,14 +4521,14 @@ tUnderlyingLastPx = FIXTag
    { tName = "UnderlyingLastPx"
    , tnum = 651
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingLastQty :: FIXTag
 tUnderlyingLastQty = FIXTag 
    { tName = "UnderlyingLastQty"
    , tnum = 652
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSecDefStatus :: FIXTag
 tSecDefStatus = FIXTag 
@@ -4555,14 +4556,14 @@ tSettlCurrBidFxRate = FIXTag
    { tName = "SettlCurrBidFxRate"
    , tnum = 656
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlCurrOfferFxRate :: FIXTag
 tSettlCurrOfferFxRate = FIXTag 
    { tName = "SettlCurrOfferFxRate"
    , tnum = 657
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tQuoteRequestRejectReason :: FIXTag
 tQuoteRequestRejectReason = FIXTag 
@@ -4597,7 +4598,7 @@ tBenchmarkPrice = FIXTag
    { tName = "BenchmarkPrice"
    , tnum = 662
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tBenchmarkPriceType :: FIXTag
 tBenchmarkPriceType = FIXTag 
@@ -4646,7 +4647,7 @@ tLastParPx = FIXTag
    { tName = "LastParPx"
    , tnum = 669
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoLegAllocs :: FIXTag
 tNoLegAllocs = FIXTag 
@@ -4674,7 +4675,7 @@ tLegAllocQty = FIXTag
    { tName = "LegAllocQty"
    , tnum = 673
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegAllocAcctIDSource :: FIXTag
 tLegAllocAcctIDSource = FIXTag 
@@ -4716,7 +4717,7 @@ tLegBenchmarkPrice = FIXTag
    { tName = "LegBenchmarkPrice"
    , tnum = 679
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegBenchmarkPriceType :: FIXTag
 tLegBenchmarkPriceType = FIXTag 
@@ -4730,7 +4731,7 @@ tLegBidPx = FIXTag
    { tName = "LegBidPx"
    , tnum = 681
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegIOIQty :: FIXTag
 tLegIOIQty = FIXTag 
@@ -4751,14 +4752,14 @@ tLegOfferPx = FIXTag
    { tName = "LegOfferPx"
    , tnum = 684
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegOrderQty :: FIXTag
 tLegOrderQty = FIXTag 
    { tName = "LegOrderQty"
    , tnum = 685
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegPriceType :: FIXTag
 tLegPriceType = FIXTag 
@@ -4772,7 +4773,7 @@ tLegQty = FIXTag
    { tName = "LegQty"
    , tnum = 687
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegStipulationType :: FIXTag
 tLegStipulationType = FIXTag 
@@ -4828,7 +4829,7 @@ tQuoteQualifier = FIXTag
    { tName = "QuoteQualifier"
    , tnum = 695
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tYieldRedemptionDate :: FIXTag
 tYieldRedemptionDate = FIXTag 
@@ -4842,7 +4843,7 @@ tYieldRedemptionPrice = FIXTag
    { tName = "YieldRedemptionPrice"
    , tnum = 697
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tYieldRedemptionPriceType :: FIXTag
 tYieldRedemptionPriceType = FIXTag 
@@ -4891,14 +4892,14 @@ tLongQty = FIXTag
    { tName = "LongQty"
    , tnum = 704
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tShortQty :: FIXTag
 tShortQty = FIXTag 
    { tName = "ShortQty"
    , tnum = 705
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPosQtyStatus :: FIXTag
 tPosQtyStatus = FIXTag 
@@ -4919,7 +4920,7 @@ tPosAmt = FIXTag
    { tName = "PosAmt"
    , tnum = 708
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPosTransType :: FIXTag
 tPosTransType = FIXTag 
@@ -5073,7 +5074,7 @@ tSettlPrice = FIXTag
    { tName = "SettlPrice"
    , tnum = 730
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tSettlPriceType :: FIXTag
 tSettlPriceType = FIXTag 
@@ -5087,7 +5088,7 @@ tUnderlyingSettlPrice = FIXTag
    { tName = "UnderlyingSettlPrice"
    , tnum = 732
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingSettlPriceType :: FIXTag
 tUnderlyingSettlPriceType = FIXTag 
@@ -5101,7 +5102,7 @@ tPriorSettlPrice = FIXTag
    { tName = "PriorSettlPrice"
    , tnum = 734
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoQuoteQualifiers :: FIXTag
 tNoQuoteQualifiers = FIXTag 
@@ -5122,14 +5123,14 @@ tAllocSettlCurrAmt = FIXTag
    { tName = "AllocSettlCurrAmt"
    , tnum = 737
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tInterestAtMaturity :: FIXTag
 tInterestAtMaturity = FIXTag 
    { tName = "InterestAtMaturity"
    , tnum = 738
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLegDatedDate :: FIXTag
 tLegDatedDate = FIXTag 
@@ -5150,14 +5151,14 @@ tAllocInterestAtMaturity = FIXTag
    { tName = "AllocInterestAtMaturity"
    , tnum = 741
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAllocAccruedInterestAmt :: FIXTag
 tAllocAccruedInterestAmt = FIXTag 
    { tName = "AllocAccruedInterestAmt"
    , tnum = 742
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDeliveryDate :: FIXTag
 tDeliveryDate = FIXTag 
@@ -5171,28 +5172,28 @@ tAssignmentMethod = FIXTag
    { tName = "AssignmentMethod"
    , tnum = 744
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tAssignmentUnit :: FIXTag
 tAssignmentUnit = FIXTag 
    { tName = "AssignmentUnit"
    , tnum = 745
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOpenInterest :: FIXTag
 tOpenInterest = FIXTag 
    { tName = "OpenInterest"
    , tnum = 746
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tExerciseMethod :: FIXTag
 tExerciseMethod = FIXTag 
    { tName = "ExerciseMethod"
    , tnum = 747
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tTotNumTradeReports :: FIXTag
 tTotNumTradeReports = FIXTag 
@@ -5269,7 +5270,7 @@ tNested2PartyIDSource = FIXTag
    { tName = "Nested2PartyIDSource"
    , tnum = 758
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNested2PartyRole :: FIXTag
 tNested2PartyRole = FIXTag 
@@ -5318,14 +5319,14 @@ tAllowableOneSidednessPct = FIXTag
    { tName = "AllowableOneSidednessPct"
    , tnum = 765
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAllowableOneSidednessValue :: FIXTag
 tAllowableOneSidednessValue = FIXTag 
    { tName = "AllowableOneSidednessValue"
    , tnum = 766
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tAllowableOneSidednessCurr :: FIXTag
 tAllowableOneSidednessCurr = FIXTag 
@@ -5444,7 +5445,7 @@ tSettlPartyIDSource = FIXTag
    { tName = "SettlPartyIDSource"
    , tnum = 783
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tSettlPartyRole :: FIXTag
 tSettlPartyRole = FIXTag 
@@ -5472,7 +5473,7 @@ tDlvyInstType = FIXTag
    { tName = "DlvyInstType"
    , tnum = 787
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tTerminationType :: FIXTag
 tTerminationType = FIXTag 
@@ -5556,14 +5557,14 @@ tOrderAvgPx = FIXTag
    { tName = "OrderAvgPx"
    , tnum = 799
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tOrderBookingQty :: FIXTag
 tOrderBookingQty = FIXTag 
    { tName = "OrderBookingQty"
    , tnum = 800
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoSettlPartySubIDs :: FIXTag
 tNoSettlPartySubIDs = FIXTag 
@@ -5626,14 +5627,14 @@ tUnderlyingPx = FIXTag
    { tName = "UnderlyingPx"
    , tnum = 810
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPriceDelta :: FIXTag
 tPriceDelta = FIXTag 
    { tName = "PriceDelta"
    , tnum = 811
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tApplQueueMax :: FIXTag
 tApplQueueMax = FIXTag 
@@ -5794,7 +5795,7 @@ tThresholdAmount = FIXTag
    { tName = "ThresholdAmount"
    , tnum = 834
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPegMoveType :: FIXTag
 tPegMoveType = FIXTag 
@@ -5829,7 +5830,7 @@ tPeggedPrice = FIXTag
    { tName = "PeggedPrice"
    , tnum = 839
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tPegScope :: FIXTag
 tPegScope = FIXTag 
@@ -5871,7 +5872,7 @@ tDiscretionPrice = FIXTag
    { tName = "DiscretionPrice"
    , tnum = 845
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tDiscretionScope :: FIXTag
 tDiscretionScope = FIXTag 
@@ -5899,14 +5900,14 @@ tParticipationRate = FIXTag
    { tName = "ParticipationRate"
    , tnum = 849
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTargetStrategyPerformance :: FIXTag
 tTargetStrategyPerformance = FIXTag 
    { tName = "TargetStrategyPerformance"
    , tnum = 850
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tLastLiquidityInd :: FIXTag
 tLastLiquidityInd = FIXTag 
@@ -5962,7 +5963,7 @@ tSharedCommission = FIXTag
    { tName = "SharedCommission"
    , tnum = 858
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tConfirmReqID :: FIXTag
 tConfirmReqID = FIXTag 
@@ -5976,14 +5977,14 @@ tAvgParPx = FIXTag
    { tName = "AvgParPx"
    , tnum = 860
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tReportedPx :: FIXTag
 tReportedPx = FIXTag 
    { tName = "ReportedPx"
    , tnum = 861
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoCapacities :: FIXTag
 tNoCapacities = FIXTag 
@@ -5997,7 +5998,7 @@ tOrderCapacityQty = FIXTag
    { tName = "OrderCapacityQty"
    , tnum = 863
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoEvents :: FIXTag
 tNoEvents = FIXTag 
@@ -6025,7 +6026,7 @@ tEventPx = FIXTag
    { tName = "EventPx"
    , tnum = 867
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tEventText :: FIXTag
 tEventText = FIXTag 
@@ -6039,7 +6040,7 @@ tPctAtRisk = FIXTag
    { tName = "PctAtRisk"
    , tnum = 869
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoInstrAttrib :: FIXTag
 tNoInstrAttrib = FIXTag 
@@ -6109,7 +6110,7 @@ tUnderlyingQty = FIXTag
    { tName = "UnderlyingQty"
    , tnum = 879
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTrdMatchID :: FIXTag
 tTrdMatchID = FIXTag 
@@ -6130,35 +6131,35 @@ tUnderlyingDirtyPrice = FIXTag
    { tName = "UnderlyingDirtyPrice"
    , tnum = 882
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingEndPrice :: FIXTag
 tUnderlyingEndPrice = FIXTag 
    { tName = "UnderlyingEndPrice"
    , tnum = 883
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingStartValue :: FIXTag
 tUnderlyingStartValue = FIXTag 
    { tName = "UnderlyingStartValue"
    , tnum = 884
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingCurrentValue :: FIXTag
 tUnderlyingCurrentValue = FIXTag 
    { tName = "UnderlyingCurrentValue"
    , tnum = 885
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUnderlyingEndValue :: FIXTag
 tUnderlyingEndValue = FIXTag 
    { tName = "UnderlyingEndValue"
    , tnum = 886
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tNoUnderlyingStips :: FIXTag
 tNoUnderlyingStips = FIXTag 
@@ -6186,7 +6187,7 @@ tMaturityNetMoney = FIXTag
    { tName = "MaturityNetMoney"
    , tnum = 890
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMiscFeeBasis :: FIXTag
 tMiscFeeBasis = FIXTag 
@@ -6242,28 +6243,28 @@ tMarginRatio = FIXTag
    { tName = "MarginRatio"
    , tnum = 898
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tMarginExcess :: FIXTag
 tMarginExcess = FIXTag 
    { tName = "MarginExcess"
    , tnum = 899
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tTotalNetValue :: FIXTag
 tTotalNetValue = FIXTag 
    { tName = "TotalNetValue"
    , tnum = 900
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCashOutstanding :: FIXTag
 tCashOutstanding = FIXTag 
    { tName = "CashOutstanding"
    , tnum = 901
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tCollAsgnID :: FIXTag
 tCollAsgnID = FIXTag 
@@ -6396,21 +6397,21 @@ tEndAccruedInterestAmt = FIXTag
    { tName = "EndAccruedInterestAmt"
    , tnum = 920
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tStartCash :: FIXTag
 tStartCash = FIXTag 
    { tName = "StartCash"
    , tnum = 921
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tEndCash :: FIXTag
 tEndCash = FIXTag 
    { tName = "EndCash"
    , tnum = 922
    , tparser = toFIXDouble
-   , arbitraryValue = FIXDouble <$> arbitrary }
+   , arbitraryValue = FIXDouble <$> (return (-2.112 :: Double)) }
 
 tUserRequestID :: FIXTag
 tUserRequestID = FIXTag 
@@ -6606,7 +6607,7 @@ tNested3PartyIDSource = FIXTag
    { tName = "Nested3PartyIDSource"
    , tnum = 950
    , tparser = toFIXChar
-   , arbitraryValue = FIXChar <$> arbitrary }
+   , arbitraryValue = FIXChar <$> (return 'A') }
 
 tNested3PartyRole :: FIXTag
 tNested3PartyRole = FIXTag 
@@ -29948,7 +29949,8 @@ fix44 = FSpec
    { fsVersion = "FIX.4.4"
    , fsHeader = headerFIX44
    , fsTrailer = trailerFIX44
-   , fsMessages = fix44Messages }
+   , fsMessages = fix44Messages 
+   , fsTags = fix44Tags }
    where
       fix44Messages =
           LT.insert (msType mHeartbeat) mHeartbeat $
@@ -30043,3 +30045,958 @@ fix44 = FSpec
           LT.insert (msType mUserResponse) mUserResponse $
           LT.insert (msType mCollateralInquiryAck) mCollateralInquiryAck $
           LT.insert (msType mConfirmationRequest) mConfirmationRequest           LT.new 
+      fix44Tags =
+          LT.insert (tnum tAccount) tAccount $
+          LT.insert (tnum tAdvId) tAdvId $
+          LT.insert (tnum tAdvRefID) tAdvRefID $
+          LT.insert (tnum tAdvSide) tAdvSide $
+          LT.insert (tnum tAdvTransType) tAdvTransType $
+          LT.insert (tnum tAvgPx) tAvgPx $
+          LT.insert (tnum tBeginSeqNo) tBeginSeqNo $
+          LT.insert (tnum tBeginString) tBeginString $
+          LT.insert (tnum tBodyLength) tBodyLength $
+          LT.insert (tnum tCheckSum) tCheckSum $
+          LT.insert (tnum tClOrdID) tClOrdID $
+          LT.insert (tnum tCommission) tCommission $
+          LT.insert (tnum tCommType) tCommType $
+          LT.insert (tnum tCumQty) tCumQty $
+          LT.insert (tnum tCurrency) tCurrency $
+          LT.insert (tnum tEndSeqNo) tEndSeqNo $
+          LT.insert (tnum tExecID) tExecID $
+          LT.insert (tnum tExecInst) tExecInst $
+          LT.insert (tnum tExecRefID) tExecRefID $
+          LT.insert (tnum tExecTransType) tExecTransType $
+          LT.insert (tnum tHandlInst) tHandlInst $
+          LT.insert (tnum tSecurityIDSource) tSecurityIDSource $
+          LT.insert (tnum tIOIID) tIOIID $
+          LT.insert (tnum tIOIOthSvc) tIOIOthSvc $
+          LT.insert (tnum tIOIQltyInd) tIOIQltyInd $
+          LT.insert (tnum tIOIRefID) tIOIRefID $
+          LT.insert (tnum tIOIQty) tIOIQty $
+          LT.insert (tnum tIOITransType) tIOITransType $
+          LT.insert (tnum tLastCapacity) tLastCapacity $
+          LT.insert (tnum tLastMkt) tLastMkt $
+          LT.insert (tnum tLastPx) tLastPx $
+          LT.insert (tnum tLastQty) tLastQty $
+          LT.insert (tnum tNoLinesOfText) tNoLinesOfText $
+          LT.insert (tnum tMsgSeqNum) tMsgSeqNum $
+          LT.insert (tnum tMsgType) tMsgType $
+          LT.insert (tnum tNewSeqNo) tNewSeqNo $
+          LT.insert (tnum tOrderID) tOrderID $
+          LT.insert (tnum tOrderQty) tOrderQty $
+          LT.insert (tnum tOrdStatus) tOrdStatus $
+          LT.insert (tnum tOrdType) tOrdType $
+          LT.insert (tnum tOrigClOrdID) tOrigClOrdID $
+          LT.insert (tnum tOrigTime) tOrigTime $
+          LT.insert (tnum tPossDupFlag) tPossDupFlag $
+          LT.insert (tnum tPrice) tPrice $
+          LT.insert (tnum tRefSeqNum) tRefSeqNum $
+          LT.insert (tnum tRelatdSym) tRelatdSym $
+          LT.insert (tnum tRule80A) tRule80A $
+          LT.insert (tnum tSecurityID) tSecurityID $
+          LT.insert (tnum tSenderCompID) tSenderCompID $
+          LT.insert (tnum tSenderSubID) tSenderSubID $
+          LT.insert (tnum tSendingDate) tSendingDate $
+          LT.insert (tnum tSendingTime) tSendingTime $
+          LT.insert (tnum tQuantity) tQuantity $
+          LT.insert (tnum tSide) tSide $
+          LT.insert (tnum tSymbol) tSymbol $
+          LT.insert (tnum tTargetCompID) tTargetCompID $
+          LT.insert (tnum tTargetSubID) tTargetSubID $
+          LT.insert (tnum tText) tText $
+          LT.insert (tnum tTimeInForce) tTimeInForce $
+          LT.insert (tnum tTransactTime) tTransactTime $
+          LT.insert (tnum tUrgency) tUrgency $
+          LT.insert (tnum tValidUntilTime) tValidUntilTime $
+          LT.insert (tnum tSettlType) tSettlType $
+          LT.insert (tnum tSettlDate) tSettlDate $
+          LT.insert (tnum tSymbolSfx) tSymbolSfx $
+          LT.insert (tnum tListID) tListID $
+          LT.insert (tnum tListSeqNo) tListSeqNo $
+          LT.insert (tnum tTotNoOrders) tTotNoOrders $
+          LT.insert (tnum tListExecInst) tListExecInst $
+          LT.insert (tnum tAllocID) tAllocID $
+          LT.insert (tnum tAllocTransType) tAllocTransType $
+          LT.insert (tnum tRefAllocID) tRefAllocID $
+          LT.insert (tnum tNoOrders) tNoOrders $
+          LT.insert (tnum tAvgPxPrecision) tAvgPxPrecision $
+          LT.insert (tnum tTradeDate) tTradeDate $
+          LT.insert (tnum tExecBroker) tExecBroker $
+          LT.insert (tnum tPositionEffect) tPositionEffect $
+          LT.insert (tnum tNoAllocs) tNoAllocs $
+          LT.insert (tnum tAllocAccount) tAllocAccount $
+          LT.insert (tnum tAllocQty) tAllocQty $
+          LT.insert (tnum tProcessCode) tProcessCode $
+          LT.insert (tnum tNoRpts) tNoRpts $
+          LT.insert (tnum tRptSeq) tRptSeq $
+          LT.insert (tnum tCxlQty) tCxlQty $
+          LT.insert (tnum tNoDlvyInst) tNoDlvyInst $
+          LT.insert (tnum tDlvyInst) tDlvyInst $
+          LT.insert (tnum tAllocStatus) tAllocStatus $
+          LT.insert (tnum tAllocRejCode) tAllocRejCode $
+          LT.insert (tnum tSignature) tSignature $
+          LT.insert (tnum tSecureDataLen) tSecureDataLen $
+          LT.insert (tnum tSecureData) tSecureData $
+          LT.insert (tnum tBrokerOfCredit) tBrokerOfCredit $
+          LT.insert (tnum tSignatureLength) tSignatureLength $
+          LT.insert (tnum tEmailType) tEmailType $
+          LT.insert (tnum tRawDataLength) tRawDataLength $
+          LT.insert (tnum tRawData) tRawData $
+          LT.insert (tnum tPossResend) tPossResend $
+          LT.insert (tnum tEncryptMethod) tEncryptMethod $
+          LT.insert (tnum tStopPx) tStopPx $
+          LT.insert (tnum tExDestination) tExDestination $
+          LT.insert (tnum tCxlRejReason) tCxlRejReason $
+          LT.insert (tnum tOrdRejReason) tOrdRejReason $
+          LT.insert (tnum tIOIQualifier) tIOIQualifier $
+          LT.insert (tnum tWaveNo) tWaveNo $
+          LT.insert (tnum tIssuer) tIssuer $
+          LT.insert (tnum tSecurityDesc) tSecurityDesc $
+          LT.insert (tnum tHeartBtInt) tHeartBtInt $
+          LT.insert (tnum tClientID) tClientID $
+          LT.insert (tnum tMinQty) tMinQty $
+          LT.insert (tnum tMaxFloor) tMaxFloor $
+          LT.insert (tnum tTestReqID) tTestReqID $
+          LT.insert (tnum tReportToExch) tReportToExch $
+          LT.insert (tnum tLocateReqd) tLocateReqd $
+          LT.insert (tnum tOnBehalfOfCompID) tOnBehalfOfCompID $
+          LT.insert (tnum tOnBehalfOfSubID) tOnBehalfOfSubID $
+          LT.insert (tnum tQuoteID) tQuoteID $
+          LT.insert (tnum tNetMoney) tNetMoney $
+          LT.insert (tnum tSettlCurrAmt) tSettlCurrAmt $
+          LT.insert (tnum tSettlCurrency) tSettlCurrency $
+          LT.insert (tnum tForexReq) tForexReq $
+          LT.insert (tnum tOrigSendingTime) tOrigSendingTime $
+          LT.insert (tnum tGapFillFlag) tGapFillFlag $
+          LT.insert (tnum tNoExecs) tNoExecs $
+          LT.insert (tnum tCxlType) tCxlType $
+          LT.insert (tnum tExpireTime) tExpireTime $
+          LT.insert (tnum tDKReason) tDKReason $
+          LT.insert (tnum tDeliverToCompID) tDeliverToCompID $
+          LT.insert (tnum tDeliverToSubID) tDeliverToSubID $
+          LT.insert (tnum tIOINaturalFlag) tIOINaturalFlag $
+          LT.insert (tnum tQuoteReqID) tQuoteReqID $
+          LT.insert (tnum tBidPx) tBidPx $
+          LT.insert (tnum tOfferPx) tOfferPx $
+          LT.insert (tnum tBidSize) tBidSize $
+          LT.insert (tnum tOfferSize) tOfferSize $
+          LT.insert (tnum tNoMiscFees) tNoMiscFees $
+          LT.insert (tnum tMiscFeeAmt) tMiscFeeAmt $
+          LT.insert (tnum tMiscFeeCurr) tMiscFeeCurr $
+          LT.insert (tnum tMiscFeeType) tMiscFeeType $
+          LT.insert (tnum tPrevClosePx) tPrevClosePx $
+          LT.insert (tnum tResetSeqNumFlag) tResetSeqNumFlag $
+          LT.insert (tnum tSenderLocationID) tSenderLocationID $
+          LT.insert (tnum tTargetLocationID) tTargetLocationID $
+          LT.insert (tnum tOnBehalfOfLocationID) tOnBehalfOfLocationID $
+          LT.insert (tnum tDeliverToLocationID) tDeliverToLocationID $
+          LT.insert (tnum tNoRelatedSym) tNoRelatedSym $
+          LT.insert (tnum tSubject) tSubject $
+          LT.insert (tnum tHeadline) tHeadline $
+          LT.insert (tnum tURLLink) tURLLink $
+          LT.insert (tnum tExecType) tExecType $
+          LT.insert (tnum tLeavesQty) tLeavesQty $
+          LT.insert (tnum tCashOrderQty) tCashOrderQty $
+          LT.insert (tnum tAllocAvgPx) tAllocAvgPx $
+          LT.insert (tnum tAllocNetMoney) tAllocNetMoney $
+          LT.insert (tnum tSettlCurrFxRate) tSettlCurrFxRate $
+          LT.insert (tnum tSettlCurrFxRateCalc) tSettlCurrFxRateCalc $
+          LT.insert (tnum tNumDaysInterest) tNumDaysInterest $
+          LT.insert (tnum tAccruedInterestRate) tAccruedInterestRate $
+          LT.insert (tnum tAccruedInterestAmt) tAccruedInterestAmt $
+          LT.insert (tnum tSettlInstMode) tSettlInstMode $
+          LT.insert (tnum tAllocText) tAllocText $
+          LT.insert (tnum tSettlInstID) tSettlInstID $
+          LT.insert (tnum tSettlInstTransType) tSettlInstTransType $
+          LT.insert (tnum tEmailThreadID) tEmailThreadID $
+          LT.insert (tnum tSettlInstSource) tSettlInstSource $
+          LT.insert (tnum tSettlLocation) tSettlLocation $
+          LT.insert (tnum tSecurityType) tSecurityType $
+          LT.insert (tnum tEffectiveTime) tEffectiveTime $
+          LT.insert (tnum tStandInstDbType) tStandInstDbType $
+          LT.insert (tnum tStandInstDbName) tStandInstDbName $
+          LT.insert (tnum tStandInstDbID) tStandInstDbID $
+          LT.insert (tnum tSettlDeliveryType) tSettlDeliveryType $
+          LT.insert (tnum tSettlDepositoryCode) tSettlDepositoryCode $
+          LT.insert (tnum tSettlBrkrCode) tSettlBrkrCode $
+          LT.insert (tnum tSettlInstCode) tSettlInstCode $
+          LT.insert (tnum tSecuritySettlAgentName) tSecuritySettlAgentName $
+          LT.insert (tnum tSecuritySettlAgentCode) tSecuritySettlAgentCode $
+          LT.insert (tnum tSecuritySettlAgentAcctNum) tSecuritySettlAgentAcctNum $
+          LT.insert (tnum tSecuritySettlAgentAcctName) tSecuritySettlAgentAcctName $
+          LT.insert (tnum tSecuritySettlAgentContactName) tSecuritySettlAgentContactName $
+          LT.insert (tnum tSecuritySettlAgentContactPhone) tSecuritySettlAgentContactPhone $
+          LT.insert (tnum tCashSettlAgentName) tCashSettlAgentName $
+          LT.insert (tnum tCashSettlAgentCode) tCashSettlAgentCode $
+          LT.insert (tnum tCashSettlAgentAcctNum) tCashSettlAgentAcctNum $
+          LT.insert (tnum tCashSettlAgentAcctName) tCashSettlAgentAcctName $
+          LT.insert (tnum tCashSettlAgentContactName) tCashSettlAgentContactName $
+          LT.insert (tnum tCashSettlAgentContactPhone) tCashSettlAgentContactPhone $
+          LT.insert (tnum tBidSpotRate) tBidSpotRate $
+          LT.insert (tnum tBidForwardPoints) tBidForwardPoints $
+          LT.insert (tnum tOfferSpotRate) tOfferSpotRate $
+          LT.insert (tnum tOfferForwardPoints) tOfferForwardPoints $
+          LT.insert (tnum tOrderQty2) tOrderQty2 $
+          LT.insert (tnum tSettlDate2) tSettlDate2 $
+          LT.insert (tnum tLastSpotRate) tLastSpotRate $
+          LT.insert (tnum tLastForwardPoints) tLastForwardPoints $
+          LT.insert (tnum tAllocLinkID) tAllocLinkID $
+          LT.insert (tnum tAllocLinkType) tAllocLinkType $
+          LT.insert (tnum tSecondaryOrderID) tSecondaryOrderID $
+          LT.insert (tnum tNoIOIQualifiers) tNoIOIQualifiers $
+          LT.insert (tnum tMaturityMonthYear) tMaturityMonthYear $
+          LT.insert (tnum tPutOrCall) tPutOrCall $
+          LT.insert (tnum tStrikePrice) tStrikePrice $
+          LT.insert (tnum tCoveredOrUncovered) tCoveredOrUncovered $
+          LT.insert (tnum tCustomerOrFirm) tCustomerOrFirm $
+          LT.insert (tnum tMaturityDay) tMaturityDay $
+          LT.insert (tnum tOptAttribute) tOptAttribute $
+          LT.insert (tnum tSecurityExchange) tSecurityExchange $
+          LT.insert (tnum tNotifyBrokerOfCredit) tNotifyBrokerOfCredit $
+          LT.insert (tnum tAllocHandlInst) tAllocHandlInst $
+          LT.insert (tnum tMaxShow) tMaxShow $
+          LT.insert (tnum tPegOffsetValue) tPegOffsetValue $
+          LT.insert (tnum tXmlDataLen) tXmlDataLen $
+          LT.insert (tnum tXmlData) tXmlData $
+          LT.insert (tnum tSettlInstRefID) tSettlInstRefID $
+          LT.insert (tnum tNoRoutingIDs) tNoRoutingIDs $
+          LT.insert (tnum tRoutingType) tRoutingType $
+          LT.insert (tnum tRoutingID) tRoutingID $
+          LT.insert (tnum tSpread) tSpread $
+          LT.insert (tnum tBenchmark) tBenchmark $
+          LT.insert (tnum tBenchmarkCurveCurrency) tBenchmarkCurveCurrency $
+          LT.insert (tnum tBenchmarkCurveName) tBenchmarkCurveName $
+          LT.insert (tnum tBenchmarkCurvePoint) tBenchmarkCurvePoint $
+          LT.insert (tnum tCouponRate) tCouponRate $
+          LT.insert (tnum tCouponPaymentDate) tCouponPaymentDate $
+          LT.insert (tnum tIssueDate) tIssueDate $
+          LT.insert (tnum tRepurchaseTerm) tRepurchaseTerm $
+          LT.insert (tnum tRepurchaseRate) tRepurchaseRate $
+          LT.insert (tnum tFactor) tFactor $
+          LT.insert (tnum tTradeOriginationDate) tTradeOriginationDate $
+          LT.insert (tnum tExDate) tExDate $
+          LT.insert (tnum tContractMultiplier) tContractMultiplier $
+          LT.insert (tnum tNoStipulations) tNoStipulations $
+          LT.insert (tnum tStipulationType) tStipulationType $
+          LT.insert (tnum tStipulationValue) tStipulationValue $
+          LT.insert (tnum tYieldType) tYieldType $
+          LT.insert (tnum tYield) tYield $
+          LT.insert (tnum tTotalTakedown) tTotalTakedown $
+          LT.insert (tnum tConcession) tConcession $
+          LT.insert (tnum tRepoCollateralSecurityType) tRepoCollateralSecurityType $
+          LT.insert (tnum tRedemptionDate) tRedemptionDate $
+          LT.insert (tnum tUnderlyingCouponPaymentDate) tUnderlyingCouponPaymentDate $
+          LT.insert (tnum tUnderlyingIssueDate) tUnderlyingIssueDate $
+          LT.insert (tnum tUnderlyingRepoCollateralSecurityType) tUnderlyingRepoCollateralSecurityType $
+          LT.insert (tnum tUnderlyingRepurchaseTerm) tUnderlyingRepurchaseTerm $
+          LT.insert (tnum tUnderlyingRepurchaseRate) tUnderlyingRepurchaseRate $
+          LT.insert (tnum tUnderlyingFactor) tUnderlyingFactor $
+          LT.insert (tnum tUnderlyingRedemptionDate) tUnderlyingRedemptionDate $
+          LT.insert (tnum tLegCouponPaymentDate) tLegCouponPaymentDate $
+          LT.insert (tnum tLegIssueDate) tLegIssueDate $
+          LT.insert (tnum tLegRepoCollateralSecurityType) tLegRepoCollateralSecurityType $
+          LT.insert (tnum tLegRepurchaseTerm) tLegRepurchaseTerm $
+          LT.insert (tnum tLegRepurchaseRate) tLegRepurchaseRate $
+          LT.insert (tnum tLegFactor) tLegFactor $
+          LT.insert (tnum tLegRedemptionDate) tLegRedemptionDate $
+          LT.insert (tnum tCreditRating) tCreditRating $
+          LT.insert (tnum tUnderlyingCreditRating) tUnderlyingCreditRating $
+          LT.insert (tnum tLegCreditRating) tLegCreditRating $
+          LT.insert (tnum tTradedFlatSwitch) tTradedFlatSwitch $
+          LT.insert (tnum tBasisFeatureDate) tBasisFeatureDate $
+          LT.insert (tnum tBasisFeaturePrice) tBasisFeaturePrice $
+          LT.insert (tnum tMDReqID) tMDReqID $
+          LT.insert (tnum tSubscriptionRequestType) tSubscriptionRequestType $
+          LT.insert (tnum tMarketDepth) tMarketDepth $
+          LT.insert (tnum tMDUpdateType) tMDUpdateType $
+          LT.insert (tnum tAggregatedBook) tAggregatedBook $
+          LT.insert (tnum tNoMDEntryTypes) tNoMDEntryTypes $
+          LT.insert (tnum tNoMDEntries) tNoMDEntries $
+          LT.insert (tnum tMDEntryType) tMDEntryType $
+          LT.insert (tnum tMDEntryPx) tMDEntryPx $
+          LT.insert (tnum tMDEntrySize) tMDEntrySize $
+          LT.insert (tnum tMDEntryDate) tMDEntryDate $
+          LT.insert (tnum tMDEntryTime) tMDEntryTime $
+          LT.insert (tnum tTickDirection) tTickDirection $
+          LT.insert (tnum tMDMkt) tMDMkt $
+          LT.insert (tnum tQuoteCondition) tQuoteCondition $
+          LT.insert (tnum tTradeCondition) tTradeCondition $
+          LT.insert (tnum tMDEntryID) tMDEntryID $
+          LT.insert (tnum tMDUpdateAction) tMDUpdateAction $
+          LT.insert (tnum tMDEntryRefID) tMDEntryRefID $
+          LT.insert (tnum tMDReqRejReason) tMDReqRejReason $
+          LT.insert (tnum tMDEntryOriginator) tMDEntryOriginator $
+          LT.insert (tnum tLocationID) tLocationID $
+          LT.insert (tnum tDeskID) tDeskID $
+          LT.insert (tnum tDeleteReason) tDeleteReason $
+          LT.insert (tnum tOpenCloseSettlFlag) tOpenCloseSettlFlag $
+          LT.insert (tnum tSellerDays) tSellerDays $
+          LT.insert (tnum tMDEntryBuyer) tMDEntryBuyer $
+          LT.insert (tnum tMDEntrySeller) tMDEntrySeller $
+          LT.insert (tnum tMDEntryPositionNo) tMDEntryPositionNo $
+          LT.insert (tnum tFinancialStatus) tFinancialStatus $
+          LT.insert (tnum tCorporateAction) tCorporateAction $
+          LT.insert (tnum tDefBidSize) tDefBidSize $
+          LT.insert (tnum tDefOfferSize) tDefOfferSize $
+          LT.insert (tnum tNoQuoteEntries) tNoQuoteEntries $
+          LT.insert (tnum tNoQuoteSets) tNoQuoteSets $
+          LT.insert (tnum tQuoteStatus) tQuoteStatus $
+          LT.insert (tnum tQuoteCancelType) tQuoteCancelType $
+          LT.insert (tnum tQuoteEntryID) tQuoteEntryID $
+          LT.insert (tnum tQuoteRejectReason) tQuoteRejectReason $
+          LT.insert (tnum tQuoteResponseLevel) tQuoteResponseLevel $
+          LT.insert (tnum tQuoteSetID) tQuoteSetID $
+          LT.insert (tnum tQuoteRequestType) tQuoteRequestType $
+          LT.insert (tnum tTotNoQuoteEntries) tTotNoQuoteEntries $
+          LT.insert (tnum tUnderlyingSecurityIDSource) tUnderlyingSecurityIDSource $
+          LT.insert (tnum tUnderlyingIssuer) tUnderlyingIssuer $
+          LT.insert (tnum tUnderlyingSecurityDesc) tUnderlyingSecurityDesc $
+          LT.insert (tnum tUnderlyingSecurityExchange) tUnderlyingSecurityExchange $
+          LT.insert (tnum tUnderlyingSecurityID) tUnderlyingSecurityID $
+          LT.insert (tnum tUnderlyingSecurityType) tUnderlyingSecurityType $
+          LT.insert (tnum tUnderlyingSymbol) tUnderlyingSymbol $
+          LT.insert (tnum tUnderlyingSymbolSfx) tUnderlyingSymbolSfx $
+          LT.insert (tnum tUnderlyingMaturityMonthYear) tUnderlyingMaturityMonthYear $
+          LT.insert (tnum tUnderlyingMaturityDay) tUnderlyingMaturityDay $
+          LT.insert (tnum tUnderlyingPutOrCall) tUnderlyingPutOrCall $
+          LT.insert (tnum tUnderlyingStrikePrice) tUnderlyingStrikePrice $
+          LT.insert (tnum tUnderlyingOptAttribute) tUnderlyingOptAttribute $
+          LT.insert (tnum tUnderlyingCurrency) tUnderlyingCurrency $
+          LT.insert (tnum tRatioQty) tRatioQty $
+          LT.insert (tnum tSecurityReqID) tSecurityReqID $
+          LT.insert (tnum tSecurityRequestType) tSecurityRequestType $
+          LT.insert (tnum tSecurityResponseID) tSecurityResponseID $
+          LT.insert (tnum tSecurityResponseType) tSecurityResponseType $
+          LT.insert (tnum tSecurityStatusReqID) tSecurityStatusReqID $
+          LT.insert (tnum tUnsolicitedIndicator) tUnsolicitedIndicator $
+          LT.insert (tnum tSecurityTradingStatus) tSecurityTradingStatus $
+          LT.insert (tnum tHaltReasonChar) tHaltReasonChar $
+          LT.insert (tnum tInViewOfCommon) tInViewOfCommon $
+          LT.insert (tnum tDueToRelated) tDueToRelated $
+          LT.insert (tnum tBuyVolume) tBuyVolume $
+          LT.insert (tnum tSellVolume) tSellVolume $
+          LT.insert (tnum tHighPx) tHighPx $
+          LT.insert (tnum tLowPx) tLowPx $
+          LT.insert (tnum tAdjustment) tAdjustment $
+          LT.insert (tnum tTradSesReqID) tTradSesReqID $
+          LT.insert (tnum tTradingSessionID) tTradingSessionID $
+          LT.insert (tnum tContraTrader) tContraTrader $
+          LT.insert (tnum tTradSesMethod) tTradSesMethod $
+          LT.insert (tnum tTradSesMode) tTradSesMode $
+          LT.insert (tnum tTradSesStatus) tTradSesStatus $
+          LT.insert (tnum tTradSesStartTime) tTradSesStartTime $
+          LT.insert (tnum tTradSesOpenTime) tTradSesOpenTime $
+          LT.insert (tnum tTradSesPreCloseTime) tTradSesPreCloseTime $
+          LT.insert (tnum tTradSesCloseTime) tTradSesCloseTime $
+          LT.insert (tnum tTradSesEndTime) tTradSesEndTime $
+          LT.insert (tnum tNumberOfOrders) tNumberOfOrders $
+          LT.insert (tnum tMessageEncoding) tMessageEncoding $
+          LT.insert (tnum tEncodedIssuerLen) tEncodedIssuerLen $
+          LT.insert (tnum tEncodedIssuer) tEncodedIssuer $
+          LT.insert (tnum tEncodedSecurityDescLen) tEncodedSecurityDescLen $
+          LT.insert (tnum tEncodedSecurityDesc) tEncodedSecurityDesc $
+          LT.insert (tnum tEncodedListExecInstLen) tEncodedListExecInstLen $
+          LT.insert (tnum tEncodedListExecInst) tEncodedListExecInst $
+          LT.insert (tnum tEncodedTextLen) tEncodedTextLen $
+          LT.insert (tnum tEncodedText) tEncodedText $
+          LT.insert (tnum tEncodedSubjectLen) tEncodedSubjectLen $
+          LT.insert (tnum tEncodedSubject) tEncodedSubject $
+          LT.insert (tnum tEncodedHeadlineLen) tEncodedHeadlineLen $
+          LT.insert (tnum tEncodedHeadline) tEncodedHeadline $
+          LT.insert (tnum tEncodedAllocTextLen) tEncodedAllocTextLen $
+          LT.insert (tnum tEncodedAllocText) tEncodedAllocText $
+          LT.insert (tnum tEncodedUnderlyingIssuerLen) tEncodedUnderlyingIssuerLen $
+          LT.insert (tnum tEncodedUnderlyingIssuer) tEncodedUnderlyingIssuer $
+          LT.insert (tnum tEncodedUnderlyingSecurityDescLen) tEncodedUnderlyingSecurityDescLen $
+          LT.insert (tnum tEncodedUnderlyingSecurityDesc) tEncodedUnderlyingSecurityDesc $
+          LT.insert (tnum tAllocPrice) tAllocPrice $
+          LT.insert (tnum tQuoteSetValidUntilTime) tQuoteSetValidUntilTime $
+          LT.insert (tnum tQuoteEntryRejectReason) tQuoteEntryRejectReason $
+          LT.insert (tnum tLastMsgSeqNumProcessed) tLastMsgSeqNumProcessed $
+          LT.insert (tnum tOnBehalfOfSendingTime) tOnBehalfOfSendingTime $
+          LT.insert (tnum tRefTagID) tRefTagID $
+          LT.insert (tnum tRefMsgType) tRefMsgType $
+          LT.insert (tnum tSessionRejectReason) tSessionRejectReason $
+          LT.insert (tnum tBidRequestTransType) tBidRequestTransType $
+          LT.insert (tnum tContraBroker) tContraBroker $
+          LT.insert (tnum tComplianceID) tComplianceID $
+          LT.insert (tnum tSolicitedFlag) tSolicitedFlag $
+          LT.insert (tnum tExecRestatementReason) tExecRestatementReason $
+          LT.insert (tnum tBusinessRejectRefID) tBusinessRejectRefID $
+          LT.insert (tnum tBusinessRejectReason) tBusinessRejectReason $
+          LT.insert (tnum tGrossTradeAmt) tGrossTradeAmt $
+          LT.insert (tnum tNoContraBrokers) tNoContraBrokers $
+          LT.insert (tnum tMaxMessageSize) tMaxMessageSize $
+          LT.insert (tnum tNoMsgTypes) tNoMsgTypes $
+          LT.insert (tnum tMsgDirection) tMsgDirection $
+          LT.insert (tnum tNoTradingSessions) tNoTradingSessions $
+          LT.insert (tnum tTotalVolumeTraded) tTotalVolumeTraded $
+          LT.insert (tnum tDiscretionInst) tDiscretionInst $
+          LT.insert (tnum tDiscretionOffsetValue) tDiscretionOffsetValue $
+          LT.insert (tnum tBidID) tBidID $
+          LT.insert (tnum tClientBidID) tClientBidID $
+          LT.insert (tnum tListName) tListName $
+          LT.insert (tnum tTotNoRelatedSym) tTotNoRelatedSym $
+          LT.insert (tnum tBidType) tBidType $
+          LT.insert (tnum tNumTickets) tNumTickets $
+          LT.insert (tnum tSideValue1) tSideValue1 $
+          LT.insert (tnum tSideValue2) tSideValue2 $
+          LT.insert (tnum tNoBidDescriptors) tNoBidDescriptors $
+          LT.insert (tnum tBidDescriptorType) tBidDescriptorType $
+          LT.insert (tnum tBidDescriptor) tBidDescriptor $
+          LT.insert (tnum tSideValueInd) tSideValueInd $
+          LT.insert (tnum tLiquidityPctLow) tLiquidityPctLow $
+          LT.insert (tnum tLiquidityPctHigh) tLiquidityPctHigh $
+          LT.insert (tnum tLiquidityValue) tLiquidityValue $
+          LT.insert (tnum tEFPTrackingError) tEFPTrackingError $
+          LT.insert (tnum tFairValue) tFairValue $
+          LT.insert (tnum tOutsideIndexPct) tOutsideIndexPct $
+          LT.insert (tnum tValueOfFutures) tValueOfFutures $
+          LT.insert (tnum tLiquidityIndType) tLiquidityIndType $
+          LT.insert (tnum tWtAverageLiquidity) tWtAverageLiquidity $
+          LT.insert (tnum tExchangeForPhysical) tExchangeForPhysical $
+          LT.insert (tnum tOutMainCntryUIndex) tOutMainCntryUIndex $
+          LT.insert (tnum tCrossPercent) tCrossPercent $
+          LT.insert (tnum tProgRptReqs) tProgRptReqs $
+          LT.insert (tnum tProgPeriodInterval) tProgPeriodInterval $
+          LT.insert (tnum tIncTaxInd) tIncTaxInd $
+          LT.insert (tnum tNumBidders) tNumBidders $
+          LT.insert (tnum tBidTradeType) tBidTradeType $
+          LT.insert (tnum tBasisPxType) tBasisPxType $
+          LT.insert (tnum tNoBidComponents) tNoBidComponents $
+          LT.insert (tnum tCountry) tCountry $
+          LT.insert (tnum tTotNoStrikes) tTotNoStrikes $
+          LT.insert (tnum tPriceType) tPriceType $
+          LT.insert (tnum tDayOrderQty) tDayOrderQty $
+          LT.insert (tnum tDayCumQty) tDayCumQty $
+          LT.insert (tnum tDayAvgPx) tDayAvgPx $
+          LT.insert (tnum tGTBookingInst) tGTBookingInst $
+          LT.insert (tnum tNoStrikes) tNoStrikes $
+          LT.insert (tnum tListStatusType) tListStatusType $
+          LT.insert (tnum tNetGrossInd) tNetGrossInd $
+          LT.insert (tnum tListOrderStatus) tListOrderStatus $
+          LT.insert (tnum tExpireDate) tExpireDate $
+          LT.insert (tnum tListExecInstType) tListExecInstType $
+          LT.insert (tnum tCxlRejResponseTo) tCxlRejResponseTo $
+          LT.insert (tnum tUnderlyingCouponRate) tUnderlyingCouponRate $
+          LT.insert (tnum tUnderlyingContractMultiplier) tUnderlyingContractMultiplier $
+          LT.insert (tnum tContraTradeQty) tContraTradeQty $
+          LT.insert (tnum tContraTradeTime) tContraTradeTime $
+          LT.insert (tnum tClearingFirm) tClearingFirm $
+          LT.insert (tnum tClearingAccount) tClearingAccount $
+          LT.insert (tnum tLiquidityNumSecurities) tLiquidityNumSecurities $
+          LT.insert (tnum tMultiLegReportingType) tMultiLegReportingType $
+          LT.insert (tnum tStrikeTime) tStrikeTime $
+          LT.insert (tnum tListStatusText) tListStatusText $
+          LT.insert (tnum tEncodedListStatusTextLen) tEncodedListStatusTextLen $
+          LT.insert (tnum tEncodedListStatusText) tEncodedListStatusText $
+          LT.insert (tnum tPartyIDSource) tPartyIDSource $
+          LT.insert (tnum tPartyID) tPartyID $
+          LT.insert (tnum tTotalVolumeTradedDate) tTotalVolumeTradedDate $
+          LT.insert (tnum tTotalVolumeTradedTime) tTotalVolumeTradedTime $
+          LT.insert (tnum tNetChgPrevDay) tNetChgPrevDay $
+          LT.insert (tnum tPartyRole) tPartyRole $
+          LT.insert (tnum tNoPartyIDs) tNoPartyIDs $
+          LT.insert (tnum tNoSecurityAltID) tNoSecurityAltID $
+          LT.insert (tnum tSecurityAltID) tSecurityAltID $
+          LT.insert (tnum tSecurityAltIDSource) tSecurityAltIDSource $
+          LT.insert (tnum tNoUnderlyingSecurityAltID) tNoUnderlyingSecurityAltID $
+          LT.insert (tnum tUnderlyingSecurityAltID) tUnderlyingSecurityAltID $
+          LT.insert (tnum tUnderlyingSecurityAltIDSource) tUnderlyingSecurityAltIDSource $
+          LT.insert (tnum tProduct) tProduct $
+          LT.insert (tnum tCFICode) tCFICode $
+          LT.insert (tnum tUnderlyingProduct) tUnderlyingProduct $
+          LT.insert (tnum tUnderlyingCFICode) tUnderlyingCFICode $
+          LT.insert (tnum tTestMessageIndicator) tTestMessageIndicator $
+          LT.insert (tnum tQuantityType) tQuantityType $
+          LT.insert (tnum tBookingRefID) tBookingRefID $
+          LT.insert (tnum tIndividualAllocID) tIndividualAllocID $
+          LT.insert (tnum tRoundingDirection) tRoundingDirection $
+          LT.insert (tnum tRoundingModulus) tRoundingModulus $
+          LT.insert (tnum tCountryOfIssue) tCountryOfIssue $
+          LT.insert (tnum tStateOrProvinceOfIssue) tStateOrProvinceOfIssue $
+          LT.insert (tnum tLocaleOfIssue) tLocaleOfIssue $
+          LT.insert (tnum tNoRegistDtls) tNoRegistDtls $
+          LT.insert (tnum tMailingDtls) tMailingDtls $
+          LT.insert (tnum tInvestorCountryOfResidence) tInvestorCountryOfResidence $
+          LT.insert (tnum tPaymentRef) tPaymentRef $
+          LT.insert (tnum tDistribPaymentMethod) tDistribPaymentMethod $
+          LT.insert (tnum tCashDistribCurr) tCashDistribCurr $
+          LT.insert (tnum tCommCurrency) tCommCurrency $
+          LT.insert (tnum tCancellationRights) tCancellationRights $
+          LT.insert (tnum tMoneyLaunderingStatus) tMoneyLaunderingStatus $
+          LT.insert (tnum tMailingInst) tMailingInst $
+          LT.insert (tnum tTransBkdTime) tTransBkdTime $
+          LT.insert (tnum tExecPriceType) tExecPriceType $
+          LT.insert (tnum tExecPriceAdjustment) tExecPriceAdjustment $
+          LT.insert (tnum tDateOfBirth) tDateOfBirth $
+          LT.insert (tnum tTradeReportTransType) tTradeReportTransType $
+          LT.insert (tnum tCardHolderName) tCardHolderName $
+          LT.insert (tnum tCardNumber) tCardNumber $
+          LT.insert (tnum tCardExpDate) tCardExpDate $
+          LT.insert (tnum tCardIssNum) tCardIssNum $
+          LT.insert (tnum tPaymentMethod) tPaymentMethod $
+          LT.insert (tnum tRegistAcctType) tRegistAcctType $
+          LT.insert (tnum tDesignation) tDesignation $
+          LT.insert (tnum tTaxAdvantageType) tTaxAdvantageType $
+          LT.insert (tnum tRegistRejReasonText) tRegistRejReasonText $
+          LT.insert (tnum tFundRenewWaiv) tFundRenewWaiv $
+          LT.insert (tnum tCashDistribAgentName) tCashDistribAgentName $
+          LT.insert (tnum tCashDistribAgentCode) tCashDistribAgentCode $
+          LT.insert (tnum tCashDistribAgentAcctNumber) tCashDistribAgentAcctNumber $
+          LT.insert (tnum tCashDistribPayRef) tCashDistribPayRef $
+          LT.insert (tnum tCashDistribAgentAcctName) tCashDistribAgentAcctName $
+          LT.insert (tnum tCardStartDate) tCardStartDate $
+          LT.insert (tnum tPaymentDate) tPaymentDate $
+          LT.insert (tnum tPaymentRemitterID) tPaymentRemitterID $
+          LT.insert (tnum tRegistStatus) tRegistStatus $
+          LT.insert (tnum tRegistRejReasonCode) tRegistRejReasonCode $
+          LT.insert (tnum tRegistRefID) tRegistRefID $
+          LT.insert (tnum tRegistDtls) tRegistDtls $
+          LT.insert (tnum tNoDistribInsts) tNoDistribInsts $
+          LT.insert (tnum tRegistEmail) tRegistEmail $
+          LT.insert (tnum tDistribPercentage) tDistribPercentage $
+          LT.insert (tnum tRegistID) tRegistID $
+          LT.insert (tnum tRegistTransType) tRegistTransType $
+          LT.insert (tnum tExecValuationPoint) tExecValuationPoint $
+          LT.insert (tnum tOrderPercent) tOrderPercent $
+          LT.insert (tnum tOwnershipType) tOwnershipType $
+          LT.insert (tnum tNoContAmts) tNoContAmts $
+          LT.insert (tnum tContAmtType) tContAmtType $
+          LT.insert (tnum tContAmtValue) tContAmtValue $
+          LT.insert (tnum tContAmtCurr) tContAmtCurr $
+          LT.insert (tnum tOwnerType) tOwnerType $
+          LT.insert (tnum tPartySubID) tPartySubID $
+          LT.insert (tnum tNestedPartyID) tNestedPartyID $
+          LT.insert (tnum tNestedPartyIDSource) tNestedPartyIDSource $
+          LT.insert (tnum tSecondaryClOrdID) tSecondaryClOrdID $
+          LT.insert (tnum tSecondaryExecID) tSecondaryExecID $
+          LT.insert (tnum tOrderCapacity) tOrderCapacity $
+          LT.insert (tnum tOrderRestrictions) tOrderRestrictions $
+          LT.insert (tnum tMassCancelRequestType) tMassCancelRequestType $
+          LT.insert (tnum tMassCancelResponse) tMassCancelResponse $
+          LT.insert (tnum tMassCancelRejectReason) tMassCancelRejectReason $
+          LT.insert (tnum tTotalAffectedOrders) tTotalAffectedOrders $
+          LT.insert (tnum tNoAffectedOrders) tNoAffectedOrders $
+          LT.insert (tnum tAffectedOrderID) tAffectedOrderID $
+          LT.insert (tnum tAffectedSecondaryOrderID) tAffectedSecondaryOrderID $
+          LT.insert (tnum tQuoteType) tQuoteType $
+          LT.insert (tnum tNestedPartyRole) tNestedPartyRole $
+          LT.insert (tnum tNoNestedPartyIDs) tNoNestedPartyIDs $
+          LT.insert (tnum tTotalAccruedInterestAmt) tTotalAccruedInterestAmt $
+          LT.insert (tnum tMaturityDate) tMaturityDate $
+          LT.insert (tnum tUnderlyingMaturityDate) tUnderlyingMaturityDate $
+          LT.insert (tnum tInstrRegistry) tInstrRegistry $
+          LT.insert (tnum tCashMargin) tCashMargin $
+          LT.insert (tnum tNestedPartySubID) tNestedPartySubID $
+          LT.insert (tnum tScope) tScope $
+          LT.insert (tnum tMDImplicitDelete) tMDImplicitDelete $
+          LT.insert (tnum tCrossID) tCrossID $
+          LT.insert (tnum tCrossType) tCrossType $
+          LT.insert (tnum tCrossPrioritization) tCrossPrioritization $
+          LT.insert (tnum tOrigCrossID) tOrigCrossID $
+          LT.insert (tnum tNoSides) tNoSides $
+          LT.insert (tnum tUsername) tUsername $
+          LT.insert (tnum tPassword) tPassword $
+          LT.insert (tnum tNoLegs) tNoLegs $
+          LT.insert (tnum tLegCurrency) tLegCurrency $
+          LT.insert (tnum tTotNoSecurityTypes) tTotNoSecurityTypes $
+          LT.insert (tnum tNoSecurityTypes) tNoSecurityTypes $
+          LT.insert (tnum tSecurityListRequestType) tSecurityListRequestType $
+          LT.insert (tnum tSecurityRequestResult) tSecurityRequestResult $
+          LT.insert (tnum tRoundLot) tRoundLot $
+          LT.insert (tnum tMinTradeVol) tMinTradeVol $
+          LT.insert (tnum tMultiLegRptTypeReq) tMultiLegRptTypeReq $
+          LT.insert (tnum tLegPositionEffect) tLegPositionEffect $
+          LT.insert (tnum tLegCoveredOrUncovered) tLegCoveredOrUncovered $
+          LT.insert (tnum tLegPrice) tLegPrice $
+          LT.insert (tnum tTradSesStatusRejReason) tTradSesStatusRejReason $
+          LT.insert (tnum tTradeRequestID) tTradeRequestID $
+          LT.insert (tnum tTradeRequestType) tTradeRequestType $
+          LT.insert (tnum tPreviouslyReported) tPreviouslyReported $
+          LT.insert (tnum tTradeReportID) tTradeReportID $
+          LT.insert (tnum tTradeReportRefID) tTradeReportRefID $
+          LT.insert (tnum tMatchStatus) tMatchStatus $
+          LT.insert (tnum tMatchType) tMatchType $
+          LT.insert (tnum tOddLot) tOddLot $
+          LT.insert (tnum tNoClearingInstructions) tNoClearingInstructions $
+          LT.insert (tnum tClearingInstruction) tClearingInstruction $
+          LT.insert (tnum tTradeInputSource) tTradeInputSource $
+          LT.insert (tnum tTradeInputDevice) tTradeInputDevice $
+          LT.insert (tnum tNoDates) tNoDates $
+          LT.insert (tnum tAccountType) tAccountType $
+          LT.insert (tnum tCustOrderCapacity) tCustOrderCapacity $
+          LT.insert (tnum tClOrdLinkID) tClOrdLinkID $
+          LT.insert (tnum tMassStatusReqID) tMassStatusReqID $
+          LT.insert (tnum tMassStatusReqType) tMassStatusReqType $
+          LT.insert (tnum tOrigOrdModTime) tOrigOrdModTime $
+          LT.insert (tnum tLegSettlType) tLegSettlType $
+          LT.insert (tnum tLegSettlDate) tLegSettlDate $
+          LT.insert (tnum tDayBookingInst) tDayBookingInst $
+          LT.insert (tnum tBookingUnit) tBookingUnit $
+          LT.insert (tnum tPreallocMethod) tPreallocMethod $
+          LT.insert (tnum tUnderlyingCountryOfIssue) tUnderlyingCountryOfIssue $
+          LT.insert (tnum tUnderlyingStateOrProvinceOfIssue) tUnderlyingStateOrProvinceOfIssue $
+          LT.insert (tnum tUnderlyingLocaleOfIssue) tUnderlyingLocaleOfIssue $
+          LT.insert (tnum tUnderlyingInstrRegistry) tUnderlyingInstrRegistry $
+          LT.insert (tnum tLegCountryOfIssue) tLegCountryOfIssue $
+          LT.insert (tnum tLegStateOrProvinceOfIssue) tLegStateOrProvinceOfIssue $
+          LT.insert (tnum tLegLocaleOfIssue) tLegLocaleOfIssue $
+          LT.insert (tnum tLegInstrRegistry) tLegInstrRegistry $
+          LT.insert (tnum tLegSymbol) tLegSymbol $
+          LT.insert (tnum tLegSymbolSfx) tLegSymbolSfx $
+          LT.insert (tnum tLegSecurityID) tLegSecurityID $
+          LT.insert (tnum tLegSecurityIDSource) tLegSecurityIDSource $
+          LT.insert (tnum tNoLegSecurityAltID) tNoLegSecurityAltID $
+          LT.insert (tnum tLegSecurityAltID) tLegSecurityAltID $
+          LT.insert (tnum tLegSecurityAltIDSource) tLegSecurityAltIDSource $
+          LT.insert (tnum tLegProduct) tLegProduct $
+          LT.insert (tnum tLegCFICode) tLegCFICode $
+          LT.insert (tnum tLegSecurityType) tLegSecurityType $
+          LT.insert (tnum tLegMaturityMonthYear) tLegMaturityMonthYear $
+          LT.insert (tnum tLegMaturityDate) tLegMaturityDate $
+          LT.insert (tnum tLegStrikePrice) tLegStrikePrice $
+          LT.insert (tnum tLegOptAttribute) tLegOptAttribute $
+          LT.insert (tnum tLegContractMultiplier) tLegContractMultiplier $
+          LT.insert (tnum tLegCouponRate) tLegCouponRate $
+          LT.insert (tnum tLegSecurityExchange) tLegSecurityExchange $
+          LT.insert (tnum tLegIssuer) tLegIssuer $
+          LT.insert (tnum tEncodedLegIssuerLen) tEncodedLegIssuerLen $
+          LT.insert (tnum tEncodedLegIssuer) tEncodedLegIssuer $
+          LT.insert (tnum tLegSecurityDesc) tLegSecurityDesc $
+          LT.insert (tnum tEncodedLegSecurityDescLen) tEncodedLegSecurityDescLen $
+          LT.insert (tnum tEncodedLegSecurityDesc) tEncodedLegSecurityDesc $
+          LT.insert (tnum tLegRatioQty) tLegRatioQty $
+          LT.insert (tnum tLegSide) tLegSide $
+          LT.insert (tnum tTradingSessionSubID) tTradingSessionSubID $
+          LT.insert (tnum tAllocType) tAllocType $
+          LT.insert (tnum tNoHops) tNoHops $
+          LT.insert (tnum tHopCompID) tHopCompID $
+          LT.insert (tnum tHopSendingTime) tHopSendingTime $
+          LT.insert (tnum tHopRefID) tHopRefID $
+          LT.insert (tnum tMidPx) tMidPx $
+          LT.insert (tnum tBidYield) tBidYield $
+          LT.insert (tnum tMidYield) tMidYield $
+          LT.insert (tnum tOfferYield) tOfferYield $
+          LT.insert (tnum tClearingFeeIndicator) tClearingFeeIndicator $
+          LT.insert (tnum tWorkingIndicator) tWorkingIndicator $
+          LT.insert (tnum tLegLastPx) tLegLastPx $
+          LT.insert (tnum tPriorityIndicator) tPriorityIndicator $
+          LT.insert (tnum tPriceImprovement) tPriceImprovement $
+          LT.insert (tnum tPrice2) tPrice2 $
+          LT.insert (tnum tLastForwardPoints2) tLastForwardPoints2 $
+          LT.insert (tnum tBidForwardPoints2) tBidForwardPoints2 $
+          LT.insert (tnum tOfferForwardPoints2) tOfferForwardPoints2 $
+          LT.insert (tnum tRFQReqID) tRFQReqID $
+          LT.insert (tnum tMktBidPx) tMktBidPx $
+          LT.insert (tnum tMktOfferPx) tMktOfferPx $
+          LT.insert (tnum tMinBidSize) tMinBidSize $
+          LT.insert (tnum tMinOfferSize) tMinOfferSize $
+          LT.insert (tnum tQuoteStatusReqID) tQuoteStatusReqID $
+          LT.insert (tnum tLegalConfirm) tLegalConfirm $
+          LT.insert (tnum tUnderlyingLastPx) tUnderlyingLastPx $
+          LT.insert (tnum tUnderlyingLastQty) tUnderlyingLastQty $
+          LT.insert (tnum tSecDefStatus) tSecDefStatus $
+          LT.insert (tnum tLegRefID) tLegRefID $
+          LT.insert (tnum tContraLegRefID) tContraLegRefID $
+          LT.insert (tnum tSettlCurrBidFxRate) tSettlCurrBidFxRate $
+          LT.insert (tnum tSettlCurrOfferFxRate) tSettlCurrOfferFxRate $
+          LT.insert (tnum tQuoteRequestRejectReason) tQuoteRequestRejectReason $
+          LT.insert (tnum tSideComplianceID) tSideComplianceID $
+          LT.insert (tnum tAcctIDSource) tAcctIDSource $
+          LT.insert (tnum tAllocAcctIDSource) tAllocAcctIDSource $
+          LT.insert (tnum tBenchmarkPrice) tBenchmarkPrice $
+          LT.insert (tnum tBenchmarkPriceType) tBenchmarkPriceType $
+          LT.insert (tnum tConfirmID) tConfirmID $
+          LT.insert (tnum tConfirmStatus) tConfirmStatus $
+          LT.insert (tnum tConfirmTransType) tConfirmTransType $
+          LT.insert (tnum tContractSettlMonth) tContractSettlMonth $
+          LT.insert (tnum tDeliveryForm) tDeliveryForm $
+          LT.insert (tnum tLastParPx) tLastParPx $
+          LT.insert (tnum tNoLegAllocs) tNoLegAllocs $
+          LT.insert (tnum tLegAllocAccount) tLegAllocAccount $
+          LT.insert (tnum tLegIndividualAllocID) tLegIndividualAllocID $
+          LT.insert (tnum tLegAllocQty) tLegAllocQty $
+          LT.insert (tnum tLegAllocAcctIDSource) tLegAllocAcctIDSource $
+          LT.insert (tnum tLegSettlCurrency) tLegSettlCurrency $
+          LT.insert (tnum tLegBenchmarkCurveCurrency) tLegBenchmarkCurveCurrency $
+          LT.insert (tnum tLegBenchmarkCurveName) tLegBenchmarkCurveName $
+          LT.insert (tnum tLegBenchmarkCurvePoint) tLegBenchmarkCurvePoint $
+          LT.insert (tnum tLegBenchmarkPrice) tLegBenchmarkPrice $
+          LT.insert (tnum tLegBenchmarkPriceType) tLegBenchmarkPriceType $
+          LT.insert (tnum tLegBidPx) tLegBidPx $
+          LT.insert (tnum tLegIOIQty) tLegIOIQty $
+          LT.insert (tnum tNoLegStipulations) tNoLegStipulations $
+          LT.insert (tnum tLegOfferPx) tLegOfferPx $
+          LT.insert (tnum tLegOrderQty) tLegOrderQty $
+          LT.insert (tnum tLegPriceType) tLegPriceType $
+          LT.insert (tnum tLegQty) tLegQty $
+          LT.insert (tnum tLegStipulationType) tLegStipulationType $
+          LT.insert (tnum tLegStipulationValue) tLegStipulationValue $
+          LT.insert (tnum tLegSwapType) tLegSwapType $
+          LT.insert (tnum tPool) tPool $
+          LT.insert (tnum tQuotePriceType) tQuotePriceType $
+          LT.insert (tnum tQuoteRespID) tQuoteRespID $
+          LT.insert (tnum tQuoteRespType) tQuoteRespType $
+          LT.insert (tnum tQuoteQualifier) tQuoteQualifier $
+          LT.insert (tnum tYieldRedemptionDate) tYieldRedemptionDate $
+          LT.insert (tnum tYieldRedemptionPrice) tYieldRedemptionPrice $
+          LT.insert (tnum tYieldRedemptionPriceType) tYieldRedemptionPriceType $
+          LT.insert (tnum tBenchmarkSecurityID) tBenchmarkSecurityID $
+          LT.insert (tnum tReversalIndicator) tReversalIndicator $
+          LT.insert (tnum tYieldCalcDate) tYieldCalcDate $
+          LT.insert (tnum tNoPositions) tNoPositions $
+          LT.insert (tnum tPosType) tPosType $
+          LT.insert (tnum tLongQty) tLongQty $
+          LT.insert (tnum tShortQty) tShortQty $
+          LT.insert (tnum tPosQtyStatus) tPosQtyStatus $
+          LT.insert (tnum tPosAmtType) tPosAmtType $
+          LT.insert (tnum tPosAmt) tPosAmt $
+          LT.insert (tnum tPosTransType) tPosTransType $
+          LT.insert (tnum tPosReqID) tPosReqID $
+          LT.insert (tnum tNoUnderlyings) tNoUnderlyings $
+          LT.insert (tnum tPosMaintAction) tPosMaintAction $
+          LT.insert (tnum tOrigPosReqRefID) tOrigPosReqRefID $
+          LT.insert (tnum tPosMaintRptRefID) tPosMaintRptRefID $
+          LT.insert (tnum tClearingBusinessDate) tClearingBusinessDate $
+          LT.insert (tnum tSettlSessID) tSettlSessID $
+          LT.insert (tnum tSettlSessSubID) tSettlSessSubID $
+          LT.insert (tnum tAdjustmentType) tAdjustmentType $
+          LT.insert (tnum tContraryInstructionIndicator) tContraryInstructionIndicator $
+          LT.insert (tnum tPriorSpreadIndicator) tPriorSpreadIndicator $
+          LT.insert (tnum tPosMaintRptID) tPosMaintRptID $
+          LT.insert (tnum tPosMaintStatus) tPosMaintStatus $
+          LT.insert (tnum tPosMaintResult) tPosMaintResult $
+          LT.insert (tnum tPosReqType) tPosReqType $
+          LT.insert (tnum tResponseTransportType) tResponseTransportType $
+          LT.insert (tnum tResponseDestination) tResponseDestination $
+          LT.insert (tnum tTotalNumPosReports) tTotalNumPosReports $
+          LT.insert (tnum tPosReqResult) tPosReqResult $
+          LT.insert (tnum tPosReqStatus) tPosReqStatus $
+          LT.insert (tnum tSettlPrice) tSettlPrice $
+          LT.insert (tnum tSettlPriceType) tSettlPriceType $
+          LT.insert (tnum tUnderlyingSettlPrice) tUnderlyingSettlPrice $
+          LT.insert (tnum tUnderlyingSettlPriceType) tUnderlyingSettlPriceType $
+          LT.insert (tnum tPriorSettlPrice) tPriorSettlPrice $
+          LT.insert (tnum tNoQuoteQualifiers) tNoQuoteQualifiers $
+          LT.insert (tnum tAllocSettlCurrency) tAllocSettlCurrency $
+          LT.insert (tnum tAllocSettlCurrAmt) tAllocSettlCurrAmt $
+          LT.insert (tnum tInterestAtMaturity) tInterestAtMaturity $
+          LT.insert (tnum tLegDatedDate) tLegDatedDate $
+          LT.insert (tnum tLegPool) tLegPool $
+          LT.insert (tnum tAllocInterestAtMaturity) tAllocInterestAtMaturity $
+          LT.insert (tnum tAllocAccruedInterestAmt) tAllocAccruedInterestAmt $
+          LT.insert (tnum tDeliveryDate) tDeliveryDate $
+          LT.insert (tnum tAssignmentMethod) tAssignmentMethod $
+          LT.insert (tnum tAssignmentUnit) tAssignmentUnit $
+          LT.insert (tnum tOpenInterest) tOpenInterest $
+          LT.insert (tnum tExerciseMethod) tExerciseMethod $
+          LT.insert (tnum tTotNumTradeReports) tTotNumTradeReports $
+          LT.insert (tnum tTradeRequestResult) tTradeRequestResult $
+          LT.insert (tnum tTradeRequestStatus) tTradeRequestStatus $
+          LT.insert (tnum tTradeReportRejectReason) tTradeReportRejectReason $
+          LT.insert (tnum tSideMultiLegReportingType) tSideMultiLegReportingType $
+          LT.insert (tnum tNoPosAmt) tNoPosAmt $
+          LT.insert (tnum tAutoAcceptIndicator) tAutoAcceptIndicator $
+          LT.insert (tnum tAllocReportID) tAllocReportID $
+          LT.insert (tnum tNoNested2PartyIDs) tNoNested2PartyIDs $
+          LT.insert (tnum tNested2PartyID) tNested2PartyID $
+          LT.insert (tnum tNested2PartyIDSource) tNested2PartyIDSource $
+          LT.insert (tnum tNested2PartyRole) tNested2PartyRole $
+          LT.insert (tnum tNested2PartySubID) tNested2PartySubID $
+          LT.insert (tnum tBenchmarkSecurityIDSource) tBenchmarkSecurityIDSource $
+          LT.insert (tnum tSecuritySubType) tSecuritySubType $
+          LT.insert (tnum tUnderlyingSecuritySubType) tUnderlyingSecuritySubType $
+          LT.insert (tnum tLegSecuritySubType) tLegSecuritySubType $
+          LT.insert (tnum tAllowableOneSidednessPct) tAllowableOneSidednessPct $
+          LT.insert (tnum tAllowableOneSidednessValue) tAllowableOneSidednessValue $
+          LT.insert (tnum tAllowableOneSidednessCurr) tAllowableOneSidednessCurr $
+          LT.insert (tnum tNoTrdRegTimestamps) tNoTrdRegTimestamps $
+          LT.insert (tnum tTrdRegTimestamp) tTrdRegTimestamp $
+          LT.insert (tnum tTrdRegTimestampType) tTrdRegTimestampType $
+          LT.insert (tnum tTrdRegTimestampOrigin) tTrdRegTimestampOrigin $
+          LT.insert (tnum tConfirmRefID) tConfirmRefID $
+          LT.insert (tnum tConfirmType) tConfirmType $
+          LT.insert (tnum tConfirmRejReason) tConfirmRejReason $
+          LT.insert (tnum tBookingType) tBookingType $
+          LT.insert (tnum tIndividualAllocRejCode) tIndividualAllocRejCode $
+          LT.insert (tnum tSettlInstMsgID) tSettlInstMsgID $
+          LT.insert (tnum tNoSettlInst) tNoSettlInst $
+          LT.insert (tnum tLastUpdateTime) tLastUpdateTime $
+          LT.insert (tnum tAllocSettlInstType) tAllocSettlInstType $
+          LT.insert (tnum tNoSettlPartyIDs) tNoSettlPartyIDs $
+          LT.insert (tnum tSettlPartyID) tSettlPartyID $
+          LT.insert (tnum tSettlPartyIDSource) tSettlPartyIDSource $
+          LT.insert (tnum tSettlPartyRole) tSettlPartyRole $
+          LT.insert (tnum tSettlPartySubID) tSettlPartySubID $
+          LT.insert (tnum tSettlPartySubIDType) tSettlPartySubIDType $
+          LT.insert (tnum tDlvyInstType) tDlvyInstType $
+          LT.insert (tnum tTerminationType) tTerminationType $
+          LT.insert (tnum tNextExpectedMsgSeqNum) tNextExpectedMsgSeqNum $
+          LT.insert (tnum tOrdStatusReqID) tOrdStatusReqID $
+          LT.insert (tnum tSettlInstReqID) tSettlInstReqID $
+          LT.insert (tnum tSettlInstReqRejCode) tSettlInstReqRejCode $
+          LT.insert (tnum tSecondaryAllocID) tSecondaryAllocID $
+          LT.insert (tnum tAllocReportType) tAllocReportType $
+          LT.insert (tnum tAllocReportRefID) tAllocReportRefID $
+          LT.insert (tnum tAllocCancReplaceReason) tAllocCancReplaceReason $
+          LT.insert (tnum tCopyMsgIndicator) tCopyMsgIndicator $
+          LT.insert (tnum tAllocAccountType) tAllocAccountType $
+          LT.insert (tnum tOrderAvgPx) tOrderAvgPx $
+          LT.insert (tnum tOrderBookingQty) tOrderBookingQty $
+          LT.insert (tnum tNoSettlPartySubIDs) tNoSettlPartySubIDs $
+          LT.insert (tnum tNoPartySubIDs) tNoPartySubIDs $
+          LT.insert (tnum tPartySubIDType) tPartySubIDType $
+          LT.insert (tnum tNoNestedPartySubIDs) tNoNestedPartySubIDs $
+          LT.insert (tnum tNestedPartySubIDType) tNestedPartySubIDType $
+          LT.insert (tnum tNoNested2PartySubIDs) tNoNested2PartySubIDs $
+          LT.insert (tnum tNested2PartySubIDType) tNested2PartySubIDType $
+          LT.insert (tnum tAllocIntermedReqType) tAllocIntermedReqType $
+          LT.insert (tnum tUnderlyingPx) tUnderlyingPx $
+          LT.insert (tnum tPriceDelta) tPriceDelta $
+          LT.insert (tnum tApplQueueMax) tApplQueueMax $
+          LT.insert (tnum tApplQueueDepth) tApplQueueDepth $
+          LT.insert (tnum tApplQueueResolution) tApplQueueResolution $
+          LT.insert (tnum tApplQueueAction) tApplQueueAction $
+          LT.insert (tnum tNoAltMDSource) tNoAltMDSource $
+          LT.insert (tnum tAltMDSourceID) tAltMDSourceID $
+          LT.insert (tnum tSecondaryTradeReportID) tSecondaryTradeReportID $
+          LT.insert (tnum tAvgPxIndicator) tAvgPxIndicator $
+          LT.insert (tnum tTradeLinkID) tTradeLinkID $
+          LT.insert (tnum tOrderInputDevice) tOrderInputDevice $
+          LT.insert (tnum tUnderlyingTradingSessionID) tUnderlyingTradingSessionID $
+          LT.insert (tnum tUnderlyingTradingSessionSubID) tUnderlyingTradingSessionSubID $
+          LT.insert (tnum tTradeLegRefID) tTradeLegRefID $
+          LT.insert (tnum tExchangeRule) tExchangeRule $
+          LT.insert (tnum tTradeAllocIndicator) tTradeAllocIndicator $
+          LT.insert (tnum tExpirationCycle) tExpirationCycle $
+          LT.insert (tnum tTrdType) tTrdType $
+          LT.insert (tnum tTrdSubType) tTrdSubType $
+          LT.insert (tnum tTransferReason) tTransferReason $
+          LT.insert (tnum tAsgnReqID) tAsgnReqID $
+          LT.insert (tnum tTotNumAssignmentReports) tTotNumAssignmentReports $
+          LT.insert (tnum tAsgnRptID) tAsgnRptID $
+          LT.insert (tnum tThresholdAmount) tThresholdAmount $
+          LT.insert (tnum tPegMoveType) tPegMoveType $
+          LT.insert (tnum tPegOffsetType) tPegOffsetType $
+          LT.insert (tnum tPegLimitType) tPegLimitType $
+          LT.insert (tnum tPegRoundDirection) tPegRoundDirection $
+          LT.insert (tnum tPeggedPrice) tPeggedPrice $
+          LT.insert (tnum tPegScope) tPegScope $
+          LT.insert (tnum tDiscretionMoveType) tDiscretionMoveType $
+          LT.insert (tnum tDiscretionOffsetType) tDiscretionOffsetType $
+          LT.insert (tnum tDiscretionLimitType) tDiscretionLimitType $
+          LT.insert (tnum tDiscretionRoundDirection) tDiscretionRoundDirection $
+          LT.insert (tnum tDiscretionPrice) tDiscretionPrice $
+          LT.insert (tnum tDiscretionScope) tDiscretionScope $
+          LT.insert (tnum tTargetStrategy) tTargetStrategy $
+          LT.insert (tnum tTargetStrategyParameters) tTargetStrategyParameters $
+          LT.insert (tnum tParticipationRate) tParticipationRate $
+          LT.insert (tnum tTargetStrategyPerformance) tTargetStrategyPerformance $
+          LT.insert (tnum tLastLiquidityInd) tLastLiquidityInd $
+          LT.insert (tnum tPublishTrdIndicator) tPublishTrdIndicator $
+          LT.insert (tnum tShortSaleReason) tShortSaleReason $
+          LT.insert (tnum tQtyType) tQtyType $
+          LT.insert (tnum tSecondaryTrdType) tSecondaryTrdType $
+          LT.insert (tnum tTradeReportType) tTradeReportType $
+          LT.insert (tnum tAllocNoOrdersType) tAllocNoOrdersType $
+          LT.insert (tnum tSharedCommission) tSharedCommission $
+          LT.insert (tnum tConfirmReqID) tConfirmReqID $
+          LT.insert (tnum tAvgParPx) tAvgParPx $
+          LT.insert (tnum tReportedPx) tReportedPx $
+          LT.insert (tnum tNoCapacities) tNoCapacities $
+          LT.insert (tnum tOrderCapacityQty) tOrderCapacityQty $
+          LT.insert (tnum tNoEvents) tNoEvents $
+          LT.insert (tnum tEventType) tEventType $
+          LT.insert (tnum tEventDate) tEventDate $
+          LT.insert (tnum tEventPx) tEventPx $
+          LT.insert (tnum tEventText) tEventText $
+          LT.insert (tnum tPctAtRisk) tPctAtRisk $
+          LT.insert (tnum tNoInstrAttrib) tNoInstrAttrib $
+          LT.insert (tnum tInstrAttribType) tInstrAttribType $
+          LT.insert (tnum tInstrAttribValue) tInstrAttribValue $
+          LT.insert (tnum tDatedDate) tDatedDate $
+          LT.insert (tnum tInterestAccrualDate) tInterestAccrualDate $
+          LT.insert (tnum tCPProgram) tCPProgram $
+          LT.insert (tnum tCPRegType) tCPRegType $
+          LT.insert (tnum tUnderlyingCPProgram) tUnderlyingCPProgram $
+          LT.insert (tnum tUnderlyingCPRegType) tUnderlyingCPRegType $
+          LT.insert (tnum tUnderlyingQty) tUnderlyingQty $
+          LT.insert (tnum tTrdMatchID) tTrdMatchID $
+          LT.insert (tnum tSecondaryTradeReportRefID) tSecondaryTradeReportRefID $
+          LT.insert (tnum tUnderlyingDirtyPrice) tUnderlyingDirtyPrice $
+          LT.insert (tnum tUnderlyingEndPrice) tUnderlyingEndPrice $
+          LT.insert (tnum tUnderlyingStartValue) tUnderlyingStartValue $
+          LT.insert (tnum tUnderlyingCurrentValue) tUnderlyingCurrentValue $
+          LT.insert (tnum tUnderlyingEndValue) tUnderlyingEndValue $
+          LT.insert (tnum tNoUnderlyingStips) tNoUnderlyingStips $
+          LT.insert (tnum tUnderlyingStipType) tUnderlyingStipType $
+          LT.insert (tnum tUnderlyingStipValue) tUnderlyingStipValue $
+          LT.insert (tnum tMaturityNetMoney) tMaturityNetMoney $
+          LT.insert (tnum tMiscFeeBasis) tMiscFeeBasis $
+          LT.insert (tnum tTotNoAllocs) tTotNoAllocs $
+          LT.insert (tnum tLastFragment) tLastFragment $
+          LT.insert (tnum tCollReqID) tCollReqID $
+          LT.insert (tnum tCollAsgnReason) tCollAsgnReason $
+          LT.insert (tnum tCollInquiryQualifier) tCollInquiryQualifier $
+          LT.insert (tnum tNoTrades) tNoTrades $
+          LT.insert (tnum tMarginRatio) tMarginRatio $
+          LT.insert (tnum tMarginExcess) tMarginExcess $
+          LT.insert (tnum tTotalNetValue) tTotalNetValue $
+          LT.insert (tnum tCashOutstanding) tCashOutstanding $
+          LT.insert (tnum tCollAsgnID) tCollAsgnID $
+          LT.insert (tnum tCollAsgnTransType) tCollAsgnTransType $
+          LT.insert (tnum tCollRespID) tCollRespID $
+          LT.insert (tnum tCollAsgnRespType) tCollAsgnRespType $
+          LT.insert (tnum tCollAsgnRejectReason) tCollAsgnRejectReason $
+          LT.insert (tnum tCollAsgnRefID) tCollAsgnRefID $
+          LT.insert (tnum tCollRptID) tCollRptID $
+          LT.insert (tnum tCollInquiryID) tCollInquiryID $
+          LT.insert (tnum tCollStatus) tCollStatus $
+          LT.insert (tnum tTotNumReports) tTotNumReports $
+          LT.insert (tnum tLastRptRequested) tLastRptRequested $
+          LT.insert (tnum tAgreementDesc) tAgreementDesc $
+          LT.insert (tnum tAgreementID) tAgreementID $
+          LT.insert (tnum tAgreementDate) tAgreementDate $
+          LT.insert (tnum tStartDate) tStartDate $
+          LT.insert (tnum tEndDate) tEndDate $
+          LT.insert (tnum tAgreementCurrency) tAgreementCurrency $
+          LT.insert (tnum tDeliveryType) tDeliveryType $
+          LT.insert (tnum tEndAccruedInterestAmt) tEndAccruedInterestAmt $
+          LT.insert (tnum tStartCash) tStartCash $
+          LT.insert (tnum tEndCash) tEndCash $
+          LT.insert (tnum tUserRequestID) tUserRequestID $
+          LT.insert (tnum tUserRequestType) tUserRequestType $
+          LT.insert (tnum tNewPassword) tNewPassword $
+          LT.insert (tnum tUserStatus) tUserStatus $
+          LT.insert (tnum tUserStatusText) tUserStatusText $
+          LT.insert (tnum tStatusValue) tStatusValue $
+          LT.insert (tnum tStatusText) tStatusText $
+          LT.insert (tnum tRefCompID) tRefCompID $
+          LT.insert (tnum tRefSubID) tRefSubID $
+          LT.insert (tnum tNetworkResponseID) tNetworkResponseID $
+          LT.insert (tnum tNetworkRequestID) tNetworkRequestID $
+          LT.insert (tnum tLastNetworkResponseID) tLastNetworkResponseID $
+          LT.insert (tnum tNetworkRequestType) tNetworkRequestType $
+          LT.insert (tnum tNoCompIDs) tNoCompIDs $
+          LT.insert (tnum tNetworkStatusResponseType) tNetworkStatusResponseType $
+          LT.insert (tnum tNoCollInquiryQualifier) tNoCollInquiryQualifier $
+          LT.insert (tnum tTrdRptStatus) tTrdRptStatus $
+          LT.insert (tnum tAffirmStatus) tAffirmStatus $
+          LT.insert (tnum tUnderlyingStrikeCurrency) tUnderlyingStrikeCurrency $
+          LT.insert (tnum tLegStrikeCurrency) tLegStrikeCurrency $
+          LT.insert (tnum tTimeBracket) tTimeBracket $
+          LT.insert (tnum tCollAction) tCollAction $
+          LT.insert (tnum tCollInquiryStatus) tCollInquiryStatus $
+          LT.insert (tnum tCollInquiryResult) tCollInquiryResult $
+          LT.insert (tnum tStrikeCurrency) tStrikeCurrency $
+          LT.insert (tnum tNoNested3PartyIDs) tNoNested3PartyIDs $
+          LT.insert (tnum tNested3PartyID) tNested3PartyID $
+          LT.insert (tnum tNested3PartyIDSource) tNested3PartyIDSource $
+          LT.insert (tnum tNested3PartyRole) tNested3PartyRole $
+          LT.insert (tnum tNoNested3PartySubIDs) tNoNested3PartySubIDs $
+          LT.insert (tnum tNested3PartySubID) tNested3PartySubID $
+          LT.insert (tnum tNested3PartySubIDType) tNested3PartySubIDType $
+          LT.insert (tnum tLegContractSettlMonth) tLegContractSettlMonth $
+          LT.insert (tnum tLegInterestAccrualDate) tLegInterestAccrualDate $
+          LT.new 
