@@ -1,7 +1,6 @@
 fixhs - FIX engine implementation in Haskell
 
 TODO:
-- Setup QuickCheck test cases
-- Implement FIX deserialization or co-parsing
-- Use of an iteratee for reading from the socket, or maybe make use as well of attoparsec-iteratee (See monad reader issue 16 about iteratees)
+- Use of an iteratee for reading from the socket, or maybe make use as well of
+  attoparsec-iteratee (See monad reader issue 16 about iteratees)
 - Comparison with quickfix engine
