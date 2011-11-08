@@ -35,7 +35,6 @@ library
                      Data.FIX.Arbitrary 
                      Data.FIX.Common 
                      Data.FIX.FIX42 
-                     Data.FIX.FIX44
                      Common.FIXCoparser 
                      Common.FIXParser 
                      Common.FIXMessage 
