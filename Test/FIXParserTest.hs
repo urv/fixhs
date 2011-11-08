@@ -9,6 +9,7 @@ import Data.Attoparsec ( parseOnly )
 import Data.List (group)
 import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, forAll, collect )
 import Data.FIX.FIX42
+import Data.FIX.FIX44
 import qualified Data.FIX.Common as FIX
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C ( singleton, append )

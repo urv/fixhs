@@ -230,14 +230,18 @@ fieldDef (CElem e _) =
         fenum = getAttr "number" e
         ftype = getAttr "type" e
         tparser = "to" ++ typeOfFIX ftype
+	arbValue' = let t' = typeOfFIX ftype in 
+		case t' of 
+		"FIXChar" -> "FIXChar <$> (return 'A')"
+		"FIXDouble" -> "FIXDouble <$> (return (-2.112 :: Double))"
+		_ -> t' ++ " <$> arbitrary" 
     in
         fname ++ " :: FIXTag\n" ++ 
         fname ++ " = FIXTag \n" ++ 
             "   { tName = \"" ++ name ++ "\"\n" ++
             "   , tnum = " ++ fenum ++ '\n' :
             "   , tparser = "  ++ tparser ++ '\n' :
-            "   , arbitraryValue = " ++ typeOfFIX ftype ++ 
-                " <$> arbitrary }\n\n"
+            "   , arbitraryValue = " ++ arbValue' ++ " }\n\n"
     where
 
         typeOfFIX :: String -> String

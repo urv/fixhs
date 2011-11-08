@@ -28,10 +28,12 @@ arbibtraryFIXValues tags =
 arbibtraryFIXGroup :: FIXGroupSpec -> Gen FIXValue
 arbibtraryFIXGroup spec = 
     let ltag = gsLength spec in  
-        do FIXInt l' <- arbitraryValue ltag 
-           let l = l' `mod` 4
-           bodies <- replicateM l arbitraryGBody
-           return $ FIXGroup l bodies
+        do t <- arbitraryValue ltag
+	   case t of
+		FIXInt l' -> let l = l' `mod` 4 in 
+		   do bodies <- replicateM l arbitraryGBody
+		      return $ FIXGroup l bodies
+		_         -> error $ "do not know " ++ show (tnum ltag)
     where
         arbitraryGBody = 
            let stag = gsSeperator spec

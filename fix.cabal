@@ -1,25 +1,56 @@
-Name:                fix
-Version:             0.1
-Description:         FIX (co)parser
-Synopsis:            FIX (co)parser
-Category:            Protocol
-License:             GPL
-Author:              foo
-Maintainer:          foo
-Build-Type:          Simple
-Cabal-Version:       >=1.8
-License-File:        LICENSE
-	
-Source-Repository    head
-  type:	    git
-  location: http://github.com/urv/fixhs
+name:                fix
+version:             0.1
+description:         FIX (co)parser
+homepage:            http://github.com/urv/fixhs
+synopsis:            FIX (co)parser
+category:            Protocol, Text, Parsing
+license:             GPL
+license-file:        LICENSE
+author:              foo
+maintainer:          foo
+build-type:          Simple
+tested-with:         GHC == 7.0.3
+cabal-version:       >=1.8
+stability:           experimental
+extra-source-files:  
+                     Benchmark/Benchmark.hs
+                     Benchmark/Makefile
+                     Test/FIXParserTest.hs
 
-Library 
-  Build-Depends:     base >= 3 && < 5, containers, MissingH, bytestring, attoparsec, attoparsec-enumerator, enumerator, old-time, network, HaXml, deepseq, QuickCheck, parallel, text, dlist
-  Other-modules:     Common.FIXParserCombinators 
-  Exposed-modules:   Data.LookupTable Data.Coparser Data.FIX.Arbitrary Common.FIXCoparser Common.FIXParser Common.FIXMessage Data.FIX.Common Data.FIX.FIX42 
-  ghc-options:       -Wall -rtsopts -auto-all
+flag developer
+  description: Whether to build the library in development mode
+  default: False
+
+library 
+  build-depends:    
+                     base >= 3 && < 5, 
+                     containers, MissingH, bytestring, attoparsec, 
+                     attoparsec-enumerator, enumerator, old-time, network, 
+                     HaXml, deepseq, QuickCheck, parallel, text, dlist
+  other-modules:     
+                     Common.FIXParserCombinators
+  exposed-modules:   
+                     Data.LookupTable 
+                     Data.Coparser 
+                     Data.FIX.Arbitrary 
+                     Data.FIX.Common 
+                     Data.FIX.FIX42 
+                     Data.FIX.FIX44
+                     Common.FIXCoparser 
+                     Common.FIXParser 
+                     Common.FIXMessage 
+  ghc-options:       -Wall 
+  if flag(developer)
+    ghc-prof-options: -auto-all
 
 Executable fix-generator
   Main-is:           Utils/Generator.hs
-  Build-Depends:     base >= 3 && < 5, HaXml, MissingH, dlist, deepseq, text, bytestring, QuickCheck, containers, attoparsec, old-time
+  Build-Depends:     
+                     base >= 3 && < 5, 
+                     HaXml, MissingH, old-time, dlist, attoparsec, 
+                     containers, QuickCheck, deepseq, text, bytestring
+
+source-repository head
+  type:     git
+  location: http://github.com/urv/fixhs
+
