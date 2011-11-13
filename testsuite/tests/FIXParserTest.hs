@@ -4,7 +4,7 @@ import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
 import Common.FIXMessage ( FIXGroupElement(..), FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
 import Common.FIXCoparser ( coparse )
-import Common.FIXParser ( _nextP', messageP  )
+import Common.FIXParser ( _nextP, _nextP', messageP  )
 import Data.Attoparsec ( parseOnly )
 import Data.List (group)
 import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, forAll, collect )
@@ -155,4 +155,4 @@ instance Show FIXValue where
 	show (FIXMonthYear i) = show i
 
 instance Show (FIXMessage FIXSpec) where
-	show ms = show $ (coparse ms :: ByteString)
+	show ms = show $ coparse ms :: ByteString

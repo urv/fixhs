@@ -1,4 +1,4 @@
-name:                fix
+name:                fixhs
 version:             0.1
 description:         FIX (co)parser
 homepage:            http://github.com/urv/fixhs
@@ -6,22 +6,19 @@ synopsis:            FIX (co)parser
 category:            Protocol, Text, Parsing
 license:             GPL
 license-file:        LICENSE
-author:              foo
-maintainer:          foo
+author:              Arvin Moezzi
+maintainer:          Arvin Moezzi
 build-type:          Simple
 tested-with:         GHC == 7.0.3
 cabal-version:       >=1.8
 stability:           experimental
-extra-source-files:  
-                     Benchmark/Benchmark.hs
-                     Benchmark/Makefile
-                     Test/FIXParserTest.hs
 
 flag developer
-  description: Whether to build the library in development mode
+  description: build in development mode
   default: False
 
 library 
+  hs-source-dirs:    src/
   build-depends:    
                      base >= 3 && < 5, 
                      containers, MissingH, bytestring, attoparsec, 
@@ -43,6 +40,7 @@ library
     ghc-prof-options: -auto-all
 
 Executable fix-generator
+  hs-source-dirs:    src/
   Main-is:           Utils/Generator.hs
   Build-Depends:     
                      base >= 3 && < 5, 
