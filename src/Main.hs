@@ -7,7 +7,7 @@ import qualified Data.ByteString as B hiding ( putStr )
 import qualified Data.ByteString.Char8 as C
 -- import Control.Monad.Trans
 import Control.Concurrent
-import Data.FIX.FIX42
+import Data.FIX.Spec.FIX42
 import Control.Monad ( liftM )
 import Data.Maybe ( fromMaybe )
 import Data.FIX.Message (FIXValue(..), mBody)

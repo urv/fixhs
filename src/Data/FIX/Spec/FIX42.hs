@@ -1,4 +1,4 @@
-module Data.FIX.FIX42 ( fix42 ) where
+module Data.FIX.Spec.FIX42 ( fix42 ) where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )
 import Data.FIX.Message

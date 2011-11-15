@@ -4,6 +4,7 @@
 {-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
+-- | FIX messages
 module Data.FIX.Message 
     ( FIXValue (..)
     , FIXValues
@@ -33,13 +34,21 @@ import Test.QuickCheck ( Gen )
 import Data.FIX.Common ( delimiter )
 import Data.Coparser ( BuilderLike (..), foldl' )
 
+-- | A valid FIX field description. It is used to specify FIX messages using
+-- 'FIXMessageSpec'.
 data FIXTag = FIXTag 
-    { tName :: String
-    , tnum :: Int
+    { tName :: String 
+    -- ^ The name of the tag e.g. BeginString.
+    , tnum :: Int 
+    -- ^ The numerical value of the tag e.g. 8.
     , tparser :: Parser FIXValue 
-    , arbitraryValue :: Gen FIXValue } 
+    -- ^ The corresponding attoparsec parser.
+    , arbitraryValue :: Gen FIXValue 
+    -- ^ A random generator for that particular types of fields.
+    } 
 
 
+-- | 
 data FIXGroupElement = FIXGroupElement Int FIXValue FIXValues
 
 data FIXValue = FIXInt Int 

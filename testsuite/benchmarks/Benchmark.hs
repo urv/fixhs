@@ -4,7 +4,7 @@ import Prelude hiding ( foldr )
 import qualified Prelude as P ( foldr )
 import Criterion.Main
 import Criterion.Config
-import Data.FIX.FIX42
+import Data.FIX.Spec.FIX42
 import Data.FIX.Parser
 import Data.FIX.Coparser
 import Data.FIX.Message
