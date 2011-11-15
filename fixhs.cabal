@@ -17,6 +17,26 @@ flag developer
   description: build in development mode
   default: False
 
+flag with-fix40
+  description: add fix40 to the module
+  default: True
+
+flag with-fix41
+  description: add fix41 to the module
+  default: True
+
+flag with-fix42
+  description: add fix42 to the module
+  default: True
+
+flag with-fix43
+  description: add fix43 to the module. It takes a long time to compile!
+  default: False
+
+flag with-fix44
+  description: add fix44 to the module. It takes a long time to compile!
+  default: False
+
 library 
   hs-source-dirs:    src/
   build-depends:    
@@ -31,13 +51,23 @@ library
                      Data.Coparser 
                      Data.FIX.Arbitrary 
                      Data.FIX.Common 
-                     Data.FIX.FIX42 
                      Data.FIX.Coparser 
                      Data.FIX.Parser 
                      Data.FIX.Message 
   ghc-options:       -Wall 
   if flag(developer)
     ghc-prof-options: -auto-all
+
+  if flag(with-fix40) 
+   exposed-modules: Data.FIX.Spec.FIX40 
+  if flag(with-fix41) 
+   exposed-modules: Data.FIX.Spec.FIX41 
+  if flag(with-fix42) 
+   exposed-modules: Data.FIX.Spec.FIX42 
+  if flag(with-fix43) 
+   exposed-modules: Data.FIX.Spec.FIX43 
+  if flag(with-fix44) 
+   exposed-modules: Data.FIX.Spec.FIX44 
 
 Executable fix-generator
   hs-source-dirs:    src/
