@@ -155,4 +155,4 @@ instance Show FIXValue where
 	show (FIXMonthYear i) = show i
 
 instance Show (FIXMessage FIXSpec) where
-	show ms = show $ coparse ms :: ByteString
+	show ms = show $ (coparse ms :: ByteString)
