@@ -4,7 +4,7 @@ module Data.FIX.Arbitrary
 	, arbitraryFIXMessage ) 
 	where
 
-import Common.FIXMessage ( 
+import Data.FIX.Message ( 
 	FIXGroupElement(..), FIXTag(..), FIXValue(..), FIXValues, FIXTags
       , FIXMessage(..), FIXSpec, FIXMessageSpec(..), FIXGroupSpec(..) )
 import System.Time ( CalendarTime (..) )

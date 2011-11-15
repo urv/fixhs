@@ -2,7 +2,7 @@ import Data.Enumerator
 import Data.Enumerator.IO
 import Data.Attoparsec.Enumerator
 
-import Common.FIXParser
+import Data.FIX.Parser
 
 testli = do res <- run (enumFile "Test/ExampleFixMessages.txt" $$ iterParser messageParser)
 	    case res of 

@@ -1,6 +1,6 @@
 import Socket.ClientSocket as C
 import Socket.Enumerator as E
-import Common.FIXParser
+import Data.FIX.Parser
 import qualified Data.LookupTable as LT
 import Data.ByteString hiding (putStr)
 import qualified Data.ByteString as B hiding ( putStr )
@@ -10,7 +10,7 @@ import Control.Concurrent
 import Data.FIX.FIX42
 import Control.Monad ( liftM )
 import Data.Maybe ( fromMaybe )
-import Common.FIXMessage (FIXValue(..), mBody)
+import Data.FIX.Message (FIXValue(..), mBody)
 
 
 main :: IO ()

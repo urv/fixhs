@@ -1,16 +1,16 @@
 {-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
 
--- Module   : Common.FIXCoparser
+-- Module   : Data.FIX.Coparser
 -- License  : GPLv2
 
-module Common.FIXCoparser ( coparse) where
+module Data.FIX.Coparser ( coparse) where
 
 import Prelude as P hiding (concat)
-import Common.FIXMessage 
+import Data.FIX.Message 
     ( FIXGroupElement(..), FIXSpec (..), FIXMessage (..)
     , tnum, FIXValues, FIXValue (..) )
-import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
-import qualified Common.FIXMessage as FIX ( checksum, delimiter )
+import Data.FIX.Parser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
+import qualified Data.FIX.Message as FIX ( checksum, delimiter )
 import Data.Coparser ( Coparser (..), BuilderLike, 
     pack, concat, append, cons, snoc, singleton, decimal, realFloat )
 import qualified Data.Coparser as Text ( length )

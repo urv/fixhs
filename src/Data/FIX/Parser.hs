@@ -1,10 +1,10 @@
 {-# OPTIONS_GHC  -fno-warn-missing-signatures #-}
 
--- Module   : Common.FIXParser
+-- Module   : Data.FIX.Parser
 -- License  : GPLv2
 
 
-module Common.FIXParser 
+module Data.FIX.Parser 
 	( messageP
     , groupP
     , _nextP
@@ -27,13 +27,13 @@ module Common.FIXParser
 	) where
 
 import Prelude hiding ( take, null, head, tail )
-import Common.FIXMessage 
+import Data.FIX.Message 
     ( FIXGroupElement(..), FIXTags, FIXSpec (..), FIXMessage (..)
     , FIXTag (..), FIXValue (..), FIXMessageSpec (..)
     , FIXValues, FIXGroupSpec (..) )
-import qualified Common.FIXMessage as FIX ( checksum )
+import qualified Data.FIX.Message as FIX ( checksum )
 import qualified Data.FIX.Common as FIX ( delimiter )
-import Common.FIXParserCombinators ( toTag, toString, toInt, toInt', toBool, toChar, toTimestamp, toDateOnly, toMonthYear, toTimeOnly, toDouble )
+import Data.FIX.ParserCombinators ( toTag, toString, toInt, toInt', toBool, toChar, toTimestamp, toDateOnly, toMonthYear, toTimeOnly, toDouble )
 import Data.Attoparsec ( parseOnly, option, Result(..), Parser, count, many, string, take )
 import Data.Char ( ord )
 import Data.ByteString ( ByteString )

@@ -1,8 +1,5 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleContexts #-}
 
--- Module   : Common.FIXCoparser
--- License  : GPLv2
-
 import Text.XML.HaXml
 import qualified Text.XML.HaXml.Pretty as P 
 import System.Environment ( getArgs )
@@ -12,8 +9,8 @@ import Data.Map ( Map )
 import Data.Maybe ( fromMaybe )
 import Control.Monad ( liftM )
 import Control.Applicative ( (<$>) )
-import Common.FIXParser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
-import qualified Common.FIXMessage as FM ( tName ) 
+import Data.FIX.Parser ( tBeginString, tBodyLength, tCheckSum, tMsgType )
+import qualified Data.FIX.Message as FM ( tName ) 
 
 
 main = do
@@ -44,8 +41,8 @@ main = do
             "module " ++ mod' ++ " ( " ++ fixSpecName doc ++ " ) where\n" ++
             "import qualified Data.ByteString.Char8 as C\n" ++ 
             "import qualified Data.LookupTable as LT ( new, insert )\n" ++
-            "import Common.FIXMessage\n" ++ 
-            "import Common.FIXParser\n" ++
+            "import Data.FIX.Message\n" ++ 
+            "import Data.FIX.Parser\n" ++
             "import Data.Functor ( (<$>) )\n" ++
             "import Data.FIX.Arbitrary \n" ++
             "import Test.QuickCheck ( arbitrary )\n" 

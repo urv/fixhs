@@ -1,16 +1,13 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 
---- Module     : Benchmark
---- License    : GPLv2
-
 import Prelude hiding ( foldr )
 import qualified Prelude as P ( foldr )
 import Criterion.Main
 import Criterion.Config
 import Data.FIX.FIX42
-import Common.FIXParser
-import Common.FIXCoparser
-import Common.FIXMessage
+import Data.FIX.Parser
+import Data.FIX.Coparser
+import Data.FIX.Message
 import Data.Attoparsec hiding (take, parse)
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C

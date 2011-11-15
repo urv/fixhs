@@ -1,11 +1,10 @@
--- Module   : Common.FIXMessage
+-- Module   : Data.FIX.Message
 -- License  : GPLv2
 
 {-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
-
-module Common.FIXMessage 
+module Data.FIX.Message 
     ( FIXValue (..)
     , FIXValues
     , FIXTag (..)
@@ -90,11 +89,12 @@ newtype ListOfMessages a = LM (Map ByteString a)
 
 type FIXMessages = ListOfMessages FIXMessageSpec
 data FIXSpec = FSpec 
-               { fsVersion  :: String
-               , fsHeader   :: FIXTags
-               , fsTrailer  :: FIXTags
-               , fsMessages :: FIXMessages 
-               , fsTags     :: FIXTags }
+               { fsVersion  :: String       -- ^ FIX version
+               , fsHeader   :: FIXTags      -- ^ FIX header tags 
+               , fsTrailer  :: FIXTags      -- ^ FIX trailer tags
+               , fsMessages :: FIXMessages  -- ^ Dictionary of all FIX messages
+               , fsTags     :: FIXTags      -- ^ Dictionary of all FIX tags
+               }    
 
 data FIXGroupSpec = FGSpec
                     { gsLength    :: FIXTag

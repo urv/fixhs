@@ -1,9 +1,9 @@
--- Module   : Common.FIXCoparser
+-- Module   : Data.FIX.ParserCombinators 
 -- License  : GPLv2
 
 {-# LANGUAGE BangPatterns #-}
 
-module Common.FIXParserCombinators 
+module Data.FIX.ParserCombinators 
     ( toTag
     , toString
     , toInt'

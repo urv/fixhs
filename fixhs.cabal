@@ -25,16 +25,16 @@ library
                      attoparsec-enumerator, enumerator, old-time, network, 
                      HaXml, deepseq, QuickCheck, parallel, text, dlist
   other-modules:     
-                     Common.FIXParserCombinators
+                     Data.FIX.ParserCombinators
   exposed-modules:   
                      Data.LookupTable 
                      Data.Coparser 
                      Data.FIX.Arbitrary 
                      Data.FIX.Common 
                      Data.FIX.FIX42 
-                     Common.FIXCoparser 
-                     Common.FIXParser 
-                     Common.FIXMessage 
+                     Data.FIX.Coparser 
+                     Data.FIX.Parser 
+                     Data.FIX.Message 
   ghc-options:       -Wall 
   if flag(developer)
     ghc-prof-options: -auto-all

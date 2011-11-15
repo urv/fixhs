@@ -1,6 +1,3 @@
--- Module   : Common.FIXCoparser
--- License  : GPLv2
-
 module Socket.Enumerator 
 	where
 

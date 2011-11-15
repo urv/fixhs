@@ -1,6 +1,6 @@
 {-# LANGUAGE FunctionalDependencies, ExistentialQuantification, MultiParamTypeClasses, FlexibleInstances #-}
 
--- Module   : Common.FIXCoparser
+-- Module   : Data.LookupTable
 -- License  : GPLv2
 
 module Data.LookupTable 

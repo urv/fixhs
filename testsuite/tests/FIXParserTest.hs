@@ -2,14 +2,13 @@
 
 import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
-import Common.FIXMessage ( FIXGroupElement(..), FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
-import Common.FIXCoparser ( coparse )
-import Common.FIXParser ( _nextP, _nextP', messageP  )
+import Data.FIX.Message ( FIXGroupElement(..), FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
+import Data.FIX.Coparser ( coparse )
+import Data.FIX.Parser ( _nextP, _nextP', messageP  )
 import Data.Attoparsec ( parseOnly )
 import Data.List (group)
 import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, forAll, collect )
 import Data.FIX.FIX42
-import Data.FIX.FIX44
 import qualified Data.FIX.Common as FIX
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C ( singleton, append )

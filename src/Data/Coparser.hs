@@ -1,6 +1,6 @@
 {-# LANGUAGE BangPatterns, MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
 
--- Module   : Common.FIXCoparser
+-- Module   : Data.Coparser
 -- License  : GPLv2
 
 module Data.Coparser 

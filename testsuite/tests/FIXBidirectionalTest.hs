@@ -1,8 +1,8 @@
 import Prelude hiding ( putStr )
 
-import Common.FIXParser
-import Common.FIXMessage
-import Common.FIXCoparser
+import Data.FIX.Parser
+import Data.FIX.Message
+import Data.FIX.Coparser
 import Data.ByteString hiding ( pack, map )
 import Data.ByteString.Char8 ( pack )
 import Data.Attoparsec 

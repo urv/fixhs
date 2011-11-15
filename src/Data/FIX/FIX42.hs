@@ -1,8 +1,8 @@
 module Data.FIX.FIX42 ( fix42 ) where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )
-import Common.FIXMessage
-import Common.FIXParser
+import Data.FIX.Message
+import Data.FIX.Parser
 import Data.Functor ( (<$>) )
 import Data.FIX.Arbitrary 
 import Test.QuickCheck ( arbitrary )
