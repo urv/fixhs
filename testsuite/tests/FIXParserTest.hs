@@ -4,7 +4,7 @@ import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
 import Data.FIX.Message ( FIXGroupElement(..), FIXSpec(..), FIXMessage(..), FIXValue(..), FIXValues(..), FIXTag(..) )
 import Data.FIX.Coparser ( coparse )
-import Data.FIX.Parser ( _nextP, _nextP', messageP  )
+import Data.FIX.Parser ( nextP, nextP', messageP  )
 import Data.Attoparsec ( parseOnly )
 import Data.List (group)
 import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, forAll, collect )
@@ -20,7 +20,7 @@ prop_orthogonal xs =
 	where
 	   types = xs :: FIXMessage FIXSpec
 	   fixSpec = mContext xs
-           parse ss = case parseOnly (_nextP' >>= messageP fixSpec) ss of
+           parse ss = case parseOnly (nextP' >>= messageP fixSpec) ss of
 	   	Left err -> error err
 		Right ms -> ms
 	   	

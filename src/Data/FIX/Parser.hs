@@ -7,8 +7,8 @@
 module Data.FIX.Parser 
 	( messageP
     , groupP
-    , _nextP
-    , _nextP'
+    , nextP
+    , nextP'
     , toFIXInt
     , toFIXChar
     , toFIXString
@@ -85,10 +85,10 @@ groupP spec = let numTag = gsLength spec in
 		    	  vs <- tagsP (gsBody spec) -- The rest of the message
 			  return (FIXGroupElement (tnum sepTag) s vs)
 
--- Parse a FIX message. The parser fails when the checksum 
--- validation fails.
-_nextP :: Parser ByteString
-_nextP = do 
+-- | Match the next FIX message (only text) in the stream. The checksum is
+-- validated.
+nextP :: Parser ByteString
+nextP = do 
     (hchksum, len) <- _header'
     msg <- take len 
     let chksum = (hchksum + FIX.checksum msg) `mod` 256  
@@ -114,9 +114,10 @@ _nextP = do
         _calcChksum' :: Parser Int
         _calcChksum' = string (C.pack "10=") >> toInt
 
--- Parse a FIX message. There is no validation of the FIX message done.
-_nextP' :: Parser ByteString
-_nextP' = do 
+-- | Match the next FIX message (only text) in the stream. The checksum is NOT
+-- validated.
+nextP' :: Parser ByteString
+nextP' = do 
           msg <- take =<< _numBytes
           _ <- toTag >> toInt
           return msg 
@@ -129,7 +130,7 @@ _nextP' = do
             in 
                 skipHeader >> toInt
 
- -- Parse a FIX message out of the stream
+ -- | Given the FIX specification deserialize the FIX message.
 messageP :: FIXSpec -> ByteString -> Parser (FIXMessage FIXSpec)
 messageP spec msg = 
     let headerP'  = tagsP $ fsHeader spec  -- parse header
