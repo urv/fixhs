@@ -5,7 +5,16 @@
 
 
 module Data.FIX.Parser 
-	( messageP
+    ( 
+-- * Introduction
+-- | In order to get a Parser 'FIXMessage' 'FIXSpec' you can 
+--
+-- @
+--import qualified Data.FIX.Parser as FIX ( nextP, messageP )
+--
+--FIX.nextP >>= FIX.messageP
+-- @
+      messageP
     , groupP
     , nextP
     , nextP'
@@ -24,7 +33,7 @@ module Data.FIX.Parser
     , tCheckSum
     , tBodyLength
     , tMsgType
-	) where
+    ) where
 
 import Prelude hiding ( take, null, head, tail )
 import Data.FIX.Message 
@@ -130,7 +139,7 @@ nextP' = do
             in 
                 skipHeader >> toInt
 
- -- | Given the FIX specification deserialize the FIX message.
+-- | Given the FIX specification deserialize the FIX message.
 messageP :: FIXSpec -> ByteString -> Parser (FIXMessage FIXSpec)
 messageP spec msg = 
     let headerP'  = tagsP $ fsHeader spec  -- parse header
