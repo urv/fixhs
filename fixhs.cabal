@@ -1,6 +1,6 @@
 name:                fixhs
 version:             0.1
-description:         FIX (co)parser
+description:         Financial Information eXchange (FIX) protocol (co)parser
 homepage:            http://github.com/urv/fixhs
 synopsis:            FIX (co)parser
 category:            Protocol, Text, Parsing
