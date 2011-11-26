@@ -7,12 +7,13 @@ import Data.FIX.Coparser ( coparse )
 import Data.FIX.Parser ( nextP, nextP', messageP  )
 import Data.Attoparsec ( parseOnly )
 import Data.List (group)
-import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, forAll, collect )
+import Test.QuickCheck ( (==>), sample, sample', Gen, oneof, quickCheck, quickCheckResult, forAll, collect, Result(..) )
 import Data.FIX.Spec.FIX42
 import qualified Data.FIX.Common as FIX
 import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C ( singleton, append )
 import System.Time ( CalendarTime(..) )
+import System.Exit ( ExitCode(..), exitWith )
 
 prop_orthogonal xs = 
 	collect (mType xs) $ 
@@ -29,9 +30,6 @@ messagesOf spec = oneof $ map (arbitraryFIXMessage spec) allMessages
 	where
 	   allMessages = map snd $ LT.toList $ fsMessages spec
 
-testMessages = quickCheck $ forAll (messagesOf fix42) prop_orthogonal
-
-
 tagsOf :: FIXSpec -> Gen (FIXTag, FIXValue)
 tagsOf spec = oneof $ map arbitraryTag allTags
 	where
@@ -39,21 +37,12 @@ tagsOf spec = oneof $ map arbitraryTag allTags
 	   arbitraryTag t = fmap (t,) $ arbitraryValue t
 
 prop_tag (tag, v) = collect (tName tag) $ 
-	notDouble v ==>
 	v == parse (coparse v)
 	where
-	   {-types = xs :: FIXMessage FIXSpec-}
-	   {-fixSpec = mContext xs-}
-	   {-notDouble (FIXTimestamp _) = False-}
-	   {-notDouble (FIXTimeOnly _) = False-}
-	   {-notDouble (FIXMonthYear _) = False-}
-	   {-notDouble (FIXDateOnly _) = False-}
-	   notDouble _ = True
            parse ss = let ss' = ss `C.append` C.singleton FIX.delimiter in 
 	   	case parseOnly (tparser tag) ss' of
 			Left err -> error err
 			Right ms -> ms
-testTags = quickCheck $ forAll (tagsOf fix42) prop_tag
 
 instance Eq FIXGroupElement where
 	FIXGroupElement i1 s1 vs1 == FIXGroupElement i2 s2 vs2 = 
@@ -155,3 +144,15 @@ instance Show FIXValue where
 
 instance Show (FIXMessage FIXSpec) where
 	show ms = show $ (coparse ms :: ByteString)
+
+
+main = do
+	check $ quickCheckResult $ forAll (messagesOf fix42) prop_orthogonal
+	check $ quickCheckResult $ forAll (tagsOf fix42) prop_tag
+	where
+		check :: IO Result -> IO ()
+		check io = do 
+			res <- io
+			case res of 
+				Success _ _ _ -> return ()
+				_ -> exitWith (ExitFailure 1) >> return ()

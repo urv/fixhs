@@ -29,7 +29,6 @@ import Data.Map ( Map )
 import Data.Attoparsec ( Parser ) 
 import Data.LookupTable ( LookupTable )
 import qualified Data.LookupTable as LT ( toList )
-import Control.DeepSeq ( NFData (..) )
 import Test.QuickCheck ( Gen )
 import Data.FIX.Common ( delimiter )
 import Data.Coparser ( BuilderLike (..), foldl' )
@@ -66,7 +65,7 @@ data FIXValue = FIXInt Int
 
 --- should be alias of type in the typeclass LookupTable
 newtype ListOfValues a = LoV (IntMap a) 
-    deriving (LookupTable Int a, NFData)
+    deriving (LookupTable Int a)
 
 instance Show a => Show (ListOfValues a) where
     show a = concatMap printKV $ LT.toList a
@@ -117,26 +116,4 @@ checksum b = foldl' _sumUp 0 b `mod` 256
                 where 
                     _sumUp :: (Enum c) => Int -> c -> Int
                     _sumUp t c = t + fromEnum c
-
-instance Control.DeepSeq.NFData ByteString 
-instance Control.DeepSeq.NFData CalendarTime
-instance Control.DeepSeq.NFData FIXGroupElement where
-    rnf (FIXGroupElement _ s vs) = rnf s `seq` rnf vs 
-
-instance Control.DeepSeq.NFData FIXValue where
-    rnf (FIXInt x) = rnf x
-    rnf (FIXDouble x) = rnf x
-    rnf (FIXChar x) = rnf x
-    rnf (FIXBool x) = rnf x
-    rnf (FIXString x) = rnf x
-    rnf (FIXMultipleValueString x) = rnf x
-    rnf (FIXTimestamp x) = rnf x
-    rnf (FIXTimeOnly x) = rnf x
-    rnf (FIXDateOnly x) = rnf x
-    rnf (FIXMonthYear x) = rnf x
-    rnf (FIXData x) = rnf x 
-    rnf (FIXGroup l es) = rnf l `seq` rnf es
-
-instance Control.DeepSeq.NFData (FIXMessage a) where
-    rnf (FIXMessage _ _ h b t) = rnf h `seq` rnf b `seq` rnf t
 

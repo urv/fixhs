@@ -25,7 +25,6 @@ import qualified Data.Text.Lazy as Builder ( unpack )
 import qualified Data.Text.Lazy.Builder as Builder 
     ( fromString, singleton, toLazyText )
 import Data.Monoid ( mappend, mconcat )
-import Control.DeepSeq ( NFData (..) )
 import qualified Data.DList as DL
 import Data.Bits.Utils ( w82c )
 
@@ -93,11 +92,6 @@ instance BuilderLike Builder Char where
     append = mappend
     concat = mconcat
 
-instance NFData Builder where
-    rnf = rnf . Builder.unpack . Builder.toLazyText
-
-instance NFData (DL.DList Char) where
-    rnf = rnf . unpack
 
 class Coparser a where
     coparse :: BuilderLike t c => a -> t

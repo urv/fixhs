@@ -18,6 +18,7 @@ import Control.DeepSeq
 import Data.DList ( DList )
 import Data.Coparser ( unpack )
 import Data.FIX.Arbitrary
+import Control.DeepSeq ( NFData (..) )
 
 myConfig = defaultConfig 
 
@@ -58,3 +59,35 @@ benchmark spec ss =
 main = do 
         ss <- samples fix42
         defaultMainWith myConfig (return ()) [ bgroup "FIX42" $ benchmark fix42 ss ]
+
+
+instance Control.DeepSeq.NFData ByteString 
+instance Control.DeepSeq.NFData CalendarTime
+instance Control.DeepSeq.NFData FIXGroupElement where
+    rnf (FIXGroupElement _ s vs) = rnf s `seq` rnf vs 
+
+instance Control.DeepSeq.NFData FIXValue where
+    rnf (FIXInt x) = rnf x
+    rnf (FIXDouble x) = rnf x
+    rnf (FIXChar x) = rnf x
+    rnf (FIXBool x) = rnf x
+    rnf (FIXString x) = rnf x
+    rnf (FIXMultipleValueString x) = rnf x
+    rnf (FIXTimestamp x) = rnf x
+    rnf (FIXTimeOnly x) = rnf x
+    rnf (FIXDateOnly x) = rnf x
+    rnf (FIXMonthYear x) = rnf x
+    rnf (FIXData x) = rnf x 
+    rnf (FIXGroup l es) = rnf l `seq` rnf es
+
+instance Control.DeepSeq.NFData (FIXMessage a) where
+    rnf (FIXMessage _ _ h b t) = rnf h `seq` rnf b `seq` rnf t
+
+instance NFData Builder where
+    rnf = rnf . Builder.unpack . Builder.toLazyText
+
+instance NFData (DL.DList Char) where
+    rnf = rnf . unpack
+
+instance NFData (ListOfValues a) where
+    rnf (LoV m) = rnf $ LT.toList m
