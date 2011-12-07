@@ -1,3 +1,6 @@
+-- Module  : Socket.ClientSocket
+-- License : LGPL-2.1 
+
 module Socket.ClientSocket 
 	where
 

@@ -4,7 +4,7 @@ description:         Financial Information eXchange (FIX) protocol (co)parser
 homepage:            http://github.com/urv/fixhs
 synopsis:            FIX (co)parser
 category:            Protocol, Text, Parsing
-license:             GPL
+license:             LGPL-2.1
 license-file:        LICENSE
 author:              Arvin Moezzi
 maintainer:          Arvin Moezzi

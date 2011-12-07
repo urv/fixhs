@@ -1,7 +1,7 @@
-{-# LANGUAGE BangPatterns, MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
+-- Module  : Data.Coparser
+-- License : LGPL-2.1 
 
--- Module   : Data.Coparser
--- License  : GPLv2
+{-# LANGUAGE BangPatterns, MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
 
 module Data.Coparser 
     ( Coparser (..)

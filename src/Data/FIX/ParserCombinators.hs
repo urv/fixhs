@@ -1,5 +1,5 @@
--- Module   : Data.FIX.ParserCombinators 
--- License  : GPLv2
+-- Module  : Data.FIX.ParserCombinators
+-- License : LGPL-2.1 
 
 {-# LANGUAGE BangPatterns #-}
 

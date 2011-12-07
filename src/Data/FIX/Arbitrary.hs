@@ -1,3 +1,6 @@
+-- Module  : Data.FIX.Arbitrary
+-- License : LGPL-2.1 
+
 module Data.FIX.Arbitrary 
 	( arbibtraryFIXValues
 	, arbibtraryFIXGroup

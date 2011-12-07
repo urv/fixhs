@@ -1,3 +1,6 @@
+-- Module  : Socket.Enumerator
+-- License : LGPL-2.1 
+
 module Socket.Enumerator 
 	where
 

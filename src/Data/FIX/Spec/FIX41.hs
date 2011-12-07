@@ -1,3 +1,6 @@
+-- Module  : Data.FIX.Spec.FIX41
+-- License : LGPL-2.1 
+
 module Data.FIX.Spec.FIX41 ( fix41 ) where
 import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT ( new, insert )

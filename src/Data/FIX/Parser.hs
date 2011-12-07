@@ -1,8 +1,7 @@
+-- Module  : Data.FIX.Parser
+-- License : LGPL-2.1 
+
 {-# OPTIONS_GHC  -fno-warn-missing-signatures #-}
-
--- Module   : Data.FIX.Parser
--- License  : GPLv2
-
 
 module Data.FIX.Parser 
     ( 

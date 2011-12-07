@@ -1,5 +1,5 @@
--- Module   : Data.FIX.Message
--- License  : GPLv2
+-- Module  : Data.FIX.Message
+-- License : LGPL-2.1 
 
 {-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
