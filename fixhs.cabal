@@ -81,3 +81,31 @@ source-repository head
   type:     git
   location: http://github.com/urv/fixhs
 
+
+test-suite properties
+  hs-source-dirs:    src/ 
+  type:              exitcode-stdio-1.0
+  other-modules:     
+                     Data.FIX.ParserCombinators
+                     Data.LookupTable 
+                     Data.Coparser 
+                     Data.FIX.Arbitrary 
+                     Data.FIX.Common 
+                     Data.FIX.Coparser 
+                     Data.FIX.Parser 
+                     Data.FIX.Message 
+  if flag(with-fix40) 
+   other-modules: Data.FIX.Spec.FIX40 
+  if flag(with-fix41) 
+   other-modules: Data.FIX.Spec.FIX41 
+  if flag(with-fix42) 
+   other-modules: Data.FIX.Spec.FIX42 
+  if flag(with-fix43) 
+   other-modules: Data.FIX.Spec.FIX43 
+  if flag(with-fix44) 
+   other-modules: Data.FIX.Spec.FIX44 
+  main-is:           ../testsuite/tests/FIXParserTest.hs
+  Build-Depends:     
+                     base >= 3 && < 5, 
+                     HaXml, MissingH, old-time, dlist, attoparsec, 
+                     containers, QuickCheck, deepseq, text, bytestring

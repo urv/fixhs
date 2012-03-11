@@ -6,3 +6,7 @@
 *.ps
 *.swp
 dist/
+
+# ignore everything in benchmarks except for Benchmark.hs
+testsuite/benchmarks/*
+!testsuite/benchmarks/Benchmark.hs

@@ -19,6 +19,7 @@ import Data.DList ( DList )
 import Data.Coparser ( unpack )
 import Data.FIX.Arbitrary
 import Control.DeepSeq ( NFData (..) )
+import Time (CalendarTime)
 
 myConfig = defaultConfig 
 
@@ -83,11 +84,11 @@ instance Control.DeepSeq.NFData FIXValue where
 instance Control.DeepSeq.NFData (FIXMessage a) where
     rnf (FIXMessage _ _ h b t) = rnf h `seq` rnf b `seq` rnf t
 
-instance NFData Builder where
-    rnf = rnf . Builder.unpack . Builder.toLazyText
+{-instance NFData Builder where-}
+    {-rnf = rnf . Builder.unpack . Builder.toLazyText-}
 
-instance NFData (DL.DList Char) where
-    rnf = rnf . unpack
+{-instance NFData (DL.DList Char) where-}
+    {-rnf = rnf . unpack-}
 
-instance NFData (ListOfValues a) where
+instance NFData a => NFData (ListOfValues a) where
     rnf (LoV m) = rnf $ LT.toList m
