@@ -1,7 +1,12 @@
 -- Module  : Data.Coparser
 -- License : LGPL-2.1 
 
-{-# LANGUAGE BangPatterns, MultiParamTypeClasses, FunctionalDependencies, FlexibleInstances, TypeSynonymInstances #-}
+{-# LANGUAGE 
+    BangPatterns
+  , MultiParamTypeClasses
+  , FunctionalDependencies
+  , FlexibleInstances
+  , TypeSynonymInstances #-}
 
 module Data.Coparser 
     ( Coparser (..)
@@ -28,29 +33,29 @@ import Data.Monoid ( mappend, mconcat )
 import qualified Data.DList as DL
 import Data.Bits.Utils ( w82c )
 
-class Enum c => BuilderLike a c | a -> c where
-    pack :: String -> a
-    unpack :: a -> String
-    singleton :: Char -> a
-    append :: a -> a -> a
-    concat :: [a] -> a
-    cons :: Char -> a -> a
-    snoc :: a -> Char -> a
-    decimal :: Integral i => i -> a
-    realFloat :: RealFloat r => r -> a
+class Enum c => BuilderLike cs c | cs -> c where
+    pack :: String -> cs
+    unpack :: cs -> String
+    singleton :: Char -> cs
+    append :: cs -> cs -> cs
+    concat :: [cs] -> cs
+    cons :: Char -> cs -> cs
+    snoc :: cs -> Char -> cs
+    decimal :: Integral i => i -> cs
+    realFloat :: RealFloat r => r -> cs
 
     decimal = pack . show
     realFloat = pack . show
     cons c t = singleton c `append` t
     snoc t c = t `append` singleton c
 
-    length :: a -> Int
+    length :: cs -> Int
     length = P.length . unpack
 
-    foldl' :: (b -> Char -> b) -> b -> a -> b
+    foldl' :: (b -> Char -> b) -> b -> cs -> b
     foldl' f x0 = P.foldl' f x0 . unpack
 
-    foldl :: (b -> Char -> b) -> b -> a -> b
+    foldl :: (b -> Char -> b) -> b -> cs -> b
     foldl f x0 = P.foldl f x0 . unpack
 
 instance BuilderLike String Char where

@@ -1,7 +1,9 @@
 -- Module  : Data.FIX.Coparser
 -- License : LGPL-2.1 
 
-{-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
+{-# LANGUAGE 
+    TypeSynonymInstances
+  , FlexibleInstances #-}
 
 module Data.FIX.Coparser ( coparse) where
 

@@ -111,9 +111,9 @@ nextP = do
         -- are included in the checksum
         _header' :: Parser (Int, Int)
         _header' = do 
-            c1 <- (FIX.checksum <$> string (C.pack "8="))
-            c2 <- (FIX.checksum <$> toString)
-            c3 <- (FIX.checksum <$> string (C.pack "9="))
+            c1 <- FIX.checksum <$> string (C.pack "8=")
+            c2 <- FIX.checksum <$> toString
+            c3 <- FIX.checksum <$> string (C.pack "9=")
             l <- toString
             let c4 = FIX.checksum l
                 c = (c1 + c2 + c3 + c4 + 2 * ord FIX.delimiter) `mod` 256

@@ -14,11 +14,10 @@ import qualified Data.ByteString.Char8 as C
 import qualified Data.LookupTable as LT
 import Test.QuickCheck.Gen 
 import Control.Applicative ( (<$>) )
-import Control.DeepSeq
 import Data.DList ( DList )
 import Data.Coparser ( unpack )
 import Data.FIX.Arbitrary
-import Control.DeepSeq ( NFData (..) )
+import Control.DeepSeq 
 import Time (CalendarTime)
 
 myConfig = defaultConfig 
@@ -41,8 +40,8 @@ benchmark spec ss =
         coparsingB (m, input) = bench (msName m ++ " coparsing") $ 
                 nf (coparse :: FIXMessage FIXSpec -> ByteString ) input
 
-        bench1 = map coparsingB $ zip ms ss
-        bench2 = map parsingB $ zip ms ss
+        bench1 = zipWith (curry coparsingB) ms ss
+        bench2 = zipWith (curry parsingB) ms ss
     in
         ziczac bench1 bench2
 

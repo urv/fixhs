@@ -1,4 +1,7 @@
-{-# LANGUAGE TupleSections, FlexibleInstances, TypeSynonymInstances #-}
+{-# LANGUAGE 
+    TupleSections
+  , FlexibleInstances
+  , TypeSynonymInstances #-}
 
 import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
