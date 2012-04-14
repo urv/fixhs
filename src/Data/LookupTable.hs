@@ -1,7 +1,11 @@
 -- Module  : Data.LookupTable
 -- License : LGPL-2.1 
 
-{-# LANGUAGE FunctionalDependencies, ExistentialQuantification, MultiParamTypeClasses, FlexibleInstances #-}
+{-# LANGUAGE 
+    FunctionalDependencies
+  , ExistentialQuantification
+  , MultiParamTypeClasses
+  , FlexibleInstances #-}
 
 module Data.LookupTable 
     ( LookupTable

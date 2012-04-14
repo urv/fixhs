@@ -1,4 +1,6 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving, FlexibleContexts #-}
+{-# LANGUAGE 
+    GeneralizedNewtypeDeriving
+  , FlexibleContexts #-}
 
 import Text.XML.HaXml
 import qualified Text.XML.HaXml.Pretty as P 
@@ -362,10 +364,10 @@ fieldsOf l cs =
                 getSepAndCont (_ : ds) = getSepAndCont ds
 
 groupsOf :: [Content a] -> Groups a
-groupsOf cs = addGroups LT.new cs
+groupsOf = addGroups LT.new 
     where
         addGroups :: Groups a -> [Content a] -> Groups a
-        addGroups t = foldr _insert t 
+        addGroups = foldr _insert 
             where 
                 _insert :: Content a -> Groups a -> Groups a
                 _insert c@(CElem e _) gs

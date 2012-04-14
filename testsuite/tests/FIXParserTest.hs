@@ -1,4 +1,7 @@
-{-# LANGUAGE TupleSections, FlexibleInstances, TypeSynonymInstances #-}
+{-# LANGUAGE 
+    TupleSections
+  , FlexibleInstances
+  , TypeSynonymInstances #-}
 
 import Data.FIX.Arbitrary
 import qualified Data.LookupTable as LT
@@ -14,6 +17,7 @@ import Data.ByteString ( ByteString )
 import qualified Data.ByteString.Char8 as C ( singleton, append )
 import System.Time ( CalendarTime(..) )
 import System.Exit ( ExitCode(..), exitWith )
+import Control.Monad ( void )
 
 prop_orthogonal xs = 
 	collect (mType xs) $ 
@@ -143,7 +147,7 @@ instance Show FIXValue where
 	show (FIXMonthYear i) = show i
 
 instance Show (FIXMessage FIXSpec) where
-	show ms = show $ (coparse ms :: ByteString)
+	show ms = show (coparse ms :: ByteString)
 
 
 main = do
@@ -154,5 +158,5 @@ main = do
 		check io = do 
 			res <- io
 			case res of 
-				Success _ _ _ -> return ()
-				_ -> exitWith (ExitFailure 1) >> return ()
+				Success {} -> return ()
+				_ -> void (exitWith (ExitFailure 1)) 

@@ -1,7 +1,10 @@
 -- Module  : Data.FIX.Message
 -- License : LGPL-2.1 
 
-{-# LANGUAGE MagicHash, GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE 
+    MagicHash
+  , GeneralizedNewtypeDeriving #-}
+
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 
 -- | FIX messages
@@ -18,6 +21,7 @@ module Data.FIX.Message
     , FIXSpec (..)
     , checksum
     , delimiter
+    , ListOfValues(..)
     ) where
 
 import System.Time ( CalendarTime (..) )

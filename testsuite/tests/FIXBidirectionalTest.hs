@@ -39,7 +39,7 @@ test3 = quickCheck test3''
 	      test3'' x y = isF x && isF y ==> test3' x y
 	      isF x = isA x && isS x
 	      isA = Prelude.any isAscii
-	      isS = Prelude.all (/=fix_delimiter) 
+	      isS = Prelude.all notElem fix_delimiter
 
 -- test 4: multiple messages
 input4 = input1 `append` input1

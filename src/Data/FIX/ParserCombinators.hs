@@ -32,12 +32,13 @@ import Data.Attoparsec.Char8
 import Data.Char ( ord )
 import Data.ByteString hiding ( pack, putStrLn )
 import Control.Applicative ( (<$>), (<|>), (*>) )
+import Control.Monad (void)
 import System.Time ( CalendarTime (..) )
 import qualified Data.FIX.Common as FIX ( delimiter )
 
 
 skipFIXDelimiter :: Parser ()
-skipFIXDelimiter = char8 FIX.delimiter >> return ()
+skipFIXDelimiter = void (char8 FIX.delimiter) 
 
 
 toDouble :: Parser Double
@@ -58,7 +59,7 @@ parseIntTill c = do
     return i
 
 toInt' :: ByteString -> Int
-toInt' b = helper 0 b
+toInt' = helper 0 
            where 
                 helper i j 
                     | null j    = i
@@ -87,7 +88,7 @@ toTag = parseIntTill '='
     
 toBool :: Parser Bool
 toBool = do
-    c <- (char 'Y' <|> char 'N')
+    c <- char 'Y' <|> char 'N'
     skipFIXDelimiter
     case c of
         'Y' -> return True
