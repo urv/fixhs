@@ -32,6 +32,7 @@ import qualified Data.Text.Lazy.Builder as Builder
 import Data.Monoid ( mappend, mconcat )
 import qualified Data.DList as DL
 import Data.Bits.Utils ( w82c )
+import GHC.Float ( showFloat )
 
 class Enum c => BuilderLike cs c | cs -> c where
     pack :: String -> cs
@@ -44,8 +45,8 @@ class Enum c => BuilderLike cs c | cs -> c where
     decimal :: Integral i => i -> cs
     realFloat :: RealFloat r => r -> cs
 
-    decimal = pack . show
-    realFloat = pack . show
+    decimal = pack . show . toInteger
+    realFloat r = pack $ showFloat r ""
     cons c t = singleton c `append` t
     snoc t c = t `append` singleton c
 
