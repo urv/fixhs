@@ -191,7 +191,7 @@ _matchName :: String -> Content a -> Bool
 _matchName name (CElem (Elem (N n) _ _) _) = n == name
 _matchName name _ = False
 
-_lookup :: Show k => LookupTable k v t => k -> t -> v
+_lookup :: (LookupTable t, Show (LT.KeyOf t)) => LT.KeyOf t -> t -> LT.ValueOf t
 _lookup key t = fromMaybe (error $ "couldn't find key " ++ show key)
                     $ LT.lookup key t
 

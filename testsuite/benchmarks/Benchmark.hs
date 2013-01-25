@@ -18,7 +18,7 @@ import Data.DList ( DList )
 import Data.Coparser ( unpack )
 import Data.FIX.Arbitrary
 import Control.DeepSeq 
-import Time (CalendarTime)
+import System.Time (CalendarTime)
 
 myConfig = defaultConfig 
 
@@ -89,5 +89,5 @@ instance Control.DeepSeq.NFData (FIXMessage a) where
 {-instance NFData (DL.DList Char) where-}
     {-rnf = rnf . unpack-}
 
-instance NFData a => NFData (ListOfValues a) where
-    rnf (LoV m) = rnf $ LT.toList m
+{-instance NFData a => NFData (ListOfValues a) where-}
+    {-rnf (LoV m) = rnf $ LT.toList m-}

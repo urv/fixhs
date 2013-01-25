@@ -121,9 +121,6 @@ instance Eq a => Eq (Set a) where
 		length left == length right &&
 		isSubset left right && isSubset right left 
 
-instance Eq FIXValues where
-	left == right = Set (LT.toList left) == Set (LT.toList right)
-
 instance Eq (FIXMessage a) where
 	left == right = mType left == mType right 
 		&& mHeader left == mHeader right 

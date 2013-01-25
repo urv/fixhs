@@ -21,7 +21,6 @@ module Data.FIX.Message
     , FIXSpec (..)
     , checksum
     , delimiter
-    , ListOfValues(..)
     ) where
 
 import System.Time ( CalendarTime (..) )
@@ -67,16 +66,7 @@ data FIXValue = FIXInt Int
               | FIXMonthYear CalendarTime
               | FIXGroup Int [FIXGroupElement]
 
---- should be alias of type in the typeclass LookupTable
-newtype ListOfValues a = LoV (IntMap a) 
-    deriving (LookupTable Int a)
-
-instance Show a => Show (ListOfValues a) where
-    show a = concatMap printKV $ LT.toList a
-        where
-            printKV (k, v) = show k ++ " = " ++ show v ++ "\n"
-
-type FIXValues = ListOfValues FIXValue 
+type FIXValues = IntMap FIXValue 
 data FIXMessage a = FIXMessage
                   { mContext :: a
                   , mType    :: ByteString
@@ -85,10 +75,7 @@ data FIXMessage a = FIXMessage
                   , mTrailer :: FIXValues }
 
 
-newtype ListOfTags a = LoT (IntMap a)
-    deriving (LookupTable Int a)
-
-type FIXTags = ListOfTags FIXTag
+type FIXTags = IntMap FIXTag
 data FIXMessageSpec = FMSpec 
                       { msName    :: String
                       , msType    :: ByteString
@@ -96,10 +83,7 @@ data FIXMessageSpec = FMSpec
                       , msBody    :: FIXTags 
                       , msTrailer :: FIXTags }
 
-newtype ListOfMessages a = LM (Map ByteString a)
-    deriving (LookupTable ByteString a)
-
-type FIXMessages = ListOfMessages FIXMessageSpec
+type FIXMessages = Map ByteString FIXMessageSpec
 data FIXSpec = FSpec 
                { fsVersion  :: String       -- ^ FIX version
                , fsHeader   :: FIXTags      -- ^ FIX header tags 
