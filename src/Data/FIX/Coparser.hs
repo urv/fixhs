@@ -76,21 +76,21 @@ instance Coparser (FIXMessage FIXSpec) where
             paddedChecksum m' = FIX.checksum m' `pad` 3 
 
 
-fromFIXMonthYear :: (BuilderLike t a) => CalendarTime -> t
+fromFIXMonthYear :: BuilderLike t => CalendarTime -> t
 fromFIXMonthYear c = 
     let year = ctYear c; month = 1 + fromEnum (ctMonth c) in
         (year `pad` 4) `append` (month `pad` 2)
 
-fromFIXDateOnly :: (BuilderLike t a) => CalendarTime -> t
+fromFIXDateOnly :: BuilderLike t => CalendarTime -> t
 fromFIXDateOnly c = let day = ctDay c in
     fromFIXMonthYear c `append` (day `pad` 2)
 
-fromFIXTimeOnly :: (BuilderLike t a) => CalendarTime -> t
+fromFIXTimeOnly :: BuilderLike t => CalendarTime -> t
 fromFIXTimeOnly c = let m = ctMin c; s = ctSec c; h = ctHour c in
         (h `pad` 2) `append` (':' `cons` (m `pad` 2) 
         `append` (':' `cons` (s `pad` 2 )))
 
-fromFIXTimetamp :: (BuilderLike t a) => CalendarTime -> t
+fromFIXTimetamp :: BuilderLike t => CalendarTime -> t
 fromFIXTimetamp c = fromFIXDateOnly c `append` 
     ('-' `cons` fromFIXTimeOnly c)
 
@@ -124,12 +124,11 @@ instance Coparser FIXValue where
         {-`append` ('\n' `cons` coparse (mBody m) -}
         {-`append` ('\n' `cons` coparse (mTrailer m)))-}
 
-pad :: (BuilderLike a c) => Int -> Int -> a
+pad :: BuilderLike a => Int -> Int -> a
 pad i w | d <= 0 = decimal i
         | d == 1 = '0' `cons` decimal i
         | otherwise = let prefix = P.replicate d '0' in 
             pack prefix `append` decimal i
     where
         d = w - len' i
-
         len' i' = if i' < 10 then 1 else 1 + len' (i' `div` 10)

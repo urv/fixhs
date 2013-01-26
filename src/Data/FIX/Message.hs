@@ -1,4 +1,4 @@
--- Module  : Data.FIX.Message
+-- mODULE  : Data.FIX.Message
 -- License : LGPL-2.1 
 
 {-# LANGUAGE 
@@ -99,9 +99,9 @@ data FIXGroupSpec = FGSpec
 
 
 -- FIX checksum is simply the sum of bytes modulo 256
-checksum :: (BuilderLike t c, Enum c)  => t -> Int
+checksum :: BuilderLike t => t -> Int
 checksum b = foldl' _sumUp 0 b `mod` 256
                 where 
-                    _sumUp :: (Enum c) => Int -> c -> Int
+                    _sumUp :: Int -> Char -> Int
                     _sumUp t c = t + fromEnum c
 

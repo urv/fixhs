@@ -4,7 +4,6 @@
 {-# LANGUAGE 
     BangPatterns
   , MultiParamTypeClasses
-  , FunctionalDependencies
   , FlexibleInstances
   , TypeSynonymInstances #-}
 
@@ -34,7 +33,7 @@ import qualified Data.DList as DL
 import Data.Bits.Utils ( w82c )
 import GHC.Float ( showFloat )
 
-class Enum c => BuilderLike cs c | cs -> c where
+class BuilderLike cs where
     pack :: String -> cs
     unpack :: cs -> String
     singleton :: Char -> cs
@@ -59,7 +58,7 @@ class Enum c => BuilderLike cs c | cs -> c where
     foldl :: (b -> Char -> b) -> b -> cs -> b
     foldl f x0 = P.foldl f x0 . unpack
 
-instance BuilderLike String Char where
+instance BuilderLike String where
     pack = id
     unpack = id
     singleton c = [c]
@@ -70,7 +69,7 @@ instance BuilderLike String Char where
     foldl' = P.foldl'
     foldl = P.foldl
 
-instance BuilderLike ByteString Word8 where
+instance BuilderLike ByteString where
     pack = C.pack
     unpack = C.unpack
     singleton = C.singleton
@@ -82,7 +81,7 @@ instance BuilderLike ByteString Word8 where
     foldl' f = let f' !x !w = {-# SCC "Urvli" #-} w82c w `seq` x `seq` f x (w82c w) in B.foldl' f'
     foldl f = let  f' x =  f x . w82c in B.foldl f'
 
-instance BuilderLike (DL.DList Char) Char where
+instance BuilderLike (DL.DList Char) where
     pack = DL.fromList
     unpack = DL.toList
     singleton = DL.singleton
@@ -91,7 +90,7 @@ instance BuilderLike (DL.DList Char) Char where
     snoc = DL.snoc
     concat = DL.concat
     
-instance BuilderLike Builder Char where
+instance BuilderLike Builder where
     pack = Builder.fromString
     unpack = Builder.unpack . Builder.toLazyText
     singleton = Builder.singleton
@@ -100,4 +99,4 @@ instance BuilderLike Builder Char where
 
 
 class Coparser a where
-    coparse :: BuilderLike t c => a -> t
+    coparse :: BuilderLike t => a -> t
