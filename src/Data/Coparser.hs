@@ -1,11 +1,10 @@
 -- Module  : Data.Coparser
 -- License : LGPL-2.1 
 
-{-# LANGUAGE 
-    BangPatterns
-  , MultiParamTypeClasses
-  , FlexibleInstances
-  , TypeSynonymInstances #-}
+{-# LANGUAGE BangPatterns
+           , MultiParamTypeClasses
+           , FlexibleInstances
+           , TypeSynonymInstances #-}
 
 module Data.Coparser 
     ( Coparser (..)
@@ -20,7 +19,7 @@ import qualified Prelude as P ( length, foldl )
 import qualified Data.Foldable as P ( foldl' )
 import qualified Data.List as L ( concat )
 import Data.ByteString ( ByteString )
-import qualified Data.ByteString as B ( concat, append, length, foldl, foldl'  )
+import qualified Data.ByteString as B ( concat, append, length, foldl, foldl' )
 import Data.Word ( Word8 )
 import qualified Data.ByteString.Char8 as C 
     ( cons, snoc, pack, unpack, singleton )
@@ -96,7 +95,6 @@ instance BuilderLike Builder where
     singleton = Builder.singleton
     append = mappend
     concat = mconcat
-
 
 class Coparser a where
     coparse :: BuilderLike t => a -> t

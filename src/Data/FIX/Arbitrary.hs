@@ -2,13 +2,13 @@
 -- License : LGPL-2.1 
 
 module Data.FIX.Arbitrary 
-	( arbibtraryFIXValues
-	, arbibtraryFIXGroup
-	, arbitraryFIXMessage ) 
-	where
+    ( arbibtraryFIXValues
+    , arbibtraryFIXGroup
+    , arbitraryFIXMessage ) 
+    where
 
 import Data.FIX.Message ( 
-	FIXGroupElement(..), FIXTag(..), FIXValue(..), FIXValues, FIXTags
+    FIXGroupElement(..), FIXTag(..), FIXValue(..), FIXValues, FIXTags
       , FIXMessage(..), FIXSpec, FIXMessageSpec(..), FIXGroupSpec(..) )
 import System.Time ( CalendarTime (..) )
 import Data.ByteString ( ByteString )
@@ -30,21 +30,21 @@ arbibtraryFIXValues tags =
 
 arbibtraryFIXGroup :: FIXGroupSpec -> Gen FIXValue
 arbibtraryFIXGroup spec = 
-    let ltag = gsLength spec in  
-        do t <- arbitraryValue ltag
-	   case t of
-		FIXInt l' -> let l = l' `mod` 4 in 
-		   do bodies <- replicateM l arbitraryGBody
-		      return $ FIXGroup l bodies
-		_         -> error $ "do not know " ++ show (tnum ltag)
+    let ltag = gsLength spec in do 
+       t <- arbitraryValue ltag
+       case t of
+        FIXInt l' -> let l = l' `mod` 4 in 
+           do bodies <- replicateM l arbitraryGBody
+              return $ FIXGroup l bodies
+        _         -> error $ "do not know " ++ show (tnum ltag)
     where
         arbitraryGBody = 
            let stag = gsSeperator spec
                btags = gsBody spec 
            in do
                s  <- arbitraryValue stag 
-	       vs <- arbibtraryFIXValues btags
-	       return (FIXGroupElement (tnum stag) s vs)
+               vs <- arbibtraryFIXValues btags
+               return (FIXGroupElement (tnum stag) s vs)
 
 arbitraryFIXMessage :: FIXSpec -> FIXMessageSpec -> Gen (FIXMessage FIXSpec)
 arbitraryFIXMessage context spec = do

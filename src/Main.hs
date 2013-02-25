@@ -12,16 +12,12 @@ import Control.Monad ( liftM )
 import Data.Maybe ( fromMaybe )
 import Data.FIX.Message (FIXValue(..), mBody)
 
-
 main :: IO ()
 main = let config = E.Configuration "127.0.0.1" 3000 in 
     {-E.client config (liftM p (messageP fix42))-}
     E.client config (liftM p nextP)
         where
             p m = C.pack $ show m
-                  
-                  
-
 
 {-main2 :: IO ()-}
 -- main = client (mapM_ print) >> putStr "done"

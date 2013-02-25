@@ -1,11 +1,8 @@
 -- Module  : Data.LookupTable
 -- License : LGPL-2.1 
 
-{-# LANGUAGE 
-    TypeFamilies
-  , ExistentialQuantification
-  , MultiParamTypeClasses
-  , FlexibleInstances #-}
+{-# LANGUAGE TypeFamilies
+           , FlexibleInstances #-}
 
 module Data.LookupTable ( LookupTable(..) ) 
     where
@@ -22,8 +19,8 @@ class LookupTable t where
     type KeyOf   t :: *
     type ValueOf t :: *
     new      :: t
-    lookup   :: (KeyOf t) -> t -> Maybe (ValueOf t)
-    insert   :: (KeyOf t) -> (ValueOf t) -> t -> t
+    lookup   :: KeyOf t -> t -> Maybe (ValueOf t)
+    insert   :: KeyOf t -> ValueOf t -> t -> t
     toList   :: t -> [(KeyOf t, ValueOf t)]
     fromList :: [(KeyOf t, ValueOf t)] -> t
 
