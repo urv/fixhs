@@ -42,8 +42,8 @@ library
   build-depends:    
                      base >= 3 && < 5, 
                      containers, MissingH, bytestring, attoparsec, 
-                     attoparsec-enumerator, enumerator, old-time, network, 
-                     HaXml, deepseq, QuickCheck, parallel, text, dlist
+                     old-time, network, HaXml, deepseq, QuickCheck, 
+                     parallel, text, dlist
   other-modules:     
                      Data.FIX.ParserCombinators
   exposed-modules:   
